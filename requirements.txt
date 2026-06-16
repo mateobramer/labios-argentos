@@ -1,0 +1,10 @@
+# Dependencias de Python para descargar_procesar.py
+# Instalar con: pip install -r requirements.txt
+#
+# Ademas se necesitan dos binarios externos en el PATH (NO son paquetes pip):
+#   - ffmpeg   (corte de clips)
+#   - yt-dlp   (descarga de videos de YouTube)
+# Ver instrucciones de instalacion en el README.
+
+openai-whisper>=20231117
+unidecode>=1.3.0

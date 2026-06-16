@@ -1,12 +1,33 @@
 import os
 import sys
+import shutil
 import subprocess
 import json
 import re
 import whisper
 from unidecode import unidecode
 
-os.environ["PATH"] += r";C:\Users\Mateo\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-8.1.1-essentials_build\bin"
+# ffmpeg y yt-dlp deben estar en el PATH del sistema (ver README).
+# En Windows, si ffmpeg se instalo con winget pero no quedo en el PATH,
+# agregamos su carpeta tipica solo si existe.
+if os.name == "nt" and shutil.which("ffmpeg") is None:
+    posibles = [
+        os.path.expandvars(
+            r"%LOCALAPPDATA%\Microsoft\WinGet\Packages"
+            r"\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe"
+            r"\ffmpeg-8.1.1-essentials_build\bin"
+        ),
+    ]
+    for ruta in posibles:
+        if os.path.isdir(ruta):
+            os.environ["PATH"] += os.pathsep + ruta
+            break
+
+# Verificacion temprana: avisamos claro si faltan los binarios externos.
+for binario in ("ffmpeg", "yt-dlp"):
+    if shutil.which(binario) is None:
+        print(f"ERROR: no se encontro '{binario}' en el PATH. Ver instrucciones en el README.")
+        sys.exit(1)
 
 def limpiar(texto):
     texto = texto.lower()
