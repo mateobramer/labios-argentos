@@ -7,6 +7,11 @@ import re
 import whisper
 from unidecode import unidecode
 
+DATA_DIR = "data"
+VIDEOS_DIR = os.path.join(DATA_DIR, "videos")
+CORPUS_DIR = os.path.join(DATA_DIR, "corpus")
+CLIPS_DIR = os.path.join(DATA_DIR, "clips")
+
 # ffmpeg y yt-dlp deben estar en el PATH del sistema (ver README).
 # En Windows, si ffmpeg se instalo con winget pero no quedo en el PATH,
 # agregamos su carpeta tipica solo si existe.
@@ -42,7 +47,7 @@ def nombre_carpeta(titulo):
     return titulo
 
 def bajar_video(url):
-    os.makedirs("videos", exist_ok=True)
+    os.makedirs(VIDEOS_DIR, exist_ok=True)
     
     # primero obtenemos el titulo sin bajar
     cmd_titulo = ["yt-dlp", "--print", "title", url]
@@ -50,7 +55,7 @@ def bajar_video(url):
     carpeta = nombre_carpeta(titulo)
     
     # carpeta del video
-    video_dir = os.path.join("videos", carpeta)
+    video_dir = os.path.join(VIDEOS_DIR, carpeta)
     os.makedirs(video_dir, exist_ok=True)
     
     # bajar el video
@@ -69,8 +74,9 @@ def bajar_video(url):
     return video_path, carpeta
 
 def transcribir(video_path, carpeta):
-    json_path = os.path.join("corpus", carpeta, "transcripcion.json")
-    os.makedirs(os.path.join("corpus", carpeta), exist_ok=True)
+    corpus_dir = os.path.join(CORPUS_DIR, carpeta)
+    json_path = os.path.join(corpus_dir, "transcripcion.json")
+    os.makedirs(corpus_dir, exist_ok=True)
 
     if os.path.exists(json_path):
         print("Cargando transcripcion existente...")
@@ -88,7 +94,7 @@ def transcribir(video_path, carpeta):
     return resultado
 
 def guardar_corpus(resultado, carpeta):
-    txt_path = os.path.join("corpus", carpeta, "corpus.txt")
+    txt_path = os.path.join(CORPUS_DIR, carpeta, "corpus.txt")
     with open(txt_path, "w", encoding="utf-8") as f:
         for seg in resultado["segments"]:
             texto = limpiar(seg["text"])
@@ -97,7 +103,7 @@ def guardar_corpus(resultado, carpeta):
     print(f"Corpus guardado: {txt_path}")
 
 def cortar_clips(video_path, resultado, carpeta):
-    clips_dir = os.path.join("clips", carpeta)
+    clips_dir = os.path.join(CLIPS_DIR, carpeta)
     os.makedirs(clips_dir, exist_ok=True)
 
     # primero agrupamos segmentos

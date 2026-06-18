@@ -1,13 +1,18 @@
 # Video crudo > 100 MB: GitHub rechaza archivos de ese tamano.
 # Se mantiene fuera del repo; se puede regenerar con descargar_procesar.py.
 # Sus clips y transcripcion SI se versionan.
-videos/que pasó con Roberto/
-videos/DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA/
-videos/Entrevista completa por mi libro Franco con Diego/
-videos/ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -/
+data/videos/que paso con Roberto/
+data/videos/que pasó con Roberto/
+data/videos/DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA/
+data/videos/Entrevista completa por mi libro Franco con Diego/
+data/videos/ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -/
 
 # Modelos de Whisper / pesos descargados (no versionar)
 *.pt
+
+# Cache de Python
+__pycache__/
+*.pyc
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
