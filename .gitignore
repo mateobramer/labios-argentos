@@ -2,9 +2,18 @@
 # Se mantiene fuera del repo; se puede regenerar con descargar_procesar.py.
 # Sus clips y transcripcion SI se versionan.
 videos/que pasó con Roberto/
+videos/DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA/
+videos/Entrevista completa por mi libro Franco con Diego/
+videos/ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -/
 
 # Modelos de Whisper / pesos descargados (no versionar)
 *.pt
 
+# Entorno virtual de Python (libs pesadas, no versionar)
+.venv/
+
 # Basura del SO
 .DS_Store
+
+# Backup temporal del .git roto (recuperacion)
+.git.broken-backup/
