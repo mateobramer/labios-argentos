@@ -1,10 +1,15 @@
 # Video crudo > 100 MB: GitHub rechaza archivos de ese tamano.
 # Se mantiene fuera del repo; se puede regenerar con descargar_procesar.py.
 # Sus clips y transcripcion SI se versionan.
-videos/que pasó con Roberto/
+data/videos/que paso con Roberto/
+data/videos/que pasó con Roberto/
 
 # Modelos de Whisper / pesos descargados (no versionar)
 *.pt
+
+# Cache de Python
+__pycache__/
+*.pyc
 
 # Basura del SO
 .DS_Store

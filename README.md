@@ -57,20 +57,21 @@ python descargar_procesar.py "URL_DE_YOUTUBE"
 
 Pasos:
 
-1. **`bajar_video`** — `yt-dlp` descarga el `.mp4` -> `videos/<titulo>/`.
+1. **`bajar_video`** — `yt-dlp` descarga el `.mp4` -> `data/videos/<titulo>/`.
 2. **`transcribir`** — Whisper (modelo `small`, español) transcribe.
-   Se cachea en `corpus/<titulo>/transcripcion.json` (si ya existe, se reutiliza).
+   Se cachea en `data/corpus/<titulo>/transcripcion.json` (si ya existe, se reutiliza).
 3. **`guardar_corpus`** — vuelca texto limpio (segmentos de >=3 palabras) a
-   `corpus/<titulo>/corpus.txt`.
+   `data/corpus/<titulo>/corpus.txt`.
 4. **`cortar_clips`** — agrupa segmentos en bloques de ~3-10 s y con `ffmpeg` genera
-   `clips/<titulo>/clip_NNNN.mp4` + `clip_NNNN.txt` (transcripción del clip).
+   `data/clips/<titulo>/clip_NNNN.mp4` + `clip_NNNN.txt` (transcripción del clip).
 
 ### Estructura de salida
 
 ```
-videos/<titulo>/   # .mp4 original descargado
-corpus/<titulo>/   # transcripcion.json (Whisper) + corpus.txt
-clips/<titulo>/    # pares clip_NNNN.mp4 / clip_NNNN.txt
+data/videos/<titulo>/   # .mp4 original descargado
+data/corpus/<titulo>/   # transcripcion.json (Whisper) + corpus.txt
+data/clips/<titulo>/    # pares clip_NNNN.mp4 / clip_NNNN.txt
+data/metadata/          # inventario de fuentes y hablantes
 ```
 
 ---
@@ -124,8 +125,8 @@ faltan.
 
 - Código y comentarios en **español**.
 - Script procedural simple, sin framework ni tests.
-- Los directorios `videos/`, `corpus/` y `clips/` son **datos generados**: no editar a
-  mano.
+- Los directorios `data/videos/`, `data/corpus/` y `data/clips/` son **datos
+  generados**: no editar a mano.
 - Los títulos de YouTube se sanitizan a <=50 chars como nombre de carpeta, de modo que el
   mismo video mapea consistentemente entre las tres carpetas.
 - Un video crudo supera los 100 MB (límite de GitHub), por eso está en `.gitignore`; se

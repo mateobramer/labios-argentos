@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 Guía para trabajar en este repositorio.
 
