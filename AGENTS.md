@@ -48,7 +48,7 @@ pero **preserva la ñ** (truco del placeholder `ENIE`).
 - `data/clips/<titulo>/` — pares `clip_NNNN.mp4` / `clip_NNNN.txt`.
 - `data/metadata/` — inventario de fuentes y hablantes.
 
-Hay 9 fuentes ya procesadas (~1987 clips). Estos directorios son **datos generados**, no
+Hay 12 fuentes ya procesadas (~4216 clips). Estos directorios son **datos generados**, no
 código; no los edites a mano.
 
 ## Dependencias
