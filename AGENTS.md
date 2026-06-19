@@ -29,7 +29,7 @@ Pasos (funciones en orden):
 
 1. `bajar_video(url)` — usa **yt-dlp** para obtener el título y descargar el `.mp4`.
    Crea `data/videos/<titulo>/`.
-2. `transcribir(video_path, carpeta)` — transcribe con **Whisper** (modelo `small`,
+2. `transcribir(video_path, carpeta)` — transcribe con **Whisper** (modelo `turbo`,
    `language="es"`). Cachea el resultado en
    `data/corpus/<titulo>/transcripcion.json`; si ya existe, lo reutiliza.
 3. `guardar_corpus(resultado, carpeta)` — vuelca el texto limpio (segmentos de ≥3
@@ -48,18 +48,21 @@ pero **preserva la ñ** (truco del placeholder `ENIE`).
 - `data/clips/<titulo>/` — pares `clip_NNNN.mp4` / `clip_NNNN.txt`.
 - `data/metadata/` — inventario de fuentes y hablantes.
 
-Hay 12 fuentes ya procesadas (~4216 clips). Estos directorios son **datos generados**, no
+Hay 16 fuentes ya procesadas (~5375 clips). Estos directorios son **datos generados**, no
 código; no los edites a mano.
 
 ## Dependencias
 
-Hay `requirements.txt` para las dependencias de Python. Además se necesita:
+Hay `requirements.txt` para las dependencias de Python. Incluye:
 
-- Python: `openai-whisper`, `unidecode`
-- Binarios externos en el PATH: `yt-dlp`, `ffmpeg`
+- Python: `openai-whisper`, `unidecode`, `yt-dlp`, `imageio-ffmpeg`
 
-⚠️ **Ojo con el PATH de ffmpeg**: el script intenta sumar una ruta típica de winget en
-Windows solo si existe; en otras máquinas ffmpeg debe estar disponible globalmente.
+`ffmpeg` puede estar disponible globalmente en el PATH o venir del paquete
+`imageio-ffmpeg`. En Windows, el script también intenta sumar una ruta típica de
+winget si existe.
+
+Por defecto se usa Whisper `turbo`. Se puede cambiar con la variable de entorno
+`WHISPER_MODEL` (por ejemplo, `WHISPER_MODEL=small`).
 
 ## Convenciones
 
