@@ -7,6 +7,10 @@ data/videos/DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA/
 data/videos/Entrevista completa por mi libro Franco con Diego/
 data/videos/ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -/
 
+# Evitar subir videos crudos nuevos por accidente. Son regenerables con yt-dlp;
+# se versionan los clips alineados y el corpus.
+data/videos/*/
+
 # Modelos de Whisper / pesos descargados (no versionar)
 *.pt
 

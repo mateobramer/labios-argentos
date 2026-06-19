@@ -58,7 +58,7 @@ python descargar_procesar.py "URL_DE_YOUTUBE"
 Pasos:
 
 1. **`bajar_video`** — `yt-dlp` descarga el `.mp4` -> `data/videos/<titulo>/`.
-2. **`transcribir`** — Whisper (modelo `small`, español) transcribe.
+2. **`transcribir`** — Whisper (modelo `turbo` por defecto, español) transcribe.
    Se cachea en `data/corpus/<titulo>/transcripcion.json` (si ya existe, se reutiliza).
 3. **`guardar_corpus`** — vuelca texto limpio (segmentos de >=3 palabras) a
    `data/corpus/<titulo>/corpus.txt`.
@@ -78,22 +78,30 @@ data/metadata/          # inventario de fuentes y hablantes
 
 ## Instalación
 
-Requiere **Python 3.9+** y dos binarios externos en el PATH.
+Requiere **Python 3.9+**. `yt-dlp` y un binario local de `ffmpeg` se instalan con
+`requirements.txt`; si ya tenés `ffmpeg` global en el PATH, el script usa ese.
 
 ```bash
 # Dependencias de Python
 pip install -r requirements.txt
 
-# Binarios externos
+# Opcional: ffmpeg del sistema, si se prefiere al binario de imageio-ffmpeg.
 #   macOS (Homebrew):
-brew install ffmpeg yt-dlp
+brew install ffmpeg
 #   Linux (Debian/Ubuntu):
-#   sudo apt install ffmpeg && pip install yt-dlp
-#   Windows: winget install Gyan.FFmpeg && pip install yt-dlp
+#   sudo apt install ffmpeg
+#   Windows: winget install Gyan.FFmpeg
 ```
 
-El script verifica al inicio que `ffmpeg` y `yt-dlp` estén disponibles y avisa si
-faltan.
+El script verifica al inicio que `yt-dlp` y alguna variante de `ffmpeg` estén
+disponibles y avisa si faltan.
+
+Por defecto usa Whisper `turbo`, que suele dar mejor precisión que `small` con
+buena velocidad. Para forzar otro modelo:
+
+```bash
+WHISPER_MODEL=small python descargar_procesar.py URL_YOUTUBE
+```
 
 ---
 
