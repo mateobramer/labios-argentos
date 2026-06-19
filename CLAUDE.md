@@ -17,6 +17,15 @@ rioplatense: destilación causal de Auto-AVSR con corrección mediante un LLM"*
 español usando LIP-RTVE **más un conjunto propio recolectado de YouTube en
 rioplatense** — ese conjunto propio es lo que produce este repo.
 
+## Estructura del proyecto
+
+Antes de agregar módulos, notebooks, scripts nuevos o carpetas de experimentos, leer
+`ESTRUCTURA_PROYECTO.md`.
+
+Regla corta: cada bloque del sistema debe vivir en su propia carpeta, con lógica
+reutilizable en `src/` y notebooks de experimentos dentro del módulo correspondiente. No
+dejar scripts, datos o resultados nuevos desparramados en la raíz.
+
 ## Pipeline
 
 Todo vive en un único script: `descargar_procesar.py`. Se ejecuta con:
