@@ -42,29 +42,47 @@ necesita.
 Estos son los bloques naturales del proyecto. Los nombres pueden ajustarse, pero la
 separación debería mantenerse.
 
-### `data_pipeline/`
+### `dataset_collection/`
 
-Recolección y armado del dataset.
+Recoleccion y armado inicial del dataset.
 
-Va acá:
+Va aca:
 
 - descarga de fuentes;
-- transcripción offline;
-- generación de corpus;
-- armado de clips supervisados;
-- metadata de fuentes y hablantes;
-- controles de calidad del dataset;
-- scripts para actualizar `data/metadata/`.
+- transcripcion offline;
+- generacion de corpus;
+- armado de clips supervisados.
 
-No va acá:
+No va aca:
 
+- limpieza o auditoria de calidad del dataset;
 - crop labial;
 - entrenamiento de modelos;
-- lógica de inferencia en tiempo real.
+- logica de inferencia en tiempo real.
 
-Nota: `descargar_procesar.py` hoy vive en la raíz como script principal. Si crece, la
-lógica debería migrar gradualmente a `data_pipeline/src/` y dejar el archivo de raíz como
-entrypoint fino.
+Nota: `descargar_procesar.py` hoy vive en la raiz como script principal. Si crece, la
+logica deberia migrar gradualmente a `dataset_collection/src/` y dejar el archivo de raiz
+como entrypoint fino.
+
+### `data_cleaning/`
+
+Auditoria, limpieza y curaduria del dataset crudo.
+
+Va aca:
+
+- metadata de fuentes y hablantes;
+- scripts para actualizar `data/metadata/`;
+- inventarios de clips y textos;
+- chequeos de pares `.mp4` / `.txt`;
+- deteccion de textos raros, clips demasiado cortos o posibles cortes abruptos;
+- manifests de calidad con estados como `keep`, `review` y `drop`.
+
+No va aca:
+
+- descarga, transcripcion o corte inicial de videos;
+- crop labial o landmarks;
+- entrenamiento de modelos;
+- logica de inferencia en tiempo real.
 
 ### `visual_preprocessing/`
 
@@ -161,14 +179,15 @@ carpetas.
 
 Antes de commitear:
 
-- no subir videos crudos nuevos;
-- no subir pesos grandes;
-- no subir corridas completas de entrenamiento;
+- revisar el tamano de videos, clips y salidas nuevas;
+- no subir pesos grandes de modelos sin decidirlo explicitamente;
+- no subir corridas completas de entrenamiento sin decidirlo explicitamente;
 - revisar `git status` y confirmar que el commit contiene solo lo esperado.
 
 ## Cómo decidir dónde poner algo
 
-- Si descarga, transcribe o arma clips: `data_pipeline/`.
+- Si descarga, transcribe o arma clips: `dataset_collection/`.
+- Si audita, limpia o arma manifests de calidad del dataset crudo: `data_cleaning/`.
 - Si recorta labios o prepara frames: `visual_preprocessing/`.
 - Si entrena o evalúa modelos VSR offline: `vsr_models/`.
 - Si corre en vivo o decide cuándo commitear texto: `realtime/`.

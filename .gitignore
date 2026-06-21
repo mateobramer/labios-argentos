@@ -17,6 +17,8 @@ data/videos/*/
 # Cache de Python
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
+.jupyter_logs/
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/

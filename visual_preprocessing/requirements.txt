@@ -1,0 +1,9 @@
+# Dependencias del preprocesamiento visual (recorte labial para VSR).
+# Instalar con: pip install -r visual_preprocessing/requirements.txt
+#
+# mediapipe fija numpy<2 y versiones especificas de protobuf; si choca con el
+# entorno del pipeline principal, conviene un venv aparte para esta etapa.
+
+mediapipe>=0.10.9
+opencv-python>=4.8.0
+numpy>=1.24,<2
