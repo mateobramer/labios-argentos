@@ -20,6 +20,12 @@ __pycache__/
 .ipynb_checkpoints/
 .jupyter_logs/
 
+# Salidas locales de notebooks de evaluacion.
+evaluation/outputs/*
+!evaluation/outputs/.gitkeep
+evaluation/runs/*
+!evaluation/runs/.gitkeep
+
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
 .venv*/

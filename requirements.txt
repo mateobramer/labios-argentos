@@ -1,4 +1,4 @@
-# Dependencias de Python para descargar_procesar.py
+# Dependencias de Python para descargar_procesar.py y notebooks livianos
 # Instalar con: pip install -r requirements.txt
 #
 # yt-dlp se usa para descargar de YouTube.
@@ -8,3 +8,4 @@ openai-whisper>=20231117
 unidecode>=1.3.0
 yt-dlp>=2026.6.9
 imageio-ffmpeg>=0.6.0
+pandas>=2.0.0
