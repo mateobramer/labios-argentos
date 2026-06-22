@@ -1,17 +1,29 @@
 """
-Preprocesamiento visual de clips para VSR.
+Preprocesamiento visual de clips para VSR (formato Auto-AVSR).
 
 Entrada:
     data/clips/<titulo>/clip_NNNN.mp4
 
 Salida:
-    data/processed/lip_rois/<titulo>/clip_NNNN.mp4
+    data/processed/lip_rois/<titulo>/clip_NNNN.mp4   (recorte labial 96x96 gris, 25 fps)
     data/processed/lip_rois/<titulo>/clip_NNNN.txt
     data/metadata/lip_preprocessing_manifest.csv
 
 Uso desde la raiz del repo:
     python -m visual_preprocessing.src.preprocesar
     python -m visual_preprocessing.src.preprocesar "<titulo>"
+
+Como funciona (alineacion a cara media, estilo Auto-AVSR):
+    1. MediaPipe FaceLandmarker detecta 478 landmarks por cuadro.
+    2. De esos puntos se extraen 4 puntos estables: ojo derecho, ojo izquierdo,
+       punta de nariz y centro de boca.
+    3. VideoProcess (video_process.py, adaptado de Auto-AVSR) usa esos 4 puntos para
+       una transformacion afin que alinea cada cuadro a una cara canonica (pose, escala
+       y rotacion normalizadas), pasa a gris y recorta 96x96 centrado en la boca.
+    4. Se descartan los clips donde no se detecta cara frontal estable.
+
+Diferencia con el recorte por bounding-box: el warp a cara media deja la boca siempre
+en la misma posicion/escala/orientacion, que es lo que el modelo de Auto-AVSR espera.
 """
 
 import csv
@@ -29,12 +41,12 @@ except ImportError:
     print("ERROR: falta 'mediapipe'. Instalar con: pip install -r visual_preprocessing/requirements.txt")
     sys.exit(1)
 
+from visual_preprocessing.src.video_process import VideoProcess
 
 # Parametros del formato de salida. Confirmar contra el loader de entrenamiento.
 TAMANO_SALIDA = 96
 FPS_SALIDA = 25
-MARGEN = 0.6
-UMBRAL_DETECCION = 0.8
+UMBRAL_DETECCION = 0.8  # fraccion minima de cuadros con cara para conservar el clip
 
 DIR_MODULO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAIZ_REPO = os.path.dirname(DIR_MODULO)
@@ -44,7 +56,12 @@ SALIDA_DIR = os.path.join(RAIZ_REPO, "data", "processed", "lip_rois")
 MANIFEST_PATH = os.path.join(RAIZ_REPO, "data", "metadata", "lip_preprocessing_manifest.csv")
 MODELO = os.path.join(DIR_MODULO, "models", "face_landmarker.task")
 
-# Indices de landmarks de labios en la malla facial de MediaPipe.
+# Indices de la malla facial de MediaPipe (478 puntos) para los 4 puntos estables.
+# El orden DEBE ser [ojo derecho, ojo izquierdo, nariz, boca] para que matchee la
+# referencia de cara media usada en VideoProcess.
+OJO_DER_IDX = [33, 133, 159, 145]    # ojo derecho del sujeto (lado izquierdo de la imagen)
+OJO_IZQ_IDX = [362, 263, 386, 374]   # ojo izquierdo del sujeto
+NARIZ_IDX = 1                        # punta de nariz
 LIPS_IDX = [
     61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 308, 324, 318, 402, 317,
     14, 87, 178, 88, 95, 185, 40, 39, 37, 0, 267, 269, 270, 409, 415, 310, 311,
@@ -70,36 +87,32 @@ def crear_landmarker():
     return mp_vision.FaceLandmarker.create_from_options(opts)
 
 
-def caja_boca(landmarks, ancho, alto):
-    """Devuelve (cx, cy, lado) de un recorte cuadrado centrado en la boca."""
-    xs = [landmarks[i].x * ancho for i in LIPS_IDX]
-    ys = [landmarks[i].y * alto for i in LIPS_IDX]
-    x0, x1 = min(xs), max(xs)
-    y0, y1 = min(ys), max(ys)
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    lado = max(x1 - x0, y1 - y0) * (1 + MARGEN)
-    return cx, cy, lado
+def detectar_landmarks(rgb, landmarker):
+    """Devuelve los 478 landmarks de la primera cara (en RGB), o None."""
+    img = mp.Image(image_format=mp.ImageFormat.SRGB, data=np.ascontiguousarray(rgb))
+    res = landmarker.detect(img)
+    if res.face_landmarks:
+        return res.face_landmarks[0]
+    return None
 
 
-def recortar(frame, caja):
-    """Recorta la boca y la lleva a 96x96 en escala de grises."""
-    alto, ancho = frame.shape[:2]
-    cx, cy, lado = caja
-    medio = lado / 2
-    x0 = int(max(0, cx - medio))
-    y0 = int(max(0, cy - medio))
-    x1 = int(min(ancho, cx + medio))
-    y1 = int(min(alto, cy + medio))
-    recorte = frame[y0:y1, x0:x1]
-    if recorte.size == 0:
-        return None
-    recorte = cv2.resize(recorte, (TAMANO_SALIDA, TAMANO_SALIDA))
-    return cv2.cvtColor(recorte, cv2.COLOR_BGR2GRAY)
+def cuatro_puntos(landmarks, ancho, alto):
+    """Extrae [ojo derecho, ojo izquierdo, nariz, boca] en pixeles desde la malla."""
+    def media(idxs):
+        return [float(np.mean([landmarks[i].x for i in idxs])) * ancho,
+                float(np.mean([landmarks[i].y for i in idxs])) * alto]
+
+    return np.array([
+        media(OJO_DER_IDX),
+        media(OJO_IZQ_IDX),
+        [landmarks[NARIZ_IDX].x * ancho, landmarks[NARIZ_IDX].y * alto],
+        media(LIPS_IDX),
+    ], dtype=np.float32)
 
 
 def remuestrear_a_25fps(frames, fps_origen):
-    """Selecciona cuadros para llevar la secuencia a FPS_SALIDA."""
-    if not frames:
+    """Selecciona cuadros para llevar la secuencia a FPS_SALIDA por nearest-frame."""
+    if len(frames) == 0:
         return []
     if fps_origen <= 0:
         fps_origen = FPS_SALIDA
@@ -112,159 +125,141 @@ def remuestrear_a_25fps(frames, fps_origen):
     return salida
 
 
-def detectar_labios(frame, landmarker):
-    """Devuelve los landmarks de la primera cara, o None si no detecta."""
-    rgb = np.ascontiguousarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-    img = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb)
-    res = landmarker.detect(img)
-    if res.face_landmarks:
-        return res.face_landmarks[0]
-    return None
+def procesar_clip(clip_path, landmarker, vproc):
+    """Lee un clip, detecta 4 puntos por cuadro y alinea+recorta con warp a cara media.
 
-
-def procesar_clip(clip_path, landmarker):
-    """Lee un clip y devuelve (frames_recortados, ratio_deteccion)."""
+    Devuelve (frames_recortados, ratio_deteccion): lista de imagenes 96x96 gris
+    (alineadas y remuestreadas a 25 fps) y la fraccion de cuadros con cara detectada.
+    """
     cap = cv2.VideoCapture(clip_path)
     fps_origen = cap.get(cv2.CAP_PROP_FPS)
 
-    recortados = []
+    frames_rgb = []
+    puntos = []
     detectados = 0
-    total = 0
-    ultima_caja = None
 
     while True:
         ok, frame = cap.read()
         if not ok:
             break
-        total += 1
-        landmarks = detectar_labios(frame, landmarker)
+        rgb = np.ascontiguousarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+        frames_rgb.append(rgb)
+        landmarks = detectar_landmarks(rgb, landmarker)
         if landmarks is not None:
-            ultima_caja = caja_boca(landmarks, frame.shape[1], frame.shape[0])
+            puntos.append(cuatro_puntos(landmarks, rgb.shape[1], rgb.shape[0]))
             detectados += 1
-
-        if ultima_caja is None:
-            continue
-        gris = recortar(frame, ultima_caja)
-        if gris is not None:
-            recortados.append(gris)
+        else:
+            puntos.append(None)
 
     cap.release()
+    total = len(frames_rgb)
     ratio = detectados / total if total else 0.0
-    return remuestrear_a_25fps(recortados, fps_origen), ratio
+
+    if total == 0 or ratio < UMBRAL_DETECCION:
+        return [], ratio
+
+    # Warp a cara media + recorte 96x96 gris (interpola cuadros sin deteccion).
+    try:
+        secuencia = vproc(frames_rgb, puntos)
+    except Exception as e:
+        print(f"    (warp fallo: {e})")
+        return [], ratio
+
+    if secuencia is None or len(secuencia) == 0:
+        return [], ratio
+
+    frames = [secuencia[i] for i in range(len(secuencia))]
+    return remuestrear_a_25fps(frames, fps_origen), ratio
 
 
 def guardar_video_gris(frames, salida_path):
     """Escribe una lista de cuadros 96x96 gris como mp4 a 25 fps."""
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    vw = cv2.VideoWriter(
-        salida_path,
-        fourcc,
-        FPS_SALIDA,
-        (TAMANO_SALIDA, TAMANO_SALIDA),
-        isColor=False,
-    )
-    for frame in frames:
-        vw.write(frame)
+    vw = cv2.VideoWriter(salida_path, fourcc, FPS_SALIDA,
+                         (TAMANO_SALIDA, TAMANO_SALIDA), isColor=False)
+    for f in frames:
+        vw.write(f)
     vw.release()
 
 
-def cargar_manifest():
-    filas = []
-    ya_procesados = set()
-    if not os.path.exists(MANIFEST_PATH):
-        return filas, ya_procesados
-
-    with open(MANIFEST_PATH, encoding="utf-8") as f:
-        lector = csv.DictReader(f)
-        for fila in lector:
-            filas.append(fila)
-            ya_procesados.add((fila["titulo"], fila["clip"]))
-    return filas, ya_procesados
-
-
-def procesar_carpeta(titulo, landmarker, ya_procesados, filas):
+def procesar_carpeta(titulo, landmarker, vproc, ya_procesados, filas):
     origen = os.path.join(CLIPS_DIR, titulo)
     destino = os.path.join(SALIDA_DIR, titulo)
     os.makedirs(destino, exist_ok=True)
 
     clips = sorted(f for f in os.listdir(origen) if f.endswith(".mp4"))
     for nombre in clips:
+        clip_path = os.path.join(origen, nombre)
         base = os.path.splitext(nombre)[0]
+
+        # Incremental: si el clip ya esta en el manifest, no lo reprocesamos.
         if (titulo, base) in ya_procesados:
             print(f"  [salteado] {nombre} (ya procesado)")
             continue
 
-        clip_path = os.path.join(origen, nombre)
+        frames, ratio = procesar_clip(clip_path, landmarker, vproc)
+
         txt_origen = os.path.join(origen, base + ".txt")
         texto = ""
         if os.path.exists(txt_origen):
             with open(txt_origen, encoding="utf-8") as f:
                 texto = f.read().strip()
 
-        frames, ratio = procesar_clip(clip_path, landmarker)
-        salida_mp4 = os.path.join(destino, base + ".mp4")
-        salida_txt = os.path.join(destino, base + ".txt")
-
-        if ratio < UMBRAL_DETECCION or not frames:
+        if not frames:
             estado = "descartado"
             print(f"  [descartado] {nombre} (cara en {ratio*100:.0f}% de los cuadros)")
         else:
             estado = "ok"
+            salida_mp4 = os.path.join(destino, base + ".mp4")
             guardar_video_gris(frames, salida_mp4)
-            with open(salida_txt, "w", encoding="utf-8") as f:
+            with open(os.path.join(destino, base + ".txt"), "w", encoding="utf-8") as f:
                 f.write(texto)
-            print(f"  [ok] {nombre} -> {len(frames)} cuadros 96x96 gris")
+            print(f"  [ok] {nombre} -> {len(frames)} cuadros 96x96 gris (alineados)")
 
-        filas.append({
-            "titulo": titulo,
-            "clip": base,
-            "clip_path": os.path.join("data", "clips", titulo, nombre),
-            "text_path": os.path.join("data", "clips", titulo, base + ".txt"),
-            "output_path": os.path.join("data", "processed", "lip_rois", titulo, base + ".mp4"),
-            "estado": estado,
-            "ratio_deteccion": f"{ratio:.3f}",
-            "n_frames": str(len(frames)),
-            "texto": texto,
-        })
-
-
-def guardar_manifest(filas):
-    os.makedirs(os.path.dirname(MANIFEST_PATH), exist_ok=True)
-    encabezado = [
-        "titulo", "clip", "clip_path", "text_path", "output_path",
-        "estado", "ratio_deteccion", "n_frames", "texto",
-    ]
-    filas.sort(key=lambda x: (x["titulo"], x["clip"]))
-    with open(MANIFEST_PATH, "w", newline="", encoding="utf-8") as f_csv:
-        escritor = csv.DictWriter(f_csv, fieldnames=encabezado)
-        escritor.writeheader()
-        escritor.writerows(filas)
+        filas.append([titulo, base, estado, f"{ratio:.3f}", str(len(frames)), texto])
 
 
 def main():
     if not os.path.isdir(CLIPS_DIR):
-        print(f"ERROR: no existe la carpeta '{CLIPS_DIR}'. Corre primero descargar_procesar.py.")
+        print(f"ERROR: no existe '{CLIPS_DIR}'. Corré primero descargar_procesar.py.")
         sys.exit(1)
 
     if len(sys.argv) >= 2:
         titulos = [sys.argv[1]]
     else:
-        titulos = sorted(
-            d for d in os.listdir(CLIPS_DIR)
-            if os.path.isdir(os.path.join(CLIPS_DIR, d))
-        )
+        titulos = sorted(d for d in os.listdir(CLIPS_DIR)
+                         if os.path.isdir(os.path.join(CLIPS_DIR, d)))
 
-    os.makedirs(SALIDA_DIR, exist_ok=True)
-    filas, ya_procesados = cargar_manifest()
+    os.makedirs(os.path.dirname(MANIFEST_PATH), exist_ok=True)
+    encabezado = ["titulo", "clip", "estado", "ratio_deteccion", "n_frames", "texto"]
+
+    # Manifest existente -> saltear lo ya procesado (incremental e idempotente).
+    filas = []
+    ya_procesados = set()
+    if os.path.exists(MANIFEST_PATH):
+        with open(MANIFEST_PATH, encoding="utf-8") as f:
+            lector = csv.reader(f)
+            next(lector, None)
+            for fila in lector:
+                if len(fila) >= 2:
+                    filas.append(fila)
+                    ya_procesados.add((fila[0], fila[1]))
+
     landmarker = crear_landmarker()
+    vproc = VideoProcess(crop_width=TAMANO_SALIDA, crop_height=TAMANO_SALIDA, convert_gray=True)
     try:
         for titulo in titulos:
             print(f"\n=== {titulo} ===")
-            procesar_carpeta(titulo, landmarker, ya_procesados, filas)
+            procesar_carpeta(titulo, landmarker, vproc, ya_procesados, filas)
     finally:
         landmarker.close()
 
-    guardar_manifest(filas)
+    filas.sort(key=lambda x: (x[0], x[1]))
+    with open(MANIFEST_PATH, "w", newline="", encoding="utf-8") as f_csv:
+        escritor = csv.writer(f_csv)
+        escritor.writerow(encabezado)
+        escritor.writerows(filas)
+
     print(f"\nListo. Manifest en: {MANIFEST_PATH}")
 
 
