@@ -167,10 +167,24 @@ El dataset principal sigue viviendo en `data/`:
 
 ```text
 data/
-  videos/       # videos crudos; no subir nuevos por accidente
-  corpus/       # transcripciones y corpus
-  clips/        # clips alineados video-texto
-  metadata/     # inventario de fuentes, hablantes y notas
+  videos/                # videos crudos; no subir nuevos por accidente
+  corpus/                # transcripciones y corpus
+  clips/                 # clips alineados video-texto (salida de descargar_procesar.py)
+  processed/
+    lip_rois/            # ROIs labiales 96x96 (salida de visual_preprocessing)
+  metadata/              # inventarios y manifests
+    fuentes.csv
+    lip_preprocessing_manifest.csv   # estado del preproc visual por clip
+    auditoria_clips_manifest.csv     # keep/review/drop del detector de clips malos
+```
+
+El **dataset final curado** (lo que se entrena) vive en la raiz, en `dataset/`, y es la
+salida del detector de clips malos (`data_cleaning`): contiene solo los clips `keep`,
+copiados desde `data/processed/lip_rois/`. Dos niveles a proposito:
+
+```text
+data/processed/lip_rois/   # TODO lo que paso el preproc visual (crudo, sin curar)
+dataset/                   # set FINAL curado (solo keep) + manifest.csv
 ```
 
 Si un módulo necesita datos propios, puede tener `modulo/data/`, pero solo para datos

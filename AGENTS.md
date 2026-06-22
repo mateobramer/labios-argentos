@@ -54,11 +54,15 @@ pero **preserva la ñ** (truco del placeholder `ENIE`).
 
 - `data/videos/<titulo>/` — el `.mp4` original (y a veces `.info.json` de yt-dlp).
 - `data/corpus/<titulo>/` — `transcripcion.json` (salida cruda de Whisper) + `corpus.txt`.
-- `data/clips/<titulo>/` — pares `clip_NNNN.mp4` / `clip_NNNN.txt`.
-- `data/metadata/` — inventario de fuentes y hablantes.
+- `data/clips/<titulo>/` — pares `clip_NNNN.mp4` / `clip_NNNN.txt` (clips crudos alineados).
+- `data/processed/lip_rois/<titulo>/` — ROIs labiales 96x96 (salida de `visual_preprocessing`).
+- `dataset/<titulo>/` — **dataset final curado** (solo clips `keep` del detector de `data_cleaning`).
+- `data/metadata/` — `fuentes.csv` + manifests (`lip_preprocessing_manifest.csv`, `auditoria_clips_manifest.csv`).
 
-Hay 16 fuentes ya procesadas (~5375 clips). Estos directorios son **datos generados**, no
-código; no los edites a mano.
+Estado: ~32 fuentes con clips crudos alineados (~9300 pares en `data/clips/`, versionados
+en git via sparse-checkout); de esas, 9 fuentes ya pasaron el preproc visual (1704 ROIs)
+y la curacion (1683 `keep`). Estos directorios son **datos generados**, no código; no los
+edites a mano.
 
 ## Dependencias
 
