@@ -25,6 +25,7 @@ evaluation/data/
 evaluation/outputs/azzaro_whisper/videos/
 evaluation/outputs/azzaro_whisper/clips*/
 evaluation/outputs/azzaro_whisper/*.csv
+evaluation/outputs/azzaro_whisper/transcripts_word_timestamps_v2/
 
 # Cache de Python
 __pycache__/

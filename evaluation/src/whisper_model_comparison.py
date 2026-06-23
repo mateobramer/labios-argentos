@@ -113,57 +113,90 @@ def transcribir_whisper(
     output_dir: str | Path,
     language: str = "es",
     force: bool = False,
+    backend: str = "openai",
+    model_path: str | None = None,
 ) -> dict[str, Any]:
     """Transcribe con Whisper y cachea el JSON para no repetir corridas caras."""
     video_path = Path(video_path)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    cache_path = output_dir / f"{nombre_seguro(video_path.stem)}__{model_name}.json"
-    if cache_path.exists() and not force:
-        return json.loads(cache_path.read_text(encoding="utf-8"))
-
-    import whisper
-
-    model = whisper.load_model(model_name)
-    result = model.transcribe(
-        str(video_path),
-        language=language,
-        verbose=False,
-        fp16=False,
-        word_timestamps=True,
+    cache_path = output_dir / (
+        f"{nombre_seguro(video_path.stem)}__{backend}__{model_name}.json"
     )
+    if cache_path.exists() and not force:
+        cached = json.loads(cache_path.read_text(encoding="utf-8"))
+        if tiene_word_timestamps_completos(cached):
+            print(f"  cache valido: {cache_path.name}")
+            return cached
+        print(f"  cache incompleto, se retranscribe: {cache_path.name}")
+
+    if backend == "mlx":
+        try:
+            import mlx_whisper
+        except ImportError as exc:
+            raise RuntimeError(
+                "No se encontro mlx-whisper. En la Mac: pip install mlx-whisper"
+            ) from exc
+
+        if not model_path:
+            raise ValueError("MLX requiere model_path para elegir el checkpoint.")
+        result = mlx_whisper.transcribe(
+            str(video_path),
+            path_or_hf_repo=model_path,
+            language=language,
+            verbose=False,
+            word_timestamps=True,
+        )
+    elif backend == "openai":
+        import whisper
+
+        model = whisper.load_model(model_name)
+        result = model.transcribe(
+            str(video_path),
+            language=language,
+            verbose=False,
+            fp16=False,
+            word_timestamps=True,
+        )
+    else:
+        raise ValueError(f"Backend Whisper no soportado: {backend}")
+
+    if not tiene_word_timestamps_completos(result):
+        raise RuntimeError(
+            f"La transcripcion {model_name} no trajo timestamps por palabra completos."
+        )
 
     cache_path.write_text(json.dumps(result, ensure_ascii=False), encoding="utf-8")
+    print(f"  cache nuevo: {cache_path.name}")
     return result
 
 
-def _palabras_segmento_fallback(segment: dict[str, Any]) -> list[dict[str, Any]]:
-    texto = segment.get("text", "")
-    tokens = [tok for tok in texto.split() if normalizar_texto(tok)]
-    if not tokens:
-        return []
-
-    start = float(segment.get("start", 0.0))
-    end = float(segment.get("end", start))
-    paso = max((end - start) / len(tokens), 0.0)
-    palabras = []
-    for idx, token in enumerate(tokens):
-        palabras.append(
-            {
-                "word": token,
-                "start": start + idx * paso,
-                "end": start + (idx + 1) * paso,
-            }
-        )
-    return palabras
+def tiene_word_timestamps_completos(resultado: dict[str, Any]) -> bool:
+    """Valida que cada segmento con texto tenga palabras y tiempos reales."""
+    for segment in resultado.get("segments", []):
+        if not normalizar_texto(str(segment.get("text", ""))):
+            continue
+        words = segment.get("words")
+        if not words:
+            return False
+        for word in words:
+            if word.get("start") is None or word.get("end") is None:
+                return False
+    return True
 
 
 def extraer_palabras(resultado: dict[str, Any], modelo: str) -> list[dict[str, Any]]:
     """Convierte segmentos Whisper a una lista plana de palabras con timestamps."""
     palabras: list[dict[str, Any]] = []
     for segment_id, segment in enumerate(resultado.get("segments", [])):
-        raw_words = segment.get("words") or _palabras_segmento_fallback(segment)
+        raw_words = segment.get("words")
+        if not raw_words:
+            if normalizar_texto(str(segment.get("text", ""))):
+                raise ValueError(
+                    f"{modelo}: segmento {segment_id} sin timestamps por palabra."
+                )
+            continue
         for word_id, word in enumerate(raw_words):
             raw = str(word.get("word", "")).strip()
             norm = normalizar_texto(raw)
@@ -385,6 +418,88 @@ def construir_casos_tres_modelos(
     return casos
 
 
+def agrupar_palabras_por_pausas(
+    palabras: list[dict[str, Any]],
+    dur_min: float = 3.0,
+    dur_max: float = 10.0,
+    gap_corte: float = 0.40,
+) -> list[dict[str, Any]]:
+    """Replica el clipeo del pipeline: palabras completas, pausas reales y 3-10 s."""
+    grupos: list[list[dict[str, Any]]] = []
+    actual: list[dict[str, Any]] = []
+
+    for palabra in palabras:
+        if actual:
+            span = float(actual[-1]["end"]) - float(actual[0]["start"])
+            gap = float(palabra["start"]) - float(actual[-1]["end"])
+            if (span >= dur_min and gap >= gap_corte) or span >= dur_max:
+                grupos.append(actual)
+                actual = []
+        actual.append(palabra)
+
+    if actual:
+        span = float(actual[-1]["end"]) - float(actual[0]["start"])
+        if span >= 1.0 or not grupos:
+            grupos.append(actual)
+        else:
+            grupos[-1].extend(actual)
+
+    return [
+        {
+            "clip_id": idx,
+            "start": round(float(grupo[0]["start"]), 3),
+            "end": round(float(grupo[-1]["end"]), 3),
+            "duration": round(
+                float(grupo[-1]["end"]) - float(grupo[0]["start"]),
+                3,
+            ),
+        }
+        for idx, grupo in enumerate(grupos)
+    ]
+
+
+def construir_casos_por_clips_pipeline(
+    palabras_por_modelo: dict[str, list[dict[str, Any]]],
+    modelo_corte: str = "turbo",
+    modelos: tuple[str, str, str] = ("turbo", "small", "large"),
+) -> list[dict[str, Any]]:
+    """Compara modelos sobre clips formados con el criterio nuevo del pipeline."""
+    grupos = agrupar_palabras_por_pausas(palabras_por_modelo[modelo_corte])
+    casos = []
+
+    for grupo in grupos:
+        start = float(grupo["start"])
+        end = float(grupo["end"])
+        textos = {}
+        textos_norm = {}
+
+        for modelo in modelos:
+            seleccionadas = _palabras_en_intervalo(
+                palabras_por_modelo[modelo],
+                start,
+                end,
+            )
+            textos[modelo] = _unir(seleccionadas, "word")
+            textos_norm[modelo] = normalizar_texto(textos[modelo])
+
+        if not all(textos_norm.values()):
+            continue
+        if len(set(textos_norm.values())) != len(modelos):
+            continue
+
+        casos.append(
+            {
+                **grupo,
+                **{
+                    f"transcripcion_{modelo}": textos[modelo]
+                    for modelo in modelos
+                },
+            }
+        )
+
+    return casos
+
+
 def resumen_diferencias(
     diferencias: list[dict[str, Any]],
     palabras_turbo: list[dict[str, Any]],
@@ -482,7 +597,11 @@ def exportar_clips_revision_webm(
         start = max(float(diferencia["start"]) - margen, 0.0)
         end = max(float(diferencia["end"]) + margen, start + 0.5)
         duration = end - start
-        clip_path = output_dir / f"diff_{int(diferencia['diff_id']):03d}.webm"
+        if "clip_id" in diferencia:
+            nombre = f"clip_{int(diferencia['clip_id']):04d}.webm"
+        else:
+            nombre = f"diff_{int(diferencia['diff_id']):03d}.webm"
+        clip_path = output_dir / nombre
 
         if force or not clip_path.exists():
             cmd = [
