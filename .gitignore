@@ -20,6 +20,12 @@ data/videos/*/
 data/processed/
 evaluation/data/
 
+# Analisis local Azzaro: el video y los clips se regeneran desde el notebook.
+# Los JSON de transcripcion dentro de transcripts/ si se versionan como cache.
+evaluation/outputs/azzaro_whisper/videos/
+evaluation/outputs/azzaro_whisper/clips*/
+evaluation/outputs/azzaro_whisper/*.csv
+
 # Cache de Python
 __pycache__/
 *.pyc

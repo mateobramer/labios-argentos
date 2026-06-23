@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import sys
 from difflib import SequenceMatcher
+from itertools import combinations
 from pathlib import Path
 from typing import Any
 
@@ -246,6 +247,144 @@ def alinear_diferencias(
     return diferencias
 
 
+def _unir_intervalos(
+    intervalos: list[tuple[float, float]],
+    gap: float,
+) -> list[tuple[float, float]]:
+    """Une intervalos solapados o separados por una pausa corta."""
+    ordenados = sorted(
+        (float(start), float(end))
+        for start, end in intervalos
+        if float(end) > float(start)
+    )
+    unidos: list[list[float]] = []
+    for start, end in ordenados:
+        if not unidos or start > unidos[-1][1] + gap:
+            unidos.append([start, end])
+        else:
+            unidos[-1][1] = max(unidos[-1][1], end)
+    return [(start, end) for start, end in unidos]
+
+
+def _palabras_con_contexto(
+    palabras: list[dict[str, Any]],
+    start: float,
+    end: float,
+    contexto: int,
+) -> list[dict[str, Any]]:
+    """Toma palabras del intervalo y agrega vecinos completos como contexto."""
+    indices = [
+        idx
+        for idx, palabra in enumerate(palabras)
+        if float(palabra["end"]) >= start and float(palabra["start"]) <= end
+    ]
+    if not indices:
+        return []
+
+    left = max(indices[0] - contexto, 0)
+    right = min(indices[-1] + contexto + 1, len(palabras))
+    return palabras[left:right]
+
+
+def _palabras_en_intervalo(
+    palabras: list[dict[str, Any]],
+    start: float,
+    end: float,
+) -> list[dict[str, Any]]:
+    """Selecciona palabras cuyo centro temporal cae dentro del clip."""
+    seleccionadas = []
+    for palabra in palabras:
+        p_start = float(palabra["start"])
+        p_end = float(palabra["end"])
+        centro = (p_start + p_end) / 2
+        if start <= centro <= end:
+            seleccionadas.append(palabra)
+    return seleccionadas
+
+
+def construir_casos_tres_modelos(
+    palabras_por_modelo: dict[str, list[dict[str, Any]]],
+    modelos: tuple[str, str, str] = ("turbo", "small", "large"),
+    gap_diferencias: float = 0.55,
+    contexto_palabras: int = 1,
+) -> list[dict[str, Any]]:
+    """Construye casos alineados donde los tres modelos producen textos distintos.
+
+    Los intervalos iniciales salen de las diferencias palabra-a-palabra de cada par.
+    Luego se expanden a palabras completas y se usa exactamente el mismo rango temporal
+    para el clip y para recuperar el texto de los tres modelos.
+    """
+    intervalos = []
+    for modelo_a, modelo_b in combinations(modelos, 2):
+        diferencias = alinear_diferencias(
+            palabras_por_modelo[modelo_a],
+            palabras_por_modelo[modelo_b],
+            contexto=0,
+        )
+        intervalos.extend(
+            (float(diferencia["start"]), float(diferencia["end"]))
+            for diferencia in diferencias
+        )
+
+    intervalos_base = _unir_intervalos(intervalos, gap=gap_diferencias)
+    intervalos_expandidos = []
+    for start, end in intervalos_base:
+        palabras_contexto = [
+            palabra
+            for modelo in modelos
+            for palabra in _palabras_con_contexto(
+                palabras_por_modelo[modelo],
+                start,
+                end,
+                contexto_palabras,
+            )
+        ]
+        if not palabras_contexto:
+            continue
+        intervalos_expandidos.append(
+            (
+                min(float(palabra["start"]) for palabra in palabras_contexto),
+                max(float(palabra["end"]) for palabra in palabras_contexto),
+            )
+        )
+
+    # El contexto puede hacer que dos diferencias vecinas se solapen.
+    intervalos_finales = _unir_intervalos(intervalos_expandidos, gap=0.05)
+
+    casos = []
+    for start, end in intervalos_finales:
+        textos = {}
+        textos_norm = {}
+        for modelo in modelos:
+            seleccionadas = _palabras_en_intervalo(
+                palabras_por_modelo[modelo],
+                start,
+                end,
+            )
+            textos[modelo] = _unir(seleccionadas, "word")
+            textos_norm[modelo] = normalizar_texto(textos[modelo])
+
+        if not all(textos_norm.values()):
+            continue
+        if len(set(textos_norm.values())) != len(modelos):
+            continue
+
+        casos.append(
+            {
+                "diff_id": len(casos) + 1,
+                "start": round(start, 3),
+                "end": round(end, 3),
+                "duration": round(end - start, 3),
+                **{
+                    f"transcripcion_{modelo}": textos[modelo]
+                    for modelo in modelos
+                },
+            }
+        )
+
+    return casos
+
+
 def resumen_diferencias(
     diferencias: list[dict[str, Any]],
     palabras_turbo: list[dict[str, Any]],
@@ -316,6 +455,68 @@ def exportar_clips_diferencias(
         fila["clip_start"] = round(start, 3)
         fila["clip_end"] = round(end, 3)
         fila["clip_path"] = str(clip_path)
+        exportadas.append(fila)
+
+    return exportadas
+
+
+def exportar_clips_revision_webm(
+    video_path: str | Path,
+    diferencias: list[dict[str, Any]],
+    output_dir: str | Path,
+    margen: float = 0.08,
+    force: bool = False,
+) -> list[dict[str, Any]]:
+    """Exporta clips WebM compatibles con el renderer de notebooks de VSCode.
+
+    VSCode distribuye VP8 y Vorbis, mientras que AAC no esta incluido. Por eso estos
+    clips de revision usan WebM aunque el dataset principal siga guardando MP4.
+    """
+    video_path = Path(video_path)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    ffmpeg = buscar_ffmpeg()
+
+    exportadas = []
+    for diferencia in diferencias:
+        start = max(float(diferencia["start"]) - margen, 0.0)
+        end = max(float(diferencia["end"]) + margen, start + 0.5)
+        duration = end - start
+        clip_path = output_dir / f"diff_{int(diferencia['diff_id']):03d}.webm"
+
+        if force or not clip_path.exists():
+            cmd = [
+                ffmpeg,
+                "-nostdin",
+                "-loglevel",
+                "error",
+                "-y",
+                "-ss",
+                f"{start:.3f}",
+                "-i",
+                str(video_path),
+                "-t",
+                f"{duration:.3f}",
+                "-c:v",
+                "libvpx",
+                "-crf",
+                "18",
+                "-b:v",
+                "0",
+                "-pix_fmt",
+                "yuv420p",
+                "-c:a",
+                "libvorbis",
+                "-q:a",
+                "5",
+                str(clip_path),
+            ]
+            subprocess.run(cmd, check=True)
+
+        fila = dict(diferencia)
+        fila["clip_start"] = round(start, 3)
+        fila["clip_end"] = round(end, 3)
+        fila["clip_path"] = str(clip_path.resolve())
         exportadas.append(fila)
 
     return exportadas
