@@ -5,7 +5,8 @@ Entrada:
     data/clips/<titulo>/clip_NNNN.mp4
 
 Salida:
-    data/processed/lip_rois/<titulo>/clip_NNNN.mp4   (recorte labial 96x96 gris, 25 fps)
+    data/processed/lip_rois/<titulo>/clip_NNNN.mp4   (recorte labial 96x96 gris, 25 fps; para QA visual)
+    data/processed/lip_rois/<titulo>/clip_NNNN.npz   (mismo recorte como array (T,96,96) uint8, sin perdida; entrada del modelo)
     data/processed/lip_rois/<titulo>/clip_NNNN.txt
     data/metadata/lip_preprocessing_manifest.csv
 
@@ -173,7 +174,7 @@ def procesar_clip(clip_path, landmarker, vproc):
 
 
 def guardar_video_gris(frames, salida_path):
-    """Escribe una lista de cuadros 96x96 gris como mp4 a 25 fps."""
+    """Escribe una lista de cuadros 96x96 gris como mp4 a 25 fps (solo para QA visual)."""
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     vw = cv2.VideoWriter(salida_path, fourcc, FPS_SALIDA,
                          (TAMANO_SALIDA, TAMANO_SALIDA), isColor=False)
@@ -182,12 +183,27 @@ def guardar_video_gris(frames, salida_path):
     vw.release()
 
 
+def guardar_npz(frames, salida_path):
+    """Guarda la secuencia como array (T,96,96) uint8 sin perdida.
+
+    Es la entrada real del modelo (el mp4 es solo para inspeccion visual): el codec
+    mp4v comprime con perdida y mete artefactos de bloque en el recorte chico, lo que
+    contaminaria el WER. El .npz conserva el recorte exacto que produjo el warp.
+    """
+    arr = np.asarray(frames, dtype=np.uint8)  # (T, 96, 96)
+    np.savez_compressed(salida_path, rois=arr)
+
+
 def procesar_carpeta(titulo, landmarker, vproc, ya_procesados, filas):
     origen = os.path.join(CLIPS_DIR, titulo)
     destino = os.path.join(SALIDA_DIR, titulo)
     os.makedirs(destino, exist_ok=True)
 
     clips = sorted(f for f in os.listdir(origen) if f.endswith(".mp4"))
+    # Limite opcional de clips por fuente (util para subsets chicos de evaluacion).
+    limite = int(os.environ.get("PREPROC_MAX", "0"))
+    if limite > 0:
+        clips = clips[:limite]
     for nombre in clips:
         clip_path = os.path.join(origen, nombre)
         base = os.path.splitext(nombre)[0]
@@ -212,6 +228,7 @@ def procesar_carpeta(titulo, landmarker, vproc, ya_procesados, filas):
             estado = "ok"
             salida_mp4 = os.path.join(destino, base + ".mp4")
             guardar_video_gris(frames, salida_mp4)
+            guardar_npz(frames, os.path.join(destino, base + ".npz"))
             with open(os.path.join(destino, base + ".txt"), "w", encoding="utf-8") as f:
                 f.write(texto)
             print(f"  [ok] {nombre} -> {len(frames)} cuadros 96x96 gris (alineados)")

@@ -13,6 +13,12 @@ data/videos/*/
 
 # Modelos de Whisper / pesos descargados (no versionar)
 *.pt
+*.pth
+
+# ROIs y datos derivados pesados (regenerables)
+*.npz
+data/processed/
+evaluation/data/
 
 # Cache de Python
 __pycache__/
@@ -20,15 +26,8 @@ __pycache__/
 .ipynb_checkpoints/
 .jupyter_logs/
 
-# Salidas locales de notebooks de evaluacion.
-evaluation/outputs/*
-!evaluation/outputs/.gitkeep
-evaluation/runs/*
-!evaluation/runs/.gitkeep
-
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
-.venv*/
 
 # Basura del SO
 .DS_Store
