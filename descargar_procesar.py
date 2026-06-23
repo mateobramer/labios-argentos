@@ -141,7 +141,13 @@ def transcribir(video_path, carpeta):
 
     print("Transcribiendo con Whisper...")
     modelo = cargar_modelo()
-    resultado = modelo.transcribe(video_path, language="es", verbose=False, fp16=False)
+    # word_timestamps=True es CLAVE: sin esto Whisper solo da tiempos a nivel
+    # segmento, que derivan en habla continua y hacen que el corte caiga corrido
+    # respecto del texto (el clip muestra/dice la frase vecina). Con tiempos por
+    # palabra cortamos en pausas reales y el rango del clip calza con su texto.
+    resultado = modelo.transcribe(
+        video_path, language="es", verbose=False, fp16=False, word_timestamps=True
+    )
 
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False)
@@ -158,43 +164,93 @@ def guardar_corpus(resultado, carpeta):
                 f.write(texto + "\n")
     print(f"Corpus guardado: {txt_path}")
 
+# Parametros de corte. Un clip se cierra cuando ya dura DUR_MIN y aparece una
+# pausa real (silencio entre palabras >= GAP_CORTE); si nunca hay pausa, se fuerza
+# el corte al llegar a DUR_MAX. PAD agrega un margen chico para no comerse el
+# primer/ultimo fonema.
+DUR_MIN = 3.0
+DUR_MAX = 10.0
+GAP_CORTE = 0.40
+PAD = 0.08
+
+
+def extraer_palabras(resultado):
+    """Aplana las palabras con timestamps de todos los segmentos.
+
+    Requiere haber transcripto con word_timestamps=True. Si el resultado no trae
+    'words' (p. ej. una transcripcion.json vieja), devuelve None y el corte cae al
+    fallback por segmentos.
+    """
+    palabras = []
+    for seg in resultado.get("segments", []):
+        words = seg.get("words")
+        if not words:
+            return None
+        for w in words:
+            texto = str(w.get("word", "")).strip()
+            if texto and w.get("start") is not None and w.get("end") is not None:
+                palabras.append({"word": texto, "start": float(w["start"]), "end": float(w["end"])})
+    return palabras or None
+
+
+def agrupar_palabras(palabras):
+    """Agrupa palabras en clips cortando en pausas reales.
+
+    Cada grupo abarca [primera.start, ultima.end] en tiempo de reloj real. Se cierra
+    cuando ya paso DUR_MIN y hay un silencio >= GAP_CORTE, o cuando se llega a DUR_MAX
+    (corte forzado). El rango del clip y su texto salen de los MISMOS tiempos de
+    palabra, asi que no hay deriva clip<->texto.
+    """
+    grupos = []
+    actual = []
+    for w in palabras:
+        if actual:
+            span = actual[-1]["end"] - actual[0]["start"]
+            gap = w["start"] - actual[-1]["end"]
+            if (span >= DUR_MIN and gap >= GAP_CORTE) or span >= DUR_MAX:
+                grupos.append(actual)
+                actual = []
+        actual.append(w)
+    if actual:
+        if (actual[-1]["end"] - actual[0]["start"]) >= 1.0 or not grupos:
+            grupos.append(actual)
+        else:
+            grupos[-1].extend(actual)  # coda muy corta -> al grupo anterior
+    return [(g[0]["start"], g[-1]["end"], " ".join(x["word"] for x in g)) for g in grupos]
+
+
+def agrupar_segmentos(resultado):
+    """Fallback (transcripcion sin word-timestamps): agrupa por segmentos.
+
+    Menos preciso que agrupar_palabras y propenso a deriva en habla continua; solo
+    se usa con caches viejos. Devuelve [(inicio, fin, texto), ...].
+    """
+    grupos, actual, dur = [], [], 0.0
+    for seg in resultado["segments"]:
+        actual.append(seg)
+        dur += seg["end"] - seg["start"]
+        if dur >= DUR_MIN:
+            grupos.append(actual); actual, dur = [], 0.0
+    if actual and dur >= 2.0:
+        grupos.append(actual)
+    return [(g[0]["start"], g[-1]["end"], " ".join(s["text"].strip() for s in g)) for g in grupos]
+
+
 def cortar_clips(video_path, resultado, carpeta):
     clips_dir = os.path.join(CLIPS_DIR, carpeta)
     os.makedirs(clips_dir, exist_ok=True)
 
-    # primero agrupamos segmentos
-    segmentos = resultado["segments"]
-    grupos = []
-    grupo_actual = []
-    duracion_actual = 0
+    palabras = extraer_palabras(resultado)
+    if palabras is not None:
+        grupos = agrupar_palabras(palabras)
+    else:
+        print("  (aviso: la transcripcion no tiene word-timestamps; corte por segmentos, menos preciso)")
+        grupos = agrupar_segmentos(resultado)
 
-    for seg in segmentos:
-        duracion = seg["end"] - seg["start"]
-        grupo_actual.append(seg)
-        duracion_actual += duracion
-
-        # si el grupo ya supera 2 segundos y no pasa 10, lo guardamos
-        if duracion_actual >= 3 and duracion_actual <= 10:
-            grupos.append(grupo_actual)
-            grupo_actual = []
-            duracion_actual = 0
-        # si ya pasó 10 segundos, guardamos igual y reseteamos
-        elif duracion_actual > 10:
-            grupos.append(grupo_actual)
-            grupo_actual = []
-            duracion_actual = 0
-
-    # si quedó algo al final lo agregamos
-    if grupo_actual and duracion_actual >= 2:
-        grupos.append(grupo_actual)
-
-    # ahora cortamos los clips
     clips = []
-    for i, grupo in enumerate(grupos):
-        inicio = grupo[0]["start"]
-        fin = grupo[-1]["end"]
-        duracion = fin - inicio
-        texto = " ".join([seg["text"].strip() for seg in grupo])
+    for i, (inicio, fin, texto) in enumerate(grupos):
+        inicio_c = max(0.0, inicio - PAD)
+        duracion = (fin + PAD) - inicio_c
 
         nombre = f"clip_{i:04d}"
         clip_path = os.path.join(clips_dir, f"{nombre}.mp4")
@@ -205,7 +261,7 @@ def cortar_clips(video_path, resultado, carpeta):
             "-nostdin",
             "-loglevel", "error",
             "-y",
-            "-ss", str(inicio),
+            "-ss", str(inicio_c),
             "-i", video_path,
             "-t", str(duracion),
             "-c:v", "libx264",
