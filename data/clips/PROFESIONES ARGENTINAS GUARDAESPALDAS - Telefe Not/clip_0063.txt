@@ -1,1 +1,1 @@
-que es la zona segura cuando descendemos de un vehiculo o ingresamos a determinada locacion
+el objeto que me identifica es el radio porque me sirve para estar conectado constantemente con mi equipo
