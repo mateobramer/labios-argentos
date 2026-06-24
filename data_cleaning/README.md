@@ -88,3 +88,21 @@ El notebook usa MediaPipe para detectar casos sospechosos para VSR:
 No borra nada. Primero muestra video + texto + razon de revision. Evitar crear CSVs
 paralelos por cada experimento; si hace falta guardar una decision, se agrega a un unico
 manifest acordado en `data/metadata/`.
+
+## Comparacion de modelos Whisper
+
+El notebook:
+
+```text
+data_cleaning/notebooks/02_analisis_whisper_azzaro.ipynb
+```
+
+compara `turbo`, `small` y `large` sobre el mismo video, forma clips con timestamps
+por palabra y pausas reales, y permite seleccionar manualmente la mejor transcripcion.
+Los artefactos finales chicos se versionan en:
+
+```text
+data_cleaning/outputs/azzaro_whisper/final/
+```
+
+El video original, los modelos descargados y los clips descartados permanecen locales.

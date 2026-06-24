@@ -27,6 +27,9 @@ evaluation/outputs/azzaro_whisper/clips*/
 evaluation/outputs/azzaro_whisper/*.csv
 evaluation/outputs/azzaro_whisper/transcripts_word_timestamps_v2/
 
+# Video local usado por el analisis de limpieza; los artefactos finales si se versionan.
+data_cleaning/outputs/azzaro_whisper/videos/
+
 # Cache de Python
 __pycache__/
 *.pyc

@@ -1,3 +1,5 @@
+"""Comparacion y revision de transcripciones Whisper para limpiar el dataset."""
+
 from __future__ import annotations
 
 import json

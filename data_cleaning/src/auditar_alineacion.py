@@ -14,7 +14,7 @@ Sirve para cazar los dos problemas de calidad detectados en el dataset:
      (Whisper escucho mal palabras) -> `texto_dudoso`. Mismo eslabon: el modelo Whisper.
 
 Es complementario a `detectar_clips_malos.py` (que mira pixeles del ROI, no el audio)
-y a `evaluation/src/whisper_model_comparison.py` (que compara modelos de Whisper).
+y a `whisper_model_comparison.py` (que compara modelos de Whisper).
 
 Uso (desde la raiz del repo, con un entorno que tenga openai-whisper):
     python -m data_cleaning.src.auditar_alineacion                 # todas las fuentes
