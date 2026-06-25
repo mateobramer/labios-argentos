@@ -3,7 +3,11 @@
 #
 # mediapipe fija numpy<2 y versiones especificas de protobuf; si choca con el
 # entorno del pipeline principal, conviene un venv aparte para esta etapa.
+#
+# mediapipe pineado: distintas versiones detectan landmarks distinto, lo que
+# cambia los ROIs y el keep-set. Para regenerar .npz identicos al dataset, usar
+# exactamente esta version (con Python 3.11, mas confiable en macOS arm64).
 
-mediapipe>=0.10.9
+mediapipe==0.10.35
 opencv-python>=4.8.0
 numpy>=1.24,<2
