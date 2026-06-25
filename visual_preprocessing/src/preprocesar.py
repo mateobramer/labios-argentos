@@ -11,8 +11,12 @@ Salida:
     data/metadata/lip_preprocessing_manifest.csv
 
 Uso desde la raiz del repo:
-    python -m visual_preprocessing.src.preprocesar
-    python -m visual_preprocessing.src.preprocesar "<titulo>"
+    python -m visual_preprocessing.src.preprocesar                      # todas las fuentes
+    python -m visual_preprocessing.src.preprocesar "<titulo>" ["<titulo2>" ...]
+    python -m visual_preprocessing.src.preprocesar --jobs 7             # N procesos en paralelo
+
+Reanudable e idempotente: saltea los clips que ya tienen .npz, asi que si se corta
+(apagon, Ctrl-C) se vuelve a correr el mismo comando y retoma donde quedo.
 
 Como funciona (alineacion a cara media, estilo Auto-AVSR):
     1. MediaPipe FaceLandmarker detecta 478 landmarks por cuadro.
@@ -30,6 +34,7 @@ en la misma posicion/escala/orientacion, que es lo que el modelo de Auto-AVSR es
 import csv
 import os
 import sys
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import cv2
 import numpy as np
@@ -194,46 +199,155 @@ def guardar_npz(frames, salida_path):
     np.savez_compressed(salida_path, rois=arr)
 
 
-def procesar_carpeta(titulo, landmarker, vproc, ya_procesados, filas):
+# --- Procesamiento paralelo, un landmarker persistente por worker ---
+#
+# La verdad de "que esta hecho" es el .npz en disco: el skip y la reanudacion se
+# basan en su existencia (no en el manifest), asi que es parallel-safe y sobrevive
+# a un apagon. El manifest es solo un log; se checkpointea cada 50 clips.
+
+_W_LANDMARKER = None
+_W_VPROC = None
+
+
+def _init_worker():
+    """Inicializa el landmarker y el warp una sola vez por proceso worker."""
+    global _W_LANDMARKER, _W_VPROC
+    _W_LANDMARKER = crear_landmarker()
+    _W_VPROC = VideoProcess(crop_width=TAMANO_SALIDA, crop_height=TAMANO_SALIDA,
+                            convert_gray=True)
+
+
+def _procesar_clip_tarea(tarea):
+    """Worker: procesa un clip, escribe sus salidas y devuelve la fila del manifest."""
+    titulo, base = tarea
     origen = os.path.join(CLIPS_DIR, titulo)
     destino = os.path.join(SALIDA_DIR, titulo)
-    os.makedirs(destino, exist_ok=True)
+    clip_path = os.path.join(origen, base + ".mp4")
 
-    clips = sorted(f for f in os.listdir(origen) if f.endswith(".mp4"))
-    # Limite opcional de clips por fuente (util para subsets chicos de evaluacion).
+    frames, ratio = procesar_clip(clip_path, _W_LANDMARKER, _W_VPROC)
+
+    txt_origen = os.path.join(origen, base + ".txt")
+    texto = ""
+    if os.path.exists(txt_origen):
+        with open(txt_origen, encoding="utf-8") as f:
+            texto = f.read().strip()
+
+    if not frames:
+        estado = "descartado"
+    else:
+        estado = "ok"
+        os.makedirs(destino, exist_ok=True)
+        guardar_video_gris(frames, os.path.join(destino, base + ".mp4"))
+        guardar_npz(frames, os.path.join(destino, base + ".npz"))
+        with open(os.path.join(destino, base + ".txt"), "w", encoding="utf-8") as f:
+            f.write(texto)
+    return [titulo, base, estado, f"{ratio:.3f}", str(len(frames)), texto]
+
+
+def npz_existe(titulo, base):
+    return os.path.exists(os.path.join(SALIDA_DIR, titulo, base + ".npz"))
+
+
+def cargar_manifest():
+    """Lee el manifest existente como dict {(titulo, base): fila}. Vacio si no hay."""
+    filas = {}
+    if os.path.exists(MANIFEST_PATH):
+        with open(MANIFEST_PATH, encoding="utf-8") as f:
+            lector = csv.reader(f)
+            next(lector, None)
+            for fila in lector:
+                if len(fila) >= 2:
+                    filas[(fila[0], fila[1])] = fila
+    return filas
+
+
+def escribir_manifest(filas_dict):
+    """Escribe el manifest de forma atomica (tmp + replace) para que nunca quede a medias."""
+    encabezado = ["titulo", "clip", "estado", "ratio_deteccion", "n_frames", "texto"]
+    os.makedirs(os.path.dirname(MANIFEST_PATH), exist_ok=True)
+    tmp = MANIFEST_PATH + ".tmp"
+    with open(tmp, "w", newline="", encoding="utf-8") as f:
+        escritor = csv.writer(f)
+        escritor.writerow(encabezado)
+        escritor.writerows(sorted(filas_dict.values(), key=lambda x: (x[0], x[1])))
+    os.replace(tmp, MANIFEST_PATH)
+
+
+def listar_pendientes(titulos, manifest):
+    """Clips a procesar: los que no tienen .npz y no figuran ya como descartados."""
     limite = int(os.environ.get("PREPROC_MAX", "0"))
-    if limite > 0:
-        clips = clips[:limite]
-    for nombre in clips:
-        clip_path = os.path.join(origen, nombre)
-        base = os.path.splitext(nombre)[0]
-
-        # Incremental: si el clip ya esta en el manifest, no lo reprocesamos.
-        if (titulo, base) in ya_procesados:
-            print(f"  [salteado] {nombre} (ya procesado)")
+    descartados = {k for k, v in manifest.items() if len(v) > 2 and v[2] == "descartado"}
+    pendientes = []
+    for titulo in titulos:
+        origen = os.path.join(CLIPS_DIR, titulo)
+        if not os.path.isdir(origen):
+            print(f"  (aviso) no existe la fuente: {titulo}")
             continue
+        clips = sorted(f for f in os.listdir(origen) if f.endswith(".mp4"))
+        if limite > 0:
+            clips = clips[:limite]
+        for nombre in clips:
+            base = os.path.splitext(nombre)[0]
+            if npz_existe(titulo, base) or (titulo, base) in descartados:
+                continue
+            pendientes.append((titulo, base))
+    return pendientes
 
-        frames, ratio = procesar_clip(clip_path, landmarker, vproc)
 
-        txt_origen = os.path.join(origen, base + ".txt")
-        texto = ""
-        if os.path.exists(txt_origen):
-            with open(txt_origen, encoding="utf-8") as f:
-                texto = f.read().strip()
+def reconciliar_manifest(titulos, manifest):
+    """Deja el manifest igual al disco para las fuentes tocadas: agrega filas para
+    los .npz sin entrada y descarta filas 'ok' cuyo .npz ya no existe (limpia
+    nombres viejos/stale). No toca fuentes que no esten en `titulos`."""
+    objetivo = set(titulos)
+    # Descartar filas 'ok' sin .npz de las fuentes que estamos procesando.
+    for clave in [k for k, v in manifest.items()
+                  if k[0] in objetivo and len(v) > 2 and v[2] == "ok"
+                  and not npz_existe(*k)]:
+        del manifest[clave]
+    # Agregar filas faltantes para cada .npz en disco.
+    for titulo in titulos:
+        destino = os.path.join(SALIDA_DIR, titulo)
+        if not os.path.isdir(destino):
+            continue
+        for npz in sorted(f for f in os.listdir(destino) if f.endswith(".npz")):
+            base = os.path.splitext(npz)[0]
+            if (titulo, base) in manifest:
+                continue
+            try:
+                n = int(np.load(os.path.join(destino, npz))["rois"].shape[0])
+            except Exception:
+                n = 0
+            txt = os.path.join(destino, base + ".txt")
+            texto = open(txt, encoding="utf-8").read().strip() if os.path.exists(txt) else ""
+            manifest[(titulo, base)] = [titulo, base, "ok", "", str(n), texto]
 
-        if not frames:
-            estado = "descartado"
-            print(f"  [descartado] {nombre} (cara en {ratio*100:.0f}% de los cuadros)")
-        else:
-            estado = "ok"
-            salida_mp4 = os.path.join(destino, base + ".mp4")
-            guardar_video_gris(frames, salida_mp4)
-            guardar_npz(frames, os.path.join(destino, base + ".npz"))
-            with open(os.path.join(destino, base + ".txt"), "w", encoding="utf-8") as f:
-                f.write(texto)
-            print(f"  [ok] {nombre} -> {len(frames)} cuadros 96x96 gris (alineados)")
 
-        filas.append([titulo, base, estado, f"{ratio:.3f}", str(len(frames)), texto])
+def procesar_paralelo(titulos, jobs):
+    manifest = cargar_manifest()
+    pendientes = listar_pendientes(titulos, manifest)
+    total = len(pendientes)
+    if total == 0:
+        print("No hay clips pendientes (todos tienen .npz). Nada que hacer.")
+        reconciliar_manifest(titulos, manifest)
+        escribir_manifest(manifest)
+        return
+
+    print(f"Procesando {total} clips pendientes con {jobs} worker(s)...")
+    hechos = ok = 0
+    with ProcessPoolExecutor(max_workers=jobs, initializer=_init_worker) as ex:
+        futuros = [ex.submit(_procesar_clip_tarea, t) for t in pendientes]
+        for fut in as_completed(futuros):
+            fila = fut.result()
+            manifest[(fila[0], fila[1])] = fila
+            hechos += 1
+            ok += (fila[2] == "ok")
+            if hechos % 50 == 0:
+                escribir_manifest(manifest)  # checkpoint del log
+                print(f"  {hechos}/{total}  ({ok} ok, {hechos - ok} descartados)")
+    reconciliar_manifest(titulos, manifest)
+    escribir_manifest(manifest)
+    print(f"\nListo. {hechos} clips ({ok} ok, {hechos - ok} descartados).")
+    print(f"Manifest: {MANIFEST_PATH}")
 
 
 def main():
@@ -241,43 +355,20 @@ def main():
         print(f"ERROR: no existe '{CLIPS_DIR}'. Corré primero descargar_procesar.py.")
         sys.exit(1)
 
-    if len(sys.argv) >= 2:
-        titulos = [sys.argv[1]]
+    args = sys.argv[1:]
+    jobs = 1
+    if "--jobs" in args:
+        i = args.index("--jobs")
+        jobs = max(1, int(args[i + 1]))
+        del args[i:i + 2]
+
+    if args:
+        titulos = args  # una o varias fuentes explicitas
     else:
         titulos = sorted(d for d in os.listdir(CLIPS_DIR)
                          if os.path.isdir(os.path.join(CLIPS_DIR, d)))
 
-    os.makedirs(os.path.dirname(MANIFEST_PATH), exist_ok=True)
-    encabezado = ["titulo", "clip", "estado", "ratio_deteccion", "n_frames", "texto"]
-
-    # Manifest existente -> saltear lo ya procesado (incremental e idempotente).
-    filas = []
-    ya_procesados = set()
-    if os.path.exists(MANIFEST_PATH):
-        with open(MANIFEST_PATH, encoding="utf-8") as f:
-            lector = csv.reader(f)
-            next(lector, None)
-            for fila in lector:
-                if len(fila) >= 2:
-                    filas.append(fila)
-                    ya_procesados.add((fila[0], fila[1]))
-
-    landmarker = crear_landmarker()
-    vproc = VideoProcess(crop_width=TAMANO_SALIDA, crop_height=TAMANO_SALIDA, convert_gray=True)
-    try:
-        for titulo in titulos:
-            print(f"\n=== {titulo} ===")
-            procesar_carpeta(titulo, landmarker, vproc, ya_procesados, filas)
-    finally:
-        landmarker.close()
-
-    filas.sort(key=lambda x: (x[0], x[1]))
-    with open(MANIFEST_PATH, "w", newline="", encoding="utf-8") as f_csv:
-        escritor = csv.writer(f_csv)
-        escritor.writerow(encabezado)
-        escritor.writerows(filas)
-
-    print(f"\nListo. Manifest en: {MANIFEST_PATH}")
+    procesar_paralelo(titulos, jobs)
 
 
 if __name__ == "__main__":

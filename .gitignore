@@ -38,6 +38,7 @@ __pycache__/
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
+.venv-visual/
 
 # Basura del SO
 .DS_Store
