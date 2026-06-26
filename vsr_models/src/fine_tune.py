@@ -25,6 +25,7 @@ Uso (en la VM, env `vsr-factors`):
 import argparse
 import csv
 import os
+import random
 import sys
 
 import numpy as np
@@ -34,6 +35,27 @@ from torch.utils.data import DataLoader, Dataset
 
 DIR_MODULO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SPLITS_DIR = os.path.join(DIR_MODULO, "splits")
+
+
+class RandomCrop:
+    """(T,H,W) -> (T,size,size) con offset aleatorio. Data augmentation para train."""
+    def __init__(self, size):
+        self.size = size
+
+    def __call__(self, v):
+        _, h, w = v.shape
+        top = random.randint(0, h - self.size)
+        left = random.randint(0, w - self.size)
+        return v[:, top:top + self.size, left:left + self.size]
+
+
+class RandomFlip:
+    """Flip horizontal con prob p (la boca es ~simetrica). Augmentation para train."""
+    def __init__(self, p=0.5):
+        self.p = p
+
+    def __call__(self, v):
+        return torch.flip(v, dims=[2]) if random.random() < self.p else v
 
 
 class ClipsRioplatense(Dataset):
@@ -84,6 +106,8 @@ def main():
     ap.add_argument("--paciencia", type=int, default=5)     # early stopping
     ap.add_argument("--accum", type=int, default=1, help="pasos de gradient accumulation")
     ap.add_argument("--max-frames", type=int, default=0, help="saltea clips mas largos (0=sin limite)")
+    ap.add_argument("--freeze", default="", help="modulos a congelar, coma-separados (ej: frontend o frontend,encoder)")
+    ap.add_argument("--augment", action="store_true", help="data augmentation en train (random crop + flip)")
     ap.add_argument("--smoke", action="store_true", help="1 batch train+val y salir (test)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
@@ -97,33 +121,42 @@ def main():
         cfg = argparse.Namespace(**yaml.safe_load(f))
     tokenizer, converter = get_tokenizer_converter(cfg.token_type, cfg.bpemodel, cfg.token_list)
     ignore_id = cfg.model_conf["ignore_id"]
-    # MISMA normalizacion que el zero-shot (mean/std Rioplatense).
-    transforms = Compose([Normalise(0.0, 250.0), Normalise(0.491, 0.166), CenterCrop((88, 88))])
+    # MISMA normalizacion que el zero-shot (/250 + mean/std Rioplatense). Val/eval: center crop.
+    norm = [Normalise(0.0, 250.0), Normalise(0.491, 0.166)]
+    transforms_val = Compose(norm + [CenterCrop((88, 88))])
+    # Train con --augment: random crop + flip horizontal -> "multiplican" los datos, menos overfit.
+    transforms_train = Compose(norm + [RandomCrop(88), RandomFlip(0.5)]) if args.augment else transforms_val
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     asr_model, _ = ASRTask.build_model_from_file(args.vsr_config, args.load_vsr, device)
     asr_model.to(device)
 
-    # La capa Conformer del repo guarda stochastic_depth_rate como lista, lo que rompe el
-    # forward en modo TRAIN (`rate > 0` sobre una lista); en eval no se evalua, por eso el
-    # zero-shot andaba. Lo desactivamos (0.0): es regularizacion y para un FT chico conviene
-    # apagarla igual.
+    # Bug del repo: stochastic_depth_rate como lista rompe el forward en TRAIN (no en eval, por
+    # eso el zero-shot andaba). Lo desactivamos (0.0): regularizacion que para un FT chico igual conviene apagar.
     for layer in getattr(asr_model.encoder, "encoders", []):
         if hasattr(layer, "stochastic_depth_rate"):
             layer.stochastic_depth_rate = 0.0
 
-    def collate(b):
-        return data_processing(b, transforms, tokenizer, converter, ignore_id)
+    # Congelar modulos (ej: "frontend" o "frontend,encoder") -> menos params que ajustar -> menos overfit.
+    congelar = {s.strip() for s in args.freeze.split(",") if s.strip()}
+    for n, mod in asr_model.named_children():
+        if n in congelar:
+            for p in mod.parameters():
+                p.requires_grad = False
+    entrenables = sum(p.numel() for p in asr_model.parameters() if p.requires_grad) / 1e6
 
-    def cargar(split):
+    def cargar(split, transforms):
         ds = ClipsRioplatense(os.path.join(SPLITS_DIR, f"{split}.csv"), args.rois_root, args.max_frames)
         return DataLoader(ds, batch_size=args.batch, shuffle=(split == "train"),
-                          collate_fn=collate, num_workers=4)
+                          collate_fn=lambda b: data_processing(b, transforms, tokenizer, converter, ignore_id),
+                          num_workers=4)
 
-    tr, va = cargar("train"), cargar("val")
-    print(f"train={len(tr.dataset)}  val={len(va.dataset)}  batch={args.batch}  device={device}")
+    tr = cargar("train", transforms_train)
+    va = cargar("val", transforms_val)
+    print(f"train={len(tr.dataset)} val={len(va.dataset)} | congelados={sorted(congelar) or 'ninguno'} "
+          f"entrenables={entrenables:.1f}M | augment={args.augment} lr={args.lr} device={device}")
 
-    opt = torch.optim.AdamW(asr_model.parameters(), lr=args.lr)
+    opt = torch.optim.AdamW([p for p in asr_model.parameters() if p.requires_grad], lr=args.lr)
 
     if args.smoke:
         asr_model.train()
