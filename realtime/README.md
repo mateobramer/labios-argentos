@@ -145,6 +145,46 @@ Luego se evaluan con:
 python -m realtime.src.evaluar_cierre --input realtime/outputs/eval/cierre_val.jsonl
 ```
 
+Importante: esos casos son smoke tests derivados por reglas. Sirven para validar que
+el codigo corre y que el provider respeta casos borde, pero no son ground truth
+oracional real.
+
+## Evaluacion causal por secuencia
+
+El cierre real no corre por clip aislado: acumula clips de una misma fuente hasta
+decidir si una oracion termino. Para eso existe:
+
+```text
+realtime/GROUND_TRUTH_ORACIONAL.md
+realtime/src/secuencias.py
+realtime/examples/ground_truth_demo.json
+```
+
+Exportar clips ordenados para anotarlos con un LLM potente o revision humana:
+
+```bash
+python -m realtime.src.secuencias export-annotation \
+  --split vsr_models/splits/val.csv \
+  --source-id "NOMBRE_EXACTO_DE_LA_FUENTE" \
+  --limit 40 \
+  --output realtime/outputs/annotation/fuente.md
+```
+
+Evaluar una secuencia anotada:
+
+```bash
+python -m realtime.src.secuencias evaluate \
+  --ground-truth realtime/examples/ground_truth_demo.json
+```
+
+Metricas principales:
+
+- commits tempranos (`early_commits`);
+- waits tardios (`late_waits`);
+- commits faltantes (`missing_commits`);
+- precision/recall de commit;
+- latencia p50/p95.
+
 ## Notebooks
 
 Los notebooks son livianos, estan ejecutados con outputs guardados y estan pensados
@@ -153,7 +193,8 @@ externos:
 
 - `notebooks/01_cierre_heuristico.ipynb`: contratos, cierre heuristico y metricas demo.
 - `notebooks/02_simulador_feedback_logs.ipynb`: flujo completo, feedback JSONL y logs.
-- `notebooks/03_casos_desde_splits.ipynb`: casos de evaluacion desde `vsr_models/splits/*.csv`.
+- `notebooks/03_casos_desde_splits.ipynb`: ground truth oracional, export para LLM
+  fuerte y evaluacion causal por secuencia.
 
 ## Tests
 
@@ -164,7 +205,8 @@ python -m unittest discover -s realtime/tests
 ## Etapas siguientes
 
 1. Probar y medir el provider Ollama/Qwen con salida JSON estricta.
-2. Evaluar offline contra `evaluation/outputs/*/test.inf`.
-3. Comparar heuristica vs LLM local/API.
-4. Integrar el corrector real de Mateo detras de `CorrectionProvider`.
-5. Convertir feedback validado en dataset revisable para evaluacion o fine-tuning.
+2. Anotar una fuente real con `GROUND_TRUTH_ORACIONAL.md`.
+3. Evaluar cierre causal sobre esa fuente y comparar heuristica vs LLM local/API.
+4. Evaluar offline contra `evaluation/outputs/*/test.inf`.
+5. Integrar el corrector real de Mateo detras de `CorrectionProvider`.
+6. Convertir feedback validado en dataset revisable para evaluacion o fine-tuning.

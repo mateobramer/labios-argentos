@@ -1,0 +1,49 @@
+{
+  "source_id": "demo_secuencia_causal",
+  "mode": "causal",
+  "clips": [
+    {
+      "clip_id": "clip_0000",
+      "text": "yo creo que este modulo",
+      "order": 1,
+      "source_id": "demo_secuencia_causal"
+    },
+    {
+      "clip_id": "clip_0001",
+      "text": "puede funcionar bastante bien",
+      "order": 2,
+      "source_id": "demo_secuencia_causal"
+    },
+    {
+      "clip_id": "clip_0002",
+      "text": "si lo evaluamos con cuidado",
+      "order": 3,
+      "source_id": "demo_secuencia_causal"
+    },
+    {
+      "clip_id": "clip_0003",
+      "text": "despues podemos comparar contra un llm",
+      "order": 4,
+      "source_id": "demo_secuencia_causal"
+    }
+  ],
+  "sentences": [
+    {
+      "sentence_id": "s001",
+      "text": "Yo creo que este modulo puede funcionar bastante bien.",
+      "start_clip": "clip_0000",
+      "end_clip": "clip_0001",
+      "commit_after_clip": "clip_0001",
+      "notes": "La oracion queda completa al terminar clip_0001."
+    },
+    {
+      "sentence_id": "s002",
+      "text": "Si lo evaluamos con cuidado, despues podemos comparar contra un LLM.",
+      "start_clip": "clip_0002",
+      "end_clip": "clip_0003",
+      "commit_after_clip": "clip_0003",
+      "notes": "Segunda oracion distribuida en dos clips."
+    }
+  ],
+  "notes": "Ejemplo chico para probar el evaluador causal sin depender de datos pesados."
+}
