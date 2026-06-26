@@ -162,6 +162,8 @@ class HeuristicClosureProvider:
         counts = Counter(lowered)
         if counts.most_common(1)[0][1] / len(lowered) >= 0.6:
             return True
+        if len(lowered) > 12:
+            return False
         run = 1
         for prev, current in zip(lowered, lowered[1:]):
             run = run + 1 if current == prev else 1

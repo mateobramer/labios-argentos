@@ -28,6 +28,11 @@ class TestHeuristicClosureProvider(unittest.TestCase):
         result = self.provider.decide(PartialHypothesis(partial_text="bueno bueno bueno bueno"))
         self.assertEqual(result.action, CommitAction.LOW_CONFIDENCE)
 
+    def test_repeticion_local_en_buffer_largo_no_bloquea(self):
+        text = "yo creo que si no no pasa nada podemos seguir mirando la frase completa"
+        result = self.provider.decide(PartialHypothesis(partial_text=text))
+        self.assertNotEqual(result.action, CommitAction.LOW_CONFIDENCE)
+
     def test_conector_colgante_wait(self):
         result = self.provider.decide(PartialHypothesis(partial_text="yo creo que"))
         self.assertEqual(result.action, CommitAction.WAIT)

@@ -158,6 +158,7 @@ decidir si una oracion termino. Para eso existe:
 realtime/GROUND_TRUTH_ORACIONAL.md
 realtime/src/secuencias.py
 realtime/examples/ground_truth_demo.json
+realtime/ground_truth/charla_amor_desamor.json
 ```
 
 Exportar clips ordenados para anotarlos con un LLM potente o revision humana:
@@ -174,7 +175,7 @@ Evaluar una secuencia anotada:
 
 ```bash
 python -m realtime.src.secuencias evaluate \
-  --ground-truth realtime/examples/ground_truth_demo.json
+  --ground-truth realtime/ground_truth/charla_amor_desamor.json
 ```
 
 Metricas principales:
@@ -184,6 +185,11 @@ Metricas principales:
 - commits faltantes (`missing_commits`);
 - precision/recall de commit;
 - latencia p50/p95.
+
+La primera fuente anotada es `CHARLA SOBRE EL AMOR Y EL DESAMOR`: 233 clips y
+167 oraciones. Esa evaluacion ya muestra errores reales de la heuristica, y por
+eso sirve como benchmark para comparar contra un LLM zero-shot o un futuro
+student causal entrenado.
 
 ## Notebooks
 
@@ -205,7 +211,7 @@ python -m unittest discover -s realtime/tests
 ## Etapas siguientes
 
 1. Probar y medir el provider Ollama/Qwen con salida JSON estricta.
-2. Anotar una fuente real con `GROUND_TRUTH_ORACIONAL.md`.
+2. Revisar/ampliar el ground truth de `CHARLA SOBRE EL AMOR Y EL DESAMOR`.
 3. Evaluar cierre causal sobre esa fuente y comparar heuristica vs LLM local/API.
 4. Evaluar offline contra `evaluation/outputs/*/test.inf`.
 5. Integrar el corrector real de Mateo detras de `CorrectionProvider`.

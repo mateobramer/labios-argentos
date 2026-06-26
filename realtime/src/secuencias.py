@@ -404,6 +404,12 @@ def main() -> None:
     export_parser.add_argument("--limit", type=int, default=40)
     export_parser.add_argument("--output", required=True)
 
+    merge_parser = subparsers.add_parser("merge-annotation", help="Combina anotacion JSON con clips del split.")
+    merge_parser.add_argument("--split", required=True)
+    merge_parser.add_argument("--annotation", required=True)
+    merge_parser.add_argument("--source-id", help="Si se omite, se usa source_id de la anotacion.")
+    merge_parser.add_argument("--output", required=True)
+
     eval_parser = subparsers.add_parser("evaluate", help="Evalua una secuencia con ground truth.")
     eval_parser.add_argument("--ground-truth", required=True)
     eval_parser.add_argument("--provider", choices=["heuristic", "ollama"], default="heuristic")
@@ -415,6 +421,19 @@ def main() -> None:
     if args.command == "export-annotation":
         clips = load_clips_from_split(args.split, source_id=args.source_id, limit=args.limit)
         output = export_llm_annotation_packet(clips, source_id=args.source_id, output_path=args.output)
+        print(json.dumps({"output": str(output), "clips": len(clips)}, ensure_ascii=False, sort_keys=True))
+        return
+
+    if args.command == "merge-annotation":
+        annotation = json.loads(Path(args.annotation).read_text(encoding="utf-8"))
+        source_id = args.source_id or str(annotation["source_id"])
+        clips = load_clips_from_split(args.split, source_id=source_id, limit=None)
+        output = merge_annotation_with_clips(
+            clips,
+            args.annotation,
+            output_path=args.output,
+            source_id=source_id,
+        )
         print(json.dumps({"output": str(output), "clips": len(clips)}, ensure_ascii=False, sort_keys=True))
         return
 

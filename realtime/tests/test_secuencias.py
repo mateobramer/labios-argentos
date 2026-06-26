@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,6 +9,7 @@ from realtime.src.secuencias import (
     export_llm_annotation_packet,
     load_clips_from_split,
     load_sequence_ground_truth,
+    merge_annotation_with_clips,
 )
 
 
@@ -29,6 +31,35 @@ class TestSecuencias(unittest.TestCase):
             self.assertIn("Ground truth oracional", text)
             self.assertIn("commit_after_clip", text)
             self.assertIn("Clips ordenados", text)
+
+    def test_merge_annotation_with_clips(self):
+        clips = load_clips_from_split(
+            "vsr_models/splits/val.csv",
+            source_id="CHARLA SOBRE EL AMOR Y EL DESAMOR",
+            limit=2,
+        )
+        annotation = {
+            "source_id": "demo_merge",
+            "mode": "causal",
+            "sentences": [
+                {
+                    "sentence_id": "s001",
+                    "text": clips[0].text,
+                    "start_clip": clips[0].clip_id,
+                    "end_clip": clips[0].clip_id,
+                    "commit_after_clip": clips[0].clip_id,
+                    "notes": "",
+                }
+            ],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            annotation_path = Path(tmp) / "annotation.json"
+            output_path = Path(tmp) / "ground_truth.json"
+            annotation_path.write_text(json.dumps(annotation), encoding="utf-8")
+            merge_annotation_with_clips(clips, annotation_path, output_path=output_path, source_id="demo_merge")
+            sequence = load_sequence_ground_truth(output_path)
+            self.assertEqual(len(sequence.clips), 2)
+            self.assertEqual(sequence.sentences[0].commit_after_clip, clips[0].clip_id)
 
 
 if __name__ == "__main__":

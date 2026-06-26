@@ -1,0 +1,3675 @@
+{
+  "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+  "mode": "causal",
+  "clips": [
+    {
+      "clip_id": "clip_0000",
+      "text": "voy a antereccionar maria del cerro y ahora que hay un monton de gente en el chat les quiero decir algo",
+      "order": 1,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0000.npz"
+    },
+    {
+      "clip_id": "clip_0001",
+      "text": "la vida aca voy a aparecer un hippie o esas finas que leen el horoscopo",
+      "order": 2,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0001.npz"
+    },
+    {
+      "clip_id": "clip_0002",
+      "text": "pero la vida posta que se trata de energias",
+      "order": 3,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0002.npz"
+    },
+    {
+      "clip_id": "clip_0003",
+      "text": "entienden que estamos haciendo un stream a las 4 de la mañana en españa y tengo 24k de viewers hablando de futbol",
+      "order": 4,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 200,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0003.npz"
+    },
+    {
+      "clip_id": "clip_0004",
+      "text": "algo totalmente impensado estan saliendo todos los dias los rankings de twitch y a mi",
+      "order": 5,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0004.npz"
+    },
+    {
+      "clip_id": "clip_0005",
+      "text": "yo ya tengo 10 11 años de streamer no me interesa ranquear pero te la blanqueo",
+      "order": 6,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0005.npz"
+    },
+    {
+      "clip_id": "clip_0008",
+      "text": "ah buena poronga 23k ojo me la sube sabe por que me la sube",
+      "order": 7,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0008.npz"
+    },
+    {
+      "clip_id": "clip_0009",
+      "text": "porque eso es mi historia por eso estoy donde estoy por eso soy main event",
+      "order": 8,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0009.npz"
+    },
+    {
+      "clip_id": "clip_0013",
+      "text": "ojo yo veo el numero y no les voy a negarme me motivo me motivo",
+      "order": 9,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 150,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0013.npz"
+    },
+    {
+      "clip_id": "clip_0014",
+      "text": "las cosas estan saliendo bien y se los quiero agradecer si yo tuviera 5k de viewers igual estaria motivado",
+      "order": 10,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0014.npz"
+    },
+    {
+      "clip_id": "clip_0015",
+      "text": "igual diria gracias por mirarme",
+      "order": 11,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0015.npz"
+    },
+    {
+      "clip_id": "clip_0016",
+      "text": "porque yo agradecido por mas que sea 2 3 4 20 50 500 22000",
+      "order": 12,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 150,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0016.npz"
+    },
+    {
+      "clip_id": "clip_0017",
+      "text": "agraecido siempre pero vale destacar que en un momento critico porque es un momento critico para mi",
+      "order": 13,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 150,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0017.npz"
+    },
+    {
+      "clip_id": "clip_0018",
+      "text": "las cosas estan empezando a salir de nuevo despues de que llueve sale el sol",
+      "order": 14,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0018.npz"
+    },
+    {
+      "clip_id": "clip_0019",
+      "text": "ojo despues de que llueve sale el sol",
+      "order": 15,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0019.npz"
+    },
+    {
+      "clip_id": "clip_0020",
+      "text": "ahora solo me falta terminar el año ganando la velada enamorandome",
+      "order": 16,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0020.npz"
+    },
+    {
+      "clip_id": "clip_0021",
+      "text": "y eventualmente el año que viene planeando tener un hijo",
+      "order": 17,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0021.npz"
+    },
+    {
+      "clip_id": "clip_0022",
+      "text": "ya esta vida cumplida",
+      "order": 18,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0022.npz"
+    },
+    {
+      "clip_id": "clip_0023",
+      "text": "me doy vuelta el juego de la vida no quiero mas nada",
+      "order": 19,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0023.npz"
+    },
+    {
+      "clip_id": "clip_0024",
+      "text": "tres hijos tres o dos un chico y una chica un hijo y una hija minimo",
+      "order": 20,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 150,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0024.npz"
+    },
+    {
+      "clip_id": "clip_0025",
+      "text": "una novia que me ame que me valore que me quiera que me acompañe",
+      "order": 21,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0025.npz"
+    },
+    {
+      "clip_id": "clip_0026",
+      "text": "poder acompañarla yo que haga deporte pretensiones bajas no me importa lo demas",
+      "order": 22,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0026.npz"
+    },
+    {
+      "clip_id": "clip_0027",
+      "text": "que si el culo que es esto no me importa no me importa",
+      "order": 23,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0027.npz"
+    },
+    {
+      "clip_id": "clip_0028",
+      "text": "se tiene un culito lindo mejor mejor",
+      "order": 24,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0028.npz"
+    },
+    {
+      "clip_id": "clip_0029",
+      "text": "pero yo prefiero que haga deporte que tenga culo",
+      "order": 25,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0029.npz"
+    },
+    {
+      "clip_id": "clip_0030",
+      "text": "el culo un año y te cansas te da igual",
+      "order": 26,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0030.npz"
+    },
+    {
+      "clip_id": "clip_0031",
+      "text": "pero que haga deporte ir a verla imaginante que juega el futbol",
+      "order": 27,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0031.npz"
+    },
+    {
+      "clip_id": "clip_0032",
+      "text": "que juega el hockey la vas a ver gritar los goles la bancas",
+      "order": 28,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0032.npz"
+    },
+    {
+      "clip_id": "clip_0033",
+      "text": "si estas triste estas triste si estas feliz estas feliz con ella",
+      "order": 29,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0033.npz"
+    },
+    {
+      "clip_id": "clip_0034",
+      "text": "todos necesitamos amor",
+      "order": 30,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0034.npz"
+    },
+    {
+      "clip_id": "clip_0035",
+      "text": "que el amor es lo mas lindo que hay lo mas lindo que hay",
+      "order": 31,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0035.npz"
+    },
+    {
+      "clip_id": "clip_0036",
+      "text": "no le tengan miedo al amor no hablan como hice este boludo",
+      "order": 32,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0036.npz"
+    },
+    {
+      "clip_id": "clip_0037",
+      "text": "no hablan como hice este boludo yo tenia desde los 16 a los 23 y medio que conocia a mi ex",
+      "order": 33,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 175,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0037.npz"
+    },
+    {
+      "clip_id": "clip_0038",
+      "text": "desde los 16 a los 23 y medio yo pensaba que la vida era agarchar",
+      "order": 34,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0038.npz"
+    },
+    {
+      "clip_id": "clip_0039",
+      "text": "no piensen esa boludez algunos estamos destinados a amar y lo que nos gusta es amar",
+      "order": 35,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 175,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0039.npz"
+    },
+    {
+      "clip_id": "clip_0041",
+      "text": "y otros estan destinados a ir de flor en flor",
+      "order": 36,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0041.npz"
+    },
+    {
+      "clip_id": "clip_0042",
+      "text": "cada uno ve pero no se cierren",
+      "order": 37,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0042.npz"
+    },
+    {
+      "clip_id": "clip_0043",
+      "text": "hay que cogerse a todas hay que sacarle punta",
+      "order": 38,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0043.npz"
+    },
+    {
+      "clip_id": "clip_0044",
+      "text": "son mentiras hay que experimentar todo hay que probar",
+      "order": 39,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0044.npz"
+    },
+    {
+      "clip_id": "clip_0045",
+      "text": "hay que ver donde te sentis mejor",
+      "order": 40,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0045.npz"
+    },
+    {
+      "clip_id": "clip_0046",
+      "text": "pero no tengan miedo de enamorarse boludo no tengan miedo de enamorar",
+      "order": 41,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0046.npz"
+    },
+    {
+      "clip_id": "clip_0047",
+      "text": "el amor es lo mas lindo que hay asi como es lo mas lindo de lo que mas duele",
+      "order": 42,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0047.npz"
+    },
+    {
+      "clip_id": "clip_0048",
+      "text": "la van a pasar mal tambien la van a pasar como el or",
+      "order": 43,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0048.npz"
+    },
+    {
+      "clip_id": "clip_0049",
+      "text": "van a llorar van a sufrir van a extrañar por que",
+      "order": 44,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0049.npz"
+    },
+    {
+      "clip_id": "clip_0050",
+      "text": "porque lo bueno duele el futbol es hermoso por ejemplo",
+      "order": 45,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0050.npz"
+    },
+    {
+      "clip_id": "clip_0051",
+      "text": "una carrera de jugador de futbol lo que tiene de bueno y que todos queremos ser jugadores de futbol",
+      "order": 46,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0051.npz"
+    },
+    {
+      "clip_id": "clip_0052",
+      "text": "lo tiene de malo entonces para cada logro importante para cada anhelo importante",
+      "order": 47,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0052.npz"
+    },
+    {
+      "clip_id": "clip_0053",
+      "text": "lo importante como es amarte en una pareja en una relacion estable",
+      "order": 48,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0053.npz"
+    },
+    {
+      "clip_id": "clip_0054",
+      "text": "va a haber una contracara que es todo lo que tienes que luchar",
+      "order": 49,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0054.npz"
+    },
+    {
+      "clip_id": "clip_0055",
+      "text": "todo lo que tienes que sacrificar para poder tenerlo",
+      "order": 50,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0055.npz"
+    },
+    {
+      "clip_id": "clip_0056",
+      "text": "lo bueno es dur el objetivo ideal te va a costar",
+      "order": 51,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0056.npz"
+    },
+    {
+      "clip_id": "clip_0057",
+      "text": "todo eso que anhelas y soñas si no te cuesta no vale nada",
+      "order": 52,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0057.npz"
+    },
+    {
+      "clip_id": "clip_0058",
+      "text": "y si cuesta mucho vale el triple por eso si se enamora metanle",
+      "order": 53,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 150,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0058.npz"
+    },
+    {
+      "clip_id": "clip_0059",
+      "text": "no importa la edad yo antes pensaba no no tenes 18 no te enamores",
+      "order": 54,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0059.npz"
+    },
+    {
+      "clip_id": "clip_0060",
+      "text": "enamorarte lo 18 te quieres enamorar lo 18 no no no",
+      "order": 55,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0060.npz"
+    },
+    {
+      "clip_id": "clip_0061",
+      "text": "te enamoras no es que te queres porque uno no elige te enamoras lo 18",
+      "order": 56,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0061.npz"
+    },
+    {
+      "clip_id": "clip_0062",
+      "text": "mandale mandale cumbia",
+      "order": 57,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0062.npz"
+    },
+    {
+      "clip_id": "clip_0063",
+      "text": "que te vas a mentir a vos mismo de que no estas enamorado",
+      "order": 58,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0063.npz"
+    },
+    {
+      "clip_id": "clip_0064",
+      "text": "de que no queres amar estas loco",
+      "order": 59,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0064.npz"
+    },
+    {
+      "clip_id": "clip_0065",
+      "text": "te puedes enamorar de cualquier edad yo pensaba que no yo pensaba que no",
+      "order": 60,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0065.npz"
+    },
+    {
+      "clip_id": "clip_0066",
+      "text": "yo pensaba no no no veo esta piba y listo",
+      "order": 61,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0066.npz"
+    },
+    {
+      "clip_id": "clip_0067",
+      "text": "no la veo mas mira si me engancho y no puedo estar con tal otra",
+      "order": 62,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0067.npz"
+    },
+    {
+      "clip_id": "clip_0068",
+      "text": "que haces que haces para que te sirve estar con este y con esta",
+      "order": 63,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0068.npz"
+    },
+    {
+      "clip_id": "clip_0069",
+      "text": "y con este y con esta esa es la que nos cuentan que te cuentan para ser un macho alfa",
+      "order": 64,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0069.npz"
+    },
+    {
+      "clip_id": "clip_0070",
+      "text": "tiene que estar con 5 6 7 8 es mentira",
+      "order": 65,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0070.npz"
+    },
+    {
+      "clip_id": "clip_0071",
+      "text": "y a mi me encanta garchar como cualquier persona pero amigo estar de novio es otro level",
+      "order": 66,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0071.npz"
+    },
+    {
+      "clip_id": "clip_0072",
+      "text": "estar de novio es otro level despertarse todas las mañanas",
+      "order": 67,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0072.npz"
+    },
+    {
+      "clip_id": "clip_0074",
+      "text": "eso es otro punto level amigo tu casilla llena de mensajes",
+      "order": 68,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0074.npz"
+    },
+    {
+      "clip_id": "clip_0075",
+      "text": "ojala no porque esas cosas no pasan pero tu casilla tiene 7 mensajes",
+      "order": 69,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0075.npz"
+    },
+    {
+      "clip_id": "clip_0076",
+      "text": "vos queres leer uno solo a vos te importa uno solo",
+      "order": 70,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0076.npz"
+    },
+    {
+      "clip_id": "clip_0077",
+      "text": "cuando empezas la relacion a mi es la etapa de oro",
+      "order": 71,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0077.npz"
+    },
+    {
+      "clip_id": "clip_0078",
+      "text": "el primer año de relacion es la etapa de oro",
+      "order": 72,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0078.npz"
+    },
+    {
+      "clip_id": "clip_0079",
+      "text": "solo queres hablar con ella no la ves un dia la extrañas",
+      "order": 73,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0079.npz"
+    },
+    {
+      "clip_id": "clip_0080",
+      "text": "se llega a ir de viaje y vas a estar todos los dias todos los dias",
+      "order": 74,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0080.npz"
+    },
+    {
+      "clip_id": "clip_0081",
+      "text": "comiendote las uñas intentando no ser pesado pero estar para ella",
+      "order": 75,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0081.npz"
+    },
+    {
+      "clip_id": "clip_0082",
+      "text": "llamandola pero sin romperle las pelotas y sin cagarle el viaje",
+      "order": 76,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0082.npz"
+    },
+    {
+      "clip_id": "clip_0083",
+      "text": "te vuelves loco para bien loco te enamoras",
+      "order": 77,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0083.npz"
+    },
+    {
+      "clip_id": "clip_0085",
+      "text": "despues yo tengo una teoria de que las relaciones en general",
+      "order": 78,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0085.npz"
+    },
+    {
+      "clip_id": "clip_0086",
+      "text": "se desgastan y que uno no puede hacer nada mas que ir mutando la relacion",
+      "order": 79,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0086.npz"
+    },
+    {
+      "clip_id": "clip_0087",
+      "text": "y convirtiendola en lo que tenga que ser para que sobreviva",
+      "order": 80,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0087.npz"
+    },
+    {
+      "clip_id": "clip_0089",
+      "text": "lo que se disfruta mucho humo dice uno",
+      "order": 81,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0089.npz"
+    },
+    {
+      "clip_id": "clip_0090",
+      "text": "mucho humo no mucho humo no",
+      "order": 82,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0090.npz"
+    },
+    {
+      "clip_id": "clip_0091",
+      "text": "te lo digo de corazon cierro la charla del amor para eso el amor es lo mas lindo que hay",
+      "order": 83,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0091.npz"
+    },
+    {
+      "clip_id": "clip_0092",
+      "text": "mi orden de cosas es dormir",
+      "order": 84,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0092.npz"
+    },
+    {
+      "clip_id": "clip_0093",
+      "text": "hacer el amor comer cagar y coger",
+      "order": 85,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 150,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0093.npz"
+    },
+    {
+      "clip_id": "clip_0094",
+      "text": "porque hacer el amor y coger no es lo mismo",
+      "order": 86,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0094.npz"
+    },
+    {
+      "clip_id": "clip_0096",
+      "text": "si vos no amas a la otra persona no vas a poder hacer el del amor se lo juro",
+      "order": 87,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0096.npz"
+    },
+    {
+      "clip_id": "clip_0097",
+      "text": "bueno segun mi teoria eh segun mi teoria hay gente que dice",
+      "order": 88,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0097.npz"
+    },
+    {
+      "clip_id": "clip_0098",
+      "text": "yo puedo hacer el amor aunque aunque yo puedo hacer el amor con alguien",
+      "order": 89,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0098.npz"
+    },
+    {
+      "clip_id": "clip_0099",
+      "text": "aunque sea la primera vez que lo veo mentira",
+      "order": 90,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0099.npz"
+    },
+    {
+      "clip_id": "clip_0100",
+      "text": "para mi mentira para hacer el amor tenes que sentir amor",
+      "order": 91,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0100.npz"
+    },
+    {
+      "clip_id": "clip_0101",
+      "text": "imposible si no por eso en mi ranking lo vuelvo a decir",
+      "order": 92,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0101.npz"
+    },
+    {
+      "clip_id": "clip_0102",
+      "text": "cagar vale mas que coger cagar vale mas que coger",
+      "order": 93,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0102.npz"
+    },
+    {
+      "clip_id": "clip_0103",
+      "text": "coger esta super sobrevalorado hacer el amor es otro level",
+      "order": 94,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0103.npz"
+    },
+    {
+      "clip_id": "clip_0104",
+      "text": "eso si que vale eso si que vale y la paja uff es que la paja",
+      "order": 95,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0104.npz"
+    },
+    {
+      "clip_id": "clip_0105",
+      "text": "la paja top 3 si o si la paja top 3 si o si",
+      "order": 96,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0105.npz"
+    },
+    {
+      "clip_id": "clip_0106",
+      "text": "y lo ultimo que voy a decir porque hay muchos que estan poniendo que despues te rompen el corazon",
+      "order": 97,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0106.npz"
+    },
+    {
+      "clip_id": "clip_0107",
+      "text": "y que el amor trae una catastrofe",
+      "order": 98,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0107.npz"
+    },
+    {
+      "clip_id": "clip_0108",
+      "text": "sabes que pasa otro de mis mejores momentos fue cuando me rompieron el corazon",
+      "order": 99,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0108.npz"
+    },
+    {
+      "clip_id": "clip_0109",
+      "text": "a mi me rompieron el corazon y yo tuve otra de las mejores epocas de mi vida",
+      "order": 100,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0109.npz"
+    },
+    {
+      "clip_id": "clip_0110",
+      "text": "que saben cual fue la de recuperacion la de superacion",
+      "order": 101,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0110.npz"
+    },
+    {
+      "clip_id": "clip_0111",
+      "text": "la de amarse a uno mismo",
+      "order": 102,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0111.npz"
+    },
+    {
+      "clip_id": "clip_0112",
+      "text": "os amas amas amas amas amas amas de golpe esa persona",
+      "order": 103,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0112.npz"
+    },
+    {
+      "clip_id": "clip_0113",
+      "text": "se va se va",
+      "order": 104,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0113.npz"
+    },
+    {
+      "clip_id": "clip_0114",
+      "text": "y todo ese amor que vos estabamos dando",
+      "order": 105,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0114.npz"
+    },
+    {
+      "clip_id": "clip_0115",
+      "text": "hace asi no sabe a donde ir no sabe a donde ir",
+      "order": 106,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0115.npz"
+    },
+    {
+      "clip_id": "clip_0116",
+      "text": "porque vos lo queres dar no te lo queres dar vos mismo vos te odias vos te odias",
+      "order": 107,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0116.npz"
+    },
+    {
+      "clip_id": "clip_0118",
+      "text": "y empezas por que se fue",
+      "order": 108,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0118.npz"
+    },
+    {
+      "clip_id": "clip_0119",
+      "text": "como no valora como no",
+      "order": 109,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0119.npz"
+    },
+    {
+      "clip_id": "clip_0120",
+      "text": "como no me quiere como no se quiere quedar conmigo",
+      "order": 110,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0120.npz"
+    },
+    {
+      "clip_id": "clip_0121",
+      "text": "como no como no esta aca",
+      "order": 111,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0121.npz"
+    },
+    {
+      "clip_id": "clip_0122",
+      "text": "entonces todo ese amor que vos dabas y dabas y dabas todo ese amor",
+      "order": 112,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0122.npz"
+    },
+    {
+      "clip_id": "clip_0123",
+      "text": "la interferencia todo ese amor que vos dabas y dabas y dabas no va a ningun lado",
+      "order": 113,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0123.npz"
+    },
+    {
+      "clip_id": "clip_0124",
+      "text": "porque ya no hay nadie aqui a andar de amor pero que pasa",
+      "order": 114,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0124.npz"
+    },
+    {
+      "clip_id": "clip_0125",
+      "text": "depresion estas mal no sali de tu casa",
+      "order": 115,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0125.npz"
+    },
+    {
+      "clip_id": "clip_0126",
+      "text": "tenes barba te queres en las pelas en la chota",
+      "order": 116,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0126.npz"
+    },
+    {
+      "clip_id": "clip_0127",
+      "text": "normal te sentis triste te sentis mal",
+      "order": 117,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0127.npz"
+    },
+    {
+      "clip_id": "clip_0128",
+      "text": "hasta aqui un dia haces el clic",
+      "order": 118,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0128.npz"
+    },
+    {
+      "clip_id": "clip_0129",
+      "text": "y eso es lo importante de cuando termine una relacion mucho me viene a preguntar aca",
+      "order": 119,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0129.npz"
+    },
+    {
+      "clip_id": "clip_0130",
+      "text": "corte con mi novia estoy remal se que es una catastrofe pero despues de la catastrofe",
+      "order": 120,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0130.npz"
+    },
+    {
+      "clip_id": "clip_0131",
+      "text": "viene una etapa increible para nosotros",
+      "order": 121,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0131.npz"
+    },
+    {
+      "clip_id": "clip_0132",
+      "text": "saben cual es cuando hacemos el duelo",
+      "order": 122,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0132.npz"
+    },
+    {
+      "clip_id": "clip_0133",
+      "text": "cuando nos tomamos nuestro tiempo cuando lloramos lloramos lloramos",
+      "order": 123,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0133.npz"
+    },
+    {
+      "clip_id": "clip_0134",
+      "text": "y de golpe nos damos cuenta que todo ese amor",
+      "order": 124,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0134.npz"
+    },
+    {
+      "clip_id": "clip_0135",
+      "text": "que estabamos dando sigue ahi lo agarras lo agarras lo agarras",
+      "order": 125,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0135.npz"
+    },
+    {
+      "clip_id": "clip_0136",
+      "text": "lo agarras lo agarras lo agarras y te lo metes adentro",
+      "order": 126,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0136.npz"
+    },
+    {
+      "clip_id": "clip_0137",
+      "text": "y sabes que haces te juntas con los pibias te pones el bol corre corre corre",
+      "order": 127,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0137.npz"
+    },
+    {
+      "clip_id": "clip_0138",
+      "text": "vas al gimnasio te pones mejor te cuidas con las comidas",
+      "order": 128,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0138.npz"
+    },
+    {
+      "clip_id": "clip_0139",
+      "text": "empiezas a tomar un poco menos alcohol empiezas a dejar de voludiar saliendo todos los dias",
+      "order": 129,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0139.npz"
+    },
+    {
+      "clip_id": "clip_0140",
+      "text": "salir es una paron esta sobrevaloradisimo salir te empiezas a juntar con amigos",
+      "order": 130,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 125,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0140.npz"
+    },
+    {
+      "clip_id": "clip_0141",
+      "text": "empiezas a repartir ese amor en toda la gente que sigue ahi",
+      "order": 131,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0141.npz"
+    },
+    {
+      "clip_id": "clip_0142",
+      "text": "porque vos tenes una novia y yo te banco",
+      "order": 132,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0142.npz"
+    },
+    {
+      "clip_id": "clip_0143",
+      "text": "la novia te quita sin querer tiempo para tus amigos",
+      "order": 133,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0143.npz"
+    },
+    {
+      "clip_id": "clip_0144",
+      "text": "la novia te quita sin querer tiempo para tu vida",
+      "order": 134,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 75,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0144.npz"
+    },
+    {
+      "clip_id": "clip_0145",
+      "text": "para el gimnasio para no se jugar al futbol para hacer tu hobby lo que te gusta te lo quita",
+      "order": 135,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0145.npz"
+    },
+    {
+      "clip_id": "clip_0146",
+      "text": "por que porque vos queres pasar tiempo con ella esta buenisimo",
+      "order": 136,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0146.npz"
+    },
+    {
+      "clip_id": "clip_0147",
+      "text": "pero cuando esa persona se va se reparte la baraja de nuevo",
+      "order": 137,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0147.npz"
+    },
+    {
+      "clip_id": "clip_0148",
+      "text": "con una persona menos se fue tu amor hay una carta mas",
+      "order": 138,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0148.npz"
+    },
+    {
+      "clip_id": "clip_0150",
+      "text": "en todos los pibes que siguen ahi en todos tus amigos que te siguen mancando",
+      "order": 139,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0150.npz"
+    },
+    {
+      "clip_id": "clip_0151",
+      "text": "y en vez de decirle no no puedo ir a comer no no puedo ir a comer jorgeito",
+      "order": 140,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0151.npz"
+    },
+    {
+      "clip_id": "clip_0152",
+      "text": "porque tengo que quedarme viendo una peli con mi novia",
+      "order": 141,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0152.npz"
+    },
+    {
+      "clip_id": "clip_0153",
+      "text": "vamos a comer de nuevo vamos a comer",
+      "order": 142,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0153.npz"
+    },
+    {
+      "clip_id": "clip_0154",
+      "text": "vamos a comer dale vamos a comer amigo posta una de las mejores etapas",
+      "order": 143,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0154.npz"
+    },
+    {
+      "clip_id": "clip_0155",
+      "text": "que tuve yo fue cuando termine mi relacion y tenia tiempo",
+      "order": 144,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0155.npz"
+    },
+    {
+      "clip_id": "clip_0156",
+      "text": "para aprender todos los dias obviamente yo estuve muy mal cuando termine mi relacion",
+      "order": 145,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0156.npz"
+    },
+    {
+      "clip_id": "clip_0157",
+      "text": "mi somierda mi somierda me desoriento yo proyectaba",
+      "order": 146,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0157.npz"
+    },
+    {
+      "clip_id": "clip_0158",
+      "text": "todo ahi porque bueno viste pero una persona como yo que nunca tuvo novia",
+      "order": 147,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0158.npz"
+    },
+    {
+      "clip_id": "clip_0159",
+      "text": "de igual que siente que hay una sola persona en el mundo que vas a amar ojala no sea asi",
+      "order": 148,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0159.npz"
+    },
+    {
+      "clip_id": "clip_0160",
+      "text": "pues yo eso pensaba yo entonces yo literalmente",
+      "order": 149,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0160.npz"
+    },
+    {
+      "clip_id": "clip_0161",
+      "text": "dije se acabo el mundo para mi literal se acabo el mundo para mi",
+      "order": 150,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0161.npz"
+    },
+    {
+      "clip_id": "clip_0162",
+      "text": "no va a haber otra igual no va a haber nunca otra persona igual no voy a conseguir",
+      "order": 151,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0162.npz"
+    },
+    {
+      "clip_id": "clip_0163",
+      "text": "nunca una persona asi nunca y pensaba eso y pensaba eso",
+      "order": 152,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0163.npz"
+    },
+    {
+      "clip_id": "clip_0164",
+      "text": "y pensaba eso y lloraba y hablaba con mis amigos que le mando un saludo a los chicos de quino de combo",
+      "order": 153,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0164.npz"
+    },
+    {
+      "clip_id": "clip_0165",
+      "text": "que me habran fumado de no ya soy viejo no voy a conseguir",
+      "order": 154,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0165.npz"
+    },
+    {
+      "clip_id": "clip_0166",
+      "text": "otra persona etcetera etcetera etcetera amigo",
+      "order": 155,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0166.npz"
+    },
+    {
+      "clip_id": "clip_0167",
+      "text": "se termina y te puedo asegurar",
+      "order": 156,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0167.npz"
+    },
+    {
+      "clip_id": "clip_0168",
+      "text": "que sufris sufris sufris un dia basta un dia te cansas",
+      "order": 157,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0168.npz"
+    },
+    {
+      "clip_id": "clip_0169",
+      "text": "y ahi te convertis en supras alla",
+      "order": 158,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0169.npz"
+    },
+    {
+      "clip_id": "clip_0170",
+      "text": "los hombres del chat me van a entender",
+      "order": 159,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0170.npz"
+    },
+    {
+      "clip_id": "clip_0171",
+      "text": "bien en la fase 2 la fase 2 cual es",
+      "order": 160,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0171.npz"
+    },
+    {
+      "clip_id": "clip_0173",
+      "text": "que me gustan si deje la facultad si me falta unas materias la reanudo",
+      "order": 161,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0173.npz"
+    },
+    {
+      "clip_id": "clip_0174",
+      "text": "por que porque la vida sigue y sabes que teneis que hacer cuando la vida sigue",
+      "order": 162,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0174.npz"
+    },
+    {
+      "clip_id": "clip_0175",
+      "text": "sobrevivir que sobrevivir ponerte las pilas",
+      "order": 163,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0175.npz"
+    },
+    {
+      "clip_id": "clip_0176",
+      "text": "en todo y volver a tener",
+      "order": 164,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0176.npz"
+    },
+    {
+      "clip_id": "clip_0177",
+      "text": "una vida social y eventualmente volver a conseguir al amor de tu vida",
+      "order": 165,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0177.npz"
+    },
+    {
+      "clip_id": "clip_0178",
+      "text": "como se consigue al amor de tu vida estando hecho mierda con barba todo abandonado",
+      "order": 166,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0178.npz"
+    },
+    {
+      "clip_id": "clip_0179",
+      "text": "o poniendote las pilas con tu vida y haciendote cargo obviamente",
+      "order": 167,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0179.npz"
+    },
+    {
+      "clip_id": "clip_0180",
+      "text": "haciendote cargo entonces cuando te viene ese pensamiento",
+      "order": 168,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0180.npz"
+    },
+    {
+      "clip_id": "clip_0181",
+      "text": "de que la vida sigue y de que ese amor se fue todo es nuevo volves a estar alla arriba",
+      "order": 169,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0181.npz"
+    },
+    {
+      "clip_id": "clip_0183",
+      "text": "meti al gim como nunca empece una dieta nueva",
+      "order": 170,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0183.npz"
+    },
+    {
+      "clip_id": "clip_0184",
+      "text": "no tengas miedo no tengas miedo se termina una relacion",
+      "order": 171,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0184.npz"
+    },
+    {
+      "clip_id": "clip_0185",
+      "text": "es una paja duela un monton pero termina",
+      "order": 172,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0185.npz"
+    },
+    {
+      "clip_id": "clip_0187",
+      "text": "la vida esta llena de quilombos",
+      "order": 173,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0187.npz"
+    },
+    {
+      "clip_id": "clip_0188",
+      "text": "que te generan una fortaleza a la larga",
+      "order": 174,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0188.npz"
+    },
+    {
+      "clip_id": "clip_0189",
+      "text": "perdiste una relacion vendra otra perdiste una relacion fortaleciste",
+      "order": 175,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0189.npz"
+    },
+    {
+      "clip_id": "clip_0190",
+      "text": "todas las que te quedaron perdiste un amigo porque no es solo perder una novia",
+      "order": 176,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0190.npz"
+    },
+    {
+      "clip_id": "clip_0191",
+      "text": "a veces perdes un amigo fortaleces cuatro amigos",
+      "order": 177,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0191.npz"
+    },
+    {
+      "clip_id": "clip_0192",
+      "text": "que siguen ahi y que te estan bancando uno se mando una cagada",
+      "order": 178,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0192.npz"
+    },
+    {
+      "clip_id": "clip_0193",
+      "text": "nunca mas gil pero hay cuatro que siguen siendo hermanos",
+      "order": 179,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0193.npz"
+    },
+    {
+      "clip_id": "clip_0194",
+      "text": "y a esos hermanos todo",
+      "order": 180,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0194.npz"
+    },
+    {
+      "clip_id": "clip_0195",
+      "text": "charlasad no no charla motivadora loco bueno gente",
+      "order": 181,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0195.npz"
+    },
+    {
+      "clip_id": "clip_0196",
+      "text": "vamos a ver el tema maria de serra queria que sepan",
+      "order": 182,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0196.npz"
+    },
+    {
+      "clip_id": "clip_0197",
+      "text": "que me gusta hablar con ustedes que me gusta darles un consejo",
+      "order": 183,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0197.npz"
+    },
+    {
+      "clip_id": "clip_0198",
+      "text": "y yo ya se que parezco joven porque me cuido bien",
+      "order": 184,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0198.npz"
+    },
+    {
+      "clip_id": "clip_0199",
+      "text": "y porque no tomo alcohol que tambien la recomiendo que no sean pelotudos no tomen alcohol",
+      "order": 185,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0199.npz"
+    },
+    {
+      "clip_id": "clip_0200",
+      "text": "el alcohol es una mierda y el alcohol",
+      "order": 186,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0200.npz"
+    },
+    {
+      "clip_id": "clip_0201",
+      "text": "es una mierda yo ustedes saben lo que quieran porque es su cuerpo",
+      "order": 187,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0201.npz"
+    },
+    {
+      "clip_id": "clip_0202",
+      "text": "su salud pero yo nunca nada",
+      "order": 188,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0202.npz"
+    },
+    {
+      "clip_id": "clip_0203",
+      "text": "solo cuando salio campeon a seleccion un ferneo y algunas cositas",
+      "order": 189,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0203.npz"
+    },
+    {
+      "clip_id": "clip_0204",
+      "text": "pero nunca nada porro no tampoco",
+      "order": 190,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0204.npz"
+    },
+    {
+      "clip_id": "clip_0205",
+      "text": "el porro esta bien dice uno en el chat para mi el porro no esta bien",
+      "order": 191,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0205.npz"
+    },
+    {
+      "clip_id": "clip_0206",
+      "text": "perdon disculpeme para mi queres fumar un porro te banco",
+      "order": 192,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0206.npz"
+    },
+    {
+      "clip_id": "clip_0207",
+      "text": "te respeto y para mi",
+      "order": 193,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0207.npz"
+    },
+    {
+      "clip_id": "clip_0208",
+      "text": "en mi vida el porro no esta bien no me importa si es natural",
+      "order": 194,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0208.npz"
+    },
+    {
+      "clip_id": "clip_0209",
+      "text": "yo no quiero porro cerca no me gusta el porro",
+      "order": 195,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0209.npz"
+    },
+    {
+      "clip_id": "clip_0210",
+      "text": "no me gusta el porro y lo digo de una",
+      "order": 196,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0210.npz"
+    },
+    {
+      "clip_id": "clip_0211",
+      "text": "no tengo que quedar bien con nadie yo les digo lo que yo siento",
+      "order": 197,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0211.npz"
+    },
+    {
+      "clip_id": "clip_0212",
+      "text": "si mi mejor amigo fuma porro nunca le voy a decir nada nunca le voy a decir che",
+      "order": 198,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0212.npz"
+    },
+    {
+      "clip_id": "clip_0213",
+      "text": "que haces con esa mierda tu cuerpo tu salud te respeto",
+      "order": 199,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0213.npz"
+    },
+    {
+      "clip_id": "clip_0214",
+      "text": "esta todo viola yo no voy a fumar en mi vida voy a fumar",
+      "order": 200,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0214.npz"
+    },
+    {
+      "clip_id": "clip_0215",
+      "text": "dijo porno no el porno es lo mismo que me gusta el porno lo banco el porro no banco",
+      "order": 201,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0215.npz"
+    },
+    {
+      "clip_id": "clip_0216",
+      "text": "no me gusta el porro la marihuana eso no me gusta",
+      "order": 202,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0216.npz"
+    },
+    {
+      "clip_id": "clip_0217",
+      "text": "nunca me gusto nunca senti que la necesites",
+      "order": 203,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0217.npz"
+    },
+    {
+      "clip_id": "clip_0218",
+      "text": "para mi te lleva a un lugar donde",
+      "order": 204,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0218.npz"
+    },
+    {
+      "clip_id": "clip_0219",
+      "text": "no sos vos donde",
+      "order": 205,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0219.npz"
+    },
+    {
+      "clip_id": "clip_0220",
+      "text": "no se no sos vos",
+      "order": 206,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0220.npz"
+    },
+    {
+      "clip_id": "clip_0221",
+      "text": "pero bueno no quiero entrar en esa discusion porque es personal es personal nunca no vamos a poner de acuerdo",
+      "order": 207,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0221.npz"
+    },
+    {
+      "clip_id": "clip_0222",
+      "text": "nunca no vamos a poner de acuerdo de unico que les puedo agregar es",
+      "order": 208,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0222.npz"
+    },
+    {
+      "clip_id": "clip_0223",
+      "text": "yo tomo alcohol para desinhibirme amigo y si mejor no aprendes",
+      "order": 209,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0223.npz"
+    },
+    {
+      "clip_id": "clip_0224",
+      "text": "a desinhibirte sin la necesidad de alcohol y si mejor no aprendes a soltarte",
+      "order": 210,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0224.npz"
+    },
+    {
+      "clip_id": "clip_0225",
+      "text": "sin necesitar tomar nada en mi opinion eh",
+      "order": 211,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0225.npz"
+    },
+    {
+      "clip_id": "clip_0226",
+      "text": "arrancas a los djs sos timido te cuesta a los djs",
+      "order": 212,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0226.npz"
+    },
+    {
+      "clip_id": "clip_0227",
+      "text": "si no tomo alcohol no me encargo una mina bueno el problema",
+      "order": 213,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0227.npz"
+    },
+    {
+      "clip_id": "clip_0228",
+      "text": "esta en tu seguridad",
+      "order": 214,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0228.npz"
+    },
+    {
+      "clip_id": "clip_0229",
+      "text": "que tenes que meterte alcohol para encararte una mina yo no te van",
+      "order": 215,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0229.npz"
+    },
+    {
+      "clip_id": "clip_0230",
+      "text": "yo sabre que te voy a decir andad a poco intentadlo de a poco date tiempo",
+      "order": 216,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0230.npz"
+    },
+    {
+      "clip_id": "clip_0231",
+      "text": "a los 16 años por ahi no estas listo para encararte una persona es dificil encarar",
+      "order": 217,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0231.npz"
+    },
+    {
+      "clip_id": "clip_0232",
+      "text": "a todos nos cuesta encarar sobrio",
+      "order": 218,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0232.npz"
+    },
+    {
+      "clip_id": "clip_0233",
+      "text": "mas dificil todavia pero yo",
+      "order": 219,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0233.npz"
+    },
+    {
+      "clip_id": "clip_0234",
+      "text": "nunca te voy a decir entonces anda ponerte en pedo",
+      "order": 220,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0234.npz"
+    },
+    {
+      "clip_id": "clip_0235",
+      "text": "y encarar porque esa no es la solucion en la vida no vas a estar toda la vida en pedo",
+      "order": 221,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0235.npz"
+    },
+    {
+      "clip_id": "clip_0236",
+      "text": "para poder solucionar tus problemas porque tal vez estoy en pedo",
+      "order": 222,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0236.npz"
+    },
+    {
+      "clip_id": "clip_0237",
+      "text": "no en la vida vas a estar la mayor parte de tu vida sobrio y vas a tener que aprender",
+      "order": 223,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0237.npz"
+    },
+    {
+      "clip_id": "clip_0238",
+      "text": "a resolver los problemas sobrio entonces por que mejor no mejoras tu lado sobrio",
+      "order": 224,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0238.npz"
+    },
+    {
+      "clip_id": "clip_0239",
+      "text": "antes de trabajar en el lado ebrio si quieren tomar",
+      "order": 225,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0239.npz"
+    },
+    {
+      "clip_id": "clip_0240",
+      "text": "tomen con precaucion si quieren fumar fumen con precaucion yo no me voy a meter",
+      "order": 226,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0240.npz"
+    },
+    {
+      "clip_id": "clip_0241",
+      "text": "en la vida de nadie simplemente les estoy diciendo que es lo que hago yo",
+      "order": 227,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0241.npz"
+    },
+    {
+      "clip_id": "clip_0242",
+      "text": "que consumo yo que no consumo yo yo consumo vegetales ahora bueno por la velada",
+      "order": 228,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0242.npz"
+    },
+    {
+      "clip_id": "clip_0243",
+      "text": "carnes pero despues voy a volver a consumir vegetales porque me encanta ser vegetariano",
+      "order": 229,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0243.npz"
+    },
+    {
+      "clip_id": "clip_0244",
+      "text": "consumo vegetales consumo agua",
+      "order": 230,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0244.npz"
+    },
+    {
+      "clip_id": "clip_0245",
+      "text": "y consumo cero drogas cero alcohol y me encanta porque tengo 31 años",
+      "order": 231,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0245.npz"
+    },
+    {
+      "clip_id": "clip_0246",
+      "text": "y parezco de 28",
+      "order": 232,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0246.npz"
+    },
+    {
+      "clip_id": "clip_0247",
+      "text": "yo creo sin el video de 28 de 40 nada eso no entro",
+      "order": 233,
+      "source_id": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+      "split": "val",
+      "speaker": "f04",
+      "n_frames": 100,
+      "npz": "data/processed/lip_rois/CHARLA SOBRE EL AMOR Y EL DESAMOR/clip_0247.npz"
+    }
+  ],
+  "sentences": [
+    {
+      "sentence_id": "s001",
+      "text": "voy a antereccionar maria del cerro y ahora que hay un monton de gente en el chat les quiero decir algo.",
+      "start_clip": "clip_0000",
+      "end_clip": "clip_0000",
+      "commit_after_clip": "clip_0000",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s002",
+      "text": "la vida, aca voy a aparecer un hippie o esas finas que leen el horoscopo, pero la vida posta que se trata de energias.",
+      "start_clip": "clip_0001",
+      "end_clip": "clip_0002",
+      "commit_after_clip": "clip_0002",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s003",
+      "text": "entienden que estamos haciendo un stream a las 4 de la mañana en españa y tengo 24k de viewers hablando de futbol, algo totalmente impensado.",
+      "start_clip": "clip_0003",
+      "end_clip": "clip_0004",
+      "commit_after_clip": "clip_0004",
+      "notes": "clip_0004 tambien abre la idea siguiente; segmentado a nivel clip."
+    },
+    {
+      "sentence_id": "s004",
+      "text": "estan saliendo todos los dias los rankings de twitch y a mi, yo ya tengo 10 11 años de streamer, no me interesa ranquear, pero te la blanqueo: ah buena poronga, 23k, ojo, me la sube, sabe por que me la sube, porque eso es mi historia, por eso estoy donde estoy, por eso soy main event.",
+      "start_clip": "clip_0005",
+      "end_clip": "clip_0009",
+      "commit_after_clip": "clip_0009",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s005",
+      "text": "ojo, yo veo el numero y no les voy a negarme, me motivo, me motivo, las cosas estan saliendo bien y se los quiero agradecer, si yo tuviera 5k de viewers igual estaria motivado, igual diria gracias por mirarme.",
+      "start_clip": "clip_0013",
+      "end_clip": "clip_0015",
+      "commit_after_clip": "clip_0015",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s006",
+      "text": "porque yo agradecido por mas que sea 2 3 4 20 50 500 22000, agraecido siempre, pero vale destacar que en un momento critico, porque es un momento critico para mi, las cosas estan empezando a salir de nuevo despues de que llueve sale el sol.",
+      "start_clip": "clip_0016",
+      "end_clip": "clip_0018",
+      "commit_after_clip": "clip_0018",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s007",
+      "text": "ojo, despues de que llueve sale el sol.",
+      "start_clip": "clip_0019",
+      "end_clip": "clip_0019",
+      "commit_after_clip": "clip_0019",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s008",
+      "text": "ahora solo me falta terminar el año ganando la velada, enamorandome y eventualmente el año que viene planeando tener un hijo.",
+      "start_clip": "clip_0020",
+      "end_clip": "clip_0021",
+      "commit_after_clip": "clip_0021",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s009",
+      "text": "ya esta, vida cumplida.",
+      "start_clip": "clip_0022",
+      "end_clip": "clip_0022",
+      "commit_after_clip": "clip_0022",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s010",
+      "text": "me doy vuelta el juego de la vida, no quiero mas nada.",
+      "start_clip": "clip_0023",
+      "end_clip": "clip_0023",
+      "commit_after_clip": "clip_0023",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s011",
+      "text": "tres hijos, tres o dos, un chico y una chica, un hijo y una hija minimo.",
+      "start_clip": "clip_0024",
+      "end_clip": "clip_0024",
+      "commit_after_clip": "clip_0024",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s012",
+      "text": "una novia que me ame, que me valore, que me quiera, que me acompañe, poder acompañarla yo, que haga deporte, pretensiones bajas, no me importa lo demas.",
+      "start_clip": "clip_0025",
+      "end_clip": "clip_0026",
+      "commit_after_clip": "clip_0026",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s013",
+      "text": "que si el culo, que es esto, no me importa, no me importa.",
+      "start_clip": "clip_0027",
+      "end_clip": "clip_0027",
+      "commit_after_clip": "clip_0027",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s014",
+      "text": "se tiene un culito lindo, mejor, mejor, pero yo prefiero que haga deporte que tenga culo.",
+      "start_clip": "clip_0028",
+      "end_clip": "clip_0029",
+      "commit_after_clip": "clip_0029",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s015",
+      "text": "el culo un año y te cansas, te da igual.",
+      "start_clip": "clip_0030",
+      "end_clip": "clip_0030",
+      "commit_after_clip": "clip_0030",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s016",
+      "text": "pero que haga deporte, ir a verla, imaginante que juega el futbol, que juega el hockey, la vas a ver, gritar los goles, la bancas.",
+      "start_clip": "clip_0031",
+      "end_clip": "clip_0032",
+      "commit_after_clip": "clip_0032",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s017",
+      "text": "si estas triste, estas triste; si estas feliz, estas feliz con ella.",
+      "start_clip": "clip_0033",
+      "end_clip": "clip_0033",
+      "commit_after_clip": "clip_0033",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s018",
+      "text": "todos necesitamos amor.",
+      "start_clip": "clip_0034",
+      "end_clip": "clip_0034",
+      "commit_after_clip": "clip_0034",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s019",
+      "text": "que el amor es lo mas lindo que hay, lo mas lindo que hay.",
+      "start_clip": "clip_0035",
+      "end_clip": "clip_0035",
+      "commit_after_clip": "clip_0035",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s020",
+      "text": "no le tengan miedo al amor, no hablan como hice este boludo, no hablan como hice este boludo.",
+      "start_clip": "clip_0036",
+      "end_clip": "clip_0037",
+      "commit_after_clip": "clip_0037",
+      "notes": "Transcripcion dudosa: 'no hablan como hice este boludo'."
+    },
+    {
+      "sentence_id": "s021",
+      "text": "yo tenia desde los 16 a los 23 y medio que conocia a mi ex; desde los 16 a los 23 y medio yo pensaba que la vida era agarchar.",
+      "start_clip": "clip_0037",
+      "end_clip": "clip_0038",
+      "commit_after_clip": "clip_0038",
+      "notes": "clip_0037 contiene cierre de la frase anterior y comienzo de esta; segmentado a nivel clip."
+    },
+    {
+      "sentence_id": "s022",
+      "text": "no piensen esa boludez: algunos estamos destinados a amar y lo que nos gusta es amar, y otros estan destinados a ir de flor en flor.",
+      "start_clip": "clip_0039",
+      "end_clip": "clip_0041",
+      "commit_after_clip": "clip_0041",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s023",
+      "text": "cada uno ve, pero no se cierren.",
+      "start_clip": "clip_0042",
+      "end_clip": "clip_0042",
+      "commit_after_clip": "clip_0042",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s024",
+      "text": "hay que cogerse a todas, hay que sacarle punta: son mentiras.",
+      "start_clip": "clip_0043",
+      "end_clip": "clip_0044",
+      "commit_after_clip": "clip_0044",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s025",
+      "text": "hay que experimentar todo, hay que probar, hay que ver donde te sentis mejor.",
+      "start_clip": "clip_0044",
+      "end_clip": "clip_0045",
+      "commit_after_clip": "clip_0045",
+      "notes": "clip_0044 contiene cierre de la frase anterior y comienzo de esta; segmentado a nivel clip."
+    },
+    {
+      "sentence_id": "s026",
+      "text": "pero no tengan miedo de enamorarse, boludo, no tengan miedo de enamorar.",
+      "start_clip": "clip_0046",
+      "end_clip": "clip_0046",
+      "commit_after_clip": "clip_0046",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s027",
+      "text": "el amor es lo mas lindo que hay, asi como es lo mas lindo de lo que mas duele.",
+      "start_clip": "clip_0047",
+      "end_clip": "clip_0047",
+      "commit_after_clip": "clip_0047",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s028",
+      "text": "la van a pasar mal tambien, la van a pasar como el or, van a llorar, van a sufrir, van a extrañar.",
+      "start_clip": "clip_0048",
+      "end_clip": "clip_0049",
+      "commit_after_clip": "clip_0049",
+      "notes": "Transcripcion rota en 'como el or'."
+    },
+    {
+      "sentence_id": "s029",
+      "text": "por que, porque lo bueno duele.",
+      "start_clip": "clip_0049",
+      "end_clip": "clip_0050",
+      "commit_after_clip": "clip_0050",
+      "notes": "clip_0049 contiene cierre de la frase anterior y comienzo de esta; segmentado a nivel clip."
+    },
+    {
+      "sentence_id": "s030",
+      "text": "el futbol es hermoso, por ejemplo una carrera de jugador de futbol, lo que tiene de bueno y que todos queremos ser jugadores de futbol, lo tiene de malo.",
+      "start_clip": "clip_0050",
+      "end_clip": "clip_0052",
+      "commit_after_clip": "clip_0052",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s031",
+      "text": "entonces para cada logro importante, para cada anhelo importante, lo importante como es amarte en una pareja, en una relacion estable, va a haber una contracara que es todo lo que tienes que luchar, todo lo que tienes que sacrificar para poder tenerlo.",
+      "start_clip": "clip_0052",
+      "end_clip": "clip_0055",
+      "commit_after_clip": "clip_0055",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s032",
+      "text": "lo bueno es dur, el objetivo ideal te va a costar.",
+      "start_clip": "clip_0056",
+      "end_clip": "clip_0056",
+      "commit_after_clip": "clip_0056",
+      "notes": "Transcripcion rota en 'dur'."
+    },
+    {
+      "sentence_id": "s033",
+      "text": "todo eso que anhelas y soñas, si no te cuesta no vale nada.",
+      "start_clip": "clip_0057",
+      "end_clip": "clip_0057",
+      "commit_after_clip": "clip_0057",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s034",
+      "text": "y si cuesta mucho vale el triple; por eso si se enamora, metanle.",
+      "start_clip": "clip_0058",
+      "end_clip": "clip_0058",
+      "commit_after_clip": "clip_0058",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s035",
+      "text": "no importa la edad.",
+      "start_clip": "clip_0059",
+      "end_clip": "clip_0059",
+      "commit_after_clip": "clip_0059",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s036",
+      "text": "yo antes pensaba: no, no tenes 18, no te enamores; enamorarte lo 18, te quieres enamorar lo 18, no, no, no.",
+      "start_clip": "clip_0059",
+      "end_clip": "clip_0060",
+      "commit_after_clip": "clip_0060",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s037",
+      "text": "te enamoras, no es que te queres, porque uno no elige, te enamoras lo 18.",
+      "start_clip": "clip_0061",
+      "end_clip": "clip_0061",
+      "commit_after_clip": "clip_0061",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s038",
+      "text": "mandale, mandale cumbia.",
+      "start_clip": "clip_0062",
+      "end_clip": "clip_0062",
+      "commit_after_clip": "clip_0062",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s039",
+      "text": "que te vas a mentir a vos mismo de que no estas enamorado, de que no queres amar.",
+      "start_clip": "clip_0063",
+      "end_clip": "clip_0064",
+      "commit_after_clip": "clip_0064",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s040",
+      "text": "estas loco.",
+      "start_clip": "clip_0064",
+      "end_clip": "clip_0064",
+      "commit_after_clip": "clip_0064",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s041",
+      "text": "te puedes enamorar de cualquier edad, yo pensaba que no, yo pensaba que no.",
+      "start_clip": "clip_0065",
+      "end_clip": "clip_0065",
+      "commit_after_clip": "clip_0065",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s042",
+      "text": "yo pensaba: no, no, no, veo esta piba y listo, no la veo mas, mira si me engancho y no puedo estar con tal otra.",
+      "start_clip": "clip_0066",
+      "end_clip": "clip_0067",
+      "commit_after_clip": "clip_0067",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s043",
+      "text": "que haces, que haces, para que te sirve estar con este y con esta, y con este y con esta.",
+      "start_clip": "clip_0068",
+      "end_clip": "clip_0069",
+      "commit_after_clip": "clip_0069",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s044",
+      "text": "esa es la que nos cuentan, que te cuentan para ser un macho alfa.",
+      "start_clip": "clip_0069",
+      "end_clip": "clip_0069",
+      "commit_after_clip": "clip_0069",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s045",
+      "text": "tiene que estar con 5 6 7 8, es mentira.",
+      "start_clip": "clip_0070",
+      "end_clip": "clip_0070",
+      "commit_after_clip": "clip_0070",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s046",
+      "text": "y a mi me encanta garchar como cualquier persona, pero amigo, estar de novio es otro level.",
+      "start_clip": "clip_0071",
+      "end_clip": "clip_0071",
+      "commit_after_clip": "clip_0071",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s047",
+      "text": "estar de novio es otro level, despertarse todas las mañanas.",
+      "start_clip": "clip_0072",
+      "end_clip": "clip_0072",
+      "commit_after_clip": "clip_0072",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s048",
+      "text": "eso es otro punto level, amigo, tu casilla llena de mensajes.",
+      "start_clip": "clip_0074",
+      "end_clip": "clip_0074",
+      "commit_after_clip": "clip_0074",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s049",
+      "text": "ojala no porque esas cosas no pasan, pero tu casilla tiene 7 mensajes, vos queres leer uno solo, a vos te importa uno solo.",
+      "start_clip": "clip_0075",
+      "end_clip": "clip_0076",
+      "commit_after_clip": "clip_0076",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s050",
+      "text": "cuando empezas la relacion, a mi es la etapa de oro.",
+      "start_clip": "clip_0077",
+      "end_clip": "clip_0077",
+      "commit_after_clip": "clip_0077",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s051",
+      "text": "el primer año de relacion es la etapa de oro.",
+      "start_clip": "clip_0078",
+      "end_clip": "clip_0078",
+      "commit_after_clip": "clip_0078",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s052",
+      "text": "solo queres hablar con ella, no la ves un dia, la extrañas.",
+      "start_clip": "clip_0079",
+      "end_clip": "clip_0079",
+      "commit_after_clip": "clip_0079",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s053",
+      "text": "se llega a ir de viaje y vas a estar todos los dias, todos los dias, comiendote las uñas, intentando no ser pesado pero estar para ella, llamandola pero sin romperle las pelotas y sin cagarle el viaje.",
+      "start_clip": "clip_0080",
+      "end_clip": "clip_0082",
+      "commit_after_clip": "clip_0082",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s054",
+      "text": "te vuelves loco para bien, loco, te enamoras.",
+      "start_clip": "clip_0083",
+      "end_clip": "clip_0083",
+      "commit_after_clip": "clip_0083",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s055",
+      "text": "despues yo tengo una teoria de que las relaciones en general se desgastan y que uno no puede hacer nada mas que ir mutando la relacion y convirtiendola en lo que tenga que ser para que sobreviva.",
+      "start_clip": "clip_0085",
+      "end_clip": "clip_0087",
+      "commit_after_clip": "clip_0087",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s056",
+      "text": "lo que se disfruta mucho humo dice uno.",
+      "start_clip": "clip_0089",
+      "end_clip": "clip_0089",
+      "commit_after_clip": "clip_0089",
+      "notes": "Transcripcion dudosa."
+    },
+    {
+      "sentence_id": "s057",
+      "text": "mucho humo no, mucho humo no.",
+      "start_clip": "clip_0090",
+      "end_clip": "clip_0090",
+      "commit_after_clip": "clip_0090",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s058",
+      "text": "te lo digo de corazon, cierro la charla del amor para eso: el amor es lo mas lindo que hay.",
+      "start_clip": "clip_0091",
+      "end_clip": "clip_0091",
+      "commit_after_clip": "clip_0091",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s059",
+      "text": "mi orden de cosas es dormir, hacer el amor, comer, cagar y coger.",
+      "start_clip": "clip_0092",
+      "end_clip": "clip_0093",
+      "commit_after_clip": "clip_0093",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s060",
+      "text": "porque hacer el amor y coger no es lo mismo.",
+      "start_clip": "clip_0094",
+      "end_clip": "clip_0094",
+      "commit_after_clip": "clip_0094",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s061",
+      "text": "si vos no amas a la otra persona, no vas a poder hacer el del amor, se lo juro.",
+      "start_clip": "clip_0096",
+      "end_clip": "clip_0096",
+      "commit_after_clip": "clip_0096",
+      "notes": "Transcripcion dudosa en 'hacer el del amor'."
+    },
+    {
+      "sentence_id": "s062",
+      "text": "bueno, segun mi teoria, eh, segun mi teoria, hay gente que dice: yo puedo hacer el amor aunque, aunque yo puedo hacer el amor con alguien aunque sea la primera vez que lo veo.",
+      "start_clip": "clip_0097",
+      "end_clip": "clip_0099",
+      "commit_after_clip": "clip_0099",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s063",
+      "text": "mentira, para mi mentira.",
+      "start_clip": "clip_0099",
+      "end_clip": "clip_0100",
+      "commit_after_clip": "clip_0100",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s064",
+      "text": "para hacer el amor tenes que sentir amor.",
+      "start_clip": "clip_0100",
+      "end_clip": "clip_0100",
+      "commit_after_clip": "clip_0100",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s065",
+      "text": "imposible si no.",
+      "start_clip": "clip_0101",
+      "end_clip": "clip_0101",
+      "commit_after_clip": "clip_0101",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s066",
+      "text": "por eso en mi ranking lo vuelvo a decir: cagar vale mas que coger, cagar vale mas que coger.",
+      "start_clip": "clip_0101",
+      "end_clip": "clip_0102",
+      "commit_after_clip": "clip_0102",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s067",
+      "text": "coger esta super sobrevalorado, hacer el amor es otro level.",
+      "start_clip": "clip_0103",
+      "end_clip": "clip_0103",
+      "commit_after_clip": "clip_0103",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s068",
+      "text": "eso si que vale, eso si que vale.",
+      "start_clip": "clip_0104",
+      "end_clip": "clip_0104",
+      "commit_after_clip": "clip_0104",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s069",
+      "text": "y la paja, uff, es que la paja, la paja top 3 si o si, la paja top 3 si o si.",
+      "start_clip": "clip_0104",
+      "end_clip": "clip_0105",
+      "commit_after_clip": "clip_0105",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s070",
+      "text": "y lo ultimo que voy a decir, porque hay muchos que estan poniendo que despues te rompen el corazon y que el amor trae una catastrofe.",
+      "start_clip": "clip_0106",
+      "end_clip": "clip_0107",
+      "commit_after_clip": "clip_0107",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s071",
+      "text": "sabes que pasa, otro de mis mejores momentos fue cuando me rompieron el corazon.",
+      "start_clip": "clip_0108",
+      "end_clip": "clip_0108",
+      "commit_after_clip": "clip_0108",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s072",
+      "text": "a mi me rompieron el corazon y yo tuve otra de las mejores epocas de mi vida.",
+      "start_clip": "clip_0109",
+      "end_clip": "clip_0109",
+      "commit_after_clip": "clip_0109",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s073",
+      "text": "que saben cual fue: la de recuperacion, la de superacion, la de amarse a uno mismo.",
+      "start_clip": "clip_0110",
+      "end_clip": "clip_0111",
+      "commit_after_clip": "clip_0111",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s074",
+      "text": "os amas amas amas amas amas amas, de golpe esa persona se va, se va.",
+      "start_clip": "clip_0112",
+      "end_clip": "clip_0113",
+      "commit_after_clip": "clip_0113",
+      "notes": "Transcripcion dudosa al inicio."
+    },
+    {
+      "sentence_id": "s075",
+      "text": "y todo ese amor que vos estabamos dando hace asi, no sabe a donde ir, no sabe a donde ir.",
+      "start_clip": "clip_0114",
+      "end_clip": "clip_0115",
+      "commit_after_clip": "clip_0115",
+      "notes": "Transcripcion dudosa en 'vos estabamos'."
+    },
+    {
+      "sentence_id": "s076",
+      "text": "porque vos lo queres dar, no te lo queres dar vos mismo, vos te odias, vos te odias.",
+      "start_clip": "clip_0116",
+      "end_clip": "clip_0116",
+      "commit_after_clip": "clip_0116",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s077",
+      "text": "y empezas: por que se fue, como no valora, como no, como no me quiere, como no se quiere quedar conmigo, como no, como no esta aca.",
+      "start_clip": "clip_0118",
+      "end_clip": "clip_0121",
+      "commit_after_clip": "clip_0121",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s078",
+      "text": "entonces todo ese amor que vos dabas y dabas y dabas, todo ese amor, la interferencia, todo ese amor que vos dabas y dabas y dabas no va a ningun lado.",
+      "start_clip": "clip_0122",
+      "end_clip": "clip_0123",
+      "commit_after_clip": "clip_0123",
+      "notes": "Incluye 'la interferencia' como ruido/transcripcion."
+    },
+    {
+      "sentence_id": "s079",
+      "text": "porque ya no hay nadie aqui a andar de amor, pero que pasa.",
+      "start_clip": "clip_0124",
+      "end_clip": "clip_0124",
+      "commit_after_clip": "clip_0124",
+      "notes": "Transcripcion dudosa."
+    },
+    {
+      "sentence_id": "s080",
+      "text": "depresion, estas mal, no sali de tu casa, tenes barba, te queres en las pelas en la chota.",
+      "start_clip": "clip_0125",
+      "end_clip": "clip_0126",
+      "commit_after_clip": "clip_0126",
+      "notes": "Transcripcion dudosa en clip_0126."
+    },
+    {
+      "sentence_id": "s081",
+      "text": "normal, te sentis triste, te sentis mal.",
+      "start_clip": "clip_0127",
+      "end_clip": "clip_0127",
+      "commit_after_clip": "clip_0127",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s082",
+      "text": "hasta aqui un dia haces el clic.",
+      "start_clip": "clip_0128",
+      "end_clip": "clip_0128",
+      "commit_after_clip": "clip_0128",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s083",
+      "text": "y eso es lo importante de cuando termine una relacion.",
+      "start_clip": "clip_0129",
+      "end_clip": "clip_0129",
+      "commit_after_clip": "clip_0129",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s084",
+      "text": "mucho me viene a preguntar aca: corte con mi novia, estoy remal, se que es una catastrofe, pero despues de la catastrofe viene una etapa increible para nosotros.",
+      "start_clip": "clip_0129",
+      "end_clip": "clip_0131",
+      "commit_after_clip": "clip_0131",
+      "notes": "clip_0129 contiene cierre de la frase anterior y comienzo de esta; segmentado a nivel clip."
+    },
+    {
+      "sentence_id": "s085",
+      "text": "saben cual es: cuando hacemos el duelo, cuando nos tomamos nuestro tiempo, cuando lloramos, lloramos, lloramos.",
+      "start_clip": "clip_0132",
+      "end_clip": "clip_0133",
+      "commit_after_clip": "clip_0133",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s086",
+      "text": "y de golpe nos damos cuenta que todo ese amor que estabamos dando sigue ahi.",
+      "start_clip": "clip_0134",
+      "end_clip": "clip_0135",
+      "commit_after_clip": "clip_0135",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s087",
+      "text": "lo agarras, lo agarras, lo agarras, lo agarras, lo agarras, lo agarras y te lo metes adentro.",
+      "start_clip": "clip_0135",
+      "end_clip": "clip_0136",
+      "commit_after_clip": "clip_0136",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s088",
+      "text": "y sabes que haces: te juntas con los pibias, te pones el bol, corre corre corre.",
+      "start_clip": "clip_0137",
+      "end_clip": "clip_0137",
+      "commit_after_clip": "clip_0137",
+      "notes": "Transcripcion dudosa en 'pibias' y 'bol'."
+    },
+    {
+      "sentence_id": "s089",
+      "text": "vas al gimnasio, te pones mejor, te cuidas con las comidas.",
+      "start_clip": "clip_0138",
+      "end_clip": "clip_0138",
+      "commit_after_clip": "clip_0138",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s090",
+      "text": "empiezas a tomar un poco menos alcohol, empiezas a dejar de voludiar saliendo todos los dias.",
+      "start_clip": "clip_0139",
+      "end_clip": "clip_0139",
+      "commit_after_clip": "clip_0139",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s091",
+      "text": "salir es una paron, esta sobrevaloradisimo salir.",
+      "start_clip": "clip_0140",
+      "end_clip": "clip_0140",
+      "commit_after_clip": "clip_0140",
+      "notes": "Transcripcion dudosa en 'una paron'."
+    },
+    {
+      "sentence_id": "s092",
+      "text": "te empiezas a juntar con amigos, empiezas a repartir ese amor en toda la gente que sigue ahi.",
+      "start_clip": "clip_0140",
+      "end_clip": "clip_0141",
+      "commit_after_clip": "clip_0141",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s093",
+      "text": "porque vos tenes una novia y yo te banco.",
+      "start_clip": "clip_0142",
+      "end_clip": "clip_0142",
+      "commit_after_clip": "clip_0142",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s094",
+      "text": "la novia te quita sin querer tiempo para tus amigos, la novia te quita sin querer tiempo para tu vida, para el gimnasio, para no se, jugar al futbol, para hacer tu hobby, lo que te gusta te lo quita.",
+      "start_clip": "clip_0143",
+      "end_clip": "clip_0145",
+      "commit_after_clip": "clip_0145",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s095",
+      "text": "por que, porque vos queres pasar tiempo con ella, esta buenisimo.",
+      "start_clip": "clip_0146",
+      "end_clip": "clip_0146",
+      "commit_after_clip": "clip_0146",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s096",
+      "text": "pero cuando esa persona se va, se reparte la baraja de nuevo.",
+      "start_clip": "clip_0147",
+      "end_clip": "clip_0147",
+      "commit_after_clip": "clip_0147",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s097",
+      "text": "con una persona menos, se fue tu amor, hay una carta mas en todos los pibes que siguen ahi, en todos tus amigos que te siguen mancando.",
+      "start_clip": "clip_0148",
+      "end_clip": "clip_0150",
+      "commit_after_clip": "clip_0150",
+      "notes": "Transcripcion dudosa en 'mancando'."
+    },
+    {
+      "sentence_id": "s098",
+      "text": "y en vez de decirle no, no puedo ir a comer, no, no puedo ir a comer jorgeito porque tengo que quedarme viendo una peli con mi novia, vamos a comer de nuevo, vamos a comer, vamos a comer, dale vamos a comer.",
+      "start_clip": "clip_0151",
+      "end_clip": "clip_0154",
+      "commit_after_clip": "clip_0154",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s099",
+      "text": "amigo, posta, una de las mejores etapas que tuve yo fue cuando termine mi relacion y tenia tiempo para aprender todos los dias.",
+      "start_clip": "clip_0154",
+      "end_clip": "clip_0156",
+      "commit_after_clip": "clip_0156",
+      "notes": "clip_0154 contiene cierre de la frase anterior y comienzo de esta; segmentado a nivel clip."
+    },
+    {
+      "sentence_id": "s100",
+      "text": "obviamente yo estuve muy mal cuando termine mi relacion.",
+      "start_clip": "clip_0156",
+      "end_clip": "clip_0156",
+      "commit_after_clip": "clip_0156",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s101",
+      "text": "mi somierda, mi somierda me desoriento, yo proyectaba todo ahi.",
+      "start_clip": "clip_0157",
+      "end_clip": "clip_0158",
+      "commit_after_clip": "clip_0158",
+      "notes": "Transcripcion dudosa en 'mi somierda'."
+    },
+    {
+      "sentence_id": "s102",
+      "text": "porque bueno viste, pero una persona como yo que nunca tuvo novia de igual que siente que hay una sola persona en el mundo que vas a amar, ojala no sea asi, pues yo eso pensaba.",
+      "start_clip": "clip_0158",
+      "end_clip": "clip_0160",
+      "commit_after_clip": "clip_0160",
+      "notes": "Transcripcion dudosa; clip_0158 comparte cierre anterior y comienzo de esta."
+    },
+    {
+      "sentence_id": "s103",
+      "text": "yo entonces yo literalmente dije: se acabo el mundo para mi, literal, se acabo el mundo para mi.",
+      "start_clip": "clip_0160",
+      "end_clip": "clip_0161",
+      "commit_after_clip": "clip_0161",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s104",
+      "text": "no va a haber otra igual, no va a haber nunca otra persona igual, no voy a conseguir nunca una persona asi nunca.",
+      "start_clip": "clip_0162",
+      "end_clip": "clip_0163",
+      "commit_after_clip": "clip_0163",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s105",
+      "text": "y pensaba eso, y pensaba eso, y pensaba eso, y lloraba, y hablaba con mis amigos, que le mando un saludo a los chicos de quino de combo, que me habran fumado de no, ya soy viejo, no voy a conseguir otra persona, etcetera, etcetera, etcetera, amigo.",
+      "start_clip": "clip_0163",
+      "end_clip": "clip_0166",
+      "commit_after_clip": "clip_0166",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s106",
+      "text": "se termina y te puedo asegurar que sufris, sufris, sufris.",
+      "start_clip": "clip_0167",
+      "end_clip": "clip_0168",
+      "commit_after_clip": "clip_0168",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s107",
+      "text": "un dia basta, un dia te cansas y ahi te convertis en supras alla.",
+      "start_clip": "clip_0168",
+      "end_clip": "clip_0169",
+      "commit_after_clip": "clip_0169",
+      "notes": "Transcripcion dudosa en 'supras alla'."
+    },
+    {
+      "sentence_id": "s108",
+      "text": "los hombres del chat me van a entender.",
+      "start_clip": "clip_0170",
+      "end_clip": "clip_0170",
+      "commit_after_clip": "clip_0170",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s109",
+      "text": "bien, en la fase 2, la fase 2 cual es, que me gustan, si deje la facultad, si me falta unas materias, la reanudo.",
+      "start_clip": "clip_0171",
+      "end_clip": "clip_0173",
+      "commit_after_clip": "clip_0173",
+      "notes": "Fragmento probablemente incompleto por clip faltante."
+    },
+    {
+      "sentence_id": "s110",
+      "text": "por que, porque la vida sigue y sabes que teneis que hacer cuando la vida sigue: sobrevivir.",
+      "start_clip": "clip_0174",
+      "end_clip": "clip_0175",
+      "commit_after_clip": "clip_0175",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s111",
+      "text": "que sobrevivir, ponerte las pilas en todo y volver a tener una vida social y eventualmente volver a conseguir al amor de tu vida.",
+      "start_clip": "clip_0175",
+      "end_clip": "clip_0177",
+      "commit_after_clip": "clip_0177",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s112",
+      "text": "como se consigue al amor de tu vida, estando hecho mierda con barba todo abandonado o poniendote las pilas con tu vida y haciendote cargo, obviamente, haciendote cargo.",
+      "start_clip": "clip_0178",
+      "end_clip": "clip_0180",
+      "commit_after_clip": "clip_0180",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s113",
+      "text": "entonces cuando te viene ese pensamiento de que la vida sigue y de que ese amor se fue, todo es nuevo, volves a estar alla arriba.",
+      "start_clip": "clip_0180",
+      "end_clip": "clip_0181",
+      "commit_after_clip": "clip_0181",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s114",
+      "text": "meti al gim como nunca, empece una dieta nueva.",
+      "start_clip": "clip_0183",
+      "end_clip": "clip_0183",
+      "commit_after_clip": "clip_0183",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s115",
+      "text": "no tengas miedo, no tengas miedo.",
+      "start_clip": "clip_0184",
+      "end_clip": "clip_0184",
+      "commit_after_clip": "clip_0184",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s116",
+      "text": "se termina una relacion, es una paja, duela un monton, pero termina.",
+      "start_clip": "clip_0184",
+      "end_clip": "clip_0185",
+      "commit_after_clip": "clip_0185",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s117",
+      "text": "la vida esta llena de quilombos que te generan una fortaleza a la larga.",
+      "start_clip": "clip_0187",
+      "end_clip": "clip_0188",
+      "commit_after_clip": "clip_0188",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s118",
+      "text": "perdiste una relacion, vendra otra.",
+      "start_clip": "clip_0189",
+      "end_clip": "clip_0189",
+      "commit_after_clip": "clip_0189",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s119",
+      "text": "perdiste una relacion, fortaleciste todas las que te quedaron.",
+      "start_clip": "clip_0189",
+      "end_clip": "clip_0190",
+      "commit_after_clip": "clip_0190",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s120",
+      "text": "perdiste un amigo, porque no es solo perder una novia.",
+      "start_clip": "clip_0190",
+      "end_clip": "clip_0190",
+      "commit_after_clip": "clip_0190",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s121",
+      "text": "a veces perdes un amigo, fortaleces cuatro amigos que siguen ahi y que te estan bancando.",
+      "start_clip": "clip_0191",
+      "end_clip": "clip_0192",
+      "commit_after_clip": "clip_0192",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s122",
+      "text": "uno se mando una cagada, nunca mas gil, pero hay cuatro que siguen siendo hermanos.",
+      "start_clip": "clip_0192",
+      "end_clip": "clip_0193",
+      "commit_after_clip": "clip_0193",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s123",
+      "text": "y a esos hermanos todo.",
+      "start_clip": "clip_0194",
+      "end_clip": "clip_0194",
+      "commit_after_clip": "clip_0194",
+      "notes": "Fragmento final incompleto."
+    },
+    {
+      "sentence_id": "s124",
+      "text": "charlasad, no, no, charla motivadora, loco.",
+      "start_clip": "clip_0195",
+      "end_clip": "clip_0195",
+      "commit_after_clip": "clip_0195",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s125",
+      "text": "bueno gente, vamos a ver el tema maria de serra.",
+      "start_clip": "clip_0195",
+      "end_clip": "clip_0196",
+      "commit_after_clip": "clip_0196",
+      "notes": "Transcripcion dudosa en 'maria de serra'."
+    },
+    {
+      "sentence_id": "s126",
+      "text": "queria que sepan que me gusta hablar con ustedes, que me gusta darles un consejo.",
+      "start_clip": "clip_0196",
+      "end_clip": "clip_0197",
+      "commit_after_clip": "clip_0197",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s127",
+      "text": "y yo ya se que parezco joven porque me cuido bien y porque no tomo alcohol.",
+      "start_clip": "clip_0198",
+      "end_clip": "clip_0199",
+      "commit_after_clip": "clip_0199",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s128",
+      "text": "que tambien la recomiendo, que no sean pelotudos, no tomen alcohol.",
+      "start_clip": "clip_0199",
+      "end_clip": "clip_0199",
+      "commit_after_clip": "clip_0199",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s129",
+      "text": "el alcohol es una mierda y el alcohol es una mierda.",
+      "start_clip": "clip_0200",
+      "end_clip": "clip_0201",
+      "commit_after_clip": "clip_0201",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s130",
+      "text": "yo ustedes saben lo que quieran porque es su cuerpo, su salud, pero yo nunca nada.",
+      "start_clip": "clip_0201",
+      "end_clip": "clip_0202",
+      "commit_after_clip": "clip_0202",
+      "notes": "Transcripcion dudosa."
+    },
+    {
+      "sentence_id": "s131",
+      "text": "solo cuando salio campeon a seleccion un ferneo y algunas cositas, pero nunca nada.",
+      "start_clip": "clip_0203",
+      "end_clip": "clip_0204",
+      "commit_after_clip": "clip_0204",
+      "notes": "Transcripcion dudosa en 'un ferneo'."
+    },
+    {
+      "sentence_id": "s132",
+      "text": "porro no tampoco.",
+      "start_clip": "clip_0204",
+      "end_clip": "clip_0204",
+      "commit_after_clip": "clip_0204",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s133",
+      "text": "el porro esta bien dice uno en el chat.",
+      "start_clip": "clip_0205",
+      "end_clip": "clip_0205",
+      "commit_after_clip": "clip_0205",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s134",
+      "text": "para mi el porro no esta bien.",
+      "start_clip": "clip_0205",
+      "end_clip": "clip_0205",
+      "commit_after_clip": "clip_0205",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s135",
+      "text": "perdon, disculpeme, para mi queres fumar un porro, te banco, te respeto.",
+      "start_clip": "clip_0206",
+      "end_clip": "clip_0207",
+      "commit_after_clip": "clip_0207",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s136",
+      "text": "y para mi, en mi vida, el porro no esta bien.",
+      "start_clip": "clip_0207",
+      "end_clip": "clip_0208",
+      "commit_after_clip": "clip_0208",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s137",
+      "text": "no me importa si es natural, yo no quiero porro cerca, no me gusta el porro.",
+      "start_clip": "clip_0208",
+      "end_clip": "clip_0209",
+      "commit_after_clip": "clip_0209",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s138",
+      "text": "no me gusta el porro y lo digo de una.",
+      "start_clip": "clip_0210",
+      "end_clip": "clip_0210",
+      "commit_after_clip": "clip_0210",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s139",
+      "text": "no tengo que quedar bien con nadie, yo les digo lo que yo siento.",
+      "start_clip": "clip_0211",
+      "end_clip": "clip_0211",
+      "commit_after_clip": "clip_0211",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s140",
+      "text": "si mi mejor amigo fuma porro, nunca le voy a decir nada, nunca le voy a decir: che, que haces con esa mierda.",
+      "start_clip": "clip_0212",
+      "end_clip": "clip_0213",
+      "commit_after_clip": "clip_0213",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s141",
+      "text": "tu cuerpo, tu salud, te respeto.",
+      "start_clip": "clip_0213",
+      "end_clip": "clip_0213",
+      "commit_after_clip": "clip_0213",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s142",
+      "text": "esta todo viola, yo no voy a fumar en mi vida, voy a fumar.",
+      "start_clip": "clip_0214",
+      "end_clip": "clip_0214",
+      "commit_after_clip": "clip_0214",
+      "notes": "Transcripcion contradictoria/dudosa."
+    },
+    {
+      "sentence_id": "s143",
+      "text": "dijo porno, no, el porno es lo mismo que me gusta el porno, lo banco, el porro no banco.",
+      "start_clip": "clip_0215",
+      "end_clip": "clip_0215",
+      "commit_after_clip": "clip_0215",
+      "notes": "Transcripcion dudosa."
+    },
+    {
+      "sentence_id": "s144",
+      "text": "no me gusta el porro, la marihuana, eso no me gusta.",
+      "start_clip": "clip_0216",
+      "end_clip": "clip_0216",
+      "commit_after_clip": "clip_0216",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s145",
+      "text": "nunca me gusto, nunca senti que la necesites.",
+      "start_clip": "clip_0217",
+      "end_clip": "clip_0217",
+      "commit_after_clip": "clip_0217",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s146",
+      "text": "para mi te lleva a un lugar donde no sos vos, donde no se, no sos vos.",
+      "start_clip": "clip_0218",
+      "end_clip": "clip_0220",
+      "commit_after_clip": "clip_0220",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s147",
+      "text": "pero bueno, no quiero entrar en esa discusion porque es personal, es personal.",
+      "start_clip": "clip_0221",
+      "end_clip": "clip_0221",
+      "commit_after_clip": "clip_0221",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s148",
+      "text": "nunca no vamos a poner de acuerdo.",
+      "start_clip": "clip_0221",
+      "end_clip": "clip_0221",
+      "commit_after_clip": "clip_0221",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s149",
+      "text": "nunca no vamos a poner de acuerdo.",
+      "start_clip": "clip_0222",
+      "end_clip": "clip_0222",
+      "commit_after_clip": "clip_0222",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s150",
+      "text": "de unico que les puedo agregar es: yo tomo alcohol para desinhibirme, amigo, y si mejor no aprendes a desinhibirte sin la necesidad de alcohol, y si mejor no aprendes a soltarte sin necesitar tomar nada, en mi opinion, eh.",
+      "start_clip": "clip_0222",
+      "end_clip": "clip_0225",
+      "commit_after_clip": "clip_0225",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s151",
+      "text": "arrancas a los djs, sos timido, te cuesta a los djs.",
+      "start_clip": "clip_0226",
+      "end_clip": "clip_0226",
+      "commit_after_clip": "clip_0226",
+      "notes": "Transcripcion dudosa en 'djs'."
+    },
+    {
+      "sentence_id": "s152",
+      "text": "si no tomo alcohol no me encargo una mina, bueno, el problema esta en tu seguridad.",
+      "start_clip": "clip_0227",
+      "end_clip": "clip_0228",
+      "commit_after_clip": "clip_0228",
+      "notes": "Transcripcion dudosa en 'encargo'."
+    },
+    {
+      "sentence_id": "s153",
+      "text": "que tenes que meterte alcohol para encararte una mina, yo no te van.",
+      "start_clip": "clip_0229",
+      "end_clip": "clip_0229",
+      "commit_after_clip": "clip_0229",
+      "notes": "Transcripcion dudosa en cierre."
+    },
+    {
+      "sentence_id": "s154",
+      "text": "yo sabre que te voy a decir: andad a poco, intentadlo de a poco, date tiempo.",
+      "start_clip": "clip_0230",
+      "end_clip": "clip_0230",
+      "commit_after_clip": "clip_0230",
+      "notes": "Transcripcion dudosa."
+    },
+    {
+      "sentence_id": "s155",
+      "text": "a los 16 años por ahi no estas listo para encararte una persona.",
+      "start_clip": "clip_0231",
+      "end_clip": "clip_0231",
+      "commit_after_clip": "clip_0231",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s156",
+      "text": "es dificil encarar, a todos nos cuesta encarar sobrio, mas dificil todavia.",
+      "start_clip": "clip_0231",
+      "end_clip": "clip_0233",
+      "commit_after_clip": "clip_0233",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s157",
+      "text": "pero yo nunca te voy a decir: entonces anda ponerte en pedo y encarar, porque esa no es la solucion.",
+      "start_clip": "clip_0233",
+      "end_clip": "clip_0235",
+      "commit_after_clip": "clip_0235",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s158",
+      "text": "en la vida no vas a estar toda la vida en pedo para poder solucionar tus problemas porque tal vez estoy en pedo.",
+      "start_clip": "clip_0235",
+      "end_clip": "clip_0236",
+      "commit_after_clip": "clip_0236",
+      "notes": "Transcripcion dudosa al final."
+    },
+    {
+      "sentence_id": "s159",
+      "text": "no, en la vida vas a estar la mayor parte de tu vida sobrio y vas a tener que aprender a resolver los problemas sobrio.",
+      "start_clip": "clip_0237",
+      "end_clip": "clip_0238",
+      "commit_after_clip": "clip_0238",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s160",
+      "text": "entonces por que mejor no mejoras tu lado sobrio antes de trabajar en el lado ebrio.",
+      "start_clip": "clip_0238",
+      "end_clip": "clip_0239",
+      "commit_after_clip": "clip_0239",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s161",
+      "text": "si quieren tomar, tomen con precaucion; si quieren fumar, fumen con precaucion.",
+      "start_clip": "clip_0239",
+      "end_clip": "clip_0240",
+      "commit_after_clip": "clip_0240",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s162",
+      "text": "yo no me voy a meter en la vida de nadie.",
+      "start_clip": "clip_0240",
+      "end_clip": "clip_0241",
+      "commit_after_clip": "clip_0241",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s163",
+      "text": "simplemente les estoy diciendo que es lo que hago yo, que consumo yo, que no consumo yo.",
+      "start_clip": "clip_0241",
+      "end_clip": "clip_0242",
+      "commit_after_clip": "clip_0242",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s164",
+      "text": "yo consumo vegetales ahora, bueno, por la velada carnes, pero despues voy a volver a consumir vegetales porque me encanta ser vegetariano.",
+      "start_clip": "clip_0242",
+      "end_clip": "clip_0243",
+      "commit_after_clip": "clip_0243",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s165",
+      "text": "consumo vegetales, consumo agua y consumo cero drogas, cero alcohol.",
+      "start_clip": "clip_0244",
+      "end_clip": "clip_0245",
+      "commit_after_clip": "clip_0245",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s166",
+      "text": "y me encanta porque tengo 31 años y parezco de 28.",
+      "start_clip": "clip_0245",
+      "end_clip": "clip_0246",
+      "commit_after_clip": "clip_0246",
+      "notes": ""
+    },
+    {
+      "sentence_id": "s167",
+      "text": "yo creo sin el video de 28 de 40 nada eso no entro.",
+      "start_clip": "clip_0247",
+      "end_clip": "clip_0247",
+      "commit_after_clip": "clip_0247",
+      "notes": "Transcripcion dudosa/fragmento final."
+    }
+  ],
+  "notes": "Anotacion asistida por LLM y revisada a nivel clip. Se preservan errores/ruido de transcripcion y se agrega puntuacion minima. En fragmentos donde un mismo clip contiene cierre de una frase y comienzo de otra, se priorizo una segmentacion causal usable para evaluacion."
+}
