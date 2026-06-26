@@ -130,6 +130,30 @@ Metricas reportadas:
 - latencia p50/p95;
 - fallbacks.
 
+Tambien se pueden generar casos livianos desde los splits del proyecto, sin cargar ROIs:
+
+```bash
+python -m realtime.src.dataset_cierre \
+  --split vsr_models/splits/val.csv \
+  --limit 30 \
+  --output realtime/outputs/eval/cierre_val.jsonl
+```
+
+Luego se evaluan con:
+
+```bash
+python -m realtime.src.evaluar_cierre --input realtime/outputs/eval/cierre_val.jsonl
+```
+
+## Notebooks
+
+Los notebooks son livianos y estan pensados para que alguien que entra al repo entienda
+que se hizo sin correr GPU ni servicios externos:
+
+- `notebooks/01_cierre_heuristico.ipynb`: contratos, cierre heuristico y metricas demo.
+- `notebooks/02_simulador_feedback_logs.ipynb`: flujo completo, feedback JSONL y logs.
+- `notebooks/03_casos_desde_splits.ipynb`: casos de evaluacion desde `vsr_models/splits/*.csv`.
+
 ## Tests
 
 ```bash
