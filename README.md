@@ -31,6 +31,9 @@ El estado del arte en VSR está casi exclusivamente en inglés y en modelos no c
 Pregunta de investigación: **¿cuánto se degrada el WER (Word Error Rate) al comprimir y
 adaptar Auto-AVSR al rioplatense?**
 
+La vista completa del pipeline de trabajo, incluyendo datos, VSR, tiempo real, corrector
+LM y feedback loop de correcciones, esta en [`PIPELINE_PROYECTO.md`](PIPELINE_PROYECTO.md).
+
 ---
 
 ## Alcance de *este* repositorio
