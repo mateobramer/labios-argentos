@@ -147,8 +147,9 @@ python -m realtime.src.evaluar_cierre --input realtime/outputs/eval/cierre_val.j
 
 ## Notebooks
 
-Los notebooks son livianos y estan pensados para que alguien que entra al repo entienda
-que se hizo sin correr GPU ni servicios externos:
+Los notebooks son livianos, estan ejecutados con outputs guardados y estan pensados
+para que alguien que entra al repo entienda que se hizo sin correr GPU ni servicios
+externos:
 
 - `notebooks/01_cierre_heuristico.ipynb`: contratos, cierre heuristico y metricas demo.
 - `notebooks/02_simulador_feedback_logs.ipynb`: flujo completo, feedback JSONL y logs.
@@ -162,7 +163,7 @@ python -m unittest discover -s realtime/tests
 
 ## Etapas siguientes
 
-1. Integrar un provider Ollama/Qwen con salida JSON estricta.
+1. Probar y medir el provider Ollama/Qwen con salida JSON estricta.
 2. Evaluar offline contra `evaluation/outputs/*/test.inf`.
 3. Comparar heuristica vs LLM local/API.
 4. Integrar el corrector real de Mateo detras de `CorrectionProvider`.
