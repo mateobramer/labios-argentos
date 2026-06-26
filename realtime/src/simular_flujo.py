@@ -9,11 +9,10 @@ import time
 from pathlib import Path
 from typing import Iterable
 
-from realtime.src.cierre import HeuristicClosureProvider
 from realtime.src.contracts import CommitAction, FeedbackEvent, PartialHypothesis
-from realtime.src.corrector import IdentityCorrectionProvider
 from realtime.src.feedback import FeedbackWriter
 from realtime.src.logging_utils import JSONLLogger, provider_log_event
+from realtime.src.provider_factory import make_closure_provider, make_correction_provider
 from realtime.src.validation import validate_commit_decision, validate_correction_result
 
 
@@ -32,11 +31,26 @@ DEMO_TEXTS = [
 def run_simulation(
     texts: Iterable[str],
     *,
+    closure_provider_name: str = "heuristic",
+    correction_provider_name: str = "identity",
+    ollama_model: str = "qwen3:4b",
+    ollama_url: str = "http://localhost:11434",
+    timeout_s: float = 2.5,
     log_path: str | Path = "realtime/outputs/llm_logs/events.jsonl",
     feedback_path: str | Path = "realtime/outputs/feedback/events.jsonl",
 ) -> dict[str, object]:
-    closure = HeuristicClosureProvider()
-    corrector = IdentityCorrectionProvider()
+    closure = make_closure_provider(
+        closure_provider_name,
+        ollama_model=ollama_model,
+        ollama_url=ollama_url,
+        timeout_s=timeout_s,
+    )
+    corrector = make_correction_provider(
+        correction_provider_name,
+        ollama_model=ollama_model,
+        ollama_url=ollama_url,
+        timeout_s=timeout_s,
+    )
     logger = JSONLLogger(log_path)
     feedback = FeedbackWriter(feedback_path)
 
@@ -63,7 +77,8 @@ def run_simulation(
         decision, fallback_used = validate_commit_decision(decision)
         validation_ms = _elapsed_ms(started)
         latencies["validation"].append(validation_ms)
-        fallback_count += int(fallback_used)
+        provider_fallback = "fallback" in decision.risk_flags
+        fallback_count += int(fallback_used or provider_fallback)
         counts[decision.action.value] += 1
 
         correction_ms = 0.0
@@ -78,7 +93,8 @@ def run_simulation(
             started = time.perf_counter()
             correction, correction_fallback = validate_correction_result(correction, decision.committed_text)
             latencies["validation"].append(_elapsed_ms(started))
-            fallback_count += int(correction_fallback)
+            correction_provider_fallback = "fallback" in correction.risk_flags
+            fallback_count += int(correction_fallback or correction_provider_fallback)
 
             feedback.write(
                 FeedbackEvent(
@@ -100,7 +116,7 @@ def run_simulation(
             output_payload=decision,
             latency_ms=closure_ms,
             valid=not fallback_used,
-            fallback_used=fallback_used,
+            fallback_used=fallback_used or provider_fallback,
         )
         ok, logging_ms, error = logger.write(log_event)
         latencies["logging"].append(logging_ms)
@@ -115,7 +131,7 @@ def run_simulation(
                 output_payload=correction,
                 latency_ms=correction_ms,
                 valid=not correction_fallback,
-                fallback_used=correction_fallback,
+                fallback_used=correction_fallback or ("fallback" in correction.risk_flags),
                 error=error,
             )
             ok, logging_ms, _ = logger.write(log_event)
@@ -125,6 +141,10 @@ def run_simulation(
 
     return {
         "count": len(examples),
+        "providers": {
+            "closure": getattr(closure, "name", closure.__class__.__name__),
+            "correction": getattr(corrector, "name", corrector.__class__.__name__),
+        },
         "actions": counts,
         "latency_ms": {name: _latency_summary(values) for name, values in latencies.items()},
         "fallbacks": fallback_count,
@@ -161,6 +181,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Simula el flujo realtime sin GPU ni LLM externo.")
     parser.add_argument("--demo", action="store_true", help="Usar frases sinteticas incluidas.")
     parser.add_argument("--input", help="Archivo de texto, una hipotesis parcial por linea.")
+    parser.add_argument("--closure-provider", choices=["heuristic", "ollama"], default="heuristic")
+    parser.add_argument("--correction-provider", choices=["identity", "ollama"], default="identity")
+    parser.add_argument("--ollama-model", default="qwen3:4b")
+    parser.add_argument("--ollama-url", default="http://localhost:11434")
+    parser.add_argument("--timeout-s", type=float, default=2.5)
     parser.add_argument("--log-path", default="realtime/outputs/llm_logs/events.jsonl")
     parser.add_argument("--feedback-path", default="realtime/outputs/feedback/events.jsonl")
     args = parser.parse_args()
@@ -172,7 +197,16 @@ def main() -> None:
     else:
         parser.error("Usar --demo o --input")
 
-    summary = run_simulation(texts, log_path=args.log_path, feedback_path=args.feedback_path)
+    summary = run_simulation(
+        texts,
+        closure_provider_name=args.closure_provider,
+        correction_provider_name=args.correction_provider,
+        ollama_model=args.ollama_model,
+        ollama_url=args.ollama_url,
+        timeout_s=args.timeout_s,
+        log_path=args.log_path,
+        feedback_path=args.feedback_path,
+    )
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
 
 

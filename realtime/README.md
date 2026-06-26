@@ -50,6 +50,8 @@ Reglas duras:
 
 - `HeuristicClosureProvider`: cierre conservador sin dependencias.
 - `IdentityCorrectionProvider`: corrector no-op que devuelve el texto crudo.
+- `OllamaProvider`: provider opcional para cierre/correccion via Ollama, con JSON schema
+  y fallback seguro. No se usa por defecto.
 
 Los providers futuros de Ollama, OpenAI, llama.cpp o PyTorch deben implementar las
 interfaces de `realtime/src/llm/providers.py` sin volver obligatorias esas dependencias.
@@ -76,6 +78,12 @@ Demo sin GPU ni LLM externo:
 python -m realtime.src.simular_flujo --demo
 ```
 
+Probar el mismo flujo con cierre via Ollama, solo si Ollama ya esta levantado:
+
+```bash
+python -m realtime.src.simular_flujo --demo --closure-provider ollama --ollama-model qwen3:4b
+```
+
 Con archivo propio, una hipotesis parcial por linea:
 
 ```bash
@@ -91,6 +99,36 @@ El simulador reporta:
 - latencia p50/p95 de validacion;
 - latencia p50/p95 de logging;
 - cantidad de fallbacks.
+
+## Evaluacion offline de cierre
+
+Casos sinteticos etiquetados:
+
+```bash
+python -m realtime.src.evaluar_cierre --demo
+```
+
+Con dataset JSONL:
+
+```bash
+python -m realtime.src.evaluar_cierre --input cierre_eval.jsonl
+```
+
+Formato esperado por linea:
+
+```json
+{"partial_text": "yo creo que", "expected_action": "wait"}
+```
+
+Metricas reportadas:
+
+- accuracy;
+- precision/recall de `commit`;
+- tasa de commit prematuro;
+- tasa de wait innecesario;
+- recall de `low_confidence`;
+- latencia p50/p95;
+- fallbacks.
 
 ## Tests
 
