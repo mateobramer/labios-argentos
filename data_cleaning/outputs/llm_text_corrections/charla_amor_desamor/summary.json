@@ -1,0 +1,34 @@
+{
+  "clips": 233,
+  "actions": {
+    "corrected": 34,
+    "keep": 177,
+    "uncertain": 22
+  },
+  "review_status": {
+    "accept_correction": 31,
+    "keep_raw": 177,
+    "reject_suggestion": 25
+  },
+  "validation_flags": {
+    "cambio_grande_detectado": 1,
+    "correccion_baja_confianza": 1
+  },
+  "risk_flags": {
+    "cambio_grande": 16,
+    "correccion_inferida": 32,
+    "insulto": 9,
+    "jerga": 19,
+    "nombre_propio": 5,
+    "numero": 4,
+    "posible_alucinacion": 12,
+    "repeticion": 3,
+    "requiere_video": 23
+  },
+  "duplicates": [],
+  "unknown_clips": [],
+  "video_exists": 233,
+  "txt_exists": 233,
+  "txt_matches_source": 233,
+  "high_change": 1
+}
