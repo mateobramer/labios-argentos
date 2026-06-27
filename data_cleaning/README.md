@@ -106,3 +106,61 @@ data_cleaning/outputs/azzaro_whisper/final/
 ```
 
 El video original, los modelos descargados y los clips descartados permanecen locales.
+
+## Correcciones textuales asistidas por LLM
+
+Para auditar texto clip por clip sin pisar los `.txt` originales, usar:
+
+```text
+data_cleaning/src/llm_text_corrections.py
+data_cleaning/notebooks/03_revision_correcciones_llm.ipynb
+```
+
+Exportar un prompt para un LLM grande:
+
+```bash
+python -m data_cleaning.src.llm_text_corrections \
+  --export-prompt \
+  --split vsr_models/splits/val.csv \
+  --source-id "CHARLA SOBRE EL AMOR Y EL DESAMOR" \
+  --prompt-output data_cleaning/outputs/llm_text_corrections/charla_amor_desamor/gpt_clip_by_clip_prompt.md
+```
+
+Validar la respuesta JSON del LLM:
+
+```bash
+python -m data_cleaning.src.llm_text_corrections \
+  --split vsr_models/splits/val.csv \
+  --suggestions data_cleaning/outputs/llm_text_corrections/charla_amor_desamor/llm_suggestions.raw.json \
+  --output-dir data_cleaning/outputs/llm_text_corrections/charla_amor_desamor
+```
+
+Salida:
+
+```text
+llm_suggestions.raw.json   # respuesta cruda del LLM
+review_manifest.csv        # manifest auditable raw vs sugerido
+review_manifest.jsonl      # mismo manifest en JSONL
+summary.json               # resumen de acciones, riesgos y validaciones
+```
+
+Nada de esto modifica los textos originales. Las sugerencias quedan como propuestas
+con decision automatica:
+
+- `accept_correction`: cambio chico y confiable;
+- `keep_raw`: no se cambia el texto original;
+- `reject_suggestion`: se descarta la sugerencia y se conserva el raw.
+
+El notebook de revision exporta clips de apoyo en:
+
+```text
+data_cleaning/outputs/llm_text_corrections/<fuente>/review_webm/
+```
+
+Esto evita el problema de audio AAC en el renderer de notebooks de VS Code. Para cada
+caso genera:
+
+- WebM de respaldo;
+- MP4 H.264 con audio MP3 para reproducir dentro de VS Code;
+- MP3 separado como fallback de audio;
+- thumbnail y links externos al MP4 compatible, MP4 original, MP3 y WebM.
