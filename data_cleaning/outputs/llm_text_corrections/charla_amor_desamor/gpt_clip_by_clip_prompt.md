@@ -3,6 +3,12 @@
 Fuente: CHARLA SOBRE EL AMOR Y EL DESAMOR
 Split de referencia: vsr_models/splits/val.csv
 Cantidad de clips: 233
+URL de referencia: https://www.youtube.com/watch?v=_GTu8K8a_Jw
+
+Contexto de la fuente:
+- Es una charla larga de Coscu sobre amor/desamor, vida personal, energia, streaming y habitos.
+- No confundir con el recorte corto "El mensaje de Coscu sobre EL AMOR" (https://www.youtube.com/watch?v=z-jbSKM49fo), que dura 53 segundos y corresponde a otra fuente del repo.
+- Las transcripciones estan normalizadas para dataset: minusculas, sin puntuacion, sin tildes. La salida debe conservar ese formato.
 
 ## Tarea
 
