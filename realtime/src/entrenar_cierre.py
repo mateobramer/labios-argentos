@@ -96,6 +96,9 @@ def run_training_pipeline(
         "selection_score": best["val"]["selection_score"],
         "commit_f1": best["val"]["commit_f1"],
         "premature_commit_rate": best["val"]["premature_commit_rate"],
+        "low_confidence_recall": best["val"]["low_confidence_recall"],
+        "boundary_error_clips": best["val"]["boundary_error_clips"],
+        "overcommit_risk_rate": best["val"]["overcommit_risk_rate"],
         "note": "Si best_model_path es null, gano un baseline no entrenable.",
     }
     best_config_path.write_text(json.dumps(best_payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -105,6 +108,7 @@ def run_training_pipeline(
         "output_dir": str(output),
         "examples": len(examples),
         "sources": sorted({example.source_id for example in examples}),
+        "dataset_summary": _dataset_summary(examples),
         "splits": {name: len(rows) for name, rows in splits.items()},
         "best": best_payload,
         "candidates": candidates,
@@ -137,6 +141,11 @@ def _compact_metrics(metrics: dict[str, Any]) -> dict[str, Any]:
         "premature_commit_rate",
         "unnecessary_wait_rate",
         "low_confidence_recall",
+        "boundary_error_clips",
+        "early_commit_rate_by_boundary",
+        "late_commit_rate_by_boundary",
+        "on_time_commit_rate_by_boundary",
+        "overcommit_risk_rate",
         "selection_score",
         "latency_ms",
         "fallbacks",
@@ -150,7 +159,7 @@ def main() -> None:
         "--input",
         action="append",
         dest="inputs",
-        help="JSON o carpeta con ground truth real/sintetico. Se puede repetir.",
+        help="JSON, ZIP o carpeta con ground truth real/sintetico. Se puede repetir.",
     )
     parser.add_argument("--output-dir", default="realtime/outputs/cierre_training")
     parser.add_argument("--seed", type=int, default=13)
@@ -166,6 +175,7 @@ def _printable_summary(summary: dict[str, Any]) -> dict[str, Any]:
         "output_dir": summary["output_dir"],
         "examples": summary["examples"],
         "splits": summary["splits"],
+        "dataset_summary": summary["dataset_summary"],
         "best": summary["best"],
         "candidates": [
             {
@@ -173,11 +183,26 @@ def _printable_summary(summary: dict[str, Any]) -> dict[str, Any]:
                 "val_selection_score": row["val"]["selection_score"],
                 "val_commit_f1": row["val"]["commit_f1"],
                 "val_premature_commit_rate": row["val"]["premature_commit_rate"],
+                "val_low_confidence_recall": row["val"]["low_confidence_recall"],
+                "val_boundary_error_clips": row["val"]["boundary_error_clips"],
                 "test_selection_score": row["test"]["selection_score"],
             }
             for row in summary["candidates"]
         ],
     }
+
+
+def _dataset_summary(examples: list) -> dict[str, dict[str, int]]:
+    summary: dict[str, dict[str, int]] = {}
+    for key in ("synthetic", "input_split", "noise_level", "difficulty", "context"):
+        counts: dict[str, int] = {}
+        for example in examples:
+            value = str(example.metadata.get(key, example.synthetic if key == "synthetic" else ""))
+            if value:
+                counts[value] = counts.get(value, 0) + 1
+        if counts:
+            summary[key] = dict(sorted(counts.items()))
+    return summary
 
 
 if __name__ == "__main__":

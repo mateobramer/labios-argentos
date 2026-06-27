@@ -214,7 +214,7 @@ Entrenar y seleccionar el mejor:
 ```bash
 python -m realtime.src.entrenar_cierre \
   --input realtime/ground_truth \
-  --input realtime/outputs/synthetic_cierre_oracional \
+  --input C:/Users/bianc/Downloads/synthetic_sentence_boundary_es_ar_v3_curated.zip \
   --output-dir realtime/outputs/cierre_training
 ```
 
@@ -229,6 +229,30 @@ realtime/outputs/cierre_training/*.model.json
 La seleccion usa `val.selection_score`, que prioriza `commit_f1` y penaliza fuerte los
 commits prematuros. En esta tarea un `commit` temprano corta una idea y suele ser peor
 que esperar un clip mas.
+
+El loader acepta JSON, carpetas y ZIPs. Si el ZIP trae `manifest.json`,
+`quality_metrics.json` o perfiles de ruido, se ignoran para entrenamiento y solo se
+cargan los JSON con `source_id`, `clips` y `sentences`.
+
+Los ejemplos entrenables conservan metadata util para auditar:
+
+- `synthetic`;
+- `input_split`;
+- `noise_level`;
+- `difficulty`;
+- `context`;
+- `noise_tags` del clip actual y del buffer;
+- `boundary_offset`, distancia causal al `commit_after_clip` esperado.
+
+Ademas de accuracy/F1, las metricas incluyen:
+
+- `premature_commit_rate`;
+- `boundary_error_clips`;
+- `early_commit_rate_by_boundary`;
+- `late_commit_rate_by_boundary`;
+- `overcommit_risk_rate`;
+- `low_confidence_recall`;
+- breakdowns por split, ruido, dificultad y contexto en los JSON completos.
 
 Usar un modelo entrenado en el simulador:
 

@@ -14,6 +14,7 @@ import random
 import re
 import statistics
 import time
+import zipfile
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Iterable
@@ -136,6 +137,14 @@ class FeatureExtractor:
             features["has_punctuation_end"] = 1.0
         if metadata.get("synthetic"):
             features["is_synthetic"] = 1.0
+        for key in ("input_split", "noise_level", "difficulty", "context", "register", "speaker", "dataset_version"):
+            value = metadata.get(key)
+            if value:
+                features[f"{key}={value}"] = 1.0
+        for tag in metadata.get("current_noise_tags") or []:
+            features[f"current_noise={tag}"] = 1.0
+        for tag in metadata.get("buffer_noise_tags") or []:
+            features[f"buffer_noise={tag}"] = 1.0
 
         if self._heuristic is not None:
             decision = self._heuristic.decide(PartialHypothesis(partial_text=text))
@@ -212,14 +221,13 @@ class LinearClosureProvider:
 
 def load_training_examples(paths: Iterable[str | Path]) -> list[ClosureTrainingExample]:
     examples: list[ClosureTrainingExample] = []
-    for path in _expand_input_paths(paths):
-        data = json.loads(path.read_text(encoding="utf-8"))
+    for input_name, data in _iter_input_payloads(paths):
         if "clip_decisions" in data:
-            examples.extend(_examples_from_decisions(data))
+            examples.extend(_examples_from_decisions(data, input_name=input_name))
         elif "clips" in data and "sentences" in data:
-            examples.extend(_examples_from_sequence(data))
+            examples.extend(_examples_from_sequence(data, input_name=input_name))
         else:
-            raise ValueError(f"Formato de cierre no reconocido: {path}")
+            raise ValueError(f"Formato de cierre no reconocido: {input_name}")
     if not examples:
         raise ValueError("No se cargaron ejemplos de cierre")
     return examples
@@ -327,6 +335,16 @@ def evaluate_provider(provider, examples: list[ClosureTrainingExample]) -> dict[
                 "expected": example.expected_action,
                 "predicted": decision.action.value,
                 "correct": example.expected_action == decision.action.value,
+                "synthetic": example.synthetic,
+                "boundary_offset": example.metadata.get("boundary_offset"),
+                "expected_boundary_order": example.metadata.get("expected_boundary_order"),
+                "input_split": example.metadata.get("input_split", ""),
+                "noise_level": example.metadata.get("noise_level", ""),
+                "difficulty": example.metadata.get("difficulty", ""),
+                "context": example.metadata.get("context", ""),
+                "current_noise_tags": example.metadata.get("current_noise_tags", []),
+                "buffer_noise_tags": example.metadata.get("buffer_noise_tags", []),
+                "possible_shared_boundary_clip": bool(example.metadata.get("possible_shared_boundary_clip")),
                 "latency_ms": round(latency_ms, 4),
                 "fallback": used_fallback or provider_fallback,
                 "reason": decision.reason,
@@ -365,22 +383,30 @@ def save_cases_jsonl(examples: list[ClosureTrainingExample], path: str | Path) -
     return output
 
 
-def _examples_from_sequence(data: dict[str, Any]) -> list[ClosureTrainingExample]:
+def _examples_from_sequence(data: dict[str, Any], *, input_name: str = "") -> list[ClosureTrainingExample]:
     source_id = str(data["source_id"])
     synthetic = bool(data.get("synthetic"))
     sentences = {str(row["commit_after_clip"]): row for row in data.get("sentences", [])}
     clips = data.get("clips", [])
+    clip_order = {str(clip["clip_id"]): order for order, clip in enumerate(clips, start=1)}
+    sentence_by_id = {str(row["sentence_id"]): row for row in data.get("sentences", [])}
     examples: list[ClosureTrainingExample] = []
     buffer_texts: list[str] = []
+    buffer_noise_tags: list[str] = []
     buffer_count = 0
+    active_sentence = _next_sentence_after_order(sentence_by_id.values(), clip_order, 0)
     for order, clip in enumerate(clips, start=1):
         clip_id = str(clip["clip_id"])
         text = str(clip.get("text") or clip.get("raw_text") or "")
         buffer_texts.append(text)
+        buffer_noise_tags.extend(str(tag) for tag in clip.get("noise_tags", []) if tag)
         buffer_count += 1
         partial_text = " ".join(part for part in buffer_texts if part).strip()
         sentence = sentences.get(clip_id)
         expected = CommitAction.COMMIT.value if sentence else CommitAction.WAIT.value
+        if active_sentence is None:
+            active_sentence = sentence or _next_sentence_after_order(sentence_by_id.values(), clip_order, order)
+        boundary_order = _sentence_boundary_order(active_sentence, clip_order)
         examples.append(
             ClosureTrainingExample(
                 source_id=source_id,
@@ -391,55 +417,177 @@ def _examples_from_sequence(data: dict[str, Any]) -> list[ClosureTrainingExample
                 sentence_id=str(sentence.get("sentence_id") or "") if sentence else "",
                 synthetic=synthetic,
                 order=order,
-                metadata={"synthetic": synthetic, "buffer_clip_count": buffer_count},
+                metadata=_example_metadata(
+                    data,
+                    clip=clip,
+                    input_name=input_name,
+                    synthetic=synthetic,
+                    buffer_clip_count=buffer_count,
+                    buffer_noise_tags=buffer_noise_tags,
+                    boundary_order=boundary_order,
+                    current_order=order,
+                    sentence=sentence or active_sentence,
+                ),
             )
         )
         if sentence:
             buffer_texts = []
+            buffer_noise_tags = []
             buffer_count = 0
+            active_sentence = _next_sentence_after_order(sentence_by_id.values(), clip_order, order)
     return examples
 
 
-def _examples_from_decisions(data: dict[str, Any]) -> list[ClosureTrainingExample]:
+def _examples_from_decisions(data: dict[str, Any], *, input_name: str = "") -> list[ClosureTrainingExample]:
     source_id = str(data["source_id"])
     synthetic = bool(data.get("synthetic"))
     sentence_by_id = {str(row["sentence_id"]): row for row in data.get("sentences", [])}
+    clips = data.get("clips", [])
+    clip_by_id = {str(clip["clip_id"]): clip for clip in clips}
+    clip_order = {str(clip["clip_id"]): order for order, clip in enumerate(clips, start=1)}
     examples: list[ClosureTrainingExample] = []
     buffer_count = 0
+    buffer_noise_tags: list[str] = []
+    active_sentence = _next_sentence_after_order(sentence_by_id.values(), clip_order, 0)
     for order, decision in enumerate(data.get("clip_decisions", []), start=1):
         action = CommitAction(str(decision["action"])).value
         sentence_id = str(decision.get("committed_sentence_id") or "")
         sentence = sentence_by_id.get(sentence_id)
+        clip_id = str(decision["clip_id"])
+        clip = clip_by_id.get(clip_id, {"clip_id": clip_id})
+        buffer_noise_tags.extend(str(tag) for tag in clip.get("noise_tags", []) if tag)
         buffer_count += 1
+        if active_sentence is None:
+            active_sentence = sentence or _next_sentence_after_order(sentence_by_id.values(), clip_order, order - 1)
+        boundary_order = _sentence_boundary_order(sentence or active_sentence, clip_order)
         examples.append(
             ClosureTrainingExample(
                 source_id=source_id,
-                clip_id=str(decision["clip_id"]),
+                clip_id=clip_id,
                 partial_text=str(decision.get("visible_context") or ""),
                 expected_action=action,
                 committed_text=str(sentence.get("text") or decision.get("visible_context") or "") if sentence else "",
                 sentence_id=sentence_id,
                 synthetic=synthetic,
                 order=order,
-                metadata={"synthetic": synthetic, "buffer_clip_count": buffer_count},
+                metadata=_example_metadata(
+                    data,
+                    clip=clip,
+                    input_name=input_name,
+                    synthetic=synthetic,
+                    buffer_clip_count=buffer_count,
+                    buffer_noise_tags=buffer_noise_tags,
+                    boundary_order=boundary_order,
+                    current_order=order,
+                    sentence=sentence or active_sentence,
+                ),
             )
         )
         if action == CommitAction.COMMIT.value:
             buffer_count = 0
+            buffer_noise_tags = []
+            active_sentence = _next_sentence_after_order(sentence_by_id.values(), clip_order, order)
     return examples
 
 
-def _expand_input_paths(paths: Iterable[str | Path]) -> list[Path]:
-    expanded: list[Path] = []
+def _iter_input_payloads(paths: Iterable[str | Path]) -> list[tuple[str, dict[str, Any]]]:
+    payloads: list[tuple[str, dict[str, Any]]] = []
     for raw_path in paths:
         path = Path(raw_path)
         if path.is_dir():
-            expanded.extend(sorted(child for child in path.rglob("*.json") if child.is_file()))
+            for child in sorted(item for item in path.rglob("*.json") if item.is_file()):
+                data = json.loads(child.read_text(encoding="utf-8"))
+                if _is_conversation_payload(data):
+                    payloads.append((str(child), data))
         elif path.is_file():
-            expanded.append(path)
+            if path.suffix.lower() == ".zip":
+                with zipfile.ZipFile(path) as zf:
+                    for name in sorted(zf.namelist()):
+                        if not name.endswith(".json"):
+                            continue
+                        data = json.loads(zf.read(name).decode("utf-8"))
+                        if _is_conversation_payload(data):
+                            payloads.append((f"{path}!{name}", data))
+            else:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                if not _is_conversation_payload(data):
+                    raise ValueError(f"Formato de cierre no reconocido: {path}")
+                payloads.append((str(path), data))
         else:
             raise FileNotFoundError(path)
-    return expanded
+    return payloads
+
+
+def _is_conversation_payload(data: dict[str, Any]) -> bool:
+    return bool(data.get("source_id") and data.get("clips") and data.get("sentences"))
+
+
+def _example_metadata(
+    data: dict[str, Any],
+    *,
+    clip: dict[str, Any],
+    input_name: str,
+    synthetic: bool,
+    buffer_clip_count: int,
+    buffer_noise_tags: list[str],
+    boundary_order: int | None,
+    current_order: int,
+    sentence: dict[str, Any] | None,
+) -> dict[str, Any]:
+    generation_config = dict(data.get("generation_config") or {})
+    current_noise_tags = [str(tag) for tag in clip.get("noise_tags", []) if tag]
+    metadata: dict[str, Any] = {
+        "synthetic": synthetic,
+        "buffer_clip_count": buffer_clip_count,
+        "current_noise_tags": sorted(set(current_noise_tags)),
+        "buffer_noise_tags": sorted(set(buffer_noise_tags)),
+        "input_name": input_name,
+        "source_id": data.get("source_id", ""),
+        "dataset_version": data.get("dataset_version", ""),
+        "input_modality_assumption": data.get("input_modality_assumption", ""),
+        "label_policy": data.get("label_policy", ""),
+        "clip_clean_text": clip.get("clean_text", ""),
+        "clip_raw_text": clip.get("raw_text") or clip.get("text") or "",
+    }
+    for key, value in generation_config.items():
+        metadata[key if key != "split" else "input_split"] = value
+    if boundary_order is not None:
+        metadata["expected_boundary_order"] = boundary_order
+        metadata["boundary_offset"] = current_order - boundary_order
+    if sentence:
+        metadata["expected_sentence_id"] = sentence.get("sentence_id", "")
+        metadata["boundary_reason"] = sentence.get("boundary_reason", sentence.get("notes", ""))
+        metadata["sentence_notes"] = sentence.get("notes", "")
+        metadata["possible_shared_boundary_clip"] = _looks_like_shared_boundary(sentence)
+    return metadata
+
+
+def _sentence_boundary_order(sentence: dict[str, Any] | None, clip_order: dict[str, int]) -> int | None:
+    if not sentence:
+        return None
+    commit_clip = str(sentence.get("commit_after_clip") or "")
+    return clip_order.get(commit_clip)
+
+
+def _next_sentence_after_order(
+    sentences: Iterable[dict[str, Any]],
+    clip_order: dict[str, int],
+    order: int,
+) -> dict[str, Any] | None:
+    candidates = [
+        sentence
+        for sentence in sentences
+        if _sentence_boundary_order(sentence, clip_order) is not None
+        and (_sentence_boundary_order(sentence, clip_order) or 0) > order
+    ]
+    if not candidates:
+        return None
+    return min(candidates, key=lambda sentence: _sentence_boundary_order(sentence, clip_order) or 10**9)
+
+
+def _looks_like_shared_boundary(sentence: dict[str, Any]) -> bool:
+    text = " ".join(str(sentence.get(key) or "").lower() for key in ("notes", "boundary_reason"))
+    return ("contiene" in text and ("comienzo" in text or "arranque" in text)) or "cierre de la frase anterior" in text
 
 
 def _classification_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -470,6 +618,91 @@ def _classification_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
         sum(1 for row in rows if row["expected"] == CommitAction.COMMIT.value),
     )
     metrics["low_confidence_recall"] = metrics["per_action"][CommitAction.LOW_CONFIDENCE.value]["recall"]
+    metrics.update(_boundary_metrics(rows))
+    metrics["breakdowns"] = _metadata_breakdowns(rows)
+    return metrics
+
+
+def _boundary_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    predicted_commits = [row for row in rows if row["predicted"] == CommitAction.COMMIT.value]
+    offsets = [
+        int(row["boundary_offset"])
+        for row in predicted_commits
+        if isinstance(row.get("boundary_offset"), int)
+    ]
+    early = [offset for offset in offsets if offset < 0]
+    late = [offset for offset in offsets if offset > 0]
+    on_time = [offset for offset in offsets if offset == 0]
+    return {
+        "boundary_error_clips": _offset_summary(offsets),
+        "early_commit_rate_by_boundary": _safe_div(len(early), len(offsets)),
+        "late_commit_rate_by_boundary": _safe_div(len(late), len(offsets)),
+        "on_time_commit_rate_by_boundary": _safe_div(len(on_time), len(offsets)),
+        "overcommit_risk_rate": _safe_div(
+            sum(1 for row in predicted_commits if row.get("possible_shared_boundary_clip")),
+            len(predicted_commits),
+        ),
+    }
+
+
+def _metadata_breakdowns(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    breakdowns: dict[str, dict[str, Any]] = {}
+    for key in ("synthetic", "input_split", "noise_level", "difficulty", "context"):
+        groups: dict[str, list[dict[str, Any]]] = {}
+        for row in rows:
+            value = str(row.get(key, ""))
+            if not value:
+                continue
+            groups.setdefault(value, []).append(row)
+        if groups:
+            breakdowns[key] = {
+                value: _compact_classification_metrics(group_rows)
+                for value, group_rows in sorted(groups.items())
+            }
+    return breakdowns
+
+
+def _compact_classification_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    base = _classification_metrics_without_breakdowns(rows)
+    return {
+        "count": len(rows),
+        "accuracy": base["accuracy"],
+        "macro_f1": base["macro_f1"],
+        "commit_f1": base["commit_f1"],
+        "premature_commit_rate": base["premature_commit_rate"],
+        "low_confidence_recall": base["low_confidence_recall"],
+        "boundary_error_clips": base["boundary_error_clips"],
+    }
+
+
+def _classification_metrics_without_breakdowns(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    metrics: dict[str, Any] = {
+        "accuracy": _safe_div(sum(1 for row in rows if row["correct"]), len(rows)),
+        "per_action": {},
+    }
+    for label in LABELS:
+        precision = _precision(rows, label)
+        recall = _recall(rows, label)
+        metrics["per_action"][label] = {
+            "precision": precision,
+            "recall": recall,
+            "f1": _f1(precision, recall),
+            "support": sum(1 for row in rows if row["expected"] == label),
+        }
+    metrics["macro_f1"] = round(sum(metrics["per_action"][label]["f1"] for label in LABELS) / len(LABELS), 4)
+    metrics["commit_precision"] = metrics["per_action"][CommitAction.COMMIT.value]["precision"]
+    metrics["commit_recall"] = metrics["per_action"][CommitAction.COMMIT.value]["recall"]
+    metrics["commit_f1"] = metrics["per_action"][CommitAction.COMMIT.value]["f1"]
+    metrics["premature_commit_rate"] = _safe_div(
+        sum(1 for row in rows if row["predicted"] == CommitAction.COMMIT.value and row["expected"] != CommitAction.COMMIT.value),
+        sum(1 for row in rows if row["expected"] != CommitAction.COMMIT.value),
+    )
+    metrics["unnecessary_wait_rate"] = _safe_div(
+        sum(1 for row in rows if row["predicted"] == CommitAction.WAIT.value and row["expected"] == CommitAction.COMMIT.value),
+        sum(1 for row in rows if row["expected"] == CommitAction.COMMIT.value),
+    )
+    metrics["low_confidence_recall"] = metrics["per_action"][CommitAction.LOW_CONFIDENCE.value]["recall"]
+    metrics.update(_boundary_metrics(rows))
     return metrics
 
 
@@ -539,6 +772,21 @@ def _latency_summary(values: list[float]) -> dict[str, float]:
     ordered = sorted(values)
     p95_index = max(0, min(len(ordered) - 1, round(0.95 * (len(ordered) - 1))))
     return {"p50": round(statistics.median(ordered), 4), "p95": round(ordered[p95_index], 4)}
+
+
+def _offset_summary(values: list[int]) -> dict[str, Any]:
+    if not values:
+        return {"count": 0, "min": 0, "p50": 0.0, "p95_abs": 0, "max": 0}
+    ordered = sorted(values)
+    abs_ordered = sorted(abs(value) for value in values)
+    p95_index = max(0, min(len(abs_ordered) - 1, round(0.95 * (len(abs_ordered) - 1))))
+    return {
+        "count": len(values),
+        "min": ordered[0],
+        "p50": round(statistics.median(ordered), 4),
+        "p95_abs": abs_ordered[p95_index],
+        "max": ordered[-1],
+    }
 
 
 def _softmax_confidence(scores: dict[str, float], action: str) -> float:

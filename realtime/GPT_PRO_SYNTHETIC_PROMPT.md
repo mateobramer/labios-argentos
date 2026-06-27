@@ -79,7 +79,9 @@ Salida obligatoria:
   "clips": [
     {
       "clip_id": "clip_0000",
-      "raw_text": ""
+      "raw_text": "",
+      "clean_text": "",
+      "noise_tags": []
     }
   ],
   "sentences": [
@@ -129,6 +131,20 @@ python -m realtime.src.plan_sintetico --output realtime/outputs/synthetic_plan/f
 
 Recomendacion: empezar con 80-200 variaciones balanceadas, revisar calidad y recien
 despues escalar.
+
+## Metadata de ruido recomendada
+
+Cuando se simula input RSV/VSR, usar:
+
+- `raw_text`: hipotesis ruidosa que vera el cierre.
+- `clean_text`: intencion limpia para auditoria y proyeccion de labels.
+- `noise_tags`: lista con patrones como `none`, `deletion`, `repetition`,
+  `substitution`, `deformation`, `insertion`, `hallucinated_word`,
+  `hallucinated_tail`.
+
+El entrenamiento debe usar `raw_text` / `visible_context` como entrada. `clean_text`
+no se usa como input del modelo de cierre; queda para auditar si el label proyectado
+tiene sentido.
 
 ## Criterio de mezcla para entrenamiento
 
