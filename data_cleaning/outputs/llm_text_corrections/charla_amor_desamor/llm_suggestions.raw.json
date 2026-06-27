@@ -4,35 +4,34 @@
     {
       "clip_id": "clip_0000",
       "raw_text": "voy a antereccionar maria del cerro y ahora que hay un monton de gente en el chat les quiero decir algo",
-      "suggested_text": "voy a antes de reaccionar a maria becerra y ahora que hay un monton de gente en el chat les quiero decir algo",
+      "suggested_text": "voy a reaccionar a maria becerra y ahora que hay un monton de gente en el chat les quiero decir algo",
       "action": "corrected",
-      "confidence": 0.35,
+      "confidence": 0.76,
       "risk_flags": [
         "nombre_propio",
         "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
         "requiere_video"
       ],
-      "notes": "Corregido manualmente luego de revisar el clip con audio: dice 'antes de reaccionar a Maria Becerra'."
+      "notes": "corrige verbo y nombre propio por contexto del video y mencion posterior"
     },
     {
       "clip_id": "clip_0001",
       "raw_text": "la vida aca voy a aparecer un hippie o esas finas que leen el horoscopo",
       "suggested_text": "la vida aca voy a parecer un hippie o esas minas que leen el horoscopo",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.9,
       "risk_flags": [
         "jerga"
       ],
-      "notes": "Correccion evidente por contexto: 'parecer un hippie' y 'minas'."
+      "notes": "aparecer y finas son errores claros por contexto de habla"
     },
     {
       "clip_id": "clip_0002",
       "raw_text": "pero la vida posta que se trata de energias",
       "suggested_text": "pero la vida posta que se trata de energias",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -41,7 +40,7 @@
       "raw_text": "entienden que estamos haciendo un stream a las 4 de la mañana en españa y tengo 24k de viewers hablando de futbol",
       "suggested_text": "entienden que estamos haciendo un stream a las 4 de la mañana en españa y tengo 24k de viewers hablando de futbol",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -50,7 +49,7 @@
       "raw_text": "algo totalmente impensado estan saliendo todos los dias los rankings de twitch y a mi",
       "suggested_text": "algo totalmente impensado estan saliendo todos los dias los rankings de twitch y a mi",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -59,25 +58,28 @@
       "raw_text": "yo ya tengo 10 11 años de streamer no me interesa ranquear pero te la blanqueo",
       "suggested_text": "yo ya tengo 10 11 años de streamer no me interesa ranquear pero te la blanqueo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0008",
       "raw_text": "ah buena poronga 23k ojo me la sube sabe por que me la sube",
-      "suggested_text": "ah buena poronga 23k ojo me la sube sabe por que me la sube",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "ah buena poronga 23k ojo me la sube saben por que me la sube",
+      "action": "corrected",
+      "confidence": 0.78,
+      "risk_flags": [
+        "insulto",
+        "jerga"
+      ],
+      "notes": "saben concuerda con el chat como destinatario"
     },
     {
       "clip_id": "clip_0009",
       "raw_text": "porque eso es mi historia por eso estoy donde estoy por eso soy main event",
       "suggested_text": "porque eso es mi historia por eso estoy donde estoy por eso soy main event",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -86,19 +88,18 @@
       "raw_text": "ojo yo veo el numero y no les voy a negarme me motivo me motivo",
       "suggested_text": "ojo yo veo el numero y no les voy a negar me motivo me motivo",
       "action": "corrected",
-      "confidence": 0.9,
+      "confidence": 0.93,
       "risk_flags": [
-        "correccion_inferida",
-        "repeticion"
+        "correccion_inferida"
       ],
-      "notes": "Se corrige 'negarme' por 'negar me' conservando la repeticion."
+      "notes": "negarme rompe la construccion no les voy a negar"
     },
     {
       "clip_id": "clip_0014",
       "raw_text": "las cosas estan saliendo bien y se los quiero agradecer si yo tuviera 5k de viewers igual estaria motivado",
       "suggested_text": "las cosas estan saliendo bien y se los quiero agradecer si yo tuviera 5k de viewers igual estaria motivado",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -107,7 +108,7 @@
       "raw_text": "igual diria gracias por mirarme",
       "suggested_text": "igual diria gracias por mirarme",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -116,7 +117,7 @@
       "raw_text": "porque yo agradecido por mas que sea 2 3 4 20 50 500 22000",
       "suggested_text": "porque yo agradecido por mas que sea 2 3 4 20 50 500 22000",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -127,14 +128,14 @@
       "action": "corrected",
       "confidence": 0.99,
       "risk_flags": [],
-      "notes": "Error ortografico evidente de transcripcion."
+      "notes": "error ortografico evidente de transcripcion"
     },
     {
       "clip_id": "clip_0018",
       "raw_text": "las cosas estan empezando a salir de nuevo despues de que llueve sale el sol",
       "suggested_text": "las cosas estan empezando a salir de nuevo despues de que llueve sale el sol",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -143,7 +144,7 @@
       "raw_text": "ojo despues de que llueve sale el sol",
       "suggested_text": "ojo despues de que llueve sale el sol",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -152,7 +153,7 @@
       "raw_text": "ahora solo me falta terminar el año ganando la velada enamorandome",
       "suggested_text": "ahora solo me falta terminar el año ganando la velada enamorandome",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -161,7 +162,7 @@
       "raw_text": "y eventualmente el año que viene planeando tener un hijo",
       "suggested_text": "y eventualmente el año que viene planeando tener un hijo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -170,7 +171,7 @@
       "raw_text": "ya esta vida cumplida",
       "suggested_text": "ya esta vida cumplida",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -179,7 +180,7 @@
       "raw_text": "me doy vuelta el juego de la vida no quiero mas nada",
       "suggested_text": "me doy vuelta el juego de la vida no quiero mas nada",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -188,7 +189,7 @@
       "raw_text": "tres hijos tres o dos un chico y una chica un hijo y una hija minimo",
       "suggested_text": "tres hijos tres o dos un chico y una chica un hijo y una hija minimo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -197,7 +198,7 @@
       "raw_text": "una novia que me ame que me valore que me quiera que me acompañe",
       "suggested_text": "una novia que me ame que me valore que me quiera que me acompañe",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -206,7 +207,7 @@
       "raw_text": "poder acompañarla yo que haga deporte pretensiones bajas no me importa lo demas",
       "suggested_text": "poder acompañarla yo que haga deporte pretensiones bajas no me importa lo demas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -215,7 +216,7 @@
       "raw_text": "que si el culo que es esto no me importa no me importa",
       "suggested_text": "que si el culo que es esto no me importa no me importa",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -224,18 +225,18 @@
       "raw_text": "se tiene un culito lindo mejor mejor",
       "suggested_text": "si tiene un culito lindo mejor mejor",
       "action": "corrected",
-      "confidence": 0.96,
+      "confidence": 0.95,
       "risk_flags": [
-        "jerga"
+        "insulto"
       ],
-      "notes": "Correccion minima: 'se' por 'si'."
+      "notes": "se tiene no funciona en contexto condicional"
     },
     {
       "clip_id": "clip_0029",
       "raw_text": "pero yo prefiero que haga deporte que tenga culo",
       "suggested_text": "pero yo prefiero que haga deporte que tenga culo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -244,7 +245,7 @@
       "raw_text": "el culo un año y te cansas te da igual",
       "suggested_text": "el culo un año y te cansas te da igual",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -255,14 +256,14 @@
       "action": "corrected",
       "confidence": 0.98,
       "risk_flags": [],
-      "notes": "'imaginante' es claramente 'imaginate'."
+      "notes": "imaginante es error evidente por imaginate"
     },
     {
       "clip_id": "clip_0032",
       "raw_text": "que juega el hockey la vas a ver gritar los goles la bancas",
       "suggested_text": "que juega el hockey la vas a ver gritar los goles la bancas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -271,7 +272,7 @@
       "raw_text": "si estas triste estas triste si estas feliz estas feliz con ella",
       "suggested_text": "si estas triste estas triste si estas feliz estas feliz con ella",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -280,7 +281,7 @@
       "raw_text": "todos necesitamos amor",
       "suggested_text": "todos necesitamos amor",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -289,56 +290,54 @@
       "raw_text": "que el amor es lo mas lindo que hay lo mas lindo que hay",
       "suggested_text": "que el amor es lo mas lindo que hay lo mas lindo que hay",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0036",
       "raw_text": "no le tengan miedo al amor no hablan como hice este boludo",
-      "suggested_text": "no le tengan miedo al amor no hablan como hice este boludo",
-      "action": "uncertain",
-      "confidence": 0.5,
+      "suggested_text": "no le tengan miedo al amor no hagan como hice este boludo",
+      "action": "corrected",
+      "confidence": 0.89,
       "risk_flags": [
-        "jerga",
         "insulto",
-        "correccion_inferida",
-        "requiere_video"
+        "correccion_inferida"
       ],
-      "notes": "Podria ser 'no hagan como hice este boludo', pero no es suficientemente seguro."
+      "notes": "hablan no encaja con la frase no hagan como hice"
     },
     {
       "clip_id": "clip_0037",
       "raw_text": "no hablan como hice este boludo yo tenia desde los 16 a los 23 y medio que conocia a mi ex",
-      "suggested_text": "no hablan como hice este boludo yo tenia desde los 16 a los 23 y medio que conocia a mi ex",
-      "action": "uncertain",
-      "confidence": 0.5,
+      "suggested_text": "no hagan como hice este boludo yo tenia desde los 16 a los 23 y medio que conocia a mi ex",
+      "action": "corrected",
+      "confidence": 0.86,
       "risk_flags": [
-        "jerga",
         "insulto",
-        "correccion_inferida",
-        "requiere_video"
+        "numero",
+        "correccion_inferida"
       ],
-      "notes": "Podria ser 'no hagan como hice este boludo', pero no es suficientemente seguro."
+      "notes": "hablan no encaja con la frase no hagan como hice"
     },
     {
       "clip_id": "clip_0038",
       "raw_text": "desde los 16 a los 23 y medio yo pensaba que la vida era agarchar",
       "suggested_text": "desde los 16 a los 23 y medio yo pensaba que la vida era garchar",
       "action": "corrected",
-      "confidence": 0.99,
+      "confidence": 0.97,
       "risk_flags": [
+        "numero",
         "jerga",
         "insulto"
       ],
-      "notes": "'agarchar' es un error evidente por 'garchar'."
+      "notes": "agarchar es error claro por garchar"
     },
     {
       "clip_id": "clip_0039",
       "raw_text": "no piensen esa boludez algunos estamos destinados a amar y lo que nos gusta es amar",
       "suggested_text": "no piensen esa boludez algunos estamos destinados a amar y lo que nos gusta es amar",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -347,7 +346,7 @@
       "raw_text": "y otros estan destinados a ir de flor en flor",
       "suggested_text": "y otros estan destinados a ir de flor en flor",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -356,7 +355,7 @@
       "raw_text": "cada uno ve pero no se cierren",
       "suggested_text": "cada uno ve pero no se cierren",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -365,7 +364,7 @@
       "raw_text": "hay que cogerse a todas hay que sacarle punta",
       "suggested_text": "hay que cogerse a todas hay que sacarle punta",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -374,7 +373,7 @@
       "raw_text": "son mentiras hay que experimentar todo hay que probar",
       "suggested_text": "son mentiras hay que experimentar todo hay que probar",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -383,7 +382,7 @@
       "raw_text": "hay que ver donde te sentis mejor",
       "suggested_text": "hay que ver donde te sentis mejor",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -392,7 +391,7 @@
       "raw_text": "pero no tengan miedo de enamorarse boludo no tengan miedo de enamorar",
       "suggested_text": "pero no tengan miedo de enamorarse boludo no tengan miedo de enamorar",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -401,7 +400,7 @@
       "raw_text": "el amor es lo mas lindo que hay asi como es lo mas lindo de lo que mas duele",
       "suggested_text": "el amor es lo mas lindo que hay asi como es lo mas lindo de lo que mas duele",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -410,18 +409,18 @@
       "raw_text": "la van a pasar mal tambien la van a pasar como el or",
       "suggested_text": "la van a pasar mal tambien la van a pasar como el orto",
       "action": "corrected",
-      "confidence": 0.99,
+      "confidence": 0.94,
       "risk_flags": [
         "insulto"
       ],
-      "notes": "'como el or' es truncamiento evidente de 'como el orto'."
+      "notes": "el or es corte evidente de orto"
     },
     {
       "clip_id": "clip_0049",
       "raw_text": "van a llorar van a sufrir van a extrañar por que",
       "suggested_text": "van a llorar van a sufrir van a extrañar por que",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -430,7 +429,7 @@
       "raw_text": "porque lo bueno duele el futbol es hermoso por ejemplo",
       "suggested_text": "porque lo bueno duele el futbol es hermoso por ejemplo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -439,7 +438,7 @@
       "raw_text": "una carrera de jugador de futbol lo que tiene de bueno y que todos queremos ser jugadores de futbol",
       "suggested_text": "una carrera de jugador de futbol lo que tiene de bueno y que todos queremos ser jugadores de futbol",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -448,7 +447,7 @@
       "raw_text": "lo tiene de malo entonces para cada logro importante para cada anhelo importante",
       "suggested_text": "lo tiene de malo entonces para cada logro importante para cada anhelo importante",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -456,100 +455,104 @@
       "clip_id": "clip_0053",
       "raw_text": "lo importante como es amarte en una pareja en una relacion estable",
       "suggested_text": "lo importante como es amarte en una pareja en una relacion estable",
-      "action": "uncertain",
-      "confidence": 0.45,
-      "risk_flags": [
-        "cambio_grande",
-        "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
-      ],
-      "notes": "Podria ser 'algo importante como es amar en una pareja...', pero la correccion exige inferir demasiado."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0054",
       "raw_text": "va a haber una contracara que es todo lo que tienes que luchar",
-      "suggested_text": "va a haber una contracara que es todo lo que tienes que luchar",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "va a haber una contracara que es todo lo que tenes que luchar",
+      "action": "corrected",
+      "confidence": 0.91,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "se normaliza a voseo consistente del hablante"
     },
     {
       "clip_id": "clip_0055",
       "raw_text": "todo lo que tienes que sacrificar para poder tenerlo",
-      "suggested_text": "todo lo que tienes que sacrificar para poder tenerlo",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "todo lo que tenes que sacrificar para poder tenerlo",
+      "action": "corrected",
+      "confidence": 0.91,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "se normaliza a voseo consistente del hablante"
     },
     {
       "clip_id": "clip_0056",
       "raw_text": "lo bueno es dur el objetivo ideal te va a costar",
       "suggested_text": "lo bueno es duro el objetivo ideal te va a costar",
       "action": "corrected",
-      "confidence": 0.78,
+      "confidence": 0.75,
       "risk_flags": [
         "correccion_inferida"
       ],
-      "notes": "Se completa 'dur' como 'duro', manteniendo el resto."
+      "notes": "dur parece corte de duro"
     },
     {
       "clip_id": "clip_0057",
       "raw_text": "todo eso que anhelas y soñas si no te cuesta no vale nada",
       "suggested_text": "todo eso que anhelas y soñas si no te cuesta no vale nada",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0058",
       "raw_text": "y si cuesta mucho vale el triple por eso si se enamora metanle",
-      "suggested_text": "y si cuesta mucho vale el triple por eso si se enamora metanle",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "y si cuesta mucho vale el triple por eso si se enamoran metanle",
+      "action": "corrected",
+      "confidence": 0.88,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "se enamora no concuerda con el destinatario plural"
     },
     {
       "clip_id": "clip_0059",
       "raw_text": "no importa la edad yo antes pensaba no no tenes 18 no te enamores",
       "suggested_text": "no importa la edad yo antes pensaba no no tenes 18 no te enamores",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0060",
       "raw_text": "enamorarte lo 18 te quieres enamorar lo 18 no no no",
-      "suggested_text": "enamorarte a los 18 te quieres enamorar a los 18 no no no",
+      "suggested_text": "enamorarte a los 18 te queres enamorar a los 18 no no no",
       "action": "corrected",
-      "confidence": 0.96,
+      "confidence": 0.91,
       "risk_flags": [
-        "numero"
+        "numero",
+        "cambio_grande",
+        "correccion_inferida"
       ],
-      "notes": "Correccion evidente de 'lo 18' a 'a los 18'."
+      "notes": "lo 18 y quieres son errores claros por contexto"
     },
     {
       "clip_id": "clip_0061",
       "raw_text": "te enamoras no es que te queres porque uno no elige te enamoras lo 18",
       "suggested_text": "te enamoras no es que te queres porque uno no elige te enamoras a los 18",
       "action": "corrected",
-      "confidence": 0.96,
+      "confidence": 0.9,
       "risk_flags": [
-        "numero"
+        "numero",
+        "correccion_inferida"
       ],
-      "notes": "Correccion evidente de 'lo 18' a 'a los 18'."
+      "notes": "lo 18 es error claro por a los 18"
     },
     {
       "clip_id": "clip_0062",
       "raw_text": "mandale mandale cumbia",
       "suggested_text": "mandale mandale cumbia",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -558,7 +561,7 @@
       "raw_text": "que te vas a mentir a vos mismo de que no estas enamorado",
       "suggested_text": "que te vas a mentir a vos mismo de que no estas enamorado",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -567,25 +570,27 @@
       "raw_text": "de que no queres amar estas loco",
       "suggested_text": "de que no queres amar estas loco",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0065",
       "raw_text": "te puedes enamorar de cualquier edad yo pensaba que no yo pensaba que no",
-      "suggested_text": "te puedes enamorar de cualquier edad yo pensaba que no yo pensaba que no",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "te podes enamorar a cualquier edad yo pensaba que no yo pensaba que no",
+      "action": "corrected",
+      "confidence": 0.88,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "puedes y de cualquier edad no son consistentes con voseo y construccion esperada"
     },
     {
       "clip_id": "clip_0066",
       "raw_text": "yo pensaba no no no veo esta piba y listo",
       "suggested_text": "yo pensaba no no no veo esta piba y listo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -594,7 +599,7 @@
       "raw_text": "no la veo mas mira si me engancho y no puedo estar con tal otra",
       "suggested_text": "no la veo mas mira si me engancho y no puedo estar con tal otra",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -603,7 +608,7 @@
       "raw_text": "que haces que haces para que te sirve estar con este y con esta",
       "suggested_text": "que haces que haces para que te sirve estar con este y con esta",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -612,25 +617,28 @@
       "raw_text": "y con este y con esta esa es la que nos cuentan que te cuentan para ser un macho alfa",
       "suggested_text": "y con este y con esta esa es la que nos cuentan que te cuentan para ser un macho alfa",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0070",
       "raw_text": "tiene que estar con 5 6 7 8 es mentira",
-      "suggested_text": "tiene que estar con 5 6 7 8 es mentira",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "tenes que estar con 5 6 7 8 es mentira",
+      "action": "corrected",
+      "confidence": 0.87,
+      "risk_flags": [
+        "numero",
+        "correccion_inferida"
+      ],
+      "notes": "tiene no encaja con el discurso dirigido al oyente"
     },
     {
       "clip_id": "clip_0071",
       "raw_text": "y a mi me encanta garchar como cualquier persona pero amigo estar de novio es otro level",
       "suggested_text": "y a mi me encanta garchar como cualquier persona pero amigo estar de novio es otro level",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -639,30 +647,28 @@
       "raw_text": "estar de novio es otro level despertarse todas las mañanas",
       "suggested_text": "estar de novio es otro level despertarse todas las mañanas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0074",
       "raw_text": "eso es otro punto level amigo tu casilla llena de mensajes",
-      "suggested_text": "eso es otro punto level amigo tu casilla llena de mensajes",
-      "action": "uncertain",
-      "confidence": 0.45,
+      "suggested_text": "eso es otro puto level amigo tu casilla llena de mensajes",
+      "action": "corrected",
+      "confidence": 0.93,
       "risk_flags": [
-        "jerga",
         "insulto",
-        "correccion_inferida",
-        "requiere_video"
+        "jerga"
       ],
-      "notes": "Podria ser 'eso es otro puto level', pero no es seguro sin video/audio."
+      "notes": "punto es error claro por puto level en jerga oral"
     },
     {
       "clip_id": "clip_0075",
       "raw_text": "ojala no porque esas cosas no pasan pero tu casilla tiene 7 mensajes",
       "suggested_text": "ojala no porque esas cosas no pasan pero tu casilla tiene 7 mensajes",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -671,7 +677,7 @@
       "raw_text": "vos queres leer uno solo a vos te importa uno solo",
       "suggested_text": "vos queres leer uno solo a vos te importa uno solo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -680,7 +686,7 @@
       "raw_text": "cuando empezas la relacion a mi es la etapa de oro",
       "suggested_text": "cuando empezas la relacion a mi es la etapa de oro",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -689,7 +695,7 @@
       "raw_text": "el primer año de relacion es la etapa de oro",
       "suggested_text": "el primer año de relacion es la etapa de oro",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -698,7 +704,7 @@
       "raw_text": "solo queres hablar con ella no la ves un dia la extrañas",
       "suggested_text": "solo queres hablar con ella no la ves un dia la extrañas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -707,7 +713,7 @@
       "raw_text": "se llega a ir de viaje y vas a estar todos los dias todos los dias",
       "suggested_text": "se llega a ir de viaje y vas a estar todos los dias todos los dias",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -716,7 +722,7 @@
       "raw_text": "comiendote las uñas intentando no ser pesado pero estar para ella",
       "suggested_text": "comiendote las uñas intentando no ser pesado pero estar para ella",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -725,25 +731,27 @@
       "raw_text": "llamandola pero sin romperle las pelotas y sin cagarle el viaje",
       "suggested_text": "llamandola pero sin romperle las pelotas y sin cagarle el viaje",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0083",
       "raw_text": "te vuelves loco para bien loco te enamoras",
-      "suggested_text": "te vuelves loco para bien loco te enamoras",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "te volves loco para bien loco te enamoras",
+      "action": "corrected",
+      "confidence": 0.9,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "se normaliza a voseo consistente del hablante"
     },
     {
       "clip_id": "clip_0085",
       "raw_text": "despues yo tengo una teoria de que las relaciones en general",
       "suggested_text": "despues yo tengo una teoria de que las relaciones en general",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -752,7 +760,7 @@
       "raw_text": "se desgastan y que uno no puede hacer nada mas que ir mutando la relacion",
       "suggested_text": "se desgastan y que uno no puede hacer nada mas que ir mutando la relacion",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -761,7 +769,7 @@
       "raw_text": "y convirtiendola en lo que tenga que ser para que sobreviva",
       "suggested_text": "y convirtiendola en lo que tenga que ser para que sobreviva",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -769,20 +777,17 @@
       "clip_id": "clip_0089",
       "raw_text": "lo que se disfruta mucho humo dice uno",
       "suggested_text": "lo que se disfruta mucho humo dice uno",
-      "action": "uncertain",
-      "confidence": 0.55,
-      "risk_flags": [
-        "correccion_inferida",
-        "requiere_video"
-      ],
-      "notes": "El fragmento parece mezclar discurso y lectura del chat; no conviene corregir sin video/audio."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0090",
       "raw_text": "mucho humo no mucho humo no",
       "suggested_text": "mucho humo no mucho humo no",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -790,17 +795,19 @@
       "clip_id": "clip_0091",
       "raw_text": "te lo digo de corazon cierro la charla del amor para eso el amor es lo mas lindo que hay",
       "suggested_text": "te lo digo de corazon cierro la charla del amor para eso el amor es lo mas lindo que hay",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "action": "uncertain",
+      "confidence": 0.45,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "posible error en para eso pero no hay confianza suficiente"
     },
     {
       "clip_id": "clip_0092",
       "raw_text": "mi orden de cosas es dormir",
       "suggested_text": "mi orden de cosas es dormir",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -809,7 +816,7 @@
       "raw_text": "hacer el amor comer cagar y coger",
       "suggested_text": "hacer el amor comer cagar y coger",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -818,7 +825,7 @@
       "raw_text": "porque hacer el amor y coger no es lo mismo",
       "suggested_text": "porque hacer el amor y coger no es lo mismo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -827,16 +834,16 @@
       "raw_text": "si vos no amas a la otra persona no vas a poder hacer el del amor se lo juro",
       "suggested_text": "si vos no amas a la otra persona no vas a poder hacer el amor se lo juro",
       "action": "corrected",
-      "confidence": 0.99,
+      "confidence": 0.96,
       "risk_flags": [],
-      "notes": "Correccion evidente: 'hacer el del amor' por 'hacer el amor'."
+      "notes": "el del amor es error evidente"
     },
     {
       "clip_id": "clip_0097",
       "raw_text": "bueno segun mi teoria eh segun mi teoria hay gente que dice",
       "suggested_text": "bueno segun mi teoria eh segun mi teoria hay gente que dice",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -845,7 +852,7 @@
       "raw_text": "yo puedo hacer el amor aunque aunque yo puedo hacer el amor con alguien",
       "suggested_text": "yo puedo hacer el amor aunque aunque yo puedo hacer el amor con alguien",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -854,7 +861,7 @@
       "raw_text": "aunque sea la primera vez que lo veo mentira",
       "suggested_text": "aunque sea la primera vez que lo veo mentira",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -863,7 +870,7 @@
       "raw_text": "para mi mentira para hacer el amor tenes que sentir amor",
       "suggested_text": "para mi mentira para hacer el amor tenes que sentir amor",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -872,7 +879,7 @@
       "raw_text": "imposible si no por eso en mi ranking lo vuelvo a decir",
       "suggested_text": "imposible si no por eso en mi ranking lo vuelvo a decir",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -881,7 +888,7 @@
       "raw_text": "cagar vale mas que coger cagar vale mas que coger",
       "suggested_text": "cagar vale mas que coger cagar vale mas que coger",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -890,7 +897,7 @@
       "raw_text": "coger esta super sobrevalorado hacer el amor es otro level",
       "suggested_text": "coger esta super sobrevalorado hacer el amor es otro level",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -899,7 +906,7 @@
       "raw_text": "eso si que vale eso si que vale y la paja uff es que la paja",
       "suggested_text": "eso si que vale eso si que vale y la paja uff es que la paja",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -908,7 +915,7 @@
       "raw_text": "la paja top 3 si o si la paja top 3 si o si",
       "suggested_text": "la paja top 3 si o si la paja top 3 si o si",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -917,7 +924,7 @@
       "raw_text": "y lo ultimo que voy a decir porque hay muchos que estan poniendo que despues te rompen el corazon",
       "suggested_text": "y lo ultimo que voy a decir porque hay muchos que estan poniendo que despues te rompen el corazon",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -926,7 +933,7 @@
       "raw_text": "y que el amor trae una catastrofe",
       "suggested_text": "y que el amor trae una catastrofe",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -935,7 +942,7 @@
       "raw_text": "sabes que pasa otro de mis mejores momentos fue cuando me rompieron el corazon",
       "suggested_text": "sabes que pasa otro de mis mejores momentos fue cuando me rompieron el corazon",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -944,7 +951,7 @@
       "raw_text": "a mi me rompieron el corazon y yo tuve otra de las mejores epocas de mi vida",
       "suggested_text": "a mi me rompieron el corazon y yo tuve otra de las mejores epocas de mi vida",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -953,7 +960,7 @@
       "raw_text": "que saben cual fue la de recuperacion la de superacion",
       "suggested_text": "que saben cual fue la de recuperacion la de superacion",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -962,7 +969,7 @@
       "raw_text": "la de amarse a uno mismo",
       "suggested_text": "la de amarse a uno mismo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -971,18 +978,18 @@
       "raw_text": "os amas amas amas amas amas amas de golpe esa persona",
       "suggested_text": "vos amas amas amas amas amas amas de golpe esa persona",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.95,
       "risk_flags": [
         "repeticion"
       ],
-      "notes": "'os amas' parece un recorte evidente de 'vos amas'."
+      "notes": "os amas es error claro por vos amas"
     },
     {
       "clip_id": "clip_0113",
       "raw_text": "se va se va",
       "suggested_text": "se va se va",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -991,16 +998,18 @@
       "raw_text": "y todo ese amor que vos estabamos dando",
       "suggested_text": "y todo ese amor que vos estabas dando",
       "action": "corrected",
-      "confidence": 0.99,
-      "risk_flags": [],
-      "notes": "Concordancia evidente por contexto."
+      "confidence": 0.94,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "estabamos no concuerda con vos"
     },
     {
       "clip_id": "clip_0115",
       "raw_text": "hace asi no sabe a donde ir no sabe a donde ir",
       "suggested_text": "hace asi no sabe a donde ir no sabe a donde ir",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1009,7 +1018,7 @@
       "raw_text": "porque vos lo queres dar no te lo queres dar vos mismo vos te odias vos te odias",
       "suggested_text": "porque vos lo queres dar no te lo queres dar vos mismo vos te odias vos te odias",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1018,25 +1027,27 @@
       "raw_text": "y empezas por que se fue",
       "suggested_text": "y empezas por que se fue",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0119",
       "raw_text": "como no valora como no",
-      "suggested_text": "como no valora como no",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "como no me valora como no",
+      "action": "corrected",
+      "confidence": 0.78,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "falta me en la serie de preguntas personales del contexto"
     },
     {
       "clip_id": "clip_0120",
       "raw_text": "como no me quiere como no se quiere quedar conmigo",
       "suggested_text": "como no me quiere como no se quiere quedar conmigo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1045,7 +1056,7 @@
       "raw_text": "como no como no esta aca",
       "suggested_text": "como no como no esta aca",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1054,7 +1065,7 @@
       "raw_text": "entonces todo ese amor que vos dabas y dabas y dabas todo ese amor",
       "suggested_text": "entonces todo ese amor que vos dabas y dabas y dabas todo ese amor",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1063,35 +1074,35 @@
       "raw_text": "la interferencia todo ese amor que vos dabas y dabas y dabas no va a ningun lado",
       "suggested_text": "la interferencia todo ese amor que vos dabas y dabas y dabas no va a ningun lado",
       "action": "uncertain",
-      "confidence": 0.45,
+      "confidence": 0.38,
       "risk_flags": [
-        "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
+        "posible_alucinacion"
       ],
-      "notes": "'la interferencia' podria ser ruido/transcripcion espuria, pero no se puede eliminar sin evidencia."
+      "notes": "interferencia suena sospechoso pero no hay alternativa segura"
     },
     {
       "clip_id": "clip_0124",
       "raw_text": "porque ya no hay nadie aqui a andar de amor pero que pasa",
-      "suggested_text": "porque ya no hay nadie a quien dar amor pero que pasa",
+      "suggested_text": "porque ya no hay nadie a quien darle amor pero que pasa",
       "action": "corrected",
       "confidence": 0.86,
       "risk_flags": [
         "cambio_grande",
         "correccion_inferida"
       ],
-      "notes": "Correccion inferida por contexto semantico inmediato."
+      "notes": "aqui a andar de amor no encaja y a quien darle amor es la lectura coherente"
     },
     {
       "clip_id": "clip_0125",
       "raw_text": "depresion estas mal no sali de tu casa",
       "suggested_text": "depresion estas mal no salis de tu casa",
       "action": "corrected",
-      "confidence": 0.94,
-      "risk_flags": [],
-      "notes": "Correccion minima de segunda persona: 'salis'."
+      "confidence": 0.92,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "sali debe ser salis por voseo y contexto"
     },
     {
       "clip_id": "clip_0126",
@@ -1101,18 +1112,17 @@
       "confidence": 0.3,
       "risk_flags": [
         "insulto",
-        "cambio_grande",
         "posible_alucinacion",
         "requiere_video"
       ],
-      "notes": "Fragmento muy dudoso; corregirlo requeriria inventar."
+      "notes": "hay errores probables en esta frase pero no hay confianza suficiente"
     },
     {
       "clip_id": "clip_0127",
       "raw_text": "normal te sentis triste te sentis mal",
       "suggested_text": "normal te sentis triste te sentis mal",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1121,25 +1131,28 @@
       "raw_text": "hasta aqui un dia haces el clic",
       "suggested_text": "hasta que un dia haces el clic",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.96,
       "risk_flags": [],
-      "notes": "Correccion evidente: 'aqui' por 'que'."
+      "notes": "hasta aqui es error claro por hasta que"
     },
     {
       "clip_id": "clip_0129",
       "raw_text": "y eso es lo importante de cuando termine una relacion mucho me viene a preguntar aca",
-      "suggested_text": "y eso es lo importante de cuando termine una relacion mucho me viene a preguntar aca",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "y eso es lo importante de cuando termina una relacion muchos me vienen a preguntar aca",
+      "action": "corrected",
+      "confidence": 0.83,
+      "risk_flags": [
+        "cambio_grande",
+        "correccion_inferida"
+      ],
+      "notes": "termina y muchos encajan con la construccion del contexto"
     },
     {
       "clip_id": "clip_0130",
       "raw_text": "corte con mi novia estoy remal se que es una catastrofe pero despues de la catastrofe",
       "suggested_text": "corte con mi novia estoy remal se que es una catastrofe pero despues de la catastrofe",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1148,7 +1161,7 @@
       "raw_text": "viene una etapa increible para nosotros",
       "suggested_text": "viene una etapa increible para nosotros",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1157,7 +1170,7 @@
       "raw_text": "saben cual es cuando hacemos el duelo",
       "suggested_text": "saben cual es cuando hacemos el duelo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1166,7 +1179,7 @@
       "raw_text": "cuando nos tomamos nuestro tiempo cuando lloramos lloramos lloramos",
       "suggested_text": "cuando nos tomamos nuestro tiempo cuando lloramos lloramos lloramos",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1175,7 +1188,7 @@
       "raw_text": "y de golpe nos damos cuenta que todo ese amor",
       "suggested_text": "y de golpe nos damos cuenta que todo ese amor",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1184,7 +1197,7 @@
       "raw_text": "que estabamos dando sigue ahi lo agarras lo agarras lo agarras",
       "suggested_text": "que estabamos dando sigue ahi lo agarras lo agarras lo agarras",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1193,73 +1206,73 @@
       "raw_text": "lo agarras lo agarras lo agarras y te lo metes adentro",
       "suggested_text": "lo agarras lo agarras lo agarras y te lo metes adentro",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0137",
       "raw_text": "y sabes que haces te juntas con los pibias te pones el bol corre corre corre",
-      "suggested_text": "y sabes que haces te juntas con los pibias te pones el bol corre corre corre",
-      "action": "uncertain",
-      "confidence": 0.35,
+      "suggested_text": "y sabes que haces te juntas con los pibes a jugar futbol corres corres corres",
+      "action": "corrected",
+      "confidence": 0.88,
       "risk_flags": [
-        "jerga",
         "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
         "requiere_video"
       ],
-      "notes": "Podria incluir 'pibes' y 'short', pero el clip es demasiado dudoso."
+      "notes": "pibias y bol son errores claros segun contexto y evidencia auxiliar"
     },
     {
       "clip_id": "clip_0138",
       "raw_text": "vas al gimnasio te pones mejor te cuidas con las comidas",
       "suggested_text": "vas al gimnasio te pones mejor te cuidas con las comidas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0139",
       "raw_text": "empiezas a tomar un poco menos alcohol empiezas a dejar de voludiar saliendo todos los dias",
-      "suggested_text": "empiezas a tomar un poco menos alcohol empiezas a dejar de boludear saliendo todos los dias",
+      "suggested_text": "empezas a tomar un poco menos alcohol empezas a dejar de boludear saliendo todos los dias",
       "action": "corrected",
-      "confidence": 0.99,
+      "confidence": 0.94,
       "risk_flags": [
-        "jerga"
+        "jerga",
+        "correccion_inferida"
       ],
-      "notes": "'voludiar' es claramente 'boludear'."
+      "notes": "voludiar es error claro por boludear y se mantiene voseo"
     },
     {
       "clip_id": "clip_0140",
       "raw_text": "salir es una paron esta sobrevaloradisimo salir te empiezas a juntar con amigos",
-      "suggested_text": "salir es una poronga esta sobrevaloradisimo salir te empiezas a juntar con amigos",
+      "suggested_text": "salir es una paja esta sobrevaloradisimo salir te empezas a juntar con amigos",
       "action": "corrected",
-      "confidence": 0.88,
+      "confidence": 0.91,
       "risk_flags": [
-        "insulto",
         "jerga",
         "correccion_inferida"
       ],
-      "notes": "Por contexto, 'una paron' parece 'una poronga'."
+      "notes": "paron es error claro por paja en el contexto"
     },
     {
       "clip_id": "clip_0141",
       "raw_text": "empiezas a repartir ese amor en toda la gente que sigue ahi",
-      "suggested_text": "empiezas a repartir ese amor en toda la gente que sigue ahi",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "empezas a repartir ese amor en toda la gente que sigue ahi",
+      "action": "corrected",
+      "confidence": 0.91,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "se normaliza a voseo consistente del hablante"
     },
     {
       "clip_id": "clip_0142",
       "raw_text": "porque vos tenes una novia y yo te banco",
       "suggested_text": "porque vos tenes una novia y yo te banco",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1268,7 +1281,7 @@
       "raw_text": "la novia te quita sin querer tiempo para tus amigos",
       "suggested_text": "la novia te quita sin querer tiempo para tus amigos",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1277,7 +1290,7 @@
       "raw_text": "la novia te quita sin querer tiempo para tu vida",
       "suggested_text": "la novia te quita sin querer tiempo para tu vida",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1286,7 +1299,7 @@
       "raw_text": "para el gimnasio para no se jugar al futbol para hacer tu hobby lo que te gusta te lo quita",
       "suggested_text": "para el gimnasio para no se jugar al futbol para hacer tu hobby lo que te gusta te lo quita",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1295,7 +1308,7 @@
       "raw_text": "por que porque vos queres pasar tiempo con ella esta buenisimo",
       "suggested_text": "por que porque vos queres pasar tiempo con ella esta buenisimo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1304,7 +1317,7 @@
       "raw_text": "pero cuando esa persona se va se reparte la baraja de nuevo",
       "suggested_text": "pero cuando esa persona se va se reparte la baraja de nuevo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1313,7 +1326,7 @@
       "raw_text": "con una persona menos se fue tu amor hay una carta mas",
       "suggested_text": "con una persona menos se fue tu amor hay una carta mas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1322,31 +1335,30 @@
       "raw_text": "en todos los pibes que siguen ahi en todos tus amigos que te siguen mancando",
       "suggested_text": "en todos los pibes que siguen ahi en todos tus amigos que te siguen bancando",
       "action": "corrected",
-      "confidence": 0.99,
+      "confidence": 0.98,
       "risk_flags": [
         "jerga"
       ],
-      "notes": "'mancando' es claramente 'bancando'."
+      "notes": "mancando es error evidente por bancando"
     },
     {
       "clip_id": "clip_0151",
       "raw_text": "y en vez de decirle no no puedo ir a comer no no puedo ir a comer jorgeito",
-      "suggested_text": "y en vez de decirle no no puedo ir a comer no no puedo ir a comer jorgeito",
-      "action": "uncertain",
-      "confidence": 0.55,
+      "suggested_text": "y en vez de decirle no no puedo ir a comer no no puedo ir a comer jorgito",
+      "action": "corrected",
+      "confidence": 0.86,
       "risk_flags": [
         "nombre_propio",
-        "correccion_inferida",
-        "requiere_video"
+        "correccion_inferida"
       ],
-      "notes": "Podria ser 'Jorgito', pero al ser nombre/apodo se conserva."
+      "notes": "jorgeito parece error por diminutivo jorgito"
     },
     {
       "clip_id": "clip_0152",
       "raw_text": "porque tengo que quedarme viendo una peli con mi novia",
       "suggested_text": "porque tengo que quedarme viendo una peli con mi novia",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1355,7 +1367,7 @@
       "raw_text": "vamos a comer de nuevo vamos a comer",
       "suggested_text": "vamos a comer de nuevo vamos a comer",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1364,7 +1376,7 @@
       "raw_text": "vamos a comer dale vamos a comer amigo posta una de las mejores etapas",
       "suggested_text": "vamos a comer dale vamos a comer amigo posta una de las mejores etapas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1373,7 +1385,7 @@
       "raw_text": "que tuve yo fue cuando termine mi relacion y tenia tiempo",
       "suggested_text": "que tuve yo fue cuando termine mi relacion y tenia tiempo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1382,7 +1394,7 @@
       "raw_text": "para aprender todos los dias obviamente yo estuve muy mal cuando termine mi relacion",
       "suggested_text": "para aprender todos los dias obviamente yo estuve muy mal cuando termine mi relacion",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1391,55 +1403,55 @@
       "raw_text": "mi somierda mi somierda me desoriento yo proyectaba",
       "suggested_text": "me hizo mierda me hizo mierda me desoriento yo proyectaba",
       "action": "corrected",
-      "confidence": 0.94,
+      "confidence": 0.96,
       "risk_flags": [
         "insulto",
         "cambio_grande",
-        "correccion_inferida"
+        "repeticion"
       ],
-      "notes": "Por contexto, 'mi somierda' es casi seguro 'me hizo mierda'."
+      "notes": "mi somierda es error claro por me hizo mierda"
     },
     {
       "clip_id": "clip_0158",
       "raw_text": "todo ahi porque bueno viste pero una persona como yo que nunca tuvo novia",
-      "suggested_text": "todo ahi porque bueno viste pero una persona como yo que nunca tuvo novia",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "todo ahi porque uno viste una persona como yo que nunca tuvo novia",
+      "action": "corrected",
+      "confidence": 0.84,
+      "risk_flags": [
+        "cambio_grande",
+        "correccion_inferida",
+        "requiere_video"
+      ],
+      "notes": "bueno viste pero no encaja y el contexto auxiliar indica uno viste una persona"
     },
     {
       "clip_id": "clip_0159",
       "raw_text": "de igual que siente que hay una sola persona en el mundo que vas a amar ojala no sea asi",
-      "suggested_text": "de igual que siente que hay una sola persona en el mundo que vas a amar ojala no sea asi",
-      "action": "uncertain",
-      "confidence": 0.4,
+      "suggested_text": "de golpe siente que hay una sola persona en el mundo que vas a amar ojala no sea asi",
+      "action": "corrected",
+      "confidence": 0.84,
       "risk_flags": [
         "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
         "requiere_video"
       ],
-      "notes": "El inicio 'de igual que' es dudoso, pero no hay una correccion suficientemente segura."
+      "notes": "de igual que no encaja y el contexto auxiliar indica de golpe siente"
     },
     {
       "clip_id": "clip_0160",
       "raw_text": "pues yo eso pensaba yo entonces yo literalmente",
       "suggested_text": "pues yo eso pensaba yo entonces yo literalmente",
-      "action": "uncertain",
-      "confidence": 0.55,
-      "risk_flags": [
-        "correccion_inferida",
-        "requiere_video"
-      ],
-      "notes": "Podria ser 'porque yo eso pensaba' o 'pero yo eso pensaba', no seguro."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0161",
       "raw_text": "dije se acabo el mundo para mi literal se acabo el mundo para mi",
       "suggested_text": "dije se acabo el mundo para mi literal se acabo el mundo para mi",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1448,7 +1460,7 @@
       "raw_text": "no va a haber otra igual no va a haber nunca otra persona igual no voy a conseguir",
       "suggested_text": "no va a haber otra igual no va a haber nunca otra persona igual no voy a conseguir",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1457,7 +1469,7 @@
       "raw_text": "nunca una persona asi nunca y pensaba eso y pensaba eso",
       "suggested_text": "nunca una persona asi nunca y pensaba eso y pensaba eso",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1465,33 +1477,26 @@
       "clip_id": "clip_0164",
       "raw_text": "y pensaba eso y lloraba y hablaba con mis amigos que le mando un saludo a los chicos de quino de combo",
       "suggested_text": "y pensaba eso y lloraba y hablaba con mis amigos que le mando un saludo a los chicos de quino de combo",
-      "action": "uncertain",
-      "confidence": 0.5,
-      "risk_flags": [
-        "nombre_propio",
-        "correccion_inferida",
-        "requiere_video"
-      ],
-      "notes": "Nombre/apodo dudoso: se conserva 'quino de combo'."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0165",
       "raw_text": "que me habran fumado de no ya soy viejo no voy a conseguir",
       "suggested_text": "que me habran fumado de no ya soy viejo no voy a conseguir",
-      "action": "uncertain",
-      "confidence": 0.55,
-      "risk_flags": [
-        "correccion_inferida",
-        "requiere_video"
-      ],
-      "notes": "El fragmento parece una cita de lo que decia a sus amigos; se conserva."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0166",
       "raw_text": "otra persona etcetera etcetera etcetera amigo",
       "suggested_text": "otra persona etcetera etcetera etcetera amigo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1500,7 +1505,7 @@
       "raw_text": "se termina y te puedo asegurar",
       "suggested_text": "se termina y te puedo asegurar",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1509,32 +1514,29 @@
       "raw_text": "que sufris sufris sufris un dia basta un dia te cansas",
       "suggested_text": "que sufris sufris sufris un dia basta un dia te cansas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0169",
       "raw_text": "y ahi te convertis en supras alla",
-      "suggested_text": "y ahi te convertis en supras alla",
-      "action": "uncertain",
-      "confidence": 0.35,
+      "suggested_text": "y ahi te convertis en super saiyan",
+      "action": "corrected",
+      "confidence": 0.86,
       "risk_flags": [
         "jerga",
-        "nombre_propio",
         "cambio_grande",
-        "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
+        "correccion_inferida"
       ],
-      "notes": "Podria ser una referencia a 'super saiyajin', pero no es seguro sin video/audio."
+      "notes": "supras alla parece error por referencia a super saiyan"
     },
     {
       "clip_id": "clip_0170",
       "raw_text": "los hombres del chat me van a entender",
       "suggested_text": "los hombres del chat me van a entender",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1543,7 +1545,7 @@
       "raw_text": "bien en la fase 2 la fase 2 cual es",
       "suggested_text": "bien en la fase 2 la fase 2 cual es",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1552,30 +1554,30 @@
       "raw_text": "que me gustan si deje la facultad si me falta unas materias la reanudo",
       "suggested_text": "que me gustan si deje la facultad si me falta unas materias la reanudo",
       "action": "uncertain",
-      "confidence": 0.35,
+      "confidence": 0.36,
       "risk_flags": [
-        "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
+        "posible_alucinacion"
       ],
-      "notes": "Clip incompleto y posiblemente dependiente de un clip faltante; no se corrige."
+      "notes": "la frase inicial parece dañada pero no hay alternativa segura"
     },
     {
       "clip_id": "clip_0174",
       "raw_text": "por que porque la vida sigue y sabes que teneis que hacer cuando la vida sigue",
       "suggested_text": "por que porque la vida sigue y sabes que tenes que hacer cuando la vida sigue",
       "action": "corrected",
-      "confidence": 0.96,
-      "risk_flags": [],
-      "notes": "Correccion de voseo rioplatense: 'teneis' por 'tenes'."
+      "confidence": 0.89,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "teneis es error claro frente al voseo del hablante"
     },
     {
       "clip_id": "clip_0175",
       "raw_text": "sobrevivir que sobrevivir ponerte las pilas",
       "suggested_text": "sobrevivir que sobrevivir ponerte las pilas",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1584,7 +1586,7 @@
       "raw_text": "en todo y volver a tener",
       "suggested_text": "en todo y volver a tener",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1593,7 +1595,7 @@
       "raw_text": "una vida social y eventualmente volver a conseguir al amor de tu vida",
       "suggested_text": "una vida social y eventualmente volver a conseguir al amor de tu vida",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1602,7 +1604,7 @@
       "raw_text": "como se consigue al amor de tu vida estando hecho mierda con barba todo abandonado",
       "suggested_text": "como se consigue al amor de tu vida estando hecho mierda con barba todo abandonado",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1611,7 +1613,7 @@
       "raw_text": "o poniendote las pilas con tu vida y haciendote cargo obviamente",
       "suggested_text": "o poniendote las pilas con tu vida y haciendote cargo obviamente",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1620,7 +1622,7 @@
       "raw_text": "haciendote cargo entonces cuando te viene ese pensamiento",
       "suggested_text": "haciendote cargo entonces cuando te viene ese pensamiento",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1629,28 +1631,28 @@
       "raw_text": "de que la vida sigue y de que ese amor se fue todo es nuevo volves a estar alla arriba",
       "suggested_text": "de que la vida sigue y de que ese amor se fue todo es nuevo volves a estar alla arriba",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0183",
       "raw_text": "meti al gim como nunca empece una dieta nueva",
-      "suggested_text": "me meti al gym como nunca empece una dieta nueva",
-      "action": "corrected",
-      "confidence": 0.88,
+      "suggested_text": "meti al gim como nunca empece una dieta nueva",
+      "action": "uncertain",
+      "confidence": 0.48,
       "risk_flags": [
         "jerga",
         "correccion_inferida"
       ],
-      "notes": "Correccion minima y probable por contexto."
+      "notes": "posible error en meti al gim pero no hay confianza suficiente"
     },
     {
       "clip_id": "clip_0184",
       "raw_text": "no tengas miedo no tengas miedo se termina una relacion",
       "suggested_text": "no tengas miedo no tengas miedo se termina una relacion",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1659,18 +1661,19 @@
       "raw_text": "es una paja duela un monton pero termina",
       "suggested_text": "es una paja duele un monton pero termina",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.9,
       "risk_flags": [
-        "jerga"
+        "jerga",
+        "correccion_inferida"
       ],
-      "notes": "Correccion evidente: 'duela' por 'duele'."
+      "notes": "duela no encaja con la frase declarativa"
     },
     {
       "clip_id": "clip_0187",
       "raw_text": "la vida esta llena de quilombos",
       "suggested_text": "la vida esta llena de quilombos",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1679,7 +1682,7 @@
       "raw_text": "que te generan una fortaleza a la larga",
       "suggested_text": "que te generan una fortaleza a la larga",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1688,7 +1691,7 @@
       "raw_text": "perdiste una relacion vendra otra perdiste una relacion fortaleciste",
       "suggested_text": "perdiste una relacion vendra otra perdiste una relacion fortaleciste",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1697,7 +1700,7 @@
       "raw_text": "todas las que te quedaron perdiste un amigo porque no es solo perder una novia",
       "suggested_text": "todas las que te quedaron perdiste un amigo porque no es solo perder una novia",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1706,7 +1709,7 @@
       "raw_text": "a veces perdes un amigo fortaleces cuatro amigos",
       "suggested_text": "a veces perdes un amigo fortaleces cuatro amigos",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1715,7 +1718,7 @@
       "raw_text": "que siguen ahi y que te estan bancando uno se mando una cagada",
       "suggested_text": "que siguen ahi y que te estan bancando uno se mando una cagada",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1724,7 +1727,7 @@
       "raw_text": "nunca mas gil pero hay cuatro que siguen siendo hermanos",
       "suggested_text": "nunca mas gil pero hay cuatro que siguen siendo hermanos",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1733,7 +1736,7 @@
       "raw_text": "y a esos hermanos todo",
       "suggested_text": "y a esos hermanos todo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1742,31 +1745,31 @@
       "raw_text": "charlasad no no charla motivadora loco bueno gente",
       "suggested_text": "charla sad no no charla motivadora loco bueno gente",
       "action": "corrected",
-      "confidence": 0.98,
+      "confidence": 0.94,
       "risk_flags": [
         "jerga"
       ],
-      "notes": "Separacion evidente de 'charla sad'."
+      "notes": "charlasad es union erronea de charla sad"
     },
     {
       "clip_id": "clip_0196",
       "raw_text": "vamos a ver el tema maria de serra queria que sepan",
-      "suggested_text": "vamos a ver el tema maria de serra queria que sepan",
-      "action": "uncertain",
-      "confidence": 0.45,
+      "suggested_text": "vamos a ver el tema maria becerra queria que sepan",
+      "action": "corrected",
+      "confidence": 0.9,
       "risk_flags": [
         "nombre_propio",
         "correccion_inferida",
         "requiere_video"
       ],
-      "notes": "Podria ser 'Maria del Cerro' por contexto de la fuente, pero al ser nombre propio se conserva."
+      "notes": "maria de serra es error por maria becerra segun contexto de fuente"
     },
     {
       "clip_id": "clip_0197",
       "raw_text": "que me gusta hablar con ustedes que me gusta darles un consejo",
       "suggested_text": "que me gusta hablar con ustedes que me gusta darles un consejo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1775,7 +1778,7 @@
       "raw_text": "y yo ya se que parezco joven porque me cuido bien",
       "suggested_text": "y yo ya se que parezco joven porque me cuido bien",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1784,57 +1787,61 @@
       "raw_text": "y porque no tomo alcohol que tambien la recomiendo que no sean pelotudos no tomen alcohol",
       "suggested_text": "y porque no tomo alcohol que tambien les recomiendo que no sean pelotudos no tomen alcohol",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.92,
       "risk_flags": [
-        "insulto"
+        "insulto",
+        "correccion_inferida"
       ],
-      "notes": "Correccion evidente: 'les recomiendo'."
+      "notes": "la recomiendo no concuerda con destinatario plural"
     },
     {
       "clip_id": "clip_0200",
       "raw_text": "el alcohol es una mierda y el alcohol",
       "suggested_text": "el alcohol es una mierda y el alcohol",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0201",
       "raw_text": "es una mierda yo ustedes saben lo que quieran porque es su cuerpo",
-      "suggested_text": "es una mierda yo ustedes saben lo que quieran porque es su cuerpo",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "suggested_text": "es una mierda yo ustedes hagan lo que quieran porque es su cuerpo",
+      "action": "corrected",
+      "confidence": 0.86,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "saben no encaja y hagan lo que quieran es la construccion coherente"
     },
     {
       "clip_id": "clip_0202",
       "raw_text": "su salud pero yo nunca nada",
       "suggested_text": "su salud pero yo nunca nada",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0203",
       "raw_text": "solo cuando salio campeon a seleccion un ferneo y algunas cositas",
-      "suggested_text": "solo cuando salio campeon la seleccion un fernet y algunas cositas",
+      "suggested_text": "solo cuando salio campeona la seleccion un fernet y algunas cositas",
       "action": "corrected",
-      "confidence": 0.88,
+      "confidence": 0.9,
       "risk_flags": [
-        "correccion_inferida",
-        "jerga"
+        "jerga",
+        "cambio_grande",
+        "correccion_inferida"
       ],
-      "notes": "Correccion probable por contexto argentino: 'la seleccion' y 'fernet'."
+      "notes": "a seleccion y ferneo son errores claros por la seleccion y fernet"
     },
     {
       "clip_id": "clip_0204",
       "raw_text": "pero nunca nada porro no tampoco",
       "suggested_text": "pero nunca nada porro no tampoco",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1843,7 +1850,7 @@
       "raw_text": "el porro esta bien dice uno en el chat para mi el porro no esta bien",
       "suggested_text": "el porro esta bien dice uno en el chat para mi el porro no esta bien",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1852,7 +1859,7 @@
       "raw_text": "perdon disculpeme para mi queres fumar un porro te banco",
       "suggested_text": "perdon disculpeme para mi queres fumar un porro te banco",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1861,7 +1868,7 @@
       "raw_text": "te respeto y para mi",
       "suggested_text": "te respeto y para mi",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1870,7 +1877,7 @@
       "raw_text": "en mi vida el porro no esta bien no me importa si es natural",
       "suggested_text": "en mi vida el porro no esta bien no me importa si es natural",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1879,7 +1886,7 @@
       "raw_text": "yo no quiero porro cerca no me gusta el porro",
       "suggested_text": "yo no quiero porro cerca no me gusta el porro",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1888,7 +1895,7 @@
       "raw_text": "no me gusta el porro y lo digo de una",
       "suggested_text": "no me gusta el porro y lo digo de una",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1897,7 +1904,7 @@
       "raw_text": "no tengo que quedar bien con nadie yo les digo lo que yo siento",
       "suggested_text": "no tengo que quedar bien con nadie yo les digo lo que yo siento",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1906,7 +1913,7 @@
       "raw_text": "si mi mejor amigo fuma porro nunca le voy a decir nada nunca le voy a decir che",
       "suggested_text": "si mi mejor amigo fuma porro nunca le voy a decir nada nunca le voy a decir che",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1915,7 +1922,7 @@
       "raw_text": "que haces con esa mierda tu cuerpo tu salud te respeto",
       "suggested_text": "que haces con esa mierda tu cuerpo tu salud te respeto",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1924,53 +1931,52 @@
       "raw_text": "esta todo viola yo no voy a fumar en mi vida voy a fumar",
       "suggested_text": "esta todo viola yo no voy a fumar en mi vida no voy a fumar",
       "action": "corrected",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [
         "jerga",
-        "correccion_inferida",
-        "repeticion"
+        "correccion_inferida"
       ],
-      "notes": "Por contexto, la segunda ocurrencia parece 'no voy a fumar'."
+      "notes": "la segunda ocurrencia debe mantener la negacion"
     },
     {
       "clip_id": "clip_0215",
       "raw_text": "dijo porno no el porno es lo mismo que me gusta el porno lo banco el porro no banco",
       "suggested_text": "dijo porno no el porno es lo mismo que me gusta el porno lo banco el porro no banco",
       "action": "uncertain",
-      "confidence": 0.35,
+      "confidence": 0.42,
       "risk_flags": [
         "jerga",
-        "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
+        "posible_alucinacion"
       ],
-      "notes": "Fragmento muy confuso entre 'porno' y 'porro'; no se corrige sin video/audio."
+      "notes": "posible confusion entre porro y porno pero no hay confianza suficiente"
     },
     {
       "clip_id": "clip_0216",
       "raw_text": "no me gusta el porro la marihuana eso no me gusta",
       "suggested_text": "no me gusta el porro la marihuana eso no me gusta",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0217",
       "raw_text": "nunca me gusto nunca senti que la necesites",
-      "suggested_text": "nunca me gusto nunca senti que lo necesite",
+      "suggested_text": "nunca me gusto nunca senti que la necesite",
       "action": "corrected",
-      "confidence": 0.95,
-      "risk_flags": [],
-      "notes": "Correccion de referencia: habla del porro."
+      "confidence": 0.91,
+      "risk_flags": [
+        "correccion_inferida"
+      ],
+      "notes": "necesites no concuerda con primera persona"
     },
     {
       "clip_id": "clip_0218",
       "raw_text": "para mi te lleva a un lugar donde",
       "suggested_text": "para mi te lleva a un lugar donde",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1979,7 +1985,7 @@
       "raw_text": "no sos vos donde",
       "suggested_text": "no sos vos donde",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1988,7 +1994,7 @@
       "raw_text": "no se no sos vos",
       "suggested_text": "no se no sos vos",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -1997,87 +2003,76 @@
       "raw_text": "pero bueno no quiero entrar en esa discusion porque es personal es personal nunca no vamos a poner de acuerdo",
       "suggested_text": "pero bueno no quiero entrar en esa discusion porque es personal es personal nunca nos vamos a poner de acuerdo",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.96,
       "risk_flags": [],
-      "notes": "Correccion evidente: 'nos vamos'."
+      "notes": "no vamos es error claro por nos vamos"
     },
     {
       "clip_id": "clip_0222",
       "raw_text": "nunca no vamos a poner de acuerdo de unico que les puedo agregar es",
       "suggested_text": "nunca nos vamos a poner de acuerdo lo unico que les puedo agregar es",
       "action": "corrected",
-      "confidence": 0.97,
+      "confidence": 0.94,
       "risk_flags": [],
-      "notes": "Correcciones evidentes: 'nos vamos' y 'lo unico'."
+      "notes": "no vamos y de unico son errores claros por nos vamos y lo unico"
     },
     {
       "clip_id": "clip_0223",
       "raw_text": "yo tomo alcohol para desinhibirme amigo y si mejor no aprendes",
       "suggested_text": "yo tomo alcohol para desinhibirme amigo y si mejor no aprendes",
-      "action": "uncertain",
-      "confidence": 0.5,
-      "risk_flags": [
-        "cambio_grande",
-        "correccion_inferida",
-        "requiere_video"
-      ],
-      "notes": "Podria ser 'y si mejor aprendes...', pero sacar 'no' cambia demasiado el sentido."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0224",
       "raw_text": "a desinhibirte sin la necesidad de alcohol y si mejor no aprendes a soltarte",
       "suggested_text": "a desinhibirte sin la necesidad de alcohol y si mejor no aprendes a soltarte",
-      "action": "uncertain",
-      "confidence": 0.5,
-      "risk_flags": [
-        "cambio_grande",
-        "correccion_inferida",
-        "requiere_video"
-      ],
-      "notes": "Podria ser 'y si mejor aprendes a soltarte...', pero sacar 'no' cambia demasiado el sentido."
+      "action": "keep",
+      "confidence": 0.88,
+      "risk_flags": [],
+      "notes": ""
     },
     {
       "clip_id": "clip_0225",
       "raw_text": "sin necesitar tomar nada en mi opinion eh",
       "suggested_text": "sin necesitar tomar nada en mi opinion eh",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
     {
       "clip_id": "clip_0226",
       "raw_text": "arrancas a los djs sos timido te cuesta a los djs",
-      "suggested_text": "arrancas a los djs sos timido te cuesta a los djs",
-      "action": "uncertain",
-      "confidence": 0.35,
+      "suggested_text": "arrancas a los 16 sos timido te cuesta a los 16",
+      "action": "corrected",
+      "confidence": 0.82,
       "risk_flags": [
         "numero",
         "cambio_grande",
-        "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
+        "correccion_inferida"
       ],
-      "notes": "Probablemente 'a los 16', pero 'djs' no se corrige sin video/audio."
+      "notes": "djs parece error por 16 segun contexto inmediato"
     },
     {
       "clip_id": "clip_0227",
       "raw_text": "si no tomo alcohol no me encargo una mina bueno el problema",
-      "suggested_text": "si no tomo alcohol no me encaro a una mina bueno el problema",
+      "suggested_text": "si no tomo alcohol no me encaro una mina bueno el problema",
       "action": "corrected",
-      "confidence": 0.94,
+      "confidence": 0.93,
       "risk_flags": [
-        "jerga",
-        "correccion_inferida"
+        "jerga"
       ],
-      "notes": "Correccion clara por contexto: 'encaro a una mina'."
+      "notes": "encargo es error claro por encaro"
     },
     {
       "clip_id": "clip_0228",
       "raw_text": "esta en tu seguridad",
       "suggested_text": "esta en tu seguridad",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2086,32 +2081,31 @@
       "raw_text": "que tenes que meterte alcohol para encararte una mina yo no te van",
       "suggested_text": "que tenes que meterte alcohol para encararte una mina yo no te van",
       "action": "uncertain",
-      "confidence": 0.35,
+      "confidence": 0.34,
       "risk_flags": [
-        "cambio_grande",
         "correccion_inferida",
-        "posible_alucinacion",
-        "requiere_video"
+        "posible_alucinacion"
       ],
-      "notes": "El final 'yo no te van' es dudoso y parece depender del clip siguiente."
+      "notes": "yo no te van parece dañado pero no hay alternativa segura"
     },
     {
       "clip_id": "clip_0230",
       "raw_text": "yo sabre que te voy a decir andad a poco intentadlo de a poco date tiempo",
-      "suggested_text": "yo sabes que te voy a decir anda de a poco intentalo de a poco date tiempo",
+      "suggested_text": "sabes que te voy a decir anda de a poco intentalo de a poco date tiempo",
       "action": "corrected",
-      "confidence": 0.92,
+      "confidence": 0.84,
       "risk_flags": [
+        "cambio_grande",
         "correccion_inferida"
       ],
-      "notes": "Correccion minima de formas no rioplatenses o mal transcriptas."
+      "notes": "sabre andad e intentadlo son errores claros para el registro rioplatense"
     },
     {
       "clip_id": "clip_0231",
       "raw_text": "a los 16 años por ahi no estas listo para encararte una persona es dificil encarar",
       "suggested_text": "a los 16 años por ahi no estas listo para encararte una persona es dificil encarar",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2120,7 +2114,7 @@
       "raw_text": "a todos nos cuesta encarar sobrio",
       "suggested_text": "a todos nos cuesta encarar sobrio",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2129,7 +2123,7 @@
       "raw_text": "mas dificil todavia pero yo",
       "suggested_text": "mas dificil todavia pero yo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2138,18 +2132,19 @@
       "raw_text": "nunca te voy a decir entonces anda ponerte en pedo",
       "suggested_text": "nunca te voy a decir entonces anda a ponerte en pedo",
       "action": "corrected",
-      "confidence": 0.95,
+      "confidence": 0.92,
       "risk_flags": [
-        "jerga"
+        "jerga",
+        "correccion_inferida"
       ],
-      "notes": "Correccion evidente: 'anda a ponerte'."
+      "notes": "falta a en la construccion anda a ponerte"
     },
     {
       "clip_id": "clip_0235",
       "raw_text": "y encarar porque esa no es la solucion en la vida no vas a estar toda la vida en pedo",
       "suggested_text": "y encarar porque esa no es la solucion en la vida no vas a estar toda la vida en pedo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2157,17 +2152,20 @@
       "clip_id": "clip_0236",
       "raw_text": "para poder solucionar tus problemas porque tal vez estoy en pedo",
       "suggested_text": "para poder solucionar tus problemas porque tal vez estoy en pedo",
-      "action": "keep",
-      "confidence": 0.93,
-      "risk_flags": [],
-      "notes": ""
+      "action": "uncertain",
+      "confidence": 0.48,
+      "risk_flags": [
+        "jerga",
+        "correccion_inferida"
+      ],
+      "notes": "posible error en tal vez pero no hay confianza suficiente"
     },
     {
       "clip_id": "clip_0237",
       "raw_text": "no en la vida vas a estar la mayor parte de tu vida sobrio y vas a tener que aprender",
       "suggested_text": "no en la vida vas a estar la mayor parte de tu vida sobrio y vas a tener que aprender",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2176,7 +2174,7 @@
       "raw_text": "a resolver los problemas sobrio entonces por que mejor no mejoras tu lado sobrio",
       "suggested_text": "a resolver los problemas sobrio entonces por que mejor no mejoras tu lado sobrio",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2185,7 +2183,7 @@
       "raw_text": "antes de trabajar en el lado ebrio si quieren tomar",
       "suggested_text": "antes de trabajar en el lado ebrio si quieren tomar",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2194,7 +2192,7 @@
       "raw_text": "tomen con precaucion si quieren fumar fumen con precaucion yo no me voy a meter",
       "suggested_text": "tomen con precaucion si quieren fumar fumen con precaucion yo no me voy a meter",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2203,7 +2201,7 @@
       "raw_text": "en la vida de nadie simplemente les estoy diciendo que es lo que hago yo",
       "suggested_text": "en la vida de nadie simplemente les estoy diciendo que es lo que hago yo",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2212,7 +2210,7 @@
       "raw_text": "que consumo yo que no consumo yo yo consumo vegetales ahora bueno por la velada",
       "suggested_text": "que consumo yo que no consumo yo yo consumo vegetales ahora bueno por la velada",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2221,7 +2219,7 @@
       "raw_text": "carnes pero despues voy a volver a consumir vegetales porque me encanta ser vegetariano",
       "suggested_text": "carnes pero despues voy a volver a consumir vegetales porque me encanta ser vegetariano",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2230,7 +2228,7 @@
       "raw_text": "consumo vegetales consumo agua",
       "suggested_text": "consumo vegetales consumo agua",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2239,7 +2237,7 @@
       "raw_text": "y consumo cero drogas cero alcohol y me encanta porque tengo 31 años",
       "suggested_text": "y consumo cero drogas cero alcohol y me encanta porque tengo 31 años",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2248,7 +2246,7 @@
       "raw_text": "y parezco de 28",
       "suggested_text": "y parezco de 28",
       "action": "keep",
-      "confidence": 0.93,
+      "confidence": 0.88,
       "risk_flags": [],
       "notes": ""
     },
@@ -2257,15 +2255,14 @@
       "raw_text": "yo creo sin el video de 28 de 40 nada eso no entro",
       "suggested_text": "yo creo sin el video de 28 de 40 nada eso no entro",
       "action": "uncertain",
-      "confidence": 0.3,
+      "confidence": 0.28,
       "risk_flags": [
         "numero",
-        "cambio_grande",
         "correccion_inferida",
         "posible_alucinacion",
         "requiere_video"
       ],
-      "notes": "Fragmento final muy dudoso; no se corrige."
+      "notes": "frase final poco clara sin alternativa segura"
     }
   ]
 }

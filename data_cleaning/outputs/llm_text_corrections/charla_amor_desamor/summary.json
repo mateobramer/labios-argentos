@@ -1,34 +1,33 @@
 {
   "clips": 233,
   "actions": {
-    "corrected": 34,
-    "keep": 177,
-    "uncertain": 22
+    "corrected": 54,
+    "keep": 170,
+    "uncertain": 9
   },
   "review_status": {
-    "accept_correction": 31,
-    "keep_raw": 177,
-    "reject_suggestion": 25
+    "accept_correction": 40,
+    "keep_raw": 170,
+    "reject_suggestion": 23
   },
   "validation_flags": {
-    "cambio_grande_detectado": 1,
-    "correccion_baja_confianza": 1
+    "cambio_grande_detectado": 2
   },
   "risk_flags": {
-    "cambio_grande": 16,
-    "correccion_inferida": 32,
-    "insulto": 9,
-    "jerga": 19,
-    "nombre_propio": 5,
-    "numero": 4,
-    "posible_alucinacion": 12,
-    "repeticion": 3,
-    "requiere_video": 23
+    "cambio_grande": 12,
+    "correccion_inferida": 45,
+    "insulto": 10,
+    "jerga": 17,
+    "nombre_propio": 3,
+    "numero": 7,
+    "posible_alucinacion": 6,
+    "repeticion": 2,
+    "requiere_video": 7
   },
   "duplicates": [],
   "unknown_clips": [],
   "video_exists": 233,
   "txt_exists": 233,
   "txt_matches_source": 233,
-  "high_change": 1
+  "high_change": 2
 }
