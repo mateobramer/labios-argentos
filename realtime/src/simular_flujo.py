@@ -33,6 +33,7 @@ def run_simulation(
     *,
     closure_provider_name: str = "heuristic",
     correction_provider_name: str = "identity",
+    model_path: str | None = None,
     ollama_model: str = "qwen3:4b",
     ollama_url: str = "http://localhost:11434",
     timeout_s: float = 2.5,
@@ -41,6 +42,7 @@ def run_simulation(
 ) -> dict[str, object]:
     closure = make_closure_provider(
         closure_provider_name,
+        model_path=model_path,
         ollama_model=ollama_model,
         ollama_url=ollama_url,
         timeout_s=timeout_s,
@@ -181,8 +183,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Simula el flujo realtime sin GPU ni LLM externo.")
     parser.add_argument("--demo", action="store_true", help="Usar frases sinteticas incluidas.")
     parser.add_argument("--input", help="Archivo de texto, una hipotesis parcial por linea.")
-    parser.add_argument("--closure-provider", choices=["heuristic", "ollama"], default="heuristic")
+    parser.add_argument("--closure-provider", choices=["heuristic", "linear", "ollama"], default="heuristic")
     parser.add_argument("--correction-provider", choices=["identity", "ollama"], default="identity")
+    parser.add_argument("--model-path", help="Modelo JSON para --closure-provider linear.")
     parser.add_argument("--ollama-model", default="qwen3:4b")
     parser.add_argument("--ollama-url", default="http://localhost:11434")
     parser.add_argument("--timeout-s", type=float, default=2.5)
@@ -201,6 +204,7 @@ def main() -> None:
         texts,
         closure_provider_name=args.closure_provider,
         correction_provider_name=args.correction_provider,
+        model_path=args.model_path,
         ollama_model=args.ollama_model,
         ollama_url=args.ollama_url,
         timeout_s=args.timeout_s,

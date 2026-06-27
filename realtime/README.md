@@ -191,6 +191,85 @@ La primera fuente anotada es `CHARLA SOBRE EL AMOR Y EL DESAMOR`: 233 clips y
 eso sirve como benchmark para comparar contra un LLM zero-shot o un futuro
 student causal entrenado.
 
+## Entrenamiento liviano de cierre
+
+El cierre en vivo conviene tratarlo como un clasificador de baja latencia, separado
+del corrector. El flujo esperado es:
+
+```text
+VSR por chunks -> buffer textual -> cierre liviano -> oracion commiteada -> corrector
+```
+
+El entrenamiento compara varios modos sin dependencias externas:
+
+- `majority`: baseline de clase mayoritaria.
+- `heuristic`: baseline interpretable actual.
+- `linear_text`: perceptron multiclase con features textuales.
+- `linear_text_balanced`: igual, con balanceo por clase.
+- `linear_heuristic`: features textuales + decision/razon de la heuristica.
+- `linear_heuristic_balanced`: version balanceada.
+
+Entrenar y seleccionar el mejor:
+
+```bash
+python -m realtime.src.entrenar_cierre \
+  --input realtime/ground_truth \
+  --input realtime/outputs/synthetic_cierre_oracional \
+  --output-dir realtime/outputs/cierre_training
+```
+
+El output principal es:
+
+```text
+realtime/outputs/cierre_training/summary.json
+realtime/outputs/cierre_training/best_config.json
+realtime/outputs/cierre_training/*.model.json
+```
+
+La seleccion usa `val.selection_score`, que prioriza `commit_f1` y penaliza fuerte los
+commits prematuros. En esta tarea un `commit` temprano corta una idea y suele ser peor
+que esperar un clip mas.
+
+Usar un modelo entrenado en el simulador:
+
+```bash
+python -m realtime.src.simular_flujo \
+  --demo \
+  --closure-provider linear \
+  --model-path realtime/outputs/cierre_training/linear_heuristic.model.json
+```
+
+Evaluar una secuencia anotada con el modelo entrenado:
+
+```bash
+python -m realtime.src.secuencias evaluate \
+  --ground-truth realtime/ground_truth/charla_amor_desamor.json \
+  --provider linear \
+  --model-path realtime/outputs/cierre_training/linear_heuristic.model.json
+```
+
+## Data sintetica con GPT Pro
+
+Prompt y guia:
+
+```text
+realtime/GPT_PRO_SYNTHETIC_PROMPT.md
+```
+
+Generar un plan de variaciones por lotes:
+
+```bash
+python -m realtime.src.plan_sintetico \
+  --shuffle \
+  --seed 13 \
+  --max 80 \
+  --output realtime/outputs/synthetic_plan/lote_001.jsonl
+```
+
+La grilla completa de factores tiene 5040 variaciones. Conviene empezar con lotes de
+80-200, revisar calidad y escalar. Mantener `synthetic=true` y no mezclar esos datos
+ciegamente con ground truth real.
+
 ## Notebooks
 
 Los notebooks son livianos, estan ejecutados con outputs guardados y estan pensados

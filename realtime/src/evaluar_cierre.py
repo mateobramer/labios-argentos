@@ -147,7 +147,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Evalua offline el cierre de oracion.")
     parser.add_argument("--demo", action="store_true", help="Usar casos sinteticos etiquetados.")
     parser.add_argument("--input", help="JSONL con partial_text y expected_action.")
-    parser.add_argument("--provider", choices=["heuristic", "ollama"], default="heuristic")
+    parser.add_argument("--provider", choices=["heuristic", "linear", "ollama"], default="heuristic")
+    parser.add_argument("--model-path", help="Modelo JSON para --provider linear.")
     parser.add_argument("--ollama-model", default="qwen3:4b")
     parser.add_argument("--ollama-url", default="http://localhost:11434")
     parser.add_argument("--timeout-s", type=float, default=2.5)
@@ -163,6 +164,7 @@ def main() -> None:
 
     provider = make_closure_provider(
         args.provider,
+        model_path=args.model_path,
         ollama_model=args.ollama_model,
         ollama_url=args.ollama_url,
         timeout_s=args.timeout_s,

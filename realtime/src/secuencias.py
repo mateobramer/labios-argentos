@@ -412,7 +412,8 @@ def main() -> None:
 
     eval_parser = subparsers.add_parser("evaluate", help="Evalua una secuencia con ground truth.")
     eval_parser.add_argument("--ground-truth", required=True)
-    eval_parser.add_argument("--provider", choices=["heuristic", "ollama"], default="heuristic")
+    eval_parser.add_argument("--provider", choices=["heuristic", "linear", "ollama"], default="heuristic")
+    eval_parser.add_argument("--model-path", help="Modelo JSON para --provider linear.")
     eval_parser.add_argument("--ollama-model", default="qwen3:4b")
     eval_parser.add_argument("--ollama-url", default="http://localhost:11434")
     eval_parser.add_argument("--timeout-s", type=float, default=2.5)
@@ -440,6 +441,7 @@ def main() -> None:
     sequence = load_sequence_ground_truth(args.ground_truth)
     provider = make_closure_provider(
         args.provider,
+        model_path=args.model_path,
         ollama_model=args.ollama_model,
         ollama_url=args.ollama_url,
         timeout_s=args.timeout_s,
