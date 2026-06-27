@@ -19,7 +19,7 @@ data/videos/*/
 *.npz
 data/processed/
 evaluation/data/
-realtime/outputs/
+segmentacion_oraciones/outputs/
 
 # Analisis local Azzaro: el video y los clips se regeneran desde el notebook.
 # Los JSON de transcripcion dentro de transcripts/ si se versionan como cache.

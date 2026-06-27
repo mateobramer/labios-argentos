@@ -110,22 +110,21 @@ Va acá:
 - entrenamiento, validación e inferencia offline;
 - configuración de modelos.
 
-### `realtime/`
+### `segmentacion_oraciones/`
 
-Sistema en tiempo real.
+Segmentacion y cierre de oraciones sobre texto parcial de VSR/RSV.
 
-Va acá:
+Va aca:
 
-- buffer de frames;
-- inferencia causal por chunks;
-- texto parcial o especulativo;
-- LLM de cierre de oración;
-- LLM corrector;
-- demo o display en vivo.
+- ground truth oracional por clips;
+- modelos de cierre `wait | commit | low_confidence`;
+- heuristicas y modelos livianos para segmentar oraciones;
+- exports SFT para futuros modelos chicos;
+- notebooks de analisis y metricas de cierre.
 
-El LLM de cierre de oración no pertenece al preprocesamiento de datos. Su trabajo es
-mirar el texto parcial que viene produciendo el VSR en tiempo real y decidir si ya parece
-una oración completa para commitear.
+El modelo de cierre de oracion no pertenece al preprocesamiento de datos. Su trabajo es
+mirar el texto parcial que viene produciendo el VSR/RSV por clips y decidir si ya parece
+una oracion completa para commitear.
 
 ### `evaluation/`
 
@@ -204,7 +203,7 @@ Antes de commitear:
 - Si audita, limpia o arma manifests de calidad del dataset crudo: `data_cleaning/`.
 - Si recorta labios o prepara frames: `visual_preprocessing/`.
 - Si entrena o evalúa modelos VSR offline: `vsr_models/`.
-- Si corre en vivo o decide cuándo commitear texto: `realtime/`.
+- Si corre en vivo o decide cuándo commitear texto: `segmentacion_oraciones/`.
 - Si calcula métricas o arma tablas de resultados: `evaluation/`.
 - Si es documentación general: raíz o `docs/`.
 
