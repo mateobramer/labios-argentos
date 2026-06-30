@@ -1,0 +1,49 @@
+n,duracion_min,hablante_principal,canal_o_fuente,tipo_fuente,registro,genero,region_o_acento,slang,frontalidad_nota,url,estado
+1,,Paulina Cocina,Paulina Cocina,YouTube / cocina explica a camara,informal coloquial,femenino,rioplatense,alto,frontal plano fijo (habla mucho a camara),PENDIENTE,candidato - resolver 2-4 URLs por hablante con yt-dlp
+2,,Malena Pichot,YouTube/redes,monologo comedia a camara,informal coloquial,femenino,rioplatense,muy alto,frontal,PENDIENTE,candidato - resolver URLs
+3,,Migue Granados,Olga / Soñe que volaba,monologo / charla a camara,informal coloquial,masculino,rioplatense,muy alto,frontal (buscar segmentos solo / monologo),PENDIENTE,candidato - evitar tramos multi-speaker
+4,,Nati Jota,Olga / propio,story-time / charla a camara,informal coloquial,femenino,rioplatense,muy alto,frontal,PENDIENTE,candidato - resolver URLs
+5,,Martin Garabal,Luzu / propio,comedia / personajes a camara,informal coloquial,masculino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+6,,Grego Rosello,YouTube/stand-up,monologo comedia,informal coloquial,masculino,rioplatense,alto,medio-frontal (escenario a veces),PENDIENTE,candidato - resolver URLs
+7,,Connie Ballarini,YouTube/stand-up,monologo comedia,informal coloquial,femenino,rioplatense,alto,medio-frontal,PENDIENTE,candidato - resolver URLs
+8,,Dalia Gutmann,YouTube/stand-up,monologo comedia,informal coloquial,femenino,rioplatense,alto,medio-frontal,PENDIENTE,candidato - resolver URLs
+9,,Luqui Lichtmann,YouTube/redes,monologo comedia a camara,informal coloquial,masculino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+10,,Fernando Sanjiao,YouTube/stand-up,monologo comedia,informal coloquial,masculino,rioplatense,alto,medio-frontal,PENDIENTE,candidato - resolver URLs
+11,,Sebastian Wainraich,YouTube/radio-video,monologo / charla a camara,informal coloquial,masculino,rioplatense,medio-alto,frontal,PENDIENTE,candidato - resolver URLs
+12,,Momo (Martin Perez Disalvo),Momo,stream / reaccion webcam,informal coloquial,masculino,rioplatense,muy alto,frontal webcam (single speaker en reaccion),PENDIENTE,candidato - elegir tramos sin invitados
+13,,Spreen (Ivan Buhajeruk),Spreen,stream / charla webcam,informal coloquial,masculino,rioplatense,alto,frontal webcam,PENDIENTE,candidato - resolver URLs
+14,,Kun Aguero (Sergio Aguero),KunAgueroOficial,stream / charla webcam,informal coloquial,masculino,rioplatense,muy alto,frontal webcam,PENDIENTE,candidato - resolver URLs
+15,,Lizardo Ponce,YouTube/redes,vlog / charla a camara,informal coloquial,masculino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+16,,Ivana Nadal,YouTube/redes,vlog / charla a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+17,,Flor Vigna,YouTube/redes,vlog / story-time,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+18,,Cande Molfese,YouTube/redes,vlog / Q&A a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+19,,Julieta Nair Calvo,YouTube/redes,vlog / charla a camara,informal coloquial,femenino,rioplatense,medio-alto,frontal,PENDIENTE,candidato - resolver URLs
+20,,Barbie Velez,YouTube/redes,vlog / Q&A a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+21,,Juariu (Vicky Braier),YouTube/redes,charla redes a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+22,,Homero Pettinato,Olga / propio,charla / monologo a camara,informal coloquial,masculino,rioplatense,alto,frontal (evitar multi-speaker),PENDIENTE,candidato - resolver URLs
+23,,Eial Moldavsky,Olga / propio,charla / monologo a camara,informal coloquial,masculino,rioplatense,alto,frontal (evitar multi-speaker),PENDIENTE,candidato - resolver URLs
+24,,Martin Arevalo,YouTube/futbol,opinion futbol a camara,informal coloquial,masculino,rioplatense,medio-alto,frontal plano fijo,PENDIENTE,candidato - resolver URLs
+25,,Gaston Recondo,YouTube/futbol,opinion futbol a camara,informal coloquial,masculino,rioplatense,medio,frontal,PENDIENTE,candidato - resolver URLs
+26,,Diego Leuco,YouTube/redes,charla / explainer a camara,informal coloquial,masculino,rioplatense,medio,frontal plano fijo,PENDIENTE,candidato - resolver URLs
+27,,Pedro Rosemblat,propio (no Gelatina),monologo a camara,informal coloquial,masculino,rioplatense,alto,frontal,PENDIENTE,candidato - usar canal propio distinto de la ronda 1
+28,,Wos (Valentin Oliva),entrevistas/charla,charla a camara,informal coloquial,masculino,rioplatense,muy alto,frontal (segmentos solo),PENDIENTE,candidato - elegir monologo
+29,,Dillom,entrevistas/charla,charla a camara,informal coloquial,masculino,rioplatense,muy alto,frontal (segmentos solo),PENDIENTE,candidato - elegir monologo
+30,,Trueno,entrevistas/charla,charla a camara,informal coloquial,masculino,rioplatense,muy alto,frontal (segmentos solo),PENDIENTE,candidato - elegir monologo
+31,,Nicki Nicole,entrevistas/charla,charla a camara,informal coloquial,femenino,rioplatense,alto,frontal (segmentos solo),PENDIENTE,candidato - elegir monologo
+32,,Zeballos (streamer),YouTube/Twitch,stream / charla webcam,informal coloquial,masculino,rioplatense,alto,frontal webcam,PENDIENTE,candidato - verificar identidad/canal
+33,,Buggs,YouTube/Twitch,stream / charla webcam,informal coloquial,masculino,rioplatense,alto,frontal webcam,PENDIENTE,candidato - verificar identidad/canal
+34,,Nico Occhiato,Luzu TV,charla a camara,informal coloquial,masculino,rioplatense,medio-alto,frontal (evitar multi-speaker),PENDIENTE,candidato - elegir segmentos solo
+35,,Flor Jazmin Pena,Luzu TV,charla a camara,informal coloquial,femenino,rioplatense,alto,frontal (evitar multi-speaker),PENDIENTE,candidato - elegir segmentos solo
+36,,Nacho Elizalde,Luzu TV,charla a camara,informal coloquial,masculino,rioplatense,alto,frontal (evitar multi-speaker),PENDIENTE,candidato - elegir segmentos solo
+37,,Felicitas Pizarro,YouTube/cocina,cocina explica a camara,informal coloquial,femenino,rioplatense,medio-alto,frontal,PENDIENTE,candidato - resolver URLs
+38,,Sofia "Jujuy" Jimenez,YouTube/redes,vlog / charla a camara,informal coloquial,femenino,rioplatense,medio,frontal,PENDIENTE,candidato - resolver URLs
+39,,La Faraona (Tipa)/creadora redes,YouTube/redes,charla a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - verificar identidad/canal
+40,,Mhost Paren La Mano,YouTube,charla a camara,informal coloquial,masculino,rioplatense,alto,frontal (evitar multi-speaker),PENDIENTE,candidato - elegir monologo
+41,,Coscu (tramos no usados),Coscu,stream / reaccion webcam,informal coloquial,masculino,rioplatense,muy alto,frontal webcam,PENDIENTE,OPCIONAL - ya hay Coscu en dataset; solo si falta volumen
+42,,Davoo Xeneize (tramos nuevos),Davoo,opinion futbol webcam,informal coloquial,masculino,rioplatense,muy alto,frontal webcam,PENDIENTE,OPCIONAL - ya hay Davoo; solo si falta volumen
+43,,Roberto Moldavsky,YouTube/stand-up,monologo comedia,informal coloquial,masculino,rioplatense,alto,medio-frontal,PENDIENTE,candidato - resolver URLs
+44,,Ronnie Arias,YouTube/radio-video,charla a camara,informal coloquial,masculino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs
+45,,Pichu Straneo,YouTube/comedia,monologo comedia,informal coloquial,masculino,rioplatense,alto,medio-frontal,PENDIENTE,candidato - resolver URLs
+46,,Migue Roizner / creadores podcast,YouTube,monologo podcast a camara,informal coloquial,masculino,rioplatense,alto,frontal (evitar multi-speaker),PENDIENTE,candidato - verificar identidad/canal
+47,,Sofia Gonet "La Reini" (tramos nuevos),YouTube,charla a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,OPCIONAL - revisar si ya esta en dataset
+48,,Cami Mayan,YouTube/redes,vlog / Q&A a camara,informal coloquial,femenino,rioplatense,alto,frontal,PENDIENTE,candidato - resolver URLs

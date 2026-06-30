@@ -1,0 +1,191 @@
+[
+  {
+    "palabras": 5,
+    "n_frases": 2,
+    "wer": 60.0,
+    "cer": 39.53,
+    "palabras_ref": 10
+  },
+  {
+    "palabras": 6,
+    "n_frases": 3,
+    "wer": 105.56,
+    "cer": 68.75,
+    "palabras_ref": 18
+  },
+  {
+    "palabras": 7,
+    "n_frases": 12,
+    "wer": 82.14,
+    "cer": 54.67,
+    "palabras_ref": 84
+  },
+  {
+    "palabras": 8,
+    "n_frases": 11,
+    "wer": 68.18,
+    "cer": 42.95,
+    "palabras_ref": 88
+  },
+  {
+    "palabras": 9,
+    "n_frases": 27,
+    "wer": 65.02,
+    "cer": 34.81,
+    "palabras_ref": 243
+  },
+  {
+    "palabras": 10,
+    "n_frases": 32,
+    "wer": 75.62,
+    "cer": 42.46,
+    "palabras_ref": 320
+  },
+  {
+    "palabras": 11,
+    "n_frases": 40,
+    "wer": 75.0,
+    "cer": 43.93,
+    "palabras_ref": 440
+  },
+  {
+    "palabras": 12,
+    "n_frases": 43,
+    "wer": 71.71,
+    "cer": 40.68,
+    "palabras_ref": 516
+  },
+  {
+    "palabras": 13,
+    "n_frases": 68,
+    "wer": 68.55,
+    "cer": 39.31,
+    "palabras_ref": 884
+  },
+  {
+    "palabras": 14,
+    "n_frases": 81,
+    "wer": 68.61,
+    "cer": 39.8,
+    "palabras_ref": 1134
+  },
+  {
+    "palabras": 15,
+    "n_frases": 66,
+    "wer": 67.47,
+    "cer": 40.03,
+    "palabras_ref": 990
+  },
+  {
+    "palabras": 16,
+    "n_frases": 69,
+    "wer": 69.02,
+    "cer": 42.16,
+    "palabras_ref": 1104
+  },
+  {
+    "palabras": 17,
+    "n_frases": 35,
+    "wer": 67.39,
+    "cer": 40.08,
+    "palabras_ref": 595
+  },
+  {
+    "palabras": 18,
+    "n_frases": 46,
+    "wer": 67.27,
+    "cer": 40.67,
+    "palabras_ref": 828
+  },
+  {
+    "palabras": 19,
+    "n_frases": 32,
+    "wer": 65.62,
+    "cer": 40.03,
+    "palabras_ref": 608
+  },
+  {
+    "palabras": 20,
+    "n_frases": 21,
+    "wer": 70.95,
+    "cer": 42.95,
+    "palabras_ref": 420
+  },
+  {
+    "palabras": 21,
+    "n_frases": 20,
+    "wer": 68.81,
+    "cer": 41.33,
+    "palabras_ref": 420
+  },
+  {
+    "palabras": 22,
+    "n_frases": 14,
+    "wer": 74.68,
+    "cer": 47.39,
+    "palabras_ref": 308
+  },
+  {
+    "palabras": 23,
+    "n_frases": 9,
+    "wer": 70.53,
+    "cer": 43.14,
+    "palabras_ref": 207
+  },
+  {
+    "palabras": 24,
+    "n_frases": 9,
+    "wer": 61.57,
+    "cer": 38.4,
+    "palabras_ref": 216
+  },
+  {
+    "palabras": 25,
+    "n_frases": 6,
+    "wer": 58.0,
+    "cer": 33.55,
+    "palabras_ref": 150
+  },
+  {
+    "palabras": 26,
+    "n_frases": 1,
+    "wer": 76.92,
+    "cer": 44.44,
+    "palabras_ref": 26
+  },
+  {
+    "palabras": 27,
+    "n_frases": 4,
+    "wer": 61.11,
+    "cer": 38.75,
+    "palabras_ref": 108
+  },
+  {
+    "palabras": 28,
+    "n_frases": 1,
+    "wer": 78.57,
+    "cer": 47.83,
+    "palabras_ref": 28
+  },
+  {
+    "palabras": 29,
+    "n_frases": 4,
+    "wer": 61.21,
+    "cer": 41.28,
+    "palabras_ref": 116
+  },
+  {
+    "palabras": 30,
+    "n_frases": 1,
+    "wer": 83.33,
+    "cer": 47.73,
+    "palabras_ref": 30
+  },
+  {
+    "palabras": 33,
+    "n_frases": 1,
+    "wer": 87.88,
+    "cer": 52.76,
+    "palabras_ref": 33
+  }
+]

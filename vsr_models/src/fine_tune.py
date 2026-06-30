@@ -36,6 +36,33 @@ DIR_MODULO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SPLITS_DIR = os.path.join(DIR_MODULO, "splits")
 
 
+class RandomCrop(object):
+    """Crop aleatorio de (th,tw) — MISMA posicion para todos los frames del clip
+    (augment espacial estandar VSR). Reemplaza a CenterCrop solo en train."""
+
+    def __init__(self, crop_size):
+        self.crop_size = crop_size
+
+    def __call__(self, video_data):
+        frames, h, w = video_data.shape
+        th, tw = self.crop_size
+        i = int(torch.randint(0, h - th + 1, (1,)).item())
+        j = int(torch.randint(0, w - tw + 1, (1,)).item())
+        return video_data[:, i:i + th, j:j + tw]
+
+
+class HorizontalFlip(object):
+    """Flip horizontal del clip entero con probabilidad p (augment estandar VSR)."""
+
+    def __init__(self, p=0.5):
+        self.p = p
+
+    def __call__(self, video_data):
+        if float(torch.rand(1).item()) < self.p:
+            return torch.flip(video_data, dims=[2])
+        return video_data
+
+
 class ClipsRioplatense(Dataset):
     """Devuelve (sampleID, lips (T,96,96) tensor, transcripcion) — el formato que espera
     `data_processing`. Los transforms/normalizacion los aplica el collate, no aca."""
@@ -85,6 +112,10 @@ def main():
     ap.add_argument("--accum", type=int, default=1, help="pasos de gradient accumulation")
     ap.add_argument("--max-frames", type=int, default=0, help="saltea clips mas largos (0=sin limite)")
     ap.add_argument("--smoke", action="store_true", help="1 batch train+val y salir (test)")
+    ap.add_argument("--freeze", default=None,
+                    help="congela (requires_grad=False) los params bajo este modulo top-level, ej: frontend")
+    ap.add_argument("--augment", action="store_true",
+                    help="augment espacial SOLO en train: RandomCrop(88)+HFlip(0.5); val/test quedan en CenterCrop")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
 
@@ -97,8 +128,16 @@ def main():
         cfg = argparse.Namespace(**yaml.safe_load(f))
     tokenizer, converter = get_tokenizer_converter(cfg.token_type, cfg.bpemodel, cfg.token_list)
     ignore_id = cfg.model_conf["ignore_id"]
-    # MISMA normalizacion que el zero-shot (mean/std Rioplatense).
-    transforms = Compose([Normalise(0.0, 250.0), Normalise(0.491, 0.166), CenterCrop((88, 88))])
+    # MISMA normalizacion que el zero-shot (mean/std Rioplatense). Eval => CenterCrop (sin tocar).
+    base_norm = [Normalise(0.0, 250.0), Normalise(0.491, 0.166)]
+    eval_tf = Compose(base_norm + [CenterCrop((88, 88))])
+    if args.augment:
+        # config v2 (reconstruccion estandar VSR; la receta original de v2 vivia en su train.log,
+        # hoy inaccesible): RandomCrop + flip horizontal SOLO en train. val/test intactos.
+        train_tf = Compose(base_norm + [RandomCrop((88, 88)), HorizontalFlip(0.5)])
+        print("[augment] train: RandomCrop(88)+HFlip(0.5); val/test: CenterCrop(88)", flush=True)
+    else:
+        train_tf = eval_tf
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     asr_model, _ = ASRTask.build_model_from_file(args.vsr_config, args.load_vsr, device)
@@ -112,18 +151,34 @@ def main():
         if hasattr(layer, "stochastic_depth_rate"):
             layer.stochastic_depth_rate = 0.0
 
-    def collate(b):
-        return data_processing(b, transforms, tokenizer, converter, ignore_id)
+    # -- freeze opcional (config v2: congela el frontend Conv3D-ResNet18) --
+    if args.freeze:
+        nf = 0
+        for name, p in asr_model.named_parameters():
+            if name == args.freeze or name.startswith(args.freeze + "."):
+                p.requires_grad = False
+                nf += 1
+        if nf == 0:
+            print(f"[freeze] OJO: '{args.freeze}' no matcheo ningun parametro", flush=True)
+        else:
+            print(f"[freeze] '{args.freeze}': {nf} params congelados", flush=True)
+
+    def collate_with(tf):
+        def _c(b):
+            return data_processing(b, tf, tokenizer, converter, ignore_id)
+        return _c
 
     def cargar(split):
         ds = ClipsRioplatense(os.path.join(SPLITS_DIR, f"{split}.csv"), args.rois_root, args.max_frames)
+        tf = train_tf if split == "train" else eval_tf
         return DataLoader(ds, batch_size=args.batch, shuffle=(split == "train"),
-                          collate_fn=collate, num_workers=4)
+                          collate_fn=collate_with(tf), num_workers=4)
 
     tr, va = cargar("train"), cargar("val")
     print(f"train={len(tr.dataset)}  val={len(va.dataset)}  batch={args.batch}  device={device}")
 
-    opt = torch.optim.AdamW(asr_model.parameters(), lr=args.lr)
+    params = [p for p in asr_model.parameters() if p.requires_grad]
+    opt = torch.optim.AdamW(params, lr=args.lr)
 
     if args.smoke:
         asr_model.train()
@@ -144,7 +199,7 @@ def main():
             loss = out[0] if isinstance(out, (tuple, list)) else out["loss"]
             (loss / args.accum).backward()
             if (i + 1) % args.accum == 0:
-                torch.nn.utils.clip_grad_norm_(asr_model.parameters(), 5.0)
+                torch.nn.utils.clip_grad_norm_(params, 5.0)
                 opt.step()
                 opt.zero_grad()
             if i % 100 == 0:

@@ -46,3 +46,8 @@ __pycache__/
 
 # Backup temporal del .git roto (recuperacion)
 .git.broken-backup/
+
+# limpieza ablacion de datos
+.claude/scheduled_tasks.lock
+**/sample-clips/
+*.zip
