@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Labios Argentos · lectura de labios en vivo</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --panel: #121922;
+    --line: #1f2a37;
+    --ink: #e9eef5;
+    --muted: #7c8a9c;
+    --accent: #5ad1c7;   /* verde-agua rioplatense */
+    --accent-2: #f0b84e;
+    --danger: #ef5e6b;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: radial-gradient(1200px 600px at 70% -10%, #16202c 0%, var(--bg) 60%);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    overflow: hidden;
+  }
+  header {
+    display: flex; align-items: baseline; gap: .6rem;
+    padding: 1rem 1.4rem .4rem;
+  }
+  header .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+  header h1 { font-size: 1rem; font-weight: 650; letter-spacing: .02em; margin: 0; }
+  header span { color: var(--muted); font-size: .82rem; }
+
+  main {
+    display: grid;
+    grid-template-columns: minmax(360px, 42%) 1fr;
+    gap: 1.1rem;
+    padding: .6rem 1.4rem 1rem;
+    min-height: 0;
+  }
+
+  /* --- cámara --- */
+  .stage {
+    position: relative; border-radius: 18px; overflow: hidden;
+    background: #000; border: 1px solid var(--line);
+    display: grid; place-items: center;
+  }
+  video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+  .guide {
+    position: absolute; inset: 0; pointer-events: none;
+    display: grid; place-items: center;
+  }
+  .guide .oval {
+    width: 46%; aspect-ratio: 3/4; border: 2px dashed rgba(255,255,255,.22);
+    border-radius: 50%; margin-bottom: 4%;
+  }
+  .rec-badge {
+    position: absolute; top: 12px; left: 12px;
+    display: none; align-items: center; gap: .4rem;
+    background: rgba(239,94,107,.16); color: var(--danger);
+    border: 1px solid rgba(239,94,107,.4); padding: .25rem .6rem;
+    border-radius: 999px; font-size: .78rem; font-weight: 600;
+  }
+  .rec-badge .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--danger); animation: pulse 1s infinite; }
+  body.grabando .rec-badge { display: inline-flex; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  /* --- panel transcripción --- */
+  .panel {
+    background: linear-gradient(180deg, var(--panel), #0e141c);
+    border: 1px solid var(--line); border-radius: 18px;
+    padding: 1.2rem 1.4rem; display: flex; flex-direction: column; min-height: 0;
+  }
+  .panel .label { color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .12em; }
+  .latest {
+    font-size: clamp(1.5rem, 3.4vw, 2.6rem); line-height: 1.18; font-weight: 600;
+    margin: .5rem 0 .2rem; min-height: 1.2em; letter-spacing: -0.01em;
+  }
+  .latest.placeholder { color: var(--muted); font-weight: 500; }
+  .history { margin-top: auto; overflow-y: auto; border-top: 1px solid var(--line); padding-top: .7rem; }
+  .history li { list-style: none; color: #b9c4d2; padding: .28rem 0; font-size: .98rem; border-bottom: 1px dashed rgba(255,255,255,.05); }
+  .history ul { margin: 0; padding: 0; }
+
+  .chips { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .7rem; }
+  .chip { font-size: .72rem; color: var(--muted); background: #0c121a; border: 1px solid var(--line); border-radius: 8px; padding: .25rem .55rem; }
+  .chip b { color: var(--accent); font-weight: 600; }
+
+  /* --- footer / control --- */
+  footer { display: flex; align-items: center; justify-content: center; gap: 1.2rem; padding: .4rem 0 1.3rem; }
+  .ptt {
+    -webkit-user-select: none; user-select: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: .7rem;
+    background: var(--accent); color: #06231f; border: none;
+    font-size: 1.05rem; font-weight: 700; letter-spacing: .01em;
+    padding: 1rem 2.2rem; border-radius: 999px;
+    box-shadow: 0 8px 30px rgba(90,209,199,.25); transition: transform .08s, box-shadow .2s, background .2s;
+  }
+  .ptt:active, body.grabando .ptt { transform: scale(.97); background: var(--danger); color: #2a0c10; box-shadow: 0 8px 30px rgba(239,94,107,.3); }
+  .ptt[disabled] { opacity: .5; cursor: progress; }
+  .ptt .mic { width: 18px; height: 18px; }
+  .hint { color: var(--muted); font-size: .82rem; }
+  .status { color: var(--accent-2); font-size: .85rem; min-height: 1.2em; }
+</style>
+</head>
+<body>
+  <header>
+    <span class="dot"></span>
+    <h1>Labios Argentos</h1>
+    <span>· lectura de labios en vivo · español rioplatense</span>
+  </header>
+
+  <main>
+    <section class="stage">
+      <video id="cam" autoplay playsinline muted></video>
+      <div class="guide"><div class="oval"></div></div>
+      <div class="rec-badge"><span class="pulse"></span> grabando</div>
+    </section>
+
+    <section class="panel">
+      <div class="label">Transcripción</div>
+      <div id="latest" class="latest placeholder">Mantené apretado el botón y hablá mirando a la cámara…</div>
+      <div class="chips" id="chips"></div>
+      <div class="history"><ul id="history"></ul></div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="hint">mantené apretado <b>ESPACIO</b> o el botón</span>
+    <button id="ptt" class="ptt" disabled>
+      <svg class="mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      <span id="ptt-label">Iniciando cámara…</span>
+    </button>
+    <span id="status" class="status"></span>
+  </footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const cam = $("cam"), ptt = $("ptt"), pttLabel = $("ptt-label");
+const latest = $("latest"), history = $("history"), chips = $("chips"), statusEl = $("status");
+
+let stream, recorder, chunks = [], grabando = false, mimeType = "";
+
+function pickMime() {
+  const cands = ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm", "video/mp4"];
+  return cands.find(t => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || "";
+}
+
+async function initCam() {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30 }, facingMode: "user" },
+      audio: false,
+    });
+    cam.srcObject = stream;
+    mimeType = pickMime();
+    ptt.disabled = false;
+    pttLabel.textContent = "Hablar";
+    statusEl.textContent = "";
+  } catch (e) {
+    pttLabel.textContent = "Sin cámara";
+    statusEl.textContent = "No se pudo acceder a la cámara: " + e.message;
+  }
+}
+
+function startRec() {
+  if (grabando || ptt.disabled || !stream) return;
+  chunks = [];
+  recorder = new MediaRecorder(stream, mimeType ? { mimeType } : undefined);
+  recorder.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+  recorder.onstop = enviar;
+  recorder.start();
+  grabando = true;
+  document.body.classList.add("grabando");
+  statusEl.textContent = "";
+}
+
+function stopRec() {
+  if (!grabando) return;
+  grabando = false;
+  document.body.classList.remove("grabando");
+  try { recorder.stop(); } catch (_) {}
+}
+
+async function enviar() {
+  const blob = new Blob(chunks, { type: mimeType || "video/webm" });
+  if (blob.size < 1000) { statusEl.textContent = "Clip muy corto, probá de nuevo."; return; }
+  ptt.disabled = true; pttLabel.textContent = "Procesando…"; statusEl.textContent = "leyendo labios…";
+  const fd = new FormData();
+  const ext = (mimeType || "video/webm").includes("mp4") ? "mp4" : "webm";
+  fd.append("clip", blob, "clip." + ext);
+  try {
+    const r = await fetch("/transcribe", { method: "POST", body: fd });
+    const data = await r.json();
+    render(data);
+  } catch (e) {
+    statusEl.textContent = "Error de red: " + e.message;
+  } finally {
+    ptt.disabled = false; pttLabel.textContent = "Hablar";
+  }
+}
+
+function render(data) {
+  if (!data.ok) {
+    statusEl.textContent = data.mensaje || "No se pudo transcribir.";
+    latest.classList.add("placeholder");
+    latest.textContent = data.mensaje || "Probá de nuevo, mirando a la cámara.";
+    chips.innerHTML = chip("detección", (data.ratio_deteccion ?? 0) * 100 | 0, "%");
+    return;
+  }
+  statusEl.textContent = "";
+  if (latest.textContent.trim() && !latest.classList.contains("placeholder")) {
+    const li = document.createElement("li");
+    li.textContent = latest.textContent;
+    history.prepend(li);
+  }
+  latest.classList.remove("placeholder");
+  latest.textContent = data.texto || "(sin texto)";
+  chips.innerHTML = [
+    chip("frames", data.n_frames, ""),
+    chip("dur", data.duracion_s, " s"),
+    chip("detección", (data.ratio_deteccion * 100) | 0, "%"),
+    chip("RTF", data.rtf, ""),
+    chip("infer", data.t_infer_s, " s"),
+  ].join("");
+}
+
+const chip = (k, v, u) => `<span class="chip">${k} <b>${v}${u}</b></span>`;
+
+// --- controles: botón (mouse/touch) + barra espaciadora ---
+ptt.addEventListener("mousedown", startRec);
+ptt.addEventListener("touchstart", (e) => { e.preventDefault(); startRec(); }, { passive: false });
+window.addEventListener("mouseup", stopRec);
+ptt.addEventListener("touchend", (e) => { e.preventDefault(); stopRec(); }, { passive: false });
+window.addEventListener("keydown", (e) => { if (e.code === "Space" && !e.repeat) { e.preventDefault(); startRec(); } });
+window.addEventListener("keyup", (e) => { if (e.code === "Space") { e.preventDefault(); stopRec(); } });
+
+initCam();
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Dependencias del servicio de VSR en vivo (módulo realtime).
+# Un solo env de Python 3.11 corre TODO: preproc visual (mediapipe) + inferencia (espnet).
+#
+# Crear el env (probado en macOS arm64, CPU):
+#   conda create -y -n realtime python=3.11
+#   conda activate realtime
+#   pip install -r realtime/requirements.txt
+#
+# Además hay que clonar el repo del modelo de Gimeno (provee la clase ASRTask que
+# registra el frontend conv3dresnet18 + el Speech2Text de decode):
+#   git clone --depth 1 https://github.com/david-gimeno/evaluating-end2end-spanish-lipreading.git ~/evaluating-end2end-spanish-lipreading
+#
+# Notas de compatibilidad (costaron, no tocar a la ligera):
+#  - typeguard==2.13.3: el código de Gimeno usa check_argument_types (removido en typeguard 3).
+#  - numpy 2 lo pide espnet 202511; mediapipe 0.10.35 corre igual con numpy 2 para INFERIR.
+#    (El dataset offline se regenera con numpy<2 para landmarks bit-idénticos; acá no hace falta.)
+
+torch==2.12.1
+torchaudio==2.11.0
+espnet==202511
+mediapipe==0.10.35
+opencv-python==4.13.0.92
+numpy==2.4.6
+typeguard==2.13.3
+PyYAML==6.0.3
+fastapi==0.138.2
+uvicorn[standard]==0.49.0
+python-multipart==0.0.32
