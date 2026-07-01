@@ -80,6 +80,9 @@
     margin: .5rem 0 .2rem; min-height: 1.2em; letter-spacing: -0.01em;
   }
   .latest.placeholder { color: var(--muted); font-weight: 500; }
+  .crudo { font-size: .92rem; color: var(--muted); margin: 0 0 .3rem; min-height: 1.1em; }
+  .crudo b { color: #6b7787; font-weight: 600; }
+  .crudo .raw { text-decoration: line-through; text-decoration-color: rgba(239,94,107,.55); }
   .history { margin-top: auto; overflow-y: auto; border-top: 1px solid var(--line); padding-top: .7rem; }
   .history li { list-style: none; color: #b9c4d2; padding: .28rem 0; font-size: .98rem; border-bottom: 1px dashed rgba(255,255,255,.05); }
   .history ul { margin: 0; padding: 0; }
@@ -122,6 +125,7 @@
     <section class="panel">
       <div class="label">Transcripción</div>
       <div id="latest" class="latest placeholder">Mantené apretado el botón y hablá mirando a la cámara…</div>
+      <div id="crudo" class="crudo"></div>
       <div class="chips" id="chips"></div>
       <div class="history"><ul id="history"></ul></div>
     </section>
@@ -139,7 +143,8 @@
 <script>
 const $ = (id) => document.getElementById(id);
 const cam = $("cam"), ptt = $("ptt"), pttLabel = $("ptt-label");
-const latest = $("latest"), history = $("history"), chips = $("chips"), statusEl = $("status");
+const latest = $("latest"), crudo = $("crudo"), history = $("history"), chips = $("chips"), statusEl = $("status");
+const escapeHtml = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 let stream, recorder, chunks = [], grabando = false, mimeType = "";
 
@@ -207,6 +212,7 @@ function render(data) {
     statusEl.textContent = data.mensaje || "No se pudo transcribir.";
     latest.classList.add("placeholder");
     latest.textContent = data.mensaje || "Probá de nuevo, mirando a la cámara.";
+    crudo.textContent = "";
     chips.innerHTML = chip("detección", (data.ratio_deteccion ?? 0) * 100 | 0, "%");
     return;
   }
@@ -218,12 +224,17 @@ function render(data) {
   }
   latest.classList.remove("placeholder");
   latest.textContent = data.texto || "(sin texto)";
+  // Antes/después: si el corrector LLM cambió algo, mostramos la salida cruda tachada.
+  crudo.innerHTML = data.corregido
+    ? `<b>VSR crudo:</b> <span class="raw">${escapeHtml(data.texto_crudo || "")}</span>`
+    : "";
   chips.innerHTML = [
     chip("frames", data.n_frames, ""),
     chip("dur", data.duracion_s, " s"),
     chip("detección", (data.ratio_deteccion * 100) | 0, "%"),
     chip("RTF", data.rtf, ""),
     chip("infer", data.t_infer_s, " s"),
+    data.corregido ? chip("corrector", data.t_corrector_s, " s") : "",
   ].join("");
 }
 

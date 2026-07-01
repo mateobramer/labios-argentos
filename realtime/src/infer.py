@@ -31,12 +31,14 @@ VSR_CONFIG = os.environ.get("VSR_CONFIG", os.path.join(_MODELOS, "vsr_config.yam
 VSR_CKPT = os.environ.get("VSR_CKPT", os.path.join(_MODELOS, "ft03_best.pth"))
 VSR_DEVICE = os.environ.get("VSR_DEVICE", "cpu")
 VSR_BEAM = int(os.environ.get("VSR_BEAM", "10"))
+VSR_NBEST = int(os.environ.get("VSR_NBEST", "5"))  # candidatas que devuelve el beam (<= beam)
 
 
 class VSRInfer:
     """Carga el modelo una vez; `transcribir(rois)` devuelve la hipótesis de texto."""
 
-    def __init__(self, config=VSR_CONFIG, ckpt=VSR_CKPT, device=VSR_DEVICE, beam=VSR_BEAM):
+    def __init__(self, config=VSR_CONFIG, ckpt=VSR_CKPT, device=VSR_DEVICE, beam=VSR_BEAM,
+                 nbest=VSR_NBEST):
         if GIMENO_REPO not in sys.path:
             sys.path.insert(0, GIMENO_REPO)
         from src.bin.asr_inference import Speech2Text
@@ -46,6 +48,7 @@ class VSRInfer:
             cfg = yaml.safe_load(f)
         inf_conf = dict(cfg["inference_conf"])
         inf_conf["beam_size"] = beam
+        inf_conf["nbest"] = min(nbest, beam)   # pedirle al beam las top-N candidatas
         inf_conf.pop("lm_weight", None)  # sin LM (el LM peninsular no ayuda al rioplatense)
 
         self.device = device
@@ -64,13 +67,19 @@ class VSRInfer:
             **inf_conf,
         )
 
-    def transcribir(self, rois):
-        """rois: np.ndarray (T,96,96) uint8 -> str (texto en minúsculas, sin puntuación)."""
+    def _decode(self, rois):
         x = torch.from_numpy(np.ascontiguousarray(rois)).float()  # (T,96,96)
         x = self.transforms(x)                                    # (T,88,88)
         with torch.no_grad():
-            res = self.s2t(x)
-        return res[0][0].strip()
+            return self.s2t(x)  # lista de (text, token, token_int, hyp), largo = nbest
+
+    def transcribir(self, rois):
+        """rois (T,96,96) uint8 -> str: la 1-best (texto en minúsculas, sin puntuación)."""
+        return self._decode(rois)[0][0].strip()
+
+    def transcribir_nbest(self, rois):
+        """rois (T,96,96) uint8 -> list[str]: las top-N candidatas del beam (mejor primero)."""
+        return [r[0].strip() for r in self._decode(rois)]
 
 
 _SINGLETON = None

@@ -30,6 +30,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from realtime.src.corrector import get_corrector
 from realtime.src.infer import get_infer
 from realtime.src.preprocess_live import rois_desde_video
 
@@ -45,7 +46,9 @@ def _calentar():
     print(">>> cargando modelo VSR ...", flush=True)
     t0 = time.time()
     get_infer()
-    print(f">>> modelo listo en {time.time() - t0:.1f}s. Abrí http://localhost:8000", flush=True)
+    corr = get_corrector()
+    estado = f"corrector LLM ON ({corr.modelo})" if corr.activo else "corrector LLM OFF (backend no disponible)"
+    print(f">>> modelo listo en {time.time() - t0:.1f}s · {estado}. Abrí http://localhost:8000", flush=True)
 
 
 @app.get("/")
@@ -74,19 +77,26 @@ def transcribe(clip: UploadFile = File(...)):
             })
 
         t1 = time.time()
-        texto = get_infer().transcribir(rois)
+        crudo = get_infer().transcribir(rois)
         t_inf = time.time() - t1
+
+        t2 = time.time()
+        corregido = get_corrector().corregir(crudo)
+        t_corr = time.time() - t2
 
         dur_s = len(rois) / 25.0
         return JSONResponse({
             "ok": True,
-            "texto": texto,
+            "texto": corregido,            # lo que se muestra (corregido si hay LLM, si no = crudo)
+            "texto_crudo": crudo,          # salida directa del VSR (para mostrar el antes/después)
+            "corregido": corregido != crudo,
             "n_frames": int(len(rois)),
             "duracion_s": round(dur_s, 2),
             "ratio_deteccion": round(ratio, 3),
             "t_preproc_s": round(t_pre, 2),
             "t_infer_s": round(t_inf, 2),
-            "rtf": round((t_pre + t_inf) / dur_s, 2) if dur_s > 0 else None,
+            "t_corrector_s": round(t_corr, 2),
+            "rtf": round((t_pre + t_inf + t_corr) / dur_s, 2) if dur_s > 0 else None,
         })
     finally:
         os.unlink(ruta)
