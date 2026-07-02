@@ -48,7 +48,27 @@ ayuda** (sesgo léxico ajeno) ⇒ argumento a favor del corrector LLM propio del
      --load-vsr $CKPT --load-lm ~/zenodo/extracted/Factors_*/LM/lm-liprtve.pth \
      --output-dir ./spanish-benchmark/rioplatense/liprtve-si_LM/
    ```
-   Produce `inference/test.inf` (`ref#hyp` por clip) y `test.wer` (WER/CER ± IC).
+Produce `inference/test.inf` (`ref#hyp` por clip) y `test.wer` (WER/CER ± IC).
+
+## Experimentos visual cleaning vs original
+
+El tablero principal de esta etapa es
+`notebooks/06_experimentos_cleaning_vs_original.ipynb`. No entrena modelos: carga los
+manifests preparados, muestra tamanos original/cleaned, revisa que outputs de VM existan
+y compara resultados cuando esten disponibles.
+
+La inferencia y el entrenamiento pesado siguen ocurriendo en la VM. Los outputs esperados
+se guardan bajo `outputs/visual_cleaning/`:
+
+- `manifests/`: splits originales enriquecidos y splits `visual_cleaned`.
+- `results/`: CSV estandarizados de predicciones VSR.
+- `raw/`: salidas crudas opcionales de Gimeno (`test.inf`, `test.wer`).
+- `llm_corrector/`: resultados del corrector cuando exista el runner.
+
+La comparacion valida usa siempre el test original completo. `visual_cleaned` solo filtra
+train excluyendo `training_usability == bad_candidate`; val se conserva completo para esta
+primera comparacion. El corrector LLM viene despues de tener outputs VSR y opera solo como
+post-procesamiento/evaluacion, no sobre labels de entrenamiento.
 
 ### Validación (gate)
 
