@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -90,13 +91,34 @@ def _status_for_transcript_experiment(
     return "review_needed", "revisar notebook 08 antes de entrenar E2"
 
 
+def _variant_manifest_status(rois_root: Path) -> tuple[bool, str]:
+    manifest = rois_root.parent / "preprocessing_variant_manifest_full.csv"
+    if not manifest.exists():
+        return False, f"generar manifest full lower_face_resized96: {manifest}"
+    rows = leer_csv(manifest)
+    expected = leer_csv(REPO_ROOT / "vsr_models" / "splits" / "splits.csv")
+    if len(rows) != len(expected):
+        return False, f"manifest full incompleto: rows={len(rows)} expected={len(expected)}"
+    for row in rows:
+        if row.get("status") != "ok":
+            return False, "manifest full tiene status no-ok"
+        if row.get("dtype") != "uint8":
+            return False, "manifest full tiene dtype no uint8"
+        if not re.match(r"^\d+x96x96$", str(row.get("shape", ""))):
+            return False, "manifest full tiene shape no compatible con T x 96 x 96"
+        if not Path(row.get("variant_roi_path", "")).exists():
+            return False, "manifest full apunta a ROI faltante"
+    return True, ""
+
+
 def _status_for_variant(train_split: Path, val_split: Path, test_split: Path, rois_root: Path) -> tuple[str, str]:
     status, reason = _status_for_current(train_split, val_split, test_split)
     if status == "blocked":
         return status, reason
-    if rois_root.exists() and any(rois_root.rglob("*.npz")):
+    ready, manifest_reason = _variant_manifest_status(rois_root)
+    if ready:
         return "ready", ""
-    return "ready_after_generation", f"generar ROIs lower_face_resized96 en VM: {rois_root}"
+    return "ready_after_generation", manifest_reason or f"generar ROIs lower_face_resized96 en VM: {rois_root}"
 
 
 def _config(
