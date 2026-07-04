@@ -9,6 +9,7 @@ from evaluation.src.build_visual_cleaning_manifests import (
     construir_manifests,
 )
 from evaluation.src.experiment_metrics import cer, comparar_experimentos, wer
+from vsr_models.src.fine_tune import SPLITS_DIR, build_arg_parser, split_csv_path
 
 
 class TestVisualCleaningExperiments(unittest.TestCase):
@@ -46,6 +47,8 @@ class TestVisualCleaningExperiments(unittest.TestCase):
             self.assertEqual(resumen["visual_cleaned_val"], 1)
             self.assertEqual(resumen["visual_cleaned_test_original"], 1)
             self.assertEqual(resumen["excluded_train_bad_candidate"], 1)
+            self.assertEqual(resumen["compatible_splits"]["splits_original_train"], 2)
+            self.assertEqual(resumen["compatible_splits"]["splits_visual_cleaned_train"], 1)
 
     def test_cleaned_train_excluye_bad_candidate_y_test_no_filtra(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -73,11 +76,68 @@ class TestVisualCleaningExperiments(unittest.TestCase):
             construir_manifests(splits, policy, out)
             train = self._read_csv(out / "visual_cleaned_train.csv")
             test = self._read_csv(out / "visual_cleaned_test_original.csv")
+            splits_original_train = self._read_csv(out / "splits_original" / "train.csv")
+            splits_visual_cleaned_train = self._read_csv(out / "splits_visual_cleaned" / "train.csv")
+            splits_visual_cleaned_val = self._read_csv(out / "splits_visual_cleaned" / "val.csv")
 
             self.assertEqual([row["clip"] for row in train], ["clip_0001"])
             self.assertEqual([row["clip"] for row in test], ["clip_0003"])
+            self.assertEqual([row["clip"] for row in splits_original_train], ["clip_0001", "clip_0002"])
+            self.assertEqual([row["clip"] for row in splits_visual_cleaned_train], ["clip_0001"])
+            self.assertEqual(splits_visual_cleaned_val, [])
             for col in QUALITY_COLUMNS:
                 self.assertIn(col, train[0])
+
+    def test_fine_tune_usa_splits_default_si_no_se_pasa_splits_dir(self):
+        args = build_arg_parser().parse_args(
+            [
+                "--gimeno-repo",
+                "gimeno",
+                "--vsr-config",
+                "config.yaml",
+                "--load-vsr",
+                "model.pth",
+                "--rois-root",
+                "rois",
+            ]
+        )
+
+        self.assertEqual(args.splits_dir, SPLITS_DIR)
+        self.assertEqual(split_csv_path(args.splits_dir, "train"), str(Path(SPLITS_DIR) / "train.csv"))
+
+    def test_fine_tune_usa_splits_custom_si_se_pasa_splits_dir(self):
+        args = build_arg_parser().parse_args(
+            [
+                "--gimeno-repo",
+                "gimeno",
+                "--vsr-config",
+                "config.yaml",
+                "--load-vsr",
+                "model.pth",
+                "--rois-root",
+                "rois",
+                "--splits-dir",
+                "evaluation/outputs/visual_cleaning/splits_visual_cleaned",
+            ]
+        )
+
+        self.assertEqual(args.splits_dir, "evaluation/outputs/visual_cleaning/splits_visual_cleaned")
+        self.assertEqual(split_csv_path(args.splits_dir, "val"), str(Path(args.splits_dir) / "val.csv"))
+
+    def test_builder_no_modifica_splits_canonicos(self):
+        train = Path("vsr_models/splits/train.csv")
+        val = Path("vsr_models/splits/val.csv")
+        before_train = train.read_bytes()
+        before_val = val.read_bytes()
+        with tempfile.TemporaryDirectory() as tmp:
+            construir_manifests(
+                Path("vsr_models/splits/splits.csv"),
+                Path("data/metadata/visual_quality_policy_analysis_v2.csv"),
+                Path(tmp) / "manifests",
+            )
+
+        self.assertEqual(train.read_bytes(), before_train)
+        self.assertEqual(val.read_bytes(), before_val)
 
     def test_wer_cer_en_ejemplos_chicos(self):
         self.assertEqual(wer("hola mundo", "hola mundo"), 0.0)
@@ -102,6 +162,20 @@ class TestVisualCleaningExperiments(unittest.TestCase):
         code_cells = [cell for cell in data["cells"] if cell.get("cell_type") == "code"]
         self.assertLessEqual(len(data["cells"]), 15)
         self.assertFalse(any("def " in "".join(cell.get("source", [])) for cell in code_cells))
+
+    def test_notebook_no_ejecuta_entrenamiento(self):
+        notebook = Path("evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb")
+        data = json.loads(notebook.read_text(encoding="utf-8"))
+        code = "\n".join(
+            "".join(cell.get("source", []))
+            for cell in data["cells"]
+            if cell.get("cell_type") == "code"
+        )
+
+        self.assertNotIn("vsr_models.src.fine_tune", code)
+        self.assertNotIn("subprocess", code)
+        self.assertNotIn("get_ipython().system", code)
+        self.assertNotIn("!python", code)
 
     def _split_row(self, split, titulo, clip):
         return {

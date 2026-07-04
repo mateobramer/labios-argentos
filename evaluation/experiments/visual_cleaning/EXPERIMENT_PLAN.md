@@ -7,19 +7,25 @@ clips aportan ruido visual real. Como la politica moderada retiene la mayoria de
 dataset, el efecto esperado puede ser chico; por eso la comparacion valida debe hacerse
 en el mismo test original completo.
 
+`visual_cleaned_conservative` excluye 203 de 4826 clips de train (~4.2%). No se espera
+necesariamente una mejora grande de WER global. Si el efecto es nulo, eso no implica que
+la auditoria visual sea inutil: puede seguir sirviendo como diagnostico de datos, o puede
+indicar que hace falta una politica visual mas fuerte para afectar entrenamiento.
+
 ## Experimento A: baseline_original
 
 - Train: `vsr_models/splits/train.csv` completo.
 - Val: `vsr_models/splits/val.csv` completo.
+- Directorio compatible VM: `evaluation/outputs/visual_cleaning/splits_original/`.
 - Test principal: `vsr_models/splits/test.csv` completo.
 - Objetivo: linea base VSR entrenada con el dataset original.
 - Metricas: WER, CER, WER/CER por `training_usability` si el resultado se puede
   matchear contra el manifest visual.
 
-## Experimento B: visual_cleaned
+## Experimento B: visual_cleaned_conservative
 
-- Train: `evaluation/outputs/visual_cleaning/manifests/visual_cleaned_train.csv`.
-- Val: `evaluation/outputs/visual_cleaning/manifests/visual_cleaned_val.csv`.
+- Train: `evaluation/outputs/visual_cleaning/splits_visual_cleaned/train.csv`.
+- Val: `evaluation/outputs/visual_cleaning/splits_visual_cleaned/val.csv`.
 - Test principal:
   `evaluation/outputs/visual_cleaning/manifests/visual_cleaned_test_original.csv`.
 - Regla: el test principal no se filtra. Incluye el test original completo.

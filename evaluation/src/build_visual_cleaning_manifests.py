@@ -12,6 +12,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SPLITS = REPO_ROOT / "vsr_models" / "splits" / "splits.csv"
 DEFAULT_POLICY = REPO_ROOT / "data" / "metadata" / "visual_quality_policy_analysis_v2.csv"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "evaluation" / "outputs" / "visual_cleaning" / "manifests"
+DEFAULT_SPLITS_BASE_DIR = REPO_ROOT / "evaluation" / "outputs" / "visual_cleaning"
 
 QUALITY_COLUMNS = [
     "source_id",
@@ -34,6 +35,30 @@ def escribir_csv(path: Path, rows: list[dict[str, str]], fieldnames: list[str]) 
         writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def escribir_splits_compatibles(
+    base_dir: Path,
+    original_train: list[dict[str, str]],
+    original_val: list[dict[str, str]],
+    visual_cleaned_train: list[dict[str, str]],
+    visual_cleaned_val: list[dict[str, str]],
+    fieldnames: list[str],
+) -> dict[str, int]:
+    outputs = {
+        base_dir / "splits_original" / "train.csv": original_train,
+        base_dir / "splits_original" / "val.csv": original_val,
+        base_dir / "splits_visual_cleaned" / "train.csv": visual_cleaned_train,
+        base_dir / "splits_visual_cleaned" / "val.csv": visual_cleaned_val,
+    }
+    for path, rows in outputs.items():
+        escribir_csv(path, rows, fieldnames)
+    return {
+        "splits_original_train": len(original_train),
+        "splits_original_val": len(original_val),
+        "splits_visual_cleaned_train": len(visual_cleaned_train),
+        "splits_visual_cleaned_val": len(visual_cleaned_val),
+    }
 
 
 def _policy_moderate(row: dict[str, str]) -> str:
@@ -104,6 +129,7 @@ def construir_manifests(
     splits_path: Path = DEFAULT_SPLITS,
     policy_path: Path = DEFAULT_POLICY,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
+    splits_base_dir: Path | None = None,
     allow_missing_policy: bool = False,
 ) -> dict[str, object]:
     split_rows = leer_csv(splits_path)
@@ -113,6 +139,8 @@ def construir_manifests(
 
     fieldnames = _fieldnames(list(split_rows[0].keys()))
     rows, missing = enriquecer_splits(split_rows, policy_rows, allow_missing_policy)
+    if splits_base_dir is None:
+        splits_base_dir = output_dir.parent if output_dir.name == "manifests" else output_dir
 
     por_split = {
         split: [row for row in rows if row.get("split") == split]
@@ -134,12 +162,22 @@ def construir_manifests(
     }
     for nombre, filas in outputs.items():
         escribir_csv(output_dir / nombre, filas, fieldnames)
+    splits_summary = escribir_splits_compatibles(
+        splits_base_dir,
+        por_split["train"],
+        por_split["val"],
+        visual_cleaned_train,
+        visual_cleaned_val,
+        fieldnames,
+    )
 
     excluded_train = len(por_split["train"]) - len(visual_cleaned_train)
     return {
         "splits_path": str(splits_path),
         "policy_path": str(policy_path),
         "output_dir": str(output_dir),
+        "splits_original_dir": str(splits_base_dir / "splits_original"),
+        "splits_visual_cleaned_dir": str(splits_base_dir / "splits_visual_cleaned"),
         "original_train": len(por_split["train"]),
         "original_val": len(por_split["val"]),
         "original_test": len(por_split["test"]),
@@ -147,8 +185,12 @@ def construir_manifests(
         "visual_cleaned_val": len(visual_cleaned_val),
         "visual_cleaned_test_original": len(visual_cleaned_test_original),
         "excluded_train_bad_candidate": excluded_train,
+        "excluded_train_pct": round((excluded_train / len(por_split["train"])) * 100, 2)
+        if por_split["train"]
+        else 0.0,
         "missing_policy_rows": missing,
         "validation_policy": "val original completo; test original completo",
+        "compatible_splits": splits_summary,
     }
 
 
@@ -157,6 +199,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--splits", type=Path, default=DEFAULT_SPLITS)
     ap.add_argument("--policy", type=Path, default=DEFAULT_POLICY)
     ap.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    ap.add_argument("--splits-base-dir", type=Path, default=None)
     ap.add_argument("--allow-missing-policy", action="store_true")
     return ap.parse_args()
 
@@ -167,6 +210,7 @@ def main() -> None:
         splits_path=args.splits,
         policy_path=args.policy,
         output_dir=args.output_dir,
+        splits_base_dir=args.splits_base_dir,
         allow_missing_policy=args.allow_missing_policy,
     )
     print(json.dumps(resumen, indent=2, ensure_ascii=False))

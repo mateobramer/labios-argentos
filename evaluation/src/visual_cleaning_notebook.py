@@ -14,6 +14,7 @@ OUTPUT_DIR = REPO_ROOT / "evaluation" / "outputs" / "visual_cleaning"
 MANIFEST_DIR = OUTPUT_DIR / "manifests"
 RESULTS_DIR = OUTPUT_DIR / "results"
 LLM_DIR = OUTPUT_DIR / "llm_corrector"
+COMMANDS_DOC = REPO_ROOT / "evaluation" / "experiments" / "visual_cleaning" / "commands_vm.md"
 
 MANIFEST_FILES = {
     "original_train": "original_train.csv",
@@ -33,6 +34,23 @@ LLM_RESULT_FILES = {
     "baseline_original": LLM_DIR / "baseline_original_llm_corrected.csv",
     "visual_cleaned": LLM_DIR / "visual_cleaned_llm_corrected.csv",
 }
+
+EXPERIMENTS = [
+    {
+        "experiment": "baseline_original",
+        "splits_dir": "evaluation/outputs/visual_cleaning/splits_original",
+        "train_clips": 4826,
+        "val_clips": 466,
+        "status": "pendiente de VM",
+    },
+    {
+        "experiment": "visual_cleaned_conservative",
+        "splits_dir": "evaluation/outputs/visual_cleaning/splits_visual_cleaned",
+        "train_clips": 4623,
+        "val_clips": 466,
+        "status": "pendiente de VM",
+    },
+]
 
 
 def cargar_manifests(manifest_dir: Path = MANIFEST_DIR) -> dict[str, pd.DataFrame]:
@@ -80,6 +98,25 @@ def estado_archivos(paths: dict[str, Path]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def experimentos_pendientes() -> pd.DataFrame:
+    return pd.DataFrame(EXPERIMENTS)
+
+
+def estado_comandos_vm(path: Path = COMMANDS_DOC) -> pd.DataFrame:
+    return pd.DataFrame(
+        [
+            {
+                "artifact": "commands_vm.md",
+                "path": str(path),
+                "exists": path.exists(),
+                "contains_splits_dir": "--splits-dir" in path.read_text(encoding="utf-8")
+                if path.exists()
+                else False,
+            }
+        ]
+    )
+
+
 def cargar_resultados_existentes(paths: dict[str, Path] = RESULT_FILES) -> pd.DataFrame:
     tablas = []
     for experiment, path in paths.items():
@@ -106,7 +143,9 @@ def conclusion_automatica(tablas: dict[str, pd.DataFrame], resultados: pd.DataFr
     if resultados.empty:
         return (
             "Pendiente de VM: los manifests estan listos, pero todavia no hay resultados "
-            "VSR comparables. La comparacion valida debe usar el test original completo."
+            "VSR comparables. La comparacion valida debe usar el test original completo. "
+            "visual_cleaned_conservative excluye 203/4826 clips de train (~4.2%), por "
+            "lo que el efecto global esperado puede ser chico."
         )
     resumen = comparar_experimentos(resultados.to_dict("records"))
     if not resumen["can_conclude"]:

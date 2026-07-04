@@ -12,10 +12,22 @@ python -m evaluation.src.build_visual_cleaning_manifests \
   --output-dir evaluation/outputs/visual_cleaning/manifests
 ```
 
+Esto tambien genera splits compatibles con `fine_tune.py`:
+
+```text
+evaluation/outputs/visual_cleaning/splits_original/train.csv
+evaluation/outputs/visual_cleaning/splits_original/val.csv
+evaluation/outputs/visual_cleaning/splits_visual_cleaned/train.csv
+evaluation/outputs/visual_cleaning/splits_visual_cleaned/val.csv
+```
+
+`splits_visual_cleaned/val.csv` conserva la val original completa. La decision es
+conservadora: el experimento filtra solo train y mantiene val comparable.
+
 ## 2. baseline_original
 
-`vsr_models/src/fine_tune.py` ya entrena con `vsr_models/splits/train.csv` y
-`vsr_models/splits/val.csv`.
+Entrena con los splits originales copiados a un directorio de experimento. No pisa
+`vsr_models/splits/`.
 
 ```bash
 python -m vsr_models.src.fine_tune \
@@ -23,6 +35,7 @@ python -m vsr_models.src.fine_tune \
   --vsr-config ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth \
   --rois-root ~/data/lip_rois \
+  --splits-dir evaluation/outputs/visual_cleaning/splits_original \
   --out vsr_models/runs/baseline_original
 ```
 
@@ -30,24 +43,10 @@ Evaluar WER/CER con el flujo del repo de Gimeno sobre el test original completo.
 script de training imprime que el `best.pth` debe evaluarse con `vsr_main.py`; conservar
 el `.inf` y `.wer` de esa evaluacion.
 
-## 3. visual_cleaned
+## 3. visual_cleaned_conservative
 
-Gap actual: `vsr_models/src/fine_tune.py` hardcodea `vsr_models/splits/{train,val}.csv`
-y no acepta `--splits-dir` ni manifests custom. No sobrescribir los splits canonicos del
-repo.
-
-Opciones seguras antes de entrenar en VM:
-
-1. Agregar una bandera pequena `--splits-dir` al training loop y apuntarla a
-   `evaluation/outputs/visual_cleaning/manifests/`.
-2. Usar un worktree/copia temporal de VM y copiar ahi:
-   - `visual_cleaned_train.csv` como `vsr_models/splits/train.csv`;
-   - `visual_cleaned_val.csv` como `vsr_models/splits/val.csv`;
-   - `visual_cleaned_test_original.csv` como `vsr_models/splits/test.csv`.
-
-No hacer esa copia en el repo de trabajo principal.
-
-Placeholder una vez resuelto el gap:
+Entrena excluyendo solo `training_usability == bad_candidate` del train. Son 203 de
+4826 clips (~4.2%), por lo que el efecto global esperado puede ser chico.
 
 ```bash
 python -m vsr_models.src.fine_tune \
@@ -55,8 +54,12 @@ python -m vsr_models.src.fine_tune \
   --vsr-config ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth \
   --rois-root ~/data/lip_rois \
-  --out vsr_models/runs/visual_cleaned
+  --splits-dir evaluation/outputs/visual_cleaning/splits_visual_cleaned \
+  --out vsr_models/runs/visual_cleaned_conservative
 ```
+
+El test principal sigue siendo el test original completo. No generar ni usar un test
+filtrado como numero titular.
 
 ## 4. Inferencia y outputs esperados
 
@@ -96,5 +99,5 @@ El repositorio ya tiene parseos especificos para salidas `.inf` en la etapa visu
 parser general comprometido que convierta `.inf` + manifest full-test al schema estandar
 de `results_schema.md`.
 
-Gap documentado: crear o extender ese parser antes de cerrar resultados finales, usando
+Gap pendiente: crear o extender ese parser antes de cerrar resultados finales, usando
 `source_id`, `clip` y `reference` del manifest de test original.
