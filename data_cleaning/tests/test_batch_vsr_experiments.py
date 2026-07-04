@@ -3,18 +3,21 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 
 from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
 from evaluation.src.parse_batch_vsr_results import parse_all
 from visual_preprocessing.src.preprocessing_variant import run_preprocessing_variant
+from data_cleaning.src.transcript_alignment_audit import build_alignment_audit
 from data_cleaning.src.transcript_cleaning import (
     build_transcript_overlays,
     cargar_lexicon,
     auto_clean_safe,
     limpiar_restringido,
 )
+from data_cleaning.src.transcript_second_pass_asr import run_second_pass_asr
 from vsr_models.src.fine_tune import build_arg_parser, transcript_txt_path
 
 
@@ -91,16 +94,43 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertEqual(summary["excluded_by_policy_moderate"], 1)
 
     def test_entity_lexicon_solo_autoaplica_con_evidencia_fuerte(self):
-        lexicon = [{"canonical": "river", "aliases": "riber", "source_hint": "RIVER", "notes": ""}]
+        lexicon = [{"canonical": "river", "aliases": "riber", "source_hint": "RIVER", "type": "brand", "notes": ""}]
 
         changed, changes, evidence = auto_clean_safe("vamos riber", "RIVER GANO", lexicon)
         unchanged, no_changes, _ = auto_clean_safe("vamos riber", "BOCA GANO", lexicon)
 
         self.assertEqual(changed, "vamos river")
-        self.assertIn("entity_restricted", changes)
-        self.assertTrue(any("lexicon+source_hint" in item for item in evidence))
+        self.assertIn("entity_replacement_high_confidence", changes)
+        self.assertTrue(any("lexicon+asr2/source" in item for item in evidence))
         self.assertEqual(unchanged, "vamos riber")
-        self.assertNotIn("entity_restricted", no_changes)
+        self.assertNotIn("entity_replacement_high_confidence", no_changes)
+
+    def test_entity_replacement_no_reescribe_frase_completa(self):
+        lexicon = [
+            {
+                "canonical": "maria becerra",
+                "aliases": "esta frase completa no corresponde",
+                "source_hint": "maria becerra",
+                "type": "person",
+                "notes": "",
+            }
+        ]
+
+        cleaned, changes, _ = auto_clean_safe(
+            "esta frase completa no corresponde",
+            "maria becerra entrevista",
+            lexicon,
+            asr2_text="maria becerra",
+        )
+
+        self.assertEqual(cleaned, "esta frase completa no corresponde")
+        self.assertNotIn("entity_replacement_high_confidence", changes)
+
+    def test_cleaned_text_conserva_disfluencias(self):
+        cleaned, changes, _ = auto_clean_safe("eh eh bueno hola")
+
+        self.assertEqual(cleaned, "eh eh bueno hola")
+        self.assertEqual(changes, [])
 
     def test_transcripts_root_default_y_custom(self):
         base_args = [
@@ -138,6 +168,23 @@ class TestBatchVsrExperiments(unittest.TestCase):
                 ],
             )
             self._write_csv(
+                base / "transcript_second_pass_asr.csv",
+                [
+                    {
+                        "source_id": "fuente_a",
+                        "clip": "clip_0001",
+                        "split": "train",
+                        "clip_path": "clip.mp4",
+                        "current_text": "hola mundo",
+                        "asr2_text": "",
+                        "asr2_model": "test",
+                        "status": "blocked",
+                        "reason": "blocked_missing_asr_dependency",
+                        "asr2_runtime_sec": "0.0",
+                    }
+                ],
+            )
+            self._write_csv(
                 base / "splits_transcript_cleaned_stronger" / "train.csv",
                 [self._split_row("train", "fuente_a", "clip_0001", "hola mundo")],
             )
@@ -163,11 +210,12 @@ class TestBatchVsrExperiments(unittest.TestCase):
                 "E4_all_combined",
             })
             self.assertEqual(configs["E0_baseline_original"]["status"], "ready")
-            self.assertEqual(configs["E2_transcript_cleaned_stronger"]["status"], "ready")
+            self.assertEqual(configs["E2_transcript_cleaned_stronger"]["status"], "blocked_missing_asr2")
             self.assertEqual(configs["E2_transcript_cleaned_stronger"]["transcript_variant"], "transcript_cleaned_stronger")
             self.assertEqual(configs["E2_transcript_cleaned_stronger"]["transcript_policy"], "moderate")
             self.assertEqual(configs["E3_preprocessing_variant"]["status"], "ready_after_generation")
             self.assertEqual(configs["E4_all_combined"]["status"], "ready_after_generation")
+            self.assertEqual(configs["E4_all_combined"]["transcript_variant"], "current")
 
             summary = write_configs(base)
             self.assertEqual(summary["experiments"]["E0_baseline_original"], "ready")
@@ -191,6 +239,85 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertTrue(Path(summary["manifest"]).exists())
             if summary["status"] != "blocked":
                 self.assertLessEqual(summary["previews"], 1)
+
+    def test_asr2_missing_dependency_no_rompe(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            splits = base / "splits.csv"
+            self._write_csv(splits, [self._split_row("train", "fuente_a", "clip_0001", "hola mundo")])
+            with patch("data_cleaning.src.transcript_second_pass_asr.detectar_backend", return_value=None):
+                summary = run_second_pass_asr(splits_path=splits, output_path=base / "asr2.csv")
+
+            rows = self._read_csv(base / "asr2.csv")
+            self.assertEqual(summary["status"], "blocked")
+            self.assertEqual(rows[0]["status"], "blocked")
+            self.assertEqual(rows[0]["reason"], "blocked_missing_asr_dependency")
+
+    def test_alignment_audit_calcula_wer_cer_y_high(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            asr2 = base / "asr2.csv"
+            self._write_csv(
+                asr2,
+                [
+                    {
+                        "source_id": "fuente_a",
+                        "clip": "clip_0001",
+                        "split": "train",
+                        "clip_path": "clip.mp4",
+                        "current_text": "hola mundo",
+                        "asr2_text": "chau planeta distinto",
+                        "asr2_model": "test",
+                        "status": "ok",
+                        "reason": "",
+                        "asr2_runtime_sec": "0.1",
+                    }
+                ],
+            )
+
+            build_alignment_audit(asr2, base / "disagreement.csv")
+            rows = self._read_csv(base / "disagreement.csv")
+
+            self.assertEqual(rows[0]["disagreement_level"], "high")
+            self.assertGreater(float(rows[0]["wer_current_vs_asr2"]), 0.9)
+            self.assertGreater(float(rows[0]["cer_current_vs_asr2"]), 0.5)
+
+    def test_high_disagreement_produce_candidate_y_bad_candidate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            splits = base / "splits.csv"
+            self._write_csv(splits, [self._split_row("train", "fuente_a", "clip_0001", "hola mundo")])
+            self._write_csv(
+                base / "asr2.csv",
+                [
+                    {
+                        "source_id": "fuente_a",
+                        "clip": "clip_0001",
+                        "split": "train",
+                        "clip_path": "clip.mp4",
+                        "current_text": "hola mundo",
+                        "asr2_text": "chau planeta distinto",
+                        "asr2_model": "test",
+                        "status": "ok",
+                        "reason": "",
+                        "asr2_runtime_sec": "0.1",
+                    }
+                ],
+            )
+            build_alignment_audit(base / "asr2.csv", base / "disagreement.csv")
+
+            build_transcript_overlays(
+                splits,
+                base / "out",
+                repo_root=base,
+                asr2_path=base / "asr2.csv",
+                asr_disagreement_path=base / "disagreement.csv",
+            )
+
+            candidates = self._read_csv(base / "out" / "transcript_cleaning_candidates.csv")
+            policy = self._read_csv(base / "out" / "transcript_quality_policy.csv")
+            self.assertTrue(any(row["candidate_type"] in {"asr_disagreement", "possible_audio_text_mismatch", "possible_misalignment"} for row in candidates))
+            self.assertEqual(policy[0]["transcript_usability"], "bad_candidate")
 
     def test_parser_funciona_con_fixture_chico(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -255,8 +382,8 @@ class TestBatchVsrExperiments(unittest.TestCase):
 
     def test_notebooks_08_09_no_contienen_entrenamiento(self):
         for notebook in [
-            Path("evaluation/notebooks/08_transcript_cleaning_review.ipynb"),
-            Path("evaluation/notebooks/09_preprocessing_variant_review.ipynb"),
+            Path("data_cleaning/notebooks/08_transcript_cleaning_review.ipynb"),
+            Path("visual_preprocessing/notebooks/09_preprocessing_variant_review.ipynb"),
         ]:
             data = json.loads(notebook.read_text(encoding="utf-8"))
             code = "\n".join(
@@ -268,6 +395,21 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertNotIn("subprocess", code)
             self.assertNotIn("!python", code)
             self.assertNotIn("gcloud", code)
+
+    def test_no_quedan_notebooks_08_09_en_evaluation(self):
+        self.assertFalse(Path("evaluation/notebooks/08_transcript_cleaning_review.ipynb").exists())
+        self.assertFalse(Path("evaluation/notebooks/09_preprocessing_variant_review.ipynb").exists())
+
+    def test_vm_readiness_existe_y_tiene_e0_e4(self):
+        text = Path("evaluation/experiments/batch_vsr/VM_READINESS.md").read_text(encoding="utf-8")
+        for name in [
+            "E0_baseline_original",
+            "E1_visual_cleaned",
+            "E2_transcript_audited",
+            "E3_preprocessing_variant",
+            "E4_all_combined",
+        ]:
+            self.assertIn(name, text)
 
     def test_no_hay_npz_batch_commiteables(self):
         npz_files = list(Path("evaluation/outputs/batch_vsr").glob("**/*.npz"))

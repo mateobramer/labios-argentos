@@ -35,9 +35,11 @@ evaluation/outputs/batch_vsr/transcripts_cleaned_stronger/
 evaluation/outputs/batch_vsr/rois_lower_face_resized96/
 evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
 evaluation/outputs/batch_vsr/preprocessing_variant_preview/
+evaluation/outputs/batch_vsr/raw/
 evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz
 evaluation/outputs/batch_vsr/rois_lower_face_resized96/**/*.npz
 evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png
+vsr_models/runs/batch_vsr/
 
 # Video local usado por el analisis de limpieza; los artefactos finales si se versionan.
 data_cleaning/outputs/azzaro_whisper/videos/
@@ -49,6 +51,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .jupyter_logs/
+.ai/
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/

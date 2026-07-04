@@ -28,9 +28,30 @@ def leer_csv(path: Path) -> list[dict[str, str]]:
 def transcript_policy_summary(output_base: Path) -> dict[str, object]:
     rows = leer_csv(output_base / "transcript_quality_policy.csv")
     counts = Counter(row.get("transcript_usability", "") for row in rows)
+    candidates = leer_csv(output_base / "transcript_cleaning_candidates.csv")
+    asr2 = leer_csv(output_base / "transcript_second_pass_asr.csv")
+    disagreement = leer_csv(output_base / "transcript_asr_disagreement.csv")
+    asr2_counts = Counter(row.get("status", "") for row in asr2)
+    disagreement_counts = Counter(row.get("disagreement_level", "") for row in disagreement)
+    auto_replacements = sum(1 for row in candidates if str(row.get("auto_applied", "")).lower() == "true")
+    if not asr2 or asr2_counts.get("ok", 0) == 0:
+        decision = "BLOCKED_MISSING_ASR2"
+    elif counts.get("bad_candidate", 0) or disagreement_counts.get("high", 0) or auto_replacements:
+        decision = "READY_FOR_VM"
+    elif len(candidates) <= 30 and counts.get("bad_candidate", 0) == 0:
+        decision = "LOW_IMPACT_DO_NOT_PRIORITIZE"
+    else:
+        decision = "REVIEW_NEEDED"
     return {
         "transcript_excluded_count": counts.get("bad_candidate", 0),
         "transcript_usability_counts": dict(counts),
+        "replacement_candidates": len(candidates),
+        "auto_replacements": auto_replacements,
+        "asr2_rows": len(asr2),
+        "asr2_counts": dict(asr2_counts),
+        "disagreement_rows": len(disagreement),
+        "disagreement_counts": dict(disagreement_counts),
+        "transcript_decision": decision,
     }
 
 
@@ -48,6 +69,25 @@ def _status_for_transcripts(train_split: Path, val_split: Path, test_split: Path
     if not root.exists():
         return "blocked", f"faltan transcripts cleaned: {root}"
     return "ready", ""
+
+
+def _status_for_transcript_experiment(
+    train_split: Path,
+    val_split: Path,
+    test_split: Path,
+    root: Path,
+    transcript_decision: str,
+) -> tuple[str, str]:
+    status, reason = _status_for_transcripts(train_split, val_split, test_split, root)
+    if status == "blocked":
+        return status, reason
+    if transcript_decision == "READY_FOR_VM":
+        return "ready", ""
+    if transcript_decision == "BLOCKED_MISSING_ASR2":
+        return "blocked_missing_asr2", "falta ASR2 usable; no entrenar E2 como mejora fuerte"
+    if transcript_decision == "LOW_IMPACT_DO_NOT_PRIORITIZE":
+        return "low_impact_do_not_prioritize", "ASR2 disponible pero el transcript audit no cambia train de forma util"
+    return "review_needed", "revisar notebook 08 antes de entrenar E2"
 
 
 def _status_for_variant(train_split: Path, val_split: Path, test_split: Path, rois_root: Path) -> tuple[str, str]:
@@ -74,6 +114,7 @@ def _config(
     transcript_policy: str = "none",
     transcript_excluded_count: int = 0,
     transcript_usability_counts: dict[str, int] | None = None,
+    transcript_decision: str = "",
 ) -> dict[str, object]:
     return {
         "experiment": experiment,
@@ -88,6 +129,7 @@ def _config(
         "transcript_policy": transcript_policy,
         "transcript_excluded_count": transcript_excluded_count,
         "transcript_usability_counts": transcript_usability_counts or {},
+        "transcript_decision": transcript_decision,
         "preprocessing_variant": preprocessing_variant,
         "blocked_reason": blocked_reason,
     }
@@ -110,13 +152,21 @@ def build_configs(output_base: Path = DEFAULT_OUTPUT_BASE) -> dict[str, dict[str
 
     e0_status, e0_reason = _status_for_current(original_train, original_val, test_original)
     e1_status, e1_reason = _status_for_current(cleaned_train, cleaned_val, test_original)
-    e2_status, e2_reason = _status_for_transcripts(transcript_train, transcript_val, test_original, cleaned_transcripts)
+    e2_status, e2_reason = _status_for_transcript_experiment(
+        transcript_train,
+        transcript_val,
+        test_original,
+        cleaned_transcripts,
+        str(policy["transcript_decision"]),
+    )
     e3_status, e3_reason = _status_for_variant(original_train, original_val, test_original, variant_rois)
-    e4_base_status, e4_base_reason = _status_for_transcripts(combined_train, combined_val, test_original, cleaned_transcripts)
-    e4_variant_status, e4_variant_reason = _status_for_variant(combined_train, combined_val, test_original, variant_rois)
-    if e4_base_status == "blocked":
-        e4_status, e4_reason = e4_base_status, e4_base_reason
-    elif e4_variant_status != "ready":
+    e4_uses_transcripts = policy["transcript_decision"] == "READY_FOR_VM"
+    e4_train = combined_train if e4_uses_transcripts else cleaned_train
+    e4_val = combined_val if e4_uses_transcripts else cleaned_val
+    e4_transcripts = cleaned_transcripts if e4_uses_transcripts else None
+    e4_transcript_variant = "transcript_cleaned_stronger" if e4_uses_transcripts else "current"
+    e4_variant_status, e4_variant_reason = _status_for_variant(e4_train, e4_val, test_original, variant_rois)
+    if e4_variant_status != "ready":
         e4_status, e4_reason = e4_variant_status, e4_variant_reason
     else:
         e4_status, e4_reason = "ready", ""
@@ -163,6 +213,7 @@ def build_configs(output_base: Path = DEFAULT_OUTPUT_BASE) -> dict[str, dict[str
             "moderate",
             int(policy["transcript_excluded_count"]),
             policy["transcript_usability_counts"],
+            str(policy["transcript_decision"]),
         ),
         "E3_preprocessing_variant": _config(
             "E3_preprocessing_variant",
@@ -180,18 +231,19 @@ def build_configs(output_base: Path = DEFAULT_OUTPUT_BASE) -> dict[str, dict[str
         "E4_all_combined": _config(
             "E4_all_combined",
             e4_status,
-            combined_train,
-            combined_val,
+            e4_train,
+            e4_val,
             test_original,
             variant_rois,
-            cleaned_transcripts,
+            e4_transcripts,
             "conservative",
-            "transcript_cleaned_stronger",
+            e4_transcript_variant,
             "lower_face_resized96",
             e4_reason,
-            "moderate",
+            "moderate" if e4_uses_transcripts else "none",
             int(policy["transcript_excluded_count"]),
             policy["transcript_usability_counts"],
+            str(policy["transcript_decision"]),
         ),
     }
     return configs

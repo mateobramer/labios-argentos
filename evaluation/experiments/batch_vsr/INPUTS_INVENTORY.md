@@ -48,8 +48,9 @@ ffprobe -hide_banner data/clips/<titulo>/<clip>.mp4
 - Es viable conceptualmente usando los clips actuales y el pipeline existente en
   `visual_preprocessing/src/preprocesar.py`.
 - Bloqueo local de smoke: `mediapipe` no esta instalado en este entorno.
-- En VM, instalar `visual_preprocessing/requirements.txt` y correr el comando documentado
-  en `PREPROCESSING_VARIANT.md`.
+- Smoke local actual de `lower_face_resized96`: `20/20 ok`, `READY_FOR_FULL_GENERATION`.
+- En VM, instalar `visual_preprocessing/requirements.txt` si hiciera falta y correr el
+  comando full documentado en `PREPROCESSING_VARIANT.md`.
 
 ## Flags actuales de `fine_tune.py`
 

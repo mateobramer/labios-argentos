@@ -1,24 +1,24 @@
 source_id,clip,split,transcript_usability,transcript_reasons,transcript_policy_moderate
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0001,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0002,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0003,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0004,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0005,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0006,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0007,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0008,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0009,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0010,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0011,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0012,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0013,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0014,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0015,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0016,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0017,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0018,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0019,test,usable,auto_clean_safe_only_or_no_issue,keep
-LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0020,test,usable,auto_clean_safe_only_or_no_issue,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0001,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0002,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0003,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0004,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0005,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0006,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0007,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0008,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0009,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0010,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0011,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0012,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0013,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0014,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0015,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0016,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0017,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0018,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0019,test,questionable,asr_disagreement,keep
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0020,test,questionable,asr_disagreement,keep
 LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0021,test,usable,auto_clean_safe_only_or_no_issue,keep
 LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0022,test,usable,auto_clean_safe_only_or_no_issue,keep
 LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0023,test,usable,auto_clean_safe_only_or_no_issue,keep
@@ -211,7 +211,7 @@ ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0093,test,usable,auto_cl
 ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0094,test,usable,auto_clean_safe_only_or_no_issue,keep
 ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0095,test,usable,auto_clean_safe_only_or_no_issue,keep
 ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0096,test,usable,auto_clean_safe_only_or_no_issue,keep
-ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0097,test,questionable,too_long_for_duration,keep
+ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0097,test,questionable,possible_audio_text_mismatch,keep
 ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0098,test,usable,auto_clean_safe_only_or_no_issue,keep
 ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0099,test,usable,auto_clean_safe_only_or_no_issue,keep
 ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -,clip_0100,test,usable,auto_clean_safe_only_or_no_issue,keep
@@ -731,7 +731,7 @@ ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0071,train,usable,auto_clean_s
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0072,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0073,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0074,train,usable,auto_clean_safe_only_or_no_issue,keep
-ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0075,train,questionable,anomalous_repetition,keep
+ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0075,train,questionable,possible_hallucination,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0076,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0077,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0078,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -772,7 +772,7 @@ ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0114,train,usable,auto_clean_s
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0115,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0116,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0117,train,usable,auto_clean_safe_only_or_no_issue,keep
-ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0118,train,questionable,anomalous_repetition,keep
+ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0118,train,questionable,possible_hallucination,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0119,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0120,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0121,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -898,7 +898,7 @@ ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0262,train,usable,auto_clean_s
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0263,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0264,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0265,train,usable,auto_clean_safe_only_or_no_issue,keep
-ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0266,train,questionable,anomalous_repetition,keep
+ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0266,train,questionable,possible_hallucination,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0267,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0268,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0269,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -913,7 +913,7 @@ ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0277,train,usable,auto_clean_s
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0278,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0279,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0280,train,usable,auto_clean_safe_only_or_no_issue,keep
-ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0281,train,questionable,anomalous_repetition,keep
+ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0281,train,questionable,possible_hallucination,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0282,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0283,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0284,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -933,7 +933,7 @@ ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0298,train,usable,auto_clean_s
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0299,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0300,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0301,train,usable,auto_clean_safe_only_or_no_issue,keep
-ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0302,train,questionable,anomalous_repetition,keep
+ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0302,train,questionable,possible_hallucination,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0303,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0304,train,usable,auto_clean_safe_only_or_no_issue,keep
 ANÉCDOTA VIAJE MUNDIAL BRASIL 2014  parte 1,clip_0305,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -1372,7 +1372,7 @@ DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0004,train,usable,auto_c
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0005,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0006,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0007,train,usable,auto_clean_safe_only_or_no_issue,keep
-DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0008,train,questionable,anomalous_repetition,keep
+DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0008,train,questionable,possible_hallucination,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0009,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0010,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0011,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -1450,7 +1450,7 @@ DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0082,train,usable,auto_c
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0083,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0084,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0085,train,usable,auto_clean_safe_only_or_no_issue,keep
-DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0086,train,questionable,too_long_for_duration,keep
+DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0086,train,questionable,possible_audio_text_mismatch,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0087,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0088,train,usable,auto_clean_safe_only_or_no_issue,keep
 DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA,clip_0089,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -2509,7 +2509,7 @@ Entrevista completa por mi libro Franco con Diego,clip_0389,train,usable,auto_cl
 Entrevista completa por mi libro Franco con Diego,clip_0391,train,usable,auto_clean_safe_only_or_no_issue,keep
 Entrevista completa por mi libro Franco con Diego,clip_0392,train,usable,auto_clean_safe_only_or_no_issue,keep
 Entrevista completa por mi libro Franco con Diego,clip_0394,train,usable,auto_clean_safe_only_or_no_issue,keep
-Entrevista completa por mi libro Franco con Diego,clip_0395,train,questionable,anomalous_repetition,keep
+Entrevista completa por mi libro Franco con Diego,clip_0395,train,questionable,possible_hallucination,keep
 Entrevista completa por mi libro Franco con Diego,clip_0396,train,usable,auto_clean_safe_only_or_no_issue,keep
 Entrevista completa por mi libro Franco con Diego,clip_0397,train,usable,auto_clean_safe_only_or_no_issue,keep
 Entrevista completa por mi libro Franco con Diego,clip_0399,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3109,8 +3109,8 @@ JULI POGGIO EN FERNÉ CON GREGO,clip_0587,train,usable,auto_clean_safe_only_or_n
 JULI POGGIO EN FERNÉ CON GREGO,clip_0588,train,usable,auto_clean_safe_only_or_no_issue,keep
 JULI POGGIO EN FERNÉ CON GREGO,clip_0589,train,usable,auto_clean_safe_only_or_no_issue,keep
 JULI POGGIO EN FERNÉ CON GREGO,clip_0590,train,usable,auto_clean_safe_only_or_no_issue,keep
-JULI POGGIO EN FERNÉ CON GREGO,clip_0591,train,questionable,anomalous_repetition,keep
-JULI POGGIO EN FERNÉ CON GREGO,clip_0592,train,questionable,anomalous_repetition,keep
+JULI POGGIO EN FERNÉ CON GREGO,clip_0591,train,questionable,possible_hallucination,keep
+JULI POGGIO EN FERNÉ CON GREGO,clip_0592,train,questionable,possible_hallucination,keep
 JULI POGGIO EN FERNÉ CON GREGO,clip_0593,train,usable,auto_clean_safe_only_or_no_issue,keep
 JULI POGGIO EN FERNÉ CON GREGO,clip_0594,train,usable,auto_clean_safe_only_or_no_issue,keep
 JULI POGGIO EN FERNÉ CON GREGO,clip_0599,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3175,7 +3175,7 @@ LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0181,train,usable,auto_c
 LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0216,train,usable,auto_clean_safe_only_or_no_issue,keep
 LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0217,train,usable,auto_clean_safe_only_or_no_issue,keep
 LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0229,train,usable,auto_clean_safe_only_or_no_issue,keep
-LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0265,train,questionable,too_long_for_duration,keep
+LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0265,train,questionable,possible_audio_text_mismatch,keep
 LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0267,train,usable,auto_clean_safe_only_or_no_issue,keep
 LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0320,train,usable,auto_clean_safe_only_or_no_issue,keep
 LA CHABONA X RAMI BILBAO  DIVAS DIARY  ABITARE  10,clip_0521,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3360,7 +3360,7 @@ Las y los estudiantes al frente - Entrevista a la,clip_0181,train,usable,auto_cl
 Las y los estudiantes al frente - Entrevista a la,clip_0182,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0183,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0184,train,usable,auto_clean_safe_only_or_no_issue,keep
-Las y los estudiantes al frente - Entrevista a la,clip_0185,train,questionable,rare_character_token,keep
+Las y los estudiantes al frente - Entrevista a la,clip_0185,train,questionable,asr_disagreement,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0186,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0187,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0188,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3431,7 +3431,7 @@ Las y los estudiantes al frente - Entrevista a la,clip_0253,train,usable,auto_cl
 Las y los estudiantes al frente - Entrevista a la,clip_0254,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0255,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0256,train,usable,auto_clean_safe_only_or_no_issue,keep
-Las y los estudiantes al frente - Entrevista a la,clip_0257,train,questionable,anomalous_repetition,keep
+Las y los estudiantes al frente - Entrevista a la,clip_0257,train,questionable,possible_hallucination,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0258,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0259,train,usable,auto_clean_safe_only_or_no_issue,keep
 Las y los estudiantes al frente - Entrevista a la,clip_0260,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3588,7 +3588,7 @@ Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0067,train,usable,auto_
 Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0070,train,usable,auto_clean_safe_only_or_no_issue,keep
 Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0071,train,usable,auto_clean_safe_only_or_no_issue,keep
 Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0072,train,usable,auto_clean_safe_only_or_no_issue,keep
-Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0073,train,questionable,consonant_run_token,keep
+Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0073,train,usable,auto_clean_safe_only_or_no_issue,keep
 Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0076,train,usable,auto_clean_safe_only_or_no_issue,keep
 Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0078,train,usable,auto_clean_safe_only_or_no_issue,keep
 Los lujos de L-Gante y qué aprendió cuando estuvo,clip_0080,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3730,7 +3730,7 @@ Manipulación mental Cómo tu CEREBRO literalmente c,clip_0030,train,usable,auto
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0031,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0032,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0033,train,usable,auto_clean_safe_only_or_no_issue,keep
-Manipulación mental Cómo tu CEREBRO literalmente c,clip_0034,train,questionable,too_long_for_duration,keep
+Manipulación mental Cómo tu CEREBRO literalmente c,clip_0034,train,questionable,possible_audio_text_mismatch,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0035,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0036,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0037,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -3839,14 +3839,14 @@ Manipulación mental Cómo tu CEREBRO literalmente c,clip_0139,train,usable,auto
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0140,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0141,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0142,train,usable,auto_clean_safe_only_or_no_issue,keep
-Manipulación mental Cómo tu CEREBRO literalmente c,clip_0143,train,questionable,too_long_for_duration,keep
+Manipulación mental Cómo tu CEREBRO literalmente c,clip_0143,train,questionable,possible_audio_text_mismatch,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0144,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0145,train,usable,auto_clean_safe_only_or_no_issue,keep
-Manipulación mental Cómo tu CEREBRO literalmente c,clip_0146,train,questionable,anomalous_repetition,keep
+Manipulación mental Cómo tu CEREBRO literalmente c,clip_0146,train,questionable,possible_hallucination,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0147,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0148,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0149,train,usable,auto_clean_safe_only_or_no_issue,keep
-Manipulación mental Cómo tu CEREBRO literalmente c,clip_0150,train,questionable,anomalous_repetition,keep
+Manipulación mental Cómo tu CEREBRO literalmente c,clip_0150,train,questionable,possible_hallucination,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0151,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0152,train,usable,auto_clean_safe_only_or_no_issue,keep
 Manipulación mental Cómo tu CEREBRO literalmente c,clip_0153,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -4016,7 +4016,7 @@ PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0034,train,usable,auto_c
 PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0035,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0036,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0037,train,usable,auto_clean_safe_only_or_no_issue,keep
-PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0039,train,questionable,anomalous_repetition,keep
+PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0039,train,questionable,possible_hallucination,keep
 PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0040,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0041,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS DIRECTORES de CASTING - Tel,clip_0042,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -4198,7 +4198,7 @@ PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0050,train,usable,auto_cle
 PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0052,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0053,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0054,train,usable,auto_clean_safe_only_or_no_issue,keep
-PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0055,train,questionable,too_long_for_duration,keep
+PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0055,train,questionable,possible_audio_text_mismatch,keep
 PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0056,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0057,train,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GOMEROS - Telefe Noticias,clip_0058,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -4800,7 +4800,7 @@ Por qué ya no podemos conversar (y cómo aprender a,clip_0369,train,usable,auto
 Por qué ya no podemos conversar (y cómo aprender a,clip_0370,train,usable,auto_clean_safe_only_or_no_issue,keep
 Por qué ya no podemos conversar (y cómo aprender a,clip_0371,train,usable,auto_clean_safe_only_or_no_issue,keep
 Por qué ya no podemos conversar (y cómo aprender a,clip_0372,train,usable,auto_clean_safe_only_or_no_issue,keep
-Profesiones Argentinas DUEÑOS de SALONES de FIESTA,clip_0004,train,questionable,too_short_for_duration,keep
+Profesiones Argentinas DUEÑOS de SALONES de FIESTA,clip_0004,train,questionable,possible_audio_text_mismatch,keep
 Profesiones Argentinas DUEÑOS de SALONES de FIESTA,clip_0005,train,usable,auto_clean_safe_only_or_no_issue,keep
 Profesiones Argentinas DUEÑOS de SALONES de FIESTA,clip_0006,train,usable,auto_clean_safe_only_or_no_issue,keep
 Profesiones Argentinas DUEÑOS de SALONES de FIESTA,clip_0007,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5094,7 +5094,7 @@ Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0096,train,usable,auto_c
 Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0097,train,usable,auto_clean_safe_only_or_no_issue,keep
 Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0098,train,usable,auto_clean_safe_only_or_no_issue,keep
 Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0099,train,usable,auto_clean_safe_only_or_no_issue,keep
-Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0100,train,questionable,anomalous_repetition,keep
+Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0100,train,questionable,possible_hallucination,keep
 Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0101,train,usable,auto_clean_safe_only_or_no_issue,keep
 Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0102,train,usable,auto_clean_safe_only_or_no_issue,keep
 Profesiones Argentinas PERIODISTAS DEPORTIVOS - Te,clip_0103,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5245,7 +5245,7 @@ RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0061,train,usable,auto_
 RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0062,train,usable,auto_clean_safe_only_or_no_issue,keep
 RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0063,train,usable,auto_clean_safe_only_or_no_issue,keep
 RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0064,train,usable,auto_clean_safe_only_or_no_issue,keep
-RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0065,train,questionable,too_long_for_duration,keep
+RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0065,train,questionable,possible_audio_text_mismatch,keep
 RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0066,train,usable,auto_clean_safe_only_or_no_issue,keep
 RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0067,train,usable,auto_clean_safe_only_or_no_issue,keep
 RIVER GANÓ SUFRIENDO VS CIUDAD DE BOLIVAR!!! ALIVI,clip_0068,train,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5508,7 +5508,7 @@ AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0026,val,usable,auto_c
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0027,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0028,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0029,val,usable,auto_clean_safe_only_or_no_issue,keep
-AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0030,val,questionable,anomalous_repetition,keep
+AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0030,val,questionable,possible_hallucination,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0031,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0032,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0033,val,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5517,7 +5517,7 @@ AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0035,val,usable,auto_c
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0036,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0037,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0038,val,usable,auto_clean_safe_only_or_no_issue,keep
-AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0039,val,questionable,anomalous_repetition,keep
+AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0039,val,questionable,possible_hallucination,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0040,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0041,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0042,val,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5643,7 +5643,7 @@ AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0186,val,usable,auto_c
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0187,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0188,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0190,val,usable,auto_clean_safe_only_or_no_issue,keep
-AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0191,val,questionable,anomalous_repetition,keep
+AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0191,val,questionable,possible_hallucination,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0192,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0193,val,usable,auto_clean_safe_only_or_no_issue,keep
 AZZARO REACCIÓN - CICLO TERMINADO RACING EMPATÓ 2-,clip_0194,val,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5750,7 +5750,7 @@ CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0108,val,usable,auto_clean_safe_only_or_n
 CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0109,val,usable,auto_clean_safe_only_or_no_issue,keep
 CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0110,val,usable,auto_clean_safe_only_or_no_issue,keep
 CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0111,val,usable,auto_clean_safe_only_or_no_issue,keep
-CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0112,val,questionable,anomalous_repetition,keep
+CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0112,val,questionable,possible_hallucination,keep
 CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0113,val,usable,auto_clean_safe_only_or_no_issue,keep
 CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0114,val,usable,auto_clean_safe_only_or_no_issue,keep
 CHARLA SOBRE EL AMOR Y EL DESAMOR,clip_0115,val,usable,auto_clean_safe_only_or_no_issue,keep
@@ -5885,7 +5885,7 @@ PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0005,val,usable,auto_cl
 PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0006,val,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0007,val,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0009,val,usable,auto_clean_safe_only_or_no_issue,keep
-PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0010,val,questionable,long_suspicious_token,keep
+PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0010,val,questionable,asr_disagreement,keep
 PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0011,val,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0013,val,usable,auto_clean_safe_only_or_no_issue,keep
 PROFESIONES ARGENTINAS GINECÓLOGOS - Telefe Notici,clip_0014,val,usable,auto_clean_safe_only_or_no_issue,keep

@@ -17,6 +17,11 @@ def cargar_smoke(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
     return pd.read_csv(path) if path.exists() else pd.DataFrame()
 
 
+def cargar_full(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
+    path = output_base / "preprocessing_variant_manifest_full.csv"
+    return pd.read_csv(path) if path.exists() else pd.DataFrame()
+
+
 def smoke_status(smoke: pd.DataFrame) -> str:
     if smoke.empty:
         return "ready"
@@ -116,3 +121,14 @@ def pending_message(status: str, decision: str | None = None) -> str:
     if status == "generated":
         return "Smoke generado con advertencias: revisar errores antes de VM full."
     return "Pendiente de VM: falta generar lower_face_resized96."
+
+
+def full_generation_status(full: pd.DataFrame) -> pd.DataFrame:
+    if full.empty:
+        return pd.DataFrame([{"full_rows": 0, "ok": 0, "failed": 0, "blocked": 0, "status": "pending_generation"}])
+    counts = full["status"].astype(str).value_counts()
+    ok = int(counts.get("ok", 0))
+    failed = int(counts.get("failed", 0))
+    blocked = int(counts.get("blocked", 0))
+    status = "ready" if ok == len(full) and failed == 0 and blocked == 0 else "review_needed"
+    return pd.DataFrame([{"full_rows": len(full), "ok": ok, "failed": failed, "blocked": blocked, "status": status}])

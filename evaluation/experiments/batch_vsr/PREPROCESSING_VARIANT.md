@@ -43,6 +43,7 @@ Estado local actual: smoke generado con `mediapipe==0.10.35`.
 - failed: 0;
 - blocked: 0;
 - decision notebook 09: `READY_FOR_FULL_GENERATION`.
+- notebook final: `visual_preprocessing/notebooks/09_preprocessing_variant_review.ipynb`.
 
 Las previews locales quedan en:
 

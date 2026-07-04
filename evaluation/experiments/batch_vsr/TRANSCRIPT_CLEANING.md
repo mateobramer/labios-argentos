@@ -1,74 +1,64 @@
-# Transcript cleaning stronger
+# Transcript cleaning stronger con ASR2
 
-Regla principal: si no hay evidencia fuerte, no se reescribe ground truth. Se marca como
-candidato de review o se excluye del train si el transcript es malo.
+Regla principal: no se reemplaza ground truth sin evidencia fuerte. ASR2 y el audit de
+desacuerdo producen evidencia; `transcript_cleaning.py` decide overlays, candidates y
+policy conservadora.
 
-## Niveles
+## Flujo
 
-### A. auto_clean_safe
+```bash
+python -m data_cleaning.src.transcript_second_pass_asr \
+  --splits vsr_models/splits/splits.csv \
+  --output evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
+  --model large-v3-turbo
 
-Se autoaplica solo cuando no cambia semantica:
+python -m data_cleaning.src.transcript_alignment_audit \
+  --asr2 evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
+  --output evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv
 
-- normalizacion Unicode `NFKC`;
-- espacios multiples y `strip`;
-- caracteres invisibles/control;
-- markers no hablados como tokens completos (`[musica]`, `[aplausos]`, `(musica)`,
-  `subtitulos`, `suscribete`);
-- entidades locales solo si hay lexicon explicito, distancia chica, `source_hint` en
-  `source_id` y no cambia estructura de la oracion.
+python -m data_cleaning.src.transcript_cleaning \
+  --splits vsr_models/splits/splits.csv \
+  --output-base evaluation/outputs/batch_vsr \
+  --asr2 evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
+  --asr-disagreement evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv \
+  --lexicon data_cleaning/resources/entity_lexicon.csv
+```
 
-### B. aggressive_candidate_review
+## Reglas
 
-Se detecta pero no se autoaplica:
-
-- token larguisimo o inverosimil;
-- caracteres raros;
-- rachas consonanticas;
-- repeticiones anomalas;
-- texto demasiado corto/largo para `n_frames`;
-- ratio de basura alto;
-- texto vacio/no linguistico.
-
-Estos casos van a `transcript_cleaning_candidates.csv`.
-
-### C. transcript_usability
-
-- `usable`: sin problemas o solo `auto_clean_safe`.
-- `questionable`: candidatos agresivos pero no evidencia suficiente para excluir.
-- `bad_candidate`: texto vacio, no linguistico, ratio de basura alto, token extremo o
-  solo markers no hablados.
-
-Ante duda, `questionable`.
+- `auto_clean_safe`: Unicode NFKC, espacios, caracteres de control y markers no hablados.
+- Reemplazos de entidades/slang: solo spans locales de 1-4 tokens, entrada en lexicon,
+  evidencia en ASR2 o fuente/contexto, sin reescribir frases completas ni borrar oralidad.
+- `candidates`: registra entity/slang replacements no autoaplicados, desacuerdos ASR,
+  posible misalignment, hallucination o audio/text mismatch.
+- `bad_candidate`: desacuerdo high o mismatch/hallucination/no-speech de alta confianza.
+- `questionable`: desacuerdo medium, entity candidate no resuelto, duracion/texto dudoso o
+  multiples candidates.
+- Ante duda: `questionable`, no `bad_candidate`.
 
 ## Lexicon
 
 Archivo versionado:
 
 ```text
-evaluation/experiments/batch_vsr/entity_lexicon.csv
+data_cleaning/resources/entity_lexicon.csv
 ```
 
 Schema:
 
 ```csv
-canonical,aliases,source_hint,notes
+canonical,aliases,source_hint,type,notes
 ```
 
-Es chico y editable. No se usa para reescrituras masivas.
+No llenar con entidades inventadas masivas.
 
 ## Outputs
 
-Generar con:
-
-```bash
-python -m data_cleaning.src.transcript_cleaning \
-  --splits vsr_models/splits/splits.csv \
-  --output-base evaluation/outputs/batch_vsr
-```
-
-Salidas versionables:
+Versionables/livianos:
 
 ```text
+evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv
+evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv
 evaluation/outputs/batch_vsr/transcript_cleaning_changes.csv
 evaluation/outputs/batch_vsr/transcript_cleaning_candidates.csv
 evaluation/outputs/batch_vsr/transcript_quality_policy.csv
@@ -78,7 +68,7 @@ evaluation/outputs/batch_vsr/splits_all_combined/train.csv
 evaluation/outputs/batch_vsr/splits_all_combined/val.csv
 ```
 
-Overlays generables e ignorados:
+Generables/ignorados:
 
 ```text
 evaluation/outputs/batch_vsr/transcripts_current/
@@ -86,20 +76,9 @@ evaluation/outputs/batch_vsr/transcripts_cleaned_stronger/
 evaluation/outputs/batch_vsr/transcripts_cleaned_restricted/
 ```
 
-## Split stronger
+## Decision E2
 
-`E2_transcript_cleaned_stronger` usa:
-
-- train original;
-- transcripts `auto_clean_safe`;
-- excluye `transcript_usability == bad_candidate` del train;
-- mantiene `questionable`;
-- val original completa.
-
-`E4_all_combined` usa:
-
-- `visual_cleaned_conservative`;
-- `transcript_cleaned_stronger`;
-- `lower_face_resized96`.
-
-Si no hay `bad_candidate`, el efecto esperado sigue siendo bajo.
+- `READY_FOR_VM`: ASR2 disponible y policy produce evidencia util.
+- `BLOCKED_MISSING_ASR2`: no hay ASR2 usable; no vender E2 como mejora fuerte.
+- `LOW_IMPACT_DO_NOT_PRIORITIZE`: ASR2 existe pero no cambia train de forma relevante.
+- `REVIEW_NEEDED`: hay evidencia pero requiere revision manual antes de VM.
