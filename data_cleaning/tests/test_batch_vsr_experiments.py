@@ -8,8 +8,8 @@ import numpy as np
 
 from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
 from evaluation.src.parse_batch_vsr_results import parse_all
-from evaluation.src.preprocessing_variant import run_preprocessing_variant
-from evaluation.src.transcript_cleaning import (
+from visual_preprocessing.src.preprocessing_variant import run_preprocessing_variant
+from data_cleaning.src.transcript_cleaning import (
     build_transcript_overlays,
     cargar_lexicon,
     auto_clean_safe,
@@ -271,11 +271,22 @@ class TestBatchVsrExperiments(unittest.TestCase):
 
     def test_no_hay_npz_batch_commiteables(self):
         npz_files = list(Path("evaluation/outputs/batch_vsr").glob("**/*.npz"))
-        self.assertEqual(npz_files, [])
+        allowed_roots = [
+            Path("evaluation/outputs/batch_vsr/preprocessing_variant_smoke"),
+            Path("evaluation/outputs/batch_vsr/rois_lower_face_resized96"),
+        ]
+        unexpected = [
+            path
+            for path in npz_files
+            if not any(path.is_relative_to(root) for root in allowed_roots)
+        ]
+        self.assertEqual(unexpected, [])
         gitignore = Path(".gitignore").read_text(encoding="utf-8")
         self.assertIn("*.npz", gitignore)
         self.assertIn("evaluation/outputs/batch_vsr/rois_lower_face_resized96/", gitignore)
         self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_preview/", gitignore)
+        self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz", gitignore)
+        self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png", gitignore)
 
     def _split_row(self, split, titulo, clip, texto):
         return {

@@ -61,7 +61,7 @@ Es chico y editable. No se usa para reescrituras masivas.
 Generar con:
 
 ```bash
-python -m evaluation.src.transcript_cleaning \
+python -m data_cleaning.src.transcript_cleaning \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr
 ```

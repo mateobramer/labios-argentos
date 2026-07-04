@@ -21,10 +21,10 @@ No toca ROIs originales en `data/processed/lip_rois/`.
 Comando:
 
 ```bash
-python -m evaluation.src.preprocessing_variant \
+python -m visual_preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
-  --max-clips 2 \
+  --max-clips 20 \
   --preview-max 20
 ```
 
@@ -36,9 +36,22 @@ evaluation/outputs/batch_vsr/preprocessing_variant_manifest_smoke.csv
 evaluation/outputs/batch_vsr/preprocessing_variant_preview/
 ```
 
-Estado local actual: `blocked_missing_dependency_mediapipe`. En este entorno `cv2` y
-`numpy` estan instalados, pero `mediapipe` no. El asset
-`visual_preprocessing/models/face_landmarker.task` si existe.
+Estado local actual: smoke generado con `mediapipe==0.10.35`.
+
+- clips intentados: 20;
+- ok: 20;
+- failed: 0;
+- blocked: 0;
+- decision notebook 09: `READY_FOR_FULL_GENERATION`.
+
+Las previews locales quedan en:
+
+```text
+evaluation/outputs/batch_vsr/preprocessing_variant_preview/
+```
+
+Abrir los archivos `*__side_by_side.png` para revisar el ROI actual contra
+`lower_face_resized96` antes de generar la variante full.
 
 ## Generacion full en VM
 
@@ -51,7 +64,7 @@ pip install -r visual_preprocessing/requirements.txt
 Generar ROIs alternativos:
 
 ```bash
-python -m evaluation.src.preprocessing_variant \
+python -m visual_preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --full \

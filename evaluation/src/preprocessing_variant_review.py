@@ -29,6 +29,17 @@ def smoke_status(smoke: pd.DataFrame) -> str:
     return ",".join(sorted(statuses))
 
 
+def smoke_decision(smoke: pd.DataFrame) -> str:
+    if smoke.empty:
+        return "NOT_READY_FOR_TRAINING"
+    statuses = set(smoke["status"].astype(str))
+    if statuses == {"ok"}:
+        return "READY_FOR_FULL_GENERATION"
+    if "blocked" in statuses:
+        return "NOT_READY_FOR_TRAINING"
+    return "BLOCKED_REVIEW_NEEDED"
+
+
 def _npz_info(path: str | Path) -> tuple[str, str, int]:
     p = Path(path)
     if not p.is_absolute():
@@ -78,7 +89,30 @@ def preview_paths(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def pending_message(status: str) -> str:
-    if status == "generated":
+def preview_groups(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
+    preview_dir = output_base / "preprocessing_variant_preview"
+    grouped: dict[str, dict[str, str]] = {}
+    suffixes = {
+        "__current_grid.png": "current_roi_96x96",
+        "__lower_face_resized96_grid.png": "lower_face_resized96",
+        "__side_by_side.png": "side_by_side",
+    }
+    for path in sorted(preview_dir.glob("*.png")):
+        name = path.name
+        for suffix, column in suffixes.items():
+            if name.endswith(suffix):
+                key = name[: -len(suffix)]
+                grouped.setdefault(key, {})[column] = str(path)
+                break
+    rows = []
+    for key, values in sorted(grouped.items()):
+        rows.append({"sample": key, **values})
+    return pd.DataFrame(rows)
+
+
+def pending_message(status: str, decision: str | None = None) -> str:
+    if status == "generated" and decision == "READY_FOR_FULL_GENERATION":
         return "Smoke generado: revisar grillas y shapes antes de VM full."
+    if status == "generated":
+        return "Smoke generado con advertencias: revisar errores antes de VM full."
     return "Pendiente de VM: falta generar lower_face_resized96."

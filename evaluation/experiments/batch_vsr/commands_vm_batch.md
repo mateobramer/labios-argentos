@@ -19,14 +19,14 @@ python -m evaluation.src.build_visual_cleaning_manifests \
   --policy data/metadata/visual_quality_policy_analysis_v2.csv \
   --output-dir evaluation/outputs/visual_cleaning/manifests
 
-python -m evaluation.src.transcript_cleaning \
+python -m data_cleaning.src.transcript_cleaning \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr
 
-python -m evaluation.src.preprocessing_variant \
+python -m visual_preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
-  --max-clips 2 \
+  --max-clips 20 \
   --preview-max 20
 
 python -m evaluation.src.build_batch_vsr_experiments \
@@ -44,7 +44,7 @@ pip install -r visual_preprocessing/requirements.txt
 Necesario antes de correr E3/E4:
 
 ```bash
-python -m evaluation.src.preprocessing_variant \
+python -m visual_preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --full \
