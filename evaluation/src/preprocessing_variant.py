@@ -6,6 +6,7 @@ import argparse
 import csv
 import importlib.util
 import json
+import re
 from pathlib import Path
 
 import cv2
@@ -54,6 +55,47 @@ def _write_manifest(path: Path, rows: list[dict[str, str]]) -> None:
         writer.writerows(rows)
 
 
+def _safe_name(text: str) -> str:
+    safe = re.sub(r"[^A-Za-z0-9_.-]+", "_", text)
+    return safe.strip("_")[:120]
+
+
+def _grid(frames: np.ndarray, n: int = 6) -> np.ndarray:
+    if frames.ndim != 3 or frames.shape[0] == 0:
+        return np.zeros((96, 96), dtype=np.uint8)
+    idxs = np.linspace(0, frames.shape[0] - 1, min(n, frames.shape[0]), dtype=int)
+    return np.concatenate([frames[i] for i in idxs], axis=1)
+
+
+def _write_previews(row: dict[str, str], variant_path: Path, preview_dir: Path) -> dict[str, str]:
+    original_roi = REPO_ROOT / row.get("npz", "")
+    if not original_roi.exists() or not variant_path.exists():
+        return {}
+    current = np.load(original_roi)["rois"]
+    variant = np.load(variant_path)["rois"]
+    current_grid = _grid(current)
+    variant_grid = _grid(variant)
+    h = max(current_grid.shape[0], variant_grid.shape[0])
+    if current_grid.shape[0] != h:
+        current_grid = cv2.resize(current_grid, (current_grid.shape[1], h), interpolation=cv2.INTER_AREA)
+    if variant_grid.shape[0] != h:
+        variant_grid = cv2.resize(variant_grid, (variant_grid.shape[1], h), interpolation=cv2.INTER_AREA)
+    side = np.concatenate([current_grid, variant_grid], axis=0)
+    preview_dir.mkdir(parents=True, exist_ok=True)
+    prefix = _safe_name(f"{row['titulo']}__{row['clip']}")
+    current_path = preview_dir / f"{prefix}__current_grid.png"
+    variant_out = preview_dir / f"{prefix}__lower_face_resized96_grid.png"
+    side_path = preview_dir / f"{prefix}__side_by_side.png"
+    cv2.imwrite(str(current_path), current_grid)
+    cv2.imwrite(str(variant_out), variant_grid)
+    cv2.imwrite(str(side_path), side)
+    return {
+        "current_preview": str(current_path),
+        "variant_preview": str(variant_out),
+        "side_by_side_preview": str(side_path),
+    }
+
+
 def _blocked_rows(rows: list[dict[str, str]], output_dir: Path, reason: str) -> list[dict[str, str]]:
     blocked = []
     for row in rows:
@@ -74,7 +116,12 @@ def _blocked_rows(rows: list[dict[str, str]], output_dir: Path, reason: str) -> 
     return blocked
 
 
-def _generar_clip(row: dict[str, str], output_dir: Path) -> dict[str, str]:
+def _generar_clip(
+    row: dict[str, str],
+    output_dir: Path,
+    preview_dir: Path | None = None,
+    make_preview: bool = False,
+) -> dict[str, str]:
     from visual_preprocessing.src.preprocesar import (
         crear_landmarker,
         procesar_clip,
@@ -105,7 +152,7 @@ def _generar_clip(row: dict[str, str], output_dir: Path) -> dict[str, str]:
     arr = np.asarray(remuestrear_a_25fps(resized, 25), dtype=np.uint8)
     variant_path.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(variant_path, rois=arr)
-    return {
+    result = {
         "source_id": row["titulo"],
         "clip": row["clip"],
         "original_roi_path": row.get("npz", ""),
@@ -116,6 +163,9 @@ def _generar_clip(row: dict[str, str], output_dir: Path) -> dict[str, str]:
         "status": "ok",
         "reason": "",
     }
+    if make_preview and preview_dir is not None:
+        _write_previews(row, variant_path, preview_dir)
+    return result
 
 
 def run_preprocessing_variant(
@@ -123,6 +173,7 @@ def run_preprocessing_variant(
     output_base: Path = DEFAULT_OUTPUT_BASE,
     max_clips: int = 2,
     full: bool = False,
+    preview_max: int = 20,
 ) -> dict[str, object]:
     rows = leer_csv(splits_path)
     selected = rows if full else _candidate_rows(rows, max_clips)
@@ -136,6 +187,7 @@ def run_preprocessing_variant(
         if full
         else output_base / "preprocessing_variant_manifest_smoke.csv"
     )
+    preview_dir = output_base / "preprocessing_variant_preview"
 
     if importlib.util.find_spec("mediapipe") is None:
         reason = "blocked_missing_dependency_mediapipe"
@@ -152,9 +204,14 @@ def run_preprocessing_variant(
         }
 
     manifest_rows = []
+    previews = 0
     for row in selected:
         try:
-            manifest_rows.append(_generar_clip(row, output_dir))
+            make_preview = previews < preview_max
+            generated = _generar_clip(row, output_dir, preview_dir, make_preview)
+            manifest_rows.append(generated)
+            if generated["status"] == "ok" and make_preview:
+                previews += 1
         except Exception as exc:  # pragma: no cover - depende de videos/mediapipe local
             manifest_rows.append(
                 {
@@ -179,6 +236,8 @@ def run_preprocessing_variant(
         "ok": ok,
         "manifest": str(manifest),
         "output_dir": str(output_dir),
+        "preview_dir": str(preview_dir),
+        "previews": previews,
     }
 
 
@@ -188,6 +247,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--output-base", type=Path, default=DEFAULT_OUTPUT_BASE)
     ap.add_argument("--max-clips", type=int, default=2)
     ap.add_argument("--full", action="store_true")
+    ap.add_argument("--preview-max", type=int, default=20)
     return ap.parse_args()
 
 
@@ -198,6 +258,7 @@ def main() -> None:
         output_base=args.output_base,
         max_clips=args.max_clips,
         full=args.full,
+        preview_max=args.preview_max,
     )
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 

@@ -1,13 +1,19 @@
 {
   "experiment": "E4_all_combined",
   "status": "ready_after_generation",
-  "train_split": "C:\\Users\\bianc\\NLP Natural Language Processing\\labios-argentos\\evaluation\\outputs\\visual_cleaning\\splits_visual_cleaned\\train.csv",
-  "val_split": "C:\\Users\\bianc\\NLP Natural Language Processing\\labios-argentos\\evaluation\\outputs\\visual_cleaning\\splits_visual_cleaned\\val.csv",
+  "train_split": "evaluation\\outputs\\batch_vsr\\splits_all_combined\\train.csv",
+  "val_split": "evaluation\\outputs\\batch_vsr\\splits_all_combined\\val.csv",
   "test_split": "C:\\Users\\bianc\\NLP Natural Language Processing\\labios-argentos\\evaluation\\outputs\\visual_cleaning\\manifests\\original_test.csv",
   "rois_root": "evaluation\\outputs\\batch_vsr\\rois_lower_face_resized96",
-  "transcripts_root": "evaluation\\outputs\\batch_vsr\\transcripts_cleaned_restricted",
+  "transcripts_root": "evaluation\\outputs\\batch_vsr\\transcripts_cleaned_stronger",
   "visual_cleaning": "conservative",
-  "transcript_variant": "transcript_cleaned_restricted",
+  "transcript_variant": "transcript_cleaned_stronger",
+  "transcript_policy": "moderate",
+  "transcript_excluded_count": 0,
+  "transcript_usability_counts": {
+    "usable": 5921,
+    "questionable": 29
+  },
   "preprocessing_variant": "lower_face_resized96",
   "blocked_reason": "generar ROIs lower_face_resized96 en VM: evaluation\\outputs\\batch_vsr\\rois_lower_face_resized96"
 }

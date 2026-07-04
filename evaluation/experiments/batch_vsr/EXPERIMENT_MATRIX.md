@@ -6,7 +6,7 @@ Esta etapa prepara configuracion, no entrena.
 |---|---|---|---|---|
 | E0_baseline_original | none | current | current | ready |
 | E1_visual_cleaned | conservative | current | current | ready |
-| E2_transcript_cleaned | none | transcript_cleaned_restricted | current | ready |
+| E2_transcript_cleaned_stronger | none | transcript_cleaned_stronger | current | ready |
 | E3_preprocessing_variant | none | current | lower_face_resized96 | ready_after_generation |
 | E4_all_combined | conservative | transcript_cleaned_restricted | lower_face_resized96 | ready_after_generation |
 
@@ -38,5 +38,10 @@ evaluation/outputs/batch_vsr/experiments/E4_all_combined/experiment_config.json
 - Splits canonicos: no se modifican.
 - Transcripts originales: no se modifican.
 - ROIs originales: no se modifican.
-- `E2` y `E4` usan overlay `transcripts_cleaned_restricted/`.
+- `E2` usa `splits_transcript_cleaned_stronger/` y overlay
+  `transcripts_cleaned_stronger/`.
+- `E4` usa `splits_all_combined/`, `transcripts_cleaned_stronger/` y
+  `lower_face_resized96`.
 - `E3` y `E4` requieren generar ROIs alternativos antes de entrenamiento.
+- `transcript_policy_moderate` excluye del train solo `bad_candidate`; mantiene
+  `questionable`.

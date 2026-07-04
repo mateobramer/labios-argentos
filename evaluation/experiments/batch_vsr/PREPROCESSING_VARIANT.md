@@ -24,7 +24,8 @@ Comando:
 python -m evaluation.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
-  --max-clips 2
+  --max-clips 2 \
+  --preview-max 20
 ```
 
 Salida:
@@ -32,6 +33,7 @@ Salida:
 ```text
 evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
 evaluation/outputs/batch_vsr/preprocessing_variant_manifest_smoke.csv
+evaluation/outputs/batch_vsr/preprocessing_variant_preview/
 ```
 
 Estado local actual: `blocked_missing_dependency_mediapipe`. En este entorno `cv2` y
@@ -52,7 +54,8 @@ Generar ROIs alternativos:
 python -m evaluation.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
-  --full
+  --full \
+  --preview-max 20
 ```
 
 Salida esperada:
@@ -63,3 +66,6 @@ evaluation/outputs/batch_vsr/preprocessing_variant_manifest_full.csv
 ```
 
 No commitear `.npz`. Solo versionar scripts, docs y manifests livianos.
+
+Las previews `.png` son para revision visual y estan ignoradas por Git. Se limitan con
+`--preview-max`.

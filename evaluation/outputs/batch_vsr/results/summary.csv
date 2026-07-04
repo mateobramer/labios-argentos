@@ -1,6 +1,6 @@
 experiment,status,rows,wer,cer,reason,output
 E0_baseline_original,pending,,,,falta evaluation\outputs\batch_vsr\raw\E0_baseline_original\test.inf,
 E1_visual_cleaned,pending,,,,falta evaluation\outputs\batch_vsr\raw\E1_visual_cleaned\test.inf,
-E2_transcript_cleaned,pending,,,,falta evaluation\outputs\batch_vsr\raw\E2_transcript_cleaned\test.inf,
+E2_transcript_cleaned_stronger,pending,,,,falta evaluation\outputs\batch_vsr\raw\E2_transcript_cleaned_stronger\test.inf,
 E3_preprocessing_variant,pending,,,,falta evaluation\outputs\batch_vsr\raw\E3_preprocessing_variant\test.inf,
 E4_all_combined,pending,,,,falta evaluation\outputs\batch_vsr\raw\E4_all_combined\test.inf,

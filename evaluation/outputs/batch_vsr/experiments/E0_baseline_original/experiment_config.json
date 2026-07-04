@@ -8,6 +8,9 @@
   "transcripts_root": "",
   "visual_cleaning": "none",
   "transcript_variant": "current",
+  "transcript_policy": "none",
+  "transcript_excluded_count": 0,
+  "transcript_usability_counts": {},
   "preprocessing_variant": "current",
   "blocked_reason": ""
 }

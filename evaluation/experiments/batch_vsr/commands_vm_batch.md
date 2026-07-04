@@ -26,7 +26,8 @@ python -m evaluation.src.transcript_cleaning \
 python -m evaluation.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
-  --max-clips 2
+  --max-clips 2 \
+  --preview-max 20
 
 python -m evaluation.src.build_batch_vsr_experiments \
   --output-base evaluation/outputs/batch_vsr
@@ -46,7 +47,8 @@ Necesario antes de correr E3/E4:
 python -m evaluation.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
-  --full
+  --full \
+  --preview-max 20
 ```
 
 ## 3. Entrenamiento con tmux
@@ -78,15 +80,15 @@ python -m vsr_models.src.fine_tune \
   --splits-dir evaluation/outputs/visual_cleaning/splits_visual_cleaned \
   --out vsr_models/runs/batch_vsr/E1_visual_cleaned
 
-# E2_transcript_cleaned
+# E2_transcript_cleaned_stronger
 python -m vsr_models.src.fine_tune \
   --gimeno-repo ~/evaluating-end2end-spanish-lipreading \
   --vsr-config ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth \
   --rois-root data/processed/lip_rois \
-  --splits-dir evaluation/outputs/visual_cleaning/splits_original \
-  --transcripts-root evaluation/outputs/batch_vsr/transcripts_cleaned_restricted \
-  --out vsr_models/runs/batch_vsr/E2_transcript_cleaned
+  --splits-dir evaluation/outputs/batch_vsr/splits_transcript_cleaned_stronger \
+  --transcripts-root evaluation/outputs/batch_vsr/transcripts_cleaned_stronger \
+  --out vsr_models/runs/batch_vsr/E2_transcript_cleaned_stronger
 
 # E3_preprocessing_variant
 python -m vsr_models.src.fine_tune \
@@ -103,8 +105,8 @@ python -m vsr_models.src.fine_tune \
   --vsr-config ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth \
   --rois-root evaluation/outputs/batch_vsr/rois_lower_face_resized96 \
-  --splits-dir evaluation/outputs/visual_cleaning/splits_visual_cleaned \
-  --transcripts-root evaluation/outputs/batch_vsr/transcripts_cleaned_restricted \
+  --splits-dir evaluation/outputs/batch_vsr/splits_all_combined \
+  --transcripts-root evaluation/outputs/batch_vsr/transcripts_cleaned_stronger \
   --out vsr_models/runs/batch_vsr/E4_all_combined
 ```
 
@@ -136,6 +138,8 @@ evaluation/outputs/batch_vsr/results/summary.csv
 
 ```bash
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/07_batch_vsr_experiments.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=120, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
+python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/08_transcript_cleaning_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=120, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
+python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/09_preprocessing_variant_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=120, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 ```
 
 ## 6. Apagar VM

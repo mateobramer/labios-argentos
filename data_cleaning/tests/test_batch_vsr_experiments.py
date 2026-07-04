@@ -9,7 +9,12 @@ import numpy as np
 from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
 from evaluation.src.parse_batch_vsr_results import parse_all
 from evaluation.src.preprocessing_variant import run_preprocessing_variant
-from evaluation.src.transcript_cleaning import build_transcript_overlays, limpiar_restringido
+from evaluation.src.transcript_cleaning import (
+    build_transcript_overlays,
+    cargar_lexicon,
+    auto_clean_safe,
+    limpiar_restringido,
+)
 from vsr_models.src.fine_tune import build_arg_parser, transcript_txt_path
 
 
@@ -38,13 +43,18 @@ class TestBatchVsrExperiments(unittest.TestCase):
 
             summary = build_transcript_overlays(splits, base / "out", repo_root=base)
             rows = self._read_csv(base / "out" / "transcript_cleaning_changes.csv")
+            candidates = self._read_csv(base / "out" / "transcript_cleaning_candidates.csv")
+            policy = self._read_csv(base / "out" / "transcript_quality_policy.csv")
 
             self.assertEqual(original.read_text(encoding="utf-8"), "hola   mundo\n")
             self.assertEqual(summary["transcripts"], 1)
             self.assertEqual(summary["changed"], 1)
             self.assertEqual(rows[0]["changed"], "true")
+            self.assertEqual(rows[0]["auto_applied"], "true")
             self.assertEqual(rows[0]["change_type"], "space_normalization")
-            self.assertIn("split_csv_text", rows[0]["evidence"])
+            self.assertIn("espacios", rows[0]["evidence"])
+            self.assertEqual(candidates, [])
+            self.assertEqual(policy[0]["transcript_usability"], "usable")
 
     def test_limpieza_restringida_es_local_y_trazable(self):
         cleaned, changes = limpiar_restringido(" hola\u00a0\u00a0mundo\ufffd ")
@@ -53,6 +63,44 @@ class TestBatchVsrExperiments(unittest.TestCase):
         self.assertIn("unicode_normalization", changes)
         self.assertIn("invalid_character_removed", changes)
         self.assertIn("space_normalization", changes)
+
+    def test_candidates_policy_y_split_stronger_excluyen_bad_candidate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            splits = base / "splits.csv"
+            self._write_csv(
+                splits,
+                [
+                    self._split_row("train", "fuente_a", "clip_0001", "hola mundo"),
+                    self._split_row("train", "fuente_a", "clip_0002", "!!!!!!!!!"),
+                    self._split_row("val", "fuente_a", "clip_0003", "hola hola hola hola"),
+                ],
+            )
+
+            summary = build_transcript_overlays(splits, base / "out", repo_root=base)
+            policy = self._read_csv(base / "out" / "transcript_quality_policy.csv")
+            candidates = self._read_csv(base / "out" / "transcript_cleaning_candidates.csv")
+            stronger_train = self._read_csv(base / "out" / "splits_transcript_cleaned_stronger" / "train.csv")
+
+            by_clip = {row["clip"]: row for row in policy}
+            self.assertEqual(by_clip["clip_0001"]["transcript_usability"], "usable")
+            self.assertEqual(by_clip["clip_0002"]["transcript_usability"], "bad_candidate")
+            self.assertEqual(by_clip["clip_0002"]["transcript_policy_moderate"], "exclude")
+            self.assertGreaterEqual(len(candidates), 1)
+            self.assertEqual([row["clip"] for row in stronger_train], ["clip_0001"])
+            self.assertEqual(summary["excluded_by_policy_moderate"], 1)
+
+    def test_entity_lexicon_solo_autoaplica_con_evidencia_fuerte(self):
+        lexicon = [{"canonical": "river", "aliases": "riber", "source_hint": "RIVER", "notes": ""}]
+
+        changed, changes, evidence = auto_clean_safe("vamos riber", "RIVER GANO", lexicon)
+        unchanged, no_changes, _ = auto_clean_safe("vamos riber", "BOCA GANO", lexicon)
+
+        self.assertEqual(changed, "vamos river")
+        self.assertIn("entity_restricted", changes)
+        self.assertTrue(any("lexicon+source_hint" in item for item in evidence))
+        self.assertEqual(unchanged, "vamos riber")
+        self.assertNotIn("entity_restricted", no_changes)
 
     def test_transcripts_root_default_y_custom(self):
         base_args = [
@@ -75,18 +123,49 @@ class TestBatchVsrExperiments(unittest.TestCase):
     def test_batch_builder_genera_e0_e4_y_variant_queda_after_generation(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
-            (base / "transcripts_cleaned_restricted").mkdir(parents=True)
+            (base / "transcripts_cleaned_stronger").mkdir(parents=True)
+            self._write_csv(
+                base / "transcript_quality_policy.csv",
+                [
+                    {
+                        "source_id": "fuente_a",
+                        "clip": "clip_0001",
+                        "split": "train",
+                        "transcript_usability": "usable",
+                        "transcript_reasons": "",
+                        "transcript_policy_moderate": "keep",
+                    }
+                ],
+            )
+            self._write_csv(
+                base / "splits_transcript_cleaned_stronger" / "train.csv",
+                [self._split_row("train", "fuente_a", "clip_0001", "hola mundo")],
+            )
+            self._write_csv(
+                base / "splits_transcript_cleaned_stronger" / "val.csv",
+                [self._split_row("val", "fuente_a", "clip_0002", "hola")],
+            )
+            self._write_csv(
+                base / "splits_all_combined" / "train.csv",
+                [self._split_row("train", "fuente_a", "clip_0001", "hola mundo")],
+            )
+            self._write_csv(
+                base / "splits_all_combined" / "val.csv",
+                [self._split_row("val", "fuente_a", "clip_0002", "hola")],
+            )
             configs = build_configs(base)
 
             self.assertEqual(set(configs), {
                 "E0_baseline_original",
                 "E1_visual_cleaned",
-                "E2_transcript_cleaned",
+                "E2_transcript_cleaned_stronger",
                 "E3_preprocessing_variant",
                 "E4_all_combined",
             })
             self.assertEqual(configs["E0_baseline_original"]["status"], "ready")
-            self.assertEqual(configs["E2_transcript_cleaned"]["status"], "ready")
+            self.assertEqual(configs["E2_transcript_cleaned_stronger"]["status"], "ready")
+            self.assertEqual(configs["E2_transcript_cleaned_stronger"]["transcript_variant"], "transcript_cleaned_stronger")
+            self.assertEqual(configs["E2_transcript_cleaned_stronger"]["transcript_policy"], "moderate")
             self.assertEqual(configs["E3_preprocessing_variant"]["status"], "ready_after_generation")
             self.assertEqual(configs["E4_all_combined"]["status"], "ready_after_generation")
 
@@ -106,10 +185,12 @@ class TestBatchVsrExperiments(unittest.TestCase):
     def test_preprocessing_smoke_bloquea_si_falta_mediapipe(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "out"
-            summary = run_preprocessing_variant(output_base=out, max_clips=1)
+            summary = run_preprocessing_variant(output_base=out, max_clips=1, preview_max=1)
 
             self.assertIn(summary["status"], {"blocked", "ok", "partial"})
             self.assertTrue(Path(summary["manifest"]).exists())
+            if summary["status"] != "blocked":
+                self.assertLessEqual(summary["previews"], 1)
 
     def test_parser_funciona_con_fixture_chico(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -172,12 +253,40 @@ class TestBatchVsrExperiments(unittest.TestCase):
         self.assertNotIn("!python", code)
         self.assertNotIn("gcloud", code)
 
+    def test_notebooks_08_09_no_contienen_entrenamiento(self):
+        for notebook in [
+            Path("evaluation/notebooks/08_transcript_cleaning_review.ipynb"),
+            Path("evaluation/notebooks/09_preprocessing_variant_review.ipynb"),
+        ]:
+            data = json.loads(notebook.read_text(encoding="utf-8"))
+            code = "\n".join(
+                "".join(cell.get("source", []))
+                for cell in data["cells"]
+                if cell.get("cell_type") == "code"
+            )
+            self.assertNotIn("vsr_models.src.fine_tune", code)
+            self.assertNotIn("subprocess", code)
+            self.assertNotIn("!python", code)
+            self.assertNotIn("gcloud", code)
+
     def test_no_hay_npz_batch_commiteables(self):
         npz_files = list(Path("evaluation/outputs/batch_vsr").glob("**/*.npz"))
         self.assertEqual(npz_files, [])
         gitignore = Path(".gitignore").read_text(encoding="utf-8")
         self.assertIn("*.npz", gitignore)
         self.assertIn("evaluation/outputs/batch_vsr/rois_lower_face_resized96/", gitignore)
+        self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_preview/", gitignore)
+
+    def _split_row(self, split, titulo, clip, texto):
+        return {
+            "split": split,
+            "spk": titulo[-1],
+            "titulo": titulo,
+            "clip": clip,
+            "n_frames": "25",
+            "texto": texto,
+            "npz": f"data/processed/lip_rois/{titulo}/{clip}.npz",
+        }
 
     def _write_csv(self, path, rows):
         path.parent.mkdir(parents=True, exist_ok=True)

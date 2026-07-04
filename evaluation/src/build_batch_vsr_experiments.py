@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
+from collections import Counter
 from pathlib import Path
 
 
@@ -14,6 +16,22 @@ VISUAL_OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "visual_cleaning"
 
 def _exists(path: str | Path | None) -> bool:
     return bool(path) and Path(path).exists()
+
+
+def leer_csv(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def transcript_policy_summary(output_base: Path) -> dict[str, object]:
+    rows = leer_csv(output_base / "transcript_quality_policy.csv")
+    counts = Counter(row.get("transcript_usability", "") for row in rows)
+    return {
+        "transcript_excluded_count": counts.get("bad_candidate", 0),
+        "transcript_usability_counts": dict(counts),
+    }
 
 
 def _status_for_current(train_split: Path, val_split: Path, test_split: Path) -> tuple[str, str]:
@@ -53,6 +71,9 @@ def _config(
     transcript_variant: str,
     preprocessing_variant: str,
     blocked_reason: str,
+    transcript_policy: str = "none",
+    transcript_excluded_count: int = 0,
+    transcript_usability_counts: dict[str, int] | None = None,
 ) -> dict[str, object]:
     return {
         "experiment": experiment,
@@ -64,6 +85,9 @@ def _config(
         "transcripts_root": str(transcripts_root) if transcripts_root else "",
         "visual_cleaning": visual_cleaning,
         "transcript_variant": transcript_variant,
+        "transcript_policy": transcript_policy,
+        "transcript_excluded_count": transcript_excluded_count,
+        "transcript_usability_counts": transcript_usability_counts or {},
         "preprocessing_variant": preprocessing_variant,
         "blocked_reason": blocked_reason,
     }
@@ -74,17 +98,22 @@ def build_configs(output_base: Path = DEFAULT_OUTPUT_BASE) -> dict[str, dict[str
     original_val = VISUAL_OUTPUT_BASE / "splits_original" / "val.csv"
     cleaned_train = VISUAL_OUTPUT_BASE / "splits_visual_cleaned" / "train.csv"
     cleaned_val = VISUAL_OUTPUT_BASE / "splits_visual_cleaned" / "val.csv"
+    transcript_train = output_base / "splits_transcript_cleaned_stronger" / "train.csv"
+    transcript_val = output_base / "splits_transcript_cleaned_stronger" / "val.csv"
+    combined_train = output_base / "splits_all_combined" / "train.csv"
+    combined_val = output_base / "splits_all_combined" / "val.csv"
     test_original = VISUAL_OUTPUT_BASE / "manifests" / "original_test.csv"
     current_rois = REPO_ROOT / "data" / "processed" / "lip_rois"
-    cleaned_transcripts = output_base / "transcripts_cleaned_restricted"
+    cleaned_transcripts = output_base / "transcripts_cleaned_stronger"
     variant_rois = output_base / "rois_lower_face_resized96"
+    policy = transcript_policy_summary(output_base)
 
     e0_status, e0_reason = _status_for_current(original_train, original_val, test_original)
     e1_status, e1_reason = _status_for_current(cleaned_train, cleaned_val, test_original)
-    e2_status, e2_reason = _status_for_transcripts(original_train, original_val, test_original, cleaned_transcripts)
+    e2_status, e2_reason = _status_for_transcripts(transcript_train, transcript_val, test_original, cleaned_transcripts)
     e3_status, e3_reason = _status_for_variant(original_train, original_val, test_original, variant_rois)
-    e4_base_status, e4_base_reason = _status_for_transcripts(cleaned_train, cleaned_val, test_original, cleaned_transcripts)
-    e4_variant_status, e4_variant_reason = _status_for_variant(cleaned_train, cleaned_val, test_original, variant_rois)
+    e4_base_status, e4_base_reason = _status_for_transcripts(combined_train, combined_val, test_original, cleaned_transcripts)
+    e4_variant_status, e4_variant_reason = _status_for_variant(combined_train, combined_val, test_original, variant_rois)
     if e4_base_status == "blocked":
         e4_status, e4_reason = e4_base_status, e4_base_reason
     elif e4_variant_status != "ready":
@@ -119,18 +148,21 @@ def build_configs(output_base: Path = DEFAULT_OUTPUT_BASE) -> dict[str, dict[str
             "current",
             e1_reason,
         ),
-        "E2_transcript_cleaned": _config(
-            "E2_transcript_cleaned",
+        "E2_transcript_cleaned_stronger": _config(
+            "E2_transcript_cleaned_stronger",
             e2_status,
-            original_train,
-            original_val,
+            transcript_train,
+            transcript_val,
             test_original,
             current_rois,
             cleaned_transcripts,
             "none",
-            "transcript_cleaned_restricted",
+            "transcript_cleaned_stronger",
             "current",
             e2_reason,
+            "moderate",
+            int(policy["transcript_excluded_count"]),
+            policy["transcript_usability_counts"],
         ),
         "E3_preprocessing_variant": _config(
             "E3_preprocessing_variant",
@@ -148,15 +180,18 @@ def build_configs(output_base: Path = DEFAULT_OUTPUT_BASE) -> dict[str, dict[str
         "E4_all_combined": _config(
             "E4_all_combined",
             e4_status,
-            cleaned_train,
-            cleaned_val,
+            combined_train,
+            combined_val,
             test_original,
             variant_rois,
             cleaned_transcripts,
             "conservative",
-            "transcript_cleaned_restricted",
+            "transcript_cleaned_stronger",
             "lower_face_resized96",
             e4_reason,
+            "moderate",
+            int(policy["transcript_excluded_count"]),
+            policy["transcript_usability_counts"],
         ),
     }
     return configs

@@ -31,8 +31,10 @@ evaluation/outputs/azzaro_whisper/transcripts_word_timestamps_v2/
 # Batch VSR: overlays y ROIs generables; versionar solo configs/manifests livianos.
 evaluation/outputs/batch_vsr/transcripts_current/
 evaluation/outputs/batch_vsr/transcripts_cleaned_restricted/
+evaluation/outputs/batch_vsr/transcripts_cleaned_stronger/
 evaluation/outputs/batch_vsr/rois_lower_face_resized96/
 evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
+evaluation/outputs/batch_vsr/preprocessing_variant_preview/
 
 # Video local usado por el analisis de limpieza; los artefactos finales si se versionan.
 data_cleaning/outputs/azzaro_whisper/videos/
