@@ -119,21 +119,18 @@ def _blocked_rows(rows: list[dict[str, str]], output_dir: Path, reason: str) -> 
 def _generar_clip(
     row: dict[str, str],
     output_dir: Path,
+    landmarker,
+    vproc,
     preview_dir: Path | None = None,
     make_preview: bool = False,
 ) -> dict[str, str]:
     from visual_preprocessing.src.preprocesar import (
-        crear_landmarker,
         procesar_clip,
         remuestrear_a_25fps,
     )
-    from visual_preprocessing.src.video_process import VideoProcess
 
     clip_path = REPO_ROOT / "data" / "clips" / row["titulo"] / f"{row['clip']}.mp4"
     variant_path = output_dir / row["titulo"] / f"{row['clip']}.npz"
-    landmarker = crear_landmarker()
-    # Crop mas amplio alrededor de la boca usando el pipeline existente; resize final a 96x96.
-    vproc = VideoProcess(crop_width=128, crop_height=128, convert_gray=True)
     frames, ratio = procesar_clip(str(clip_path), landmarker, vproc)
     if not frames:
         return {
@@ -203,12 +200,19 @@ def run_preprocessing_variant(
             "output_dir": str(output_dir),
         }
 
+    from visual_preprocessing.src.preprocesar import crear_landmarker
+    from visual_preprocessing.src.video_process import VideoProcess
+
+    landmarker = crear_landmarker()
+    # Crop mas amplio alrededor de la boca usando el pipeline existente; resize final a 96x96.
+    vproc = VideoProcess(crop_width=128, crop_height=128, convert_gray=True)
+
     manifest_rows = []
     previews = 0
     for row in selected:
         try:
             make_preview = previews < preview_max
-            generated = _generar_clip(row, output_dir, preview_dir, make_preview)
+            generated = _generar_clip(row, output_dir, landmarker, vproc, preview_dir, make_preview)
             manifest_rows.append(generated)
             if generated["status"] == "ok" and make_preview:
                 previews += 1
