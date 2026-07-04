@@ -6,6 +6,7 @@ import argparse
 import csv
 import importlib.util
 import json
+import multiprocessing as mp
 import re
 from pathlib import Path
 
@@ -17,6 +18,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SPLITS = REPO_ROOT / "vsr_models" / "splits" / "splits.csv"
 DEFAULT_OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr"
 VARIANT = "lower_face_resized96"
+_WORKER_LANDMARKER = None
+_WORKER_VPROC = None
 MANIFEST_COLUMNS = [
     "source_id",
     "clip",
@@ -165,12 +168,52 @@ def _generar_clip(
     return result
 
 
+def _init_worker() -> None:
+    global _WORKER_LANDMARKER, _WORKER_VPROC
+
+    from visual_preprocessing.src.preprocesar import crear_landmarker
+    from visual_preprocessing.src.video_process import VideoProcess
+
+    _WORKER_LANDMARKER = crear_landmarker()
+    # Crop mas amplio alrededor de la boca usando el pipeline existente; resize final a 96x96.
+    _WORKER_VPROC = VideoProcess(crop_width=128, crop_height=128, convert_gray=True)
+
+
+def _generar_clip_worker(args: tuple[dict[str, str], str, str, bool]) -> dict[str, str]:
+    row, output_dir, preview_dir, make_preview = args
+    if _WORKER_LANDMARKER is None or _WORKER_VPROC is None:
+        _init_worker()
+    out = Path(output_dir)
+    try:
+        return _generar_clip(
+            row,
+            out,
+            _WORKER_LANDMARKER,
+            _WORKER_VPROC,
+            Path(preview_dir),
+            make_preview,
+        )
+    except Exception as exc:  # pragma: no cover - depende de videos/mediapipe local
+        return {
+            "source_id": row["titulo"],
+            "clip": row["clip"],
+            "original_roi_path": row.get("npz", ""),
+            "variant_roi_path": str(out / row["titulo"] / f"{row['clip']}.npz"),
+            "variant": VARIANT,
+            "shape": "",
+            "dtype": "",
+            "status": "failed",
+            "reason": str(exc),
+        }
+
+
 def run_preprocessing_variant(
     splits_path: Path = DEFAULT_SPLITS,
     output_base: Path = DEFAULT_OUTPUT_BASE,
     max_clips: int = 2,
     full: bool = False,
     preview_max: int = 20,
+    workers: int = 1,
 ) -> dict[str, object]:
     rows = leer_csv(splits_path)
     selected = rows if full else _candidate_rows(rows, max_clips)
@@ -200,36 +243,43 @@ def run_preprocessing_variant(
             "output_dir": str(output_dir),
         }
 
-    from visual_preprocessing.src.preprocesar import crear_landmarker
-    from visual_preprocessing.src.video_process import VideoProcess
-
-    landmarker = crear_landmarker()
-    # Crop mas amplio alrededor de la boca usando el pipeline existente; resize final a 96x96.
-    vproc = VideoProcess(crop_width=128, crop_height=128, convert_gray=True)
-
     manifest_rows = []
-    previews = 0
-    for row in selected:
-        try:
-            make_preview = previews < preview_max
-            generated = _generar_clip(row, output_dir, landmarker, vproc, preview_dir, make_preview)
-            manifest_rows.append(generated)
-            if generated["status"] == "ok" and make_preview:
-                previews += 1
-        except Exception as exc:  # pragma: no cover - depende de videos/mediapipe local
-            manifest_rows.append(
-                {
-                    "source_id": row["titulo"],
-                    "clip": row["clip"],
-                    "original_roi_path": row.get("npz", ""),
-                    "variant_roi_path": str(output_dir / row["titulo"] / f"{row['clip']}.npz"),
-                    "variant": VARIANT,
-                    "shape": "",
-                    "dtype": "",
-                    "status": "failed",
-                    "reason": str(exc),
-                }
-            )
+    previews = min(preview_max, len(selected))
+    if workers > 1 and len(selected) > 1:
+        tasks = [
+            (row, str(output_dir), str(preview_dir), idx < preview_max)
+            for idx, row in enumerate(selected)
+        ]
+        context = mp.get_context("spawn")
+        with context.Pool(processes=workers, initializer=_init_worker) as pool:
+            manifest_rows = pool.map(_generar_clip_worker, tasks)
+    else:
+        _init_worker()
+        for idx, row in enumerate(selected):
+            try:
+                generated = _generar_clip(
+                    row,
+                    output_dir,
+                    _WORKER_LANDMARKER,
+                    _WORKER_VPROC,
+                    preview_dir,
+                    idx < preview_max,
+                )
+                manifest_rows.append(generated)
+            except Exception as exc:  # pragma: no cover - depende de videos/mediapipe local
+                manifest_rows.append(
+                    {
+                        "source_id": row["titulo"],
+                        "clip": row["clip"],
+                        "original_roi_path": row.get("npz", ""),
+                        "variant_roi_path": str(output_dir / row["titulo"] / f"{row['clip']}.npz"),
+                        "variant": VARIANT,
+                        "shape": "",
+                        "dtype": "",
+                        "status": "failed",
+                        "reason": str(exc),
+                    }
+                )
     _write_manifest(manifest, manifest_rows)
     ok = sum(1 for row in manifest_rows if row["status"] == "ok")
     return {
@@ -241,7 +291,12 @@ def run_preprocessing_variant(
         "manifest": str(manifest),
         "output_dir": str(output_dir),
         "preview_dir": str(preview_dir),
-        "previews": previews,
+        "previews": sum(
+            1
+            for row in manifest_rows[:previews]
+            if row["status"] == "ok"
+        ),
+        "workers": workers,
     }
 
 
@@ -252,6 +307,7 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--max-clips", type=int, default=2)
     ap.add_argument("--full", action="store_true")
     ap.add_argument("--preview-max", type=int, default=20)
+    ap.add_argument("--workers", type=int, default=1)
     return ap.parse_args()
 
 
@@ -263,6 +319,7 @@ def main() -> None:
         max_clips=args.max_clips,
         full=args.full,
         preview_max=args.preview_max,
+        workers=args.workers,
     )
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 

@@ -60,7 +60,8 @@ python -m visual_preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --full \
-  --preview-max 20
+  --preview-max 20 \
+  --workers 3
 ```
 
 Verificar:
