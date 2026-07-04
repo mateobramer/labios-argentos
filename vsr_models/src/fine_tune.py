@@ -20,6 +20,7 @@ Uso (en la VM, env `vsr-factors`):
         --load-vsr    ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth \\
         --rois-root   ~/data/lip_rois \\
         --splits-dir  vsr_models/splits \\
+        --transcripts-root "" \\
         --out         vsr_models/runs/ft01
 """
 
@@ -63,7 +64,7 @@ class ClipsRioplatense(Dataset):
     """Devuelve (sampleID, lips (T,96,96) tensor, transcripcion) — el formato que espera
     `data_processing`. Los transforms/normalizacion los aplica el collate, no aca."""
 
-    def __init__(self, split_csv, rois_root, max_frames=0):
+    def __init__(self, split_csv, rois_root, max_frames=0, transcripts_root=""):
         with open(split_csv, encoding="utf-8") as f:
             items = list(csv.DictReader(f))
         # La self-attention del Conformer es O(T^2); saltear clips muy largos acota memoria.
@@ -71,6 +72,7 @@ class ClipsRioplatense(Dataset):
             items = [it for it in items if int(it["n_frames"]) <= max_frames]
         self.items = items
         self.rois_root = rois_root
+        self.transcripts_root = transcripts_root
 
     def __len__(self):
         return len(self.items)
@@ -78,8 +80,13 @@ class ClipsRioplatense(Dataset):
     def __getitem__(self, i):
         it = self.items[i]
         npz = os.path.join(self.rois_root, it["titulo"], it["clip"] + ".npz")
+        texto = it["texto"]
+        if self.transcripts_root:
+            with open(transcript_txt_path(self.transcripts_root, it["titulo"], it["clip"]),
+                      encoding="utf-8") as f:
+                texto = f.read().strip()
         lips = torch.from_numpy(np.load(npz)["rois"])  # (T,96,96) uint8
-        return it["clip"], lips, it["texto"]
+        return it["clip"], lips, texto
 
 
 def evaluar(asr_model, loader, device):
@@ -98,6 +105,10 @@ def split_csv_path(splits_dir, split):
     return os.path.normpath(os.path.join(splits_dir, f"{split}.csv"))
 
 
+def transcript_txt_path(transcripts_root, titulo, clip):
+    return os.path.normpath(os.path.join(transcripts_root, titulo, f"{clip}.txt"))
+
+
 def build_arg_parser():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gimeno-repo", required=True)
@@ -108,6 +119,11 @@ def build_arg_parser():
         "--splits-dir",
         default=SPLITS_DIR,
         help="dir con train.csv y val.csv (default: vsr_models/splits)",
+    )
+    ap.add_argument(
+        "--transcripts-root",
+        default="",
+        help="dir opcional con <titulo>/<clip>.txt; default usa la columna texto del split",
     )
     ap.add_argument("--out", default=os.path.join(DIR_MODULO, "runs", "ft01"))
     ap.add_argument("--epochs", type=int, default=30)
@@ -160,7 +176,12 @@ def main():
     entrenables = sum(p.numel() for p in asr_model.parameters() if p.requires_grad) / 1e6
 
     def cargar(split, transforms):
-        ds = ClipsRioplatense(split_csv_path(args.splits_dir, split), args.rois_root, args.max_frames)
+        ds = ClipsRioplatense(
+            split_csv_path(args.splits_dir, split),
+            args.rois_root,
+            args.max_frames,
+            args.transcripts_root,
+        )
         return DataLoader(ds, batch_size=args.batch, shuffle=(split == "train"),
                           collate_fn=lambda b: data_processing(b, transforms, tokenizer, converter, ignore_id),
                           num_workers=4)
@@ -169,7 +190,8 @@ def main():
     va = cargar("val", transforms_val)
     print(f"train={len(tr.dataset)} val={len(va.dataset)} | congelados={sorted(congelar) or 'ninguno'} "
           f"entrenables={entrenables:.1f}M | augment={args.augment} lr={args.lr} "
-          f"splits_dir={args.splits_dir} device={device}")
+          f"splits_dir={args.splits_dir} transcripts_root={args.transcripts_root or 'split_csv'} "
+          f"device={device}")
 
     opt = torch.optim.AdamW([p for p in asr_model.parameters() if p.requires_grad], lr=args.lr)
 

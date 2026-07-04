@@ -1,0 +1,3 @@
+source_id,clip,original_roi_path,variant_roi_path,variant,shape,dtype,status,reason
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0001,data/processed/lip_rois/LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91/clip_0001.npz,evaluation\outputs\batch_vsr\preprocessing_variant_smoke\LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91\clip_0001.npz,lower_face_resized96,,,blocked,blocked_missing_dependency_mediapipe
+LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91,clip_0002,data/processed/lip_rois/LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91/clip_0002.npz,evaluation\outputs\batch_vsr\preprocessing_variant_smoke\LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91\clip_0002.npz,lower_face_resized96,,,blocked,blocked_missing_dependency_mediapipe
