@@ -9,7 +9,7 @@ import numpy as np
 
 from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
 from evaluation.src.parse_batch_vsr_results import parse_all
-from visual_preprocessing.src.preprocessing_variant import run_preprocessing_variant
+from visual_preprocessing.src.preprocessing_variant import _fallback_original_roi, run_preprocessing_variant
 from data_cleaning.src.transcript_alignment_audit import build_alignment_audit
 from data_cleaning.src.transcript_cleaning import (
     build_transcript_overlays,
@@ -239,6 +239,28 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertTrue(Path(summary["manifest"]).exists())
             if summary["status"] != "blocked":
                 self.assertLessEqual(summary["previews"], 1)
+
+    def test_preprocessing_variant_fallback_original_roi_es_explicito(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            original = base / "original.npz"
+            variant = base / "variant" / "clip_0001.npz"
+            rois = np.zeros((3, 96, 96), dtype=np.uint8)
+            np.savez_compressed(original, rois=rois)
+
+            row = {
+                "titulo": "fuente_a",
+                "clip": "clip_0001",
+                "npz": str(original),
+            }
+            result = _fallback_original_roi(row, variant, "sin frames variant; detection_ratio=0.790")
+
+            self.assertIsNotNone(result)
+            self.assertTrue(variant.exists())
+            self.assertEqual(result["status"], "ok")
+            self.assertEqual(result["shape"], "3x96x96")
+            self.assertEqual(result["dtype"], "uint8")
+            self.assertIn("fallback_original_roi_after_variant_no_frames", result["reason"])
 
     def test_asr2_missing_dependency_no_rompe(self):
         with tempfile.TemporaryDirectory() as tmp:

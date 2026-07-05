@@ -8,6 +8,7 @@ import importlib.util
 import json
 import multiprocessing as mp
 import re
+import shutil
 from pathlib import Path
 
 import cv2
@@ -119,6 +120,34 @@ def _blocked_rows(rows: list[dict[str, str]], output_dir: Path, reason: str) -> 
     return blocked
 
 
+def _fallback_original_roi(row: dict[str, str], variant_path: Path, original_reason: str) -> dict[str, str] | None:
+    original_roi = REPO_ROOT / row.get("npz", "")
+    if not original_roi.exists():
+        return None
+
+    try:
+        with np.load(original_roi) as data:
+            rois = data["rois"]
+            shape = "x".join(str(x) for x in rois.shape)
+            dtype = str(rois.dtype)
+    except Exception:
+        return None
+
+    variant_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(original_roi, variant_path)
+    return {
+        "source_id": row["titulo"],
+        "clip": row["clip"],
+        "original_roi_path": row.get("npz", ""),
+        "variant_roi_path": str(variant_path),
+        "variant": VARIANT,
+        "shape": shape,
+        "dtype": dtype,
+        "status": "ok",
+        "reason": f"fallback_original_roi_after_variant_no_frames; original_reason={original_reason}",
+    }
+
+
 def _generar_clip(
     row: dict[str, str],
     output_dir: Path,
@@ -136,6 +165,10 @@ def _generar_clip(
     variant_path = output_dir / row["titulo"] / f"{row['clip']}.npz"
     frames, ratio = procesar_clip(str(clip_path), landmarker, vproc)
     if not frames:
+        reason = f"sin frames variant; detection_ratio={ratio:.3f}"
+        fallback = _fallback_original_roi(row, variant_path, reason)
+        if fallback is not None:
+            return fallback
         return {
             "source_id": row["titulo"],
             "clip": row["clip"],
@@ -145,7 +178,7 @@ def _generar_clip(
             "shape": "",
             "dtype": "",
             "status": "failed",
-            "reason": f"sin frames variant; detection_ratio={ratio:.3f}",
+            "reason": reason,
         }
 
     resized = [cv2.resize(frame, (96, 96), interpolation=cv2.INTER_AREA) for frame in frames]
