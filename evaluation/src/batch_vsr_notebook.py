@@ -10,6 +10,29 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr"
+REPO_ANCHORS = (
+    "evaluation/",
+    "data/",
+    "data_cleaning/",
+    "visual_preprocessing/",
+    "vsr_models/",
+)
+
+
+def resolver_repo_path(path_value: str | Path, repo_root: Path = REPO_ROOT) -> Path:
+    """Mapea paths absolutos de VM al checkout local cuando es posible."""
+    raw = str(path_value)
+    path = Path(raw)
+    if path.exists():
+        return path
+    normalized = raw.replace("\\", "/")
+    for anchor in REPO_ANCHORS:
+        if normalized.startswith(anchor):
+            return repo_root / normalized
+        marker = f"/{anchor}"
+        if marker in normalized:
+            return repo_root / anchor / normalized.split(marker, 1)[1]
+    return path
 
 
 def cargar_configs(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
@@ -19,12 +42,15 @@ def cargar_configs(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def tamanos_experimentos(configs: pd.DataFrame) -> pd.DataFrame:
+def tamanos_experimentos(configs: pd.DataFrame, repo_root: Path = REPO_ROOT) -> pd.DataFrame:
     rows = []
     for _, config in configs.iterrows():
-        train = pd.read_csv(config["train_split"]) if Path(config["train_split"]).exists() else pd.DataFrame()
-        val = pd.read_csv(config["val_split"]) if Path(config["val_split"]).exists() else pd.DataFrame()
-        test = pd.read_csv(config["test_split"]) if Path(config["test_split"]).exists() else pd.DataFrame()
+        train_path = resolver_repo_path(config["train_split"], repo_root)
+        val_path = resolver_repo_path(config["val_split"], repo_root)
+        test_path = resolver_repo_path(config["test_split"], repo_root)
+        train = pd.read_csv(train_path) if train_path.exists() else pd.DataFrame()
+        val = pd.read_csv(val_path) if val_path.exists() else pd.DataFrame()
+        test = pd.read_csv(test_path) if test_path.exists() else pd.DataFrame()
         rows.append(
             {
                 "experiment": config["experiment"],
@@ -114,3 +140,40 @@ def preprocessing_smoke(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
 def resultados(output_base: Path = OUTPUT_BASE) -> pd.DataFrame:
     path = output_base / "results" / "summary.csv"
     return pd.read_csv(path) if path.exists() else pd.DataFrame()
+
+
+def comparar_resultados(results: pd.DataFrame) -> pd.DataFrame:
+    if results.empty:
+        return pd.DataFrame()
+    parsed = results[results["status"].eq("parsed")].copy()
+    if parsed.empty:
+        return parsed
+    parsed["wer"] = pd.to_numeric(parsed["wer"], errors="coerce")
+    parsed["cer"] = pd.to_numeric(parsed["cer"], errors="coerce")
+    baseline = parsed[parsed["experiment"].eq("E0_baseline_original")]
+    if baseline.empty:
+        parsed["delta_wer_vs_e0"] = pd.NA
+        parsed["delta_cer_vs_e0"] = pd.NA
+    else:
+        e0 = baseline.iloc[0]
+        parsed["delta_wer_vs_e0"] = parsed["wer"] - e0["wer"]
+        parsed["delta_cer_vs_e0"] = parsed["cer"] - e0["cer"]
+    parsed["rank_wer"] = parsed["wer"].rank(method="min").astype("Int64")
+    parsed["interpretacion"] = parsed["delta_wer_vs_e0"].map(
+        lambda delta: "baseline"
+        if pd.isna(delta) or abs(delta) < 1e-12
+        else ("mejora_vs_e0" if delta < 0 else "empeora_vs_e0")
+    )
+    return parsed[
+        [
+            "experiment",
+            "rows",
+            "wer",
+            "cer",
+            "delta_wer_vs_e0",
+            "delta_cer_vs_e0",
+            "rank_wer",
+            "interpretacion",
+            "output",
+        ]
+    ].sort_values(["rank_wer", "experiment"])

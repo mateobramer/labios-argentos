@@ -6,8 +6,10 @@ from pathlib import Path
 from unittest.mock import patch
 
 import numpy as np
+import pandas as pd
 
 from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
+from evaluation.src.batch_vsr_notebook import comparar_resultados, resolver_repo_path, tamanos_experimentos
 from evaluation.src.parse_batch_vsr_results import parse_all
 from visual_preprocessing.src.preprocessing_variant import _fallback_original_roi, run_preprocessing_variant
 from data_cleaning.src.transcript_alignment_audit import build_alignment_audit
@@ -442,6 +444,43 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertEqual(len(rows), 1)
             self.assertEqual(rows[0]["source_id"], "fuente_b")
             self.assertEqual(rows[0]["clip"], "clip_0002")
+
+    def test_notebook_helper_resuelve_paths_absolutos_de_vm(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            self._write_csv(base / "evaluation" / "splits" / "train.csv", [self._split_row("train", "fuente_a", "clip_0001", "hola")])
+            self._write_csv(base / "evaluation" / "splits" / "val.csv", [self._split_row("val", "fuente_a", "clip_0002", "hola")])
+            self._write_csv(base / "evaluation" / "splits" / "test.csv", [self._split_row("test", "fuente_a", "clip_0003", "hola")])
+            configs = [
+                {
+                    "experiment": "E0_baseline_original",
+                    "train_split": "/home/bianc/labios-argentos/evaluation/splits/train.csv",
+                    "val_split": "/home/bianc/labios-argentos/evaluation/splits/val.csv",
+                    "test_split": "/home/bianc/labios-argentos/evaluation/splits/test.csv",
+                }
+            ]
+
+            self.assertEqual(resolver_repo_path(configs[0]["train_split"], base), base / "evaluation" / "splits" / "train.csv")
+            sizes = tamanos_experimentos(pd.DataFrame(configs), repo_root=base)
+
+            self.assertEqual(sizes.iloc[0]["train"], 1)
+            self.assertEqual(sizes.iloc[0]["val"], 1)
+            self.assertEqual(sizes.iloc[0]["test"], 1)
+
+    def test_notebook_helper_compara_resultados_vs_e0(self):
+        results = pd.DataFrame(
+            [
+                {"experiment": "E0_baseline_original", "status": "parsed", "rows": 2, "wer": 0.5, "cer": 0.4, "output": "e0.csv"},
+                {"experiment": "E2_transcript_cleaned_stronger", "status": "parsed", "rows": 2, "wer": 0.4, "cer": 0.3, "output": "e2.csv"},
+            ]
+        )
+
+        comparison = comparar_resultados(results)
+        e2 = comparison[comparison["experiment"].eq("E2_transcript_cleaned_stronger")].iloc[0]
+
+        self.assertEqual(e2["interpretacion"], "mejora_vs_e0")
+        self.assertAlmostEqual(e2["delta_wer_vs_e0"], -0.1)
+        self.assertEqual(int(e2["rank_wer"]), 1)
 
     def test_notebook_07_no_contiene_entrenamiento(self):
         data = json.loads(Path("evaluation/notebooks/07_batch_vsr_experiments.ipynb").read_text(encoding="utf-8"))
