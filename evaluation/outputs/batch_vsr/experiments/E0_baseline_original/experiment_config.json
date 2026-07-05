@@ -1,0 +1,17 @@
+{
+  "experiment": "E0_baseline_original",
+  "status": "ready",
+  "train_split": "/home/bianc/labios-argentos/evaluation/outputs/visual_cleaning/splits_original/train.csv",
+  "val_split": "/home/bianc/labios-argentos/evaluation/outputs/visual_cleaning/splits_original/val.csv",
+  "test_split": "/home/bianc/labios-argentos/evaluation/outputs/visual_cleaning/manifests/original_test.csv",
+  "rois_root": "/home/bianc/labios-argentos/data/processed/lip_rois",
+  "transcripts_root": "",
+  "visual_cleaning": "none",
+  "transcript_variant": "current",
+  "transcript_policy": "none",
+  "transcript_excluded_count": 0,
+  "transcript_usability_counts": {},
+  "transcript_decision": "",
+  "preprocessing_variant": "current",
+  "blocked_reason": ""
+}

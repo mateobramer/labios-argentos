@@ -1,0 +1,11 @@
+{
+  "run_type": "vm_finetune_verification_subset",
+  "epochs": 2,
+  "batch": 2,
+  "accum": 2,
+  "test_max": 60,
+  "vm_name": "labios-vsr-gpu",
+  "zone": "us-east1-d",
+  "gpu": "NVIDIA L4",
+  "note": "WER/CER computed on deterministic source-balanced subset exported by /tmp/export_batch_test.py"
+}

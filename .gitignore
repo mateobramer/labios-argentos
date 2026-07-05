@@ -28,6 +28,19 @@ evaluation/outputs/azzaro_whisper/clips*/
 evaluation/outputs/azzaro_whisper/*.csv
 evaluation/outputs/azzaro_whisper/transcripts_word_timestamps_v2/
 
+# Batch VSR: overlays y ROIs generables; versionar solo configs/manifests livianos.
+evaluation/outputs/batch_vsr/transcripts_current/
+evaluation/outputs/batch_vsr/transcripts_cleaned_restricted/
+evaluation/outputs/batch_vsr/transcripts_cleaned_stronger/
+evaluation/outputs/batch_vsr/rois_lower_face_resized96/
+evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
+evaluation/outputs/batch_vsr/preprocessing_variant_preview/
+evaluation/outputs/batch_vsr/raw/
+evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz
+evaluation/outputs/batch_vsr/rois_lower_face_resized96/**/*.npz
+evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png
+vsr_models/runs/batch_vsr/
+
 # Video local usado por el analisis de limpieza; los artefactos finales si se versionan.
 data_cleaning/outputs/azzaro_whisper/videos/
 data_cleaning/outputs/visual_quality_audit/previews/
@@ -38,6 +51,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .jupyter_logs/
+.ai/
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
