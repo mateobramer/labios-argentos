@@ -127,7 +127,8 @@ python -m vsr_models.src.fine_tune \
   --vsr-config ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth \
   --rois-root evaluation/outputs/batch_vsr/rois_lower_face_resized96 \
-  --splits-dir evaluation/outputs/visual_cleaning/splits_visual_cleaned \
+  --splits-dir evaluation/outputs/batch_vsr/splits_all_combined \
+  --transcripts-root evaluation/outputs/batch_vsr/transcripts_cleaned_stronger \
   --out vsr_models/runs/batch_vsr/E4_all_combined
 ```
 
@@ -145,6 +146,15 @@ python -m vsr_models.src.fine_tune \
 ```
 
 Detach: `Ctrl-b d`. Reattach: `tmux attach -t batch_vsr`.
+
+La corrida de verificacion registrada en `VM_READINESS.md` uso:
+
+```bash
+EPOCHS=2 BATCH=2 ACCUM=2 TEST_MAX=60 /tmp/run_train_batch.sh
+```
+
+`TEST_MAX=60` exporta un subset deterministico balanceado por fuente para que la inferencia
+de Gimeno sea finita; no reemplaza una corrida full de convergencia.
 
 ## Parseo y notebooks
 

@@ -1,6 +1,6 @@
 experiment,status,rows,wer,cer,reason,output
-E0_baseline_original,pending,,,,falta evaluation\outputs\batch_vsr\raw\E0_baseline_original\test.inf,
-E1_visual_cleaned,pending,,,,falta evaluation\outputs\batch_vsr\raw\E1_visual_cleaned\test.inf,
-E2_transcript_cleaned_stronger,pending,,,,falta evaluation\outputs\batch_vsr\raw\E2_transcript_cleaned_stronger\test.inf,
-E3_preprocessing_variant,pending,,,,falta evaluation\outputs\batch_vsr\raw\E3_preprocessing_variant\test.inf,
-E4_all_combined,pending,,,,falta evaluation\outputs\batch_vsr\raw\E4_all_combined\test.inf,
+E0_baseline_original,parsed,60,0.7902182,0.4824332333333333,,evaluation/outputs/batch_vsr/results/E0_baseline_original.csv
+E1_visual_cleaned,parsed,60,0.7963082666666667,0.48352646666666665,,evaluation/outputs/batch_vsr/results/E1_visual_cleaned.csv
+E2_transcript_cleaned_stronger,parsed,60,0.7570311,0.46385025,,evaluation/outputs/batch_vsr/results/E2_transcript_cleaned_stronger.csv
+E3_preprocessing_variant,parsed,60,0.79276395,0.49273503333333335,,evaluation/outputs/batch_vsr/results/E3_preprocessing_variant.csv
+E4_all_combined,parsed,60,0.7911246666666667,0.5062582,,evaluation/outputs/batch_vsr/results/E4_all_combined.csv

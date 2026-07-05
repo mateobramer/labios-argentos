@@ -1,20 +1,21 @@
 {
   "experiment": "E2_transcript_cleaned_stronger",
-  "status": "blocked_missing_asr2",
-  "train_split": "evaluation\\outputs\\batch_vsr\\splits_transcript_cleaned_stronger\\train.csv",
-  "val_split": "evaluation\\outputs\\batch_vsr\\splits_transcript_cleaned_stronger\\val.csv",
-  "test_split": "C:\\Users\\bianc\\NLP Natural Language Processing\\labios-argentos-pr24\\evaluation\\outputs\\visual_cleaning\\manifests\\original_test.csv",
-  "rois_root": "C:\\Users\\bianc\\NLP Natural Language Processing\\labios-argentos-pr24\\data\\processed\\lip_rois",
-  "transcripts_root": "evaluation\\outputs\\batch_vsr\\transcripts_cleaned_stronger",
+  "status": "ready",
+  "train_split": "evaluation/outputs/batch_vsr/splits_transcript_cleaned_stronger/train.csv",
+  "val_split": "evaluation/outputs/batch_vsr/splits_transcript_cleaned_stronger/val.csv",
+  "test_split": "/home/bianc/labios-argentos/evaluation/outputs/visual_cleaning/manifests/original_test.csv",
+  "rois_root": "/home/bianc/labios-argentos/data/processed/lip_rois",
+  "transcripts_root": "evaluation/outputs/batch_vsr/transcripts_cleaned_stronger",
   "visual_cleaning": "none",
   "transcript_variant": "transcript_cleaned_stronger",
   "transcript_policy": "moderate",
-  "transcript_excluded_count": 0,
+  "transcript_excluded_count": 192,
   "transcript_usability_counts": {
-    "questionable": 48,
-    "usable": 5902
+    "usable": 3780,
+    "questionable": 1978,
+    "bad_candidate": 192
   },
-  "transcript_decision": "BLOCKED_MISSING_ASR2",
+  "transcript_decision": "READY_FOR_VM",
   "preprocessing_variant": "current",
-  "blocked_reason": "falta ASR2 usable; no entrenar E2 como mejora fuerte"
+  "blocked_reason": ""
 }
