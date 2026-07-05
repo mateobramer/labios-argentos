@@ -50,14 +50,34 @@ def leer_inf(path: Path) -> list[tuple[str, str]]:
     return pares
 
 
+def _metadata_rows(config: dict[str, str], raw_experiment_dir: Path) -> list[dict[str, str]]:
+    mapeo = raw_experiment_dir / "test_mapeo.csv"
+    if mapeo.exists():
+        rows = []
+        for row in leer_csv(mapeo):
+            rows.append(
+                {
+                    "split": "test",
+                    "source_id": row.get("titulo", ""),
+                    "titulo": row.get("titulo", ""),
+                    "clip": row.get("clip", ""),
+                    "training_usability": row.get("training_usability", ""),
+                    "policy_moderate": row.get("policy_moderate", ""),
+                }
+            )
+        return rows
+    return leer_csv(Path(config["test_split"]))
+
+
 def parse_experiment(config_path: Path, raw_dir: Path, results_dir: Path) -> dict[str, object]:
     config = leer_config(config_path)
     experiment = config["experiment"]
-    inf_path = raw_dir / experiment / "test.inf"
+    raw_experiment_dir = raw_dir / experiment
+    inf_path = raw_experiment_dir / "test.inf"
     if not inf_path.exists():
         return {"experiment": experiment, "status": "pending", "reason": f"falta {inf_path}"}
 
-    test_rows = leer_csv(Path(config["test_split"]))
+    test_rows = _metadata_rows(config, raw_experiment_dir)
     pairs = leer_inf(inf_path)
     if len(test_rows) != len(pairs):
         raise ValueError(f"{experiment}: test rows={len(test_rows)} pero inf lines={len(pairs)}")

@@ -389,6 +389,60 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertEqual(rows[0]["wer"], "0.500000")
             self.assertEqual(rows[0]["transcript_variant"], "current")
 
+    def test_parser_usa_mapeo_subset_si_existe(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            test_split = base / "test.csv"
+            self._write_csv(
+                test_split,
+                [
+                    {"split": "test", "titulo": "fuente_a", "clip": "clip_0001"},
+                    {"split": "test", "titulo": "fuente_b", "clip": "clip_0002"},
+                ],
+            )
+            exp_dir = base / "experiments" / "E0_baseline_original"
+            exp_dir.mkdir(parents=True)
+            (exp_dir / "experiment_config.json").write_text(
+                json.dumps(
+                    {
+                        "experiment": "E0_baseline_original",
+                        "status": "ready",
+                        "train_split": "train.csv",
+                        "val_split": "val.csv",
+                        "test_split": str(test_split),
+                        "rois_root": "rois",
+                        "transcripts_root": "",
+                        "visual_cleaning": "none",
+                        "transcript_variant": "current",
+                        "preprocessing_variant": "current",
+                        "blocked_reason": "",
+                    }
+                ),
+                encoding="utf-8",
+            )
+            raw = base / "raw" / "E0_baseline_original"
+            raw.mkdir(parents=True)
+            (raw / "test.inf").write_text("chau mundo#chau\n", encoding="utf-8")
+            self._write_csv(
+                raw / "test_mapeo.csv",
+                [
+                    {
+                        "sampleID": "s01_0000",
+                        "spk": "s01",
+                        "titulo": "fuente_b",
+                        "clip": "clip_0002",
+                        "texto": "chau mundo",
+                    }
+                ],
+            )
+
+            parse_all(base)
+            rows = self._read_csv(base / "results" / "E0_baseline_original.csv")
+
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["source_id"], "fuente_b")
+            self.assertEqual(rows[0]["clip"], "clip_0002")
+
     def test_notebook_07_no_contiene_entrenamiento(self):
         data = json.loads(Path("evaluation/notebooks/07_batch_vsr_experiments.ipynb").read_text(encoding="utf-8"))
         code = "\n".join(
