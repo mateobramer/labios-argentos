@@ -57,11 +57,15 @@ def row_desde_candidate(candidate: dict[str, str], audit: dict[str, Any] | None,
     audit = audit or {}
     visual_score = to_float(audit.get("visual_quality_score"), 0.0)
     audio_score = to_float(audit.get("audio_quality_score"), 0.0)
+    asr_eval = evaluar_asr(audit.get("samples", []))
+    if asr_eval["max_audio_score"] is not None:
+        audio_score = min(audio_score, asr_eval["max_audio_score"])
     context_score = to_float(audit.get("context_score"), 0.0)
     total = round(0.50 * visual_score + 0.30 * audio_score + 0.20 * context_score, 2)
     visual_decision = audit.get("visual_decision") or ("reject" if not audit else "maybe_review")
     audio_decision = audit.get("audio_decision") or ("reject" if not audit else "maybe_review")
     reasons = razones(audit, candidate, total, visual_score, audio_score, context_score)
+    reasons.extend(asr_eval["reasons"])
     decision = decidir_final(
         total_score=total,
         visual_score=visual_score,
@@ -81,6 +85,10 @@ def row_desde_candidate(candidate: dict[str, str], audit: dict[str, Any] | None,
         visual_accept_ratio=visual_score / 100 if visual_score else 0.0,
     )
     clips = estimar_clips_aceptados(usable, clips_per_minute)
+    if decision in {"strong_accept", "accept"} and (usable <= 0 or clips <= 0):
+        reasons.append("sin_minutos_utiles_estimados")
+        decision = "maybe_review"
+        recommended_use = "manual_review"
     if decision not in {"strong_accept", "accept"}:
         clips = 0.0 if decision == "reject" else clips * 0.35
         usable = 0.0 if decision == "reject" else usable * 0.35
@@ -106,9 +114,55 @@ def row_desde_candidate(candidate: dict[str, str], audit: dict[str, Any] | None,
         "recommended_use": recommended_use,
         "usable_minutes_estimate": round(usable, 2),
         "accepted_clips_estimate": round(clips, 0),
-        "uncertainty": audit.get("uncertainty") or "high:missing_audit",
+        "uncertainty": ajustar_uncertainty(audit.get("uncertainty") or "high:missing_audit", asr_eval),
     }
     return row
+
+
+def evaluar_asr(samples: list[dict[str, Any]]) -> dict[str, Any]:
+    asr_samples = [s for s in samples if str(s.get("asr_status", "")).startswith("ok_")]
+    if not asr_samples:
+        statuses = {str(s.get("asr_status", "")) for s in samples if s.get("asr_status")}
+        if any("blocked_missing_asr_dependency" in s for s in statuses):
+            return {"max_audio_score": None, "reasons": ["asr_blocked_missing_dependency"], "status": "blocked"}
+        return {"max_audio_score": None, "reasons": ["asr_not_run"], "status": "not_run"}
+
+    likely_spanish = [
+        str(s.get("likely_spanish", "")).lower() == "true" or str(s.get("language_detected", "")).lower() == "es"
+        for s in asr_samples
+    ]
+    spanish_ratio = sum(likely_spanish) / len(likely_spanish)
+    avg_text_len = mean([to_float(s.get("asr_text_length")) for s in asr_samples])
+    densities = [to_float(s.get("speech_density"), 0.0) for s in asr_samples if s.get("speech_density") not in ("", None)]
+    avg_density = mean(densities) if densities else 0.0
+    no_speech = [to_float(s.get("no_speech_probability"), 0.0) for s in asr_samples if s.get("no_speech_probability") not in ("", None)]
+    avg_no_speech = mean(no_speech) if no_speech else 0.0
+
+    reasons: list[str] = []
+    max_audio_score: float | None = None
+    if spanish_ratio < 0.67:
+        reasons.append("asr_no_confirma_espanol")
+        max_audio_score = 55.0
+    if avg_text_len < 60:
+        reasons.append("asr_texto_muy_corto")
+        max_audio_score = min(max_audio_score or 100.0, 60.0)
+    if avg_density < 0.35:
+        reasons.append("asr_baja_densidad_habla")
+        max_audio_score = min(max_audio_score or 100.0, 65.0)
+    if avg_no_speech > 0.60:
+        reasons.append("asr_no_speech_alto")
+        max_audio_score = min(max_audio_score or 100.0, 65.0)
+    if not reasons:
+        reasons.append("asr_espanol_y_habla_confirmados")
+    return {"max_audio_score": max_audio_score, "reasons": reasons, "status": "ok"}
+
+
+def ajustar_uncertainty(uncertainty: str, asr_eval: dict[str, Any]) -> str:
+    if asr_eval["status"] == "ok" and "asr_espanol_y_habla_confirmados" in asr_eval["reasons"]:
+        return uncertainty.replace("audio_proxy_debil", "audio_asr_confirmado")
+    if asr_eval["status"] == "ok" and asr_eval["max_audio_score"] is not None:
+        return "high:asr_quality_penalty"
+    return uncertainty
 
 
 def razones(
@@ -450,6 +504,16 @@ def escribir_ingest_plan(rows: list[dict[str, Any]]) -> None:
             "- ROIs derivados despues del preprocesamiento visual.",
             "",
             "ROIs solos no alcanzan para discovery o limpieza de transcripts: faltan audio, contexto y metadata.",
+            "",
+            "## Comandos para escalar discovery",
+            "No buscar llegar a 12K en un loop local largo. Repetir en lotes chicos, guardando outputs livianos y frenando cualquier auditoria sin progreso/logs nuevos por mas de 30 minutos.",
+            "",
+            "```bash",
+            'python -m data_discovery.src.search_youtube_candidates --append --max-results 8 --query "podcast argentino entrevista camara fija" --query "entrevista argentina completa"',
+            "python -m data_discovery.src.audit_youtube_candidate --input data_discovery/outputs/candidate_videos_round3_for_audit.csv --limit 15 --run-asr --asr-model small",
+            "python -m data_discovery.src.score_candidates --clips-per-minute 12",
+            "python -m data_discovery.src.make_contact_sheets --accepted-only --limit 80",
+            "```",
         ]
     )
     INGEST_PLAN_MD.write_text("\n".join(lines), encoding="utf-8")

@@ -60,6 +60,8 @@ data_discovery/outputs/contact_sheets/*.png
 data_discovery/outputs/**/*.mp4
 data_discovery/outputs/**/*.wav
 data_discovery/outputs/**/*.webm
+data_discovery/outputs/*_stdout.log
+data_discovery/outputs/*_stderr.log
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/

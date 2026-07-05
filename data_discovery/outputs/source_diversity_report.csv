@@ -1,14 +1,23 @@
 channel,source_type,accepted_videos,usable_minutes_estimate,accepted_clips_estimate,avg_total_score,avg_visual_score,avg_audio_score,decision,notes
 Aprender de Grandes,podcast,1,25.5,306.0,87.65,80.06,93.39,ok,
 BLENDER,interview,0,0,0,82.89,74.59,93.33,backup_review,
+Cenital,interview,1,60.0,748.0,90.69,95.53,77.77,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Congo,interview,1,31.17,374.0,86.56,91.29,94.39,ok,
 Daniel Colombo,educational,1,60.0,1023.0,96.76,96.32,96.67,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
 El Método Rebord,educational,1,60.0,1228.0,90.47,88.09,89.39,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
 En Perspectiva + VIDEO ,podcast,0,0,0,85.49,72.56,98.7,backup_review,
-Filo News,interview,0,0,0,81.86,71.66,88.09,backup_review,
+Filo News,interview,0,0,0,82.4,74.04,85.94,backup_review,
+Futurock FM,interview,1,49.83,598.0,86.94,90.55,85.22,ok,
+LA NACION,interview,1,49.64,596.0,89.22,86.63,87.69,ok,
 LUZU TV,educational,0,0,0,84.44,74.77,91.51,backup_review,
 Martin Cirio,interview,0,0,0,83.11,68.92,96.83,backup_review,
+Sociedad Argentina De Aviacion,educational,0,0,0,84.35,81.35,80.25,backup_review,
 Spanish with Nico,podcast,1,13.02,156.0,92.65,96.1,90.0,ok,
+TEDx Talks,educational,0,0,0,79.07,67.03,86.53,backup_review,
 Tengo un Plan,podcast,1,60.0,1341.0,91.1,88.06,91.57,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Todo Noticias,interview,2,58.41,701.0,95.38,95.15,94.0,ok,
+Universidad Torcuato Di Tella,educational,1,9.13,110.0,87.83,80.25,93.69,ok,
 Urbana Play 104.3 FM,interview,1,56.41,677.0,92.18,87.28,96.45,ok,
 Vorterix,interview,0,0,0,80.31,70.48,84.92,backup_review,
+elDiarioAR,monologue,0,0,0,84.91,71.46,98.58,backup_review,
 eltrece,interview,1,21.32,256.0,92.19,86.12,98.43,ok,

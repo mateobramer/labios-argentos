@@ -21,6 +21,7 @@ from data_discovery.src.common import (
     SAMPLES,
     asegurar_directorios,
     clamp,
+    cargar_json,
     comando_ffmpeg,
     comando_yt_dlp,
     configurar_salida_utf8,
@@ -589,6 +590,12 @@ def auditar(
         audit["audit_status"] = "metadata_error"
         return audit
 
+    audit_previo = cargar_auditoria_previa(video_id)
+    samples_previos = {
+        int(s.get("index")): s
+        for s in audit_previo.get("samples", [])
+        if str(s.get("index", "")).isdigit()
+    }
     for sample in timestamps_samples(duration, sample_count, sample_seconds):
         sample_row: dict[str, Any] = dict(sample)
         if dry_run:
@@ -599,7 +606,11 @@ def auditar(
         sample_row["sample_status"] = status
         sample_row["sample_path"] = str(sample_path) if sample_path else ""
         if sample_path:
-            sample_row.update(metricas_visuales(sample_path))
+            previo = samples_previos.get(int(sample["index"]))
+            if previo and previo.get("visual_quality_score") not in ("", None):
+                sample_row.update(metricas_visuales_cacheadas(previo))
+            else:
+                sample_row.update(metricas_visuales(sample_path))
             sample_row.update(metricas_audio(sample_path, run_asr=run_asr, asr_model=asr_model))
         audit["samples"].append(sample_row)
 
@@ -607,6 +618,53 @@ def auditar(
     audit["audit_status"] = "ok" if audit.get("samples_ok", 0) else ("dry_run" if dry_run else "sample_error")
     audit["uncertainty"] = calcular_uncertainty(audit)
     return audit
+
+
+def cargar_auditoria_previa(video_id: str) -> dict[str, Any]:
+    path = SAMPLE_METADATA / f"{video_id}.json"
+    if not path.exists():
+        return {}
+    try:
+        return cargar_json(path)
+    except Exception:
+        return {}
+
+
+def metricas_visuales_cacheadas(sample: dict[str, Any]) -> dict[str, Any]:
+    claves = [
+        "face_detect_rate",
+        "mouth_detect_rate",
+        "mouth_size_ratio",
+        "face_size_ratio",
+        "center_stability",
+        "frontal_proxy",
+        "side_profile_proxy",
+        "occlusion_proxy",
+        "black_frame_rate",
+        "scene_cut_proxy",
+        "multi_face_rate",
+        "mouth_visible_ratio",
+        "single_speaker_visual_proxy",
+        "brightness_score",
+        "contrast_score",
+        "blur_score",
+        "mouth_activity_score",
+        "mouth_texture_score",
+        "face_detector",
+        "face_notes",
+        "visual_backend",
+        "mediapipe_status",
+        "mediapipe_face_detect_rate",
+        "mediapipe_multi_face_rate",
+        "mediapipe_mouth_visible_ratio",
+        "mediapipe_mouth_centered_ratio",
+        "mediapipe_max_faces",
+        "mediapipe_visual_reasons",
+        "visual_quality_score",
+        "visual_decision",
+        "visual_reasons",
+    ]
+    return {k: sample[k] for k in claves if k in sample}
 
 
 def calcular_uncertainty(audit: dict[str, Any]) -> str:

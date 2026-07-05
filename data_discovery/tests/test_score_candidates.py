@@ -50,6 +50,17 @@ class TestScoreCandidates(unittest.TestCase):
         self.assertIn(row["decision"], {"strong_accept", "accept"})
         self.assertGreater(float(row["accepted_clips_estimate"]), 0)
 
+    def test_accept_sin_minutos_utiles_pasa_a_revision(self):
+        candidate = self._candidate()
+        audit = self._audit(video_id="abc", clips=0)
+
+        row = row_desde_candidate(candidate, audit, clips_per_minute=12)
+
+        self.assertEqual(row["decision"], "maybe_review")
+        self.assertEqual(row["recommended_use"], "manual_review")
+        self.assertEqual(float(row["accepted_clips_estimate"]), 0)
+        self.assertIn("sin_minutos_utiles_estimados", row["reasons"])
+
     def test_caps_de_diversidad_bajan_exceso_a_maybe(self):
         rows = []
         for idx in range(3):
