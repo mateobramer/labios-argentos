@@ -53,6 +53,14 @@ __pycache__/
 .jupyter_logs/
 .ai/
 
+# Data discovery: samples y contact sheets se regeneran localmente.
+data_discovery/outputs/samples/
+data_discovery/outputs/contact_sheets/*.jpg
+data_discovery/outputs/contact_sheets/*.png
+data_discovery/outputs/**/*.mp4
+data_discovery/outputs/**/*.wav
+data_discovery/outputs/**/*.webm
+
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
 .venv-visual/

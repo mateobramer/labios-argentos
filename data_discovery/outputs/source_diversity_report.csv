@@ -1,0 +1,14 @@
+channel,source_type,accepted_videos,usable_minutes_estimate,accepted_clips_estimate,avg_total_score,avg_visual_score,avg_audio_score,decision,notes
+Aprender de Grandes,podcast,1,25.5,306.0,87.65,80.06,93.39,ok,
+BLENDER,interview,0,0,0,82.89,74.59,93.33,backup_review,
+Daniel Colombo,educational,1,60.0,1023.0,96.76,96.32,96.67,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+El Método Rebord,educational,1,60.0,1228.0,90.47,88.09,89.39,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+En Perspectiva + VIDEO ,podcast,0,0,0,85.49,72.56,98.7,backup_review,
+Filo News,interview,0,0,0,81.86,71.66,88.09,backup_review,
+LUZU TV,educational,0,0,0,84.44,74.77,91.51,backup_review,
+Martin Cirio,interview,0,0,0,83.11,68.92,96.83,backup_review,
+Spanish with Nico,podcast,1,13.02,156.0,92.65,96.1,90.0,ok,
+Tengo un Plan,podcast,1,60.0,1341.0,91.1,88.06,91.57,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Urbana Play 104.3 FM,interview,1,56.41,677.0,92.18,87.28,96.45,ok,
+Vorterix,interview,0,0,0,80.31,70.48,84.92,backup_review,
+eltrece,interview,1,21.32,256.0,92.19,86.12,98.43,ok,
