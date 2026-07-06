@@ -395,8 +395,12 @@ def escribir_target_progress(rows: list[dict[str, Any]], diversity: list[dict[st
     distinct_sources = len({r["channel"] for r in accepted if r.get("channel")})
     remaining_clips = max(0.0, TARGET_NEW_ACCEPTED_CLIPS - clips)
     remaining_minutes = max(0.0, TARGET_USABLE_MINUTES_LOW - minutes)
-    if clips >= TARGET_NEW_ACCEPTED_CLIPS or minutes >= TARGET_USABLE_MINUTES_LOW:
+    target_clips_reached = clips >= TARGET_NEW_ACCEPTED_CLIPS
+    target_minutes_reached = TARGET_USABLE_MINUTES_LOW <= minutes <= TARGET_USABLE_MINUTES_HIGH
+    if target_clips_reached:
         target_decision = "TARGET_REACHED"
+    elif minutes >= TARGET_USABLE_MINUTES_LOW:
+        target_decision = "TARGET_CLIPS_NOT_REACHED_USABLE_MINUTES_REACHED"
     elif not accepted and any("missing_audit" in r["reasons"] for r in rows):
         target_decision = "TARGET_NOT_REACHED_NEED_AUDIT_SAMPLES"
     elif distinct_sources < 10:
@@ -416,6 +420,8 @@ def escribir_target_progress(rows: list[dict[str, Any]], diversity: list[dict[st
         f"remaining_clips_to_target: {remaining_clips:.0f}",
         f"usable_minutes_estimate: {minutes:.1f}",
         f"remaining_usable_minutes: {remaining_minutes:.1f}",
+        f"target_clips_reached: {str(target_clips_reached).lower()}",
+        f"target_usable_minutes_reached: {str(target_minutes_reached).lower()}",
         f"accepted_videos_count: {len(accepted)}",
         f"maybe_videos_count: {len(maybe)}",
         f"rejected_videos_count: {len(rejected)}",

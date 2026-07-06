@@ -25,7 +25,18 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_educational|formato_largo|fuente_argentina_probable|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados|source_cap_applied_partial
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=OrwtPwftIi4"
 
-### 3. Javier Milei en TN I Entrevista completa del 30/06/2024
+### 3. REBORD - PERETTI | HAY ALGO AHÍ | BLENDER
+- url: https://www.youtube.com/watch?v=qEKPgqURvo0
+- channel: BLENDER
+- source_type: streamer
+- score: total=94.26, visual=98.2, audio=85.2, context=98.0
+- estimated accepted clips: 822.0
+- estimated usable minutes: 60.0
+- recommended_use: ingest_partial
+- riesgos: low; audio_proxy_alto|audio_proxy_intermedio|audio_proxy_suficiente|audio_score_sobre_threshold|formato_largo|formato_streamer|fuente_argentina_probable|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados|source_cap_applied_partial
+- comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=qEKPgqURvo0"
+
+### 4. Javier Milei en TN I Entrevista completa del 30/06/2024
 - url: https://www.youtube.com/watch?v=JixCyhEGE0A
 - channel: Todo Noticias
 - source_type: interview
@@ -36,7 +47,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=JixCyhEGE0A"
 
-### 4. ¿Cómo es el ESPAÑOL ARGENTINO FORMAL? - Argento Podcast #44
+### 5. ¿Cómo es el ESPAÑOL ARGENTINO FORMAL? - Argento Podcast #44
 - url: https://www.youtube.com/watch?v=vDNy6EN7bIY
 - channel: Spanish with Nico
 - source_type: podcast
@@ -47,7 +58,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_podcast|fuente_argentina_probable|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=vDNy6EN7bIY"
 
-### 5. GUILLERMO FRANCELLA, UN LUJO COMO PRIMER INVITADO DE OTRO DÍA PERDIDO || ENTREVISTA COMPLETA
+### 6. GUILLERMO FRANCELLA, UN LUJO COMO PRIMER INVITADO DE OTRO DÍA PERDIDO || ENTREVISTA COMPLETA
 - url: https://www.youtube.com/watch?v=R3f0x1IJvhI
 - channel: eltrece
 - source_type: interview
@@ -58,7 +69,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=R3f0x1IJvhI"
 
-### 6. Mario Pergolini y un imperdible mano a mano con Andy Kusnetzoff | #Perros2022 Perros de la Calle
+### 7. Mario Pergolini y un imperdible mano a mano con Andy Kusnetzoff | #Perros2022 Perros de la Calle
 - url: https://www.youtube.com/watch?v=j4x2GC1Ztro
 - channel: Urbana Play 104.3 FM
 - source_type: interview
@@ -69,7 +80,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=j4x2GC1Ztro"
 
-### 7. Entrevista completa de Javier Milei con Luis Majul: "Hemos pasado el momento bisagra"
+### 8. Entrevista completa de Javier Milei con Luis Majul: "Hemos pasado el momento bisagra"
 - url: https://www.youtube.com/watch?v=Z-t-GNlxpYc
 - channel: LA NACION
 - source_type: interview
@@ -80,7 +91,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_proxy_intermedio|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=Z-t-GNlxpYc"
 
-### 8. Cómo Amarse a uno Mismo y Tener Buena Salud Mental: Hábitos de Vida - Gabriel Rolón
+### 9. Cómo Amarse a uno Mismo y Tener Buena Salud Mental: Hábitos de Vida - Gabriel Rolón
 - url: https://www.youtube.com/watch?v=ITovsJg-q5c
 - channel: Tengo un Plan
 - source_type: podcast
@@ -91,7 +102,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_largo|formato_podcast|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados|source_cap_applied_partial
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=ITovsJg-q5c"
 
-### 9. Taty Almeida | Bios Militantes con Julia Mengolini en #Segurola
+### 10. Taty Almeida | Bios Militantes con Julia Mengolini en #Segurola
 - url: https://www.youtube.com/watch?v=eqw0QM4A0oA
 - channel: Futurock FM
 - source_type: podcast
@@ -102,7 +113,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_largo|formato_podcast|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=eqw0QM4A0oA"
 
-### 10. Martin Menem con Iván Schargrodsky en #OnTheRecord
+### 11. Martin Menem con Iván Schargrodsky en #OnTheRecord
 - url: https://www.youtube.com/watch?v=jgp8WZvtkWU
 - channel: Cenital
 - source_type: interview
@@ -113,7 +124,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: medium:samples_incompletos|audio_asr_confirmado; audio_proxy_intermedio|audio_proxy_suficiente|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados|source_cap_applied_partial
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=jgp8WZvtkWU"
 
-### 11. El Método Rebord #56 - Andy Chango
+### 12. El Método Rebord #56 - Andy Chango
 - url: https://www.youtube.com/watch?v=h3HtBhArO1Q
 - channel: El Método Rebord
 - source_type: podcast
@@ -124,7 +135,51 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|black_frame_rate_alto|formato_largo|formato_podcast|fuente_argentina_probable|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados|source_cap_applied_partial
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=h3HtBhArO1Q"
 
-### 12. Obstáculos ideológicos en el empleo
+### 13. Guido Di Tella con Juan Carlos de Pablo - DiFilm (1998)
+- url: https://www.youtube.com/watch?v=EhYznjqlcKY
+- channel: archivodichiara
+- source_type: other
+- score: total=89.37, visual=92.74, audio=90.0, context=80.0
+- estimated accepted clips: 408.0
+- estimated usable minutes: 34.0
+- recommended_use: ingest_full
+- riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
+- comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=EhYznjqlcKY"
+
+### 14. Pepe Mujica con Jorge Fontevecchia (Entrevista Completa)
+- url: https://www.youtube.com/watch?v=YYIVFA000BI
+- channel: Perfil
+- source_type: interview
+- score: total=89.24, visual=93.07, audio=77.03, context=98.0
+- estimated accepted clips: 682.0
+- estimated usable minutes: 56.9
+- recommended_use: ingest_partial
+- riesgos: medium:audio_asr_confirmado; audio_proxy_intermedio|audio_proxy_suficiente|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
+- comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=YYIVFA000BI"
+
+### 15. Entrevista en “IP Noticias” con Noelia Barral, Romina Calderaro y Nora Veiras - IP - 07/02/2021
+- url: https://www.youtube.com/watch?v=WMk6afYRfKM
+- channel: Alberto Fernández
+- source_type: interview
+- score: total=89.0, visual=84.8, audio=90.0, context=98.0
+- estimated accepted clips: 680.0
+- estimated usable minutes: 56.7
+- recommended_use: ingest_partial
+- riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
+- comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=WMk6afYRfKM"
+
+### 16. Coscu Mete Un Bombazo Histórico Después De Probar Las Salsas Más Picantes Del Mundo
+- url: https://www.youtube.com/watch?v=PRQEkiIWps0
+- channel: Terapia Picante
+- source_type: streamer
+- score: total=88.92, visual=84.63, audio=90.0, context=98.0
+- estimated accepted clips: 331.0
+- estimated usable minutes: 27.6
+- recommended_use: ingest_full
+- riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_largo|formato_streamer|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
+- comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=PRQEkiIWps0"
+
+### 17. Obstáculos ideológicos en el empleo
 - url: https://www.youtube.com/watch?v=sjnH4bTak9s
 - channel: Universidad Torcuato Di Tella
 - source_type: interview
@@ -135,7 +190,18 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=sjnH4bTak9s"
 
-### 13. Marcos Galperin | La vida del emprendedor | Aprender de Grandes #072
+### 18. El último reportaje del papa Francisco con Infobae
+- url: https://www.youtube.com/watch?v=q94HfK07DjI
+- channel: Infobae
+- source_type: interview
+- score: total=88.39, visual=91.01, audio=77.61, context=98.0
+- estimated accepted clips: 295.0
+- estimated usable minutes: 24.6
+- recommended_use: ingest_full
+- riesgos: medium:audio_asr_confirmado; audio_proxy_alto|audio_proxy_intermedio|audio_score_sobre_threshold|formato_interview|formato_largo|fuente_argentina_probable|scene_cut_proxy_alto|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
+- comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=q94HfK07DjI"
+
+### 19. Marcos Galperin | La vida del emprendedor | Aprender de Grandes #072
 - url: https://www.youtube.com/watch?v=EuSM3LscaWI
 - channel: Aprender de Grandes
 - source_type: podcast
@@ -146,7 +212,7 @@ No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos pa
 - riesgos: low; audio_proxy_alto|audio_score_sobre_threshold|face_detect_rate_bajo|formato_largo|formato_podcast|fuente_argentina_probable|speaker_count_usable|total_score_alto|visual_proxy_alto|visual_score_sobre_threshold|asr_espanol_y_habla_confirmados
 - comando tentativo: python descargar_procesar.py "https://www.youtube.com/watch?v=EuSM3LscaWI"
 
-### 14. ENTREVISTA: DIEGO TORRES
+### 20. ENTREVISTA: DIEGO TORRES
 - url: https://www.youtube.com/watch?v=IGYG0Kn0wxo
 - channel: Congo
 - source_type: interview
