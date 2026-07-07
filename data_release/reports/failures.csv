@@ -3,5 +3,33 @@ asr_turbo,argentina/existing,,,,,,Reconstruct from original URLs/raw videos to r
 asr_turbo,spanish_general/existing,,,,,,Kept separated; no GPT cleaning requested.
 new_discovery_ingest,argentina/new_discovery,,,,,,20 accepted videos queued for source download and full ASR.
 vm_processing,argentina/existing,f09__ESTOY_EN_UN_BROTE_PERDON,,gce://vsr-full-clean-20260707-0200,spot_vm_terminated,VM Spot terminated during reconstruction batch before source checkpoint completed.,completed sources were already synced to GCS; f09 batch should be retried
-new_discovery_ingest,argentina/new_discovery,,,C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\argentina_new_manifest.csv,blocked_not_ingested_in_this_release,Spot VM terminated before new_discovery stage.,accepted URLs remain queued in new_discovery_ingest_manifest.csv
 spanish_general_asr,spanish_general/existing,,,gs://labios-argentos-vsr-dataset/curriculum_visper/,blocked_missing_provenance_for_asr,No reconstructable source URLs/provenance found in current manifests.,spanish_general kept separate; no GPT cleaning
+existing_reconstruction,argentina/existing,f13__JULI_POGGIO_EN_FERN_CON_GREGO,,https://www.youtube.com/watch?v=1zF5z-CjewQ,source_reconstruction_failed,"tube.com/watch?v=1zF5z-CjewQ
+[youtube] 1zF5z-CjewQ: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] 1zF5z-CjewQ: Downloading android vr player API JSON
+WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing
+ERROR: [youtube] 1zF5z-CjewQ: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+",continuing_with_next_source
+existing_reconstruction,argentina/existing,f22__ME_ACUSARON_DE_BRUJA_Y_ME_TUVE_QUE_IR_DEL_PUEBLO_-,,https://www.youtube.com/watch?v=G555f-3hnd8,source_reconstruction_failed,"tube.com/watch?v=G555f-3hnd8
+[youtube] G555f-3hnd8: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] G555f-3hnd8: Downloading android vr player API JSON
+WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing
+ERROR: [youtube] G555f-3hnd8: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+",continuing_with_next_source
+existing_reconstruction,argentina/existing,f27__MICA_SUAREZ_KEVSHO_LULI_GONZALEZ_JAMES_CHARLES,,https://www.youtube.com/watch?v=GhdO9yCVxb8,source_reconstruction_failed,"tube.com/watch?v=GhdO9yCVxb8
+[youtube] GhdO9yCVxb8: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] GhdO9yCVxb8: Downloading android vr player API JSON
+WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing
+ERROR: [youtube] GhdO9yCVxb8: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+",continuing_with_next_source
+existing_reconstruction,argentina/existing,f42__Por_qu_ya_no_podemos_conversar_y_c_mo_aprender_a,,https://www.youtube.com/watch?v=uSK7zk5u-RE,source_reconstruction_failed,"tube.com/watch?v=uSK7zk5u-RE
+[youtube] uSK7zk5u-RE: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] uSK7zk5u-RE: Downloading android vr player API JSON
+WARNING: [youtube] No title found in player responses; falling back to title from initial data. Other metadata may also be missing
+ERROR: [youtube] uSK7zk5u-RE: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies
+",continuing_with_next_source
+new_discovery_ingest,argentina/new_discovery,,,C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\argentina_new_manifest.csv,blocked_download_failed,yt-dlp on the VM required YouTube login/cookies for accepted new_discovery URLs.,accepted URLs remain queued in new_discovery_ingest_manifest.csv; no cookies were uploaded or logged

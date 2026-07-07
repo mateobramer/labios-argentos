@@ -12,6 +12,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Iterable
@@ -100,6 +101,53 @@ def run_ok(args: list[str], timeout: int = 900) -> str:
     return result.stdout + result.stderr
 
 
+def run_stream(args: list[str], timeout: int = 900, heartbeat: int = 60) -> str:
+    """Ejecuta un comando largo mostrando salida y heartbeats."""
+    started = time.monotonic()
+    last_output = started
+    chunks: list[str] = []
+    process = subprocess.Popen(
+        args,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        bufsize=1,
+    )
+    assert process.stdout is not None
+    while True:
+        line = process.stdout.readline()
+        now = time.monotonic()
+        if line:
+            chunks.append(line)
+            print(line.rstrip(), flush=True)
+            last_output = now
+        elif process.poll() is not None:
+            break
+        else:
+            if now - last_output >= heartbeat:
+                print(f"heartbeat command_running elapsed_sec={int(now - started)} cmd={args[0]}", flush=True)
+                last_output = now
+            if now - started > timeout:
+                process.terminate()
+                try:
+                    process.wait(timeout=20)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                raise TimeoutError(f"Timeout comando: {' '.join(args)}")
+            time.sleep(1)
+    rest = process.stdout.read()
+    if rest:
+        chunks.append(rest)
+        print(rest.rstrip(), flush=True)
+    rc = process.wait()
+    text = "".join(chunks)
+    if rc != 0:
+        raise RuntimeError(f"Fallo comando: {' '.join(args)}\n{text[-3000:]}")
+    return text
+
+
 def read_csv(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
@@ -146,6 +194,7 @@ def load_rows(confidences: set[str], sources: set[str]) -> dict[str, list[dict[s
 def download_source(source_id: str, url: str, work: Path, fmt: str, timeout: int) -> Path:
     existing = sorted([p for p in work.glob("source.*") if p.suffix.lower() in {".mp4", ".mkv", ".webm"}])
     if existing:
+        print(f"source_video_cached source_id={source_id} path={existing[0]}", flush=True)
         return existing[0]
     work.mkdir(parents=True, exist_ok=True)
     ffmpeg = ffmpeg_path()
@@ -158,16 +207,25 @@ def download_source(source_id: str, url: str, work: Path, fmt: str, timeout: int
         "mp4",
         "--ffmpeg-location",
         ffmpeg,
+        "--socket-timeout",
+        "30",
+        "--retries",
+        "3",
+        "--fragment-retries",
+        "3",
+        "--newline",
         "-f",
         fmt,
         "-o",
         output,
         url,
     ]
-    run_ok(args, timeout=timeout)
+    print(f"download_start source_id={source_id} url={url}", flush=True)
+    run_stream(args, timeout=timeout, heartbeat=60)
     candidates = sorted([p for p in work.glob("source.*") if p.suffix.lower() in {".mp4", ".mkv", ".webm"}])
     if not candidates:
         raise RuntimeError("yt-dlp no genero video fuente")
+    print(f"download_done source_id={source_id} path={candidates[0]}", flush=True)
     return candidates[0]
 
 
@@ -275,6 +333,7 @@ def upload_source(source_id: str, source_work: Path) -> None:
     if audio_dir.exists():
         run_ok([GCLOUD, "storage", "cp", "--recursive", str(audio_dir / "*"), f"{GCS_AUDIO}/{source_id}/"], timeout=1800)
     run_ok([GCLOUD, "storage", "cp", str(MANIFEST), f"{GCS_MANIFESTS}/existing_reconstruction_manifest.csv"], timeout=300)
+    run_ok([GCLOUD, "storage", "cp", str(REPORT), f"{DEST_BUCKET}/reports/existing_reconstruction_report.md"], timeout=300)
 
 
 def cleanup_source_work(path: Path) -> None:
@@ -313,6 +372,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--confidence", action="append", default=["high", "medium"])
     parser.add_argument("--format", default="bv*[height<=720]+ba/b[height<=720]/b")
     parser.add_argument("--download-timeout", type=int, default=3600)
+    parser.add_argument("--checkpoint-every", type=int, default=25)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--upload", action="store_true")
     parser.add_argument("--cleanup-source-work", action="store_true")
@@ -342,6 +402,7 @@ def main() -> int:
         print(f"source_start source_id={source_id} clips={len(source_rows)}", flush=True)
         try:
             source_video = download_source(source_id, source_url, source_work, args.format, args.download_timeout)
+            processed_in_source = 0
             for row in source_rows:
                 key = (source_id, row.get("clip_id", ""))
                 if args.resume and key in done:
@@ -376,6 +437,17 @@ def main() -> int:
                             "notes": "continuing_with_next_clip",
                         }
                     )
+                processed_in_source += 1
+                if processed_in_source == 1 or processed_in_source % max(1, args.checkpoint_every) == 0:
+                    all_rows = list(merged.values())
+                    write_csv(MANIFEST, all_rows, FIELDS)
+                    write_report(all_rows)
+                    print(
+                        f"checkpoint source_id={source_id} processed_in_source={processed_in_source} rows_total={len(all_rows)}",
+                        flush=True,
+                    )
+                    if args.upload:
+                        upload_source(source_id, source_work)
             all_rows = list(merged.values())
             write_csv(MANIFEST, all_rows, FIELDS)
             write_report(all_rows)

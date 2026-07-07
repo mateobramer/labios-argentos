@@ -21,7 +21,7 @@ COUNT_PATTERNS = {
     "argentina_existing_mp4": f"{DEST_BUCKET}/argentina/existing/clips_mp4/**/*.mp4",
     "argentina_existing_npz": f"{DEST_BUCKET}/argentina/existing/rois_npz/**/*.npz",
     "argentina_existing_large_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/large/**/*.txt",
-    "argentina_existing_clean_v1_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/clean_v1/**/*.txt",
+    "argentina_existing_clean_gpt_v1_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/clean_gpt_v1/**/*.txt",
     "argentina_existing_turbo_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/turbo/**/*.txt",
     "argentina_existing_large_reconstructed_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/large/**/*.txt",
     "argentina_existing_clips_with_audio": f"{DEST_BUCKET}/argentina/existing/clips_with_audio/**/*.mp4",
@@ -32,6 +32,7 @@ COUNT_PATTERNS = {
     "spanish_general_turbo_txt": f"{DEST_BUCKET}/spanish_general/existing/transcripts/turbo/**/*.txt",
     "context_packs": f"{DEST_BUCKET}/argentina/existing/metadata/context_packs/*.jsonl",
 }
+RESOURCE_FILTER = "(name~vsr-full-clean OR name~vsr-cleaning-vm OR labels.task=full-clean-release)"
 
 
 def tool(name: str) -> str:
@@ -151,7 +152,7 @@ def main() -> None:
         mp4_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_mp4"], timeout=1200)[:5]
         audio_clip_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_clips_with_audio"], timeout=1200)[:5]
         npz_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_npz"], timeout=1200)[:5]
-        txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_clean_v1_txt"], timeout=1200)[:5]
+        txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_clean_gpt_v1_txt"], timeout=1200)[:5]
         large_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_large_reconstructed_txt"], timeout=1200)[:5]
         turbo_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_turbo_txt"], timeout=1200)[:5]
         mp4_probe = probe_mp4(mp4_samples, tmp_dir)
@@ -165,15 +166,15 @@ def main() -> None:
     iam_ok = "user:fgutman@udesa.edu.ar" in iam_policy and "roles/storage.objectViewer" in iam_policy
 
     vm_list = run_ok(
-        [GCLOUD, "compute", "instances", "list", "--project", PROJECT, "--filter", "name~vsr-cleaning-vm", "--format", "value(name)"],
+        [GCLOUD, "compute", "instances", "list", "--project", PROJECT, "--filter", RESOURCE_FILTER, "--format", "value(name)"],
         timeout=120,
     ).strip()
     disk_list = run_ok(
-        [GCLOUD, "compute", "disks", "list", "--project", PROJECT, "--filter", "name~vsr-cleaning-vm", "--format", "value(name)"],
+        [GCLOUD, "compute", "disks", "list", "--project", PROJECT, "--filter", RESOURCE_FILTER, "--format", "value(name)"],
         timeout=120,
     ).strip()
     address_list = run_ok(
-        [GCLOUD, "compute", "addresses", "list", "--project", PROJECT, "--filter", "name~vsr-cleaning-vm", "--format", "value(name)"],
+        [GCLOUD, "compute", "addresses", "list", "--project", PROJECT, "--filter", RESOURCE_FILTER, "--format", "value(name)"],
         timeout=120,
     ).strip()
 
@@ -183,9 +184,10 @@ def main() -> None:
         "",
         f"bucket: {DEST_BUCKET}/",
         f"iam_fg_object_viewer: {str(iam_ok).lower()}",
-        f"remaining_vms_named_vsr_cleaning: {json.dumps(vm_list)}",
-        f"remaining_disks_named_vsr_cleaning: {json.dumps(disk_list)}",
-        f"remaining_static_addresses_named_vsr_cleaning: {json.dumps(address_list)}",
+        f"resource_filter: {RESOURCE_FILTER}",
+        f"remaining_vms_matching_filter: {json.dumps(vm_list)}",
+        f"remaining_disks_matching_filter: {json.dumps(disk_list)}",
+        f"remaining_static_addresses_matching_filter: {json.dumps(address_list)}",
         "",
         "## Counts",
         "",
@@ -204,7 +206,7 @@ def main() -> None:
     lines.extend(["", "## NPZ samples", ""])
     for row in npz_probe:
         lines.append(f"- {row['path']} key={row['key']} shape={row['shape']} dtype={row['dtype']}")
-    lines.extend(["", "## clean_v1 TXT samples", ""])
+    lines.extend(["", "## clean_gpt_v1 TXT samples", ""])
     for row in txt_probe:
         lines.append(f"- {row['path']} chars={row['chars']} sample={row['sample']!r}")
     lines.extend(["", "## large/turbo TXT samples", ""])

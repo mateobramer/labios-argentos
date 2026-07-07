@@ -2,20 +2,21 @@
 
 bucket: gs://labios-argentos-vsr-clean-v1/
 iam_fg_object_viewer: true
-remaining_vms_named_vsr_cleaning: ""
-remaining_disks_named_vsr_cleaning: ""
-remaining_static_addresses_named_vsr_cleaning: ""
+resource_filter: (name~vsr-full-clean OR name~vsr-cleaning-vm OR labels.task=full-clean-release)
+remaining_vms_matching_filter: ""
+remaining_disks_matching_filter: ""
+remaining_static_addresses_matching_filter: ""
 
 ## Counts
 
 - argentina_existing_mp4: 12112
 - argentina_existing_npz: 12112
-- argentina_existing_large_txt: 13500
-- argentina_existing_clean_v1_txt: 12112
-- argentina_existing_turbo_txt: 1388
-- argentina_existing_large_reconstructed_txt: 13500
-- argentina_existing_clips_with_audio: 1388
-- argentina_existing_reconstructed_audio: 1388
+- argentina_existing_large_txt: 14305
+- argentina_existing_clean_gpt_v1_txt: 0
+- argentina_existing_turbo_txt: 2193
+- argentina_existing_large_reconstructed_txt: 14305
+- argentina_existing_clips_with_audio: 2193
+- argentina_existing_reconstructed_audio: 2193
 - spanish_general_mp4: 10356
 - spanish_general_npz: 42599
 - spanish_general_large_txt: 46991
@@ -29,8 +30,8 @@ remaining_static_addresses_named_vsr_cleaning: ""
 - spanish_general_manifest_rows: 47152
 - clean_manifest_rows: 9191
 - alignment_manifest_rows: 9191
-- existing_reconstruction_manifest_rows: 1388
-- asr_large_turbo_manifest_rows: 2782
+- existing_reconstruction_manifest_rows: 2193
+- asr_large_turbo_manifest_rows: 4392
 - final_release_manifest_rows: 9191
 - final_train_manifest_rows: 8067
 - final_eval_manifest_rows: 1124
@@ -61,13 +62,8 @@ remaining_static_addresses_named_vsr_cleaning: ""
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/rois_npz/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0035.npz key=rois shape=107x96x96 dtype=uint8
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/rois_npz/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0038.npz key=rois shape=185x96x96 dtype=uint8
 
-## clean_v1 TXT samples
+## clean_gpt_v1 TXT samples
 
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/clean_v1/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0014.txt chars=161 sample='es francis tachara la de coger un avion vieron que ahi esta ese mito de que hay cosas que tenes que hacer antes de morir'
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/clean_v1/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0029.txt chars=49 sample='chabona puso un huevo mientras estabamos grabando'
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/clean_v1/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0034.txt chars=157 sample='nada que ver es un lugar muy barato para la experiencia que te dan yo creo que en el video les dije cuanto le salia la n'
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/clean_v1/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0035.txt chars=61 sample='no no era como 200 mil pesos dos personas una cosa asi boludo'
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/clean_v1/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0038.txt chars=135 sample='distinto el jugo es exprimido de natural porque recien lo vi al hombre como cortada a la naranja asi que pues tiene una '
 
 ## large/turbo TXT samples
 

@@ -251,6 +251,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default="auto")
     parser.add_argument("--compute-type", default="auto")
     parser.add_argument("--beam-size", type=int, default=5)
+    parser.add_argument("--checkpoint-every", type=int, default=25)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--upload", action="store_true")
     return parser.parse_args()
@@ -310,6 +311,7 @@ def main() -> int:
                     "notes": str(exc)[-500:],
                 }
             continue
+        processed_for_role = 0
         for row in recon_rows:
             key = (row.get("source_id", ""), row.get("clip_id", ""), role)
             if args.resume and merged.get(key, {}).get("status") == "completed_asr":
@@ -369,6 +371,18 @@ def main() -> int:
                         "notes": f"role={role}; model={model_name}",
                     }
                 )
+            processed_for_role += 1
+            if processed_for_role == 1 or processed_for_role % max(1, args.checkpoint_every) == 0:
+                all_rows = list(merged.values())
+                write_csv(ASR_MANIFEST, all_rows, FIELDS)
+                write_disagreement(all_rows)
+                write_report(all_rows)
+                print(
+                    f"checkpoint role={role} processed_for_role={processed_for_role} rows_total={len(all_rows)}",
+                    flush=True,
+                )
+                if args.upload:
+                    upload_outputs(role, source_id, transcript_dir)
         all_rows = list(merged.values())
         write_csv(ASR_MANIFEST, all_rows, FIELDS)
         write_disagreement(all_rows)

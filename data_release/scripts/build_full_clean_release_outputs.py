@@ -266,9 +266,9 @@ def build_new_discovery() -> list[dict[str, object]]:
                 "usable_minutes_estimate": row.get("usable_minutes_estimate", ""),
                 "accepted_clips_estimate": row.get("accepted_clips_estimate", ""),
                 "recommended_use": row.get("recommended_use", ""),
-                "ingest_status": "blocked_not_ingested_in_this_release",
-                "failure_reason": "spot_vm_preempted_before_new_discovery_stage",
-                "notes": "accepted source queued; no raw video/clips were uploaded by this script",
+                "ingest_status": "blocked_download_failed",
+                "failure_reason": "youtube_requires_login_or_cookies_from_vm",
+                "notes": "accepted source queued; VM yt-dlp metadata/download retry requires browser cookies or alternative source URL",
             }
         )
     return rows
@@ -295,7 +295,15 @@ def build_spanish_manifest() -> list[dict[str, object]]:
 
 
 def append_failures(new_rows: list[dict[str, object]]) -> None:
-    rows = read_csv(FAILURES)
+    rows = [
+        row
+        for row in read_csv(FAILURES)
+        if not (
+            row.get("stage") == "new_discovery_ingest"
+            and row.get("dataset_group") == "argentina/new_discovery"
+            and row.get("error_type") == "blocked_not_ingested_in_this_release"
+        )
+    ]
     seen = {(r.get("stage"), r.get("dataset_group"), r.get("source_id"), r.get("clip_id"), r.get("error_type")) for r in rows}
     for row in new_rows:
         key = (row.get("stage"), row.get("dataset_group"), row.get("source_id"), row.get("clip_id"), row.get("error_type"))
@@ -311,6 +319,7 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
     align_counts = Counter(str(r["alignment_confidence"]) for r in final_rows)
     source_counts = Counter(str(r["source_id"]) for r in final_rows if r.get("source_id"))
     recon_rows = read_csv(RECON)
+    recon_completed = [r for r in recon_rows if r.get("status") == "completed_reconstructed_audio"]
     asr_rows = [r for r in read_csv(ASR) if r.get("model_role") in {"large", "turbo"}]
     disagreement_rows = read_csv(DISAGREEMENT)
     REPORTS.mkdir(parents=True, exist_ok=True)
@@ -328,14 +337,14 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 f"- clean_status_counts: {dict(clean_counts)}",
                 f"- asr_status_counts: {dict(asr_counts)}",
                 f"- alignment_confidence_counts: {dict(align_counts)}",
-                f"- reconstructed_audio_clips: {len(recon_rows)}",
+                f"- reconstructed_audio_clips: {len(recon_completed)}",
                 f"- large_turbo_asr_rows: {len(asr_rows)}",
                 f"- disagreement_rows: {len(disagreement_rows)}",
                 "",
                 "## Argentina new discovery",
                 f"- accepted videos queued: {len(new_rows)}",
-                "- ingest_status: blocked_not_ingested_in_this_release",
-                "- reason: Spot VM preempted before this stage; no raw videos were uploaded.",
+                "- ingest_status: blocked_download_failed",
+                "- reason: yt-dlp on the VM requires YouTube login/cookies for accepted URLs; no cookies were uploaded or logged.",
                 "",
                 "## Spanish general",
                 f"- rows: {len(spanish_rows)}",
@@ -372,16 +381,11 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "# Cost/runtime report",
                 "",
                 "project: labios-argentos-499900",
-                "vm_name: vsr-full-clean-20260707-0200",
-                "zone: us-central1-a",
-                "machine_type: g2-standard-8",
-                "gpu: nvidia-l4",
-                "provisioning_model: SPOT",
-                "status: used_then_spot_terminated_then_deleted",
+                "vm_runs:",
+                "- name: vsr-full-clean-20260707-0200; zone: us-central1-a; machine_type: g2-standard-8; gpu: nvidia-l4; provisioning_model: SPOT; status: used_then_spot_terminated_then_deleted",
+                "- name: vsr-full-clean-continue-20260707; zone: us-east1-d; machine_type: g2-standard-8; gpu: nvidia-l4; provisioning_model: STANDARD; status: used_for_resume_then_deleted",
                 "outputs_synced_to_gcs: true",
-                "remaining_instances_after_cleanup: 0",
-                "remaining_disks_after_cleanup: 0",
-                "remaining_static_ips_after_cleanup: 0",
+                "cleanup_verification: data_release/reports/bucket_validation_report.md shows no matching instances/disks/static IPs",
                 "",
             ]
         ),
@@ -410,8 +414,8 @@ def main() -> int:
                 "clip_id": "",
                 "path": "gce://vsr-full-clean-20260707-0200",
                 "error_type": "spot_vm_terminated",
-                "error_message": "VM Spot terminated during reconstruction batch before source checkpoint completed.",
-                "notes": "completed sources were already synced to GCS; f09 batch should be retried",
+                "error_message": "VM Spot terminated during reconstruction batch before the next source checkpoint completed.",
+                "notes": "completed sources were synced to GCS; processing resumed on standard L4 VM",
             },
             {
                 "stage": "new_discovery_ingest",
@@ -419,9 +423,9 @@ def main() -> int:
                 "source_id": "",
                 "clip_id": "",
                 "path": str(ARG_NEW),
-                "error_type": "blocked_not_ingested_in_this_release",
-                "error_message": "Spot VM terminated before new_discovery stage.",
-                "notes": "accepted URLs remain queued in new_discovery_ingest_manifest.csv",
+                "error_type": "blocked_download_failed",
+                "error_message": "yt-dlp on the VM required YouTube login/cookies for accepted new_discovery URLs.",
+                "notes": "accepted URLs remain queued in new_discovery_ingest_manifest.csv; no cookies were uploaded or logged",
             },
             {
                 "stage": "spanish_general_asr",
