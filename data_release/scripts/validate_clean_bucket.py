@@ -31,6 +31,9 @@ COUNT_PATTERNS = {
     "spanish_general_large_txt": f"{DEST_BUCKET}/spanish_general/existing/transcripts/large/**/*.txt",
     "spanish_general_turbo_txt": f"{DEST_BUCKET}/spanish_general/existing/transcripts/turbo/**/*.txt",
     "context_packs": f"{DEST_BUCKET}/argentina/existing/metadata/context_packs/*.jsonl",
+    "argentina_new_discovery_source_videos": f"{DEST_BUCKET}/argentina/new_discovery/source_videos/**/*",
+    "argentina_new_discovery_source_audio": f"{DEST_BUCKET}/argentina/new_discovery/source_audio/**/*",
+    "argentina_new_discovery_metadata": f"{DEST_BUCKET}/argentina/new_discovery/metadata/**/*",
 }
 RESOURCE_FILTER = "(name~vsr-full-clean OR name~vsr-cleaning-vm OR labels.task=full-clean-release)"
 
@@ -91,7 +94,7 @@ def probe_mp4(paths: list[str], tmp_dir: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for path in paths:
         local = copy_to_tmp(path, tmp_dir)
-        result = run([ffmpeg, "-hide_banner", "-i", str(local), "-f", "null", "-"], timeout=120)
+        result = run([ffmpeg, "-hide_banner", "-i", str(local)], timeout=60)
         combined = result.stdout + result.stderr
         rows.append(
             {
@@ -155,8 +158,12 @@ def main() -> None:
         txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_clean_gpt_v1_txt"], timeout=1200)[:5]
         large_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_large_reconstructed_txt"], timeout=1200)[:5]
         turbo_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_turbo_txt"], timeout=1200)[:5]
+        new_source_video_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_source_videos"], timeout=1200)[:5]
+        new_source_audio_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_source_audio"], timeout=1200)[:5]
         mp4_probe = probe_mp4(mp4_samples, tmp_dir)
         audio_clip_probe = probe_mp4(audio_clip_samples, tmp_dir)
+        new_source_video_probe = probe_mp4(new_source_video_samples, tmp_dir)
+        new_source_audio_probe = probe_mp4(new_source_audio_samples, tmp_dir)
         npz_probe = probe_npz(npz_samples, tmp_dir)
         txt_probe = read_txt_samples(txt_samples)
         large_txt_probe = read_txt_samples(large_txt_samples)
@@ -203,6 +210,11 @@ def main() -> None:
     lines.extend(["", "## Reconstructed MP4 samples", ""])
     for row in audio_clip_probe:
         lines.append(f"- {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
+    lines.extend(["", "## New discovery source samples", ""])
+    for row in new_source_video_probe:
+        lines.append(f"- source_video {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
+    for row in new_source_audio_probe:
+        lines.append(f"- source_audio {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
     lines.extend(["", "## NPZ samples", ""])
     for row in npz_probe:
         lines.append(f"- {row['path']} key={row['key']} shape={row['shape']} dtype={row['dtype']}")

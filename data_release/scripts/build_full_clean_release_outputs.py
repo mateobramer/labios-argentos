@@ -25,6 +25,7 @@ ALIGNMENT = OUT_DIR / "alignment_manifest.csv"
 RECON = OUT_DIR / "existing_reconstruction_manifest.csv"
 ASR = OUT_DIR / "asr_large_turbo_manifest.csv"
 DISAGREEMENT = OUT_DIR / "asr_disagreement_v2.csv"
+LOCAL_DOWNLOADS = OUT_DIR / "local_source_download_manifest.csv"
 
 FINAL_RELEASE = OUT_DIR / "final_release_manifest.csv"
 FINAL_TRAIN = OUT_DIR / "final_train_manifest_clean_gpt_v1.csv"
@@ -99,6 +100,9 @@ NEW_FIELDS = [
     "recommended_use",
     "ingest_status",
     "failure_reason",
+    "source_video_gcs_path",
+    "source_audio_gcs_path",
+    "metadata_gcs_path",
     "notes",
 ]
 
@@ -192,7 +196,7 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
             needs_review = "true"
             failure_reason = "blocked_source_not_found_or_low_confidence"
         else:
-            clean_status = "needs_review"
+            clean_status = "baseline_existing_only"
             asr_status = "pending_reconstruction_or_asr"
             gpt_status = "blocked_no_asr_context"
             selected = existing_text
@@ -254,7 +258,17 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
 
 def build_new_discovery() -> list[dict[str, object]]:
     rows = []
+    downloads = {row.get("url", ""): row for row in read_csv(LOCAL_DOWNLOADS) if row.get("status", "").startswith("downloaded_uploaded")}
     for row in read_csv(ARG_NEW):
+        downloaded = downloads.get(row.get("url", ""), {})
+        if downloaded:
+            ingest_status = "source_downloaded_pending_clips_asr_roi"
+            failure_reason = ""
+            notes = "source video/audio downloaded locally and uploaded to GCS; clips/ASR/ROIs pending"
+        else:
+            ingest_status = "blocked_download_failed"
+            failure_reason = "youtube_requires_login_or_cookies_from_vm"
+            notes = "accepted source queued; VM yt-dlp metadata/download retry requires browser cookies or alternative source URL"
         rows.append(
             {
                 "url": row.get("url", ""),
@@ -266,9 +280,12 @@ def build_new_discovery() -> list[dict[str, object]]:
                 "usable_minutes_estimate": row.get("usable_minutes_estimate", ""),
                 "accepted_clips_estimate": row.get("accepted_clips_estimate", ""),
                 "recommended_use": row.get("recommended_use", ""),
-                "ingest_status": "blocked_download_failed",
-                "failure_reason": "youtube_requires_login_or_cookies_from_vm",
-                "notes": "accepted source queued; VM yt-dlp metadata/download retry requires browser cookies or alternative source URL",
+                "ingest_status": ingest_status,
+                "failure_reason": failure_reason,
+                "source_video_gcs_path": downloaded.get("gcs_video_path", ""),
+                "source_audio_gcs_path": downloaded.get("gcs_audio_path", ""),
+                "metadata_gcs_path": downloaded.get("gcs_info_path", ""),
+                "notes": notes,
             }
         )
     return rows
@@ -343,8 +360,9 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "",
                 "## Argentina new discovery",
                 f"- accepted videos queued: {len(new_rows)}",
-                "- ingest_status: blocked_download_failed",
-                "- reason: yt-dlp on the VM requires YouTube login/cookies for accepted URLs; no cookies were uploaded or logged.",
+                f"- source_downloaded_pending_clips_asr_roi: {sum(1 for r in new_rows if r.get('ingest_status') == 'source_downloaded_pending_clips_asr_roi')}",
+                f"- blocked_download_failed: {sum(1 for r in new_rows if r.get('ingest_status') == 'blocked_download_failed')}",
+                "- reason for remaining blocked: yt-dlp on the VM requires YouTube login/cookies for accepted URLs; local download flow is now available.",
                 "",
                 "## Spanish general",
                 f"- rows: {len(spanish_rows)}",
@@ -353,6 +371,7 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "## GPT cleaning",
                 f"- completed_clean_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_clean_gpt')}",
                 f"- completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
+                f"- baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
                 "- no GPT patch was applied; no cleaning was invented.",
                 "",
             ]
@@ -366,6 +385,7 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "",
                 "completed_clean_gpt: 0",
                 f"completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
+                f"baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
                 f"needs_review_or_blocked: {sum(1 for r in clean_rows if r['status'] != 'completed_large_turbo_no_gpt')}",
                 "",
                 "No se aplicaron patches GPT en esta corrida. La regla fue no inventar limpieza sin salida JSONL validada.",

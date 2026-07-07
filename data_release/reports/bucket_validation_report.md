@@ -22,6 +22,9 @@ remaining_static_addresses_matching_filter: ""
 - spanish_general_large_txt: 46991
 - spanish_general_turbo_txt: 0
 - context_packs: 61
+- argentina_new_discovery_source_videos: 1
+- argentina_new_discovery_source_audio: 1
+- argentina_new_discovery_metadata: 3
 
 ## Manifest rows
 
@@ -40,11 +43,11 @@ remaining_static_addresses_matching_filter: ""
 
 ## MP4 samples
 
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0014.mp4 video=true audio=false audio_zero_marker=true
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0029.mp4 video=true audio=false audio_zero_marker=true
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0034.mp4 video=true audio=false audio_zero_marker=true
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0035.mp4 video=true audio=false audio_zero_marker=true
-- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0038.mp4 video=true audio=false audio_zero_marker=true
+- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0014.mp4 video=true audio=false audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0029.mp4 video=true audio=false audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0034.mp4 video=true audio=false audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0035.mp4 video=true audio=false audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_mp4/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0038.mp4 video=true audio=false audio_zero_marker=false
 
 ## Reconstructed MP4 samples
 
@@ -53,6 +56,11 @@ remaining_static_addresses_matching_filter: ""
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_with_audio/f01__AN_CDOTA_VIAJE_MUNDIAL_BRASIL_2014_parte_1/clip_0003.mp4 video=true audio=true audio_zero_marker=false
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_with_audio/f01__AN_CDOTA_VIAJE_MUNDIAL_BRASIL_2014_parte_1/clip_0006.mp4 video=true audio=true audio_zero_marker=false
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/clips_with_audio/f01__AN_CDOTA_VIAJE_MUNDIAL_BRASIL_2014_parte_1/clip_0007.mp4 video=true audio=true audio_zero_marker=false
+
+## New discovery source samples
+
+- source_video gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/ITovsJg-q5c/ITovsJg-q5c.f398.mp4 video=true audio=false audio_zero_marker=false
+- source_audio gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/ITovsJg-q5c/ITovsJg-q5c.f251.webm video=false audio=true audio_zero_marker=false
 
 ## NPZ samples
 

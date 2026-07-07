@@ -2,6 +2,7 @@
 
 completed_clean_gpt: 0
 completed_large_turbo_no_gpt: 2193
+baseline_existing_only: 4557
 needs_review_or_blocked: 6998
 
 No se aplicaron patches GPT en esta corrida. La regla fue no inventar limpieza sin salida JSONL validada.

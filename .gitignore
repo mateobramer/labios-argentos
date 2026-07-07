@@ -68,6 +68,9 @@ data_release/cache/
 data_release/logs/
 data_release/work/
 data_release/outputs/
+data_release/local_sources/
+data_release/temp_cookies*
+*.cookies.txt
 data_release/source_metadata/subtitles/
 
 # Limpieza v1: outputs pueden ser grandes o contener respuestas crudas; versionar prompts/scripts.
