@@ -84,9 +84,10 @@ if [[ -d "$WORKDIR/.git" ]]; then
   git fetch origin
 else
   rm -rf "$WORKDIR"
-  git clone "$REPO_URL" "$WORKDIR"
+  git clone --depth 1 --filter=blob:none --sparse --branch "$BRANCH" "$REPO_URL" "$WORKDIR"
   cd "$WORKDIR"
 fi
+git sparse-checkout set data_release visual_preprocessing
 git checkout "$BRANCH"
 git pull --ff-only origin "$BRANCH"
 
