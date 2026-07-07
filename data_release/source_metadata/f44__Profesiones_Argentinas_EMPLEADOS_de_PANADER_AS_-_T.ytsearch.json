@@ -1,0 +1,34 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=jaDYbFCZbOc",
+    "title": "#Yopuedo: Dejó la contaduría y se jugó a ser pastelera",
+    "channel": "eltrece",
+    "duration": 360,
+    "method": "ytsearch_title",
+    "score": 26.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=gTFXh9dFY5k",
+    "title": "Chef, panadero y electricista, las profesiones con más demanda en España",
+    "channel": "laSexta Noticias",
+    "duration": 89,
+    "method": "ytsearch_title",
+    "score": 37.29
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=KKYZ-Kuehag",
+    "title": "⚖️¿Cuándo existe una Enfermedad Profesional en la Argentina?  ⚖️ Clase Práctica ⚖️ Somos Juristas #7",
+    "channel": "Soy Jurista",
+    "duration": 5023,
+    "method": "ytsearch_title",
+    "score": 45.59
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=o8ZrO4U6aCQ",
+    "title": "#40 Secretos que los Panaderos no quieren que sepas!",
+    "channel": "Gluten Morgen Español",
+    "duration": 1067,
+    "method": "ytsearch_title",
+    "score": 36.73
+  }
+]

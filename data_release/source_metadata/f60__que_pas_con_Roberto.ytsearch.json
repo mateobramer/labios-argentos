@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=jNwxklp3zAI",
+    "title": "que pasó con Roberto?",
+    "channel": "Mica Suarez",
+    "duration": 1038,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=r7XIyVFZyuE",
+    "title": "¿CHAU LAS PASO? | LA PREVIA con Ari Lijalad y Roberto Navarro",
+    "channel": "El Destape",
+    "duration": 1455,
+    "method": "ytsearch_title",
+    "score": 46.75
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=5aQVppQJEiU",
+    "title": "LAS RELACIONES MÁS CARNALES QUE NUNCA | El editorial de Roberto Navarro",
+    "channel": "El Destape",
+    "duration": 1515,
+    "method": "ytsearch_title",
+    "score": 33.71
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=Ii4kKZOGFKk",
+    "title": "📉 ELECCIONES 2027: La INFLACIÓN va a DETERMINAR el FUTURO de MILEI | El Pase con Roberto Navarro",
+    "channel": "El Destape",
+    "duration": 5120,
+    "method": "ytsearch_title",
+    "score": 32.43
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=jGi4YKWvdCc",
+    "title": "EL \"MILAGRO\" DE MILEI y la mentira de la inflación | Alfredo Zaiat con Roberto Navarro",
+    "channel": "El Destape",
+    "duration": 689,
+    "method": "ytsearch_title",
+    "score": 31.37
+  }
+]

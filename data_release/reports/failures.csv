@@ -1,4 +1,7 @@
-stage,dataset_group,item,status,error,notes
-asr_turbo,argentina/existing,existing_roi_mp4,blocked_no_audio_in_roi_mp4,ffmpeg probe found video stream only; audio:0KiB,Reconstruct from original URLs/raw videos to run turbo.
-asr_turbo,spanish_general/existing,existing_roi_mp4,blocked_no_audio_in_roi_mp4,ffmpeg probe found video stream only; audio:0KiB,Kept separated; no GPT cleaning requested.
-new_discovery_ingest,argentina/new_discovery,accepted_video_queue,pending_source_ingest,,20 accepted videos queued for source download and full ASR.
+stage,dataset_group,source_id,clip_id,path,error_type,error_message,notes
+asr_turbo,argentina/existing,,,,,,Reconstruct from original URLs/raw videos to run turbo.
+asr_turbo,spanish_general/existing,,,,,,Kept separated; no GPT cleaning requested.
+new_discovery_ingest,argentina/new_discovery,,,,,,20 accepted videos queued for source download and full ASR.
+vm_processing,argentina/existing,f09__ESTOY_EN_UN_BROTE_PERDON,,gce://vsr-full-clean-20260707-0200,spot_vm_terminated,VM Spot terminated during reconstruction batch before source checkpoint completed.,completed sources were already synced to GCS; f09 batch should be retried
+new_discovery_ingest,argentina/new_discovery,,,C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\argentina_new_manifest.csv,blocked_not_ingested_in_this_release,Spot VM terminated before new_discovery stage.,accepted URLs remain queued in new_discovery_ingest_manifest.csv
+spanish_general_asr,spanish_general/existing,,,gs://labios-argentos-vsr-dataset/curriculum_visper/,blocked_missing_provenance_for_asr,No reconstructable source URLs/provenance found in current manifests.,spanish_general kept separate; no GPT cleaning

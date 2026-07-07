@@ -66,6 +66,9 @@ data_discovery/outputs/*_stderr.log
 # Data release: caches/listados/logs regenerables; versionar manifests y reportes.
 data_release/cache/
 data_release/logs/
+data_release/work/
+data_release/outputs/
+data_release/source_metadata/subtitles/
 
 # Limpieza v1: outputs pueden ser grandes o contener respuestas crudas; versionar prompts/scripts.
 data_cleaning_clean_v1/outputs/

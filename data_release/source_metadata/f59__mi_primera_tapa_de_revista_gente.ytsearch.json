@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=RRiq_aleHJ4",
+    "title": "mi primera tapa de revista gente :)",
+    "channel": "Sofia Gonet",
+    "duration": 710,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=QYkMuoouptA",
+    "title": "FLOR PEÑA en #PersonajesGente2023: \"Mi primera tapa en PERSONAJES DEL AÑO fue cuando tenía 17 años\"",
+    "channel": "REVISTA GENTE",
+    "duration": 46,
+    "method": "ytsearch_title",
+    "score": 37.8
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=EI3469hBn9k",
+    "title": "Gente en mi Vida - Gala Aniversario",
+    "channel": "REVISTA GENTE",
+    "duration": 95,
+    "method": "ytsearch_title",
+    "score": 15.38
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=gr-w6t5Fe4c",
+    "title": "POLÉMICA por los PERSONAJES del AÑO de la TAPA de la REVISTA GENTE",
+    "channel": "C5N",
+    "duration": 833,
+    "method": "ytsearch_title",
+    "score": 61.22
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=o3XiPWZgISA",
+    "title": "Revista Gente - Back de Tapa Luisana Lopilato",
+    "channel": "REVISTA GENTE",
+    "duration": 60,
+    "method": "ytsearch_title",
+    "score": 34.67
+  }
+]

@@ -23,6 +23,9 @@ COUNT_PATTERNS = {
     "argentina_existing_large_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/large/**/*.txt",
     "argentina_existing_clean_v1_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/clean_v1/**/*.txt",
     "argentina_existing_turbo_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/turbo/**/*.txt",
+    "argentina_existing_large_reconstructed_txt": f"{DEST_BUCKET}/argentina/existing/transcripts/large/**/*.txt",
+    "argentina_existing_clips_with_audio": f"{DEST_BUCKET}/argentina/existing/clips_with_audio/**/*.mp4",
+    "argentina_existing_reconstructed_audio": f"{DEST_BUCKET}/argentina/existing/reconstructed_audio/**/*.wav",
     "spanish_general_mp4": f"{DEST_BUCKET}/spanish_general/existing/clips_mp4/**/*.mp4",
     "spanish_general_npz": f"{DEST_BUCKET}/spanish_general/existing/rois_npz/**/*.npz",
     "spanish_general_large_txt": f"{DEST_BUCKET}/spanish_general/existing/transcripts/large/**/*.txt",
@@ -133,16 +136,30 @@ def main() -> None:
         "argentina_new_manifest_rows": count_manifest_rows(ROOT / "data_release" / "argentina_new_manifest.csv"),
         "spanish_general_manifest_rows": count_manifest_rows(ROOT / "data_release" / "spanish_general_manifest.csv"),
         "clean_manifest_rows": count_manifest_rows(ROOT / "data_cleaning_clean_v1" / "outputs" / "clean_manifest.csv"),
+        "alignment_manifest_rows": count_manifest_rows(ROOT / "data_release" / "alignment_manifest.csv"),
+        "existing_reconstruction_manifest_rows": count_manifest_rows(ROOT / "data_release" / "existing_reconstruction_manifest.csv"),
+        "asr_large_turbo_manifest_rows": count_manifest_rows(ROOT / "data_release" / "asr_large_turbo_manifest.csv"),
+        "final_release_manifest_rows": count_manifest_rows(ROOT / "data_release" / "final_release_manifest.csv"),
+        "final_train_manifest_rows": count_manifest_rows(ROOT / "data_release" / "final_train_manifest_clean_gpt_v1.csv"),
+        "final_eval_manifest_rows": count_manifest_rows(ROOT / "data_release" / "final_eval_manifest_clean_gpt_v1.csv"),
+        "new_discovery_ingest_manifest_rows": count_manifest_rows(ROOT / "data_release" / "new_discovery_ingest_manifest.csv"),
+        "spanish_general_asr_manifest_rows": count_manifest_rows(ROOT / "data_release" / "spanish_general_asr_manifest.csv"),
     }
 
     with tempfile.TemporaryDirectory(prefix="clean_bucket_validation_") as tmp:
         tmp_dir = Path(tmp)
         mp4_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_mp4"], timeout=1200)[:5]
+        audio_clip_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_clips_with_audio"], timeout=1200)[:5]
         npz_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_npz"], timeout=1200)[:5]
         txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_clean_v1_txt"], timeout=1200)[:5]
+        large_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_large_reconstructed_txt"], timeout=1200)[:5]
+        turbo_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_turbo_txt"], timeout=1200)[:5]
         mp4_probe = probe_mp4(mp4_samples, tmp_dir)
+        audio_clip_probe = probe_mp4(audio_clip_samples, tmp_dir)
         npz_probe = probe_npz(npz_samples, tmp_dir)
         txt_probe = read_txt_samples(txt_samples)
+        large_txt_probe = read_txt_samples(large_txt_samples)
+        turbo_txt_probe = read_txt_samples(turbo_txt_samples)
 
     iam_policy = run_ok([GCLOUD, "storage", "buckets", "get-iam-policy", DEST_BUCKET], timeout=120)
     iam_ok = "user:fgutman@udesa.edu.ar" in iam_policy and "roles/storage.objectViewer" in iam_policy
@@ -181,12 +198,20 @@ def main() -> None:
     lines.extend(["", "## MP4 samples", ""])
     for row in mp4_probe:
         lines.append(f"- {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
+    lines.extend(["", "## Reconstructed MP4 samples", ""])
+    for row in audio_clip_probe:
+        lines.append(f"- {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
     lines.extend(["", "## NPZ samples", ""])
     for row in npz_probe:
         lines.append(f"- {row['path']} key={row['key']} shape={row['shape']} dtype={row['dtype']}")
     lines.extend(["", "## clean_v1 TXT samples", ""])
     for row in txt_probe:
         lines.append(f"- {row['path']} chars={row['chars']} sample={row['sample']!r}")
+    lines.extend(["", "## large/turbo TXT samples", ""])
+    for row in large_txt_probe:
+        lines.append(f"- large {row['path']} chars={row['chars']} sample={row['sample']!r}")
+    for row in turbo_txt_probe:
+        lines.append(f"- turbo {row['path']} chars={row['chars']} sample={row['sample']!r}")
     lines.append("")
     REPORT.write_text("\n".join(lines), encoding="utf-8")
     print(f"validation_report -> {REPORT}")

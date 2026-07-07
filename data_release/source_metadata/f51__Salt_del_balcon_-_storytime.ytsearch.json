@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=SlqbgCiX_Ko",
+    "title": "Salté del balcon - storytime",
+    "channel": "Marti Benza",
+    "duration": 539,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=uDP2zZ_mPKQ",
+    "title": "Pensé que moría en un ataque terr0rista -Storytime",
+    "channel": "Sele Mosca",
+    "duration": 1042,
+    "method": "ytsearch_title",
+    "score": 40.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=v-ZzILohmbw",
+    "title": "PAOLA VUELVE AL FAMOSO BALCÓN😧❌ ┃ Karina y Paola - @Mintohato",
+    "channel": "Agustin★",
+    "duration": 189,
+    "method": "ytsearch_title",
+    "score": 35.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=UYwlaIUmd1w",
+    "title": "Más allá del rosa- \"El suicidio de mi hijo se pudo haber prevenido\" con Mayte Herrera",
+    "channel": "Jessica Fernández García",
+    "duration": 9859,
+    "method": "ytsearch_title",
+    "score": 29.63
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=aWzhPDKyr7A",
+    "title": "Increíbles las boludeces que escribí",
+    "channel": "Luli Gonzalez",
+    "duration": 691,
+    "method": "ytsearch_title",
+    "score": 25.81
+  }
+]
