@@ -95,7 +95,7 @@ def upload_outputs(role: str, video_id: str, transcript_dir: Path) -> None:
     subprocess.run([gcloud, "storage", "cp", str(REPORT), f"{DEST_BUCKET}/reports/new_discovery_asr_report.md"], check=True)
     if transcript_dir.exists():
         subprocess.run(
-            [gcloud, "storage", "cp", "--recursive", str(transcript_dir / "*.txt"), f"{GCS_TRANSCRIPTS}/{role}/{video_id}/"],
+            [gcloud, "storage", "rsync", "--recursive", str(transcript_dir), f"{GCS_TRANSCRIPTS}/{role}/{video_id}/"],
             check=True,
         )
 
