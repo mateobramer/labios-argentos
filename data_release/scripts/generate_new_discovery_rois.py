@@ -7,7 +7,7 @@ import csv
 import shutil
 import subprocess
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Iterable
 
@@ -82,14 +82,28 @@ def write_report(rows: list[dict[str, object]]) -> None:
     REPORT.write_text("\n".join(lines), encoding="utf-8")
 
 
-def upload_outputs(video_id: str, roi_dir: Path, mp4_dir: Path) -> None:
+def upload_outputs(
+    video_id: str,
+    roi_dir: Path,
+    mp4_dir: Path,
+    npz_paths: list[Path] | None = None,
+    mp4_paths: list[Path] | None = None,
+) -> None:
     gcloud = tool("gcloud")
     subprocess.run([gcloud, "storage", "cp", str(ROI_MANIFEST), f"{GCS_MANIFESTS}/new_discovery_roi_manifest.csv"], check=True)
     subprocess.run([gcloud, "storage", "cp", str(REPORT), f"{DEST_BUCKET}/reports/new_discovery_roi_report.md"], check=True)
+    if npz_paths is not None or mp4_paths is not None:
+        existing_npz = [str(path) for path in (npz_paths or []) if path.exists()]
+        existing_mp4 = [str(path) for path in (mp4_paths or []) if path.exists()]
+        if existing_npz:
+            subprocess.run([gcloud, "storage", "cp", *existing_npz, f"{GCS_ROIS}/{video_id}/"], check=True)
+        if existing_mp4:
+            subprocess.run([gcloud, "storage", "cp", *existing_mp4, f"{GCS_ROI_MP4}/{video_id}/"], check=True)
+        return
     if roi_dir.exists():
-        subprocess.run([gcloud, "storage", "cp", "--recursive", str(roi_dir / "*.npz"), f"{GCS_ROIS}/{video_id}/"], check=True)
+        subprocess.run([gcloud, "storage", "rsync", "--recursive", str(roi_dir), f"{GCS_ROIS}/{video_id}/"], check=True)
     if mp4_dir.exists():
-        subprocess.run([gcloud, "storage", "cp", "--recursive", str(mp4_dir / "*.mp4"), f"{GCS_ROI_MP4}/{video_id}/"], check=True)
+        subprocess.run([gcloud, "storage", "rsync", "--recursive", str(mp4_dir), f"{GCS_ROI_MP4}/{video_id}/"], check=True)
 
 
 def resolve_clip_path(row: dict[str, str]) -> Path:
@@ -144,6 +158,8 @@ def main() -> int:
     landmarker = crear_landmarker()
     vproc = VideoProcess(crop_width=96, crop_height=96, convert_gray=True)
     processed = 0
+    pending_npz: dict[str, list[Path]] = defaultdict(list)
+    pending_mp4: dict[str, list[Path]] = defaultdict(list)
     for row in clips:
         video_id = row.get("video_id", "")
         clip_id = row.get("clip_id", "")
@@ -163,6 +179,8 @@ def main() -> int:
             if frames:
                 guardar_npz(frames, str(roi_path))
                 guardar_video_gris(frames, str(mp4_path))
+                pending_npz[video_id].append(roi_path)
+                pending_mp4[video_id].append(mp4_path)
                 arr = np.asarray(frames, dtype=np.uint8)
                 status = "completed_roi"
                 notes = ""
@@ -205,7 +223,9 @@ def main() -> int:
             write_report(rows)
             print(f"checkpoint processed={processed} rows_total={len(rows)}", flush=True)
             if args.upload:
-                upload_outputs(video_id, roi_dir, mp4_dir)
+                upload_outputs(video_id, roi_dir, mp4_dir, pending_npz[video_id], pending_mp4[video_id])
+                pending_npz[video_id] = []
+                pending_mp4[video_id] = []
     rows = list(merged.values())
     write_csv(ROI_MANIFEST, rows, FIELDS)
     write_report(rows)
