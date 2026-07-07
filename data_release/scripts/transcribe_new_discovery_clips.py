@@ -89,10 +89,15 @@ def write_report(rows: list[dict[str, object]]) -> None:
     REPORT.write_text("\n".join(lines), encoding="utf-8")
 
 
-def upload_outputs(role: str, video_id: str, transcript_dir: Path) -> None:
+def upload_outputs(role: str, video_id: str, transcript_dir: Path, transcript_paths: list[Path] | None = None) -> None:
     gcloud = tool("gcloud")
     subprocess.run([gcloud, "storage", "cp", str(ASR_MANIFEST), f"{GCS_MANIFESTS}/new_discovery_asr_manifest.csv"], check=True)
     subprocess.run([gcloud, "storage", "cp", str(REPORT), f"{DEST_BUCKET}/reports/new_discovery_asr_report.md"], check=True)
+    if transcript_paths:
+        existing = [str(path) for path in transcript_paths if path.exists()]
+        if existing:
+            subprocess.run([gcloud, "storage", "cp", *existing, f"{GCS_TRANSCRIPTS}/{role}/{video_id}/"], check=True)
+        return
     if transcript_dir.exists():
         subprocess.run(
             [gcloud, "storage", "rsync", "--recursive", str(transcript_dir), f"{GCS_TRANSCRIPTS}/{role}/{video_id}/"],
@@ -163,6 +168,7 @@ def main() -> int:
         print(f"model_start role={role} model={model_name}", flush=True)
         model = WhisperModel(model_name, device=args.device, compute_type=args.compute_type)
         processed = 0
+        pending_uploads: dict[str, list[Path]] = defaultdict(list)
         for row in clips:
             key = (row.get("video_id", ""), row.get("clip_id", ""), role)
             if args.resume and merged.get(key, {}).get("status") == "completed_asr":
@@ -201,6 +207,8 @@ def main() -> int:
                 "status": status,
                 "notes": notes,
             }
+            if transcript_path.exists():
+                pending_uploads[video_id].append(transcript_path)
             processed += 1
             if processed == 1 or processed % max(1, args.checkpoint_every) == 0:
                 all_rows = list(merged.values())
@@ -208,7 +216,8 @@ def main() -> int:
                 write_report(all_rows)
                 print(f"checkpoint role={role} processed={processed} rows_total={len(all_rows)}", flush=True)
                 if args.upload:
-                    upload_outputs(role, video_id, transcript_dir)
+                    upload_outputs(role, video_id, transcript_dir, pending_uploads[video_id])
+                    pending_uploads[video_id] = []
         all_rows = list(merged.values())
         write_csv(ASR_MANIFEST, all_rows, FIELDS)
         write_report(all_rows)
