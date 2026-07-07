@@ -1,14 +1,14 @@
 # Resume plan
 
 target_large_turbo_clips: 12000
-completed_large_turbo_or_clean_gpt: 2193
-remaining_to_12k_large_turbo: 9807
-usable_for_training_total_in_manifest: 9191
-remaining_to_12k_usable: 2809
+completed_large_turbo_or_clean_gpt: 2272
+remaining_to_12k_large_turbo: 9728
+usable_for_training_total_in_manifest: 9270
+remaining_to_12k_usable: 2730
 baseline_existing_only: 4557
 completed_clean_gpt: 0
-completed_large_turbo_no_gpt: 2193
-asr_status_counts: {'blocked_alignment_failed': 729, 'blocked_source_not_found': 1712, 'completed_large_turbo': 2193, 'pending_reconstruction_or_asr': 4557}
+completed_large_turbo_no_gpt: 2272
+asr_status_counts: {'blocked_alignment_failed': 729, 'blocked_source_not_found': 1712, 'completed_large_turbo': 2293, 'pending_reconstruction_or_asr': 4557}
 
 ## New discovery priority
 

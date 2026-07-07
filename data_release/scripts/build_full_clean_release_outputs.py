@@ -26,6 +26,9 @@ RECON = OUT_DIR / "existing_reconstruction_manifest.csv"
 ASR = OUT_DIR / "asr_large_turbo_manifest.csv"
 DISAGREEMENT = OUT_DIR / "asr_disagreement_v2.csv"
 LOCAL_DOWNLOADS = OUT_DIR / "local_source_download_manifest.csv"
+NEW_CLIPS = OUT_DIR / "new_discovery_clip_manifest.csv"
+NEW_ASR = OUT_DIR / "new_discovery_asr_manifest.csv"
+NEW_ROI = OUT_DIR / "new_discovery_roi_manifest.csv"
 
 FINAL_RELEASE = OUT_DIR / "final_release_manifest.csv"
 FINAL_TRAIN = OUT_DIR / "final_train_manifest_clean_gpt_v1.csv"
@@ -131,11 +134,13 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 def write_csv(path: Path, rows: Iterable[dict[str, object]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="") as f:
+    tmp_path = path.with_name(f"{path.name}.tmp")
+    with tmp_path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         for row in rows:
             writer.writerow({field: row.get(field, "") for field in fields})
+    tmp_path.replace(path)
 
 
 def source_id_for(row: dict[str, str]) -> str:
@@ -256,12 +261,147 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
     return final_rows, clean_rows
 
 
+def load_new_asr() -> dict[tuple[str, str, str], dict[str, str]]:
+    out = {}
+    for row in read_csv(NEW_ASR):
+        if row.get("status") == "completed_asr" and row.get("model_role") in {"large", "turbo"}:
+            out[(row.get("video_id", ""), row.get("clip_id", ""), row.get("model_role", ""))] = row
+    return out
+
+
+def load_new_roi() -> dict[tuple[str, str], dict[str, str]]:
+    return {
+        (row.get("video_id", ""), row.get("clip_id", "")): row
+        for row in read_csv(NEW_ROI)
+        if row.get("status") == "completed_roi"
+    }
+
+
+def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    sources = {row.get("video_id", ""): row for row in read_csv(ARG_NEW)}
+    asr = load_new_asr()
+    rois = load_new_roi()
+    final_rows: list[dict[str, object]] = []
+    clean_rows: list[dict[str, object]] = []
+
+    for row in read_csv(NEW_CLIPS):
+        if row.get("status") != "completed_clip_with_audio":
+            continue
+        video_id = row.get("video_id", "")
+        clip_id = row.get("clip_id", "")
+        source = sources.get(video_id, {})
+        large = asr.get((video_id, clip_id, "large"), {})
+        turbo = asr.get((video_id, clip_id, "turbo"), {})
+        roi = rois.get((video_id, clip_id), {})
+        large_text = large.get("text", "")
+        turbo_text = turbo.get("text", "")
+        has_roi = bool(roi.get("roi_npz_gcs_path") or roi.get("roi_npz_path"))
+
+        if large_text and turbo_text and has_roi:
+            clean_status = "completed_large_turbo_no_gpt"
+            asr_status = "completed_large_turbo"
+            selected = large_text
+            text_source = "large"
+            needs_review = "false"
+            failure_reason = ""
+            clean_confidence = "medium"
+            usable_for_training = "true"
+        else:
+            clean_status = "needs_review"
+            selected = large_text or turbo_text
+            text_source = "large" if large_text else ("turbo" if turbo_text else "")
+            needs_review = "true"
+            clean_confidence = "low"
+            usable_for_training = "false"
+            missing = []
+            if not large_text:
+                missing.append("large_asr")
+            if not turbo_text:
+                missing.append("turbo_asr")
+            if not has_roi:
+                missing.append("roi_npz")
+            failure_reason = "pending_new_discovery_" + "_".join(missing)
+            asr_status = "completed_large_turbo" if large_text and turbo_text else "pending_new_discovery_asr"
+
+        final = {
+            "dataset_group": "argentina/new_discovery",
+            "source_id": f"nd__{video_id}",
+            "clip_id": clip_id,
+            "split": "train",
+            "spk": source.get("channel", ""),
+            "titulo": source.get("title", ""),
+            "source_url": source.get("url", ""),
+            "source_video_id": video_id,
+            "start_time": row.get("start_time", ""),
+            "end_time": row.get("end_time", ""),
+            "mp4_visual_roi_path": roi.get("roi_mp4_gcs_path", ""),
+            "npz_path": roi.get("roi_npz_gcs_path", ""),
+            "clip_with_audio_path": row.get("clip_video_gcs_path", ""),
+            "existing_text": "",
+            "large_text": large_text,
+            "turbo_text": turbo_text,
+            "clean_gpt_text": "",
+            "selected_training_text": selected,
+            "text_source": text_source,
+            "clean_status": clean_status,
+            "clean_confidence": clean_confidence,
+            "patch_count": 0,
+            "alignment_confidence": "new_discovery",
+            "asr_status": asr_status,
+            "gpt_status": "not_attempted" if selected else "blocked_no_asr_context",
+            "usable_for_training": usable_for_training,
+            "usable_for_eval": "false",
+            "needs_review": needs_review,
+            "failure_reason": failure_reason,
+            "notes": "new_discovery_no_gpt_cleaning_applied",
+        }
+        final_rows.append(final)
+        clean_rows.append(
+            {
+                "dataset_group": "argentina/new_discovery",
+                "source_id": final["source_id"],
+                "clip_id": clip_id,
+                "existing_text": "",
+                "large_text": large_text,
+                "turbo_text": turbo_text,
+                "clean_text": "",
+                "status": clean_status,
+                "confidence": clean_confidence,
+                "patch_count": 0,
+                "gpt_status": final["gpt_status"],
+                "notes": final["notes"],
+            }
+        )
+    return final_rows, clean_rows
+
+
 def build_new_discovery() -> list[dict[str, object]]:
     rows = []
     downloads = {row.get("url", ""): row for row in read_csv(LOCAL_DOWNLOADS) if row.get("status", "").startswith("downloaded_uploaded")}
+    clip_counts = Counter(row.get("video_id", "") for row in read_csv(NEW_CLIPS) if row.get("status") == "completed_clip_with_audio")
+    asr_rows = read_csv(NEW_ASR)
+    asr_completed = Counter(
+        (row.get("video_id", ""), row.get("model_role", ""))
+        for row in asr_rows
+        if row.get("status") == "completed_asr" and row.get("model_role") in {"large", "turbo"}
+    )
+    roi_completed = Counter(row.get("video_id", "") for row in read_csv(NEW_ROI) if row.get("status") == "completed_roi")
     for row in read_csv(ARG_NEW):
         downloaded = downloads.get(row.get("url", ""), {})
-        if downloaded:
+        video_id = row.get("video_id", "")
+        clips_done = clip_counts[video_id]
+        large_done = asr_completed[(video_id, "large")]
+        turbo_done = asr_completed[(video_id, "turbo")]
+        roi_done = roi_completed[video_id]
+        if clips_done and large_done >= clips_done and turbo_done >= clips_done and roi_done >= clips_done:
+            ingest_status = "completed_large_turbo_roi_no_gpt"
+            failure_reason = ""
+            notes = f"clips_with_audio={clips_done}; large_asr={large_done}; turbo_asr={turbo_done}; roi_npz={roi_done}"
+        elif clips_done:
+            ingest_status = "clips_generated_pending_asr_roi"
+            failure_reason = ""
+            notes = f"clips_with_audio={clips_done}; large_asr={large_done}; turbo_asr={turbo_done}; roi_npz={roi_done}"
+        elif downloaded:
             ingest_status = "source_downloaded_pending_clips_asr_roi"
             failure_reason = ""
             notes = "source video/audio downloaded locally and uploaded to GCS; clips/ASR/ROIs pending"
@@ -331,14 +471,17 @@ def append_failures(new_rows: list[dict[str, object]]) -> None:
 
 
 def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str, object]], new_rows: list[dict[str, object]], spanish_rows: list[dict[str, object]]) -> None:
-    clean_counts = Counter(str(r["clean_status"]) for r in final_rows)
-    asr_counts = Counter(str(r["asr_status"]) for r in final_rows)
-    align_counts = Counter(str(r["alignment_confidence"]) for r in final_rows)
-    source_counts = Counter(str(r["source_id"]) for r in final_rows if r.get("source_id"))
     recon_rows = read_csv(RECON)
     recon_completed = [r for r in recon_rows if r.get("status") == "completed_reconstructed_audio"]
     asr_rows = [r for r in read_csv(ASR) if r.get("model_role") in {"large", "turbo"}]
     disagreement_rows = read_csv(DISAGREEMENT)
+    new_final = [r for r in final_rows if r.get("dataset_group") == "argentina/new_discovery"]
+    existing_final = [r for r in final_rows if r.get("dataset_group") == "argentina/existing"]
+    existing_clean_counts = Counter(str(r["clean_status"]) for r in existing_final)
+    existing_asr_counts = Counter(str(r["asr_status"]) for r in existing_final)
+    existing_align_counts = Counter(str(r["alignment_confidence"]) for r in existing_final)
+    new_clean_counts = Counter(str(r["clean_status"]) for r in new_final)
+    new_asr_counts = Counter(str(r["asr_status"]) for r in new_final)
     REPORTS.mkdir(parents=True, exist_ok=True)
     FULL_REPORT.write_text(
         "\n".join(
@@ -349,17 +492,22 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "branch: feature/full-clean-release",
                 "",
                 "## Argentina existing",
-                f"- total clips manifest: {len(final_rows)}",
-                f"- sources: {len(source_counts)}",
-                f"- clean_status_counts: {dict(clean_counts)}",
-                f"- asr_status_counts: {dict(asr_counts)}",
-                f"- alignment_confidence_counts: {dict(align_counts)}",
+                f"- total clips manifest: {len(existing_final)}",
+                f"- sources: {len({r.get('source_id') for r in existing_final if r.get('source_id')})}",
+                f"- clean_status_counts: {dict(existing_clean_counts)}",
+                f"- asr_status_counts: {dict(existing_asr_counts)}",
+                f"- alignment_confidence_counts: {dict(existing_align_counts)}",
                 f"- reconstructed_audio_clips: {len(recon_completed)}",
                 f"- large_turbo_asr_rows: {len(asr_rows)}",
                 f"- disagreement_rows: {len(disagreement_rows)}",
                 "",
                 "## Argentina new discovery",
                 f"- accepted videos queued: {len(new_rows)}",
+                f"- final manifest rows: {len(new_final)}",
+                f"- clean_status_counts: {dict(new_clean_counts)}",
+                f"- asr_status_counts: {dict(new_asr_counts)}",
+                f"- clips_generated_pending_asr_roi: {sum(1 for r in new_rows if r.get('ingest_status') == 'clips_generated_pending_asr_roi')}",
+                f"- completed_large_turbo_roi_no_gpt: {sum(1 for r in new_rows if r.get('ingest_status') == 'completed_large_turbo_roi_no_gpt')}",
                 f"- source_downloaded_pending_clips_asr_roi: {sum(1 for r in new_rows if r.get('ingest_status') == 'source_downloaded_pending_clips_asr_roi')}",
                 f"- blocked_download_failed: {sum(1 for r in new_rows if r.get('ingest_status') == 'blocked_download_failed')}",
                 "- reason for remaining blocked: yt-dlp on the VM requires YouTube login/cookies for accepted URLs; local download flow is now available.",
@@ -415,6 +563,9 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
 
 def main() -> int:
     final_rows, clean_rows = build_existing_final()
+    new_final_rows, new_clean_rows = build_new_discovery_final()
+    final_rows.extend(new_final_rows)
+    clean_rows.extend(new_clean_rows)
     new_rows = build_new_discovery()
     spanish_rows = build_spanish_manifest()
     train_rows = [r for r in final_rows if r.get("split") == "train" and r.get("usable_for_training") == "true"]

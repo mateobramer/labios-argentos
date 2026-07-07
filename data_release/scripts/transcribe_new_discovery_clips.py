@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import shutil
+import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Iterable
@@ -20,6 +21,7 @@ DEST_BUCKET = "gs://labios-argentos-vsr-clean-v1"
 GCS_TRANSCRIPTS = f"{DEST_BUCKET}/argentina/new_discovery/transcripts"
 GCS_MANIFESTS = f"{DEST_BUCKET}/argentina/new_discovery/manifests"
 WORK_DIR = OUT_DIR / "work" / "new_discovery_asr"
+CLIP_CACHE = WORK_DIR / "clips_cache"
 
 FIELDS = [
     "dataset_group",
@@ -88,8 +90,6 @@ def write_report(rows: list[dict[str, object]]) -> None:
 
 
 def upload_outputs(role: str, video_id: str, transcript_dir: Path) -> None:
-    import subprocess
-
     gcloud = tool("gcloud")
     subprocess.run([gcloud, "storage", "cp", str(ASR_MANIFEST), f"{GCS_MANIFESTS}/new_discovery_asr_manifest.csv"], check=True)
     subprocess.run([gcloud, "storage", "cp", str(REPORT), f"{DEST_BUCKET}/reports/new_discovery_asr_report.md"], check=True)
@@ -104,6 +104,23 @@ def transcribe(model, clip: Path, beam_size: int) -> tuple[str, str, float]:
     segments, info = model.transcribe(str(clip), language="es", beam_size=beam_size, vad_filter=True)
     text = " ".join(seg.text.strip() for seg in segments if seg.text.strip()).strip()
     return text, getattr(info, "language", "") or "", float(getattr(info, "duration", 0.0) or 0.0)
+
+
+def resolve_clip_path(row: dict[str, str]) -> Path:
+    local = Path(row.get("clip_video_path", ""))
+    if local.exists():
+        return local
+    gcs_path = row.get("clip_video_gcs_path", "")
+    if not gcs_path:
+        return local
+    video_id = row.get("video_id", "unknown")
+    clip_name = row.get("clip_name", "") or row.get("clip_id", "clip")
+    cached = CLIP_CACHE / video_id / f"{clip_name}.mp4"
+    if cached.exists():
+        return cached
+    cached.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run([tool("gcloud"), "storage", "cp", gcs_path, str(cached)], check=True)
+    return cached
 
 
 def parse_args() -> argparse.Namespace:
@@ -152,7 +169,7 @@ def main() -> int:
                 continue
             video_id = row.get("video_id", "")
             clip_name = row.get("clip_name", "")
-            clip_path = Path(row.get("clip_video_path", ""))
+            clip_path = resolve_clip_path(row)
             transcript_dir = WORK_DIR / "transcripts" / role / video_id
             transcript_dir.mkdir(parents=True, exist_ok=True)
             transcript_path = transcript_dir / f"{clip_name}.txt"

@@ -15,7 +15,12 @@ branch: feature/full-clean-release
 
 ## Argentina new discovery
 - accepted videos queued: 20
-- source_downloaded_pending_clips_asr_roi: 1
+- final manifest rows: 100
+- clean_status_counts: {'needs_review': 21, 'completed_large_turbo_no_gpt': 79}
+- asr_status_counts: {'completed_large_turbo': 100}
+- clips_generated_pending_asr_roi: 1
+- completed_large_turbo_roi_no_gpt: 0
+- source_downloaded_pending_clips_asr_roi: 0
 - blocked_download_failed: 19
 - reason for remaining blocked: yt-dlp on the VM requires YouTube login/cookies for accepted URLs; local download flow is now available.
 
@@ -25,6 +30,6 @@ branch: feature/full-clean-release
 
 ## GPT cleaning
 - completed_clean_gpt: 0
-- completed_large_turbo_no_gpt: 2193
+- completed_large_turbo_no_gpt: 2272
 - baseline_existing_only: 4557
 - no GPT patch was applied; no cleaning was invented.

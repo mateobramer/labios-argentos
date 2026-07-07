@@ -34,6 +34,11 @@ COUNT_PATTERNS = {
     "argentina_new_discovery_source_videos": f"{DEST_BUCKET}/argentina/new_discovery/source_videos/**/*",
     "argentina_new_discovery_source_audio": f"{DEST_BUCKET}/argentina/new_discovery/source_audio/**/*",
     "argentina_new_discovery_metadata": f"{DEST_BUCKET}/argentina/new_discovery/metadata/**/*",
+    "argentina_new_discovery_clips_with_audio": f"{DEST_BUCKET}/argentina/new_discovery/clips_with_audio/**/*.mp4",
+    "argentina_new_discovery_rois_npz": f"{DEST_BUCKET}/argentina/new_discovery/rois_npz/**/*.npz",
+    "argentina_new_discovery_roi_mp4": f"{DEST_BUCKET}/argentina/new_discovery/clips_mp4/**/*.mp4",
+    "argentina_new_discovery_large_txt": f"{DEST_BUCKET}/argentina/new_discovery/transcripts/large/**/*.txt",
+    "argentina_new_discovery_turbo_txt": f"{DEST_BUCKET}/argentina/new_discovery/transcripts/turbo/**/*.txt",
 }
 RESOURCE_FILTER = "(name~vsr-full-clean OR name~vsr-cleaning-vm OR labels.task=full-clean-release)"
 
@@ -147,6 +152,9 @@ def main() -> None:
         "final_train_manifest_rows": count_manifest_rows(ROOT / "data_release" / "final_train_manifest_clean_gpt_v1.csv"),
         "final_eval_manifest_rows": count_manifest_rows(ROOT / "data_release" / "final_eval_manifest_clean_gpt_v1.csv"),
         "new_discovery_ingest_manifest_rows": count_manifest_rows(ROOT / "data_release" / "new_discovery_ingest_manifest.csv"),
+        "new_discovery_clip_manifest_rows": count_manifest_rows(ROOT / "data_release" / "new_discovery_clip_manifest.csv"),
+        "new_discovery_asr_manifest_rows": count_manifest_rows(ROOT / "data_release" / "new_discovery_asr_manifest.csv"),
+        "new_discovery_roi_manifest_rows": count_manifest_rows(ROOT / "data_release" / "new_discovery_roi_manifest.csv"),
         "spanish_general_asr_manifest_rows": count_manifest_rows(ROOT / "data_release" / "spanish_general_asr_manifest.csv"),
     }
 
@@ -160,14 +168,22 @@ def main() -> None:
         turbo_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_existing_turbo_txt"], timeout=1200)[:5]
         new_source_video_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_source_videos"], timeout=1200)[:5]
         new_source_audio_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_source_audio"], timeout=1200)[:5]
+        new_clip_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_clips_with_audio"], timeout=1200)[:5]
+        new_npz_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_rois_npz"], timeout=1200)[:5]
+        new_large_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_large_txt"], timeout=1200)[:5]
+        new_turbo_txt_samples = gsutil_list(COUNT_PATTERNS["argentina_new_discovery_turbo_txt"], timeout=1200)[:5]
         mp4_probe = probe_mp4(mp4_samples, tmp_dir)
         audio_clip_probe = probe_mp4(audio_clip_samples, tmp_dir)
         new_source_video_probe = probe_mp4(new_source_video_samples, tmp_dir)
         new_source_audio_probe = probe_mp4(new_source_audio_samples, tmp_dir)
+        new_clip_probe = probe_mp4(new_clip_samples, tmp_dir)
         npz_probe = probe_npz(npz_samples, tmp_dir)
+        new_npz_probe = probe_npz(new_npz_samples, tmp_dir)
         txt_probe = read_txt_samples(txt_samples)
         large_txt_probe = read_txt_samples(large_txt_samples)
         turbo_txt_probe = read_txt_samples(turbo_txt_samples)
+        new_large_txt_probe = read_txt_samples(new_large_txt_samples)
+        new_turbo_txt_probe = read_txt_samples(new_turbo_txt_samples)
 
     iam_policy = run_ok([GCLOUD, "storage", "buckets", "get-iam-policy", DEST_BUCKET], timeout=120)
     iam_ok = "user:fgutman@udesa.edu.ar" in iam_policy and "roles/storage.objectViewer" in iam_policy
@@ -215,8 +231,14 @@ def main() -> None:
         lines.append(f"- source_video {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
     for row in new_source_audio_probe:
         lines.append(f"- source_audio {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
+    lines.extend(["", "## New discovery clips_with_audio samples", ""])
+    for row in new_clip_probe:
+        lines.append(f"- {row['path']} video={row['has_video']} audio={row['has_audio']} audio_zero_marker={row['audio_zero_marker']}")
     lines.extend(["", "## NPZ samples", ""])
     for row in npz_probe:
+        lines.append(f"- {row['path']} key={row['key']} shape={row['shape']} dtype={row['dtype']}")
+    lines.extend(["", "## New discovery NPZ samples", ""])
+    for row in new_npz_probe:
         lines.append(f"- {row['path']} key={row['key']} shape={row['shape']} dtype={row['dtype']}")
     lines.extend(["", "## clean_gpt_v1 TXT samples", ""])
     for row in txt_probe:
@@ -225,6 +247,11 @@ def main() -> None:
     for row in large_txt_probe:
         lines.append(f"- large {row['path']} chars={row['chars']} sample={row['sample']!r}")
     for row in turbo_txt_probe:
+        lines.append(f"- turbo {row['path']} chars={row['chars']} sample={row['sample']!r}")
+    lines.extend(["", "## New discovery large/turbo TXT samples", ""])
+    for row in new_large_txt_probe:
+        lines.append(f"- large {row['path']} chars={row['chars']} sample={row['sample']!r}")
+    for row in new_turbo_txt_probe:
         lines.append(f"- turbo {row['path']} chars={row['chars']} sample={row['sample']!r}")
     lines.append("")
     REPORT.write_text("\n".join(lines), encoding="utf-8")

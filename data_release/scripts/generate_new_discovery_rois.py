@@ -6,17 +6,20 @@ import argparse
 import csv
 import shutil
 import subprocess
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 OUT_DIR = ROOT / "data_release"
 CLIP_MANIFEST = OUT_DIR / "new_discovery_clip_manifest.csv"
 ROI_MANIFEST = OUT_DIR / "new_discovery_roi_manifest.csv"
 REPORT = OUT_DIR / "reports" / "new_discovery_roi_report.md"
 WORK_DIR = OUT_DIR / "work" / "new_discovery_rois"
+CLIP_CACHE = WORK_DIR / "clips_cache"
 
 DEST_BUCKET = "gs://labios-argentos-vsr-clean-v1"
 GCS_ROIS = f"{DEST_BUCKET}/argentina/new_discovery/rois_npz"
@@ -89,6 +92,23 @@ def upload_outputs(video_id: str, roi_dir: Path, mp4_dir: Path) -> None:
         subprocess.run([gcloud, "storage", "cp", "--recursive", str(mp4_dir / "*.mp4"), f"{GCS_ROI_MP4}/{video_id}/"], check=True)
 
 
+def resolve_clip_path(row: dict[str, str]) -> Path:
+    local = Path(row.get("clip_video_path", ""))
+    if local.exists():
+        return local
+    gcs_path = row.get("clip_video_gcs_path", "")
+    if not gcs_path:
+        return local
+    video_id = row.get("video_id", "unknown")
+    clip_name = row.get("clip_name", "") or row.get("clip_id", "clip")
+    cached = CLIP_CACHE / video_id / f"{clip_name}.mp4"
+    if cached.exists():
+        return cached
+    cached.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run([tool("gcloud"), "storage", "cp", gcs_path, str(cached)], check=True)
+    return cached
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--video-id", action="append", default=[])
@@ -118,7 +138,8 @@ def main() -> int:
 
     existing = read_csv(ROI_MANIFEST) if args.resume else []
     merged: dict[tuple[str, str], dict[str, object]] = {(r.get("video_id", ""), r.get("clip_id", "")): r for r in existing}
-    done = {key for key, row in merged.items() if row.get("status") == "completed_roi"}
+    terminal_statuses = {"completed_roi", "blocked_roi_no_face", "blocked_roi_failed"}
+    done = {key for key, row in merged.items() if row.get("status") in terminal_statuses}
 
     landmarker = crear_landmarker()
     vproc = VideoProcess(crop_width=96, crop_height=96, convert_gray=True)
@@ -130,7 +151,7 @@ def main() -> int:
         if args.resume and key in done:
             continue
         clip_name = row.get("clip_name", "")
-        clip_path = Path(row.get("clip_video_path", ""))
+        clip_path = resolve_clip_path(row)
         roi_dir = WORK_DIR / video_id / "rois_npz"
         mp4_dir = WORK_DIR / video_id / "clips_mp4"
         roi_dir.mkdir(parents=True, exist_ok=True)

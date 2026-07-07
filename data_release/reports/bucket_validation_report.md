@@ -25,6 +25,11 @@ remaining_static_addresses_matching_filter: ""
 - argentina_new_discovery_source_videos: 1
 - argentina_new_discovery_source_audio: 1
 - argentina_new_discovery_metadata: 3
+- argentina_new_discovery_clips_with_audio: 100
+- argentina_new_discovery_rois_npz: 79
+- argentina_new_discovery_roi_mp4: 79
+- argentina_new_discovery_large_txt: 100
+- argentina_new_discovery_turbo_txt: 100
 
 ## Manifest rows
 
@@ -35,10 +40,13 @@ remaining_static_addresses_matching_filter: ""
 - alignment_manifest_rows: 9191
 - existing_reconstruction_manifest_rows: 2193
 - asr_large_turbo_manifest_rows: 4392
-- final_release_manifest_rows: 9191
-- final_train_manifest_rows: 8067
+- final_release_manifest_rows: 9291
+- final_train_manifest_rows: 8146
 - final_eval_manifest_rows: 1124
 - new_discovery_ingest_manifest_rows: 20
+- new_discovery_clip_manifest_rows: 100
+- new_discovery_asr_manifest_rows: 200
+- new_discovery_roi_manifest_rows: 100
 - spanish_general_asr_manifest_rows: 47152
 
 ## MP4 samples
@@ -62,6 +70,14 @@ remaining_static_addresses_matching_filter: ""
 - source_video gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/ITovsJg-q5c/ITovsJg-q5c.f398.mp4 video=true audio=false audio_zero_marker=false
 - source_audio gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/ITovsJg-q5c/ITovsJg-q5c.f251.webm video=false audio=true audio_zero_marker=false
 
+## New discovery clips_with_audio samples
+
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/clips_with_audio/ITovsJg-q5c/clip_0000.mp4 video=true audio=true audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/clips_with_audio/ITovsJg-q5c/clip_0001.mp4 video=true audio=true audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/clips_with_audio/ITovsJg-q5c/clip_0002.mp4 video=true audio=true audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/clips_with_audio/ITovsJg-q5c/clip_0003.mp4 video=true audio=true audio_zero_marker=false
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/clips_with_audio/ITovsJg-q5c/clip_0004.mp4 video=true audio=true audio_zero_marker=false
+
 ## NPZ samples
 
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/rois_npz/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0014.npz key=rois shape=255x96x96 dtype=uint8
@@ -69,6 +85,14 @@ remaining_static_addresses_matching_filter: ""
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/rois_npz/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0034.npz key=rois shape=201x96x96 dtype=uint8
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/rois_npz/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0035.npz key=rois shape=107x96x96 dtype=uint8
 - gs://labios-argentos-vsr-clean-v1/argentina/existing/rois_npz/24HS EN LOS HOTELES MÁS RAROS DE ARGENTINA/clip_0038.npz key=rois shape=185x96x96 dtype=uint8
+
+## New discovery NPZ samples
+
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/rois_npz/ITovsJg-q5c/clip_0006.npz key=rois shape=150x96x96 dtype=uint8
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/rois_npz/ITovsJg-q5c/clip_0010.npz key=rois shape=150x96x96 dtype=uint8
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/rois_npz/ITovsJg-q5c/clip_0012.npz key=rois shape=150x96x96 dtype=uint8
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/rois_npz/ITovsJg-q5c/clip_0013.npz key=rois shape=150x96x96 dtype=uint8
+- gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/rois_npz/ITovsJg-q5c/clip_0014.npz key=rois shape=150x96x96 dtype=uint8
 
 ## clean_gpt_v1 TXT samples
 
@@ -85,3 +109,16 @@ remaining_static_addresses_matching_filter: ""
 - turbo gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/turbo/f01__AN_CDOTA_VIAJE_MUNDIAL_BRASIL_2014_parte_1/clip_0003.txt chars=74 sample='con Holanda, nos juntábamos todos los Vader a ver el partido, estábamos en'
 - turbo gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/turbo/f01__AN_CDOTA_VIAJE_MUNDIAL_BRASIL_2014_parte_1/clip_0006.txt chars=122 sample='discutíamos. Entonces, contra Holanda me dice, hagamos una cosa si le ganamos a Holanda nos vamos a Brasil, a ver la fin'
 - turbo gs://labios-argentos-vsr-clean-v1/argentina/existing/transcripts/turbo/f01__AN_CDOTA_VIAJE_MUNDIAL_BRASIL_2014_parte_1/clip_0007.txt chars=216 sample='Entonces yo agarro y digo, sí, porque, o sea, yo no creía que le vayamos a ganar a Holanda, acuérdense que ese Holanda f'
+
+## New discovery large/turbo TXT samples
+
+- large gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/large/ITovsJg-q5c/clip_0000.txt chars=43 sample='Amar es otorgarle a una persona un poder en'
+- large gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/large/ITovsJg-q5c/clip_0001.txt chars=101 sample='Enorme. Sobre vos. Yo pienso que la persona que de verdad nos ama es la que renuncia a usar el poder.'
+- large gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/large/ITovsJg-q5c/clip_0002.txt chars=88 sample='que le dimos cuando naciste a tus padres le dijeron que sólo tenía siete días de vida sí'
+- large gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/large/ITovsJg-q5c/clip_0003.txt chars=46 sample='Resultó que no fue así. No, parece ser que no.'
+- large gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/large/ITovsJg-q5c/clip_0004.txt chars=131 sample='escritor y pensador destacado de la cultura. Con más de 2 millones de ejemplares, lo conozco como el mejor escritor de l'
+- turbo gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/turbo/ITovsJg-q5c/clip_0000.txt chars=43 sample='Amar es otorgarle a una persona un poder en'
+- turbo gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/turbo/ITovsJg-q5c/clip_0001.txt chars=100 sample='Enorme sobre vos. Yo pienso que la persona que de verdad nos ama es la que renuncia a usar el poder.'
+- turbo gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/turbo/ITovsJg-q5c/clip_0002.txt chars=88 sample='que le dimos cuando naciste a tus padres le dijeron que sólo tenía siete días de vida sí'
+- turbo gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/turbo/ITovsJg-q5c/clip_0003.txt chars=79 sample='resultó que no fue así no parece ser que no maestro gabriel rolón psicoanalista'
+- turbo gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/transcripts/turbo/ITovsJg-q5c/clip_0004.txt chars=157 sample='escritor y pensador destacado de la cultura. Con más de dos millones de ejemplares, lo convirtió en la historia de la hi'

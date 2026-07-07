@@ -1,5 +1,5 @@
 url,video_id,title,channel,decision,accepted_clips_estimate,usable_minutes_estimate,ingest_status,failure_reason,manual_alternative_url,manual_download_path,manual_notes
-https://www.youtube.com/watch?v=ITovsJg-q5c,ITovsJg-q5c,Cómo Amarse a uno Mismo y Tener Buena Salud Mental: Hábitos de Vida - Gabriel Rolón,Tengo un Plan,strong_accept,1341.0,60,source_downloaded_pending_clips_asr_roi,,,,
+https://www.youtube.com/watch?v=ITovsJg-q5c,ITovsJg-q5c,Cómo Amarse a uno Mismo y Tener Buena Salud Mental: Hábitos de Vida - Gabriel Rolón,Tengo un Plan,strong_accept,1341.0,60,clips_generated_pending_asr_roi,,,,
 https://www.youtube.com/watch?v=h3HtBhArO1Q,h3HtBhArO1Q,El Método Rebord #56 - Andy Chango,El Método Rebord,accept,1228.0,60,blocked_download_failed,youtube_requires_login_or_cookies_from_vm,,,
 https://www.youtube.com/watch?v=OrwtPwftIi4,OrwtPwftIi4,🎤 Curso de Oratoria con Daniel Colombo | 100% Práctico,Daniel Colombo,strong_accept,1023.0,60,blocked_download_failed,youtube_requires_login_or_cookies_from_vm,,,
 https://www.youtube.com/watch?v=qEKPgqURvo0,qEKPgqURvo0,REBORD - PERETTI | HAY ALGO AHÍ | BLENDER,BLENDER,strong_accept,822.0,60,blocked_download_failed,youtube_requires_login_or_cookies_from_vm,,,
