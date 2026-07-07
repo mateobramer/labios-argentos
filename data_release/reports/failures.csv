@@ -1,0 +1,4 @@
+stage,dataset_group,item,status,error,notes
+asr_turbo,argentina/existing,existing_roi_mp4,blocked_no_audio_in_roi_mp4,ffmpeg probe found video stream only; audio:0KiB,Reconstruct from original URLs/raw videos to run turbo.
+asr_turbo,spanish_general/existing,existing_roi_mp4,blocked_no_audio_in_roi_mp4,ffmpeg probe found video stream only; audio:0KiB,Kept separated; no GPT cleaning requested.
+new_discovery_ingest,argentina/new_discovery,accepted_video_queue,pending_source_ingest,,20 accepted videos queued for source download and full ASR.

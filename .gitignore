@@ -63,6 +63,13 @@ data_discovery/outputs/**/*.webm
 data_discovery/outputs/*_stdout.log
 data_discovery/outputs/*_stderr.log
 
+# Data release: caches/listados/logs regenerables; versionar manifests y reportes.
+data_release/cache/
+data_release/logs/
+
+# Limpieza v1: outputs pueden ser grandes o contener respuestas crudas; versionar prompts/scripts.
+data_cleaning_clean_v1/outputs/
+
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
 .venv-visual/
