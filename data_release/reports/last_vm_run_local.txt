@@ -1,0 +1,8 @@
+name=vsr-full-clean-gpu-normal-20260707-1619
+zone=us-west1-b
+created_at=2026-07-07T16:21:41.4926389-03:00
+provisioning=STANDARD
+machine=g2-standard-8
+accelerator=nvidia-l4,count=1
+boot_disk=500GB,pd-balanced,auto-delete
+

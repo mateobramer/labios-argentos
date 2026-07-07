@@ -22,14 +22,14 @@ remaining_static_addresses_matching_filter: ""
 - spanish_general_large_txt: 46991
 - spanish_general_turbo_txt: 0
 - context_packs: 61
-- argentina_new_discovery_source_videos: 1
-- argentina_new_discovery_source_audio: 1
-- argentina_new_discovery_metadata: 3
-- argentina_new_discovery_clips_with_audio: 100
+- argentina_new_discovery_source_videos: 2
+- argentina_new_discovery_source_audio: 2
+- argentina_new_discovery_metadata: 5
+- argentina_new_discovery_clips_with_audio: 2888
 - argentina_new_discovery_rois_npz: 79
 - argentina_new_discovery_roi_mp4: 79
-- argentina_new_discovery_large_txt: 100
-- argentina_new_discovery_turbo_txt: 100
+- argentina_new_discovery_large_txt: 2888
+- argentina_new_discovery_turbo_txt: 2888
 
 ## Manifest rows
 
@@ -40,13 +40,13 @@ remaining_static_addresses_matching_filter: ""
 - alignment_manifest_rows: 9191
 - existing_reconstruction_manifest_rows: 2193
 - asr_large_turbo_manifest_rows: 4392
-- final_release_manifest_rows: 9291
+- final_release_manifest_rows: 12079
 - final_train_manifest_rows: 8146
 - final_eval_manifest_rows: 1124
 - new_discovery_ingest_manifest_rows: 20
-- new_discovery_clip_manifest_rows: 100
-- new_discovery_asr_manifest_rows: 200
-- new_discovery_roi_manifest_rows: 100
+- new_discovery_clip_manifest_rows: 2888
+- new_discovery_asr_manifest_rows: 5776
+- new_discovery_roi_manifest_rows: 2888
 - spanish_general_asr_manifest_rows: 47152
 
 ## MP4 samples
@@ -68,7 +68,9 @@ remaining_static_addresses_matching_filter: ""
 ## New discovery source samples
 
 - source_video gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/ITovsJg-q5c/ITovsJg-q5c.f398.mp4 video=true audio=false audio_zero_marker=false
+- source_video gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/h3HtBhArO1Q/h3HtBhArO1Q.f398.mp4 video=true audio=false audio_zero_marker=false
 - source_audio gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/ITovsJg-q5c/ITovsJg-q5c.f251.webm video=false audio=true audio_zero_marker=false
+- source_audio gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/h3HtBhArO1Q/h3HtBhArO1Q.f251.webm video=false audio=true audio_zero_marker=false
 
 ## New discovery clips_with_audio samples
 
