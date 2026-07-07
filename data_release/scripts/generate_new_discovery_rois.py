@@ -204,6 +204,8 @@ def main() -> int:
             write_csv(ROI_MANIFEST, rows, FIELDS)
             write_report(rows)
             print(f"checkpoint processed={processed} rows_total={len(rows)}", flush=True)
+            if args.upload:
+                upload_outputs(video_id, roi_dir, mp4_dir)
     rows = list(merged.values())
     write_csv(ROI_MANIFEST, rows, FIELDS)
     write_report(rows)

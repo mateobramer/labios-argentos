@@ -21,6 +21,7 @@ from typing import Iterable
 ROOT = Path(__file__).resolve().parents[2]
 OUT_DIR = ROOT / "data_release"
 WORK_DIR = OUT_DIR / "work" / "new_discovery_ingest"
+SOURCE_CACHE = WORK_DIR / "source_cache"
 DOWNLOAD_MANIFEST = OUT_DIR / "local_source_download_manifest.csv"
 SEGMENT_MANIFEST = OUT_DIR / "new_discovery_clip_manifest.csv"
 REPORT = OUT_DIR / "reports" / "new_discovery_ingest_report.md"
@@ -170,6 +171,25 @@ def extract_clip(video: Path, audio: Path, out: Path, start: float, duration: fl
     )
 
 
+def resolve_source_media(source: dict[str, str], kind: str) -> Path:
+    local_key = f"local_{kind}_path"
+    gcs_key = f"gcs_{kind}_path"
+    local = Path(source.get(local_key, ""))
+    if local.exists():
+        return local
+    gcs_path = source.get(gcs_key, "")
+    if not gcs_path:
+        return local
+    source_id = source.get("source_id", "unknown")
+    suffix = Path(gcs_path).suffix or (".mp4" if kind == "video" else ".webm")
+    cached = SOURCE_CACHE / source_id / f"{kind}{suffix}"
+    if cached.exists():
+        return cached
+    cached.parent.mkdir(parents=True, exist_ok=True)
+    run_ok([tool("gcloud"), "storage", "cp", gcs_path, str(cached)], timeout=1800)
+    return cached
+
+
 def upload_source_outputs(video_id: str, source_work: Path) -> None:
     gcloud = tool("gcloud")
     clips_dir = source_work / "clips_with_audio"
@@ -215,8 +235,8 @@ def main() -> int:
         row
         for row in read_csv(DOWNLOAD_MANIFEST)
         if row.get("status", "").startswith("downloaded_uploaded")
-        and row.get("local_video_path")
-        and row.get("local_audio_path")
+        and (row.get("local_video_path") or row.get("gcs_video_path"))
+        and (row.get("local_audio_path") or row.get("gcs_audio_path"))
         and (not selected or row.get("source_id") in selected)
     ]
     existing = read_csv(SEGMENT_MANIFEST) if args.resume else []
@@ -225,8 +245,8 @@ def main() -> int:
 
     for source in downloads:
         video_id = source.get("source_id", "")
-        video = Path(source.get("local_video_path", ""))
-        audio = Path(source.get("local_audio_path", ""))
+        video = resolve_source_media(source, "video")
+        audio = resolve_source_media(source, "audio")
         source_work = WORK_DIR / video_id
         duration = min(media_duration(video), media_duration(audio))
         windows = make_windows(duration, args.clip_seconds, args.start_offset, args.end_margin)
@@ -299,7 +319,7 @@ def main() -> int:
                 write_csv(SEGMENT_MANIFEST, rows, FIELDS)
                 write_report(rows)
                 print(f"checkpoint video_id={video_id} processed={processed} rows_total={len(rows)}", flush=True)
-                if args.upload and args.upload_each_checkpoint:
+                if args.upload:
                     upload_source_outputs(video_id, source_work)
         rows = list(merged.values())
         write_csv(SEGMENT_MANIFEST, rows, FIELDS)

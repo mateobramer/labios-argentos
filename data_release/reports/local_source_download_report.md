@@ -3,4 +3,4 @@
 dataset: argentina_new_discovery
 rows_attempted: 1
 
-- ITovsJg-q5c: downloaded_uploaded_partial_ytdlp_error cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/ITovsJg-q5c/ITovsJg-q5c.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/ITovsJg-q5c/ITovsJg-q5c.f251.webm
+- h3HtBhArO1Q: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/h3HtBhArO1Q/h3HtBhArO1Q.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/h3HtBhArO1Q/h3HtBhArO1Q.f251.webm

@@ -242,6 +242,8 @@ def selected_rows(args: argparse.Namespace) -> tuple[str, list[dict[str, str]]]:
         rows = read_csv(PACK_DIR / "human_new_discovery_download_needed.csv")
         dataset = "argentina_new_discovery"
         rows = [r for r in rows if not args.only_manual or r.get("manual_alternative_url") or r.get("manual_download_path")]
+        if not args.retry_completed:
+            rows = [r for r in rows if r.get("ingest_status") in {"blocked_download_failed", "manual_download_needed"}]
     elif args.existing:
         rows = read_csv(PACK_DIR / "human_source_mapping_needed.csv")
         dataset = "argentina_existing"
@@ -263,6 +265,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--browser", default="chrome")
     parser.add_argument("--audio-only", action="store_true")
     parser.add_argument("--only-manual", action="store_true", help="Usar solo filas con overrides manuales.")
+    parser.add_argument("--retry-completed", action="store_true", help="Tambien reintentar fuentes ya descargadas o parcialmente procesadas.")
     return parser.parse_args()
 
 
