@@ -79,6 +79,12 @@ def count_manifest_rows(path: Path) -> int:
         return sum(1 for _ in csv.DictReader(f))
 
 
+def count_optional_manifest_rows(path: Path) -> int:
+    if not path.exists():
+        return 0
+    return count_manifest_rows(path)
+
+
 def copy_to_tmp(gcs_path: str, tmp_dir: Path) -> Path:
     local = tmp_dir / Path(gcs_path).name
     run_ok([GSUTIL, "cp", gcs_path, str(local)], timeout=180)
@@ -144,7 +150,7 @@ def main() -> None:
         "argentina_existing_manifest_rows": count_manifest_rows(ROOT / "data_release" / "argentina_existing_manifest.csv"),
         "argentina_new_manifest_rows": count_manifest_rows(ROOT / "data_release" / "argentina_new_manifest.csv"),
         "spanish_general_manifest_rows": count_manifest_rows(ROOT / "data_release" / "spanish_general_manifest.csv"),
-        "clean_manifest_rows": count_manifest_rows(ROOT / "data_cleaning_clean_v1" / "outputs" / "clean_manifest.csv"),
+        "clean_manifest_rows": count_optional_manifest_rows(ROOT / "data_cleaning_clean_v1" / "outputs" / "clean_manifest.csv"),
         "alignment_manifest_rows": count_manifest_rows(ROOT / "data_release" / "alignment_manifest.csv"),
         "existing_reconstruction_manifest_rows": count_manifest_rows(ROOT / "data_release" / "existing_reconstruction_manifest.csv"),
         "asr_large_turbo_manifest_rows": count_manifest_rows(ROOT / "data_release" / "asr_large_turbo_manifest.csv"),
