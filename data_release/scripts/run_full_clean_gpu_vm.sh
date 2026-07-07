@@ -75,7 +75,7 @@ stage="install"
 write_status "running" "installing_dependencies"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y git ffmpeg python3-venv python3-pip
+apt-get install -y git ffmpeg python3-venv python3-pip libegl1 libgles2
 
 stage="checkout"
 write_status "running" "checkout_repo"
