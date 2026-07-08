@@ -157,11 +157,22 @@ def load_asr() -> dict[tuple[str, str, str], dict[str, str]]:
     return out
 
 
+def load_completed_gpt() -> dict[str, dict[str, str]]:
+    out = {}
+    for row in read_csv(CLEAN_GPT):
+        if row.get("clean_text", "").strip() and (
+            row.get("status") == "completed_clean_gpt" or row.get("gpt_status") == "completed_clean_gpt"
+        ):
+            out[row.get("clip_id", "")] = row
+    return out
+
+
 def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
     mapping = {row["source_id"]: row for row in read_csv(SOURCE_MAPPING)}
     alignment = {row["clip_id"]: row for row in read_csv(ALIGNMENT)}
     recon = {row["clip_id"]: row for row in read_csv(RECON) if row.get("status") == "completed_reconstructed_audio"}
     asr = load_asr()
+    completed_gpt = load_completed_gpt()
     final_rows: list[dict[str, object]] = []
     clean_rows: list[dict[str, object]] = []
 
@@ -176,6 +187,8 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
         existing_text = row.get("text_large_existing", "")
         large_text = large.get("text", "")
         turbo_text = turbo.get("text", "")
+        clean_gpt_text = ""
+        patch_count = 0
         if large_text and turbo_text:
             clean_status = "completed_large_turbo_no_gpt"
             asr_status = "completed_large_turbo"
@@ -209,6 +222,21 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
             needs_review = "true"
             failure_reason = "not_processed_before_spot_preemption"
 
+        gpt = completed_gpt.get(clip_id)
+        if gpt:
+            clean_gpt_text = gpt.get("clean_text", "").strip()
+            clean_status = "completed_clean_gpt"
+            gpt_status = "completed_clean_gpt"
+            selected = clean_gpt_text
+            text_source = "clean_gpt_v1"
+            clean_confidence = gpt.get("confidence", "medium") or "medium"
+            patch_count = int(gpt.get("patch_count") or 0)
+            needs_review = "false"
+            failure_reason = ""
+        else:
+            clean_confidence = "medium" if clean_status == "completed_large_turbo_no_gpt" else "low"
+        notes = "gpt_cleaning_applied" if clean_gpt_text else ("gpt_cleaning_not_applied_no_invented_patches" if large_text else "")
+
         final = {
             "dataset_group": "argentina/existing",
             "source_id": sid,
@@ -226,12 +254,12 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
             "existing_text": existing_text,
             "large_text": large_text,
             "turbo_text": turbo_text,
-            "clean_gpt_text": "",
+            "clean_gpt_text": clean_gpt_text,
             "selected_training_text": selected,
             "text_source": text_source,
             "clean_status": clean_status,
-            "clean_confidence": "medium" if clean_status == "completed_large_turbo_no_gpt" else "low",
-            "patch_count": 0,
+            "clean_confidence": clean_confidence,
+            "patch_count": patch_count,
             "alignment_confidence": align.get("alignment_confidence", ""),
             "asr_status": asr_status,
             "gpt_status": gpt_status,
@@ -239,7 +267,7 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
             "usable_for_eval": str(bool(selected) and row.get("split", "") in {"val", "test"}).lower(),
             "needs_review": needs_review,
             "failure_reason": failure_reason,
-            "notes": "gpt_cleaning_not_applied_no_invented_patches" if large_text else "",
+            "notes": notes,
         }
         final_rows.append(final)
         clean_rows.append(
@@ -250,10 +278,10 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
                 "existing_text": existing_text,
                 "large_text": large_text,
                 "turbo_text": turbo_text,
-                "clean_text": "",
+                "clean_text": clean_gpt_text,
                 "status": clean_status,
                 "confidence": final["clean_confidence"],
-                "patch_count": 0,
+                "patch_count": patch_count,
                 "gpt_status": gpt_status,
                 "notes": final["notes"],
             }
@@ -281,6 +309,7 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
     sources = {row.get("video_id", ""): row for row in read_csv(ARG_NEW)}
     asr = load_new_asr()
     rois = load_new_roi()
+    completed_gpt = load_completed_gpt()
     final_rows: list[dict[str, object]] = []
     clean_rows: list[dict[str, object]] = []
 
@@ -296,16 +325,18 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
         large_text = large.get("text", "")
         turbo_text = turbo.get("text", "")
         has_roi = bool(roi.get("roi_npz_gcs_path") or roi.get("roi_npz_path"))
+        clean_gpt_text = ""
+        patch_count = 0
 
-        if large_text and turbo_text and has_roi:
+        if large_text and turbo_text:
             clean_status = "completed_large_turbo_no_gpt"
             asr_status = "completed_large_turbo"
             selected = large_text
             text_source = "large"
             needs_review = "false"
-            failure_reason = ""
+            failure_reason = "" if has_roi else "pending_new_discovery_roi_npz"
             clean_confidence = "medium"
-            usable_for_training = "true"
+            usable_for_training = str(has_roi).lower()
         else:
             clean_status = "needs_review"
             selected = large_text or turbo_text
@@ -322,6 +353,18 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
                 missing.append("roi_npz")
             failure_reason = "pending_new_discovery_" + "_".join(missing)
             asr_status = "completed_large_turbo" if large_text and turbo_text else "pending_new_discovery_asr"
+
+        gpt = completed_gpt.get(clip_id)
+        if gpt:
+            clean_gpt_text = gpt.get("clean_text", "").strip()
+            clean_status = "completed_clean_gpt"
+            selected = clean_gpt_text
+            text_source = "clean_gpt_v1"
+            needs_review = "false"
+            clean_confidence = gpt.get("confidence", "medium") or "medium"
+            patch_count = int(gpt.get("patch_count") or 0)
+            usable_for_training = str(has_roi).lower()
+            failure_reason = "" if has_roi else "pending_new_discovery_roi_npz"
 
         final = {
             "dataset_group": "argentina/new_discovery",
@@ -340,20 +383,20 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
             "existing_text": "",
             "large_text": large_text,
             "turbo_text": turbo_text,
-            "clean_gpt_text": "",
+            "clean_gpt_text": clean_gpt_text,
             "selected_training_text": selected,
             "text_source": text_source,
             "clean_status": clean_status,
             "clean_confidence": clean_confidence,
-            "patch_count": 0,
+            "patch_count": patch_count,
             "alignment_confidence": "new_discovery",
             "asr_status": asr_status,
-            "gpt_status": "not_attempted" if selected else "blocked_no_asr_context",
+            "gpt_status": "completed_clean_gpt" if clean_gpt_text else ("not_attempted" if selected else "blocked_no_asr_context"),
             "usable_for_training": usable_for_training,
             "usable_for_eval": "false",
             "needs_review": needs_review,
             "failure_reason": failure_reason,
-            "notes": "new_discovery_no_gpt_cleaning_applied",
+            "notes": "gpt_cleaning_applied" if clean_gpt_text else "new_discovery_no_gpt_cleaning_applied",
         }
         final_rows.append(final)
         clean_rows.append(
@@ -364,10 +407,10 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
                 "existing_text": "",
                 "large_text": large_text,
                 "turbo_text": turbo_text,
-                "clean_text": "",
+                "clean_text": clean_gpt_text,
                 "status": clean_status,
                 "confidence": clean_confidence,
-                "patch_count": 0,
+                "patch_count": patch_count,
                 "gpt_status": final["gpt_status"],
                 "notes": final["notes"],
             }
@@ -482,6 +525,12 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
     existing_align_counts = Counter(str(r["alignment_confidence"]) for r in existing_final)
     new_clean_counts = Counter(str(r["clean_status"]) for r in new_final)
     new_asr_counts = Counter(str(r["asr_status"]) for r in new_final)
+    completed_clean_gpt = sum(1 for r in clean_rows if r["status"] == "completed_clean_gpt")
+    text_cleaned_no_roi = sum(
+        1
+        for r in final_rows
+        if r.get("clean_status") == "completed_clean_gpt" and r.get("usable_for_training") != "true"
+    )
     REPORTS.mkdir(parents=True, exist_ok=True)
     FULL_REPORT.write_text(
         "\n".join(
@@ -517,10 +566,11 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "- ASR: blocked_missing_provenance_for_asr",
                 "",
                 "## GPT cleaning",
-                f"- completed_clean_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_clean_gpt')}",
+                f"- completed_clean_gpt: {completed_clean_gpt}",
                 f"- completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
                 f"- baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
-                "- no GPT patch was applied; no cleaning was invented.",
+                f"- text_cleaned_no_roi: {text_cleaned_no_roi}",
+                "- GPT patches are applied only from validated JSONL outputs.",
                 "",
             ]
         ),
@@ -531,12 +581,13 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
             [
                 "# GPT cleaning report",
                 "",
-                "completed_clean_gpt: 0",
+                f"completed_clean_gpt: {completed_clean_gpt}",
                 f"completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
                 f"baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
-                f"needs_review_or_blocked: {sum(1 for r in clean_rows if r['status'] != 'completed_large_turbo_no_gpt')}",
+                f"needs_review_or_blocked: {sum(1 for r in clean_rows if r['status'] not in {'completed_large_turbo_no_gpt', 'completed_clean_gpt'})}",
+                f"text_cleaned_no_roi: {text_cleaned_no_roi}",
                 "",
-                "No se aplicaron patches GPT en esta corrida. La regla fue no inventar limpieza sin salida JSONL validada.",
+                "La regla es no inventar limpieza sin salida JSONL validada.",
                 "Los clips con ASR large/turbo usan `large_text` como selected_training_text.",
                 "",
             ]
