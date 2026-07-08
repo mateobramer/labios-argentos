@@ -87,7 +87,7 @@ else
   git clone --depth 1 --filter=blob:none --sparse --branch "$BRANCH" "$REPO_URL" "$WORKDIR"
   cd "$WORKDIR"
 fi
-git sparse-checkout set data_release visual_preprocessing
+git sparse-checkout set requirements.txt data_release visual_preprocessing
 git checkout "$BRANCH"
 git pull --ff-only origin "$BRANCH"
 

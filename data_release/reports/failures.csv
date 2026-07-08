@@ -38,3 +38,15 @@ WARNING: The extractor specified to use impersonation for this download, but no 
 WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
 ERROR: Unable to download video subtitles for 'en': HTTP Error 429: Too Many Requests
 ",used_cookies_from_browser=false
+local_source_download,argentina/new/discovery,YYIVFA000BI,,https://www.youtube.com/watch?v=YYIVFA000BI,blocked_download_failed,"aScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: You have requested merging of multiple formats but ffmpeg is not installed. The formats won't be merged
+ERROR: unable to download video data: HTTP Error 403: Forbidden
+",used_cookies_from_browser=false
+local_source_download,argentina/new/discovery,IGYG0Kn0wxo,,https://www.youtube.com/watch?v=IGYG0Kn0wxo,blocked_download_failed,"aScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: You have requested merging of multiple formats but ffmpeg is not installed. The formats won't be merged
+ERROR: unable to download video data: HTTP Error 403: Forbidden
+",used_cookies_from_browser=false
