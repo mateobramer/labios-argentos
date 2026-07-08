@@ -1,5 +1,5 @@
 # New discovery ASR report
 
-rows: 5776
-status_counts: {'completed_asr': 5771, 'needs_review_empty_asr': 5}
-rows_by_role: {'large': 2888, 'turbo': 2888}
+rows: 26386
+status_counts: {'completed_asr': 26270, 'needs_review_empty_asr': 116}
+rows_by_role: {'large': 13193, 'turbo': 13193}

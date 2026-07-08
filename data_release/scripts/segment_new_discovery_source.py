@@ -174,8 +174,9 @@ def extract_clip(video: Path, audio: Path, out: Path, start: float, duration: fl
 def resolve_source_media(source: dict[str, str], kind: str) -> Path:
     local_key = f"local_{kind}_path"
     gcs_key = f"gcs_{kind}_path"
-    local = Path(source.get(local_key, ""))
-    if local.exists():
+    local_value = source.get(local_key, "").strip()
+    local = Path(local_value) if local_value else Path()
+    if local_value and local.exists():
         return local
     gcs_path = source.get(gcs_key, "")
     if not gcs_path:
@@ -193,8 +194,14 @@ def resolve_source_media(source: dict[str, str], kind: str) -> Path:
 def upload_source_outputs(video_id: str, source_work: Path) -> None:
     gcloud = tool("gcloud")
     clips_dir = source_work / "clips_with_audio"
-    if clips_dir.exists():
+    clip_paths = sorted(clips_dir.glob("*.mp4")) if clips_dir.exists() else []
+    if clip_paths:
         run_ok([gcloud, "storage", "cp", "--recursive", str(clips_dir / "*.mp4"), f"{GCS_CLIPS}/{video_id}/"], timeout=1800)
+    upload_manifest_report()
+
+
+def upload_manifest_report() -> None:
+    gcloud = tool("gcloud")
     run_ok([gcloud, "storage", "cp", str(SEGMENT_MANIFEST), f"{GCS_MANIFESTS}/new_discovery_clip_manifest.csv"], timeout=300)
     run_ok([gcloud, "storage", "cp", str(REPORT), f"{GCS_REPORTS}/new_discovery_ingest_report.md"], timeout=300)
 
@@ -324,13 +331,15 @@ def main() -> int:
         rows = list(merged.values())
         write_csv(SEGMENT_MANIFEST, rows, FIELDS)
         write_report(rows)
-        if args.upload:
+        if args.upload and processed:
             upload_source_outputs(video_id, source_work)
         print(f"source_done video_id={video_id} rows_total={len(rows)}", flush=True)
 
     rows = list(merged.values())
     write_csv(SEGMENT_MANIFEST, rows, FIELDS)
     write_report(rows)
+    if args.upload:
+        upload_manifest_report()
     print(f"manifest -> {SEGMENT_MANIFEST}")
     print(f"report -> {REPORT}")
     return 0

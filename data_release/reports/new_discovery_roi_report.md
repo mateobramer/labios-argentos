@@ -1,4 +1,4 @@
 # New discovery ROI report
 
-rows: 2888
-status_counts: {'blocked_roi_no_face': 2809, 'completed_roi': 79}
+rows: 13193
+status_counts: {'blocked_roi_no_face': 10945, 'completed_roi': 2248}

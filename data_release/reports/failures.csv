@@ -50,3 +50,1907 @@ WARNING: The extractor specified to use impersonation for this download, but no 
 WARNING: You have requested merging of multiple formats but ffmpeg is not installed. The formats won't be merged
 ERROR: unable to download video data: HTTP Error 403: Forbidden
 ",used_cookies_from_browser=false
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0000,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0000.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0000.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0000,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0000.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0000.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0001,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0001.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0001.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0002,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0002.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0002.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0003,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0003.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0003.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0004,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0004.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0004.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0005,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0005.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0005.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0006,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0006.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0006.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0007,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0007.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0007.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0008,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0008.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0008.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0009,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0009.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0009.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0010,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0010.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0010.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0011,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0011.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0011.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0012,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0012.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0012.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0013,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0013.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0013.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0014,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0014.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0014.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0015,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0015.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0015.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0016,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0016.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0016.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0017,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0017.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0017.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0018,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0018.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0018.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0019,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0019.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0019.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0020,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0020.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0020.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0021,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0021.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0021.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0022,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0022.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0022.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0023,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0023.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0023.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0024,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0024.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0024.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0025,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0025.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0025.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0026,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0026.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0026.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0027,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0027.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0027.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0028,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0028.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0028.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0029,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0029.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0029.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0030,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0030.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0030.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0031,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0031.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0031.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0032,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0032.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0032.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0033,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0033.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0033.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0034,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0034.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0034.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0035,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0035.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0035.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0036,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0036.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0036.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0037,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0037.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0037.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0038,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0038.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0038.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0039,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0039.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0039.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0040,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0040.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0040.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0041,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0041.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0041.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0042,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0042.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0042.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0043,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0043.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0043.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0044,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0044.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0044.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0045,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0045.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0045.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0046,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0046.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0046.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0047,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0047.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0047.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0048,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0048.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0048.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0049,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0049.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0049.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0050,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0050.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0050.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0051,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0051.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0051.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0052,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0052.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0052.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0053,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0053.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0053.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0054,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0054.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0054.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0055,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0055.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0055.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0056,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0056.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0056.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0057,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0057.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0057.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0058,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0058.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0058.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0059,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0059.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0059.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0060,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0060.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0060.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0061,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0061.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0061.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0062,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0062.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0062.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0063,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0063.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0063.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0064,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0064.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0064.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0065,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0065.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0065.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0066,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0066.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0066.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0067,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0067.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0067.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0068,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0068.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0068.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0069,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0069.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0069.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0070,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0070.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0070.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0071,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0071.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0071.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0072,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0072.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0072.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0073,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0073.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0073.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0074,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0074.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0074.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0075,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0075.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0075.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0076,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0076.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0076.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0077,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0077.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0077.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0078,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0078.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0078.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0079,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0079.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0079.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0080,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0080.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0080.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0081,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0081.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0081.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0082,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0082.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0082.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0083,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0083.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0083.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0084,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0084.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0084.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0085,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0085.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0085.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0086,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0086.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0086.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0087,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0087.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0087.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0088,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0088.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0088.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0089,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0089.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0089.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0090,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0090.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0090.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0091,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0091.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0091.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0092,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0092.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0092.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0093,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0093.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0093.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0094,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0094.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0094.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0095,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0095.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0095.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0096,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0096.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0096.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0097,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0097.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0097.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0098,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0098.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0098.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0099,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0099.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0099.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0100,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0100.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0100.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0101,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0101.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0101.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0102,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0102.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0102.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0103,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0103.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0103.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0104,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0104.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0104.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0105,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0105.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0105.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0106,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0106.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0106.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0107,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0107.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0107.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0108,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0108.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0108.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0109,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0109.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0109.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0110,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0110.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0110.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0111,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0111.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0111.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0112,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0112.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0112.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0113,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0113.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0113.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0114,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0114.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0114.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0115,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0115.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0115.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0116,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0116.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0116.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0117,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0117.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0117.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0118,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0118.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0118.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0119,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0119.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0119.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0120,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0120.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0120.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0121,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0121.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0121.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0122,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0122.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0122.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0123,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0123.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0123.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0124,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0124.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0124.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0125,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0125.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0125.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0126,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0126.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0126.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0127,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0127.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0127.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0128,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0128.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0128.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0129,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0129.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0129.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0130,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0130.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0130.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0131,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0131.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0131.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0132,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0132.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0132.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0133,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0133.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0133.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
+new_discovery_clip_extract,argentina/new_discovery,vDNy6EN7bIY,new_discovery::vDNy6EN7bIY::clip_0134,/opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0134.mp4,clip_extract_failed,"bm -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 96k -shortest /opt/labios-argentos/data_release/work/new_discovery_ingest/vDNy6EN7bIY/clips_with_audio/clip_0134.mp4
+Input #0, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/video.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #0:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Input #1, matroska,webm, from '/opt/labios-argentos/data_release/work/new_discovery_ingest/source_cache/vDNy6EN7bIY/audio.webm':
+  Metadata:
+    encoder         : google/video-file
+  Duration: 00:13:33.37, start: 0.000000, bitrate: 585 kb/s
+  Stream #1:0(eng): Video: vp9 (Profile 0), yuv420p(tv, bt709), 1280x720, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn, 1k tbc (default)
+Stream map '1:a:0' matches no streams.
+To ignore this, add a trailing '?' to the map.
+",continuing_with_next_clip
