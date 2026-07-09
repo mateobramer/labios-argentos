@@ -20,6 +20,7 @@ REPORT = VALIDATED / "validation_report.csv"
 HANDOFF = ROOT / "manual_gpt_handoff"
 MANUAL_INDEX = HANDOFF / "job_index.csv"
 MANUAL_REPORT = HANDOFF / "reports" / "manual_gpt_validation_report.csv"
+ROOT_MANUAL_REPORT = ROOT / "reports" / "manual_gpt_validation_report.csv"
 
 VALID_ACTIONS = {"keep", "patch", "reject"}
 VALID_CONFIDENCE = {"high", "medium", "low"}
@@ -289,6 +290,7 @@ def validate_all_manual() -> dict[str, int]:
         else:
             counts["failed"] += 1
     write_csv(MANUAL_REPORT, report_rows, REPORT_FIELDS)
+    write_csv(ROOT_MANUAL_REPORT, report_rows, REPORT_FIELDS)
     return counts
 
 

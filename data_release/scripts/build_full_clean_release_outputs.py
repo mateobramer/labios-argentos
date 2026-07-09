@@ -8,6 +8,7 @@ quedan como `completed_large_turbo_no_gpt`.
 from __future__ import annotations
 
 import csv
+import json
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Iterable
@@ -40,6 +41,8 @@ FULL_REPORT = REPORTS / "full_clean_release_report.md"
 GPT_REPORT = REPORTS / "gpt_cleaning_report.md"
 COST_REPORT = REPORTS / "cost_runtime_report.md"
 SPANISH_REPORT = OUT_DIR / "spanish_general_asr_manifest.csv"
+REJECTED_GPT = ROOT / "data_cleaning_clean_v1" / "rejected_patches.jsonl"
+MANUAL_GPT_VALIDATION = ROOT / "data_cleaning_clean_v1" / "reports" / "manual_gpt_validation_report.csv"
 
 DEST_BUCKET = "gs://labios-argentos-vsr-clean-v1"
 
@@ -132,6 +135,17 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
+def read_jsonl(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    rows = []
+    with path.open(encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                rows.append(json.loads(line))
+    return rows
+
+
 def write_csv(path: Path, rows: Iterable[dict[str, object]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp_path = path.with_name(f"{path.name}.tmp")
@@ -167,12 +181,28 @@ def load_completed_gpt() -> dict[str, dict[str, str]]:
     return out
 
 
+def load_rejected_gpt() -> dict[str, dict[str, str]]:
+    out = {}
+    for row in read_jsonl(REJECTED_GPT):
+        clip_id = row.get("clip_id", "")
+        record = row.get("record", {}) if isinstance(row.get("record"), dict) else {}
+        if clip_id:
+            out[clip_id] = {
+                "clip_id": clip_id,
+                "confidence": record.get("confidence", "low"),
+                "reason": record.get("reason", row.get("reason", "action_reject")),
+                "notes": record.get("notes", ""),
+            }
+    return out
+
+
 def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
     mapping = {row["source_id"]: row for row in read_csv(SOURCE_MAPPING)}
     alignment = {row["clip_id"]: row for row in read_csv(ALIGNMENT)}
     recon = {row["clip_id"]: row for row in read_csv(RECON) if row.get("status") == "completed_reconstructed_audio"}
     asr = load_asr()
     completed_gpt = load_completed_gpt()
+    rejected_gpt = load_rejected_gpt()
     final_rows: list[dict[str, object]] = []
     clean_rows: list[dict[str, object]] = []
 
@@ -235,7 +265,11 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
             failure_reason = ""
         else:
             clean_confidence = "medium" if clean_status == "completed_large_turbo_no_gpt" else "low"
+            if clip_id in rejected_gpt:
+                gpt_status = "rejected_clean_gpt"
         notes = "gpt_cleaning_applied" if clean_gpt_text else ("gpt_cleaning_not_applied_no_invented_patches" if large_text else "")
+        if not clean_gpt_text and clip_id in rejected_gpt:
+            notes = "gpt_cleaning_rejected"
 
         final = {
             "dataset_group": "argentina/existing",
@@ -279,11 +313,11 @@ def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, obje
                 "large_text": large_text,
                 "turbo_text": turbo_text,
                 "clean_text": clean_gpt_text,
-                "status": clean_status,
-                "confidence": final["clean_confidence"],
+                "status": "rejected_clean_gpt" if not clean_gpt_text and clip_id in rejected_gpt else clean_status,
+                "confidence": rejected_gpt.get(clip_id, {}).get("confidence", final["clean_confidence"]),
                 "patch_count": patch_count,
                 "gpt_status": gpt_status,
-                "notes": final["notes"],
+                "notes": rejected_gpt.get(clip_id, {}).get("reason", final["notes"]),
             }
         )
     return final_rows, clean_rows
@@ -310,6 +344,7 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
     asr = load_new_asr()
     rois = load_new_roi()
     completed_gpt = load_completed_gpt()
+    rejected_gpt = load_rejected_gpt()
     final_rows: list[dict[str, object]] = []
     clean_rows: list[dict[str, object]] = []
 
@@ -366,6 +401,10 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
             usable_for_training = str(has_roi).lower()
             failure_reason = "" if has_roi else "pending_new_discovery_roi_npz"
 
+        gpt_status = "completed_clean_gpt" if clean_gpt_text else ("not_attempted" if selected else "blocked_no_asr_context")
+        if not clean_gpt_text and clip_id in rejected_gpt:
+            gpt_status = "rejected_clean_gpt"
+
         final = {
             "dataset_group": "argentina/new_discovery",
             "source_id": f"nd__{video_id}",
@@ -391,12 +430,14 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
             "patch_count": patch_count,
             "alignment_confidence": "new_discovery",
             "asr_status": asr_status,
-            "gpt_status": "completed_clean_gpt" if clean_gpt_text else ("not_attempted" if selected else "blocked_no_asr_context"),
+            "gpt_status": gpt_status,
             "usable_for_training": usable_for_training,
             "usable_for_eval": "false",
             "needs_review": needs_review,
             "failure_reason": failure_reason,
-            "notes": "gpt_cleaning_applied" if clean_gpt_text else "new_discovery_no_gpt_cleaning_applied",
+            "notes": "gpt_cleaning_applied"
+            if clean_gpt_text
+            else ("gpt_cleaning_rejected" if clip_id in rejected_gpt else "new_discovery_no_gpt_cleaning_applied"),
         }
         final_rows.append(final)
         clean_rows.append(
@@ -408,11 +449,11 @@ def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str,
                 "large_text": large_text,
                 "turbo_text": turbo_text,
                 "clean_text": clean_gpt_text,
-                "status": clean_status,
-                "confidence": clean_confidence,
+                "status": "rejected_clean_gpt" if not clean_gpt_text and clip_id in rejected_gpt else clean_status,
+                "confidence": rejected_gpt.get(clip_id, {}).get("confidence", clean_confidence),
                 "patch_count": patch_count,
                 "gpt_status": final["gpt_status"],
-                "notes": final["notes"],
+                "notes": rejected_gpt.get(clip_id, {}).get("reason", final["notes"]),
             }
         )
     return final_rows, clean_rows
@@ -526,6 +567,12 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
     new_clean_counts = Counter(str(r["clean_status"]) for r in new_final)
     new_asr_counts = Counter(str(r["asr_status"]) for r in new_final)
     completed_clean_gpt = sum(1 for r in clean_rows if r["status"] == "completed_clean_gpt")
+    rejected_clean_gpt = sum(1 for r in clean_rows if r["status"] == "rejected_clean_gpt")
+    validation_rows = read_csv(MANUAL_GPT_VALIDATION)
+    validation_status_counts = Counter(row.get("status", "") for row in validation_rows)
+    validation_rejected = sum(int(row.get("rejected_count") or 0) for row in validation_rows)
+    validation_missing = sum(int(row.get("missing_count") or 0) for row in validation_rows)
+    validation_validated = sum(int(row.get("validated_count") or 0) for row in validation_rows)
     text_cleaned_no_roi = sum(
         1
         for r in final_rows
@@ -567,8 +614,13 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "",
                 "## GPT cleaning",
                 f"- completed_clean_gpt: {completed_clean_gpt}",
+                f"- rejected_clean_gpt: {rejected_clean_gpt}",
                 f"- completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
                 f"- baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
+                f"- manual_validation_status_counts: {dict(validation_status_counts)}",
+                f"- manual_validation_validated_rows: {validation_validated}",
+                f"- manual_validation_rejected_rows: {validation_rejected}",
+                f"- manual_validation_missing_rows: {validation_missing}",
                 f"- text_cleaned_no_roi: {text_cleaned_no_roi}",
                 "- GPT patches are applied only from validated JSONL outputs.",
                 "",
@@ -582,9 +634,14 @@ def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str
                 "# GPT cleaning report",
                 "",
                 f"completed_clean_gpt: {completed_clean_gpt}",
+                f"rejected_clean_gpt: {rejected_clean_gpt}",
                 f"completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
                 f"baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
                 f"needs_review_or_blocked: {sum(1 for r in clean_rows if r['status'] not in {'completed_large_turbo_no_gpt', 'completed_clean_gpt'})}",
+                f"manual_validation_status_counts: {dict(validation_status_counts)}",
+                f"manual_validation_validated_rows: {validation_validated}",
+                f"manual_validation_rejected_rows: {validation_rejected}",
+                f"manual_validation_missing_rows: {validation_missing}",
                 f"text_cleaned_no_roi: {text_cleaned_no_roi}",
                 "",
                 "La regla es no inventar limpieza sin salida JSONL validada.",

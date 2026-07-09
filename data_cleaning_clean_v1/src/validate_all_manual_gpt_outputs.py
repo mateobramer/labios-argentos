@@ -15,6 +15,8 @@ JOB_INDEX = HANDOFF / "job_index.csv"
 RAW = ROOT / "raw_outputs"
 REPORTS = HANDOFF / "reports"
 REPORT = REPORTS / "manual_gpt_validation_report.csv"
+ROOT_REPORTS = ROOT / "reports"
+ROOT_REPORT = ROOT_REPORTS / "manual_gpt_validation_report.csv"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -71,8 +73,10 @@ def main() -> int:
             failed += 1
 
     write_csv(REPORT, report_rows, REPORT_FIELDS)
+    write_csv(ROOT_REPORT, report_rows, REPORT_FIELDS)
     print(f"validated_jobs={validated} failed_jobs={failed} missing_raw_outputs={missing}")
     print(f"report -> {REPORT}")
+    print(f"report -> {ROOT_REPORT}")
     return 1 if failed else 0
 
 

@@ -1,12 +1,15 @@
 # GPT cleaning report
 
-applied_at: 2026-07-08T13:45:11Z
-validated_files: 1
-completed_clean_gpt: 230
-completed_large_turbo_no_gpt: 15097
-patches_rejected: 2
-no_roi_but_text_cleaned: 21
-train_rows: 10315
-eval_rows: 1124
+completed_clean_gpt: 13190
+rejected_clean_gpt: 1613
+completed_large_turbo_no_gpt: 524
+baseline_existing_only: 4557
+needs_review_or_blocked: 8670
+manual_validation_status_counts: {'validated': 83, 'missing_raw_output': 3}
+manual_validation_validated_rows: 14559
+manual_validation_rejected_rows: 26
+manual_validation_missing_rows: 500
+text_cleaned_no_roi: 8967
 
-Regla visual: `usable_for_training` no se cambia por GPT; sigue dependiendo de ROI valido.
+La regla es no inventar limpieza sin salida JSONL validada.
+Los clips con ASR large/turbo usan `large_text` como selected_training_text.
