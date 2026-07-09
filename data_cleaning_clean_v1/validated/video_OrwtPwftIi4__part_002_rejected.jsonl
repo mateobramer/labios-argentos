@@ -1,1 +1,0 @@
-{"clip_id": "new_discovery::OrwtPwftIi4::clip_0611", "errors": ["clean_text_deletes_too_much"], "record": {"clip_id": "new_discovery::OrwtPwftIi4::clip_0611", "action": "patch", "clean_text": "La velocidad es otro recurso con", "reason": "Corrección puntual conservadora con apoyo de turbo/contexto.", "confidence": "medium", "notes": "continúa en clip siguiente", "_line": 175}}

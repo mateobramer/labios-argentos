@@ -1,23 +1,59 @@
 # Video crudo > 100 MB: GitHub rechaza archivos de ese tamano.
 # Se mantiene fuera del repo; se puede regenerar con descargar_procesar.py.
-# Sus clips y transcripcion SI se versionan.
+# Los datos pesados finales viven en el bucket documentado, no en el repo local.
 data/videos/que paso con Roberto/
 data/videos/que pasó con Roberto/
 data/videos/DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA/
 data/videos/Entrevista completa por mi libro Franco con Diego/
 data/videos/ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -/
 
-# Evitar subir videos crudos nuevos por accidente. Son regenerables con yt-dlp;
-# se versionan los clips alineados y el corpus.
+# Evitar subir videos/clips/audios crudos nuevos por accidente.
 data/videos/*/
+
+# Artefactos multimedia locales y outputs pesados.
+*.mp4
+*.webm
+*.mkv
+*.mov
+*.avi
+*.wav
+*.mp3
+*.flac
+*.m4a
 
 # Modelos de Whisper / pesos descargados (no versionar)
 *.pt
 *.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+
+# Paquetes/dumps pesados generados localmente (no subir sin decision explicita)
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
 
 # ROIs y datos derivados pesados (regenerables)
 *.npz
 data/processed/
+work/
+cache/
+outputs/
+local_sources/
+source_videos/
+source_audio/
+raw_or_source/
+clips_with_audio/
+clips_mp4/
+rois_npz/
+raw_outputs/
+validated/
+manual_gpt_handoff/
+video_jobs/
 evaluation/data/
 segmentacion_oraciones/outputs/
 
@@ -50,6 +86,9 @@ data/metadata/visual_quality_*_full_roi.csv
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .jupyter_logs/
 .ai/
 
@@ -75,10 +114,18 @@ data_release/source_metadata/subtitles/
 
 # Limpieza v1: outputs pueden ser grandes o contener respuestas crudas; versionar prompts/scripts.
 data_cleaning_clean_v1/outputs/
+data_cleaning_clean_v1/clean_gpt_v1/
+data_cleaning_clean_v1/raw_outputs/
+data_cleaning_clean_v1/validated/
+data_cleaning_clean_v1/manual_gpt_handoff/
+data_cleaning_clean_v1/video_jobs/
 
 # Entorno virtual de Python (libs pesadas, no versionar)
 .venv/
 .venv-visual/
+venv/
+env/
+.conda/
 
 # Basura del SO
 .DS_Store
