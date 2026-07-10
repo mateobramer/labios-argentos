@@ -134,7 +134,7 @@ despues escalar.
 
 ## Metadata de ruido recomendada
 
-Cuando se simula input RSV/VSR, usar:
+Cuando se simula input VSR, usar:
 
 - `raw_text`: hipotesis ruidosa que vera el cierre.
 - `clean_text`: intencion limpia para auditoria y proyeccion de labels.
@@ -152,7 +152,7 @@ No tratar todos los datos igual:
 
 - `synthetic=true`: sirve para variedad y casos borde.
 - ground truth real: sirve para validar si el cierre funciona en el dominio real.
-- hipotesis VSR/RSV: sirve para robustez al ruido, pero no debe definir sola la verdad.
+- hipotesis VSR: sirve para robustez al ruido, pero no debe definir sola la verdad.
 
 Lo ideal es entrenar con input ruidoso cuando exista, pero con etiquetas de corte
 producidas desde texto limpio/anotacion GPT Pro o revision humana. El VSR aporta el

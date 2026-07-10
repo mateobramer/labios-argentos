@@ -1,7 +1,7 @@
 # cleaning/transcript_segmentation
 
 Modulo para cierre y segmentacion de oraciones sobre texto parcial producido por
-VSR/RSV. Toma clips de texto acumulados, decide si hay una oracion completa para
+VSR. Toma clips de texto acumulados, decide si hay una oracion completa para
 commitear y deja listo el texto para el corrector LM.
 
 La etapa inicial es deliberadamente conservadora:
