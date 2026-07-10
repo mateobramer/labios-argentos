@@ -113,3 +113,43 @@ PR #25: **cerrada como superseded** con explicación. Branches conservadas: `mai
 Ver [VALIDATION](VALIDATION.md) §no-ejecutables y [FUTURE_WORK](../FUTURE_WORK.md) §8:
 smoke completo de inferencia requiere la máquina con ViSpeR+pesos; reescritura de
 historia para achicar el clone; 1 test preexistente en rojo (idéntico en main).
+
+---
+
+## Pasada 3 — posicionamiento público (2026-07-10)
+
+Objetivo: presentar el repo como proyecto open-source de investigación e ingeniería, sin
+framing académico ("TP", "rúbrica", "entrega") ni referencias al asistente.
+
+**Archivos internos eliminados** (contenido rescatado antes):
+- `AGENTS.md` → `docs/SETUP.md` (envs/pesos/comandos) + `CONTRIBUTING.md` (convenciones,
+  reglas de datos/costos, invariante de alineación).
+- `CLAUDE.md` → era solo un puntero; sin rescate.
+- `TO-DO.md` → su trabajo futuro ya vivía en `docs/FUTURE_WORK.md`.
+
+**Renombres de docs** (`git mv`): `RESEARCH_TP.md`→`RESEARCH.md`,
+`ENGINEERING_TP.md`→`SYSTEM_ENGINEERING.md`, `PROJECT_SCOPE.md`→`PROJECT_EVOLUTION.md`,
+`NEXT_STEPS.md`→`FUTURE_WORK.md`, `docs/bibliografia/`→`docs/bibliography/`,
+`docs/archivo/`→`docs/archive/`. `experiments/`→`docs/experiments/`.
+
+**Docs nuevos**: README público reescrito (14 secciones), `docs/ARCHITECTURE.md`,
+`docs/METHODOLOGY.md`, `docs/LIMITATIONS.md`, `CONTRIBUTING.md`, `docs/SETUP.md`,
+`CITATION.cff`, `docs/LICENSING.md`.
+
+**Numeración del pipeline**: se cuenta 01→07 en la documentación (README/ARCHITECTURE),
+NO en los nombres de carpeta — `01_data_pipeline` etc. sería un `SyntaxError` de Python
+(paquete con dígito inicial) y rompería 106 imports + tests + demo. Decisión consultada
+y confirmada con el equipo.
+
+**Cambios de framing**: "entregable/TP"→"componente"; "dos TPs"→"research track /
+engineering track"; afiliación UdeSA movida a `CITATION.cff` y sección Autores (no en la
+portada); términos del asistente (Claude/scratchpad) neutralizados en docs y en el handoff
+archivado; datos legítimos (categorías de hablante como "profesor", canales de YouTube,
+"Universidad de San Andrés" como canal) NO se tocaron.
+
+**Registro de auditoría** (`docs/repo_cleanup/AUDIT.md`, `MIGRATION_PLAN.md` y las tablas
+de esta CHANGES) conserva a propósito los nombres históricos de pasadas 1-2.
+
+**Términos internos que quedan (a propósito)**: los docs `experiments/` y `archive/`
+históricos pueden mencionar el contexto original del proyecto; se reescribió el framing
+público, no la evidencia científica ni el registro histórico.

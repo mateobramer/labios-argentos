@@ -45,3 +45,24 @@ bash setup.sh                                     # crea envs ptt/visper si falt
 python3 -m compileall -q . && echo OK
 bash run.sh                                       # demo real (con cámara y ViSpeR)
 ```
+
+---
+
+## Pasada 3 — validación (2026-07-10, posicionamiento público)
+
+| # | Comando | Resultado |
+|---|---|---|
+| 1 | links markdown de todo el repo | **0 rotos** |
+| 2 | `python3 -m compileall .` | **OK exit 0** |
+| 3 | `pytest cleaning data_pipeline/discovery/tests` (env ptt) | **110 passed, 1 failed** — la falla (`test_builder_no_modifica_splits_canonicos`) es **preexistente e idéntica en main** |
+| 4 | `yaml.safe_load(CITATION.cff)` | OK, 3 autores, cff 1.2.0 |
+| 5 | smoke preprocessing sobre `data/samples/` | OK: 137 ROIs 96×96, 99 % detección |
+| 6 | scan de términos internos (Claude/Fable/scratchpad/TP/rúbrica) en docs públicos | **0** (excluyendo `experiments/`+`archive/` históricos, que se reencuadraron pero preservan evidencia) |
+| 7 | scan de nombres de carpeta viejos en código/docs | 0 (fuera de los docs de recuperación, que deben mencionarlos) |
+| 8 | archivos ≥1 MB **agregados** en esta pasada | **ninguno** (los >1 MB — notebooks, `face_landmarker.task`, CSVs de batch_vsr — son preexistentes) |
+| 9 | scan de secretos (`AIza…`, AWS, PRIVATE KEY) | 1 match investigado y **descartado**: es data base64 de imagen embebida en un output `text/html` de notebook, no una credencial (verificado: "AIza" aparece en medio de un blob base64, no es una key de 39 chars) |
+| 10 | `git diff --check` | limpio |
+
+**Smoke de demo/infer_server hasta CONFIG/READY**: sigue bloqueado en esta máquina (falta
+el clon ViSpeR + pesos) — reproducción en la sección anterior. Sin cambios de pasada 3 que
+lo afecten (la demo compila y `--help` funciona).
