@@ -1,5 +1,0 @@
-# Grabaciones de cara: privadas (identidad de la persona) y pesadas. Cada quien graba
-# las suyas con grabar_server.py; NO van al repo compartido.
-grabaciones/
-# ROIs derivados (regenerables con preproc_grabaciones.py; *.npz ya se ignora global).
-rois/

@@ -1,144 +1,134 @@
 # labios-argentos
 
-Herramienta de **recolección y preprocesamiento de datos** para un proyecto de
-investigación de **lectura de labios / reconocimiento visual del habla (VSR) en español
-rioplatense**.
+**Lectura de labios (VSR) en español rioplatense, cerca de tiempo real.**
 
-A partir de un video de YouTube, este repo lo descarga, lo transcribe con Whisper, arma
-un corpus de texto y lo corta en **clips cortos de video alineados con su
-transcripción** — el insumo para entrenar/afinar un modelo de VSR.
+Un sistema completo que mira una boca por webcam —sin audio— y va generando subtítulos:
+dataset propio de YouTube rioplatense, fine-tunes de dos familias de modelos, un
+corrector LLM local por n-best rescoring, calibración al hablante en ~10 minutos, y una
+demo web que corre entera en una laptop M1.
 
----
-
-## Contexto del proyecto
-
-Este repositorio forma parte del proyecto académico documentado en `../survey-nlp`
-(paper *"Lectura de labios en tiempo real para español rioplatense: destilación causal
-de Auto-AVSR con corrección mediante un LLM"*, Ingeniería en IA, Universidad de San
-Andrés).
-
-El estado del arte en VSR está casi exclusivamente en inglés y en modelos no causales
-(offline). La propuesta del proyecto:
-
-1. Partir de **Auto-AVSR** como modelo *teacher*.
-2. **Afinarlo al español** usando LIP-RTVE (TV española) **+ un dataset propio de
-   YouTube en rioplatense** — ese dataset propio es lo que produce este repo.
-3. **Destilarlo** a un *student* causal y liviano (ResNet-3D + Conformer causal + CTC)
-   que solo observa cuadros pasados, apto para tiempo real.
-4. Sumar un **LLM local** (qwen3:4b vía Ollama) que corrige el texto crudo sobre la
-   marcha (p. ej. `"vos tienes rason che"` -> `"vos tenés razón, che"`).
-
-Pregunta de investigación: **¿cuánto se degrada el WER (Word Error Rate) al comprimir y
-adaptar Auto-AVSR al rioplatense?**
-
-La vista completa del pipeline de trabajo, incluyendo datos, VSR, tiempo real, corrector
-LM y feedback loop de correcciones, esta en [`PIPELINE_PROYECTO.md`](PIPELINE_PROYECTO.md).
+Proyecto académico de Ingeniería en IA (Universidad de San Andrés).
 
 ---
 
-## Alcance de *este* repositorio
+## ¿Para qué sirve?
 
-Este repo cubre **solo la etapa de datos** del proyecto:
+El estado del arte en VSR está casi todo en inglés. En español no existe ningún corpus
+audiovisual rioplatense público — este proyecto construye el primero y lo usa para
+adaptar y evaluar modelos de lectura de labios. Casos de uso: **accesibilidad** (personas
+sin fonación), **entornos ruidosos** donde un micrófono no sirve, y subtitulado en vivo
+sin audio.
 
-- Descarga de videos de YouTube.
-- Transcripción automática (Whisper).
-- Generación de corpus de texto.
-- Corte en clips video<->texto alineados.
-
-El entrenamiento del modelo VSR, la destilación y el corrector LLM **viven fuera de este
-repo** (son parte del proyecto mayor, no del pipeline de datos).
-
----
-
-## Cómo funciona el pipeline
-
-Todo está en un único script, `descargar_procesar.py`:
+## Demo
 
 ```bash
-python descargar_procesar.py "URL_DE_YOUTUBE"
+~/miniconda3/envs/ptt/bin/python demo/demo_web.py            # UI web en http://localhost:8551
+~/miniconda3/envs/ptt/bin/python demo/demo_web.py --qwen     # con corrector LLM (también hay toggle en la UI)
+~/miniconda3/envs/ptt/bin/python demo/demo_web.py --ckpt modelos/personal/<nombre>.pth   # modelo calibrado
 ```
 
-Pasos:
+Al abrir: 2 segundos de silencio calibran el detector de labios, y después se habla
+normal — el sistema corta solo por pausas y va subtitulando. La UI muestra además la
+entrada literal del modelo (la tira de recortes de boca 96×96) y el guion acumulado.
 
-1. **`bajar_video`** — `yt-dlp` descarga el `.mp4` -> `data/videos/<titulo>/`.
-2. **`transcribir`** — Whisper (modelo `turbo` por defecto, español) transcribe.
-   Se cachea en `data/corpus/<titulo>/transcripcion.json` (si ya existe, se reutiliza).
-3. **`guardar_corpus`** — vuelca texto limpio (segmentos de >=3 palabras) a
-   `data/corpus/<titulo>/corpus.txt`.
-4. **`cortar_clips`** — agrupa segmentos en bloques de ~3-10 s y con `ffmpeg` genera
-   `data/clips/<titulo>/clip_NNNN.mp4` + `clip_NNNN.txt` (transcripción del clip).
+**Requisitos:** macOS con webcam (encoder acelerado por MPS en Apple Silicon; en CPU
+también corre, más lento), envs conda `ptt` (OpenCV + MediaPipe) y `visper` (PyTorch +
+ESPnet), el repo ViSpeR en `~/Desktop/visper` con sus pesos `visper_vsr_base.pth`
+(1.1 GB, no se versionan), y opcionalmente [Ollama](https://ollama.com) con
+`qwen3:4b-instruct-2507-q4_K_M` para el corrector.
 
-### Estructura de salida
+## Arquitectura
 
 ```
-data/videos/<titulo>/   # .mp4 original descargado
-data/corpus/<titulo>/   # transcripcion.json (Whisper) + corpus.txt
-data/clips/<titulo>/    # pares clip_NNNN.mp4 / clip_NNNN.txt
-data/metadata/          # inventario de fuentes y hablantes
+cámara (30 fps) ─────────────────────────────▶ MJPEG a la UI
+   │
+   ▼
+MediaPipe FaceLandmarker (hasta 3 caras; sticky-lock a la más cercana)
+   │  apertura de labios
+   ▼
+VAD visual (auto-calibrado; corta por pausa 0.45 s / tope 4 s)
+   │  segmento de habla
+   ▼
+crop de boca 96×96 (warp mean-face) → .npz
+   │
+   ▼
+infer_server (env visper — ViSpeR 288M, conformer)
+   ├─ encoder ──── MPS   (~0.17 s)
+   └─ beam search ─ CPU  (beam 3, ~0.9 s)
+   │
+   ▼
+[opcional] qwen3:4b n-best rescoring (Ollama local, +1.2 s, −3.0 WER)
+   │
+   ▼
+UI web (SSE): subtítulo sobre el video + tira de boca + guion acumulado
 ```
 
----
+**Latencia total: ~1.1 s por segmento (~2.3 s con el corrector)** en una MacBook M1.
+Cada decisión de esta configuración (beam 3, encoder en MPS, top-5 con el 4b, VAD por
+pausas) sale de un experimento medido — el detalle está en [`docs/SPEC.md`](docs/SPEC.md).
 
-## Instalación
+## Resultados
 
-Requiere **Python 3.9+**. `yt-dlp` y un binario local de `ffmpeg` se instalan con
-`requirements.txt`; si ya tenés `ffmpeg` global en el PATH, el script usa ese.
+Sobre `test-658` (658 clips de YouTube, 2 hablantes held-out, speaker-independent) y
+sobre el self-test (100 clips propios grabados en condiciones controladas):
 
-```bash
-# Dependencias de Python
-pip install -r requirements.txt
+| Modelo | %WER test-658 | %WER self-test |
+|---|---|---|
+| ft05 — mejor fine-tune propio (50M, LIP-RTVE + dataset AR ~19 h) | 65.05 | ~68 |
+| **ViSpeR zero-shot** (288M, 794 h de pre-entrenamiento en español) | **45.22** | 29.51 |
+| ViSpeR + qwen n-best rescoring | — | **26.46** (−3.04, significativo) |
+| ViSpeR + LoRA personal (60 clips del hablante) | 44.54 | 24.51 en test personal |
 
-# Opcional: ffmpeg del sistema, si se prefiere al binario de imageio-ffmpeg.
-#   macOS (Homebrew):
-brew install ffmpeg
-#   Linux (Debian/Ubuntu):
-#   sudo apt install ffmpeg
-#   Windows: winget install Gyan.FFmpeg
-```
+Las dos conclusiones grandes: **la escala de pre-entrenamiento domina** (794 h zero-shot
+le gana por ~20 WER a nuestro mejor fine-tune con 19 h), y **la corrección LLM solo
+funciona como n-best rescoring** (la corrección 1-best siempre empeora; el rescoring da
+−3.04 WER con IC95 pareado que excluye 0). Tabla maestra completa e índice de los 10
+experimentos: [`experiments/README.md`](experiments/README.md). Ledger vivo:
+[`docs/RESULTS.md`](docs/RESULTS.md).
 
-El script verifica al inicio que `yt-dlp` y alguna variante de `ffmpeg` estén
-disponibles y avisa si faltan.
+## Calibración al hablante
 
-Por defecto usa Whisper `turbo`, que suele dar mejor precisión que `small` con
-buena velocidad. Para forzar otro modelo:
+Desde la propia UI (`/calibrar`): la persona graba ~40 frases push-to-talk en el
+browser, y `bash demo/calibracion/calibrar_entrenar.sh <nombre>` entrena un LoRA en una
+VM L4 spot de GCP (~10 min, ~$0.05, se autodestruye) y descarga el modelo personal.
+Validado en [`experiments/10`](experiments/10_adaptacion_hablante.md): −4.7 WER personal
+sin olvidar el test general. La misma página tiene el modo "Ayudanos a entrenar" para
+donar pares clip+texto al dataset (quedan locales, no se versionan).
 
-```bash
-WHISPER_MODEL=small python descargar_procesar.py URL_YOUTUBE
-```
+## Estructura del repo
 
----
+| Carpeta | Qué es |
+|---|---|
+| `demo/` | Demo web + push-to-talk + streaming, servidor de inferencia, calibración |
+| `experiments/` | Registro completo de experimentos con resultados (empezar por su README) |
+| `docs/` | [`SPEC.md`](docs/SPEC.md) (especificación), [`ESTRUCTURA.md`](docs/ESTRUCTURA.md) (mapa y flujo de datos), [`RESULTS.md`](docs/RESULTS.md) (ledger) |
+| `descargar_procesar.py` | Etapa 1 del pipeline de datos: YouTube → clips alineados con texto |
+| `visual_preprocessing/` | Etapa 2: clips → ROIs de boca 96×96 (`.npz`) |
+| `data_cleaning/` | Etapa 3: detección y descarte de clips malos |
+| `claude-videos/` | Selección curada de fuentes (gate 0 del dataset) |
+| `vsr_models/` | Fine-tuning del modelo 50M (Gimeno) + splits congelados |
+| `evaluation/` | Evaluación WER/CER contra test-658 |
+| `curriculum/` | Procesamiento de datos ViSpeR-es para currículum de pre-entrenamiento |
+| `multilingual-vsr/` | Notas y scripts sobre la base multilingüe (el clon del repo externo no se versiona) |
+| `new-data-fine-tuning/` | Corrida histórica de la ronda 2 de datos (ft03–ft07) |
+| `data/` | Dataset generado (clips + corpus versionados; videos crudos y `.npz` no) |
 
-## Estado actual
+El flujo de datos completo y las convenciones para agregar código están en
+[`docs/ESTRUCTURA.md`](docs/ESTRUCTURA.md). La guía para agentes/colaboradores, en
+[`AGENTS.md`](AGENTS.md).
 
-- Pipeline end-to-end funcionando (descarga -> transcripción -> corpus -> clips).
-- Varios videos procesados (reacciones de fútbol, *story time* y conferencias en
-  rioplatense).
-- Cacheo de transcripciones para no re-procesar.
+## Costos
 
-## Próximos pasos
+La inferencia es 100 % local ($0, sin datos a terceros). Los entrenamientos corrieron en
+VMs L4 spot de GCP (g2-standard-8, ~$0.28/h spot): cada fine-tune del 50M costó del orden
+de $1–3, y una calibración personal ~$0.05. Todo el proyecto se hizo dentro de créditos
+educativos/promocionales.
 
-- [ ] **Ampliar el dataset**: más videos y más variedad de hablantes/acentos
-      rioplatenses para cubrir voseo, léxico y fonética local.
-- [ ] **Control de calidad** de la alineación video<->texto (revisar clips donde Whisper
-      falla o el corte desfasa el texto).
-- [ ] **Filtrar clips** sin rostro visible o con cara fuera de cuadro (clave para VSR).
-- [ ] **Estandarizar el formato de salida** al esperado por el pipeline de
-      entrenamiento (LIP-RTVE / Auto-AVSR): resolución, fps, normalización del texto.
-- [ ] **Detección y recorte de la región labial** (MediaPipe, 96x96) — hoy se
-      guarda el frame completo; el modelo necesita el crop de labios.
-- [ ] **Metadatos por clip** (duración, hablante, fuente) para armar los splits
-      train/test.
-- [ ] Definir un **conjunto de test rioplatense** separado para la evaluación de WER.
+## Limitaciones (honestas)
 
----
-
-## Convenciones
-
-- Código y comentarios en **español**.
-- Script procedural simple, sin framework ni tests.
-- Los directorios `data/videos/`, `data/corpus/` y `data/clips/` son **datos
-  generados**: no editar a mano.
-- Los títulos de YouTube se sanitizan a <=50 chars como nombre de carpeta, de modo que el
-  mismo video mapea consistentemente entre las tres carpetas.
-- Un video crudo supera los 100 MB (límite de GitHub), por eso está en `.gitignore`; se
-  regenera con el script.
+- El modelo es **offline/bidireccional**: la demo aproxima tiempo real cortando por
+  pausas de labios, no es streaming causal cuadro a cuadro.
+- WER ~26–30 en condiciones ideales (buena luz, boca frontal, habla clara); ~45 en
+  YouTube variado. La lectura de labios pura sigue siendo un problema difícil.
+- Validado en profundidad con un solo hablante para la calibración personal.
+- El encoder acelerado requiere Apple Silicon (MPS); en otras plataformas corre en CPU.

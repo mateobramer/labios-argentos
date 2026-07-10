@@ -1,7 +1,7 @@
 # vsr_models
 
 Fine-tuning del modelo de **lectura de labios (VSR)** al español rioplatense, y **contrato
-de datos/splits** para el resto del equipo (ver `ESTRUCTURA_PROYECTO.md`).
+de datos/splits** para el resto del equipo (ver `docs/ESTRUCTURA.md`).
 
 ## Punto de partida
 
