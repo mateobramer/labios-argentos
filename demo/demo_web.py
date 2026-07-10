@@ -74,7 +74,7 @@ def lanzar_servidor(use_qwen):
     if use_qwen:
         env["VSR_QWEN"] = "1"
     # beam 5 siempre: permite prender/apagar qwen en runtime con las 5 candidatas completas
-    # (beam5 vs beam3 = mismo WER, +0.15s; ver experiments/09)
+    # (beam5 vs beam3 = mismo WER, +0.15s; ver docs/experiments/09)
     env.setdefault("VSR_BEAM", "5")
     print("[web] cargando ViSpeR (primera vez ~20-40s, NO cortes)...", flush=True)
     p = subprocess.Popen([VISPER_PY, INFER], stdin=subprocess.PIPE, stdout=subprocess.PIPE,

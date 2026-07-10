@@ -5,7 +5,7 @@
 #   2. Los pesos visper_vsr_base.pth (1.1 GB) dentro de ese clon — NO se versionan;
 #      copia en gs://labios-argentos-vsr-dataset o el release de ViSpeR/TII.
 # Crear:  conda env create -f envs/visper.yml
-# NOTA: spec de referencia reconstruida de AGENTS.md/README (el env original vive en
+# NOTA: spec de referencia reconstruida de README/CONTRIBUTING (el env original vive en
 # la máquina de desarrollo); no fue posible validarla end-to-end sin el clon+pesos.
 name: visper
 channels:

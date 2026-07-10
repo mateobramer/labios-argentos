@@ -24,20 +24,20 @@ endpoints HTTP): [SPEC §2-3](SPEC.md). Cómo correrla: [README](../README.md) �
 ## Latencia (medida, MacBook M1)
 
 **~1.1 s por segmento sin corrector; ~2.3 s con corrector** — tabla por etapa en
-[SPEC §4](SPEC.md), metodología y sweeps en [exp. 09](../experiments/09_velocidad_inferencia.md).
+[SPEC §4](SPEC.md), metodología y sweeps en [exp. 09](experiments/09_velocidad_inferencia.md).
 
 ## Optimizaciones probadas (y las descartadas)
 
-Todas medidas en [exp. 09](../experiments/09_velocidad_inferencia.md):
+Todas medidas en [exp. 09](experiments/09_velocidad_inferencia.md):
 
 - ✅ **beam 3** — 2.2× más rápido que beam 40 con el mismo WER (sweep con IC).
 - ✅ **encoder en MPS** — frontend 3.4× (0.57→0.17 s), transcripciones 100/100 idénticas.
 - ❌ **int8** — Pareto-dominado en M1 (pierde WER y el LLM no lo recupera, §G).
 - ❌ **CTC-greedy** — +12 WER, inaceptable.
 - ❌ **todo en MPS** — espnet rompe por device mismatch (el beam queda en CPU por diseño).
-- ❌ **qwen 9b / top-10 / scores en prompt** — no mejoran; 9b es 3.4× más lento ([04](../experiments/04_qwen_corrector.md)).
+- ❌ **qwen 9b / top-10 / scores en prompt** — no mejoran; 9b es 3.4× más lento ([04](experiments/04_qwen_corrector.md)).
 
-Trade-off velocidad↔WER completo: [exp. 09](../experiments/09_velocidad_inferencia.md);
+Trade-off velocidad↔WER completo: [exp. 09](experiments/09_velocidad_inferencia.md);
 decisiones consolidadas: [SPEC §5](SPEC.md).
 
 ## Robustez y fallbacks (estado real)
@@ -46,13 +46,13 @@ Implementado ([SPEC §6](SPEC.md)): fallback silencioso a 1-best si Ollama está
 o falla; warmup tolerante de cámara y MPS; validación de tomas en calibración
 (≥20 frames, ≥60 % detección); sticky-lock con aviso en UI cuando hay >1 cara.
 
-**Pendiente conocido** ([TO-DO](../TO-DO.md) §4): reinicio automático si muere el
+**Pendiente conocido** ([TO-DO](NEXT_STEPS.md) §4): reinicio automático si muere el
 `infer_server` (hoy: error por línea), mensajes guiados para cámara sin permiso,
 suite de tests automatizados del VAD/norm()/protocolo.
 
 ## Calibración al hablante (estado real)
 
-Funciona end-to-end y está validada con **un** hablante ([exp. 10](../experiments/10_adaptacion_hablante.md)):
+Funciona end-to-end y está validada con **un** hablante ([exp. 10](experiments/10_adaptacion_hablante.md)):
 UI `/calibrar` graba ~40 frases push-to-talk → `personalization/calibracion/calibrar_entrenar.sh`
 entrena un **LoRA** (r16/α32) en una VM L4 spot (~10 min, ~$0.05, se autodestruye) →
 el modelo personal baja el WER personal 29.2→24.5 **sin olvidar** el test general
@@ -81,7 +81,7 @@ llega antes. El encoder ya está optimizado (MPS).
 
 - **No es streaming causal.** El modelo es offline/bidireccional; el sistema aproxima
   tiempo real cortando por pausas. Un VSR causal cuadro a cuadro es otra arquitectura.
-- WER ~26–30 en condiciones ideales; ~45 en YouTube variado ([exp. 05](../experiments/05_selftest_limpio.md)).
+- WER ~26–30 en condiciones ideales; ~45 en YouTube variado ([exp. 05](experiments/05_selftest_limpio.md)).
 - Calibración validada con n=1 hablante.
 - MPS requiere Apple Silicon (en CPU el total sube a ~1.5 s/segmento).
 - Los pesos base (`visper_vsr_base.pth`, 1.1 GB) no se versionan — obtención en

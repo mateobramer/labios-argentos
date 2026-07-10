@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Startup L4 (imagen labios-img-visper): CALIBRACION al hablante __PERSONA__ (LoRA, ~5 min).
-# SIN eval de test-658 (LoRA ya validado sin olvido en experiments/10) -> run corto y barato.
+# SIN eval de test-658 (LoRA ya validado sin olvido en docs/experiments/10) -> run corto y barato.
 # Sube el modelo mergeado y SE AUTODESTRUYE (VM + disco boot).
 set -uo pipefail
 BUCKET=gs://labios-argentos-vsr-dataset

@@ -1,7 +1,7 @@
 # personalization/ — calibración y adaptación al hablante
 
 Componente de adaptación personal del modelo (LoRA sobre ViSpeR). Evidencia:
-[`experiments/10`](../experiments/10_adaptacion_hablante.md) — −4.7 WER personal sin
+[`../docs/experiments/10`](../docs/experiments/10_adaptacion_hablante.md) — −4.7 WER personal sin
 olvido del test general; el full-FT colapsa el 288M (por eso LoRA r16/α32).
 
 | Archivo | Qué hace | Env |
@@ -25,4 +25,4 @@ La demo **invoca** este componente; la ciencia y los scripts viven acá.
 
 Grabaciones (`~/vsr_personal/`, `~/vsr_contrib/`) y modelos calibrados
 (`modelos/personal/`) **no se versionan nunca**. Para entrenar suben al bucket privado
-del proyecto y el modelo vuelve a la máquina local. Ver [AGENTS.md](../AGENTS.md).
+del proyecto y el modelo vuelve a la máquina local. Ver [CONTRIBUTING](../CONTRIBUTING.md).

@@ -9,12 +9,12 @@ Corre en el env `visper`:
   ~/miniconda3/envs/visper/bin/python infer_server.py
 
 Variables de entorno:
-  VSR_BEAM   beam-size (default 3 = punto de Pareto, ver experiments/09).
+  VSR_BEAM   beam-size (default 3 = punto de Pareto, ver docs/experiments/09).
   VSR_QWEN   si esta (=1), corrige con qwen n-best rescoring (Ollama local).
              Fuerza beam>=5 (el rescoring necesita >=5 candidatas). Agrega ~1.24s/frase.
   VSR_QMODEL modelo de Ollama (default qwen3:4b-instruct-2507-q4_K_M).
   VSR_CKPT   state_dict alternativo (p.ej. modelos/personal/<nombre>.pth = LoRA mergeado
-             de calibracion al hablante, ver experiments/10). Vacio = ViSpeR base.
+             de calibracion al hablante, ver docs/experiments/10). Vacio = ViSpeR base.
 """
 import os, sys, re, json, unicodedata
 os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")   # ops sin kernel MPS caen a CPU (antes de importar torch)
@@ -31,7 +31,7 @@ from visper_zeroshot import build_cfg   # reusa la config exacta del zero-shot
 LANG = 4  # <es>
 USE_QWEN = os.environ.get("VSR_QWEN", "") not in ("", "0", "false", "False")
 NBEST = 5   # candidatas maximas que se le pasan al LLM (si el beam da menos, se usan las que haya)
-# beam default: 3 sin qwen (punto de Pareto, ver experiments/09); 5 con qwen (mejor techo de rescoring).
+# beam default: 3 sin qwen (punto de Pareto, ver docs/experiments/09); 5 con qwen (mejor techo de rescoring).
 # Se respeta VSR_BEAM si lo seteas (con qwen, minimo 2: el rescoring necesita >=2 candidatas).
 BEAM = int(os.environ.get("VSR_BEAM", "5" if USE_QWEN else "3"))
 QMODEL = os.environ.get("VSR_QMODEL", "qwen3:4b-instruct-2507-q4_K_M")
@@ -82,9 +82,9 @@ def main():
         mm.model.load_state_dict(sd)
         ckpt_name = os.path.splitext(os.path.basename(ckpt))[0]
         print(f"[infer] checkpoint personalizado: {ckpt_name}", file=sys.stderr, flush=True)
-    # beam configurable (default del repo es 40, puro desperdicio). Ver experiments/09.
+    # beam configurable (default del repo es 40, puro desperdicio). Ver docs/experiments/09.
     mm.beam_search = get_beam_search_decoder(mm.model, mm.token_list, ctc_weight=0.1, beam_size=BEAM)
-    # HIBRIDO validado (experiments/09): ENCODER en MPS (3.4x, transcripciones identicas 100/100)
+    # HIBRIDO validado (docs/experiments/09): ENCODER en MPS (3.4x, transcripciones identicas 100/100)
     # + beam en CPU (el beam de espnet SI rompe en MPS por device-mismatch, no moverlo).
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     mm.eval(); mm.to(dev)

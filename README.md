@@ -83,7 +83,7 @@ Las dos conclusiones grandes: **la escala de pre-entrenamiento domina** (794 h z
 le gana por ~20 WER a nuestro mejor fine-tune con 19 h), y **la corrección LLM solo
 funciona como n-best rescoring** (la corrección 1-best siempre empeora; el rescoring da
 −3.04 WER con IC95 pareado que excluye 0). Tabla maestra completa e índice de los 10
-experimentos: [`experiments/README.md`](experiments/README.md). Ledger vivo:
+experimentos: [`docs/experiments/README.md`](docs/experiments/README.md). Ledger vivo:
 [`docs/RESULTS.md`](docs/RESULTS.md).
 
 ## Calibración al hablante
@@ -91,7 +91,7 @@ experimentos: [`experiments/README.md`](experiments/README.md). Ledger vivo:
 Desde la propia UI (`/calibrar`): la persona graba ~40 frases push-to-talk en el
 browser, y `bash personalization/calibracion/calibrar_entrenar.sh <nombre>` entrena un LoRA en una
 VM L4 spot de GCP (~10 min, ~$0.05, se autodestruye) y descarga el modelo personal.
-Validado en [`experiments/10`](experiments/10_adaptacion_hablante.md): −4.7 WER personal
+Validado en [`docs/experiments/10`](docs/experiments/10_adaptacion_hablante.md): −4.7 WER personal
 sin olvidar el test general. La misma página tiene el modo "Ayudanos a entrenar" para
 donar pares clip+texto al dataset (quedan locales, no se versionan).
 
@@ -116,7 +116,7 @@ Setup rápido: `bash setup.sh` (crea los envs `ptt`/`visper`) y `bash run.sh` (d
 
 El flujo de datos completo y las convenciones para agregar código están en
 [`docs/ESTRUCTURA.md`](docs/ESTRUCTURA.md). La guía para agentes/colaboradores, en
-[`AGENTS.md`](AGENTS.md).
+[`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Costos
 

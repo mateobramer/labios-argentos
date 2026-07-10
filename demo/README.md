@@ -12,7 +12,7 @@ subtítulos. Doc técnico: [`docs/SPEC.md`](../docs/SPEC.md); guía del TP:
 | `demo_stream.py` | demo streaming por VAD en ventana cv2 — precursor de la web | `ptt` |
 | `build_testset.py` | graba el self-test leyendo frases (append + resumible) | `ptt` |
 | `score_selftest.py` | evalúa WER/CER del self-test con ViSpeR o ft05 | `visper` / `mvsr` |
-| `calibracion/` | splits + orquestador del LoRA personal en GCP ([exp. 10](../experiments/10_adaptacion_hablante.md)) | — |
+| `calibracion/` | splits + orquestador del LoRA personal en GCP ([exp. 10](../docs/experiments/10_adaptacion_hablante.md)) | — |
 | `web/` | HTML/JS de la UI | — |
 
 ```bash

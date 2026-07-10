@@ -1,7 +1,7 @@
 # NEXT_STEPS — próximos pasos por área
 
 Actualizado 2026-07-10 (branch `chore/repo-cleanup-safe-v2`). Complementa
-[`TO-DO.md`](../TO-DO.md) (checklist de la rúbrica); acá va la mirada por área con
+[`docs/NEXT_STEPS.md`](NEXT_STEPS.md) (checklist de la rúbrica); acá va la mirada por área con
 dependencias explícitas. Estado de cada ítem: nada de esto está empezado salvo
 indicación contraria.
 
@@ -20,7 +20,7 @@ indicación contraria.
 Hoy: ~1.1 s/segmento (encoder MPS 0.17 s + beam CPU ~0.9 s). El beam es el 80 % del costo.
 
 - Atacar el beam search CPU: batching, poda más agresiva, o decoder alternativo
-  (medir contra el sweep de [exp. 09](../experiments/09_velocidad_inferencia.md)).
+  (medir contra el sweep de [exp. 09](experiments/09_velocidad_inferencia.md)).
 - Pipeline overlap: inferir el segmento N mientras se captura el N+1 (hoy secuencial).
 - Ajuste fino del tope de 4 s y de la pausa de 0.45 s con datos de uso real.
 - (Grande, otra arquitectura) VSR causal streaming — hoy fuera de scope.
@@ -38,7 +38,7 @@ local privado (`data/feedback/`). Lo que falta:
 ## 4. Validación con más hablantes
 
 - Grabar 1-2 personas más (~30 clips c/u) con `build_testset.py` (ya es append+resumible)
-  → medir generalización del pipeline de calibración (hoy n=1, [exp. 10](../experiments/10_adaptacion_hablante.md)).
+  → medir generalización del pipeline de calibración (hoy n=1, [exp. 10](experiments/10_adaptacion_hablante.md)).
 - Replicar el resultado del n-best rescoring (−3.04 WER) en al menos un segundo hablante.
 
 ## 5. Mejoras científicas del corrector / n-best

@@ -12,7 +12,7 @@ si un segmento llega al tope de largo se corta forzado y se dedup-ea el borde).
 Al arrancar: quedate CALLADO ~2s (calibra el ruido de base del VAD).
 
 OJO: ViSpeR es offline/bidireccional -> esto sigue siendo una aproximacion
-(latencia ~ fin-de-frase + inferencia ~1.5s). Ver experiments/09 y realtime-vsr-plan.
+(latencia ~ fin-de-frase + inferencia ~1.5s). Ver docs/experiments/09 y realtime-vsr-plan.
 
 Corre en el env `ptt` (spawnea el server en el env `visper`):
   ~/miniconda3/envs/ptt/bin/python demo_stream.py [--max-seg 4.0] [--pause 0.45] [--sens 3.0] [--qwen]

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Arma los CSVs de train/val para la calibracion al hablante, desde ~/vsr_personal/<persona>/
 (clips grabados con la pagina /calibrar de demo_web). Val = 1 de cada 8. Sin test: el test
-es el uso en vivo (y experiments/10 ya valido el metodo con test congelado).
+es el uso en vivo (y docs/experiments/10 ya valido el metodo con test congelado).
 
 Uso:  python armar_splits_cal.py <persona> [--out <dir>]
 """

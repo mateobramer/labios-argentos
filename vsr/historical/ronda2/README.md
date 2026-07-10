@@ -2,7 +2,7 @@
 
 **Estado: histórico** (completada 2026-06/07). Registro de la campaña que procesó las
 39 fuentes nuevas de la ronda 2 y entrenó ft03–ft07 en VMs L4 spot de GCP. Los
-resultados consolidados viven en [`experiments/01`](../../../experiments/01_finetunes_50M_gimeno.md)
+resultados consolidados viven en [`../../../docs/experiments/01`](../../../docs/experiments/01_finetunes_50M_gimeno.md)
 y el ledger [`docs/RESULTS.md`](../../../docs/RESULTS.md); acá queda la evidencia de la corrida.
 
 | Path | Qué es |

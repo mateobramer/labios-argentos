@@ -118,7 +118,7 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
      "los datos pesados viven en el bucket".
    - → Se documenta en `docs/DATA_AND_ARTIFACTS.md` y queda como **decisión abierta**
      en NEXT_STEPS. Esta branch no cambia la política de main.
-2. **Resultados**: `experiments/README.md` (tabla maestra) y `docs/RESULTS.md` (ledger)
+2. **Resultados**: `../experiments/README.md` (tabla maestra) y `docs/RESULTS.md` (ledger)
    coexisten y los números spot-checkeados coinciden (ft05 65.05, ViSpeR zs 45.22,
    qwen n-best −3.04 significativo). Se declara **`docs/RESULTS.md` como ledger canónico**
    y `experiments/` como índice/narrativa (ya es la convención de AGENTS.md).

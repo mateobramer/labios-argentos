@@ -15,14 +15,14 @@ en [`ESTRUCTURA.md`](ESTRUCTURA.md) durante la reorganización de 2026-07 (PR #2
 
 1. **La escala de pre-entrenamiento domina.** ViSpeR (288M, 794 h en español) zero-shot
    le gana por ~20 WER a nuestro mejor fine-tune (ft05, ~19 h de datos):
-   45.22 vs 65.05 ([ledger](RESULTS.md), [exp. 02](../experiments/02_zeroshot.md)).
+   45.22 vs 65.05 ([ledger](RESULTS.md), [exp. 02](experiments/02_zeroshot.md)).
    → El modelo de producción pasó a ser **ViSpeR zero-shot (+ LoRA personal opcional)**,
    y el fine-tuning propio quedó como evidencia de investigación.
 2. **El scraping masivo de YouTube no es viable** (pared anti-bot; ver
-   [exp. 07](../experiments/07_datos_y_scraping.md)) → el crecimiento del dataset es
+   [exp. 07](experiments/07_datos_y_scraping.md)) → el crecimiento del dataset es
    curado, de a una fuente, con gates de calidad.
 3. **El corrector LLM 1-best siempre empeora; el n-best rescoring sí ayuda** (−3.04 WER
-   significativo a n=100, [exp. 04](../experiments/04_qwen_corrector.md)) → el "corrector"
+   significativo a n=100, [exp. 04](experiments/04_qwen_corrector.md)) → el "corrector"
    del sistema es rescoring, y esa investigación se volvió un entregable en sí misma.
 4. **"Tiempo real" = ventanas por pausas, no streaming causal.** El modelo es
    offline/bidireccional; la demo corta segmentos con VAD visual y logra ~1.1 s por
@@ -52,11 +52,11 @@ medidas, optimizaciones probadas y descartadas, robustez, y gaps honestos.
 
 ## Qué quedó descartado
 
-- Scraping masivo / rotación de IPs (decisión dura, ver AGENTS.md).
-- Full fine-tuning de ViSpeR (overfitea: 61.5 vs 45.2 zero-shot, [exp. 03](../experiments/03_visper_finetunes.md)).
-- Full-FT para calibración personal (colapsa el 288M, [exp. 10](../experiments/10_adaptacion_hablante.md)).
-- Corrección LLM 1-best en todas sus variantes de prompt ([exp. 04](../experiments/04_qwen_corrector.md)).
-- int8 y CTC-greedy en M1 (Pareto-dominados, [exp. 09](../experiments/09_velocidad_inferencia.md)).
+- Scraping masivo / rotación de IPs (decisión dura, ver CONTRIBUTING.md).
+- Full fine-tuning de ViSpeR (overfitea: 61.5 vs 45.2 zero-shot, [exp. 03](experiments/03_visper_finetunes.md)).
+- Full-FT para calibración personal (colapsa el 288M, [exp. 10](experiments/10_adaptacion_hablante.md)).
+- Corrección LLM 1-best en todas sus variantes de prompt ([exp. 04](experiments/04_qwen_corrector.md)).
+- int8 y CTC-greedy en M1 (Pareto-dominados, [exp. 09](experiments/09_velocidad_inferencia.md)).
 - Streaming causal real (limitación arquitectural del modelo base).
 
 ## Qué sigue abierto

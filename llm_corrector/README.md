@@ -2,7 +2,7 @@
 
 Componente de investigación LLM×VSR. La pregunta, el mapa completo de evidencia y las
 limitaciones están en [`docs/RESEARCH_TP.md`](../docs/RESEARCH_TP.md); los números, en
-[`experiments/04`](../experiments/04_qwen_corrector.md) y el ledger.
+[`../docs/experiments/04`](../docs/experiments/04_qwen_corrector.md) y el ledger.
 
 ## Dónde vive cada estrategia (implementación canónica)
 
@@ -29,4 +29,4 @@ razona en el output). Config: `VSR_QWEN`, `VSR_QMODEL`, `VSR_BEAM` (ver
 
 La corrección 1-best empeora a TODO CER probado (42/27/11); "fluent" alucina; few-shot
 es ruido; el LLM corrompe hasta texto perfecto (piso de daño 2 % WER). Es la mitad del
-hallazgo del TP de Research — no borrar. Detalle: [exp. 04](../experiments/04_qwen_corrector.md).
+hallazgo del TP de Research — no borrar. Detalle: [exp. 04](../docs/experiments/04_qwen_corrector.md).

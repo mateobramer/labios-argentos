@@ -4,7 +4,7 @@
 reconocimiento visual del habla (VSR) en español rioplatense, y bajo qué condiciones?
 
 Este doc es el **índice de la evidencia** — los números viven en
-[`experiments/04_qwen_corrector.md`](../experiments/04_qwen_corrector.md) (doc primario)
+[`experiments/04_qwen_corrector.md`](experiments/04_qwen_corrector.md) (doc primario)
 y el ledger [`RESULTS.md`](RESULTS.md). No se ocultan resultados negativos: son la
 mayor parte del hallazgo.
 
@@ -12,20 +12,20 @@ mayor parte del hallazgo.
 
 | # | Estrategia | Condición | Resultado | Dónde |
 |---|---|---|---|---|
-| 1 | Corrección directa 1-best | CER base 42 (ft05b/ft07) | ❌ empeora (+0.7/+1.0 WER) | [04 §A](../experiments/04_qwen_corrector.md) |
-| 2 | Corrección directa 1-best | CER base 27 (ViSpeR zs, 658 clips) | ❌ empeora (+1.42 WER) | [04 §A](../experiments/04_qwen_corrector.md) |
-| 3 | Corrección directa 1-best | CER base ~11 (self-test limpio) | ❌ empeora (+1.40 WER) | [04 §F](../experiments/04_qwen_corrector.md) |
-| 4 | Prompts (conservative / minimal / fluent) | CER 42, 24 clips | ❌ ninguno rescata; "fluent" alucina | [04 §B](../experiments/04_qwen_corrector.md) |
-| 5 | LLM sobre texto ground-truth (test de corrupción) | texto perfecto | ❌ corrompe 2.04% WER — piso de daño | [04 §C](../experiments/04_qwen_corrector.md) |
-| 6 | Few-shot supervisado (5 demos hyp→ref) | CER 42, 24 clips | ❌ nivel-ruido (−0.26 WER) | [04 §D](../experiments/04_qwen_corrector.md) |
-| 7 | n-best rescoring (top-5) | CER base 42 (ft05) | ❌ no mejora (−0.16); ni el oracle baja de 55 | [04 §E](../experiments/04_qwen_corrector.md) |
-| 8 | **n-best rescoring (top-5)** | **CER base ~11, n=40** | ✅ −3.37 WER / −1.52 CER | [04 §F](../experiments/04_qwen_corrector.md) |
-| 9 | **n-best rescoring — confirmación n=100** | CER ~11, bootstrap pareado | ✅ **−3.04 WER, IC95 [+0.71, +5.53] excluye 0 → significativo** | [04 §F2](../experiments/04_qwen_corrector.md) |
-| 10 | Oracle n-best (techo) | CER ~11, n=100 | techo −7.85 WER (21.66) — brecha restante | [04 §F2](../experiments/04_qwen_corrector.md) |
-| 11 | Pulido: top-10, scores en prompt, qwen 9b | CER ~11, n=100 | ❌ ninguno mejora; 9b es peor y 3.4× más lento | [04 conclusión](../experiments/04_qwen_corrector.md), [09 §G](../experiments/09_velocidad_inferencia.md) |
-| 12 | n-best sobre modelo degradado (int8) | int8/greedy | ❌ el LLM no recupera la degradación (−1.6, cruza 0) | [09 §G](../experiments/09_velocidad_inferencia.md) |
+| 1 | Corrección directa 1-best | CER base 42 (ft05b/ft07) | ❌ empeora (+0.7/+1.0 WER) | [04 §A](experiments/04_qwen_corrector.md) |
+| 2 | Corrección directa 1-best | CER base 27 (ViSpeR zs, 658 clips) | ❌ empeora (+1.42 WER) | [04 §A](experiments/04_qwen_corrector.md) |
+| 3 | Corrección directa 1-best | CER base ~11 (self-test limpio) | ❌ empeora (+1.40 WER) | [04 §F](experiments/04_qwen_corrector.md) |
+| 4 | Prompts (conservative / minimal / fluent) | CER 42, 24 clips | ❌ ninguno rescata; "fluent" alucina | [04 §B](experiments/04_qwen_corrector.md) |
+| 5 | LLM sobre texto ground-truth (test de corrupción) | texto perfecto | ❌ corrompe 2.04% WER — piso de daño | [04 §C](experiments/04_qwen_corrector.md) |
+| 6 | Few-shot supervisado (5 demos hyp→ref) | CER 42, 24 clips | ❌ nivel-ruido (−0.26 WER) | [04 §D](experiments/04_qwen_corrector.md) |
+| 7 | n-best rescoring (top-5) | CER base 42 (ft05) | ❌ no mejora (−0.16); ni el oracle baja de 55 | [04 §E](experiments/04_qwen_corrector.md) |
+| 8 | **n-best rescoring (top-5)** | **CER base ~11, n=40** | ✅ −3.37 WER / −1.52 CER | [04 §F](experiments/04_qwen_corrector.md) |
+| 9 | **n-best rescoring — confirmación n=100** | CER ~11, bootstrap pareado | ✅ **−3.04 WER, IC95 [+0.71, +5.53] excluye 0 → significativo** | [04 §F2](experiments/04_qwen_corrector.md) |
+| 10 | Oracle n-best (techo) | CER ~11, n=100 | techo −7.85 WER (21.66) — brecha restante | [04 §F2](experiments/04_qwen_corrector.md) |
+| 11 | Pulido: top-10, scores en prompt, qwen 9b | CER ~11, n=100 | ❌ ninguno mejora; 9b es peor y 3.4× más lento | [04 conclusión](experiments/04_qwen_corrector.md), [09 §G](experiments/09_velocidad_inferencia.md) |
+| 12 | n-best sobre modelo degradado (int8) | int8/greedy | ❌ el LLM no recupera la degradación (−1.6, cruza 0) | [09 §G](experiments/09_velocidad_inferencia.md) |
 | 13 | LLM para limpieza de transcripciones del dataset | offline, GPT | revisión en notebook; parches aceptados/rechazados registrados | [cleaning/visual_quality nb 03](../cleaning/visual_quality/notebooks/03_revision_correcciones_llm.ipynb), [nb 08](../cleaning/visual_quality/notebooks/08_transcript_cleaning_review.ipynb), `cleaning/gpt_clean_v1/` |
-| 14 | Redundancia LoRA personal ↔ qwen | hablante calibrado | los beneficios se solapan parcialmente | [10](../experiments/10_adaptacion_hablante.md) |
+| 14 | Redundancia LoRA personal ↔ qwen | hablante calibrado | los beneficios se solapan parcialmente | [10](experiments/10_adaptacion_hablante.md) |
 
 ## Los hallazgos centrales
 

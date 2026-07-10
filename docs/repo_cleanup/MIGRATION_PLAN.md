@@ -57,7 +57,7 @@ correcta y moverla rompería los comandos documentados en README/SPEC/experiment
 - Fuente única de resultados: `docs/RESULTS.md` se declara **ledger canónico** (ya lo
   dice AGENTS.md); los docs nuevos linkean, no copian tablas.
 - `docs/RESEARCH_TP.md` indexa la evidencia LLM×VSR ya existente
-  (`experiments/04`, `09 §LLM`, `10 §redundancia`, notebooks 03/08 de cleaning/visual_quality).
+  (`../experiments/04`, `09 §LLM`, `10 §redundancia`, notebooks 03/08 de cleaning/visual_quality).
 - `docs/ENGINEERING_TP.md` indexa SPEC + experiments 06/09/10 + demo/.
 
 ## Eliminaciones
