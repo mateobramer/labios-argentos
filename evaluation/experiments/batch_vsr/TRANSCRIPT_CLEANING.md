@@ -7,21 +7,21 @@ policy conservadora.
 ## Flujo
 
 ```bash
-python -m data_cleaning.src.transcript_second_pass_asr \
+python -m cleaning.visual_quality.src.transcript_second_pass_asr \
   --splits vsr_models/splits/splits.csv \
   --output evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --model large-v3-turbo
 
-python -m data_cleaning.src.transcript_alignment_audit \
+python -m cleaning.visual_quality.src.transcript_alignment_audit \
   --asr2 evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --output evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv
 
-python -m data_cleaning.src.transcript_cleaning \
+python -m cleaning.visual_quality.src.transcript_cleaning \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --asr2 evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --asr-disagreement evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv \
-  --lexicon data_cleaning/resources/entity_lexicon.csv
+  --lexicon cleaning/visual_quality/resources/entity_lexicon.csv
 ```
 
 ## Reglas
@@ -41,7 +41,7 @@ python -m data_cleaning.src.transcript_cleaning \
 Archivo versionado:
 
 ```text
-data_cleaning/resources/entity_lexicon.csv
+cleaning/visual_quality/resources/entity_lexicon.csv
 ```
 
 Schema:

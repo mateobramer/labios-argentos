@@ -14,7 +14,7 @@ Idéntica a main, más:
 ```
 data_discovery/            ← portado de feature/full-clean-release (completo, 0.8 MB)
 data_release/              ← portado PARCIAL (<1 MB por archivo; manifests grandes via tag)
-data_cleaning_clean_v1/    ← portado parcial (sin patch_log.csv 5.3 MB)
+cleaning/gpt_clean_v1/    ← portado parcial (sin patch_log.csv 5.3 MB)
 data_inventory/            ← portado completo (11 KB)
 docs/
   PROJECT_SCOPE.md         ← nuevo
@@ -43,7 +43,7 @@ correcta y moverla rompería los comandos documentados en README/SPEC/experiment
 | `data_discovery/**` | ídem | completo — pipeline con src+tests, 0.8 MB |
 | `data_release/**` con blob <1 MB | ídem | reports, scripts, README, manifests chicos |
 | `data_release/*.csv` ≥1 MB (10 archivos, ~82 MB) | **NO** | recuperables: `git show dataset-clean-v1:<path>`; se listan en `data_release/README` porteado y en CHANGES |
-| `data_cleaning_clean_v1/**` salvo `patch_log.csv` (5.3 MB) | ídem | src, prompts, reports, rejected_patches.jsonl (evidencia negativa) |
+| `cleaning/gpt_clean_v1/**` salvo `patch_log.csv` (5.3 MB) | ídem | src, prompts, reports, rejected_patches.jsonl (evidencia negativa) |
 | `data_inventory/**` | ídem | completo |
 | raíz: `README_DATASET.md`, `OPEN_ITEMS_DATASET.md` | **NO** (duplicados byte-idénticos de `data_release/reports/`) | se porta solo la copia de reports/ |
 | raíz: `HOW_TO_USE_BUCKET.md` | comparar con `data_release/reports/HOW_TO_USE_BUCKET.md`, portar la versión más completa | difieren |
@@ -57,7 +57,7 @@ correcta y moverla rompería los comandos documentados en README/SPEC/experiment
 - Fuente única de resultados: `docs/RESULTS.md` se declara **ledger canónico** (ya lo
   dice AGENTS.md); los docs nuevos linkean, no copian tablas.
 - `docs/RESEARCH_TP.md` indexa la evidencia LLM×VSR ya existente
-  (`experiments/04`, `09 §LLM`, `10 §redundancia`, notebooks 03/08 de data_cleaning).
+  (`experiments/04`, `09 §LLM`, `10 §redundancia`, notebooks 03/08 de cleaning/visual_quality).
 - `docs/ENGINEERING_TP.md` indexa SPEC + experiments 06/09/10 + demo/.
 
 ## Eliminaciones
@@ -90,7 +90,7 @@ Sin cambios en: parámetros de VAD/beam/corrector/calibración, scripts `.sh` de
 
 1. `git diff --check` (whitespace).
 2. `python3 -m compileall` de todo el árbol.
-3. Tests existentes: `data_cleaning/tests/`, `segmentacion_oraciones/tests/`,
+3. Tests existentes: `cleaning/visual_quality/tests/`, `cleaning/transcript_segmentation/tests/`,
    `data_discovery/tests/` (porteados) — con pytest si el env lo permite.
 4. `--help`/arranque de entrypoints hasta donde no exijan cámara/pesos/envs conda.
 5. Chequeo de links internos de todos los `.md` nuevos y tocados.

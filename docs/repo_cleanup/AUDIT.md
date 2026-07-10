@@ -17,11 +17,11 @@ en el tree de main), lectura de docs núcleo, greps de paths/buckets/imports,
 | `data/` | 2.743 MB (17.182 f) | dataset generado: `clips/` (mp4+txt, ES el dataset), `videos/` (9 crudos), `metadata/` (manifests), `corpus/` | **canónico**, intencional (ver §6) |
 | `dataset/` | 248 MB (11.901 f) | clips `keep` post-curación (mp4+txt por video fuente) | canónico |
 | `evaluation/` | 22.6 MB | eval WER/CER contra test-658, parches Gimeno, notebooks 06-07 | canónico |
-| `data_cleaning/` | 21.1 MB | detección de clips malos, notebooks 01-05 y 08 | canónico |
+| `cleaning/visual_quality/` | 21.1 MB | detección de clips malos, notebooks 01-05 y 08 | canónico |
 | `new-data-fine-tuning/` | 7 MB | corrida histórica ronda 2 (ft03–ft07) | **histórico**, sin README |
 | `preprocessing/` | 3.7 MB | clips → ROI boca 96×96 (`.npz`), notebook 09 | canónico |
 | `vsr_models/` | 2.9 MB | fine-tuning 50M Gimeno + **splits congelados** | canónico |
-| `segmentacion_oraciones/` | 0.4 MB | re-segmentado oracional, notebooks 01-03 propios, tests | canónico |
+| `cleaning/transcript_segmentation/` | 0.4 MB | re-segmentado oracional, notebooks 01-03 propios, tests | canónico |
 | `demo/` | 0.1 MB | demo web/ptt/stream + infer_server + calibración | canónico, sin README |
 | `docs/` | 0.1 MB | SPEC, ESTRUCTURA, RESULTS (ledger), PLAN_CURRICULUM, archivo/ | canónico |
 | `experiments/` | 0.1 MB | índice + 10 docs de experimentos con tabla maestra | **fuente de verdad de resultados** |
@@ -94,7 +94,7 @@ Material único portable (agregados, todos texto):
 |---|---|---|
 | `data_discovery/` | 0.8 MB | pipeline de búsqueda/score de fuentes nuevas (src+tests+outputs+60 JSON metadata) |
 | `data_release/` | 85 MB ⚠️ | manifests del release limpio, 30+ reportes md, 14 scripts |
-| `data_cleaning_clean_v1/` | 6 MB | limpieza GPT de transcripciones (src+prompts+reportes+patch_log 5.3 MB) |
+| `cleaning/gpt_clean_v1/` | 6 MB | limpieza GPT de transcripciones (src+prompts+reportes+patch_log 5.3 MB) |
 | `data_inventory/` | 11 KB | inventario del bucket |
 | raíz | — | 6 docs (2 duplicados de reports/, 2 planes de branch-workflow, REPO_MAP superseded) |
 | `.gitignore` | — | bloquea `*.mp4` etc. — **contradice la política de main**, no portable tal cual |
@@ -140,7 +140,7 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 
 | Movimiento | Riesgo | Mitigación |
 |---|---|---|
-| Portar dirs de la rama #25 a paths originales | colisión de nombres | no hay: `data_discovery/`, `data_release/`, `data_cleaning_clean_v1/`, `data_inventory/` no existen en main |
+| Portar dirs de la rama #25 a paths originales | colisión de nombres | no hay: `data_discovery/`, `data_release/`, `cleaning/gpt_clean_v1/`, `data_inventory/` no existen en main |
 | No portar manifests >1 MB | pérdida de acceso | recuperables vía `git show dataset-clean-v1:<path>` + bucket; documentado |
 | Env-var override de paths en demo | cambio de comportamiento | defaults idénticos a los actuales; `REPO` derivado de `__file__` es estrictamente más correcto (funciona desde cualquier clone) |
 | Tocar `.gitignore` | des-versionar datos | NO se porta el `.gitignore` de la rama #25 |

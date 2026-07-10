@@ -136,7 +136,7 @@ def descargar_sample(url: str, video_id: str, sample: dict[str, float], reuse: b
 
 def metricas_visuales(sample_path: Path) -> dict[str, Any]:
     try:
-        from data_cleaning.src.visual_quality_metrics import cargar_frames, metricas_calidad_frames, metricas_rostro_haar
+        from cleaning.visual_quality.src.visual_quality_metrics import cargar_frames, metricas_calidad_frames, metricas_rostro_haar
     except Exception as exc:  # pragma: no cover - depende del entorno local
         return {"visual_error": f"blocked_missing_visual_dependency:{exc}"}
 

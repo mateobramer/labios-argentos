@@ -150,7 +150,7 @@ def main() -> None:
         "argentina_existing_manifest_rows": count_manifest_rows(ROOT / "data_release" / "argentina_existing_manifest.csv"),
         "argentina_new_manifest_rows": count_manifest_rows(ROOT / "data_release" / "argentina_new_manifest.csv"),
         "spanish_general_manifest_rows": count_manifest_rows(ROOT / "data_release" / "spanish_general_manifest.csv"),
-        "clean_manifest_rows": count_optional_manifest_rows(ROOT / "data_cleaning_clean_v1" / "outputs" / "clean_manifest.csv"),
+        "clean_manifest_rows": count_optional_manifest_rows(ROOT / "cleaning/gpt_clean_v1" / "outputs" / "clean_manifest.csv"),
         "alignment_manifest_rows": count_manifest_rows(ROOT / "data_release" / "alignment_manifest.csv"),
         "existing_reconstruction_manifest_rows": count_manifest_rows(ROOT / "data_release" / "existing_reconstruction_manifest.csv"),
         "asr_large_turbo_manifest_rows": count_manifest_rows(ROOT / "data_release" / "asr_large_turbo_manifest.csv"),

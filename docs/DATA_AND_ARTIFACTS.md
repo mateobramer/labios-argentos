@@ -36,7 +36,7 @@ error de auth de gsutil — no hay fallback, es intencional).
 La rama `feature/full-clean-release` (PR #25) construyó un release limpio del dataset
 (re-construcción de fuentes + ASR + limpieza GPT + discovery de fuentes nuevas). Sus
 piezas livianas (reportes, scripts, manifests <1 MB) están portadas acá en
-`data_release/`, `data_discovery/`, `data_cleaning_clean_v1/`, `data_inventory/`.
+`data_release/`, `data_discovery/`, `cleaning/gpt_clean_v1/`, `data_inventory/`.
 
 - **Manifests grandes** (10 CSVs, ~82 MB — `final_release_manifest.csv`, etc.):
   NO están en esta rama. Recuperarlos: `git show dataset-clean-v1:data_release/<nombre>.csv`

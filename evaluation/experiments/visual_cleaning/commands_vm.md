@@ -95,7 +95,7 @@ Verificar que los CSV finales tengan el test original completo antes de comparar
 ## 6. Parseo de resultados
 
 El repositorio ya tiene parseos especificos para salidas `.inf` en la etapa visual
-(`data_cleaning/src/visual_quality_vsr_results.py`). Para esta comparacion falta un
+(`cleaning/visual_quality/src/visual_quality_vsr_results.py`). Para esta comparacion falta un
 parser general comprometido que convierta `.inf` + manifest full-test al schema estandar
 de `results_schema.md`.
 

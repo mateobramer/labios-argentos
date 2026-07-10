@@ -410,7 +410,7 @@ URL YouTube
   ├─(4) MediaPipe landmarks → warp mean-face → 96×96 gris 25fps
   │                              ►  data/processed/lip_rois/<titulo>/clip_NNNN.npz  ← ENTRADA DEL MODELO
   │
-  │  data_cleaning/  (QA, opcional pero recomendado)
+  │  cleaning/visual_quality/  (QA, opcional pero recomendado)
   ├─ auditar_alineacion.py       ►  caza drift clip↔texto y errores de Whisper
   └─ detectar_clips_malos.py     ►  marca keep/review/drop (negro/congelado/boca inactiva) → dataset/ curado
 ```
@@ -471,7 +471,7 @@ python -m preprocessing.src.preprocesar --jobs 7          # todas las fuentes, 7
 python -m preprocessing.src.preprocesar "<titulo>"        # una fuente
 ```
 
-### A.4 Control de calidad (recomendado antes de entrenar) — `data_cleaning/`
+### A.4 Control de calidad (recomendado antes de entrenar) — `cleaning/visual_quality/`
 
 - **`auditar_alineacion.py`** — re-transcribe el audio de cada clip con Whisper y lo compara contra su
   propio `.txt` y los vecinos. Detecta: (a) **drift** (el audio matchea mejor el texto del vecino) y

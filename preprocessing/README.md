@@ -14,7 +14,7 @@ Este modulo vive despues de `descargar_procesar.py`: toma los clips alineados en
 - filtros de calidad visual;
 - previews para revisar a ojo los clips candidatos a descartar.
 
-La limpieza textual o de alineacion video-texto vive en `data_cleaning/`.
+La limpieza textual o de alineacion video-texto vive en `cleaning/visual_quality/`.
 
 ## Como funciona (alineacion a cara media, estilo Auto-AVSR)
 
@@ -96,7 +96,7 @@ dejamos notebooks vacios como plan.
 La revision de calidad visual del dataset se trabaja desde:
 
 ```text
-data_cleaning/notebooks/01_revision_visual_mediapipe.ipynb
+cleaning/visual_quality/notebooks/01_revision_visual_mediapipe.ipynb
 ```
 
 Ese notebook importa funciones de `preprocessing/src/auditar_calidad_visual.py`.

@@ -6,8 +6,8 @@ Usar en VM/GPU con `tmux`. No dejar la VM prendida si falla o termina.
 
 ```bash
 git pull
-PYTHONIOENCODING=utf-8 python -m compileall evaluation data_cleaning preprocessing vsr_models data_cleaning/tests
-python -m unittest discover data_cleaning/tests
+PYTHONIOENCODING=utf-8 python -m compileall evaluation cleaning/visual_quality preprocessing vsr_models cleaning/visual_quality/tests
+python -m unittest discover cleaning/visual_quality/tests
 nvidia-smi
 python -V
 python -c "import torch; print(torch.cuda.is_available(), torch.version.cuda)"
@@ -18,7 +18,7 @@ python -c "import torch; print(torch.cuda.is_available(), torch.version.cuda)"
 Smoke primero:
 
 ```bash
-python -m data_cleaning.src.transcript_second_pass_asr \
+python -m cleaning.visual_quality.src.transcript_second_pass_asr \
   --splits vsr_models/splits/splits.csv \
   --output evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --model small \
@@ -28,7 +28,7 @@ python -m data_cleaning.src.transcript_second_pass_asr \
 Full solo si smoke funciona:
 
 ```bash
-python -m data_cleaning.src.transcript_second_pass_asr \
+python -m cleaning.visual_quality.src.transcript_second_pass_asr \
   --splits vsr_models/splits/splits.csv \
   --output evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --model large-v3-turbo
@@ -37,7 +37,7 @@ python -m data_cleaning.src.transcript_second_pass_asr \
 Luego:
 
 ```bash
-python -m data_cleaning.src.transcript_alignment_audit \
+python -m cleaning.visual_quality.src.transcript_alignment_audit \
   --asr2 evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --output evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv
 ```
@@ -45,12 +45,12 @@ python -m data_cleaning.src.transcript_alignment_audit \
 Luego:
 
 ```bash
-python -m data_cleaning.src.transcript_cleaning \
+python -m cleaning.visual_quality.src.transcript_cleaning \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --asr2 evaluation/outputs/batch_vsr/transcript_second_pass_asr.csv \
   --asr-disagreement evaluation/outputs/batch_vsr/transcript_asr_disagreement.csv \
-  --lexicon data_cleaning/resources/entity_lexicon.csv
+  --lexicon cleaning/visual_quality/resources/entity_lexicon.csv
 ```
 
 ## Preprocessing full
@@ -164,7 +164,7 @@ python -m evaluation.src.parse_batch_vsr_results \
 
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/07_batch_vsr_experiments.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
-python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('data_cleaning/notebooks/08_transcript_cleaning_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
+python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('cleaning/visual_quality/notebooks/08_transcript_cleaning_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('preprocessing/notebooks/09_preprocessing_variant_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 ```
 

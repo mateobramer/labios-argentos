@@ -4,7 +4,7 @@
 
 - Recolectado de YouTube (fuentes rioplatenses talking-head) + Whisper (word-timestamps) + crop MediaPipe.
 - Pipeline: `descargar_procesar.py` (descarga+Whisper+segmentación) → `preprocessing/src/preprocesar.py`
-  (crop mean-face 96×96 25fps) → npz. QC en `data_cleaning/`.
+  (crop mean-face 96×96 25fps) → npz. QC en `cleaning/visual_quality/`.
 - **~12.112 npz (~19h)**; splits congelados: **train 8067 / val 466 / test 658** (test = 2 hablantes f15/f22).
   En `gs://labios-argentos-vsr-dataset/{lip_rois,splits}`.
 - **candidatos_v2_FINAL.csv** = 32 fuentes de ronda-2 (base de ft05). ~85-971 carpetas ya procesadas.

@@ -13,7 +13,7 @@ OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr"
 REPO_ANCHORS = (
     "evaluation/",
     "data/",
-    "data_cleaning/",
+    "cleaning/visual_quality/",
     "preprocessing/",
     "vsr_models/",
 )

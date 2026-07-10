@@ -74,7 +74,7 @@ Los entrenamientos corren en **VMs L4 spot de GCP** (proyecto
 # Pipeline de datos para una fuente nueva (ver claude-videos/README.md)
 python descargar_procesar.py "URL_YOUTUBE"
 python -m preprocessing.src.preprocesar "<titulo>"
-python -m data_cleaning.src.detectar_clips_malos "<titulo>" [--materializar]
+python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>" [--materializar]
 
 # Calibración al hablante (después de grabar en la UI /calibrar)
 bash demo/calibracion/calibrar_entrenar.sh <nombre>

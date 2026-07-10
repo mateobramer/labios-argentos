@@ -19,7 +19,7 @@ se conservó intacta. Cambios = **solo agregados** + 8 archivos modificados:
 (nuevo) .env.example
 (nuevo) data_discovery/            53 archivos — portado completo
 (nuevo) data_release/             ~121 archivos — portado parcial (<1 MB c/u)
-(nuevo) data_cleaning_clean_v1/    14 archivos — portado parcial
+(nuevo) cleaning/gpt_clean_v1/    14 archivos — portado parcial
 (nuevo) data_inventory/             3 archivos — portado completo
 (nuevo) demo/README.md, curriculum/README.md, multilingual-vsr/README.md,
         new-data-fine-tuning/README.md, Survey/README.md
@@ -29,7 +29,7 @@ se conservó intacta. Cambios = **solo agregados** + 8 archivos modificados:
 (mod)   requirements.txt                 — + faster-whisper (dep de data_discovery)
 (mod)   demo/{demo_web,demo_ptt,demo_stream,build_testset,infer_server,score_selftest}.py
         — paths por env var con defaults idénticos (ver abajo)
-(mod)   data_release/README.md, data_cleaning_clean_v1/README.md
+(mod)   data_release/README.md, cleaning/gpt_clean_v1/README.md
         — nota de contexto sobre manifests grandes excluidos (única alteración
           respecto de la rama de origen; el resto es byte-idéntico)
 ```
@@ -76,7 +76,7 @@ Las otras 5 ramas remotas están 100 % mergeadas en main (ver [AUDIT §5](AUDIT.
 | Borrados masivos de `data/` y `dataset/` (~29.000 archivos) | decisión de datos separada; reproducirla acá cambiaría la política de main sin decisión del equipo | n/a (es una eliminación; main los conserva) |
 | `.gitignore` de la rama (bloquea `*.mp4` etc.) | contradice la política vigente de main (clips versionados) | `git show origin/feature/full-clean-release:.gitignore` |
 | 12 manifests CSV ≥1 MB de `data_release/` (~127 MB) | peso; el árbol de trabajo no los necesita | `git show dataset-clean-v1:data_release/<nombre>.csv` |
-| `data_cleaning_clean_v1/patch_log.csv` (5.2 MB) | peso | `git show dataset-clean-v1:data_cleaning_clean_v1/patch_log.csv` |
+| `cleaning/gpt_clean_v1/patch_log.csv` (5.2 MB) | peso | `git show dataset-clean-v1:cleaning/gpt_clean_v1/patch_log.csv` |
 | Raíz: `README_DATASET.md`, `OPEN_ITEMS_DATASET.md` | byte-idénticos a `data_release/reports/` (portados ahí) | ya están en `data_release/reports/` |
 | Raíz: `HOW_TO_USE_BUCKET.md` | stub que apunta a la versión canónica de `reports/` (portada) | `git show origin/feature/full-clean-release:HOW_TO_USE_BUCKET.md` |
 | `REPO_MAP.md` | describe la estructura pre-reorganización; superseded por `docs/ESTRUCTURA.md` | `git show origin/feature/full-clean-release:REPO_MAP.md` |

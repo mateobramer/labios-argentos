@@ -46,7 +46,7 @@ clip, en el mismo orden que `testRioplatense.csv`. El cruce de vuelta a
 Desde la raiz de este repo, con ROIs y textos disponibles:
 
 ```bash
-python -m data_cleaning.src.export_visual_quality_vsr_scenario \
+python -m cleaning.visual_quality.src.export_visual_quality_vsr_scenario \
   --sample data/metadata/visual_quality_vsr_eval_sample.csv \
   --output-base evaluation/data/visual_quality_vsr_eval \
   --mapping-output data/metadata/visual_quality_vsr_eval_mapping.csv \
@@ -76,7 +76,7 @@ escribir directo en `~/data`, porque el repo de Gimeno busca `../data` relativo 
 raiz:
 
 ```bash
-python -m data_cleaning.src.export_visual_quality_vsr_scenario \
+python -m cleaning.visual_quality.src.export_visual_quality_vsr_scenario \
   --sample data/metadata/visual_quality_vsr_eval_sample.csv \
   --output-base ~/data \
   --mapping-output data/metadata/visual_quality_vsr_eval_mapping.csv \
@@ -134,7 +134,7 @@ scp <vm>:~/evaluating-end2end-spanish-lipreading/spanish-benchmark/rioplatense/v
 Despues ejecutar:
 
 ```bash
-python -m data_cleaning.src.visual_quality_vsr_results \
+python -m cleaning.visual_quality.src.visual_quality_vsr_results \
   --inf data/metadata/visual_quality_sample.test.inf \
   --mapping data/metadata/visual_quality_vsr_eval_mapping.csv \
   --output data/metadata/visual_quality_vsr_eval_results.csv

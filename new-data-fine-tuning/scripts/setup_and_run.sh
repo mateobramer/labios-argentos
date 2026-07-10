@@ -46,7 +46,7 @@ for URL in "${URLS[@]}"; do
 done
 
 log "=== DETECCION final keep/review/drop ==="
-$VIS -m data_cleaning.src.detectar_clips_malos >>~/preproc.log 2>&1 || log "WARN deteccion"
+$VIS -m cleaning.visual_quality.src.detectar_clips_malos >>~/preproc.log 2>&1 || log "WARN deteccion"
 
 log "=== RESUMEN ==="
 $PROC - <<'PY'

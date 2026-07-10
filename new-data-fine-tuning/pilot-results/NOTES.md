@@ -26,7 +26,7 @@
 2. En la VM: `sudo apt-get install -y libgles2 libegl1 libegl-mesa0`
 3. Re-correr SOLO el preproc + detección (la ETAPA 1 ya está hecha, los 902 clips persisten en disco):
    - `~/venv-visual/bin/python -m preprocessing.src.preprocesar --jobs 4`  (bajo a 4 jobs por las dudas de RAM con 902 clips)
-   - `~/venv-visual/bin/python -m data_cleaning.src.detectar_clips_malos`
+   - `~/venv-visual/bin/python -m cleaning.visual_quality.src.detectar_clips_malos`
 4. Mirar: crudos→npz (% supervivencia), keep/review/drop, y spot-check de alineación.
 
 ### Costo

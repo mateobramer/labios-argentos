@@ -16,7 +16,7 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 3 · PREPROC VISUAL preprocessing/          MediaPipe → warp mean-face → ROI boca 96×96
         │            data/processed/lip_rois/<t>/*.npz  (no versionado, regenerable)
         ▼
-4 · CURACIÓN       data_cleaning/                 detector de clips malos (cara, calidad)
+4 · CURACIÓN       cleaning/visual_quality/                 detector de clips malos (cara, calidad)
         │            dataset/<t>/  (solo los `keep`)  +  data/metadata/*.csv (manifests)
         ▼
 5 · ENTRENAMIENTO  vsr_models/ (50M Gimeno) · demo/calibracion/ (LoRA personal ViSpeR)
@@ -35,8 +35,8 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `claude-videos/` | 1 | CSVs de fuentes curadas (ronda 1 y 2) con criterios de selección |
 | `descargar_procesar.py` | 2 | único script: descarga, transcribe (Whisper turbo es), corta clips alineados |
 | `preprocessing/` | 3 | `src/preprocesar.py`: landmarks → crop 96×96 → `.npz` |
-| `data_cleaning/` | 4 | detección de clips malos, auditorías de calidad visual |
-| `segmentacion_oraciones/` | 2b | re-segmentado oracional de transcripciones (sparse, no siempre materializado) |
+| `cleaning/visual_quality/` | 4 | detección de clips malos, auditorías de calidad visual |
+| `cleaning/transcript_segmentation/` | 2b | re-segmentado oracional de transcripciones (sparse, no siempre materializado) |
 | `vsr_models/` | 5 | `src/fine_tune.py` (50M), splits congelados, configs |
 | `curriculum/` | 5b | procesamiento de ViSpeR-es (JSON oficiales → npz) para currículum |
 | `multilingual-vsr/` | 5c | notas/scripts sobre la base multilingüe mpc001 (el clon externo no se versiona) |
@@ -45,7 +45,7 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `demo/` | 7 | demo web + push-to-talk + streaming, `infer_server.py`, calibración |
 | `data_discovery/` | 1b | búsqueda/score de fuentes nuevas (portado de `feature/full-clean-release`) |
 | `data_release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
-| `data_cleaning_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
+| `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
 | `data_inventory/` | 4b | inventario del bucket del release |
 | `experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
 | `docs/` | — | SPEC, este doc, RESULTS (**ledger canónico**), PROJECT_SCOPE, RESEARCH_TP, ENGINEERING_TP, DATA_AND_ARTIFACTS, NEXT_STEPS, `archivo/` (históricos), `repo_cleanup/` (auditoría 2026-07) |

@@ -41,8 +41,8 @@ FULL_REPORT = REPORTS / "full_clean_release_report.md"
 GPT_REPORT = REPORTS / "gpt_cleaning_report.md"
 COST_REPORT = REPORTS / "cost_runtime_report.md"
 SPANISH_REPORT = OUT_DIR / "spanish_general_asr_manifest.csv"
-REJECTED_GPT = ROOT / "data_cleaning_clean_v1" / "rejected_patches.jsonl"
-MANUAL_GPT_VALIDATION = ROOT / "data_cleaning_clean_v1" / "reports" / "manual_gpt_validation_report.csv"
+REJECTED_GPT = ROOT / "cleaning/gpt_clean_v1" / "rejected_patches.jsonl"
+MANUAL_GPT_VALIDATION = ROOT / "cleaning/gpt_clean_v1" / "reports" / "manual_gpt_validation_report.csv"
 
 DEST_BUCKET = "gs://labios-argentos-vsr-clean-v1"
 

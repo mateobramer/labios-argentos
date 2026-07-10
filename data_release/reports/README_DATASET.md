@@ -99,20 +99,20 @@ No se uso GPT automatico, browser ni API para el full. Se preparo un handoff man
 ingirieron los outputs JSONL entregados en ZIP.
 
 Los outputs manuales fueron validados contra
-`data_cleaning_clean_v1/manual_gpt_handoff/job_index.csv`. Solo se aplicaron jobs con
+`cleaning/gpt_clean_v1/manual_gpt_handoff/job_index.csv`. Solo se aplicaron jobs con
 status `validated`. Los jobs faltantes, invalidos o incompletos quedan rechazados o
 pendientes en:
 
-- `data_cleaning_clean_v1/reports/manual_gpt_validation_report.csv`
-- `data_cleaning_clean_v1/reports/manual_gpt_apply_report.md`
-- `data_cleaning_clean_v1/rejected_patches.jsonl`
+- `cleaning/gpt_clean_v1/reports/manual_gpt_validation_report.csv`
+- `cleaning/gpt_clean_v1/reports/manual_gpt_apply_report.md`
+- `cleaning/gpt_clean_v1/rejected_patches.jsonl`
 
 ## 8. Como reproducir validacion
 
 Desde la raiz del repo:
 
 ```powershell
-python -m compileall data_cleaning_clean_v1 data_release data_discovery
+python -m compileall cleaning/gpt_clean_v1 data_release data_discovery
 python -m unittest discover data_discovery\tests
 git diff --check
 python data_release/scripts/validate_clean_bucket.py

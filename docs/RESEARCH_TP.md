@@ -24,7 +24,7 @@ mayor parte del hallazgo.
 | 10 | Oracle n-best (techo) | CER ~11, n=100 | techo −7.85 WER (21.66) — brecha restante | [04 §F2](../experiments/04_qwen_corrector.md) |
 | 11 | Pulido: top-10, scores en prompt, qwen 9b | CER ~11, n=100 | ❌ ninguno mejora; 9b es peor y 3.4× más lento | [04 conclusión](../experiments/04_qwen_corrector.md), [09 §G](../experiments/09_velocidad_inferencia.md) |
 | 12 | n-best sobre modelo degradado (int8) | int8/greedy | ❌ el LLM no recupera la degradación (−1.6, cruza 0) | [09 §G](../experiments/09_velocidad_inferencia.md) |
-| 13 | LLM para limpieza de transcripciones del dataset | offline, GPT | revisión en notebook; parches aceptados/rechazados registrados | [data_cleaning nb 03](../data_cleaning/notebooks/03_revision_correcciones_llm.ipynb), [nb 08](../data_cleaning/notebooks/08_transcript_cleaning_review.ipynb), `data_cleaning_clean_v1/` |
+| 13 | LLM para limpieza de transcripciones del dataset | offline, GPT | revisión en notebook; parches aceptados/rechazados registrados | [cleaning/visual_quality nb 03](../cleaning/visual_quality/notebooks/03_revision_correcciones_llm.ipynb), [nb 08](../cleaning/visual_quality/notebooks/08_transcript_cleaning_review.ipynb), `cleaning/gpt_clean_v1/` |
 | 14 | Redundancia LoRA personal ↔ qwen | hablante calibrado | los beneficios se solapan parcialmente | [10](../experiments/10_adaptacion_hablante.md) |
 
 ## Los hallazgos centrales

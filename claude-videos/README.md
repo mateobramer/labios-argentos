@@ -28,8 +28,8 @@ descarga/transcripción/GPU. Las dos rondas ya fueron procesadas.
 ```
 python descargar_procesar.py "URL"                                  # etapa 1 + gate alineación
 python -m preprocessing.src.preprocesar "<titulo>"           # etapa 2 (ROIs 96×96)
-python -m data_cleaning.src.detectar_clips_malos "<titulo>"         # etapa 3 (review)
-python -m data_cleaning.src.detectar_clips_malos "<titulo>" --materializar
+python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>"         # etapa 3 (review)
+python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>" --materializar
 ```
 
 Al final se completa la fila en `data/metadata/fuentes.csv`. Ver el flujo completo en

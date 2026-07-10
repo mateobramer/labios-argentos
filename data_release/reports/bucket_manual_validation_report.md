@@ -24,5 +24,5 @@ csv_row_counts_all_match: true
 | `data_release/reports/HOW_TO_USE_BUCKET.md` | `gs://labios-argentos-vsr-clean-v1/reports/HOW_TO_USE_BUCKET.md` |  |  |  | True | 1115 | 1115 |
 | `data_release/reports/full_clean_release_report.md` | `gs://labios-argentos-vsr-clean-v1/reports/full_clean_release_report.md` |  |  |  | True | 1811 | 1811 |
 | `data_release/reports/gpt_cleaning_report.md` | `gs://labios-argentos-vsr-clean-v1/reports/gpt_cleaning_report.md` |  |  |  | True | 535 | 535 |
-| `data_cleaning_clean_v1/reports/manual_gpt_validation_report.csv` | `gs://labios-argentos-vsr-clean-v1/reports/manual_gpt_validation_report.csv` | 86 | 86 | True | True | 52498 | 52498 |
-| `data_cleaning_clean_v1/reports/manual_gpt_apply_report.md` | `gs://labios-argentos-vsr-clean-v1/reports/manual_gpt_apply_report.md` |  |  |  | True | 486 | 486 |
+| `cleaning/gpt_clean_v1/reports/manual_gpt_validation_report.csv` | `gs://labios-argentos-vsr-clean-v1/reports/manual_gpt_validation_report.csv` | 86 | 86 | True | True | 52498 | 52498 |
+| `cleaning/gpt_clean_v1/reports/manual_gpt_apply_report.md` | `gs://labios-argentos-vsr-clean-v1/reports/manual_gpt_apply_report.md` |  |  |  | True | 486 | 486 |

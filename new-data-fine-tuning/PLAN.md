@@ -45,9 +45,9 @@ favorable para que el aporte se note.
 1. **Procesar los 39 videos** (gate 0 ya hecho = `claude-videos/candidatos.csv`). Por cada uno,
    vía skill `/nueva-fuente`:
    - `python descargar_procesar.py "URL"`  (Whisper large-v3 para transcripción final)
-   - gate 1: `python -m data_cleaning.src.auditar_alineacion "<titulo>"`  ← protege clip↔texto
+   - gate 1: `python -m cleaning.visual_quality.src.auditar_alineacion "<titulo>"`  ← protege clip↔texto
    - `python -m preprocessing.src.preprocesar "<titulo>"`  (env MediaPipe)
-   - `python -m data_cleaning.src.detectar_clips_malos "<titulo>"` → revisar → `--materializar`
+   - `python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>"` → revisar → `--materializar`
    - registrar fila en `data/metadata/fuentes.csv`
 2. **Re-armar splits:** `python -m vsr_models.src.armar_splits` (las nuevas fuentes entran a train).
    Confirmar que val/test siguen iguales y el chequeo speaker-independent pasa.
