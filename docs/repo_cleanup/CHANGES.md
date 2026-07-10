@@ -75,8 +75,8 @@ Las otras 5 ramas remotas están 100 % mergeadas en main (ver [AUDIT §5](AUDIT.
 |---|---|---|
 | Borrados masivos de `data/` y `dataset/` (~29.000 archivos) | decisión de datos separada; reproducirla acá cambiaría la política de main sin decisión del equipo | n/a (es una eliminación; main los conserva) |
 | `.gitignore` de la rama (bloquea `*.mp4` etc.) | contradice la política vigente de main (clips versionados) | `git show origin/feature/full-clean-release:.gitignore` |
-| 12 manifests CSV ≥1 MB de `data_pipeline/release/` (~127 MB) | peso; el árbol de trabajo no los necesita | `git show dataset-clean-v1:data_pipeline/release/<nombre>.csv` |
-| `cleaning/gpt_clean_v1/patch_log.csv` (5.2 MB) | peso | `git show dataset-clean-v1:cleaning/gpt_clean_v1/patch_log.csv` |
+| 12 manifests CSV ≥1 MB de `data_pipeline/release/` (~127 MB) | peso; el árbol de trabajo no los necesita | `git show dataset-clean-v1:data_release/<nombre>.csv` |
+| `cleaning/gpt_clean_v1/patch_log.csv` (5.2 MB) | peso | `git show dataset-clean-v1:data_cleaning_clean_v1/patch_log.csv` |
 | Raíz: `README_DATASET.md`, `OPEN_ITEMS_DATASET.md` | byte-idénticos a `data_pipeline/release/reports/` (portados ahí) | ya están en `data_pipeline/release/reports/` |
 | Raíz: `HOW_TO_USE_BUCKET.md` | stub que apunta a la versión canónica de `reports/` (portada) | `git show origin/feature/full-clean-release:HOW_TO_USE_BUCKET.md` |
 | `REPO_MAP.md` | describe la estructura pre-reorganización; superseded por `docs/ESTRUCTURA.md` | `git show origin/feature/full-clean-release:REPO_MAP.md` |

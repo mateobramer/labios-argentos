@@ -2,7 +2,7 @@
 
 > **Nota (limpieza 2026-07):** directorio portado desde `feature/full-clean-release`
 > (PR #25). `patch_log.csv` (5.2 MB) no se porteó; recuperarlo con
-> `git show dataset-clean-v1:cleaning/gpt_clean_v1/patch_log.csv`.
+> `git show dataset-clean-v1:data_cleaning_clean_v1/patch_log.csv`.
 > `rejected_patches.jsonl` (evidencia de correcciones rechazadas) sí está.
 
 Artefactos livianos para preparar la limpieza conservadora de transcripciones del

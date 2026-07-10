@@ -1,23 +1,36 @@
-# Video crudo > 100 MB: GitHub rechaza archivos de ese tamano.
-# Se mantiene fuera del repo; se puede regenerar con data_pipeline/descargar_procesar.py.
-# Sus clips y transcripcion SI se versionan.
-data/videos/que paso con Roberto/
-data/videos/que pasó con Roberto/
-data/videos/DAVOO XENEIZE OPINA DE BOCA 0 UNIVERSIDAD CATOLICA/
-data/videos/Entrevista completa por mi libro Franco con Diego/
-data/videos/ME ACUSARON DE BRUJA Y ME TUVE QUE IR DEL PUEBLO -/
+# ══ POLÍTICA DE DATOS (2026-07, ver docs/DATA_AND_ARTIFACTS.md) ══
+# Git: código, docs, configs, splits, manifests chicos, muestras mínimas, reportes.
+# Bucket: videos, clips masivos, ROIs, checkpoints, manifests gigantes.
+# Local/privado: grabaciones personales y modelos calibrados.
+# Los datos pesados históricos siguen recuperables desde main y el tag dataset-clean-v1
+# (ver data/README.md).
 
-# Evitar subir videos crudos nuevos por accidente. Son regenerables con yt-dlp;
-# se versionan los clips alineados y el corpus.
-data/videos/*/
+# Media pesada: no se versiona por accidente. La muestra de smoke vive en data/samples/
+# (whitelisted abajo) y los datos masivos en los buckets.
+*.mp4
+*.webm
+*.mkv
+*.mov
+*.avi
+*.wav
+*.mp3
+*.flac
+*.m4a
+!data/samples/**
 
-# Modelos de Whisper / pesos descargados (no versionar)
+# Pesos y checkpoints (viven en gs://labios-argentos-vsr-dataset)
 *.pt
 *.pth
+*.ckpt
+*.safetensors
+*.onnx
 
-# ROIs y datos derivados pesados (regenerables)
+# ROIs y datos derivados pesados (regenerables con preprocessing/)
 *.npz
 data/processed/
+data/clips/
+data/videos/
+dataset/
 vsr/evaluation/data/
 cleaning/transcript_segmentation/outputs/
 
@@ -36,15 +49,17 @@ vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/
 vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
 vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/
 vsr/evaluation/outputs/batch_vsr/raw/
-vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz
-vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/**/*.npz
-vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png
 vsr/runs/batch_vsr/
 
 # Video local usado por el analisis de limpieza; los artefactos finales si se versionan.
 cleaning/visual_quality/outputs/azzaro_whisper/videos/
 cleaning/visual_quality/outputs/visual_quality_audit/previews/
 data/metadata/visual_quality_*_full_roi.csv
+
+# Manifests de análisis de calidad >5 MB: retirados del repo (recuperables desde
+# main/tag; ver data/README.md). No re-agregarlos sin decisión explícita.
+data/metadata/visual_quality_policy_*.csv
+data/metadata/visual_quality_*_full_roi_sanity.csv
 
 # Cache de Python
 __pycache__/
@@ -53,24 +68,18 @@ __pycache__/
 .jupyter_logs/
 .ai/
 
-# Entorno virtual de Python (libs pesadas, no versionar)
+# Entornos virtuales (libs pesadas, no versionar)
 .venv/
 .venv-visual/
+.venv-cleaning/
 
-# Basura del SO
+# Basura del SO / configs locales
 .DS_Store
-
-# Backup temporal del .git roto (recuperacion)
+.claude/
 .git.broken-backup/
-
-# limpieza ablacion de datos
 .claude/scheduled_tasks.lock
 **/sample-clips/
 *.zip
-
-# Config local de Claude Code y venvs extra
-.claude/
-.venv-cleaning/
 
 # vsr/mpc001: repo externo clonado (github) y corridas locales — no versionar.
 # Se versionan notes/ y scripts/.
@@ -81,5 +90,8 @@ vsr/mpc001/runs/
 vsr/curriculum/logs/
 data/_visper_tmp/
 
-# Modelos personales de calibracion (privados, se generan con personalization/calibracion/)
+# Datos personales (privacidad, regla dura): grabaciones y modelos calibrados
 modelos/personal/
+
+# Feedback local de la demo (correcciones humanas; privado, no se versiona)
+data/feedback/
