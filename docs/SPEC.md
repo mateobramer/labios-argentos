@@ -55,7 +55,9 @@ Variables de entorno: `VSR_BEAM` (default 3; 5 si `VSR_QWEN=1`), `VSR_QWEN`,
 | GET | `/strip/<id>` | tira JPEG de 7 ROIs del segmento `<id>` ("lo que ve el modelo") |
 | POST | `/qwen` | toggle del corrector (proxy del `::qwen` al server) |
 | POST | `/clear` | limpia el guion acumulado |
-| GET/POST | `/cal/estado` · `/cal/entrar` · `/cal/rec` · `/cal/corte` · `/cal/salir` | flujo de calibración/contribución |
+| GET/POST | `/cal/estado` · `/cal/entrar` · `/cal/rec` · `/cal/corte` · `/cal/salir` | sesión y captura temporal de calibración |
+| GET/POST | `/cal/preview` · `/cal/aceptar` · `/cal/descartar` | revisión de una toma antes de persistir el par ROI↔texto |
+| GET/POST | `/cal/entrenamiento` · `/cal/entrenar` · `/cal/activar` · `/cal/base` | progreso LoRA y activación del checkpoint personal (o vuelta al base) |
 
 ## 4. Flujo y latencias medidas (MacBook M1, mediana con higiene de CPU)
 
@@ -91,7 +93,12 @@ Variables de entorno: `VSR_BEAM` (default 3; 5 si `VSR_QWEN=1`), `VSR_QWEN`,
 - **Warmup de MPS**: los primeros clips compilan kernels por forma → los primeros
   segmentos son más lentos; es esperado.
 - **Calibración**: valida ≥20 frames y ≥60 % de detección de cara antes de guardar una
-  toma; el VAD y la poda de segmentos quedan desactivados durante la calibración.
+  toma; después la deja en memoria para que la persona elija usar, repetir o descartar.
+  Sólo **usar** persiste atómicamente el par `.npz` + `.txt`. El VAD y la poda de
+  segmentos quedan desactivados durante la calibración.
+- **Entrenamiento personal**: la UI muestra las cuatro etapas del orquestador. Al salir,
+  el launcher verifica que no queden ni la VM spot ni su disco boot. Si activar el
+  checkpoint personal falla, intenta restaurar el modelo general.
 - **>1 cara en cámara**: recuadro "leyendo a esta persona" + aviso en la UI; el crop no
   salta de hablante.
 

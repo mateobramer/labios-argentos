@@ -189,9 +189,9 @@
     <span class="badge" id="b-modelo">modelo <b>—</b></span>
     <span class="badge" id="b-enc">encoder <b>—</b></span>
     <span class="badge" id="b-beam">beam <b>—</b></span>
-    <button class="badge" id="b-qwen" title="corrector LLM (elige entre las 5 candidatas del beam): −3 WER, +1.2 s">qwen <b>—</b></button>
+    <button class="badge" id="b-qwen" title="corrector LLM (elige entre las 5 candidatas del beam): −3 WER, +1.2 s">corrector <b>—</b></button>
     <span class="badge" id="b-caras" hidden>👥 <b>—</b></span>
-    <a class="btn" href="/calibrar" title="adaptar el modelo a tu boca / donar frases">🎬 calibrar mi modelo</a>
+    <a class="btn" href="/calibrar" title="grabar frases y adaptar el modelo a tu forma de hablar">Personalizar para mí</a>
   </div>
   <span id="f-stats">0 frases</span>
 </footer>
@@ -249,7 +249,7 @@
   es.onerror = () => { chiptxt.textContent = "sin conexión"; chip.dataset.st = "calibrando"; };
 
   function pintaQwen(){
-    $("b-qwen").innerHTML = "qwen <b>"+(qwenOn?"ON ✓":"off")+"</b>";
+    $("b-qwen").innerHTML = "corrector <b>"+(qwenOn?"ON ✓":"off")+"</b>";
     $("b-qwen").style.color = qwenOn ? "var(--ok)" : "";
   }
   $("b-qwen").onclick = async () => {
