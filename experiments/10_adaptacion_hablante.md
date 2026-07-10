@@ -9,7 +9,7 @@ n-best rescoring de qwen? (2026-07-09/10)
 
 - **Datos:** los 100 clips del self-test de Fede → split **congelado y estratificado** (viejos/nuevos):
   **train 60 / val 10 / test 30** (12 viejos + 18 nuevos). Versionado en
-  `vsr_models/splits/personal_fede/`. **El test-30 nunca se toca para entrenar** — es el benchmark
+  `vsr/splits/personal_fede/`. **El test-30 nunca se toca para entrenar** — es el benchmark
   personal de acá en más.
 - **Brazos** (ambos desde `visper_vsr_base.pth`, augment, early stop paciencia 5, máx 20 épocas, L4):
   - **A: LoRA** (r16/α32 en atenciones, lr 1e-4) — la receta que ya sabíamos que no rompe.

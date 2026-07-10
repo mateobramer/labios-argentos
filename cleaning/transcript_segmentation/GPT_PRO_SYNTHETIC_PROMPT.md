@@ -18,7 +18,7 @@ Contexto sugerido para describirlo en GPT Pro:
 Para mostrar ruido real de VSR, usar algunas lineas de:
 
 ```text
-vsr_models/runs/ft01/eval_finetuned.inf
+vsr/runs/ft01/eval_finetuned.inf
 ```
 
 Ese archivo esta en formato `referencia#hipotesis_vsr`. La parte despues de `#` sirve

@@ -27,7 +27,7 @@ class TestLLMTextCorrections(unittest.TestCase):
             output_dir = Path(tmp) / "out"
             suggestions_path.write_text(json.dumps(suggestions), encoding="utf-8")
             summary = generar_revision(
-                split_path="vsr_models/splits/val.csv",
+                split_path="vsr/splits/val.csv",
                 suggestions_path=suggestions_path,
                 output_dir=output_dir,
             )

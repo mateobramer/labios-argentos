@@ -18,28 +18,28 @@ data/videos/*/
 # ROIs y datos derivados pesados (regenerables)
 *.npz
 data/processed/
-evaluation/data/
+vsr/evaluation/data/
 cleaning/transcript_segmentation/outputs/
 
 # Analisis local Azzaro: el video y los clips se regeneran desde el notebook.
 # Los JSON de transcripcion dentro de transcripts/ si se versionan como cache.
-evaluation/outputs/azzaro_whisper/videos/
-evaluation/outputs/azzaro_whisper/clips*/
-evaluation/outputs/azzaro_whisper/*.csv
-evaluation/outputs/azzaro_whisper/transcripts_word_timestamps_v2/
+vsr/evaluation/outputs/azzaro_whisper/videos/
+vsr/evaluation/outputs/azzaro_whisper/clips*/
+vsr/evaluation/outputs/azzaro_whisper/*.csv
+vsr/evaluation/outputs/azzaro_whisper/transcripts_word_timestamps_v2/
 
 # Batch VSR: overlays y ROIs generables; versionar solo configs/manifests livianos.
-evaluation/outputs/batch_vsr/transcripts_current/
-evaluation/outputs/batch_vsr/transcripts_cleaned_restricted/
-evaluation/outputs/batch_vsr/transcripts_cleaned_stronger/
-evaluation/outputs/batch_vsr/rois_lower_face_resized96/
-evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
-evaluation/outputs/batch_vsr/preprocessing_variant_preview/
-evaluation/outputs/batch_vsr/raw/
-evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz
-evaluation/outputs/batch_vsr/rois_lower_face_resized96/**/*.npz
-evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png
-vsr_models/runs/batch_vsr/
+vsr/evaluation/outputs/batch_vsr/transcripts_current/
+vsr/evaluation/outputs/batch_vsr/transcripts_cleaned_restricted/
+vsr/evaluation/outputs/batch_vsr/transcripts_cleaned_stronger/
+vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/
+vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
+vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/
+vsr/evaluation/outputs/batch_vsr/raw/
+vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz
+vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/**/*.npz
+vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png
+vsr/runs/batch_vsr/
 
 # Video local usado por el analisis de limpieza; los artefactos finales si se versionan.
 cleaning/visual_quality/outputs/azzaro_whisper/videos/
@@ -72,13 +72,13 @@ __pycache__/
 .claude/
 .venv-cleaning/
 
-# multilingual-vsr: repo externo clonado (github) y corridas locales — no versionar.
+# vsr/mpc001: repo externo clonado (github) y corridas locales — no versionar.
 # Se versionan notes/ y scripts/.
-multilingual-vsr/repo/
-multilingual-vsr/runs/
+vsr/mpc001/repo/
+vsr/mpc001/runs/
 
 # curriculum: logs de procesamiento regenerables
-curriculum/logs/
+vsr/curriculum/logs/
 data/_visper_tmp/
 
 # Modelos personales de calibracion (privados, se generan con demo/calibracion/)

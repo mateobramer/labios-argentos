@@ -20,7 +20,7 @@ from cleaning.visual_quality.src.transcript_cleaning import (
     limpiar_restringido,
 )
 from cleaning.visual_quality.src.transcript_second_pass_asr import run_second_pass_asr
-from vsr_models.src.fine_tune import build_arg_parser, transcript_txt_path
+from vsr.src.fine_tune import build_arg_parser, transcript_txt_path
 
 
 class TestBatchVsrExperiments(unittest.TestCase):
@@ -224,7 +224,7 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertTrue((base / "experiments" / "E4_all_combined" / "experiment_config.json").exists())
 
     def test_preprocessing_smoke_manifest_si_hay_ok_tiene_shape_96(self):
-        manifest = Path("evaluation/outputs/batch_vsr/preprocessing_variant_manifest_smoke.csv")
+        manifest = Path("vsr/evaluation/outputs/batch_vsr/preprocessing_variant_manifest_smoke.csv")
         if not manifest.exists():
             self.skipTest("no hay manifest de smoke")
         for row in self._read_csv(manifest):
@@ -483,14 +483,14 @@ class TestBatchVsrExperiments(unittest.TestCase):
         self.assertEqual(int(e2["rank_wer"]), 1)
 
     def test_notebook_07_no_contiene_entrenamiento(self):
-        data = json.loads(Path("evaluation/notebooks/07_batch_vsr_experiments.ipynb").read_text(encoding="utf-8"))
+        data = json.loads(Path("vsr/evaluation/notebooks/07_batch_vsr_experiments.ipynb").read_text(encoding="utf-8"))
         code = "\n".join(
             "".join(cell.get("source", []))
             for cell in data["cells"]
             if cell.get("cell_type") == "code"
         )
 
-        self.assertNotIn("vsr_models.src.fine_tune", code)
+        self.assertNotIn("vsr.src.fine_tune", code)
         self.assertNotIn("subprocess", code)
         self.assertNotIn("!python", code)
         self.assertNotIn("gcloud", code)
@@ -506,17 +506,17 @@ class TestBatchVsrExperiments(unittest.TestCase):
                 for cell in data["cells"]
                 if cell.get("cell_type") == "code"
             )
-            self.assertNotIn("vsr_models.src.fine_tune", code)
+            self.assertNotIn("vsr.src.fine_tune", code)
             self.assertNotIn("subprocess", code)
             self.assertNotIn("!python", code)
             self.assertNotIn("gcloud", code)
 
     def test_no_quedan_notebooks_08_09_en_evaluation(self):
-        self.assertFalse(Path("evaluation/notebooks/08_transcript_cleaning_review.ipynb").exists())
-        self.assertFalse(Path("evaluation/notebooks/09_preprocessing_variant_review.ipynb").exists())
+        self.assertFalse(Path("vsr/evaluation/notebooks/08_transcript_cleaning_review.ipynb").exists())
+        self.assertFalse(Path("vsr/evaluation/notebooks/09_preprocessing_variant_review.ipynb").exists())
 
     def test_vm_readiness_existe_y_tiene_e0_e4(self):
-        text = Path("evaluation/experiments/batch_vsr/VM_READINESS.md").read_text(encoding="utf-8")
+        text = Path("vsr/evaluation/experiments/batch_vsr/VM_READINESS.md").read_text(encoding="utf-8")
         for name in [
             "E0_baseline_original",
             "E1_visual_cleaned",
@@ -527,10 +527,10 @@ class TestBatchVsrExperiments(unittest.TestCase):
             self.assertIn(name, text)
 
     def test_no_hay_npz_batch_commiteables(self):
-        npz_files = list(Path("evaluation/outputs/batch_vsr").glob("**/*.npz"))
+        npz_files = list(Path("vsr/evaluation/outputs/batch_vsr").glob("**/*.npz"))
         allowed_roots = [
-            Path("evaluation/outputs/batch_vsr/preprocessing_variant_smoke"),
-            Path("evaluation/outputs/batch_vsr/rois_lower_face_resized96"),
+            Path("vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke"),
+            Path("vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96"),
         ]
         unexpected = [
             path
@@ -540,10 +540,10 @@ class TestBatchVsrExperiments(unittest.TestCase):
         self.assertEqual(unexpected, [])
         gitignore = Path(".gitignore").read_text(encoding="utf-8")
         self.assertIn("*.npz", gitignore)
-        self.assertIn("evaluation/outputs/batch_vsr/rois_lower_face_resized96/", gitignore)
-        self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_preview/", gitignore)
-        self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz", gitignore)
-        self.assertIn("evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png", gitignore)
+        self.assertIn("vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/", gitignore)
+        self.assertIn("vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/", gitignore)
+        self.assertIn("vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz", gitignore)
+        self.assertIn("vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png", gitignore)
 
     def _split_row(self, split, titulo, clip, texto):
         return {

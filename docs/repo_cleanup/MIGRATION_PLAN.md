@@ -24,9 +24,9 @@ docs/
   NEXT_STEPS.md            ← nuevo
   repo_cleanup/            ← AUDIT, MIGRATION_PLAN, CHANGES, VALIDATION
 demo/README.md             ← nuevo
-curriculum/README.md       ← nuevo
-multilingual-vsr/README.md ← nuevo
-new-data-fine-tuning/README.md ← nuevo
+vsr/curriculum/README.md       ← nuevo
+vsr/mpc001/README.md ← nuevo
+vsr/historical/ronda2/README.md ← nuevo
 Survey/README.md           ← nuevo
 .env.example               ← nuevo (paths/knobs de la demo)
 ```

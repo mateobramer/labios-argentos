@@ -9,7 +9,7 @@ from evaluation.src.build_visual_cleaning_manifests import (
     construir_manifests,
 )
 from evaluation.src.experiment_metrics import cer, comparar_experimentos, wer
-from vsr_models.src.fine_tune import SPLITS_DIR, build_arg_parser, split_csv_path
+from vsr.src.fine_tune import SPLITS_DIR, build_arg_parser, split_csv_path
 
 
 class TestVisualCleaningExperiments(unittest.TestCase):
@@ -117,21 +117,21 @@ class TestVisualCleaningExperiments(unittest.TestCase):
                 "--rois-root",
                 "rois",
                 "--splits-dir",
-                "evaluation/outputs/visual_cleaning/splits_visual_cleaned",
+                "vsr/evaluation/outputs/visual_cleaning/splits_visual_cleaned",
             ]
         )
 
-        self.assertEqual(args.splits_dir, "evaluation/outputs/visual_cleaning/splits_visual_cleaned")
+        self.assertEqual(args.splits_dir, "vsr/evaluation/outputs/visual_cleaning/splits_visual_cleaned")
         self.assertEqual(split_csv_path(args.splits_dir, "val"), str(Path(args.splits_dir) / "val.csv"))
 
     def test_builder_no_modifica_splits_canonicos(self):
-        train = Path("vsr_models/splits/train.csv")
-        val = Path("vsr_models/splits/val.csv")
+        train = Path("vsr/splits/train.csv")
+        val = Path("vsr/splits/val.csv")
         before_train = train.read_bytes()
         before_val = val.read_bytes()
         with tempfile.TemporaryDirectory() as tmp:
             construir_manifests(
-                Path("vsr_models/splits/splits.csv"),
+                Path("vsr/splits/splits.csv"),
                 Path("data/metadata/visual_quality_policy_analysis_v2.csv"),
                 Path(tmp) / "manifests",
             )
@@ -157,14 +157,14 @@ class TestVisualCleaningExperiments(unittest.TestCase):
         self.assertIn("faltan clips", resumen["warning"])
 
     def test_notebook_no_define_funciones_largas(self):
-        notebook = Path("evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb")
+        notebook = Path("vsr/evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb")
         data = json.loads(notebook.read_text(encoding="utf-8"))
         code_cells = [cell for cell in data["cells"] if cell.get("cell_type") == "code"]
         self.assertLessEqual(len(data["cells"]), 15)
         self.assertFalse(any("def " in "".join(cell.get("source", [])) for cell in code_cells))
 
     def test_notebook_no_ejecuta_entrenamiento(self):
-        notebook = Path("evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb")
+        notebook = Path("vsr/evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb")
         data = json.loads(notebook.read_text(encoding="utf-8"))
         code = "\n".join(
             "".join(cell.get("source", []))
@@ -172,7 +172,7 @@ class TestVisualCleaningExperiments(unittest.TestCase):
             if cell.get("cell_type") == "code"
         )
 
-        self.assertNotIn("vsr_models.src.fine_tune", code)
+        self.assertNotIn("vsr.src.fine_tune", code)
         self.assertNotIn("subprocess", code)
         self.assertNotIn("get_ipython().system", code)
         self.assertNotIn("!python", code)

@@ -7,7 +7,7 @@ mean-face 96×96) al VideoTransform del modelo. Sin tocar pesos.
 
 | Modelo | Pretrain | Tokenizer | %WER | %CER | Harness |
 |---|---|---|---|---|---|
-| mpc001 CMU-MOSEAS ES | 16h (CMU-MOSEAS) | char 37 + RNNLM | 71.50 ± 1.70 | 46.88 ± 1.24 | `multilingual-vsr/scripts/zeroshot.py` (env `mvsr`) |
+| mpc001 CMU-MOSEAS ES | 16h (CMU-MOSEAS) | char 37 + RNNLM | 71.50 ± 1.70 | 46.88 ± 1.24 | `vsr/mpc001/scripts/zeroshot.py` (env `mvsr`) |
 | **ViSpeR** ⭐⭐ | **794h español** | SPM 21k, token `<es>` | **45.22 ± 1.90** | **26.98 ± 1.27** | `~/Desktop/visper/visper_zeroshot.py` (env `visper`) |
 
 ## Detalles

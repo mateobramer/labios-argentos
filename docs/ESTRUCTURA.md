@@ -19,11 +19,11 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 4 · CURACIÓN       cleaning/visual_quality/                 detector de clips malos (cara, calidad)
         │            dataset/<t>/  (solo los `keep`)  +  data/metadata/*.csv (manifests)
         ▼
-5 · ENTRENAMIENTO  vsr_models/ (50M Gimeno) · demo/calibracion/ (LoRA personal ViSpeR)
+5 · ENTRENAMIENTO  vsr/ (50M Gimeno) · demo/calibracion/ (LoRA personal ViSpeR)
         │            corre en VMs L4 spot de GCP; pesos a modelos/ (no versionados)
         ▼
-6 · EVALUACIÓN     evaluation/ + demo/score_selftest.py
-        │            WER/CER sobre splits congelados (vsr_models/splits/) — ledger en docs/RESULTS.md
+6 · EVALUACIÓN     vsr/evaluation/ + demo/score_selftest.py
+        │            WER/CER sobre splits congelados (vsr/splits/) — ledger en docs/RESULTS.md
         ▼
 7 · DEMO           demo/demo_web.py               cámara → VAD visual → ViSpeR → [qwen] → subtítulos
 ```
@@ -37,11 +37,11 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `preprocessing/` | 3 | `src/preprocesar.py`: landmarks → crop 96×96 → `.npz` |
 | `cleaning/visual_quality/` | 4 | detección de clips malos, auditorías de calidad visual |
 | `cleaning/transcript_segmentation/` | 2b | re-segmentado oracional de transcripciones (sparse, no siempre materializado) |
-| `vsr_models/` | 5 | `src/fine_tune.py` (50M), splits congelados, configs |
-| `curriculum/` | 5b | procesamiento de ViSpeR-es (JSON oficiales → npz) para currículum |
-| `multilingual-vsr/` | 5c | notas/scripts sobre la base multilingüe mpc001 (el clon externo no se versiona) |
-| `new-data-fine-tuning/` | 5 (hist.) | corrida completa de la ronda 2 → ft03–ft07; docs de esa fase |
-| `evaluation/` | 6 | evaluación contra test-658, parches al repo de Gimeno |
+| `vsr/` | 5 | `src/fine_tune.py` (50M), splits congelados, configs |
+| `vsr/curriculum/` | 5b | procesamiento de ViSpeR-es (JSON oficiales → npz) para currículum |
+| `vsr/mpc001/` | 5c | notas/scripts sobre la base multilingüe mpc001 (el clon externo no se versiona) |
+| `vsr/historical/ronda2/` | 5 (hist.) | corrida completa de la ronda 2 → ft03–ft07; docs de esa fase |
+| `vsr/evaluation/` | 6 | evaluación contra test-658, parches al repo de Gimeno |
 | `demo/` | 7 | demo web + push-to-talk + streaming, `infer_server.py`, calibración |
 | `data_discovery/` | 1b | búsqueda/score de fuentes nuevas (portado de `feature/full-clean-release`) |
 | `data_release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |

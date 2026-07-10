@@ -17,7 +17,7 @@ son buenos datos antes de pasarlos al preprocesamiento visual o al entrenamiento
 ## Que no va aca
 
 - deteccion de rostro, landmarks o recorte de labios: eso va en `preprocessing/`;
-- entrenamiento de modelos VSR: eso va en `vsr_models/` si se agrega al repo;
+- entrenamiento de modelos VSR: eso va en `vsr/` si se agrega al repo;
 - logica de LLM/correccion en tiempo real: eso va en `realtime/` si se agrega al repo.
 
 ## Detector de clips malos (`src/detectar_clips_malos.py`)
@@ -90,7 +90,7 @@ Uso:
 
 ```bash
 python -m cleaning.visual_quality.src.visual_quality_audit \
-  --split vsr_models/splits/splits.csv \
+  --split vsr/splits/splits.csv \
   --output data/metadata/visual_quality_manifest_smoke.csv \
   --keep-output data/metadata/visual_quality_keep_manifest_smoke.csv \
   --keep-review-output data/metadata/visual_quality_keep_review_manifest_smoke.csv \
@@ -138,7 +138,7 @@ Previews opcionales:
 
 ```bash
 python -m cleaning.visual_quality.src.visual_quality_audit \
-  --split vsr_models/splits/splits.csv \
+  --split vsr/splits/splits.csv \
   --output data/metadata/visual_quality_manifest.csv \
   --sample-strategy stratified \
   --clips-per-source 2 \
@@ -154,7 +154,7 @@ Antes de interpretar resultados para VSR, correr:
 
 ```bash
 python -m cleaning.visual_quality.src.visual_quality_audit \
-  --split vsr_models/splits/splits.csv \
+  --split vsr/splits/splits.csv \
   --preflight-only
 ```
 
@@ -184,7 +184,7 @@ Despues exigir cobertura de ROI:
 
 ```bash
 python -m cleaning.visual_quality.src.visual_quality_audit \
-  --split vsr_models/splits/splits.csv \
+  --split vsr/splits/splits.csv \
   --require-roi \
   --min-roi-coverage 0.8 \
   --output data/metadata/visual_quality_manifest_full_roi_sanity.csv \
@@ -285,7 +285,7 @@ source_id,clip,split,reference,hypothesis,wer,cer
 
 No hay todavia un CLI directo que tome `visual_quality_vsr_eval_sample.csv` y ejecute el
 modelo v1. El flujo existente de Gimeno evalua un `scenario` exportado al layout de
-`evaluation/src/exportar_para_gimeno.py` y luego corre, en la VM/env `vsr-factors`:
+`vsr/evaluation/src/exportar_para_gimeno.py` y luego corre, en la VM/env `vsr-factors`:
 
 ```bash
 CKPT=~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth
@@ -305,7 +305,7 @@ Para validar infraestructura local sin sacar conclusiones de dataset:
 
 ```bash
 python -m cleaning.visual_quality.src.visual_quality_audit \
-  --split vsr_models/splits/splits.csv \
+  --split vsr/splits/splits.csv \
   --sample-strategy stratified \
   --clips-per-source 2 \
   --max-clips 60 \
@@ -400,7 +400,7 @@ Exportar un prompt para un LLM grande:
 ```bash
 python -m cleaning.visual_quality.src.llm_text_corrections \
   --export-prompt \
-  --split vsr_models/splits/val.csv \
+  --split vsr/splits/val.csv \
   --source-id "CHARLA SOBRE EL AMOR Y EL DESAMOR" \
   --prompt-output cleaning/visual_quality/outputs/llm_text_corrections/charla_amor_desamor/gpt_clip_by_clip_prompt.md
 ```
@@ -409,7 +409,7 @@ Validar la respuesta JSON del LLM:
 
 ```bash
 python -m cleaning.visual_quality.src.llm_text_corrections \
-  --split vsr_models/splits/val.csv \
+  --split vsr/splits/val.csv \
   --suggestions cleaning/visual_quality/outputs/llm_text_corrections/charla_amor_desamor/llm_suggestions.raw.json \
   --output-dir cleaning/visual_quality/outputs/llm_text_corrections/charla_amor_desamor
 ```

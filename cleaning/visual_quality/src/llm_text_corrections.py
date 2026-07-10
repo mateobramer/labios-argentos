@@ -380,7 +380,7 @@ def _clip_number(clip_id: str) -> int:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Valida correcciones textuales sugeridas por LLM.")
     parser.add_argument("--export-prompt", action="store_true")
-    parser.add_argument("--split", default="vsr_models/splits/val.csv")
+    parser.add_argument("--split", default="vsr/splits/val.csv")
     parser.add_argument("--source-id")
     parser.add_argument("--prompt-output")
     parser.add_argument("--suggestions")

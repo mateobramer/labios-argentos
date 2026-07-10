@@ -55,7 +55,7 @@ Para transcript cleaning, el bucket principal alcanza solo parcialmente:
 - no tiene URL/canal/timestamps por clip dentro de `lip_rois/`;
 - `config/candidatos_v2_FINAL.csv` aporta 32 URLs candidatas, pero no una metadata completa por clip.
 
-`curriculum_visper/` tiene datos parecidos en volumen mucho mayor, pero no trae split, licencia, URLs ni procedencia suficiente en el bucket. Tratarlo como curriculum/pretraining externo o sensible hasta documentar origen y permisos.
+`curriculum_visper/` tiene datos parecidos en volumen mucho mayor, pero no trae split, licencia, URLs ni procedencia suficiente en el bucket. Tratarlo como vsr/curriculum/pretraining externo o sensible hasta documentar origen y permisos.
 
 ## Bucket separado observado
 

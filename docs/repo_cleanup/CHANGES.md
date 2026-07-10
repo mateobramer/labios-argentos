@@ -21,8 +21,8 @@ se conservó intacta. Cambios = **solo agregados** + 8 archivos modificados:
 (nuevo) data_release/             ~121 archivos — portado parcial (<1 MB c/u)
 (nuevo) cleaning/gpt_clean_v1/    14 archivos — portado parcial
 (nuevo) data_inventory/             3 archivos — portado completo
-(nuevo) demo/README.md, curriculum/README.md, multilingual-vsr/README.md,
-        new-data-fine-tuning/README.md, Survey/README.md
+(nuevo) demo/README.md, vsr/curriculum/README.md, vsr/mpc001/README.md,
+        vsr/historical/ronda2/README.md, Survey/README.md
 (nuevo) docs/{PROJECT_SCOPE,RESEARCH_TP,ENGINEERING_TP,DATA_AND_ARTIFACTS,NEXT_STEPS}.md
 (nuevo) docs/repo_cleanup/{AUDIT,MIGRATION_PLAN,CHANGES,VALIDATION}.md
 (mod)   README.md, docs/ESTRUCTURA.md    — enlaces a lo nuevo, ledger declarado canónico
@@ -41,7 +41,7 @@ Ninguno (`git mv`: no se usó — no hizo falta mover nada).
 ## Archivos archivados
 
 Ninguno nuevo (lo histórico ya estaba señalizado: `docs/archivo/`,
-`new-data-fine-tuning/` — este último ahora tiene README que lo marca como histórico).
+`vsr/historical/ronda2/` — este último ahora tiene README que lo marca como histórico).
 
 ## Archivos eliminados
 

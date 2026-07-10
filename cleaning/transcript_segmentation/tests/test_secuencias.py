@@ -23,7 +23,7 @@ class TestSecuencias(unittest.TestCase):
         self.assertIn("late_waits", summary)
 
     def test_export_annotation_packet(self):
-        clips = load_clips_from_split("vsr_models/splits/val.csv", limit=3)
+        clips = load_clips_from_split("vsr/splits/val.csv", limit=3)
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / "packet.md"
             export_llm_annotation_packet(clips, source_id="demo", output_path=output)
@@ -34,7 +34,7 @@ class TestSecuencias(unittest.TestCase):
 
     def test_merge_annotation_with_clips(self):
         clips = load_clips_from_split(
-            "vsr_models/splits/val.csv",
+            "vsr/splits/val.csv",
             source_id="CHARLA SOBRE EL AMOR Y EL DESAMOR",
             limit=2,
         )

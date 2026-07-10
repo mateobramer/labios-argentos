@@ -133,7 +133,7 @@ def _dedupe_cases(cases: list[dict[str, object]]) -> list[dict[str, object]]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Genera casos JSONL de cierre desde un split CSV.")
-    parser.add_argument("--split", required=True, help="Ruta a vsr_models/splits/{train,val,test}.csv")
+    parser.add_argument("--split", required=True, help="Ruta a vsr/splits/{train,val,test}.csv")
     parser.add_argument("--limit", type=int, default=30)
     parser.add_argument("--output", required=True)
     args = parser.parse_args()

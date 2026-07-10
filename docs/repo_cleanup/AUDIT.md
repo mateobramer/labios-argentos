@@ -16,17 +16,17 @@ en el tree de main), lectura de docs núcleo, greps de paths/buckets/imports,
 |---|---|---|---|
 | `data/` | 2.743 MB (17.182 f) | dataset generado: `clips/` (mp4+txt, ES el dataset), `videos/` (9 crudos), `metadata/` (manifests), `corpus/` | **canónico**, intencional (ver §6) |
 | `dataset/` | 248 MB (11.901 f) | clips `keep` post-curación (mp4+txt por video fuente) | canónico |
-| `evaluation/` | 22.6 MB | eval WER/CER contra test-658, parches Gimeno, notebooks 06-07 | canónico |
+| `vsr/evaluation/` | 22.6 MB | eval WER/CER contra test-658, parches Gimeno, notebooks 06-07 | canónico |
 | `cleaning/visual_quality/` | 21.1 MB | detección de clips malos, notebooks 01-05 y 08 | canónico |
-| `new-data-fine-tuning/` | 7 MB | corrida histórica ronda 2 (ft03–ft07) | **histórico**, sin README |
+| `vsr/historical/ronda2/` | 7 MB | corrida histórica ronda 2 (ft03–ft07) | **histórico**, sin README |
 | `preprocessing/` | 3.7 MB | clips → ROI boca 96×96 (`.npz`), notebook 09 | canónico |
-| `vsr_models/` | 2.9 MB | fine-tuning 50M Gimeno + **splits congelados** | canónico |
+| `vsr/` | 2.9 MB | fine-tuning 50M Gimeno + **splits congelados** | canónico |
 | `cleaning/transcript_segmentation/` | 0.4 MB | re-segmentado oracional, notebooks 01-03 propios, tests | canónico |
 | `demo/` | 0.1 MB | demo web/ptt/stream + infer_server + calibración | canónico, sin README |
 | `docs/` | 0.1 MB | SPEC, ESTRUCTURA, RESULTS (ledger), PLAN_CURRICULUM, archivo/ | canónico |
 | `experiments/` | 0.1 MB | índice + 10 docs de experimentos con tabla maestra | **fuente de verdad de resultados** |
-| `multilingual-vsr/` | ~0 | notas/scripts base mpc001 (clon externo no versionado) | canónico, sin README |
-| `curriculum/` | ~0 | procesamiento ViSpeR-es para currículum | pausado (ver PLAN_CURRICULUM), sin README |
+| `vsr/mpc001/` | ~0 | notas/scripts base mpc001 (clon externo no versionado) | canónico, sin README |
+| `vsr/curriculum/` | ~0 | procesamiento ViSpeR-es para currículum | pausado (ver PLAN_CURRICULUM), sin README |
 | `claude-videos/` | ~0 | CSVs de fuentes curadas (gate 0) | canónico |
 | `Survey/` | 0.1 MB | 1 PDF de paper de referencia | histórico, sin README |
 | raíz | — | README, AGENTS, CLAUDE, TO-DO, descargar_procesar.py, requirements.txt, .gitignore | canónico |
@@ -56,7 +56,7 @@ Patrón consistente en `demo/*.py`:
   y checkpoint `modelos/ft05_espnet1.pth` con path absoluto.
 - Los knobs de runtime YA usan env vars (`VSR_QWEN`, `VSR_BEAM`, `VSR_QMODEL`) —
   el patrón para paths es extenderlo, no inventar otro sistema.
-- Scripts de GCP (`new-data-fine-tuning/scripts/*.sh`, `demo/calibracion/*.sh`)
+- Scripts de GCP (`vsr/historical/ronda2/scripts/*.sh`, `demo/calibracion/*.sh`)
   tienen paths de VM y bucket: son templates de startup, se documentan pero no se tocan.
 
 ## 4. Referencias a buckets (3 buckets distintos)
@@ -77,7 +77,7 @@ No hay credenciales ni secretos versionados (verificado por grep; `.env`/keys au
 | `feature/visual-audit-eval-prep` | +0 | — (mergeada, PR #24) |
 | `fix/llm-correction-review` | +0 | — (mergeada) |
 | `realtime/demo-kiosko` | +0 | — (mergeada) |
-| `vsr_models/bigger-finetuning` | +0 | — (mergeada, PR #26 vía calibracion) |
+| `vsr/bigger-finetuning` | +0 | — (mergeada, PR #26 vía calibracion) |
 | `feature/data-discovery-v1` | +3 | contenida al 100% en full-clean-release |
 | `feature/clean-bucket-v1` | +4 | contenida al 100% en full-clean-release |
 | `feature/full-clean-release` (PR #25 abierta) | +23/−12 | **SÍ — ver abajo** |
@@ -128,7 +128,7 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 ## 7. Datos versionados vs externos
 
 - **Versionado**: código, clips mp4+txt (`data/clips/`, `dataset/`), corpus, manifests
-  (`data/metadata/`), splits congelados (`vsr_models/splits/`), docs, experimentos.
+  (`data/metadata/`), splits congelados (`vsr/splits/`), docs, experimentos.
 - **Solo local**: `data/videos/` crudos (regenerables), ROIs `.npz`, pesos `.pth`,
   grabaciones personales (`~/vsr_personal/`), modelos calibrados (`modelos/personal/`).
 - **Bucket(s)**: pesos de modelos, dataset de release limpio, resultados de VMs.
@@ -148,7 +148,7 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 
 ## 9. Archivos históricos pero útiles (se preservan)
 
-- `new-data-fine-tuning/` completo (corrida ronda 2, evidencia de ft03–ft07).
+- `vsr/historical/ronda2/` completo (corrida ronda 2, evidencia de ft03–ft07).
 - `docs/archivo/HANDOFF_ROIS_FINETUNE.md`.
 - `docs/PLAN_CURRICULUM.md` (plan pausado, con contexto).
 - `Survey/paper-3.pdf` (referencia bibliográfica).
@@ -166,5 +166,5 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 - `python3 -m compileall` sobre todos los `.py` materializados: **exit 0** (compilan).
 - grep de secretos (`.env`, tokens, keys): sin hallazgos.
 - Carpetas vacías: ninguna.
-- READMEs faltantes: `demo/`, `curriculum/`, `multilingual-vsr/`, `new-data-fine-tuning/`,
+- READMEs faltantes: `demo/`, `vsr/curriculum/`, `vsr/mpc001/`, `vsr/historical/ronda2/`,
   `Survey/` (se agregan en esta limpieza).

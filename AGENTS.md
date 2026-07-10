@@ -20,7 +20,7 @@ Empezar por el [`README.md`](README.md) (visión de producto y resultados) y
   es el ledger vivo. **Antes de re-medir algo, fijate si ya está medido.**
 - **Decisiones de diseño de la demo**: [`docs/SPEC.md`](docs/SPEC.md) — cada parámetro
   (beam, MPS, VAD, qwen) está justificado con su experimento.
-- **Splits congelados**: `vsr_models/splits/` (test-658 y val fijos desde ft03). Una
+- **Splits congelados**: `vsr/splits/` (test-658 y val fijos desde ft03). Una
   comparación solo vale si usa exactamente estos splits y la misma normalización de
   texto: minúsculas, sin acentos (**ñ preservada**), sin puntuación.
 

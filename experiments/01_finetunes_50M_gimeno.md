@@ -1,7 +1,7 @@
 # 01 — Fine-tunes del modelo 50M (Gimeno / LIP-RTVE)
 
 **Repo/receta:** `github.com/david-gimeno/evaluating-end2end-spanish-lipreading` (espnet2). Entrenador
-propio `vsr_models/src/fine_tune.py` (reusa transforms/tokenizer/collate de Gimeno + loop propio).
+propio `vsr/src/fine_tune.py` (reusa transforms/tokenizer/collate de Gimeno + loop propio).
 **Base:** `vsr-liprtve-si.pth` (LIP-RTVE speaker-independent, TV española ~13h) — del bundle Zenodo
 (record `17443293`, ~8.5GB). Entorno conda `vsr-factors`. Normalización: `Normalise(0,250)` →
 `Normalise(0.491,0.166)` → `CenterCrop(88)`. Seed 1234.

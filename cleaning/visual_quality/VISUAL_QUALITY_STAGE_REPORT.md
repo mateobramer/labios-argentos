@@ -15,7 +15,7 @@ La entrada real de entrenamiento/evaluacion son clips con texto alineado y ROIs 
 96x96 en `.npz`. El split canonico vive en:
 
 ```text
-vsr_models/splits/splits.csv
+vsr/splits/splits.csv
 ```
 
 Cada fila apunta a:
@@ -102,7 +102,7 @@ scenario exportado.
 El flujo completo esta documentado en:
 
 ```text
-vsr_models/RUNBOOK_visual_quality_eval.md
+vsr/RUNBOOK_visual_quality_eval.md
 ```
 
 Comando de export local o en VM:

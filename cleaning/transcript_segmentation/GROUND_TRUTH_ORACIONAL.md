@@ -35,7 +35,7 @@ Para cada fuente o video, usar JSON valido:
 
 Campos:
 
-- `source_id`: mismo nombre de fuente que aparece en `vsr_models/splits/*.csv`.
+- `source_id`: mismo nombre de fuente que aparece en `vsr/splits/*.csv`.
 - `sentence_id`: id estable y ordenado: `s001`, `s002`, etc.
 - `text`: oracion completa. Se permite agregar puntuacion, pero no informacion nueva.
 - `start_clip`: primer clip que aporta texto a la oracion.
@@ -50,7 +50,7 @@ Copiar el archivo exportado por:
 
 ```bash
 python -m cleaning.transcript_segmentation.src.secuencias export-annotation \
-  --split vsr_models/splits/val.csv \
+  --split vsr/splits/val.csv \
   --source-id "NOMBRE_EXACTO_DE_LA_FUENTE" \
   --limit 40 \
   --output cleaning/transcript_segmentation/outputs/annotation/NOMBRE_FUENTE.md

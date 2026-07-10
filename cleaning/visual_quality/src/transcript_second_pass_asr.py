@@ -12,7 +12,7 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SPLITS = REPO_ROOT / "vsr_models" / "splits" / "splits.csv"
+DEFAULT_SPLITS = REPO_ROOT / "vsr" / "splits" / "splits.csv"
 DEFAULT_OUTPUT = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr" / "transcript_second_pass_asr.csv"
 DEFAULT_CANDIDATES = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr" / "transcript_cleaning_candidates.csv"
 

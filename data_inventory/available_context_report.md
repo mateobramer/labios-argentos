@@ -91,7 +91,7 @@ Contexto disponible:
 
 Sirve para:
 
-- posible curriculum/pretraining externo, sujeto a licencia y procedencia;
+- posible vsr/curriculum/pretraining externo, sujeto a licencia y procedencia;
 - revision de clips puntuales si se confirma origen.
 
 No usar mezclado con argentino propio sin:

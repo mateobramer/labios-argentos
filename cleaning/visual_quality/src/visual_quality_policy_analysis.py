@@ -388,8 +388,8 @@ def escribir_candidatos(rows: list[dict[str, Any]], output_path: str | Path, *, 
 def buscar_predicciones_joinables() -> list[dict[str, Any]]:
     candidates: list[dict[str, Any]] = []
     roots = [
-        RAIZ_REPO / "vsr_models" / "runs" / "_shared",
-        RAIZ_REPO / "vsr_models" / "runs",
+        RAIZ_REPO / "vsr" / "runs" / "_shared",
+        RAIZ_REPO / "vsr" / "runs",
         RAIZ_REPO / "evaluation" / "outputs",
         RAIZ_REPO / "data" / "metadata",
     ]

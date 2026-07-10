@@ -1,7 +1,7 @@
 # Correccion asistida clip por clip
 
 Fuente: CHARLA SOBRE EL AMOR Y EL DESAMOR
-Split de referencia: vsr_models/splits/val.csv
+Split de referencia: vsr/splits/val.csv
 Cantidad de clips: 233
 URL de referencia: https://www.youtube.com/watch?v=_GTu8K8a_Jw
 

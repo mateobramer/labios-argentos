@@ -106,11 +106,11 @@ donar pares clip+texto al dataset (quedan locales, no se versionan).
 | `preprocessing/` | Etapa 2: clips → ROIs de boca 96×96 (`.npz`) |
 | `cleaning/visual_quality/` | Etapa 3: detección y descarte de clips malos |
 | `claude-videos/` | Selección curada de fuentes (gate 0 del dataset) |
-| `vsr_models/` | Fine-tuning del modelo 50M (Gimeno) + splits congelados |
-| `evaluation/` | Evaluación WER/CER contra test-658 |
-| `curriculum/` | Procesamiento de datos ViSpeR-es para currículum de pre-entrenamiento |
-| `multilingual-vsr/` | Notas y scripts sobre la base multilingüe (el clon del repo externo no se versiona) |
-| `new-data-fine-tuning/` | Corrida histórica de la ronda 2 de datos (ft03–ft07) |
+| `vsr/` | Fine-tuning del modelo 50M (Gimeno) + splits congelados |
+| `vsr/evaluation/` | Evaluación WER/CER contra test-658 |
+| `vsr/curriculum/` | Procesamiento de datos ViSpeR-es para currículum de pre-entrenamiento |
+| `vsr/mpc001/` | Notas y scripts sobre la base multilingüe (el clon del repo externo no se versiona) |
+| `vsr/historical/ronda2/` | Corrida histórica de la ronda 2 de datos (ft03–ft07) |
 | `data/` | Dataset generado (clips + corpus versionados; videos crudos y `.npz` no) |
 | `data_discovery/` · `data_release/` · `cleaning/gpt_clean_v1/` · `data_inventory/` | Release limpio v1 del dataset (discovery de fuentes, manifests, limpieza GPT, reportes) — portado de la rama `feature/full-clean-release`; tag [`dataset-clean-v1`](docs/DATA_AND_ARTIFACTS.md) |
 

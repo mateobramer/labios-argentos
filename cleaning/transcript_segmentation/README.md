@@ -135,7 +135,7 @@ Tambien se pueden generar casos livianos desde los splits del proyecto, sin carg
 
 ```bash
 python -m cleaning.transcript_segmentation.src.dataset_cierre \
-  --split vsr_models/splits/val.csv \
+  --split vsr/splits/val.csv \
   --limit 30 \
   --output cleaning/transcript_segmentation/outputs/eval/cierre_val.jsonl
 ```
@@ -166,7 +166,7 @@ Exportar clips ordenados para anotarlos con un LLM potente o revision humana:
 
 ```bash
 python -m cleaning.transcript_segmentation.src.secuencias export-annotation \
-  --split vsr_models/splits/val.csv \
+  --split vsr/splits/val.csv \
   --source-id "NOMBRE_EXACTO_DE_LA_FUENTE" \
   --limit 40 \
   --output cleaning/transcript_segmentation/outputs/annotation/fuente.md
@@ -319,6 +319,6 @@ python -m unittest discover -s cleaning/transcript_segmentation/tests
 1. Probar y medir el provider Ollama/Qwen con salida JSON estricta.
 2. Revisar/ampliar el ground truth de `CHARLA SOBRE EL AMOR Y EL DESAMOR`.
 3. Evaluar cierre causal sobre esa fuente y comparar heuristica vs LLM local/API.
-4. Evaluar offline contra `evaluation/outputs/*/test.inf`.
+4. Evaluar offline contra `vsr/evaluation/outputs/*/test.inf`.
 5. Integrar el corrector real de Mateo detras de `CorrectionProvider`.
 6. Convertir feedback validado en dataset revisable para evaluacion o fine-tuning.

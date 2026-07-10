@@ -16,7 +16,7 @@ import numpy as np
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SPLITS = REPO_ROOT / "vsr_models" / "splits" / "splits.csv"
+DEFAULT_SPLITS = REPO_ROOT / "vsr" / "splits" / "splits.csv"
 DEFAULT_OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr"
 VARIANT = "lower_face_resized96"
 _WORKER_LANDMARKER = None

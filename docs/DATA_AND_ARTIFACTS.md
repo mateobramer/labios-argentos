@@ -10,7 +10,7 @@ obtener lo que falta, y qué hacer cuando un artefacto no está.
 | **Clips alineados** | mp4 + txt por fuente (`data/clips/`, `dataset/`) | este repo (main) | ✅ (~2.9 GB — ver "política" abajo) |
 | **Corpus / transcripciones** | cache de Whisper por fuente (`data/corpus/`) | este repo | ✅ |
 | **Manifests** | CSVs de estado del dataset (`data/metadata/`) | este repo | ✅ |
-| **Splits congelados** | `vsr_models/splits/` — test-658/val, fijos desde ft03 | este repo | ✅ **no tocar** |
+| **Splits congelados** | `vsr/splits/` — test-658/val, fijos desde ft03 | este repo | ✅ **no tocar** |
 | **Videos crudos** | fuente completa de YouTube (`data/videos/`) | YouTube (regenerables con `descargar_procesar.py`) | ❌ gitignored |
 | **ROIs `.npz`** | crops de boca 96×96 | regenerables con `preprocessing/` | ❌ gitignored |
 | **Pesos base ViSpeR** | `visper_vsr_base.pth` (1.1 GB) | repo ViSpeR/TII + copia en bucket | ❌ |
@@ -68,7 +68,7 @@ Paths y knobs de la demo (defaults = comportamiento actual; ver `.env.example`):
 | `VSR_CKPT` | (vacío = pesos base) | state_dict alternativo (modelo personal) |
 | `VSR_BEAM` / `VSR_QWEN` / `VSR_QMODEL` / `VSR_MPS` | 3 / off / qwen3:4b-instruct… / auto | knobs de inferencia ([SPEC §3](SPEC.md)) |
 
-Los scripts de GCP (`demo/calibracion/*.sh`, `new-data-fine-tuning/scripts/*.sh`) son
+Los scripts de GCP (`demo/calibracion/*.sh`, `vsr/historical/ronda2/scripts/*.sh`) son
 templates de startup de VM con sus propios paths internos de VM — no usan estas variables.
 
 ## Cómo montar un entorno desde cero (resumen)

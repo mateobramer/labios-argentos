@@ -94,15 +94,15 @@ que está muerto/403 en scripts viejos):
 
 ### 2.3 Scripts que viven en el REPO (no en un bucket)
 
-El harness de eval y el setup están **en el repo `labios-argentos`** bajo `evaluation/`
+El harness de eval y el setup están **en el repo `labios-argentos`** bajo `vsr/evaluation/`
 (`setup_modelo_gimeno.sh`, `src/exportar_para_gimeno.py`, `gimeno_patches/aplicar_parches.py`) y el
-trainer en `vsr_models/src/fine_tune.py`. **Si al clonar/pullear no aparece `evaluation/`**, restaurá
+trainer en `vsr/src/fine_tune.py`. **Si al clonar/pullear no aparece `vsr/evaluation/`**, restaurá
 esos archivos desde git history (estuvieron en el commit `6be9bd55`):
 
 ```bash
-git show 6be9bd55:evaluation/setup_modelo_gimeno.sh          > evaluation/setup_modelo_gimeno.sh
-git show 6be9bd55:evaluation/src/exportar_para_gimeno.py     > evaluation/src/exportar_para_gimeno.py
-git show 6be9bd55:evaluation/gimeno_patches/aplicar_parches.py > evaluation/gimeno_patches/aplicar_parches.py
+git show 6be9bd55:vsr/evaluation/setup_modelo_gimeno.sh          > vsr/evaluation/setup_modelo_gimeno.sh
+git show 6be9bd55:vsr/evaluation/src/exportar_para_gimeno.py     > vsr/evaluation/src/exportar_para_gimeno.py
+git show 6be9bd55:vsr/evaluation/gimeno_patches/aplicar_parches.py > vsr/evaluation/gimeno_patches/aplicar_parches.py
 ```
 
 > **Sin fuga de datos (verificado):** los hablantes de test/val son `f02,f05,f15,f22,f37`; los clips
@@ -213,7 +213,7 @@ entró al train.
 
 **Bajá los splits pre-armados** (de `gs://labios-argentos-vsr-dataset/splits/`):
 ```bash
-gcloud storage cp -r gs://labios-argentos-vsr-dataset/splits/ vsr_models/splits/
+gcloud storage cp -r gs://labios-argentos-vsr-dataset/splits/ vsr/splits/
 # quedan: splits.csv (maestro), train.csv (8067), val.csv (466), test.csv (658)
 ```
 
@@ -246,7 +246,7 @@ existan en `rois_root` (el trainer aborta si falta alguno).
 
 **Setup del entorno (un solo comando, self-contained):**
 ```bash
-bash evaluation/setup_modelo_gimeno.sh
+bash vsr/evaluation/setup_modelo_gimeno.sh
 ```
 Ese script deja TODO listo (verificado, está en el repo): clona el repo de Gimeno, baja los
 checkpoints de **Zenodo record `17443293`** (~8.5 GB, con verificación md5 `c8adb97d…`), crea el env
@@ -265,30 +265,30 @@ gcloud storage cp -r gs://labios-argentos-vsr-dataset/new_discovery/rois_npz/* $
 **SMOKE primero** (valida 1 batch, no quema GPU si la config está mal):
 
 ```bash
-python -m vsr_models.src.fine_tune \
+python -m vsr.src.fine_tune \
   --gimeno-repo ~/evaluating-end2end-spanish-lipreading \
   --vsr-config  ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr    "$(ls ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth | head -1)" \
   --rois-root   ~/labios-argentos/data/processed/lip_rois \
-  --out         vsr_models/runs/ft09 \
+  --out         vsr/runs/ft09 \
   --smoke
 ```
 
 **Entrenamiento ft09 (v1 full-FT — SIN `--freeze`, SIN `--augment`):**
 
 ```bash
-python -m vsr_models.src.fine_tune \
+python -m vsr.src.fine_tune \
   --gimeno-repo ~/evaluating-end2end-spanish-lipreading \
   --vsr-config  ~/evaluating-end2end-spanish-lipreading/configs/VSR/vsr_conv3dresnet18_conformer_ctc+transformer.yaml \
   --load-vsr    "$(ls ~/zenodo/extracted/Factors_*/VSR/vsr-liprtve-si.pth | head -1)" \
   --rois-root   ~/labios-argentos/data/processed/lip_rois \
-  --out         vsr_models/runs/ft09 \
+  --out         vsr/runs/ft09 \
   --lr 1e-4 --batch 1 --accum 8 --max-frames 400 --paciencia 5 --seed 1234
 ```
 
-Detalles que YA están en `vsr_models/src/fine_tune.py` (no tocar):
+Detalles que YA están en `vsr/src/fine_tune.py` (no tocar):
 - **Corré desde la raíz del repo** (`cd ~/labios-argentos`). El trainer lee los splits de
-  `vsr_models/splits/` **hardcodeado** (no hay flag `--splits-dir`), así que ahí tienen que estar los
+  `vsr/splits/` **hardcodeado** (no hay flag `--splits-dir`), así que ahí tienen que estar los
   `{train,val,test}.csv` que bajaste en §4.
 - **Usá el root único `~/labios-argentos/data/processed/lip_rois`** para los ROIs (viejos + nuevos):
   es el mismo que usó `train_ab.sh`, y el exportador de eval (§6) lee de esa misma ruta, así que las
@@ -309,7 +309,7 @@ Detalles que YA están en `vsr_models/src/fine_tune.py` (no tocar):
 
 Evaluá con **EXACTAMENTE el mismo harness que produjo el 70.30 de ft05b** — si no, la comparación no
 vale. Son los comandos tal cual de `config/train_ab.sh` (la corrida de ft05b/ft07). Requiere el repo
-de Gimeno **ya parcheado** (lo dejó así `setup_modelo_gimeno.sh` en §5) + los scripts `evaluation/`.
+de Gimeno **ya parcheado** (lo dejó así `setup_modelo_gimeno.sh` en §5) + los scripts `vsr/evaluation/`.
 
 **Paso 1 — exportar el test-658 al formato del evaluador de Gimeno** (las 2 fuentes de test; sus ROIs
 tienen que estar en `data/processed/lip_rois/`, o sea entre los 12.112 viejos que bajaste):
@@ -325,7 +325,7 @@ python -m evaluation.src.exportar_para_gimeno --salida ~/data --max-por-fuente 9
 ```bash
 cd ~/evaluating-end2end-spanish-lipreading
 python vsr_main.py --database Rioplatense --scenario zero-shot \
-  --load-vsr ~/labios-argentos/vsr_models/runs/ft09/best.pth \
+  --load-vsr ~/labios-argentos/vsr/runs/ft09/best.pth \
   --output-dir spanish-benchmark/rioplatense/ft09/
 # WER/CER en: spanish-benchmark/rioplatense/ft09/inference/test.wer
 ```
@@ -333,7 +333,7 @@ python vsr_main.py --database Rioplatense --scenario zero-shot \
 > `vsr_main.py` con `--database Rioplatense` y `--load-vsr` **solo existe tras aplicar los parches**
 > (`aplicar_parches.py`: registra "Rioplatense" en `MyDataset.py` con `delimiter=5` + mean/std
 > `0.491,0.166`). El repo stock NO los tiene. Si `setup_modelo_gimeno.sh` corrió, ya están aplicados;
-> si no, corré `python evaluation/gimeno_patches/aplicar_parches.py ~/evaluating-end2end-spanish-lipreading`.
+> si no, corré `python vsr/evaluation/gimeno_patches/aplicar_parches.py ~/evaluating-end2end-spanish-lipreading`.
 > La métrica (`norm()` + IC 95% bootstrap) es la misma que veníamos usando.
 
 **Comparar y registrar en `docs/RESULTS.md`:**
@@ -372,7 +372,7 @@ python vsr_main.py --database Rioplatense --scenario zero-shot \
 de Martín** tienen que estar subidas antes de armar `train.csv`. La extracción de ROIs (Parte 1) es
 independiente del texto y se puede arrancar ya.
 
-- [ ] Verificar que el repo tenga `evaluation/` y `vsr_models/src/fine_tune.py`; si falta `evaluation/`, restaurarlo desde git (§2.3).
+- [ ] Verificar que el repo tenga `vsr/evaluation/` y `vsr/src/fine_tune.py`; si falta `vsr/evaluation/`, restaurarlo desde git (§2.3).
 - [ ] Clonar repo mpc001 en `~/vsr_mpc001` + instalar entorno RetinaFace (`ibug`) en la L4 (§3.1-3.2).
 - [ ] Bajar los clips nuevos de `gs://labios-argentos-vsr-dataset/new_discovery/clips_with_audio`.
 - [ ] PILOT 300 clips → medir yield. Bajar `threshold` a 0.5/0.6 si <40% (§3.4).
@@ -445,12 +445,12 @@ Uso:
 WHISPER_MODEL=large-v2 python descargar_procesar.py <URL_o_lista>   # ver el bloque __main__ del script
 ```
 
-### A.2 Filtro de música/alucinación — `new-data-fine-tuning/scripts/filtro_musica.py`
+### A.2 Filtro de música/alucinación — `vsr/historical/ronda2/scripts/filtro_musica.py`
 
 Whisper alucina sobre música/canto (frases repetidas). Borra clips cuyo texto tenga **baja variedad
 léxica** (`uniq < 0.35`) **o** un **3-grama repetido ≥ 3 veces**. Loguea lo descartado.
 ```bash
-python new-data-fine-tuning/scripts/filtro_musica.py "<titulo>"
+python vsr/historical/ronda2/scripts/filtro_musica.py "<titulo>"
 ```
 
 ### A.3 Preprocesamiento visual (ROIs) — `preprocessing/src/preprocesar.py`

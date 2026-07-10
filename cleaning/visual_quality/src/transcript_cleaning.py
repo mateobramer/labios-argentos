@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SPLITS = REPO_ROOT / "vsr_models" / "splits" / "splits.csv"
+DEFAULT_SPLITS = REPO_ROOT / "vsr" / "splits" / "splits.csv"
 DEFAULT_OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr"
 DEFAULT_LEXICON = REPO_ROOT / "cleaning/visual_quality" / "resources" / "entity_lexicon.csv"
 DEFAULT_ASR2 = DEFAULT_OUTPUT_BASE / "transcript_second_pass_asr.csv"

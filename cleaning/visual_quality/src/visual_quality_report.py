@@ -114,14 +114,14 @@ def buscar_predicciones_livianas() -> list[dict[str, str]]:
     """Lista archivos de predicciones livianas conocidos, sin asumir que sean joinables."""
 
     candidatos = []
-    for inf_path in sorted(RAIZ_REPO.glob("vsr_models/runs/**/*.inf")) + sorted(RAIZ_REPO.glob("evaluation/outputs/**/*.inf")):
+    for inf_path in sorted(RAIZ_REPO.glob("vsr/runs/**/*.inf")) + sorted(RAIZ_REPO.glob("vsr/evaluation/outputs/**/*.inf")):
         candidatos.append({"tipo": "inf_ref_hyp", "path": repo_rel(inf_path)})
-    for csv_path in sorted(RAIZ_REPO.glob("vsr_models/runs/**/*.csv")) + sorted(RAIZ_REPO.glob("evaluation/outputs/**/*.csv")):
+    for csv_path in sorted(RAIZ_REPO.glob("vsr/runs/**/*.csv")) + sorted(RAIZ_REPO.glob("vsr/evaluation/outputs/**/*.csv")):
         candidatos.append({"tipo": "csv_posible_metricas", "path": repo_rel(csv_path)})
     for csv_path in sorted(RAIZ_REPO.glob("data/metadata/**/*.csv")):
         if "visual_quality" not in csv_path.name:
             candidatos.append({"tipo": "csv_metadata_posible_mapeo", "path": repo_rel(csv_path)})
-    for wer_path in sorted(RAIZ_REPO.glob("vsr_models/runs/**/*.wer")) + sorted(RAIZ_REPO.glob("evaluation/outputs/**/*.wer")):
+    for wer_path in sorted(RAIZ_REPO.glob("vsr/runs/**/*.wer")) + sorted(RAIZ_REPO.glob("vsr/evaluation/outputs/**/*.wer")):
         candidatos.append({"tipo": "wer_agregado", "path": repo_rel(wer_path)})
     mapeo = RAIZ_REPO / "evaluation" / "outputs" / "mapeo.csv"
     if mapeo.exists():
