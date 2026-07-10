@@ -6,7 +6,7 @@ dónde vive cada dato (git vs bucket) en [`docs/DATA_AND_ARTIFACTS.md`](../docs/
 
 | Path | Etapa | Qué hace |
 |---|---|---|
-| `sources/` | 0 | CSVs de fuentes curadas a mano (gate 0, ex `claude-videos/`) |
+| `sources/` | 0 | CSVs de fuentes curadas a mano (gate 0) |
 | `descargar_procesar.py` | 1 | YouTube → Whisper → ffmpeg → clips alineados mp4+txt |
 | `discovery/` | 0b | búsqueda y scoring de fuentes nuevas (src+tests+outputs) |
 | `release/` | R | manifests, reportes y scripts del release limpio v1 (tag `dataset-clean-v1`) |
