@@ -20,7 +20,8 @@ import os, sys, re, json, unicodedata
 os.environ.setdefault("PYTORCH_ENABLE_MPS_FALLBACK", "1")   # ops sin kernel MPS caen a CPU (antes de importar torch)
 print("[infer] importando librerias + modelo ViSpeR (primera vez ~20-40s, NO cortar)...",
       file=sys.stderr, flush=True)
-REPO = os.path.expanduser("~/Desktop/visper")
+# Clon del repo ViSpeR (con sus pesos); VISPER_DIR lo pisa (ver .env.example).
+REPO = os.path.expanduser(os.environ.get("VISPER_DIR", "~/Desktop/visper"))
 sys.path.insert(0, REPO)
 import numpy as np, torch
 from datamodule.transforms import VideoTransform

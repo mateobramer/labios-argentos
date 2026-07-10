@@ -22,13 +22,14 @@ Teclas:  c = limpiar transcript   q = salir
 import os, sys, time, threading, subprocess, tempfile, argparse, collections, statistics
 import cv2, numpy as np
 
-REPO = os.path.expanduser("~/Desktop/labios-argentos")
+# Raiz del repo derivada de este archivo; LABIOS_REPO la pisa (ver .env.example).
+REPO = os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 from visual_preprocessing.src.preprocesar import (
     crear_landmarker, detectar_landmarks, cuatro_puntos, remuestrear_a_25fps)
 from visual_preprocessing.src.video_process import VideoProcess
 
-VISPER_PY = os.path.expanduser("~/miniconda3/envs/visper/bin/python")
+VISPER_PY = os.path.expanduser(os.environ.get("VISPER_PY", "~/miniconda3/envs/visper/bin/python"))
 INFER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "infer_server.py")
 MIN_SEG_S = 0.7      # segmentos mas cortos que esto se descartan (no vale inferir)
 PREROLL_S = 0.25     # arranque del segmento un toque antes de detectar habla

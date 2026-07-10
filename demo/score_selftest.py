@@ -30,7 +30,8 @@ def rate(pairs, lvl):
     return 100.0*te/max(tn,1)
 
 def load_ft05():
-    REPO=os.path.expanduser("~/Desktop/Visual_Speech_Recognition_for_Multiple_Languages")
+    # MVSR_REPO pisa el default; el checkpoint sale del repo (o FT05_CKPT). Ver .env.example.
+    REPO=os.path.expanduser(os.environ.get("MVSR_REPO", "~/Desktop/Visual_Speech_Recognition_for_Multiple_Languages"))
     sys.path.insert(0, REPO)
     import torch
     from pipelines.data.transforms import VideoTransform
@@ -38,14 +39,15 @@ def load_ft05():
     mc=REPO+"/benchmarks/CMUMOSEAS/models/es/CMUMOSEAS_V_ES_WER44.5/model.json"
     lm=REPO+"/benchmarks/CMUMOSEAS/language_models/es/lm_es/model.pth"
     lmc=REPO+"/benchmarks/CMUMOSEAS/language_models/es/lm_es/model.json"
-    ck=os.path.expanduser("~/Desktop/labios-argentos/modelos/ft05_espnet1.pth")
+    _root=os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ck=os.environ.get("FT05_CKPT") or os.path.join(_root, "modelos/ft05_espnet1.pth")
     m=AVSR("video",ck,mc,lm,lmc,0.0,0.1,0.4,30,"cpu"); vt=VideoTransform(speed_rate=1)
     def infer(rois):
         return norm(m.infer(vt(torch.tensor(rois))).replace("<space>"," ").replace("▁"," ").replace("<eos>",""))
     return infer
 
 def load_visper():
-    REPO=os.path.expanduser("~/Desktop/visper"); sys.path.insert(0, REPO)
+    REPO=os.path.expanduser(os.environ.get("VISPER_DIR", "~/Desktop/visper")); sys.path.insert(0, REPO)
     import torch
     from datamodule.transforms import VideoTransform
     from lightning_vsr import ModelModule

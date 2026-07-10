@@ -15,7 +15,8 @@ Al final: los npz + manifest.csv (mergeado) quedan en --out, listos para scorear
 """
 import os, sys, csv, time, argparse
 import cv2, numpy as np
-REPO = os.path.expanduser("~/Desktop/labios-argentos")
+# Raiz del repo derivada de este archivo; LABIOS_REPO la pisa (ver .env.example).
+REPO = os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 from visual_preprocessing.src.preprocesar import (
     crear_landmarker, detectar_landmarks, cuatro_puntos, remuestrear_a_25fps)
