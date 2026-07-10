@@ -1,0 +1,11 @@
+clip,texto,n_frames,npz
+clip_00,hoy me levante temprano y me fui a laburar en bici,99,adapt_fede/clip_00.npz
+clip_10,hace un calor barbaro prende el ventilador,73,adapt_fede/clip_10.npz
+clip_20,la semana que viene arrancan las clases otra vez,78,adapt_fede/clip_20.npz
+clip_30,me olvide el paraguas y me empape entero,73,adapt_fede/clip_30.npz
+clip_40,me quede sin bateria justo cuando te iba a llamar,88,adapt_fede/clip_40.npz
+clip_50,hace un frio tremendo agarra una campera,70,adapt_fede/clip_50.npz
+clip_60,el gato rompio el florero de la mesa,66,adapt_fede/clip_60.npz
+clip_70,estaba todo cerrado por el feriado largo,67,adapt_fede/clip_70.npz
+clip_80,el aire acondicionado no anda desde el verano,62,adapt_fede/clip_80.npz
+clip_90,llovio tanto que se inundo la esquina,70,adapt_fede/clip_90.npz
