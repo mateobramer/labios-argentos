@@ -4,8 +4,8 @@ Vista previa de un clip procesado.
 Arma una hoja de contactos con cuadros del recorte labial para revisar a ojo.
 
 Uso desde la raiz del repo:
-    python -m visual_preprocessing.src.vista_previa "data/processed/lip_rois/<titulo>/clip_0010.mp4"
-    python -m visual_preprocessing.src.vista_previa "data/processed/lip_rois/<titulo>/clip_0010.mp4" salida.png
+    python -m preprocessing.src.vista_previa "data/processed/lip_rois/<titulo>/clip_0010.mp4"
+    python -m preprocessing.src.vista_previa "data/processed/lip_rois/<titulo>/clip_0010.mp4" salida.png
 """
 
 import os
@@ -79,7 +79,7 @@ def hoja_contactos(clip_path, salida=None):
 
 def main():
     if len(sys.argv) < 2:
-        print("Uso: python -m visual_preprocessing.src.vista_previa <clip.mp4> [salida.png]")
+        print("Uso: python -m preprocessing.src.vista_previa <clip.mp4> [salida.png]")
         sys.exit(1)
     clip = sys.argv[1]
     salida = sys.argv[2] if len(sys.argv) >= 3 else None

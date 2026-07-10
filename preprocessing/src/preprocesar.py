@@ -11,9 +11,9 @@ Salida:
     data/metadata/lip_preprocessing_manifest.csv
 
 Uso desde la raiz del repo:
-    python -m visual_preprocessing.src.preprocesar                      # todas las fuentes
-    python -m visual_preprocessing.src.preprocesar "<titulo>" ["<titulo2>" ...]
-    python -m visual_preprocessing.src.preprocesar --jobs 7             # N procesos en paralelo
+    python -m preprocessing.src.preprocesar                      # todas las fuentes
+    python -m preprocessing.src.preprocesar "<titulo>" ["<titulo2>" ...]
+    python -m preprocessing.src.preprocesar --jobs 7             # N procesos en paralelo
 
 Reanudable e idempotente: saltea los clips que ya tienen .npz, asi que si se corta
 (apagon, Ctrl-C) se vuelve a correr el mismo comando y retoma donde quedo.
@@ -44,10 +44,10 @@ try:
     from mediapipe.tasks import python as mp_tasks
     from mediapipe.tasks.python import vision as mp_vision
 except ImportError:
-    print("ERROR: falta 'mediapipe'. Instalar con: pip install -r visual_preprocessing/requirements.txt")
+    print("ERROR: falta 'mediapipe'. Instalar con: pip install -r preprocessing/requirements.txt")
     sys.exit(1)
 
-from visual_preprocessing.src.video_process import VideoProcess
+from preprocessing.src.video_process import VideoProcess
 
 # Parametros del formato de salida. Confirmar contra el loader de entrenamiento.
 TAMANO_SALIDA = 96
@@ -80,7 +80,7 @@ def crear_landmarker():
     if not os.path.exists(MODELO):
         print(f"ERROR: falta el modelo '{MODELO}'.")
         print("Bajarlo con:")
-        print("  curl -L -o visual_preprocessing/models/face_landmarker.task \\")
+        print("  curl -L -o preprocessing/models/face_landmarker.task \\")
         print("    https://storage.googleapis.com/mediapipe-models/face_landmarker/"
               "face_landmarker/float16/1/face_landmarker.task")
         sys.exit(1)

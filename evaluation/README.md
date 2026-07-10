@@ -28,7 +28,7 @@ ayuda** (sesgo léxico ajeno) ⇒ argumento a favor del corrector LLM propio del
 
 0. **Setup del modelo** (clona repo + baja checkpoints de Zenodo + entorno + parches):
    `bash evaluation/setup_modelo_gimeno.sh`. Los pesos (8.5 GB) no se versionan; se bajan ahí.
-1. **ROIs**: `python -m visual_preprocessing.src.preprocesar "<titulo>"` por cada fuente
+1. **ROIs**: `python -m preprocessing.src.preprocesar "<titulo>"` por cada fuente
    del subset → `data/processed/lip_rois/<titulo>/clip_NNNN.npz` (+ `.mp4` para QA).
    (`PREPROC_MAX=N` limita los clips por fuente.)
 2. **Export**: `python -m evaluation.src.exportar_para_gimeno --salida ~/data

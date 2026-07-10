@@ -194,7 +194,7 @@ def metricas_mediapipe(sample_path: Path) -> dict[str, Any]:
     if _MP_STATUS == "blocked":
         return {"mediapipe_status": "blocked_unavailable"}
     try:
-        from visual_preprocessing.src.auditar_calidad_visual import analizar_clip, crear_landmarker
+        from preprocessing.src.auditar_calidad_visual import analizar_clip, crear_landmarker
     except Exception as exc:
         _MP_STATUS = "blocked"
         return {"mediapipe_status": f"blocked_missing_mediapipe:{exc}"}

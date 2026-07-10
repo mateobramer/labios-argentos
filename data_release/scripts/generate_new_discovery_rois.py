@@ -137,9 +137,9 @@ def main() -> int:
     args = parse_args()
     import numpy as np
 
-    from visual_preprocessing.src.preprocesar import guardar_npz, guardar_video_gris, procesar_clip
-    from visual_preprocessing.src.preprocesar import crear_landmarker
-    from visual_preprocessing.src.video_process import VideoProcess
+    from preprocessing.src.preprocesar import guardar_npz, guardar_video_gris, procesar_clip
+    from preprocessing.src.preprocesar import crear_landmarker
+    from preprocessing.src.video_process import VideoProcess
 
     selected = set(args.video_id)
     clips = [

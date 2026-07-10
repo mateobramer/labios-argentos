@@ -3,7 +3,7 @@ Exporta nuestros ROIs labiales al formato que espera el evaluador de VSR de Gime
 (repo `david-gimeno/evaluating-end2end-spanish-lipreading`), para correr un baseline
 zero-shot del modelo español sobre nuestros clips rioplatenses.
 
-Entrada (la produce visual_preprocessing/src/preprocesar.py):
+Entrada (la produce preprocessing/src/preprocesar.py):
     data/processed/lip_rois/<titulo>/clip_NNNN.npz   # array (T,96,96) uint8, gris, 25 fps
     data/processed/lip_rois/<titulo>/clip_NNNN.txt   # transcripcion limpia (lower+unidecode+ñ)
 
@@ -97,7 +97,7 @@ def main():
     args.salida = os.path.expanduser(args.salida)
 
     if not os.path.isdir(LIP_ROIS_DIR):
-        print(f"ERROR: no existe '{LIP_ROIS_DIR}'. Corré primero visual_preprocessing.")
+        print(f"ERROR: no existe '{LIP_ROIS_DIR}'. Corré primero preprocessing.")
         sys.exit(1)
 
     titulos = args.titulos or sorted(

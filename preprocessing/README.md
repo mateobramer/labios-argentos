@@ -1,4 +1,4 @@
-# visual_preprocessing
+# preprocessing
 
 Preparacion visual de los clips para VSR.
 
@@ -42,7 +42,7 @@ orientacion, sin importar como se mueva la cabeza del hablante.
 ## Estructura
 
 ```text
-visual_preprocessing/
+preprocessing/
   README.md
   requirements.txt
   models/
@@ -62,19 +62,19 @@ visual_preprocessing/
 Instalar dependencias en un entorno separado si MediaPipe choca con Whisper/Torch:
 
 ```bash
-pip install -r visual_preprocessing/requirements.txt
+pip install -r preprocessing/requirements.txt
 ```
 
 Procesar todos los clips pendientes:
 
 ```bash
-python -m visual_preprocessing.src.preprocesar
+python -m preprocessing.src.preprocesar
 ```
 
 Procesar una fuente puntual:
 
 ```bash
-python -m visual_preprocessing.src.preprocesar "LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91"
+python -m preprocessing.src.preprocesar "LE DIJE QUE SOY ARGENTINO - Story Time - CAP 91"
 ```
 
 Salida:
@@ -99,7 +99,7 @@ La revision de calidad visual del dataset se trabaja desde:
 data_cleaning/notebooks/01_revision_visual_mediapipe.ipynb
 ```
 
-Ese notebook importa funciones de `visual_preprocessing/src/auditar_calidad_visual.py`.
+Ese notebook importa funciones de `preprocessing/src/auditar_calidad_visual.py`.
 
 ## Pendiente importante
 

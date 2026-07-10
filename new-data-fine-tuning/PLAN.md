@@ -46,7 +46,7 @@ favorable para que el aporte se note.
    vía skill `/nueva-fuente`:
    - `python descargar_procesar.py "URL"`  (Whisper large-v3 para transcripción final)
    - gate 1: `python -m data_cleaning.src.auditar_alineacion "<titulo>"`  ← protege clip↔texto
-   - `python -m visual_preprocessing.src.preprocesar "<titulo>"`  (env MediaPipe)
+   - `python -m preprocessing.src.preprocesar "<titulo>"`  (env MediaPipe)
    - `python -m data_cleaning.src.detectar_clips_malos "<titulo>"` → revisar → `--materializar`
    - registrar fila en `data/metadata/fuentes.csv`
 2. **Re-armar splits:** `python -m vsr_models.src.armar_splits` (las nuevas fuentes entran a train).

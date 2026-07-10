@@ -35,7 +35,7 @@ Las diferencias reales (no arquitectónicas) son:
 
 ## Preprocesamiento — CHEQUEO DE COMPATIBILIDAD: PASA ✅
 - `pipelines/detectors/mediapipe/video_process.py` (mpc001) == nuestro
-  `visual_preprocessing/src/video_process.py` (adaptación verbatim, mismo código).
+  `preprocessing/src/video_process.py` (adaptación verbatim, mismo código).
 - `20words_mean_face.npy`: **MD5 idéntico** en ambos repos (ada7359b793f3406d90fb0fcf2dde069).
 - Mismo pipeline: alineación afín a cara media (4 puntos estables ojo-D/ojo-I/nariz/boca),
   crop 96×96, **grises**, 25 fps.

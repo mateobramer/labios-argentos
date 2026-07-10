@@ -27,8 +27,8 @@ Fecha de inspeccion local: 2026-07-04.
 - No se encontraron landmarks guardados bajo `data/processed/lip_rois/` con patrones
   `*landmark*`, `*.json` o `*.npy`.
 - Existen los assets de preprocesamiento:
-  - `visual_preprocessing/models/face_landmarker.task`
-  - `visual_preprocessing/src/20words_mean_face.npy`
+  - `preprocessing/models/face_landmarker.task`
+  - `preprocessing/src/20words_mean_face.npy`
 - Conclusion: se pueden volver a detectar landmarks con MediaPipe, pero no hay cache de
   landmarks por clip.
 
@@ -46,10 +46,10 @@ ffprobe -hide_banner data/clips/<titulo>/<clip>.mp4
 ## Regeneracion de ROIs alternativos
 
 - Es viable conceptualmente usando los clips actuales y el pipeline existente en
-  `visual_preprocessing/src/preprocesar.py`.
+  `preprocessing/src/preprocesar.py`.
 - Bloqueo local de smoke: `mediapipe` no esta instalado en este entorno.
 - Smoke local actual de `lower_face_resized96`: `20/20 ok`, `READY_FOR_FULL_GENERATION`.
-- En VM, instalar `visual_preprocessing/requirements.txt` si hiciera falta y correr el
+- En VM, instalar `preprocessing/requirements.txt` si hiciera falta y correr el
   comando full documentado en `PREPROCESSING_VARIANT.md`.
 
 ## Flags actuales de `fine_tune.py`

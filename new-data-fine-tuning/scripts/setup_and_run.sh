@@ -16,7 +16,7 @@ python3 -m venv --system-site-packages ~/venv-proc
 ~/venv-proc/bin/pip -q install -r requirements.txt >/dev/null 2>&1
 python3 -m venv ~/venv-visual
 ~/venv-visual/bin/pip -q install --upgrade pip >/dev/null 2>&1
-~/venv-visual/bin/pip -q install -r visual_preprocessing/requirements.txt >/dev/null 2>&1
+~/venv-visual/bin/pip -q install -r preprocessing/requirements.txt >/dev/null 2>&1
 ~/venv-proc/bin/python -c "import whisper,yt_dlp,torch;assert torch.cuda.is_available()" || { log "FATAL env proc/cuda"; exit 1; }
 ~/venv-visual/bin/python -c "import mediapipe,cv2" || { log "FATAL env visual"; exit 1; }
 log "=== SETUP DONE (proc+visual OK, cuda OK) ==="
@@ -38,7 +38,7 @@ for URL in "${URLS[@]}"; do
   NC=$(ls "data/clips/$TIT/"*.mp4 2>/dev/null | wc -l | tr -d ' ')
   MUS=$($PROC filtro_musica.py "$TIT" 2>/dev/null | grep '^music_dropped=' | cut -d= -f2)
   NC2=$(ls "data/clips/$TIT/"*.mp4 2>/dev/null | wc -l | tr -d ' ')
-  if ! $VIS -m visual_preprocessing.src.preprocesar "$TIT" --jobs 6 >>~/preproc.log 2>&1; then
+  if ! $VIS -m preprocessing.src.preprocesar "$TIT" --jobs 6 >>~/preproc.log 2>&1; then
     log "[WARN $i/$N] preproc fallo en $TIT (ver preproc.log)"
   fi
   NN=$(ls "data/processed/lip_rois/$TIT/"*.npz 2>/dev/null | wc -l | tr -d ' ')

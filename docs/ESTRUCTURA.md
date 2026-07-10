@@ -13,7 +13,7 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 2 · DESCARGA+CORTE descargar_procesar.py          yt-dlp → Whisper → ffmpeg
         │            data/videos/<t>/ (no versionado) · data/corpus/<t>/ · data/clips/<t>/ (mp4+txt)
         ▼
-3 · PREPROC VISUAL visual_preprocessing/          MediaPipe → warp mean-face → ROI boca 96×96
+3 · PREPROC VISUAL preprocessing/          MediaPipe → warp mean-face → ROI boca 96×96
         │            data/processed/lip_rois/<t>/*.npz  (no versionado, regenerable)
         ▼
 4 · CURACIÓN       data_cleaning/                 detector de clips malos (cara, calidad)
@@ -34,7 +34,7 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 |---|---|---|
 | `claude-videos/` | 1 | CSVs de fuentes curadas (ronda 1 y 2) con criterios de selección |
 | `descargar_procesar.py` | 2 | único script: descarga, transcribe (Whisper turbo es), corta clips alineados |
-| `visual_preprocessing/` | 3 | `src/preprocesar.py`: landmarks → crop 96×96 → `.npz` |
+| `preprocessing/` | 3 | `src/preprocesar.py`: landmarks → crop 96×96 → `.npz` |
 | `data_cleaning/` | 4 | detección de clips malos, auditorías de calidad visual |
 | `segmentacion_oraciones/` | 2b | re-segmentado oracional de transcripciones (sparse, no siempre materializado) |
 | `vsr_models/` | 5 | `src/fine_tune.py` (50M), splits congelados, configs |

@@ -19,7 +19,7 @@ en el tree de main), lectura de docs núcleo, greps de paths/buckets/imports,
 | `evaluation/` | 22.6 MB | eval WER/CER contra test-658, parches Gimeno, notebooks 06-07 | canónico |
 | `data_cleaning/` | 21.1 MB | detección de clips malos, notebooks 01-05 y 08 | canónico |
 | `new-data-fine-tuning/` | 7 MB | corrida histórica ronda 2 (ft03–ft07) | **histórico**, sin README |
-| `visual_preprocessing/` | 3.7 MB | clips → ROI boca 96×96 (`.npz`), notebook 09 | canónico |
+| `preprocessing/` | 3.7 MB | clips → ROI boca 96×96 (`.npz`), notebook 09 | canónico |
 | `vsr_models/` | 2.9 MB | fine-tuning 50M Gimeno + **splits congelados** | canónico |
 | `segmentacion_oraciones/` | 0.4 MB | re-segmentado oracional, notebooks 01-03 propios, tests | canónico |
 | `demo/` | 0.1 MB | demo web/ptt/stream + infer_server + calibración | canónico, sin README |

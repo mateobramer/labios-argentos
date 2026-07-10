@@ -15,7 +15,7 @@ import os, sys, json, glob, time, argparse, subprocess, random, shutil
 import numpy as np, cv2, ijson
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(RAIZ, "visual_preprocessing", "src"))
+sys.path.insert(0, os.path.join(RAIZ, "preprocessing", "src"))
 from video_process import VideoProcess
 
 SALIDA = os.path.join(RAIZ, "data", "processed", "lip_rois")

@@ -17,7 +17,7 @@ EX=$(gcloud compute instances list --filter="name=$VM" --format="value(name,zone
 [ -n "$EX" ] && { echo "YA_EXISTE: $EX"; exit 0; }
 
 git archive --format=tar.gz -o "$ARCH" HEAD -- \
-  descargar_procesar.py requirements.txt visual_preprocessing data_cleaning vsr_models evaluation data/metadata 2>/dev/null
+  descargar_procesar.py requirements.txt preprocessing data_cleaning vsr_models evaluation data/metadata 2>/dev/null
 
 get_vm(){
   for Z in us-central1-a us-central1-b us-central1-c; do

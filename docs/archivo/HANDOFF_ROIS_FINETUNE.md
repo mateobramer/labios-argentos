@@ -406,7 +406,7 @@ URL YouTube
   │
   │  filtro_musica.py            ►  borra clips de música/alucinación
   │
-  │  visual_preprocessing/src/preprocesar.py
+  │  preprocessing/src/preprocesar.py
   ├─(4) MediaPipe landmarks → warp mean-face → 96×96 gris 25fps
   │                              ►  data/processed/lip_rois/<titulo>/clip_NNNN.npz  ← ENTRADA DEL MODELO
   │
@@ -453,7 +453,7 @@ léxica** (`uniq < 0.35`) **o** un **3-grama repetido ≥ 3 veces**. Loguea lo d
 python new-data-fine-tuning/scripts/filtro_musica.py "<titulo>"
 ```
 
-### A.3 Preprocesamiento visual (ROIs) — `visual_preprocessing/src/preprocesar.py`
+### A.3 Preprocesamiento visual (ROIs) — `preprocessing/src/preprocesar.py`
 
 **Esta es la variante MediaPipe** del mismo paso que la Parte 1 (que usa RetinaFace). Ambas producen
 el **mismo formato** (96×96 gris, warp a mean-face, `.npz` clave `rois` uint8) porque las dos alinean
@@ -465,10 +465,10 @@ intercambiables** — lo importante es no mezclar resoluciones ni fps.
 - **Remuestreo a 25 fps OBLIGATORIO** (`FPS_SALIDA=25`, `remuestrear_a_25fps`): el modelo espera 25 fps.
   Si sumás fuentes a otro fps, este paso las normaliza.
 - Descarta clips sin cara frontal estable. Reanudable/idempotente (saltea los que ya tienen `.npz`).
-- Modelo de landmarks: `visual_preprocessing/models/face_landmarker.task`.
+- Modelo de landmarks: `preprocessing/models/face_landmarker.task`.
 ```bash
-python -m visual_preprocessing.src.preprocesar --jobs 7          # todas las fuentes, 7 procesos
-python -m visual_preprocessing.src.preprocesar "<titulo>"        # una fuente
+python -m preprocessing.src.preprocesar --jobs 7          # todas las fuentes, 7 procesos
+python -m preprocessing.src.preprocesar "<titulo>"        # una fuente
 ```
 
 ### A.4 Control de calidad (recomendado antes de entrenar) — `data_cleaning/`

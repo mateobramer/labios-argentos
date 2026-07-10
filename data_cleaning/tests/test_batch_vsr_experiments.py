@@ -11,7 +11,7 @@ import pandas as pd
 from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
 from evaluation.src.batch_vsr_notebook import comparar_resultados, resolver_repo_path, tamanos_experimentos
 from evaluation.src.parse_batch_vsr_results import parse_all
-from visual_preprocessing.src.preprocessing_variant import _fallback_original_roi, run_preprocessing_variant
+from preprocessing.src.preprocessing_variant import _fallback_original_roi, run_preprocessing_variant
 from data_cleaning.src.transcript_alignment_audit import build_alignment_audit
 from data_cleaning.src.transcript_cleaning import (
     build_transcript_overlays,
@@ -498,7 +498,7 @@ class TestBatchVsrExperiments(unittest.TestCase):
     def test_notebooks_08_09_no_contienen_entrenamiento(self):
         for notebook in [
             Path("data_cleaning/notebooks/08_transcript_cleaning_review.ipynb"),
-            Path("visual_preprocessing/notebooks/09_preprocessing_variant_review.ipynb"),
+            Path("preprocessing/notebooks/09_preprocessing_variant_review.ipynb"),
         ]:
             data = json.loads(notebook.read_text(encoding="utf-8"))
             code = "\n".join(

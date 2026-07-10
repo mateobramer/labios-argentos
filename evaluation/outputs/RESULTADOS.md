@@ -76,7 +76,7 @@ requeriría bajar LIP-RTVE aparte — diferido). En su lugar:
 
 ## Reproducir
 
-Ver `evaluation/README.md`. Resumen: `visual_preprocessing` → `evaluation.src.exportar_para_gimeno`
+Ver `evaluation/README.md`. Resumen: `preprocessing` → `evaluation.src.exportar_para_gimeno`
 → `gimeno_patches/aplicar_parches.py` → `vsr_main.py --database Rioplatense --scenario zero-shot`.
 
 ## Artefactos

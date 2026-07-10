@@ -103,7 +103,7 @@ donar pares clip+texto al dataset (quedan locales, no se versionan).
 | `experiments/` | Registro completo de experimentos con resultados (empezar por su README) |
 | `docs/` | [`SPEC.md`](docs/SPEC.md) (especificación), [`ESTRUCTURA.md`](docs/ESTRUCTURA.md) (mapa y flujo de datos), [`RESULTS.md`](docs/RESULTS.md) (**ledger canónico** de métricas), [`PROJECT_SCOPE.md`](docs/PROJECT_SCOPE.md) (evolución del alcance), [`RESEARCH_TP.md`](docs/RESEARCH_TP.md) y [`ENGINEERING_TP.md`](docs/ENGINEERING_TP.md) (guías de los dos TPs), [`DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md) (dónde vive cada dato), [`NEXT_STEPS.md`](docs/NEXT_STEPS.md) |
 | `descargar_procesar.py` | Etapa 1 del pipeline de datos: YouTube → clips alineados con texto |
-| `visual_preprocessing/` | Etapa 2: clips → ROIs de boca 96×96 (`.npz`) |
+| `preprocessing/` | Etapa 2: clips → ROIs de boca 96×96 (`.npz`) |
 | `data_cleaning/` | Etapa 3: detección y descarte de clips malos |
 | `claude-videos/` | Selección curada de fuentes (gate 0 del dataset) |
 | `vsr_models/` | Fine-tuning del modelo 50M (Gimeno) + splits congelados |

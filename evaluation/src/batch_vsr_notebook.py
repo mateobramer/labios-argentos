@@ -14,7 +14,7 @@ REPO_ANCHORS = (
     "evaluation/",
     "data/",
     "data_cleaning/",
-    "visual_preprocessing/",
+    "preprocessing/",
     "vsr_models/",
 )
 

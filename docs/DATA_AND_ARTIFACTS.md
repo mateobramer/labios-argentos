@@ -12,7 +12,7 @@ obtener lo que falta, y qué hacer cuando un artefacto no está.
 | **Manifests** | CSVs de estado del dataset (`data/metadata/`) | este repo | ✅ |
 | **Splits congelados** | `vsr_models/splits/` — test-658/val, fijos desde ft03 | este repo | ✅ **no tocar** |
 | **Videos crudos** | fuente completa de YouTube (`data/videos/`) | YouTube (regenerables con `descargar_procesar.py`) | ❌ gitignored |
-| **ROIs `.npz`** | crops de boca 96×96 | regenerables con `visual_preprocessing/` | ❌ gitignored |
+| **ROIs `.npz`** | crops de boca 96×96 | regenerables con `preprocessing/` | ❌ gitignored |
 | **Pesos base ViSpeR** | `visper_vsr_base.pth` (1.1 GB) | repo ViSpeR/TII + copia en bucket | ❌ |
 | **Pesos fine-tuneados** | ft03–ft07, LoRAs | `gs://labios-argentos-vsr-dataset` | ❌ **irreemplazables** |
 | **Modelos personales** | LoRA por hablante (`modelos/personal/`) | máquina local de cada persona | ❌ privacidad |

@@ -16,7 +16,7 @@ import numpy as np
 
 
 RAIZ_REPO = Path(__file__).resolve().parents[2]
-MODELO = RAIZ_REPO / "visual_preprocessing" / "models" / "face_landmarker.task"
+MODELO = RAIZ_REPO / "preprocessing" / "models" / "face_landmarker.task"
 
 LIPS_IDX = [
     61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 308, 324, 318, 402, 317,
@@ -33,7 +33,7 @@ def importar_mediapipe():
     except ImportError as exc:
         raise RuntimeError(
             "Falta mediapipe. Instalar en un entorno para preprocesamiento con: "
-            "pip install -r visual_preprocessing/requirements.txt"
+            "pip install -r preprocessing/requirements.txt"
         ) from exc
     return mp, mp_tasks, mp_vision
 

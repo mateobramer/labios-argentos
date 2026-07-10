@@ -82,7 +82,7 @@ No interpretar estos numeros como convergencia final: son un gate de verificacio
 
 - `PYTHONIOENCODING=utf-8` para compileall en Windows/paths Unicode.
 - `faster-whisper` preferido para ASR2; fallback `openai-whisper`.
-- `visual_preprocessing/requirements.txt` para MediaPipe.
+- `preprocessing/requirements.txt` para MediaPipe.
 - GPU VM con datos sincronizados desde `gs://labios-argentos-vsr-data`.
 
 ## Commands

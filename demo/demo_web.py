@@ -22,9 +22,9 @@ import cv2, numpy as np
 # desde cualquier clone); LABIOS_REPO la pisa si hace falta. Ver .env.example.
 REPO = os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
-from visual_preprocessing.src.preprocesar import (
+from preprocessing.src.preprocesar import (
     crear_landmarker, detectar_landmarks, cuatro_puntos, remuestrear_a_25fps)
-from visual_preprocessing.src.video_process import VideoProcess
+from preprocessing.src.video_process import VideoProcess
 
 VISPER_PY = os.path.expanduser(os.environ.get("VISPER_PY", "~/miniconda3/envs/visper/bin/python"))
 INFER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "infer_server.py")
@@ -113,7 +113,7 @@ def elegir_cara(caras):
     return f
 
 def hilo_landmarks():
-    from visual_preprocessing.src import preprocesar as pp
+    from preprocessing.src import preprocesar as pp
     base = pp.mp_tasks.BaseOptions(model_asset_path=pp.MODELO)
     opts = pp.mp_vision.FaceLandmarkerOptions(base_options=base, num_faces=3)
     lmk = pp.mp_vision.FaceLandmarker.create_from_options(opts)

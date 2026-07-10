@@ -6,7 +6,7 @@ Usar en VM/GPU con `tmux`. No dejar la VM prendida si falla o termina.
 
 ```bash
 git pull
-PYTHONIOENCODING=utf-8 python -m compileall evaluation data_cleaning visual_preprocessing vsr_models data_cleaning/tests
+PYTHONIOENCODING=utf-8 python -m compileall evaluation data_cleaning preprocessing vsr_models data_cleaning/tests
 python -m unittest discover data_cleaning/tests
 nvidia-smi
 python -V
@@ -56,7 +56,7 @@ python -m data_cleaning.src.transcript_cleaning \
 ## Preprocessing full
 
 ```bash
-python -m visual_preprocessing.src.preprocessing_variant \
+python -m preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --full \
@@ -165,7 +165,7 @@ python -m evaluation.src.parse_batch_vsr_results \
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/06_experimentos_cleaning_vs_original.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('evaluation/notebooks/07_batch_vsr_experiments.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('data_cleaning/notebooks/08_transcript_cleaning_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
-python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('visual_preprocessing/notebooks/09_preprocessing_variant_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
+python -c "from pathlib import Path; import nbformat; from nbclient import NotebookClient; p=Path('preprocessing/notebooks/09_preprocessing_variant_review.ipynb'); nb=nbformat.read(p, as_version=4); NotebookClient(nb, timeout=180, kernel_name='python3').execute(cwd=str(Path.cwd())); nbformat.write(nb, p)"
 ```
 
 ## Apagar VM

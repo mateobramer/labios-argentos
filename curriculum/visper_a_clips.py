@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Adapter ViSpeR -> clips (formato que espera visual_preprocessing/preprocesar.py).
+"""Adapter ViSpeR -> clips (formato que espera preprocessing/preprocesar.py).
 
 Lee un JSON de ViSpeR (keyed por video-id de YouTube; cada valor = lista de segmentos
 con start/end/label/landmarks), baja cada video con yt-dlp y corta cada segmento a

@@ -82,7 +82,7 @@ write_status "running" "checkout_repo"
 rm -rf "$WORKDIR"
 git clone --depth 1 --filter=blob:none --sparse --branch "$BRANCH" "$REPO_URL" "$WORKDIR"
 cd "$WORKDIR"
-git sparse-checkout set requirements.txt data_release visual_preprocessing
+git sparse-checkout set requirements.txt data_release preprocessing
 git checkout "$BRANCH"
 git pull --ff-only origin "$BRANCH"
 
@@ -92,7 +92,7 @@ python3 -m venv .venv-gpu
 source .venv-gpu/bin/activate
 python -m pip install --upgrade pip wheel setuptools
 python -m pip install -r requirements.txt
-python -m pip install -r visual_preprocessing/requirements.txt
+python -m pip install -r preprocessing/requirements.txt
 
 stage="preflight"
 write_status "running" "gpu_preflight"

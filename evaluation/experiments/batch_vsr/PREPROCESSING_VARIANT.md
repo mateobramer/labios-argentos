@@ -8,7 +8,7 @@ implementar detectores pesados nuevos.
 `lower_face_resized96`:
 
 - entrada: `data/clips/<titulo>/<clip>.mp4`;
-- deteccion: MediaPipe existente del modulo `visual_preprocessing`;
+- deteccion: MediaPipe existente del modulo `preprocessing`;
 - alineacion: `VideoProcess` existente;
 - crop: parche mas amplio alrededor de la boca (`128x128`);
 - salida final: resize a `96x96`;
@@ -21,7 +21,7 @@ No toca ROIs originales en `data/processed/lip_rois/`.
 Comando:
 
 ```bash
-python -m visual_preprocessing.src.preprocessing_variant \
+python -m preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --max-clips 20 \
@@ -43,7 +43,7 @@ Estado local actual: smoke generado con `mediapipe==0.10.35`.
 - failed: 0;
 - blocked: 0;
 - decision notebook 09: `READY_FOR_FULL_GENERATION`.
-- notebook final: `visual_preprocessing/notebooks/09_preprocessing_variant_review.ipynb`.
+- notebook final: `preprocessing/notebooks/09_preprocessing_variant_review.ipynb`.
 
 Las previews locales quedan en:
 
@@ -59,13 +59,13 @@ Abrir los archivos `*__side_by_side.png` para revisar el ROI actual contra
 Instalar dependencias visuales si hiciera falta:
 
 ```bash
-pip install -r visual_preprocessing/requirements.txt
+pip install -r preprocessing/requirements.txt
 ```
 
 Generar ROIs alternativos:
 
 ```bash
-python -m visual_preprocessing.src.preprocessing_variant \
+python -m preprocessing.src.preprocessing_variant \
   --splits vsr_models/splits/splits.csv \
   --output-base evaluation/outputs/batch_vsr \
   --full \

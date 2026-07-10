@@ -51,7 +51,7 @@ Objetivo: resolver los unknowns y medir rendimiento ANTES de escalar. **Subset ~
 vivo al 98% y auto-contenido → validamos con él primero).
 
 Progreso probe (2026-07-05): descarga real OK (~53MB/~15s por video); formato ViSpeR entendido
-(JSON con start/end/label/landmarks); pipeline `visual_preprocessing/preprocesar.py` ubicado (espera clips
+(JSON con start/end/label/landmarks); pipeline `preprocessing/preprocesar.py` ubicado (espera clips
 segmentados → produce npz 96×96). Adapter `curriculum/visper_a_clips.py` escrito y probado end-to-end:
 corta segmentos + escribe .txt + genera npz **formato correcto (T,96,96) uint8**.
 

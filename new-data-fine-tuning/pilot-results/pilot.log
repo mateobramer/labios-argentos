@@ -995,9 +995,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1012,9 +1012,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1029,9 +1029,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1046,9 +1046,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1063,9 +1063,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1080,9 +1080,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1097,9 +1097,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1114,9 +1114,9 @@ Exception in initializer:
 Traceback (most recent call last):
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
     initializer(*initargs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 215, in _init_worker
     _W_LANDMARKER = crear_landmarker()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 93, in crear_landmarker
     return mp_vision.FaceLandmarker.create_from_options(opts)
   File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
     lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
@@ -1132,13 +1132,13 @@ Traceback (most recent call last):
     return _run_code(code, main_globals, None,
   File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
     exec(code, run_globals)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 375, in <module>
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 375, in <module>
     main()
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 371, in main
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 371, in main
     procesar_paralelo(titulos, jobs)
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 338, in procesar_paralelo
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 338, in procesar_paralelo
     futuros = [ex.submit(_procesar_clip_tarea, t) for t in pendientes]
-  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 338, in <listcomp>
+  File "/home/fedegutman/labios-argentos/preprocessing/src/preprocesar.py", line 338, in <listcomp>
     futuros = [ex.submit(_procesar_clip_tarea, t) for t in pendientes]
   File "/usr/lib/python3.10/concurrent/futures/process.py", line 720, in submit
     raise BrokenProcessPool(self._broken)

@@ -16,7 +16,7 @@ son buenos datos antes de pasarlos al preprocesamiento visual o al entrenamiento
 
 ## Que no va aca
 
-- deteccion de rostro, landmarks o recorte de labios: eso va en `visual_preprocessing/`;
+- deteccion de rostro, landmarks o recorte de labios: eso va en `preprocessing/`;
 - entrenamiento de modelos VSR: eso va en `vsr_models/` si se agrega al repo;
 - logica de LLM/correccion en tiempo real: eso va en `realtime/` si se agrega al repo.
 

@@ -156,7 +156,7 @@ def _generar_clip(
     preview_dir: Path | None = None,
     make_preview: bool = False,
 ) -> dict[str, str]:
-    from visual_preprocessing.src.preprocesar import (
+    from preprocessing.src.preprocesar import (
         procesar_clip,
         remuestrear_a_25fps,
     )
@@ -204,8 +204,8 @@ def _generar_clip(
 def _init_worker() -> None:
     global _WORKER_LANDMARKER, _WORKER_VPROC
 
-    from visual_preprocessing.src.preprocesar import crear_landmarker
-    from visual_preprocessing.src.video_process import VideoProcess
+    from preprocessing.src.preprocesar import crear_landmarker
+    from preprocessing.src.video_process import VideoProcess
 
     _WORKER_LANDMARKER = crear_landmarker()
     # Crop mas amplio alrededor de la boca usando el pipeline existente; resize final a 96x96.
