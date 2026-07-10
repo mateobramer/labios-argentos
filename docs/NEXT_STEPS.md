@@ -12,7 +12,7 @@ indicación contraria.
 - `tests/` con pytest para: `norm()` (casos ñ/tildes), WER/CER, dedup de bordes del
   stitching, máquina de estados del VAD (serie sintética), parseo de manifest,
   protocolo CONFIG/READY. (El repo ya tiene tests en `cleaning/visual_quality/`,
-  `cleaning/transcript_segmentation/` y `data_discovery/` — el hueco es la demo.)
+  `cleaning/transcript_segmentation/` y `data_pipeline/discovery/` — el hueco es la demo.)
 - `setup.sh` + `run.sh` + `environment.yml` por env (`ptt`, `visper`) — ver TO-DO §3.
 
 ## 2. Mejoras de latencia

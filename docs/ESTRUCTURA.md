@@ -8,9 +8,9 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 ## Flujo de datos end-to-end
 
 ```
-1 · SELECCIÓN      claude-videos/candidatos*.csv  (gate 0: fuentes verificadas a mano)
+1 · SELECCIÓN      data_pipeline/sources/candidatos*.csv  (gate 0: fuentes verificadas a mano)
         │
-2 · DESCARGA+CORTE descargar_procesar.py          yt-dlp → Whisper → ffmpeg
+2 · DESCARGA+CORTE data_pipeline/descargar_procesar.py          yt-dlp → Whisper → ffmpeg
         │            data/videos/<t>/ (no versionado) · data/corpus/<t>/ · data/clips/<t>/ (mp4+txt)
         ▼
 3 · PREPROC VISUAL preprocessing/          MediaPipe → warp mean-face → ROI boca 96×96
@@ -32,8 +32,8 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 
 | Carpeta | Etapa | Contenido |
 |---|---|---|
-| `claude-videos/` | 1 | CSVs de fuentes curadas (ronda 1 y 2) con criterios de selección |
-| `descargar_procesar.py` | 2 | único script: descarga, transcribe (Whisper turbo es), corta clips alineados |
+| `data_pipeline/sources/` | 1 | CSVs de fuentes curadas (ronda 1 y 2) con criterios de selección |
+| `data_pipeline/descargar_procesar.py` | 2 | único script: descarga, transcribe (Whisper turbo es), corta clips alineados |
 | `preprocessing/` | 3 | `src/preprocesar.py`: landmarks → crop 96×96 → `.npz` |
 | `cleaning/visual_quality/` | 4 | detección de clips malos, auditorías de calidad visual |
 | `cleaning/transcript_segmentation/` | 2b | re-segmentado oracional de transcripciones (sparse, no siempre materializado) |
@@ -43,10 +43,10 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `vsr/historical/ronda2/` | 5 (hist.) | corrida completa de la ronda 2 → ft03–ft07; docs de esa fase |
 | `vsr/evaluation/` | 6 | evaluación contra test-658, parches al repo de Gimeno |
 | `demo/` | 7 | demo web + push-to-talk + streaming, `infer_server.py`, calibración |
-| `data_discovery/` | 1b | búsqueda/score de fuentes nuevas (portado de `feature/full-clean-release`) |
-| `data_release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
+| `data_pipeline/discovery/` | 1b | búsqueda/score de fuentes nuevas (portado de `feature/full-clean-release`) |
+| `data_pipeline/release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
 | `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
-| `data_inventory/` | 4b | inventario del bucket del release |
+| `data_pipeline/inventory/` | 4b | inventario del bucket del release |
 | `experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
 | `docs/` | — | SPEC, este doc, RESULTS (**ledger canónico**), PROJECT_SCOPE, RESEARCH_TP, ENGINEERING_TP, DATA_AND_ARTIFACTS, NEXT_STEPS, `archivo/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
 

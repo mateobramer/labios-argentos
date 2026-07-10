@@ -1,4 +1,4 @@
-# Dependencias de Python para descargar_procesar.py y notebooks livianos
+# Dependencias de Python para data_pipeline/descargar_procesar.py y notebooks livianos
 # Instalar con: pip install -r requirements.txt
 #
 # yt-dlp se usa para descargar de YouTube.
@@ -10,5 +10,5 @@ yt-dlp>=2026.6.9
 imageio-ffmpeg>=0.6.0
 pandas>=2.0.0
 
-# ASR opcional para auditar samples de data_discovery sin usar modelos enormes.
+# ASR opcional para auditar samples de data_pipeline/discovery sin usar modelos enormes.
 faster-whisper>=1.2.1

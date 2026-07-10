@@ -30,7 +30,7 @@ i=0
 for URL in "${URLS[@]}"; do
   i=$((i+1))
   log "[$i/$N] >>> descargando+transcribiendo $URL"
-  OUT=$($PROC descargar_procesar.py "$URL" 2>&1); rc=$?
+  OUT=$($PROC data_pipeline/descargar_procesar.py "$URL" 2>&1); rc=$?
   TIT=$(echo "$OUT" | grep '^Carpeta:' | tail -1 | sed 's/^Carpeta: //')
   if [ $rc -ne 0 ] || [ -z "$TIT" ]; then
     log "[ERROR $i/$N] fallo descarga/transcripcion: $URL"; echo "$OUT" | tail -4; continue

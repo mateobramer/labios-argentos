@@ -3,7 +3,7 @@
 ## Hipótesis
 
 Sumar ~10.7 h de habla rioplatense informal **in-domain** (storytime/monólogo a cámara,
-ver `claude-videos/candidatos.csv`) al train mejora el WER en test, manteniendo
+ver `data_pipeline/sources/candidatos.csv`) al train mejora el WER en test, manteniendo
 arquitectura, hiperparámetros y test **idénticos** a v1/v2.
 
 Es una **ablación de datos**: la única variable que cambia es el train. Cualquier cambio de
@@ -42,9 +42,9 @@ favorable para que el aporte se note.
 
 ## Secuencia (el orden importa)
 
-1. **Procesar los 39 videos** (gate 0 ya hecho = `claude-videos/candidatos.csv`). Por cada uno,
+1. **Procesar los 39 videos** (gate 0 ya hecho = `data_pipeline/sources/candidatos.csv`). Por cada uno,
    vía skill `/nueva-fuente`:
-   - `python descargar_procesar.py "URL"`  (Whisper large-v3 para transcripción final)
+   - `python data_pipeline/descargar_procesar.py "URL"`  (Whisper large-v3 para transcripción final)
    - gate 1: `python -m cleaning.visual_quality.src.auditar_alineacion "<titulo>"`  ← protege clip↔texto
    - `python -m preprocessing.src.preprocesar "<titulo>"`  (env MediaPipe)
    - `python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>"` → revisar → `--materializar`
@@ -69,7 +69,7 @@ favorable para que el aporte se note.
 
 ## Estado
 
-- [x] Gate 0: selección verificada (`claude-videos/candidatos.csv`, 39 videos / ~10.7h)
+- [x] Gate 0: selección verificada (`data_pipeline/sources/candidatos.csv`, 39 videos / ~10.7h)
 - [ ] Procesamiento de datos (etapas 1–4)
 - [ ] Re-armar splits
 - [ ] ft03 (entrenamiento)

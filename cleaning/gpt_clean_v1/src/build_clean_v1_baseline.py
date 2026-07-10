@@ -15,7 +15,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 ROOT = REPO / "cleaning/gpt_clean_v1"
-RELEASE = REPO / "data_release"
+RELEASE = REPO / "data_pipeline/release"
 OUT = ROOT / "outputs"
 CONTEXT_PACKS = OUT / "context_packs"
 LLM_RAW = OUT / "llm_outputs" / "raw"
@@ -235,7 +235,7 @@ def write_asr_status(existing_rows: list[dict[str, str]], new_rows: list[dict[st
             "asr_model_turbo": "turbo",
             "asr_runtime": "",
             "asr_error_if_any": "",
-            "notes": f"{len(new_rows)} accepted videos queued from data_discovery.",
+            "notes": f"{len(new_rows)} accepted videos queued from data_pipeline.discovery.",
         },
     ]
     write_csv(ASR_STATUS, asr_rows, ASR_FIELDS)

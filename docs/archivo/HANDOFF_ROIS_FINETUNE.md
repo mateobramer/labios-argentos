@@ -399,7 +399,7 @@ independiente del texto y se puede arrancar ya.
 
 ```
 URL YouTube
-  │  descargar_procesar.py
+  │  data_pipeline/descargar_procesar.py
   ├─(1) yt-dlp  ────────────────►  data/videos/<titulo>.mp4
   ├─(2) Whisper (word_timestamps) ►  data/corpus/<titulo>/transcripcion.json + corpus.txt
   ├─(3) cortar en pausas reales  ►  data/clips/<titulo>/clip_NNNN.mp4 + clip_NNNN.txt   ← "clips_with_audio"
@@ -415,7 +415,7 @@ URL YouTube
   └─ detectar_clips_malos.py     ►  marca keep/review/drop (negro/congelado/boca inactiva) → dataset/ curado
 ```
 
-### A.1 Descarga + transcripción + segmentación — `descargar_procesar.py`
+### A.1 Descarga + transcripción + segmentación — `data_pipeline/descargar_procesar.py`
 
 Un solo script hace las 3 primeras etapas. Dependencias: `yt-dlp`, `ffmpeg` (en PATH),
 `openai-whisper`, `unidecode`. Modelo Whisper vía env `WHISPER_MODEL` (usamos **`large-v2`** para el
@@ -442,7 +442,7 @@ dataset bueno; `turbo` es más rápido y algo peor).
 
 Uso:
 ```bash
-WHISPER_MODEL=large-v2 python descargar_procesar.py <URL_o_lista>   # ver el bloque __main__ del script
+WHISPER_MODEL=large-v2 python data_pipeline/descargar_procesar.py <URL_o_lista>   # ver el bloque __main__ del script
 ```
 
 ### A.2 Filtro de música/alucinación — `vsr/historical/ronda2/scripts/filtro_musica.py`

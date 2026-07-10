@@ -9,7 +9,7 @@ Sirve para cazar los dos problemas de calidad detectados en el dataset:
   1. **Desfase temporal** (clip<->texto corrido): el audio del clip matchea MEJOR el
      texto del vecino que el propio -> `drift_prev` / `drift_next`. Causa raiz: cortar
      con timestamps de segmento de Whisper (sin word-timestamps), que derivan en habla
-     continua. Ya corregido en descargar_procesar.py (corte por palabra/pausa).
+     continua. Ya corregido en data_pipeline/descargar_procesar.py (corte por palabra/pausa).
   2. **Error de transcripcion**: el audio coincide con su propio texto pero con WER alto
      (Whisper escucho mal palabras) -> `texto_dudoso`. Mismo eslabon: el modelo Whisper.
 

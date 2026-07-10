@@ -71,8 +71,8 @@ Los entrenamientos corren en **VMs L4 spot de GCP** (proyecto
 # Demo web (UI en http://localhost:8551; --qwen para el corrector, --ckpt para modelo personal)
 ~/miniconda3/envs/ptt/bin/python demo/demo_web.py
 
-# Pipeline de datos para una fuente nueva (ver claude-videos/README.md)
-python descargar_procesar.py "URL_YOUTUBE"
+# Pipeline de datos para una fuente nueva (ver data_pipeline/sources/README.md)
+python data_pipeline/descargar_procesar.py "URL_YOUTUBE"
 python -m preprocessing.src.preprocesar "<titulo>"
 python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>" [--materializar]
 

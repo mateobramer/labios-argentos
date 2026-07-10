@@ -72,5 +72,5 @@ y reducción de latencia del beam search.
   versionado en `data/clips/` + `dataset/` (ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)).
 - **Release limpio v1** (tag `dataset-clean-v1`, julio 2026): re-construcción + ASR +
   limpieza GPT + discovery de fuentes nuevas, con manifests y reportes en
-  `data_release/` (portados a esta rama) y datos pesados en bucket. Cerró en la rama
+  `data_pipeline/release/` (portados a esta rama) y datos pesados en bucket. Cerró en la rama
   de PR #25; su integración a main es una decisión abierta.

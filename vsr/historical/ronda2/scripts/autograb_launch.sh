@@ -7,7 +7,7 @@ REPO=/Users/fedegutman/Desktop/labios-argentos
 SCR=$REPO/vsr/historical/ronda2/scripts
 cd "$REPO"
 VM=labios-vsr-full
-CSV=$REPO/claude-videos/candidatos.csv
+CSV=$REPO/data_pipeline/sources/candidatos.csv
 ARCH=/tmp/code-lean-autograb.tgz
 IMG="--image-family=pytorch-2-9-cu129-ubuntu-2204-nvidia-580 --image-project=deeplearning-platform-release --boot-disk-size=100GB --boot-disk-type=pd-balanced --scopes=https://www.googleapis.com/auth/cloud-platform"
 DUR="--maintenance-policy=TERMINATE --max-run-duration=43200s --instance-termination-action=STOP"
@@ -17,7 +17,7 @@ EX=$(gcloud compute instances list --filter="name=$VM" --format="value(name,zone
 [ -n "$EX" ] && { echo "YA_EXISTE: $EX"; exit 0; }
 
 git archive --format=tar.gz -o "$ARCH" HEAD -- \
-  descargar_procesar.py requirements.txt preprocessing cleaning/visual_quality vsr evaluation data/metadata 2>/dev/null
+  data_pipeline/descargar_procesar.py requirements.txt preprocessing cleaning/visual_quality vsr evaluation data/metadata 2>/dev/null
 
 get_vm(){
   for Z in us-central1-a us-central1-b us-central1-c; do

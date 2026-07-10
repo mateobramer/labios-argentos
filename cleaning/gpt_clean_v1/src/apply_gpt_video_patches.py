@@ -14,7 +14,7 @@ from typing import Iterable
 
 REPO = Path(__file__).resolve().parents[2]
 ROOT = REPO / "cleaning/gpt_clean_v1"
-RELEASE = REPO / "data_release"
+RELEASE = REPO / "data_pipeline/release"
 VALIDATED = ROOT / "validated"
 TRANSCRIPTS = ROOT / "clean_gpt_v1"
 JOBS = ROOT / "video_jobs"

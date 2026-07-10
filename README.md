@@ -102,17 +102,17 @@ donar pares clip+texto al dataset (quedan locales, no se versionan).
 | `demo/` | Demo web + push-to-talk + streaming, servidor de inferencia, calibración |
 | `experiments/` | Registro completo de experimentos con resultados (empezar por su README) |
 | `docs/` | [`SPEC.md`](docs/SPEC.md) (especificación), [`ESTRUCTURA.md`](docs/ESTRUCTURA.md) (mapa y flujo de datos), [`RESULTS.md`](docs/RESULTS.md) (**ledger canónico** de métricas), [`PROJECT_SCOPE.md`](docs/PROJECT_SCOPE.md) (evolución del alcance), [`RESEARCH_TP.md`](docs/RESEARCH_TP.md) y [`ENGINEERING_TP.md`](docs/ENGINEERING_TP.md) (guías de los dos TPs), [`DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md) (dónde vive cada dato), [`NEXT_STEPS.md`](docs/NEXT_STEPS.md) |
-| `descargar_procesar.py` | Etapa 1 del pipeline de datos: YouTube → clips alineados con texto |
+| `data_pipeline/descargar_procesar.py` | Etapa 1 del pipeline de datos: YouTube → clips alineados con texto |
 | `preprocessing/` | Etapa 2: clips → ROIs de boca 96×96 (`.npz`) |
 | `cleaning/visual_quality/` | Etapa 3: detección y descarte de clips malos |
-| `claude-videos/` | Selección curada de fuentes (gate 0 del dataset) |
+| `data_pipeline/sources/` | Selección curada de fuentes (gate 0 del dataset) |
 | `vsr/` | Fine-tuning del modelo 50M (Gimeno) + splits congelados |
 | `vsr/evaluation/` | Evaluación WER/CER contra test-658 |
 | `vsr/curriculum/` | Procesamiento de datos ViSpeR-es para currículum de pre-entrenamiento |
 | `vsr/mpc001/` | Notas y scripts sobre la base multilingüe (el clon del repo externo no se versiona) |
 | `vsr/historical/ronda2/` | Corrida histórica de la ronda 2 de datos (ft03–ft07) |
 | `data/` | Dataset generado (clips + corpus versionados; videos crudos y `.npz` no) |
-| `data_discovery/` · `data_release/` · `cleaning/gpt_clean_v1/` · `data_inventory/` | Release limpio v1 del dataset (discovery de fuentes, manifests, limpieza GPT, reportes) — portado de la rama `feature/full-clean-release`; tag [`dataset-clean-v1`](docs/DATA_AND_ARTIFACTS.md) |
+| `data_pipeline/discovery/` · `data_pipeline/release/` · `cleaning/gpt_clean_v1/` · `data_pipeline/inventory/` | Release limpio v1 del dataset (discovery de fuentes, manifests, limpieza GPT, reportes) — portado de la rama `feature/full-clean-release`; tag [`dataset-clean-v1`](docs/DATA_AND_ARTIFACTS.md) |
 
 El flujo de datos completo y las convenciones para agregar código están en
 [`docs/ESTRUCTURA.md`](docs/ESTRUCTURA.md). La guía para agentes/colaboradores, en

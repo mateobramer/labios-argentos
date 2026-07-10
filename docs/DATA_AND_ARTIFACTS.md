@@ -11,7 +11,7 @@ obtener lo que falta, y qué hacer cuando un artefacto no está.
 | **Corpus / transcripciones** | cache de Whisper por fuente (`data/corpus/`) | este repo | ✅ |
 | **Manifests** | CSVs de estado del dataset (`data/metadata/`) | este repo | ✅ |
 | **Splits congelados** | `vsr/splits/` — test-658/val, fijos desde ft03 | este repo | ✅ **no tocar** |
-| **Videos crudos** | fuente completa de YouTube (`data/videos/`) | YouTube (regenerables con `descargar_procesar.py`) | ❌ gitignored |
+| **Videos crudos** | fuente completa de YouTube (`data/videos/`) | YouTube (regenerables con `data_pipeline/descargar_procesar.py`) | ❌ gitignored |
 | **ROIs `.npz`** | crops de boca 96×96 | regenerables con `preprocessing/` | ❌ gitignored |
 | **Pesos base ViSpeR** | `visper_vsr_base.pth` (1.1 GB) | repo ViSpeR/TII + copia en bucket | ❌ |
 | **Pesos fine-tuneados** | ft03–ft07, LoRAs | `gs://labios-argentos-vsr-dataset` | ❌ **irreemplazables** |
@@ -36,13 +36,13 @@ error de auth de gsutil — no hay fallback, es intencional).
 La rama `feature/full-clean-release` (PR #25) construyó un release limpio del dataset
 (re-construcción de fuentes + ASR + limpieza GPT + discovery de fuentes nuevas). Sus
 piezas livianas (reportes, scripts, manifests <1 MB) están portadas acá en
-`data_release/`, `data_discovery/`, `cleaning/gpt_clean_v1/`, `data_inventory/`.
+`data_pipeline/release/`, `data_pipeline/discovery/`, `cleaning/gpt_clean_v1/`, `data_pipeline/inventory/`.
 
 - **Manifests grandes** (10 CSVs, ~82 MB — `final_release_manifest.csv`, etc.):
-  NO están en esta rama. Recuperarlos: `git show dataset-clean-v1:data_release/<nombre>.csv`
+  NO están en esta rama. Recuperarlos: `git show dataset-clean-v1:data_pipeline/release/<nombre>.csv`
   (el tag los preserva) o desde el bucket clean-v1.
 - **Datos pesados del release**: solo en bucket (`HOW_TO_USE_BUCKET.md` portado en
-  `data_release/reports/`).
+  `data_pipeline/release/reports/`).
 
 ## Política de versionado — y la decisión abierta
 

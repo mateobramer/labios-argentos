@@ -12,10 +12,10 @@ Principio rector: main fue reorganizado hoy (PR #27) y su estructura ya es coher
 Idéntica a main, más:
 
 ```
-data_discovery/            ← portado de feature/full-clean-release (completo, 0.8 MB)
-data_release/              ← portado PARCIAL (<1 MB por archivo; manifests grandes via tag)
+data_pipeline/discovery/            ← portado de feature/full-clean-release (completo, 0.8 MB)
+data_pipeline/release/              ← portado PARCIAL (<1 MB por archivo; manifests grandes via tag)
 cleaning/gpt_clean_v1/    ← portado parcial (sin patch_log.csv 5.3 MB)
-data_inventory/            ← portado completo (11 KB)
+data_pipeline/inventory/            ← portado completo (11 KB)
 docs/
   PROJECT_SCOPE.md         ← nuevo
   RESEARCH_TP.md           ← nuevo (evidencia LLM×VSR)
@@ -27,7 +27,7 @@ demo/README.md             ← nuevo
 vsr/curriculum/README.md       ← nuevo
 vsr/mpc001/README.md ← nuevo
 vsr/historical/ronda2/README.md ← nuevo
-Survey/README.md           ← nuevo
+docs/bibliografia/README.md           ← nuevo
 .env.example               ← nuevo (paths/knobs de la demo)
 ```
 
@@ -40,15 +40,15 @@ correcta y moverla rompería los comandos documentados en README/SPEC/experiment
 
 | Origen (rama #25) | Destino | Criterio |
 |---|---|---|
-| `data_discovery/**` | ídem | completo — pipeline con src+tests, 0.8 MB |
-| `data_release/**` con blob <1 MB | ídem | reports, scripts, README, manifests chicos |
-| `data_release/*.csv` ≥1 MB (10 archivos, ~82 MB) | **NO** | recuperables: `git show dataset-clean-v1:<path>`; se listan en `data_release/README` porteado y en CHANGES |
+| `data_pipeline/discovery/**` | ídem | completo — pipeline con src+tests, 0.8 MB |
+| `data_pipeline/release/**` con blob <1 MB | ídem | reports, scripts, README, manifests chicos |
+| `data_pipeline/release/*.csv` ≥1 MB (10 archivos, ~82 MB) | **NO** | recuperables: `git show dataset-clean-v1:<path>`; se listan en `data_pipeline/release/README` porteado y en CHANGES |
 | `cleaning/gpt_clean_v1/**` salvo `patch_log.csv` (5.3 MB) | ídem | src, prompts, reports, rejected_patches.jsonl (evidencia negativa) |
-| `data_inventory/**` | ídem | completo |
-| raíz: `README_DATASET.md`, `OPEN_ITEMS_DATASET.md` | **NO** (duplicados byte-idénticos de `data_release/reports/`) | se porta solo la copia de reports/ |
-| raíz: `HOW_TO_USE_BUCKET.md` | comparar con `data_release/reports/HOW_TO_USE_BUCKET.md`, portar la versión más completa | difieren |
+| `data_pipeline/inventory/**` | ídem | completo |
+| raíz: `README_DATASET.md`, `OPEN_ITEMS_DATASET.md` | **NO** (duplicados byte-idénticos de `data_pipeline/release/reports/`) | se porta solo la copia de reports/ |
+| raíz: `HOW_TO_USE_BUCKET.md` | comparar con `data_pipeline/release/reports/HOW_TO_USE_BUCKET.md`, portar la versión más completa | difieren |
 | raíz: `REPO_MAP.md`, `BRANCH_CLEANUP_PLAN.md`, `LOCAL_CLEANUP_PLAN.md` | **NO** — describen la estructura pre-reorg / el workflow de esa rama; superseded | recuperables desde la rama; anotado en CHANGES |
-| `requirements.txt`: `faster-whisper>=1.2.1` | se agrega (dependencia de data_discovery) | |
+| `requirements.txt`: `faster-whisper>=1.2.1` | se agrega (dependencia de data_pipeline/discovery) | |
 | `.gitignore` de la rama | **NO** — contradice la política de datos de main (decisión abierta, va a NEXT_STEPS) | |
 | Borrados masivos de `data/` y `dataset/` | **NO** — decisión de datos separada, fuera de scope | |
 
@@ -91,7 +91,7 @@ Sin cambios en: parámetros de VAD/beam/corrector/calibración, scripts `.sh` de
 1. `git diff --check` (whitespace).
 2. `python3 -m compileall` de todo el árbol.
 3. Tests existentes: `cleaning/visual_quality/tests/`, `cleaning/transcript_segmentation/tests/`,
-   `data_discovery/tests/` (porteados) — con pytest si el env lo permite.
+   `data_pipeline/discovery/tests/` (porteados) — con pytest si el env lo permite.
 4. `--help`/arranque de entrypoints hasta donde no exijan cámara/pesos/envs conda.
 5. Chequeo de links internos de todos los `.md` nuevos y tocados.
 6. Grep de referencias a paths viejos/movidos (no debería haber: no se mueve nada).
@@ -103,7 +103,7 @@ Sin cambios en: parámetros de VAD/beam/corrector/calibración, scripts `.sh` de
 
 - Riesgo principal: los porteos de la rama #25 introducen docs que mencionan la política
   "datos al bucket" que contradice main → mitigado con nota de contexto en
-  `data_release/README.md` porteado y la decisión abierta en NEXT_STEPS.
+  `data_pipeline/release/README.md` porteado y la decisión abierta en NEXT_STEPS.
 - Riesgo menor: derivar `REPO` de `__file__` cambia el path efectivo si alguien ejecuta
   el script desde una copia suelta fuera del repo → mitigado con `LABIOS_REPO` env.
 - Rollback: la branch no toca main; borrar la branch = rollback total. Cada fase es un

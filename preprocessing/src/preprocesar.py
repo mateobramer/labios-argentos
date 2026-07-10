@@ -352,7 +352,7 @@ def procesar_paralelo(titulos, jobs):
 
 def main():
     if not os.path.isdir(CLIPS_DIR):
-        print(f"ERROR: no existe '{CLIPS_DIR}'. Corré primero descargar_procesar.py.")
+        print(f"ERROR: no existe '{CLIPS_DIR}'. Corré primero data_pipeline/descargar_procesar.py.")
         sys.exit(1)
 
     args = sys.argv[1:]

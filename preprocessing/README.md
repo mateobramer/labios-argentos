@@ -2,7 +2,7 @@
 
 Preparacion visual de los clips para VSR.
 
-Este modulo vive despues de `descargar_procesar.py`: toma los clips alineados en
+Este modulo vive despues de `data_pipeline/descargar_procesar.py`: toma los clips alineados en
 `data/clips/` y genera recortes labiales listos para revisar o entrenar.
 
 ## Que va aca

@@ -27,9 +27,9 @@ en el tree de main), lectura de docs núcleo, greps de paths/buckets/imports,
 | `experiments/` | 0.1 MB | índice + 10 docs de experimentos con tabla maestra | **fuente de verdad de resultados** |
 | `vsr/mpc001/` | ~0 | notas/scripts base mpc001 (clon externo no versionado) | canónico, sin README |
 | `vsr/curriculum/` | ~0 | procesamiento ViSpeR-es para currículum | pausado (ver PLAN_CURRICULUM), sin README |
-| `claude-videos/` | ~0 | CSVs de fuentes curadas (gate 0) | canónico |
-| `Survey/` | 0.1 MB | 1 PDF de paper de referencia | histórico, sin README |
-| raíz | — | README, AGENTS, CLAUDE, TO-DO, descargar_procesar.py, requirements.txt, .gitignore | canónico |
+| `data_pipeline/sources/` | ~0 | CSVs de fuentes curadas (gate 0) | canónico |
+| `docs/bibliografia/` | 0.1 MB | 1 PDF de paper de referencia | histórico, sin README |
+| raíz | — | README, AGENTS, CLAUDE, TO-DO, data_pipeline/descargar_procesar.py, requirements.txt, .gitignore | canónico |
 
 **Contexto clave**: main fue reorganizado HOY (PR #27). La estructura ya es coherente y
 está documentada en `docs/ESTRUCTURA.md`. Esta limpieza NO necesita re-mover módulos:
@@ -38,7 +38,7 @@ necesita portar material único de ramas, cerrar huecos de docs y desacoplar pat
 ## 2. Duplicaciones detectadas
 
 - En `feature/full-clean-release`: `README_DATASET.md`, `OPEN_ITEMS_DATASET.md` en raíz
-  son **byte-idénticos** a sus copias en `data_release/reports/`. `HOW_TO_USE_BUCKET.md`
+  son **byte-idénticos** a sus copias en `data_pipeline/release/reports/`. `HOW_TO_USE_BUCKET.md`
   difiere entre raíz y reports (verificar cuál es más nuevo al portar).
 - En main: no se detectaron duplicados relevantes (la reorg de PR #27 ya fusionó
   FLUJO/ESTRUCTURA_PROYECTO/PIPELINE_PROYECTO en `docs/ESTRUCTURA.md`).
@@ -92,15 +92,15 @@ Material único portable (agregados, todos texto):
 
 | Dir | Peso | Contenido |
 |---|---|---|
-| `data_discovery/` | 0.8 MB | pipeline de búsqueda/score de fuentes nuevas (src+tests+outputs+60 JSON metadata) |
-| `data_release/` | 85 MB ⚠️ | manifests del release limpio, 30+ reportes md, 14 scripts |
+| `data_pipeline/discovery/` | 0.8 MB | pipeline de búsqueda/score de fuentes nuevas (src+tests+outputs+60 JSON metadata) |
+| `data_pipeline/release/` | 85 MB ⚠️ | manifests del release limpio, 30+ reportes md, 14 scripts |
 | `cleaning/gpt_clean_v1/` | 6 MB | limpieza GPT de transcripciones (src+prompts+reportes+patch_log 5.3 MB) |
-| `data_inventory/` | 11 KB | inventario del bucket |
+| `data_pipeline/inventory/` | 11 KB | inventario del bucket |
 | raíz | — | 6 docs (2 duplicados de reports/, 2 planes de branch-workflow, REPO_MAP superseded) |
 | `.gitignore` | — | bloquea `*.mp4` etc. — **contradice la política de main**, no portable tal cual |
-| `requirements.txt` | — | + `faster-whisper` (lo usa data_discovery) — portable |
+| `requirements.txt` | — | + `faster-whisper` (lo usa data_pipeline/discovery) — portable |
 
-⚠️ `data_release/` NO se porta entero: 10 manifests CSV >1 MB suman ~82 MB. Esos
+⚠️ `data_pipeline/release/` NO se porta entero: 10 manifests CSV >1 MB suman ~82 MB. Esos
 permanecen accesibles vía el **tag `dataset-clean-v1`** (= `7221b55`, penúltimo commit
 de la rama) y el bucket. Se porta todo lo <1 MB (reports, scripts, manifests chicos).
 
@@ -140,7 +140,7 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 
 | Movimiento | Riesgo | Mitigación |
 |---|---|---|
-| Portar dirs de la rama #25 a paths originales | colisión de nombres | no hay: `data_discovery/`, `data_release/`, `cleaning/gpt_clean_v1/`, `data_inventory/` no existen en main |
+| Portar dirs de la rama #25 a paths originales | colisión de nombres | no hay: `data_pipeline/discovery/`, `data_pipeline/release/`, `cleaning/gpt_clean_v1/`, `data_pipeline/inventory/` no existen en main |
 | No portar manifests >1 MB | pérdida de acceso | recuperables vía `git show dataset-clean-v1:<path>` + bucket; documentado |
 | Env-var override de paths en demo | cambio de comportamiento | defaults idénticos a los actuales; `REPO` derivado de `__file__` es estrictamente más correcto (funciona desde cualquier clone) |
 | Tocar `.gitignore` | des-versionar datos | NO se porta el `.gitignore` de la rama #25 |
@@ -151,7 +151,7 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 - `vsr/historical/ronda2/` completo (corrida ronda 2, evidencia de ft03–ft07).
 - `docs/archivo/HANDOFF_ROIS_FINETUNE.md`.
 - `docs/PLAN_CURRICULUM.md` (plan pausado, con contexto).
-- `Survey/paper-3.pdf` (referencia bibliográfica).
+- `docs/bibliografia/paper-3.pdf` (referencia bibliográfica).
 - `TO-DO.md` (checklist de la rúbrica, actualizado hoy).
 - Notebooks 01–09 (cada uno es evidencia de una etapa).
 
@@ -167,4 +167,4 @@ Mientras el tag exista, todo el material de esa rama es recuperable aunque la ra
 - grep de secretos (`.env`, tokens, keys): sin hallazgos.
 - Carpetas vacías: ninguna.
 - READMEs faltantes: `demo/`, `vsr/curriculum/`, `vsr/mpc001/`, `vsr/historical/ronda2/`,
-  `Survey/` (se agregan en esta limpieza).
+  `docs/bibliografia/` (se agregan en esta limpieza).

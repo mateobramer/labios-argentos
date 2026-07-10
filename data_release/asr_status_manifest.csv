@@ -1,4 +1,0 @@
-dataset_group,clip_count_mp4,large_count_txt,turbo_count_txt,asr_status,asr_model_large,asr_model_turbo,asr_runtime,asr_error_if_any,notes
-argentina/existing,12112,12112,0,blocked_no_audio_in_roi_mp4,existing_txt_from_source_bucket,not_run,,sample probes showed video-only ROI mp4; audio stream absent,Need original clips with audio or source reconstruction before turbo.
-spanish_general/existing,10356,46991,0,blocked_no_audio_in_roi_mp4,existing_txt_from_source_bucket,not_run,,sample probes showed video-only ROI mp4; audio stream absent,Kept separated; no GPT cleaning in this phase.
-argentina/new_discovery,0,0,0,pending_source_ingest,large,turbo,,,20 accepted videos queued from data_discovery.
