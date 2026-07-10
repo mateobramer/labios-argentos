@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from statistics import mean
 
-from evaluation.src.experiment_metrics import cer, wer
+from vsr.evaluation.src.experiment_metrics import cer, wer
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

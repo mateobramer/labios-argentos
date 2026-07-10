@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from evaluation.src.experiment_metrics import comparar_experimentos, resumen_por_grupo
+from vsr.evaluation.src.experiment_metrics import comparar_experimentos, resumen_por_grupo
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

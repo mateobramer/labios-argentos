@@ -8,9 +8,9 @@ from unittest.mock import patch
 import numpy as np
 import pandas as pd
 
-from evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
-from evaluation.src.batch_vsr_notebook import comparar_resultados, resolver_repo_path, tamanos_experimentos
-from evaluation.src.parse_batch_vsr_results import parse_all
+from vsr.evaluation.src.build_batch_vsr_experiments import build_configs, write_configs
+from vsr.evaluation.src.batch_vsr_notebook import comparar_resultados, resolver_repo_path, tamanos_experimentos
+from vsr.evaluation.src.parse_batch_vsr_results import parse_all
 from preprocessing.src.preprocessing_variant import _fallback_original_roi, run_preprocessing_variant
 from cleaning.visual_quality.src.transcript_alignment_audit import build_alignment_audit
 from cleaning.visual_quality.src.transcript_cleaning import (

@@ -9,7 +9,7 @@ import re
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from evaluation.src.experiment_metrics import cer, wer
+from vsr.evaluation.src.experiment_metrics import cer, wer
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

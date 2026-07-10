@@ -4,11 +4,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from evaluation.src.build_visual_cleaning_manifests import (
+from vsr.evaluation.src.build_visual_cleaning_manifests import (
     QUALITY_COLUMNS,
     construir_manifests,
 )
-from evaluation.src.experiment_metrics import cer, comparar_experimentos, wer
+from vsr.evaluation.src.experiment_metrics import cer, comparar_experimentos, wer
 from vsr.src.fine_tune import SPLITS_DIR, build_arg_parser, split_csv_path
 
 

@@ -1,0 +1,18 @@
+# Env de demo/captura: OpenCV + MediaPipe (+ pytest para la suite completa).
+# Crear:  conda env create -f envs/ptt.yml
+# Verificado 2026-07-10 en macOS arm64 (cv2 5.0.0, mediapipe 0.10.35, py3.11).
+name: ptt
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - opencv-python
+      - mediapipe
+      - numpy
+      - pandas
+      - torch          # lo importan tests de evaluación (batch_vsr); la inferencia real usa el env visper
+      - pyyaml
+      - matplotlib
+      - pytest
