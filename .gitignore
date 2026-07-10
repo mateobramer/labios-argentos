@@ -62,3 +62,24 @@ __pycache__/
 
 # Backup temporal del .git roto (recuperacion)
 .git.broken-backup/
+
+# limpieza ablacion de datos
+.claude/scheduled_tasks.lock
+**/sample-clips/
+*.zip
+
+# Config local de Claude Code y venvs extra
+.claude/
+.venv-cleaning/
+
+# multilingual-vsr: repo externo clonado (github) y corridas locales — no versionar.
+# Se versionan notes/ y scripts/.
+multilingual-vsr/repo/
+multilingual-vsr/runs/
+
+# curriculum: logs de procesamiento regenerables
+curriculum/logs/
+data/_visper_tmp/
+
+# Modelos personales de calibracion (privados, se generan con demo/calibracion/)
+modelos/personal/

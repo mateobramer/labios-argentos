@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Labios Argentos — lectura de labios en vivo</title>
+<style>
+  :root{
+    --negro:#0a0c0e; --tinta:#12161b; --tinta2:#0d1116; --linea:#212a33;
+    --celeste:#8ec3e6; --celeste-hond:#3d5c74; --oro:#f2c832;
+    --crudo:#d4dce2; --humo:#66737f; --ok:#74d99b; --alerta:#f2994a;
+    --display:"Avenir Next Condensed","Arial Narrow",-apple-system,sans-serif;
+    --body:"Avenir Next","Helvetica Neue",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background:var(--negro); color:var(--crudo); min-height:100vh;
+    display:flex; flex-direction:column; font:15px/1.5 var(--body);
+  }
+  .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+
+  /* ---------- header ---------- */
+  header{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+    padding:20px 30px 16px; border-bottom:1px solid var(--linea);
+  }
+  .brand{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+  .brand h1{
+    font-family:var(--display); font-weight:800; font-size:22px;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--celeste);
+  }
+  .brand span{font-size:12.5px; color:var(--humo)}
+  .chip{
+    display:inline-flex; align-items:center; gap:8px; padding:7px 15px; border-radius:999px;
+    font-family:var(--display); font-size:13px; font-weight:700; letter-spacing:.14em;
+    text-transform:uppercase; border:1px solid var(--linea); background:var(--tinta); color:var(--humo);
+  }
+  .chip .dot{width:8px; height:8px; border-radius:50%; background:var(--humo); flex:none}
+  .chip[data-st="calibrando"]{color:var(--oro); border-color:#4a3f16}
+  .chip[data-st="calibrando"] .dot{background:var(--oro); animation:pulso 1.2s infinite}
+  .chip[data-st="escuchando"]{color:var(--celeste); border-color:var(--celeste-hond)}
+  .chip[data-st="escuchando"] .dot{background:var(--celeste)}
+  .chip[data-st="hablando"]{color:var(--ok); border-color:#2a5240}
+  .chip[data-st="hablando"] .dot{background:var(--ok)}
+  .chip[data-st="infiriendo"]{color:var(--alerta); border-color:#5a3d20}
+  .chip[data-st="infiriendo"] .dot{background:var(--alerta); animation:pulso .7s infinite}
+  @keyframes pulso{50%{opacity:.3}}
+
+  /* ---------- layout ---------- */
+  main{
+    flex:1; width:100%; max-width:1220px; margin:0 auto; padding:24px 30px;
+    display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:24px; align-items:start;
+  }
+  @media (max-width:940px){ main{grid-template-columns:1fr} }
+
+  /* ---------- pantalla de cine ---------- */
+  .pantalla{
+    position:relative; border-radius:10px; overflow:hidden; background:#000;
+    border:1px solid var(--linea); line-height:0;
+  }
+  .pantalla img{width:100%; display:block}
+  .scrim{
+    position:absolute; inset:auto 0 0 0; height:38%;
+    background:linear-gradient(transparent, rgba(0,0,0,.82)); pointer-events:none;
+  }
+  .subt{
+    position:absolute; inset:auto 0 0 0; padding:0 6% 26px; text-align:center; line-height:1.3;
+  }
+  .subt .txt{
+    font:700 clamp(19px, 2.6vw, 27px)/1.32 var(--body); color:var(--oro); text-wrap:balance;
+    text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 2px 8px rgba(0,0,0,.9);
+  }
+  .subt .txt.vacio{color:var(--crudo); opacity:.55; font-weight:500; font-size:15px}
+  .subt .leyendo{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--alerta);
+    text-shadow:0 1px 4px #000; margin-bottom:6px; display:none;
+  }
+  .subt .leyendo::after{content:" …"; animation:pulso 1s infinite; display:inline-block}
+
+  /* ---------- debajo de la pantalla: labios + lo que ve el modelo ---------- */
+  .telemetria{
+    display:flex; align-items:center; gap:14px; padding:12px 4px 0;
+  }
+  .telemetria label{
+    font-family:var(--display); font-size:11px; font-weight:700; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--humo); flex:none;
+  }
+  .vu{position:relative; flex:1; height:6px; background:var(--tinta); border:1px solid var(--linea); border-radius:99px; overflow:hidden}
+  .vu .fill{height:100%; width:0%; background:linear-gradient(90deg, var(--celeste-hond), var(--ok)); transition:width .12s linear}
+  .vu .umbral{position:absolute; top:-2px; bottom:-2px; left:50%; width:2px; background:var(--oro); opacity:.6}
+  .vision{margin-top:16px}
+  .vision h2, aside h2{
+    font-family:var(--display); font-size:12px; font-weight:700; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--humo); margin-bottom:8px;
+  }
+  .vision .marco{
+    border:1px solid var(--linea); border-radius:8px; background:var(--tinta2);
+    padding:8px; min-height:72px; display:flex; align-items:center; line-height:0;
+  }
+  .vision img{width:100%; max-width:560px; image-rendering:auto; border-radius:4px; filter:contrast(1.05)}
+  .vision .nota{font-size:11.5px; color:var(--humo); margin-top:6px; line-height:1.5}
+
+  /* ---------- el guion (transcript) ---------- */
+  aside{
+    border:1px solid var(--linea); border-radius:10px; background:var(--tinta);
+    display:flex; flex-direction:column; max-height:76vh;
+  }
+  aside .head{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--linea)}
+  .btns{display:flex; gap:8px}
+  button, a.btn{
+    font:600 12.5px/1 var(--body); color:var(--crudo); background:var(--tinta2);
+    border:1px solid var(--linea); border-radius:7px; padding:8px 13px; cursor:pointer; text-decoration:none;
+  }
+  button:hover, a.btn:hover{border-color:var(--celeste-hond); color:var(--celeste)}
+  button:focus-visible, a.btn:focus-visible{outline:2px solid var(--celeste); outline-offset:2px}
+  #guion{overflow-y:auto; flex:1; padding:6px 0}
+  .seg{padding:12px 16px; border-bottom:1px solid var(--tinta2)}
+  .seg img{width:100%; border-radius:4px; margin-bottom:7px; display:block; opacity:.9}
+  .seg .txt{font-size:14.5px; line-height:1.45}
+  .seg .meta{font-family:var(--mono); font-size:10.5px; color:var(--humo); margin-top:4px}
+  .vacio-guion{padding:30px 18px; color:var(--humo); font-size:13px; text-align:center; line-height:1.6}
+
+  /* ---------- pie: sala de maquinas ---------- */
+  footer{
+    border-top:1px solid var(--linea); padding:12px 30px;
+    display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  }
+  .maq{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .badge{
+    font-family:var(--mono); font-size:11px; color:var(--humo);
+    border:1px solid var(--linea); background:var(--tinta); border-radius:6px; padding:5px 10px;
+  }
+  .badge b{color:var(--crudo); font-weight:600}
+  button.badge{cursor:pointer; font-family:var(--mono)}
+  button.badge:hover{border-color:var(--celeste-hond)}
+  #b-caras{color:var(--alerta); border-color:#5a3d20}
+  #f-stats{font-family:var(--mono); font-size:11px; color:var(--humo)}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Labios Argentos</h1>
+    <span>lectura de labios rioplatense · en vivo · sin audio</span>
+  </div>
+  <span class="chip" id="chip" data-st="calibrando"><span class="dot"></span><span id="chiptxt">conectando</span></span>
+</header>
+
+<main>
+  <section>
+    <div class="pantalla">
+      <img id="video" src="/video" alt="cámara en vivo">
+      <div class="scrim"></div>
+      <div class="subt">
+        <div class="leyendo" id="leyendo">leyendo labios</div>
+        <div class="txt vacio" id="caption">Quedate callado unos segundos (calibra el detector de labios)… después hablá normal.</div>
+      </div>
+    </div>
+
+    <div class="telemetria">
+      <label for="vufill">labios</label>
+      <div class="vu"><div class="fill" id="vufill"></div><div class="umbral" title="umbral de habla"></div></div>
+    </div>
+
+    <div class="vision">
+      <h2>Lo que ve el modelo</h2>
+      <div class="marco"><img id="tira" alt="" hidden></div>
+      <div class="nota">La boca recortada a 96×96 en escala de grises, 25 cuadros por segundo — la única
+      entrada del modelo. Sin audio: todo lo que aparece en los subtítulos sale de acá.</div>
+    </div>
+  </section>
+
+  <aside>
+    <div class="head">
+      <h2 style="margin:0">El guion</h2>
+      <div class="btns">
+        <button id="copy" title="copiar todo al portapapeles">copiar</button>
+        <button id="clear" title="borrar el guion">limpiar</button>
+      </div>
+    </div>
+    <div id="guion"><div class="vacio-guion">Cada frase que leas en tus labios<br>aparece acá, con la tira de boca<br>que la produjo.</div></div>
+  </aside>
+</main>
+
+<footer>
+  <div class="maq">
+    <span class="badge" id="b-modelo">modelo <b>—</b></span>
+    <span class="badge" id="b-enc">encoder <b>—</b></span>
+    <span class="badge" id="b-beam">beam <b>—</b></span>
+    <button class="badge" id="b-qwen" title="corrector LLM (elige entre las 5 candidatas del beam): −3 WER, +1.2 s">qwen <b>—</b></button>
+    <span class="badge" id="b-caras" hidden>👥 <b>—</b></span>
+    <a class="btn" href="/calibrar" title="adaptar el modelo a tu boca / donar frases">🎬 calibrar mi modelo</a>
+  </div>
+  <span id="f-stats">0 frases</span>
+</footer>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const chip=$("chip"), chiptxt=$("chiptxt"), cap=$("caption"), ley=$("leyendo");
+  let nseg = 0, qwenOn = false;
+
+  function estado(fase, busy, thr){
+    let st="escuchando", txt="escuchando";
+    if (thr === null){ st="calibrando"; txt="calibrando"; }
+    else if (busy){ st="infiriendo"; txt="leyendo labios"; }
+    else if (fase === "HABLANDO"){ st="hablando"; txt="hablando"; }
+    chip.dataset.st = st; chiptxt.textContent = txt;
+  }
+
+  const es = new EventSource("/events");
+  es.onmessage = ev => {
+    const s = JSON.parse(ev.data);
+    if (s.config){
+      $("b-enc").innerHTML   = "encoder <b>"+s.config.encoder+"</b>";
+      $("b-beam").innerHTML  = "beam <b>"+s.config.beam+"</b>";
+      $("b-modelo").innerHTML= "modelo <b>"+(s.config.modelo||"base")+"</b>";
+      qwenOn = !!s.config.qwen; pintaQwen();
+    }
+    $("b-caras").hidden = !(s.n_caras > 1);
+    if (s.n_caras > 1) $("b-caras").innerHTML = "👥 <b>"+s.n_caras+" caras — leo a la marcada</b>";
+    estado(s.fase, s.busy, s.thr);
+    $("vufill").style.width = (s.thr ? Math.min(s.mov/(2*s.thr),1)*100 : 0) + "%";
+    ley.style.display = s.busy ? "block" : "none";
+
+    if (s.segmentos.length !== nseg){
+      const last = s.segmentos[s.segmentos.length-1];
+      if (last){
+        cap.textContent = last.texto; cap.classList.remove("vacio");
+        if (last.strip >= 0){ $("tira").src = "/strip/"+last.strip; $("tira").hidden = false; }
+      }
+      $("guion").innerHTML = s.segmentos.slice().reverse().map(g =>
+        `<div class="seg">${g.strip>=0?`<img src="/strip/${g.strip}" alt="">`:""}
+         <div class="txt">${g.texto}</div>
+         <div class="meta">${g.dur.toFixed(1)} s de habla · leída en ${g.infer.toFixed(1)} s</div></div>`).join("");
+      nseg = s.segmentos.length;
+      const tot = s.segmentos.reduce((a,g)=>a+g.infer,0);
+      $("f-stats").textContent = nseg+" frases · lectura media "+(tot/Math.max(nseg,1)).toFixed(1)+" s";
+    }
+    if (!s.segmentos.length && nseg !== 0){
+      nseg = 0; cap.textContent = "Guion limpio. Seguí hablando."; cap.classList.add("vacio");
+      $("tira").hidden = true;
+      $("guion").innerHTML = '<div class="vacio-guion">Cada frase que leas en tus labios<br>aparece acá.</div>';
+      $("f-stats").textContent = "0 frases";
+    }
+  };
+  es.onerror = () => { chiptxt.textContent = "sin conexión"; chip.dataset.st = "calibrando"; };
+
+  function pintaQwen(){
+    $("b-qwen").innerHTML = "qwen <b>"+(qwenOn?"ON ✓":"off")+"</b>";
+    $("b-qwen").style.color = qwenOn ? "var(--ok)" : "";
+  }
+  $("b-qwen").onclick = async () => {
+    const r = await fetch("/qwen",{method:"POST",headers:{"Content-Type":"application/json"},
+                                   body:JSON.stringify({on:!qwenOn})});
+    const j = await r.json();
+    if (j.ok){ qwenOn = j.qwen; pintaQwen(); }
+  };
+  $("clear").onclick = () => fetch("/clear",{method:"POST"});
+  $("copy").onclick = async () => {
+    const t = [...document.querySelectorAll("#guion .txt")].map(e=>e.textContent).reverse().join(" ");
+    try{ await navigator.clipboard.writeText(t); $("copy").textContent="copiado ✓";
+         setTimeout(()=>$("copy").textContent="copiar",1200);}catch(e){}
+  };
+</script>
+</body>
+</html>

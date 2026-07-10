@@ -1,0 +1,1158 @@
+===== PILOTO START 2026-06-27T22:03:47Z =====
+>>> ETAPA 1: descarga + transcripcion (large-v3) + clips  22:03:47Z
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+================================================================================
+Bajando video...
+Usando video existente: data/videos/MI PRIMER AMOR - Storytime/MI PRIMER AMOR - Storytime.mp4
+Video guardado: data/videos/MI PRIMER AMOR - Storytime/MI PRIMER AMOR - Storytime.mp4
+Carpeta: MI PRIMER AMOR - Storytime
+Transcribiendo con Whisper...
+Cargando modelo Whisper large-v3...
+  0%|          | 0/80772 [00:00<?, ?frames/s]  3%|▎         | 2632/80772 [00:11<05:40, 229.17frames/s]  7%|▋         | 5602/80772 [00:17<03:45, 333.52frames/s] 11%|█         | 8578/80772 [00:24<03:05, 388.73frames/s] 14%|█▍        | 11544/80772 [00:31<02:53, 399.05frames/s] 18%|█▊        | 14544/80772 [00:38<02:42, 408.70frames/s] 22%|██▏       | 17472/80772 [00:46<02:39, 397.03frames/s] 25%|██▌       | 20458/80772 [00:52<02:27, 407.72frames/s] 29%|██▉       | 23364/80772 [01:00<02:24, 396.30frames/s] 33%|███▎      | 26270/80772 [01:08<02:20, 389.13frames/s] 36%|███▌      | 29072/80772 [01:16<02:16, 380.08frames/s] 40%|███▉      | 31978/80772 [01:24<02:09, 377.86frames/s] 43%|████▎     | 34942/80772 [01:31<02:00, 381.15frames/s] 47%|████▋     | 37902/80772 [01:38<01:46, 402.75frames/s] 51%|█████     | 40804/80772 [01:45<01:41, 392.17frames/s] 54%|█████▎    | 43276/80772 [01:53<01:42, 367.57frames/s] 57%|█████▋    | 45874/80772 [02:01<01:38, 355.62frames/s] 61%|██████    | 48872/80772 [02:09<01:27, 364.57frames/s] 64%|██████▍   | 51870/80772 [02:17<01:18, 370.06frames/s] 68%|██████▊   | 54522/80772 [02:25<01:12, 360.20frames/s] 71%|███████   | 57522/80772 [02:33<01:03, 367.54frames/s] 75%|███████▍  | 60222/80772 [02:40<00:56, 360.88frames/s] 78%|███████▊  | 62896/80772 [02:48<00:50, 353.82frames/s] 81%|████████  | 65398/80772 [02:56<00:45, 340.64frames/s] 84%|████████▍ | 67852/80772 [03:04<00:38, 331.72frames/s] 88%|████████▊ | 70850/80772 [03:11<00:27, 364.06frames/s] 91%|█████████▏| 73850/80772 [03:14<00:15, 448.24frames/s] 91%|█████████▏| 73850/80772 [03:30<00:15, 448.24frames/s] 95%|█████████▌| 76756/80772 [03:56<00:24, 166.54frames/s] 99%|█████████▊| 79756/80772 [04:01<00:04, 216.06frames/s]100%|██████████| 80772/80772 [04:02<00:00, 239.97frames/s]100%|██████████| 80772/80772 [04:02<00:00, 332.64frames/s]
+JSON guardado: data/corpus/MI PRIMER AMOR - Storytime/transcripcion.json
+Corpus guardado: data/corpus/MI PRIMER AMOR - Storytime/corpus.txt
+  (aviso: la transcripcion no tiene word-timestamps; corte por segmentos, menos preciso)
+Clip 0001: 'Tengo un trípode que lo hice con cinta, hice mi ma' (5.3s)
+Clip 0002: 'Dale, uy Bueno gente, ¿cuánto que no me siento a g' (4.3s)
+Clip 0003: 'Deben haber pasado literalmente más de 6 meses que' (3.2s)
+Clip 0004: 'Está muy feo el fondo, como que me lo podría orden' (5.5s)
+Clip 0005: 'O sea, consideren este acto de amor, esto es lo má' (4.2s)
+Clip 0006: 'Si nunca vieron un video mío en su vida, les tengo' (3.5s)
+Clip 0007: 'Hay un personaje mitológico del canal que es Ramir' (3.9s)
+Clip 0008: 'Ramiro es mi novio de la infancia, el amor de mi v' (8.2s)
+Clip 0009: 'Ramiro fue el encargado de hacer que yo sintiera m' (4.8s)
+Clip 0010: 'Esto es un mashup de story times que espero que lo' (3.7s)
+Clip 0011: 'No los disfruté a verlos vividos porque estos stor' (3.6s)
+Clip 0012: 'De desamorío Y para los que no están al tanto de q' (5.5s)
+Clip 0013: 'Y en mi vida, eh... Durante los años Para este vid' (4.7s)
+Clip 0014: 'Que tiene unas ganas tremendas de estar acá Este e' (3.9s)
+Clip 0015: 'No puede ser que ames tanto a Ramiro A ver si Rami' (4.9s)
+Clip 0016: 'Porque Ramiro Ramiro Ramiro Ramiro Ramiro me dio u' (4.7s)
+Clip 0017: 'Y nos íbamos a dar un pico hasta que le empezó a g' (5.0s)
+Clip 0018: 'Bueno, esto se remonta allá por el 2009' (3.2s)
+Clip 0019: 'El día en el cual Ramiro me conquistó, o sea, se g' (3.5s)
+Clip 0020: '¿Cómo fue esto? Ustedes estarán pensando ¿Cómo Mar' (4.2s)
+Clip 0021: 'O sea, ¿qué fue lo que la enamoró, me entendés, de' (5.2s)
+Clip 0022: 'O sea, teníamos el patio del colegio, las aulas Y ' (4.6s)
+Clip 0023: 'Estaban los directivos Y nadie entraba a la casona' (3.7s)
+Clip 0024: 'Ramiro, como era un hombre aventurero y rebelde Ib' (3.6s)
+Clip 0025: 'Se metía en los lugares prohibidos del colegio Y y' (3.4s)
+Clip 0026: '¡No! A mí me atrapó su valentía para hacer las reg' (4.4s)
+Clip 0027: 'Entonces entraba la casona Y atrás de la casona ha' (3.6s)
+Clip 0028: 'Se llamaba Las Piedritas Y si te encontraban en La' (3.8s)
+Clip 0029: 'No te podían encontrar en Las Piedritas Entonces n' (3.4s)
+Clip 0030: 'Y teníamos un grupito de 5 o 6 rufianes Que se iba' (3.7s)
+Clip 0031: 'O sea, tipo, la adrenalina de estar a donde no se ' (5.0s)
+Clip 0032: 'Eran cuatro chicos, Ramiro entre ellos Que era el ' (4.2s)
+Clip 0033: 'Y yo Adjunto imagen muy similar Para que ustedes p' (5.9s)
+Clip 0034: 'Cómo lucía la banda de rufianes en Las Piedritas' (4.0s)
+Clip 0035: 'Comenzó a llenar nueve Para mí era todavía peor El' (3.7s)
+Clip 0036: 'La primera vez en Las Piedritas Solamente estábamo' (4.0s)
+Clip 0037: 'Porque eso era, tipo, hacer los grafitis Estábamos' (4.4s)
+Clip 0038: 'Una maestra De otro lado, otra maestra Y nosotros ' (4.3s)
+Clip 0039: 'Atrapados en Las Piedritas Y dijimos, la puta madr' (4.0s)
+Clip 0040: 'Entonces los chicos salen corriendo La maestra nos' (4.9s)
+Clip 0041: 'Que a mí no me habían visto Yo había salido para a' (3.6s)
+Clip 0042: 'Como que no sabía qué hacer Tipo, yo no iba a aban' (3.2s)
+Clip 0043: 'Ya está, si nos atrapamos nos atrapaban a todos En' (3.8s)
+Clip 0044: 'Como si fueran cuatro chorros La profesora mirándo' (3.9s)
+Clip 0045: 'Me veía Y antes que haga eso Ramiro me mira y me h' (3.9s)
+Clip 0046: 'Y yo los veo Y tipo, me salvó la vida El chabón me' (3.9s)
+Clip 0047: 'Yo salí impune de ese delito Gracias a Ramiro Cuan' (4.0s)
+Clip 0048: 'No, no, este chico es mi salvador Llegó el mesía d' (4.9s)
+Clip 0049: 'Así fue como yo ya sentía que le debía Él me había' (3.4s)
+Clip 0050: 'De una Traferia Entonces ya me había ganado ¿Entie' (4.6s)
+Clip 0051: 'La diversión de mi primaria fue esto Fue la bandit' (4.6s)
+Clip 0052: 'Lo que yo sabía era que, claro Ramiro no era bolud' (5.1s)
+Clip 0053: 'Yo iba a hacer lo que sea O sea, lo que Ramiro dij' (3.7s)
+Clip 0054: 'Entonces acá es donde las cosas empiezan a ir desb' (3.8s)
+Clip 0055: 'Bueno, traje la coca y a mi mamá para que escuche ' (3.8s)
+Clip 0056: 'A dónde me pongo A dónde me pongo ¿No te lo voy a ' (4.8s)
+Clip 0057: 'Sí Bueno, decía mi mamá, es psicóloga O sea, esto ' (3.3s)
+Clip 0058: 'Esto es un tema muy difícil para mí Escuchá, vamos' (3.7s)
+Clip 0059: 'Inhalo Retengo Contás hasta cuatro Y exhalás conta' (4.2s)
+Clip 0060: 'Así se oxigena el cerebro Una vez hice eso dentro ' (3.2s)
+Clip 0061: 'Yo, una vez que yo estaba encrucijada por Ramiro M' (4.2s)
+Clip 0062: 'Y aparte, lo que pasa era que Ramiro y todos estos' (3.4s)
+Clip 0063: 'Yo era buena alumna O sea, me iba a reír en el col' (3.7s)
+Clip 0064: 'No me vas a acordar que me ponía a llorar ¿Entendé' (6.5s)
+Clip 0065: 'Parece que fuera hijo mío Esto es culpa de Ramiro,' (3.3s)
+Clip 0066: 'Todo, o sea, que yo haya dejado la facultad se res' (3.5s)
+Clip 0067: 'Era de mi propiedad privada la casona, ¿entendés?' (3.9s)
+Clip 0068: 'Y Ramiro entró y salió de la casona con un balojo ' (5.0s)
+Clip 0069: 'Y las llaves del colegio tenían una navaja Imagíne' (3.4s)
+Clip 0070: 'Y no tuvo mejor idea, hijo de puta Que metérmelas ' (3.4s)
+Clip 0071: 'Ramiro es un descontrolado O sea, llego a mi casa ' (3.9s)
+Clip 0072: 'Me llama y me dice ¿Qué tijeras tú tenés? El bolsi' (4.3s)
+Clip 0073: 'Yo ahí ya me empecé a poner nervioso Y dije, ok, o' (3.7s)
+Clip 0074: 'O de repente, claro, una navaja Era un... Lo que s' (4.9s)
+Clip 0075: 'Todo en mi mochila Y claro, yo estaba así con nuev' (6.0s)
+Clip 0076: 'Y yo lo di a la cuenta ahora y no parece nada Pero' (4.7s)
+Clip 0077: 'Entonces la misión de Ramiro era esta Yo tenía que' (3.6s)
+Clip 0078: 'En un recreo tenía que meterme en la casona Devolv' (4.3s)
+Clip 0079: 'Parece cuando en la historia de Shrek te dicen Ten' (3.5s)
+Clip 0080: 'Al último piso de la torre más alta A probar el ve' (3.3s)
+Clip 0081: 'Ramiro me había puesto a prueba Tenés que ir a la ' (5.2s)
+Clip 0082: 'Esa era mi misión Imagínense, yo no dormí el día a' (3.6s)
+Clip 0083: 'Acá estaban a prueba dos cosas Uno, que no me rete' (3.7s)
+Clip 0084: 'Que se me retaran en el colegio Eso conllevaba que' (4.5s)
+Clip 0085: 'Demostrarle que yo puedo, Rafa Entonces llevé las ' (4.7s)
+Clip 0086: 'O sea, el otro día Yo estaba re cagada Pero me esc' (3.9s)
+Clip 0087: 'Y cuando llegué Estaba Ramiro Que encerraran a la ' (5.7s)
+Clip 0088: 'Y esperar el beso del apuesto Príncipe encantador ' (4.7s)
+Clip 0089: 'Para llegar a la guarida del dragón De la torre má' (6.1s)
+Clip 0090: 'Hasta llegar a su durmiente silueta De suerte que' (4.3s)
+Clip 0091: 'Devolví las llaves Y Ramiro me dio un beso En prim' (4.5s)
+Clip 0092: 'No sé que iba a hacer el colegio para Apretártelo ' (5.2s)
+Clip 0093: 'Esta vez fuimos juntos a la casona Este fue el día' (3.8s)
+Clip 0094: 'Básicamente Él pensaba que iba a incendiar el cole' (4.2s)
+Clip 0095: 'Era tipo re turbio el sótano Se le caían las pared' (3.2s)
+Clip 0096: 'Estaba la cocina Un baño ahí que daba miedo Siempr' (3.3s)
+Clip 0097: 'Tipo te salía alguien de una puerta ya Bueno, con ' (3.9s)
+Clip 0098: 'Y la idea de Ramiro era incendiar el colegio Para ' (3.7s)
+Clip 0099: 'Años después el colegio se incendió La cosa de Ram' (4.4s)
+Clip 0100: 'O sea, años más tarde Pero el año pasado el colegi' (4.3s)
+Clip 0101: 'Me desperté una mañana Vi como se incendiaba la ca' (4.0s)
+Clip 0102: 'Bueno, estábamos en el... No es gracioso igual No ' (3.4s)
+Clip 0103: 'Pero en su momento queríamos que esto sucediera En' (3.2s)
+Clip 0104: 'Y había una pava hirviendo agua de mate Ramiro me ' (3.8s)
+Clip 0105: 'Y yo tipo ¿Qué quiere este chico? ¡Aparri la pava!' (4.7s)
+Clip 0106: 'El agua hirviendo en el piso Arriba de la mesa Y y' (4.8s)
+Clip 0107: 'Con agua hirviendo que nada iba a pasar Pero yo es' (3.4s)
+Clip 0108: 'Entonces yo dije Si Ramiro lo pide, lo haré Entonc' (3.5s)
+Clip 0109: 'Rociendo el piso de la casona con agua caliente Cl' (3.5s)
+Clip 0110: 'Después cuando terminó Ramiro nos quedamos así com' (3.5s)
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: "-f mp4" selects the best pre-merged mp4 format which is often not what's intended.
+         Pre-merged mp4 formats are not available from all sites, or may only be available in lower quality.
+         To prioritize the best h264 video and aac audio in an mp4 container, use "-t mp4" instead.
+         If you know what you are doing and want a pre-merged mp4 format, use "-f b[ext=mp4]" instead to suppress this warning
+[youtube] Extracting URL: https://www.youtube.com/watch?v=FqgU3psMyKQ
+[youtube] FqgU3psMyKQ: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] FqgU3psMyKQ: Downloading android vr player API JSON
+[info] FqgU3psMyKQ: Downloading 1 format(s): 18
+[download] Destination: data/videos/RESPONDO TODO 🌶/RESPONDO TODO 🌶.mp4
+[download]   0.0% of   77.53MiB at  461.52KiB/s ETA 02:54[download]   0.0% of   77.53MiB at    1.09MiB/s ETA 01:11[download]   0.0% of   77.53MiB at    2.27MiB/s ETA 00:34[download]   0.0% of   77.53MiB at    4.28MiB/s ETA 00:18[download]   0.0% of   77.53MiB at    2.62MiB/s ETA 00:29[download]   0.1% of   77.53MiB at    2.84MiB/s ETA 00:27[download]   0.2% of   77.53MiB at    3.97MiB/s ETA 00:19[download]   0.3% of   77.53MiB at    5.79MiB/s ETA 00:13[download]   0.6% of   77.53MiB at    9.30MiB/s ETA 00:08[download]   1.3% of   77.53MiB at   15.35MiB/s ETA 00:04[download]   2.6% of   77.53MiB at   11.76MiB/s ETA 00:06[download]   5.2% of   77.53MiB at    6.31MiB/s ETA 00:11[download]  10.3% of   77.53MiB at    6.20MiB/s ETA 00:11[download]  12.7% of   77.53MiB at    6.49MiB/s ETA 00:10[download]  12.7% of   77.53MiB at  857.91KiB/s ETA 01:21[download]  12.7% of   77.53MiB at    1.78MiB/s ETA 00:38[download]  12.7% of   77.53MiB at    3.46MiB/s ETA 00:19[download]  12.7% of   77.53MiB at    6.16MiB/s ETA 00:11[download]  12.8% of   77.53MiB at    2.65MiB/s ETA 00:25[download]  12.8% of   77.53MiB at    2.90MiB/s ETA 00:23[download]  12.9% of   77.53MiB at    4.06MiB/s ETA 00:16[download]  13.1% of   77.53MiB at    6.06MiB/s ETA 00:11[download]  13.4% of   77.53MiB at    9.71MiB/s ETA 00:06[download]  14.0% of   77.53MiB at   13.44MiB/s ETA 00:04[download]  15.3% of   77.53MiB at   10.30MiB/s ETA 00:06[download]  17.9% of   77.53MiB at    6.05MiB/s ETA 00:10[download]  23.0% of   77.53MiB at    5.16MiB/s ETA 00:11[download]  25.4% of   77.53MiB at    6.13MiB/s ETA 00:09[download]  25.4% of   77.53MiB at  732.63KiB/s ETA 01:21[download]  25.4% of   77.53MiB at    1.58MiB/s ETA 00:36[download]  25.4% of   77.53MiB at    3.07MiB/s ETA 00:18[download]  25.4% of   77.53MiB at    5.72MiB/s ETA 00:10[download]  25.4% of   77.53MiB at    2.42MiB/s ETA 00:23[download]  25.5% of   77.53MiB at    2.66MiB/s ETA 00:21[download]  25.6% of   77.53MiB at    3.69MiB/s ETA 00:15[download]  25.7% of   77.53MiB at    5.55MiB/s ETA 00:10[download]  26.0% of   77.53MiB at    1.69MiB/s ETA 00:33[download]  26.7% of   77.53MiB at    2.81MiB/s ETA 00:20[download]  28.0% of   77.53MiB at    4.06MiB/s ETA 00:13[download]  30.6% of   77.53MiB at    6.05MiB/s ETA 00:08[download]  35.7% of   77.53MiB at    5.91MiB/s ETA 00:08[download]  38.1% of   77.53MiB at    6.49MiB/s ETA 00:07[download]  38.1% of   77.53MiB at  771.44KiB/s ETA 01:04[download]  38.1% of   77.53MiB at    1.64MiB/s ETA 00:29[download]  38.1% of   77.53MiB at    3.24MiB/s ETA 00:14[download]  38.1% of   77.53MiB at    5.96MiB/s ETA 00:08[download]  38.1% of   77.53MiB at    2.48MiB/s ETA 00:19[download]  38.2% of   77.53MiB at    2.71MiB/s ETA 00:17[download]  38.2% of   77.53MiB at    3.86MiB/s ETA 00:12[download]  38.4% of   77.53MiB at    5.65MiB/s ETA 00:08[download]  38.7% of   77.53MiB at    3.36MiB/s ETA 00:14[download]  39.4% of   77.53MiB at    4.79MiB/s ETA 00:09[download]  40.7% of   77.53MiB at    5.95MiB/s ETA 00:07[download]  43.2% of   77.53MiB at    6.39MiB/s ETA 00:06[download]  48.4% of   77.53MiB at    6.25MiB/s ETA 00:06[download]  50.5% of   77.53MiB at    6.05MiB/s ETA 00:06[download]  50.5% of   77.53MiB at  764.13KiB/s ETA 00:52[download]  50.5% of   77.53MiB at    1.61MiB/s ETA 00:23[download]  50.5% of   77.53MiB at    2.86MiB/s ETA 00:13[download]  50.5% of   77.53MiB at    5.34MiB/s ETA 00:07[download]  50.5% of   77.53MiB at    2.42MiB/s ETA 00:15[download]  50.5% of   77.53MiB at    2.66MiB/s ETA 00:14[download]  50.6% of   77.53MiB at    3.67MiB/s ETA 00:10[download]  50.8% of   77.53MiB at    5.52MiB/s ETA 00:06[download]  51.1% of   77.53MiB at    8.78MiB/s ETA 00:04[download]  51.7% of   77.53MiB at    4.06MiB/s ETA 00:09[download]  53.0% of   77.53MiB at    6.38MiB/s ETA 00:05[download]  55.6% of   77.53MiB at    5.88MiB/s ETA 00:05[download]  60.8% of   77.53MiB at    5.58MiB/s ETA 00:05[download]  62.8% of   77.53MiB at    6.36MiB/s ETA 00:04[download]  62.8% of   77.53MiB at  888.81KiB/s ETA 00:33[download]  62.8% of   77.53MiB at    1.84MiB/s ETA 00:15[download]  62.8% of   77.53MiB at    3.51MiB/s ETA 00:08[download]  62.8% of   77.53MiB at    5.94MiB/s ETA 00:04[download]  62.8% of   77.53MiB at    2.59MiB/s ETA 00:11[download]  62.8% of   77.53MiB at    2.82MiB/s ETA 00:10[download]  62.9% of   77.53MiB at    3.93MiB/s ETA 00:07[download]  63.1% of   77.53MiB at    5.88MiB/s ETA 00:04[download]  63.4% of   77.53MiB at    9.49MiB/s ETA 00:02[download]  64.1% of   77.53MiB at   15.61MiB/s ETA 00:01[download]  65.3% of   77.53MiB at    4.40MiB/s ETA 00:06[download]  67.9% of   77.53MiB at    6.92MiB/s ETA 00:03[download]  73.1% of   77.53MiB at    6.62MiB/s ETA 00:03[download]  75.3% of   77.53MiB at    5.42MiB/s ETA 00:03[download]  75.3% of   77.53MiB at  Unknown B/s ETA Unknown[download]  75.3% of   77.53MiB at    2.71MiB/s ETA 00:07  [download]  75.4% of   77.53MiB at    4.82MiB/s ETA 00:03[download]  75.4% of   77.53MiB at    8.19MiB/s ETA 00:02[download]  75.4% of   77.53MiB at    2.89MiB/s ETA 00:06[download]  75.4% of   77.53MiB at    3.28MiB/s ETA 00:05[download]  75.5% of   77.53MiB at    4.31MiB/s ETA 00:04[download]  75.7% of   77.53MiB at    6.39MiB/s ETA 00:02[download]  76.0% of   77.53MiB at   10.12MiB/s ETA 00:01[download]  76.6% of   77.53MiB at   16.98MiB/s ETA 00:01[download]  77.9% of   77.53MiB at    3.30MiB/s ETA 00:05[download]  80.3% of   77.53MiB at    4.77MiB/s ETA 00:03[download]  85.0% of   77.53MiB at    5.20MiB/s ETA 00:02[download]  87.8% of   77.53MiB at    4.55MiB/s ETA 00:02[download]  87.8% of   77.53MiB at  828.10KiB/s ETA 00:11[download]  87.8% of   77.53MiB at    1.73MiB/s ETA 00:05[download]  87.8% of   77.53MiB at    3.33MiB/s ETA 00:02[download]  87.8% of   77.53MiB at    6.10MiB/s ETA 00:01[download]  87.8% of   77.53MiB at    2.56MiB/s ETA 00:03[download]  87.9% of   77.53MiB at    2.79MiB/s ETA 00:03[download]  88.0% of   77.53MiB at    3.90MiB/s ETA 00:02[download]  88.1% of   77.53MiB at    5.86MiB/s ETA 00:01[download]  88.4% of   77.53MiB at    9.37MiB/s ETA 00:00[download]  89.1% of   77.53MiB at   15.51MiB/s ETA 00:00[download]  90.4% of   77.53MiB at    6.45MiB/s ETA 00:01[download]  93.0% of   77.53MiB at    7.45MiB/s ETA 00:00[download]  98.1% of   77.53MiB at    6.23MiB/s ETA 00:00[download] 100.0% of   77.53MiB at    7.20MiB/s ETA 00:00[download] 100% of   77.53MiB in 00:00:13 at 5.58MiB/s   
+Clip 0111: 'Ese fue el día que Ramiro trató de incendiar la ca' (4.4s)
+Clip 0112: 'En educación física Jugábamos siempre al quemado S' (3.8s)
+Clip 0113: 'La pelea A contra B Nosotros estábamos en el A Y g' (5.4s)
+Clip 0114: 'Y siempre quedaba uno Tipo quedaba uno contra uno ' (3.9s)
+Clip 0115: 'O sea, siempre estaban los que corrían de una esqu' (3.5s)
+Clip 0116: 'Quedando la pelota Y después estaban los que se po' (3.9s)
+Clip 0117: 'Esquivaban Tiraban tipo un giro en el aire 360 y t' (3.2s)
+Clip 0118: 'Nos quedamos tipo ¡Wow! ¡Sos el más capo! Ramiro e' (4.6s)
+Clip 0119: 'Era muy deportista y competitivo Y a mí también si' (3.5s)
+Clip 0120: 'Entonces En el momento del quemado Era el momento ' (4.0s)
+Clip 0121: 'Y había una chica Que le encantaba el deporte Y qu' (4.4s)
+Clip 0122: 'Que yo ocupaba el 49% de su corazón Y esta otra ch' (3.9s)
+Clip 0123: 'Ocupaba el 51% de su corazón Yo tenía que pelear P' (4.4s)
+Clip 0124: '¿Entienden? Mi pelea diaria y constante De ir al c' (4.8s)
+Clip 0125: 'Suba al 51% Y el de la chica Baja al 49%' (3.2s)
+Clip 0126: 'Ese era el tipo Lo que yo quería en la vida Yo no ' (3.4s)
+Clip 0127: 'Entonces Jugábamos al quemado Y esta chica Supuest' (3.6s)
+Clip 0128: 'Se paraba adelante de todo Y cuando le tiraban pel' (4.0s)
+Clip 0129: 'Y las esquivaba Entonces Entonces Ramiro estaba co' (3.7s)
+Clip 0130: 'Valiente Que se metiera adelante de todo Él me aga' (4.1s)
+Clip 0131: 'Vamos a ponerle un nombre a esta chica Vamos a pon' (4.4s)
+Clip 0132: 'Me decía Vos tenés que ser como La más esquivadora' (3.4s)
+Clip 0133: 'Tenés que ir Y ponerte adelante de todo Porque a m' (3.7s)
+Clip 0134: 'Me gustan las chicas Que se la bancan No que se qu' (4.1s)
+Clip 0135: 'Él quería Una que se ponga El equipo al hombro Ent' (3.7s)
+Clip 0136: 'Tenía dos opciones Decirle Flaco ¿Qué carajo me es' (3.8s)
+Clip 0137: 'Nada más porque esquiva pelotas O decirle Obvio Ra' (3.2s)
+Clip 0138: 'Voy a tratar de esquivar La máxima cantidad de pel' (3.9s)
+Clip 0139: '¿Cuál se piensa que elegí? Obviamente yo Elegí la ' (4.5s)
+Clip 0140: 'De quemado Porque Ramiro En su puta vida Cada vez ' (3.3s)
+Clip 0141: 'Al quemado Desde que Ramiro me dijo eso Yo me poní' (3.6s)
+Clip 0142: 'Literalmente me ponía Primera en el quemado Para q' (3.3s)
+Clip 0143: 'A pelotazos O sea Era una pelota dura Dolían los p' (3.5s)
+Clip 0144: 'Contra pies y pies Te querían quemar Les chupabas ' (6.8s)
+Clip 0145: 'Porque encima La cosa era tirar De la cintura para' (4.2s)
+Clip 0146: 'Por arriba Porque no se iban a apuntar ¿Entendés? ' (4.0s)
+Clip 0147: 'Y me comía cada pelotazo Pero también saltaba O se' (3.5s)
+Clip 0148: 'De haber sido el momento Más deportista de toda mi' (3.5s)
+Clip 0149: 'Ustedes no entienden O sea Yo literalmente me tira' (3.9s)
+Clip 0150: 'Para que él no me viera Yo estaba adelante de todo' (4.3s)
+Clip 0151: 'Me pasaban siete pelotas por abajo Así que me daba' (3.6s)
+Clip 0152: '¿Entendés? Le chupaba un huevo a él Y yo estaba de' (3.9s)
+Clip 0153: 'O sea Yo me daba vuelta Después de quedar tirada e' (3.2s)
+Clip 0154: 'Me daba vuelta Y Ramiro seguía mirando A la más es' (3.3s)
+Clip 0155: 'O sea Yo con un ojo morado Con una pierna fractura' (3.8s)
+Clip 0156: 'A veces No me lo levantaba O sea Claramente Fue en' (3.5s)
+Clip 0157: 'Nada Conclusión Esa fue mi etapa de sumisa A las g' (4.4s)
+Clip 0158: 'O sea Ramiro a pesar de tener Este lado veo Psicóp' (3.8s)
+Clip 0159: 'Tenía su lado tierno Y amoroso ¿Qué pasó? Tengo qu' (4.6s)
+Clip 0160: 'A mí me acuerdo Una vez que me regaló Un collar Qu' (3.4s)
+Clip 0161: 'Ahí está moviendo el himno Ya empezó el DJ Yo tend' (3.3s)
+Clip 0162: 'El video antes de que esto empezara El corazón ese' (3.8s)
+Clip 0163: 'A Vicky No, yo sé Me había robado Uno que era de N' (4.0s)
+Clip 0164: 'Uno de cumpleañito Porque Vicky lo quería mucho Se' (3.6s)
+Clip 0165: 'Me enteré que era El collar de la hermana Una vez ' (4.2s)
+Clip 0166: 'Me tiró con un pony ¿Ven esos ponys gigantes? De c' (3.9s)
+Clip 0167: 'Gigante de cerámica Me tiró por la cabeza ¿Te acor' (3.5s)
+Clip 0168: 'Y agarré una escoba Que había en el piso Era una e' (3.4s)
+Clip 0169: 'Y se la puse a Vicky En el cuello La acorralé Cont' (3.8s)
+Clip 0170: 'Porque claro A la primera vista Ella se estaba cel' (3.4s)
+Clip 0171: 'Yo debería haberlo hecho A Ramiro O sea, yo la des' (3.7s)
+Clip 0172: 'Otras personas Ramiro se salvaban De alguna manera' (6.7s)
+Clip 0173: 'A Ramiro Barreto Es su oficina ¿Quién sabe que me ' (5.6s)
+Clip 0174: '¿Qué pasa? ¿Están los nuevos que te dan el cuerno?' (4.4s)
+Clip 0175: '¿Están los nuevos que te dan el cuerno? ¿O solamen' (4.0s)
+Clip 0176: 'Me rompió el telescopio Inhala Inhala Inhala' (5.1s)
+Clip 0177: 'El ejercicio de respiración ¿Me hiciste hacer El e' (3.9s)
+Clip 0178: '¿Este cuándo no? Que a mí me gustó ¿Cómo he ejerci' (8.7s)
+Clip 0179: 'Marti Ramiro estaba descompuesto Lo estaba pasando' (6.4s)
+Clip 0180: 'Muy bien, tío Las chicas se fijan Todos Los Días' (3.6s)
+Clip 0181: 'Días  Días Martino Ilusión Martino  El honor De ti' (18.1s)
+Clip 0182: 'De ti Cómo  Estás? La verdad A ti En sigue' (6.1s)
+Clip 0183: 'Martina Martina Lo que Esto           B Live Un Le' (6.0s)
+Clip 0184: 'A jugar por mi pelo no me peinaba mucho Estaba mal' (13.9s)
+Clip 0185: 'Denle like, suscríbanse, compartanlo Síganme en In' (4.9s)
+Clip 0186: 'Rama, te mando un beso Y chau, los quiero Me sube ' (5.7s)
+Clip 0187: 'Se me está creciendo el bigote más que mi viejo Gr' (4.4s)
+
+Total clips: 187
+Guardados en: data/clips/MI PRIMER AMOR - Storytime/
+================================================================================
+Bajando video...
+Video guardado: data/videos/RESPONDO TODO 🌶/RESPONDO TODO 🌶.mp4
+Carpeta: RESPONDO TODO 🌶
+Transcribiendo con Whisper...
+  0%|          | 0/163357 [00:00<?, ?frames/s]  2%|▏         | 2872/163357 [00:06<06:22, 419.61frames/s]  4%|▎         | 5872/163357 [00:12<05:28, 479.16frames/s]  5%|▌         | 8872/163357 [00:19<05:39, 455.56frames/s]  7%|▋         | 11872/163357 [00:26<05:49, 433.62frames/s]  9%|▉         | 14554/163357 [00:34<06:17, 393.78frames/s] 11%|█         | 17500/163357 [00:42<06:19, 384.16frames/s] 13%|█▎        | 20500/163357 [00:50<06:12, 383.99frames/s] 14%|█▍        | 23354/163357 [00:58<06:12, 375.94frames/s] 16%|█▌        | 26354/163357 [01:05<05:47, 394.21frames/s] 18%|█▊        | 28746/163357 [01:13<06:10, 363.54frames/s] 19%|█▉        | 31746/163357 [01:21<05:56, 369.41frames/s] 21%|██▏       | 34746/163357 [01:29<05:41, 376.76frames/s] 23%|██▎       | 37348/163357 [01:36<05:48, 361.08frames/s] 25%|██▍       | 40348/163357 [01:44<05:35, 366.13frames/s] 26%|██▋       | 42924/163357 [01:52<05:41, 352.52frames/s] 28%|██▊       | 45582/163357 [02:00<05:39, 346.71frames/s] 29%|██▉       | 47770/163357 [02:08<05:55, 325.39frames/s] 31%|███       | 50770/163357 [02:16<05:29, 341.66frames/s] 33%|███▎      | 53770/163357 [02:24<05:11, 352.36frames/s] 35%|███▍      | 56528/163357 [02:32<05:04, 350.74frames/s] 36%|███▋      | 59528/163357 [02:40<04:49, 358.87frames/s] 38%|███▊      | 62154/163357 [02:48<04:48, 350.44frames/s] 39%|███▉      | 64370/163357 [02:56<05:00, 329.04frames/s] 41%|████      | 66888/163357 [03:04<04:56, 325.43frames/s] 42%|████▏     | 69170/163357 [03:12<04:59, 314.58frames/s] 44%|████▍     | 71552/163357 [03:20<04:54, 311.38frames/s] 46%|████▌     | 74552/163357 [03:28<04:27, 332.12frames/s] 47%|████▋     | 77552/163357 [03:35<04:04, 351.23frames/s] 49%|████▉     | 80136/163357 [03:43<04:01, 344.68frames/s] 51%|█████     | 82688/163357 [03:51<03:58, 337.97frames/s] 52%|█████▏    | 85688/163357 [03:58<03:37, 357.68frames/s] 54%|█████▍    | 88478/163357 [04:06<03:29, 357.25frames/s] 56%|█████▌    | 90894/163357 [04:14<03:31, 342.52frames/s] 57%|█████▋    | 93526/163357 [04:22<03:25, 340.22frames/s] 59%|█████▉    | 96428/163357 [04:30<03:11, 349.06frames/s] 61%|██████    | 99360/163357 [04:37<02:59, 355.56frames/s] 63%|██████▎   | 102264/163357 [04:45<02:50, 358.61frames/s] 64%|██████▍   | 104670/163357 [04:53<02:51, 341.96frames/s] 66%|██████▌   | 107022/163357 [05:01<02:51, 328.20frames/s] 67%|██████▋   | 110022/163357 [05:09<02:35, 343.21frames/s] 69%|██████▊   | 112054/163357 [05:17<02:41, 316.94frames/s] 70%|███████   | 115054/163357 [05:24<02:17, 350.17frames/s] 72%|███████▏  | 117360/163357 [05:32<02:18, 332.15frames/s] 73%|███████▎  | 119822/163357 [05:40<02:13, 326.27frames/s] 75%|███████▍  | 122038/163357 [05:48<02:11, 314.06frames/s] 77%|███████▋  | 125038/163357 [05:55<01:54, 334.06frames/s] 78%|███████▊  | 127874/163357 [06:03<01:43, 342.07frames/s] 80%|████████  | 130874/163357 [06:11<01:32, 353.01frames/s] 82%|████████▏ | 133426/163357 [06:19<01:27, 344.01frames/s] 84%|████████▎ | 136426/163357 [06:27<01:14, 359.55frames/s] 85%|████████▌ | 139308/163357 [06:35<01:06, 361.30frames/s] 87%|████████▋ | 142308/163357 [06:41<00:54, 383.68frames/s] 89%|████████▉ | 145094/163357 [06:49<00:48, 375.11frames/s] 91%|█████████ | 147974/163357 [06:57<00:41, 370.53frames/s] 92%|█████████▏| 150974/163357 [07:05<00:33, 373.57frames/s] 94%|█████████▍| 153914/163357 [07:13<00:25, 371.07frames/s] 96%|█████████▌| 156652/163357 [07:21<00:18, 361.89frames/s] 97%|█████████▋| 159262/163357 [07:29<00:11, 350.86frames/s] 99%|█████████▉| 161942/163357 [07:37<00:04, 345.69frames/s]100%|██████████| 163357/163357 [07:43<00:00, 318.33frames/s]100%|██████████| 163357/163357 [07:43<00:00, 352.32frames/s]
+JSON guardado: data/corpus/RESPONDO TODO 🌶/transcripcion.json
+Corpus guardado: data/corpus/RESPONDO TODO 🌶/corpus.txt
+  (aviso: la transcripcion no tiene word-timestamps; corte por segmentos, menos preciso)
+Clip 0001: 'Hola a todos, mi nombre es Pablo Agustín y si está' (3.3s)
+Clip 0002: 'Y si sos miembro, mucho mejor. Y si estás en Españ' (3.7s)
+Clip 0003: 'O sea, no ahora porque ahora estoy acá, pero para ' (3.8s)
+Clip 0004: 'Viernes, sábado voy a estar... porque esto es el m' (5.7s)
+Clip 0005: 'En el día de hoy les tenemos una programación espe' (4.0s)
+Clip 0006: 'no puedo prevenir las noticias que se vengan este ' (4.5s)
+Clip 0007: 'Entonces, vamos a dejar algo grabadito. Les vamos ' (4.5s)
+Clip 0008: 'Les pido mil disculpas, pero estoy en tratativas f' (8.4s)
+Clip 0009: 'Pero no quiero adelantar nada porque estoy en trat' (6.6s)
+Clip 0010: 'Seguimos. Criado por lobos, vuelvo, me voy al sur,' (7.0s)
+Clip 0011: 'Y después del 6 tenemos el nacional.' (3.8s)
+Clip 0012: 'Al parecer se va a llenar de vuelta. Les agradezco' (3.3s)
+Clip 0013: 'Y les recomiendo que vengan a ver la obra con fami' (6.4s)
+Clip 0014: 'Es una obra, es muy linda. Vengan a verla. Ese fue' (4.1s)
+Clip 0015: 'En el día de hoy tenemos una programación especial' (3.6s)
+Clip 0016: 'Hace mil años que no contesto, que no hago videos ' (5.2s)
+Clip 0017: 'Y yo sé que ustedes quieren saber muchas cosas. Co' (6.4s)
+Clip 0018: 'Hasta donde pueda. Hasta donde puedo. Porque usted' (5.9s)
+Clip 0019: 'Hay cosas que, claro, que son del ámbito privado, ' (4.4s)
+Clip 0020: 'Entonces, bueno, ahí tenemos, viste, un caldo de c' (6.1s)
+Clip 0021: 'Y lo otro, lo suelo, igual, bueno, lo sueltearé co' (4.4s)
+Clip 0022: 'Bueno, número uno. ¿Por qué le dijiste que no a Bo' (4.2s)
+Clip 0023: 'Esto creo que lo expliqué en un video, pero lo exp' (3.6s)
+Clip 0024: 'Yo odio las entrevistas. Me pongo nervioso. No me ' (3.8s)
+Clip 0025: 'Me escucho soberbio. No, no, no sé. Hay algo de la' (4.2s)
+Clip 0026: 'Me gusta hacerlas. Porque como que me interesa, ti' (4.3s)
+Clip 0027: 'Tipo, ¿y cómo viviste esto? ¿Y cómo sentiste al ot' (4.6s)
+Clip 0028: 'Viste, tipo, ay, no sé, ay, qué sé yo, no sé qué. ' (3.4s)
+Clip 0029: 'O sea, como... Entonces, claro. Cuando él me dice,' (9.2s)
+Clip 0030: 'Que es una comedia dramática. O sea, es una comedi' (4.1s)
+Clip 0031: 'Pero tiene muchos procesos psicoanalíticos. Yo est' (4.2s)
+Clip 0032: 'Entonces, yo no sé si me hubiese bancado por él un' (4.6s)
+Clip 0033: 'Tenés desapariciones que te tocaron de cerca. La d' (5.6s)
+Clip 0034: '¿Y para qué tener un conflicto con Matías? Que lo ' (4.8s)
+Clip 0035: 'Ah, bueno, y de paso contesto. Porque también me d' (3.6s)
+Clip 0036: 'Porque yo estoy de gira. Tampoco fui el de Camil M' (4.1s)
+Clip 0037: 'Que la amo, la adoro. Me parece divina. Pero estoy' (4.0s)
+Clip 0038: 'Porque los fines de semana generalmente estoy haci' (3.6s)
+Clip 0039: 'Una obra que acaba de pasar los 10.000 espectadore' (6.0s)
+Clip 0040: 'Sobre todo hoy en día. Estoy muy agradecido. Estoy' (5.3s)
+Clip 0041: 'Contá todo el lore con la Okiato. Yo con Okiato no' (3.6s)
+Clip 0042: 'Valore. Lo valore. No, lo valore de Okiato me tien' (4.5s)
+Clip 0043: 'Pero es por lo que yo veo. En TV. Lo que se ve por' (3.9s)
+Clip 0044: 'Yo el tipo no lo conozco. Lo vi un par de veces. T' (4.4s)
+Clip 0045: 'Ja, ja, jiji. Yo con la que tenía trato era con ot' (3.7s)
+Clip 0046: 'Que le mando un beso. Que somos dos señores del es' (4.9s)
+Clip 0047: 'Pero siempre le digo. Le decí a la dueña que venga' (4.5s)
+Clip 0048: 'Ta, ta, ta, ta, ta. Corte. Pero hoy en día todavía' (4.3s)
+Clip 0049: 'Vení para acá, Silvia. Dame un abrazo negra. Pero ' (3.5s)
+Clip 0050: 'Proyectos que no se terminaron dando y te hubiese ' (5.2s)
+Clip 0051: 'Porque no sé. Quizás lo van a hacer después con ot' (5.0s)
+Clip 0052: 'Se llevó a grabar un piloto. Un director muy conoc' (4.2s)
+Clip 0053: 'Pero era como un drug dealer. ¿Entendés? O sea, no' (4.3s)
+Clip 0054: 'Como un reventadito. Y me gustaba, boludo, el pers' (4.2s)
+Clip 0055: 'Era muy divertido también. Y estaba tipo la Eva de' (4.1s)
+Clip 0056: 'O sea, fue un piloto. Que se armó. Y después, tipo' (4.0s)
+Clip 0057: 'Pero ese me había entusiasmado. ¿Volverías a ser C' (4.1s)
+Clip 0058: 'Ah, bueno. Yo puse, tipo, voy a contestar pregunta' (3.7s)
+Clip 0059: 'Por favor. Basta. Porque ya me siento tipo Cristin' (3.6s)
+Clip 0060: 'Cuando le preguntaban por Britney todo el tiempo. ' (3.8s)
+Clip 0061: 'Y en un momento ya estaba hinchada a las pelotas. ' (3.8s)
+Clip 0062: '¿Entendés? De tanto que le rompía las pelotas. Ent' (5.6s)
+Clip 0063: 'Que hice. Expliqué muy bien lo que había pasado. O' (4.7s)
+Clip 0064: 'Y ahí ya lo dije. Pero, bueno. ¿Volverías a ser Ca' (4.4s)
+Clip 0065: 'Qué sé yo. Imagínate que viene una marca multimill' (4.2s)
+Clip 0066: 'Vamos. Pero yo creo que no. Sí haría una reunión.' (3.7s)
+Clip 0067: 'Tipo, una reunión re. Tipo, ahí un careo. ¿Entendé' (3.9s)
+Clip 0068: 'Paprika. El alivio cómico, por supuesto. Bueno, to' (4.1s)
+Clip 0069: 'Pero. Martín. Martín Sirio. Y yo. Ahí, ¿entendés? ' (6.2s)
+Clip 0070: 'Para esa estoy. Para así una cosa como diaria, sem' (3.8s)
+Clip 0071: 'Como que yo. Quizás no. No por Carolo. Sino porque' (4.9s)
+Clip 0072: 'Y le voy a contestar. También he dicho que no a ot' (3.5s)
+Clip 0073: 'Bueno, vamos a contar a qué programa dije que no. ' (3.5s)
+Clip 0074: 'Lo puedo contar. ¿Qué opinó Victoria de la obra? L' (4.0s)
+Clip 0075: 'Me dijo que estaba muy orgullosa. Esas fueron sus ' (7.3s)
+Clip 0076: 'Literalmente. Porque no era solamente. Digamos. La' (4.2s)
+Clip 0077: 'Sino como. El proceso. O al menos. Eso fue lo que ' (5.3s)
+Clip 0078: 'Viste. Tiran una frase. Y bueno. Y vos como la int' (5.3s)
+Clip 0079: 'Psicótico condenario místico. No sé si. No sé. Per' (4.0s)
+Clip 0080: 'Y la recomiendo a todo el mundo. Y por favor véanl' (3.7s)
+Clip 0081: 'Siempre digo esto. Pero también. Ah. Otra cosa que' (3.8s)
+Clip 0082: 'Porque también me preguntaron mucho. Tipo. Si voy ' (3.5s)
+Clip 0083: 'Y sí. Obviamente que es mi idea. Pero yo no sé cóm' (3.7s)
+Clip 0084: 'Lo agotador que es estar de gira. Siento que no lo' (5.7s)
+Clip 0085: 'Porque tampoco. O sea. No es tipo cargar bolsas en' (3.8s)
+Clip 0086: 'Yo se entiendo. Sí. Pero hay algo boludo. O sea. D' (3.9s)
+Clip 0087: 'Estás mareado. O sea. Comés o dormís la siesta. Vi' (4.7s)
+Clip 0088: 'Ese tipo de decisión. Decisiones. Viste. Salís a l' (3.6s)
+Clip 0089: 'Este vuelo se canceló de Aeropar. Que sale de seis' (3.3s)
+Clip 0090: 'Así que estoy esperando terminar esta gira. Se van' (4.3s)
+Clip 0091: 'No. No. Y después cuando se cierre eso. Voy a enfo' (4.4s)
+Clip 0092: 'Y ya tengo cosas preparadas. Y todo. Pero les pido' (4.2s)
+Clip 0093: 'Que me gustaría que muestre más su lado. Tiene un ' (3.8s)
+Clip 0094: 'Como muy lindo. Me gustaría que lo muestre más. En' (3.4s)
+Clip 0095: 'Mirá que tan lejos puedo ir. Viste. Que está bien.' (3.8s)
+Clip 0096: 'Mirá. O sea. Le va muy bien. Pero me gustaría ver ' (4.0s)
+Clip 0097: 'Eh. Después de lo demás de lo mismo. No. Sí me ofr' (4.9s)
+Clip 0098: 'En resumido. Que es lo. Que es. Como que son medio' (3.4s)
+Clip 0099: 'Como que es medio como parte de un mismo grupo. Y ' (4.1s)
+Clip 0100: 'Sobre cultura pop. Tipo un podcast. Y estábamos av' (4.1s)
+Clip 0101: 'Y después no sé qué pasó. O sea. Surgieron otras c' (3.6s)
+Clip 0102: 'Ni idea. Esto fue hace ya bastante. Por eso lo cue' (3.7s)
+Clip 0103: 'Ponele. Y la verdad que. Ese proyecto me había ent' (3.9s)
+Clip 0104: 'No salió. ¿Cuánto mido? Un ochenta. La gente piens' (3.6s)
+Clip 0105: 'Por eso lo quería aclarar. Y por eso me lo anoté. ' (3.4s)
+Clip 0106: 'Tampoco es que mido uno noventa. O dos metros. Per' (3.4s)
+Clip 0107: 'Es medio la estatura normal. ¿O no? Pero la gente ' (5.6s)
+Clip 0108: '¿Cómo está Chester? Chester está muy bien. Está mu' (3.5s)
+Clip 0109: 'Hace rato que no lo ven. Pasa que él siempre se po' (4.2s)
+Clip 0110: 'Ahora está durmiendo. Justo. No lo va. No. No. No.' (4.4s)
+Clip 0111: '¿Te llamaron para Olga? Yes. Of course. Baby. Pero' (5.1s)
+Clip 0112: 'También. A veces yo digo. Pero no puede ser. Esta ' (4.8s)
+Clip 0113: 'Por favor. Mi amor. Yo sé manejarme. Sé tratar. So' (4.4s)
+Clip 0114: 'Soy innovación pura. Yo con Olga. Con Luis. Con lo' (3.5s)
+Clip 0115: 'Trabajé en Susana Jiménez. Trabajé divino. Ah buen' (3.9s)
+Clip 0116: '¿Qué preferías? Si trabajar en Luzu o mi experienc' (4.6s)
+Clip 0117: 'La verdad. Los dos. La pasé bien. A ver. Más allá ' (4.9s)
+Clip 0118: 'Entendés que tuve con Luzu. Que ya lo expliqué. No' (3.7s)
+Clip 0119: 'La gente. Tipo la producción. Todo. La pasé muy bi' (4.2s)
+Clip 0120: 'Y en Olga también. O sea. No en Olga. Digamos. En.' (7.1s)
+Clip 0121: 'Porque obviamente era. O sea. Es mi ídola de Susan' (4.0s)
+Clip 0122: 'Hablando con ella. Para mí fue como un momento. Co' (3.6s)
+Clip 0123: 'Literal. Ah. Te llamaron para Olga. Claro. Entonce' (8.5s)
+Clip 0124: 'Tipo. Me llamaron. Y me dijeron que quería trabaja' (3.8s)
+Clip 0125: 'No sé. Me dijeron. Queremos que estés diario. Yo d' (4.6s)
+Clip 0126: 'Bueno. No sé qué. Después me llamaron para una reu' (3.3s)
+Clip 0127: 'Porque nosotros queremos trabajar con vos. Tipo. D' (3.9s)
+Clip 0128: 'Y yo les dije lo que quería hacer. Y me dijeron. A' (3.8s)
+Clip 0129: 'Nos encanta. Qué sé yo. Esto que lo otro. Blablabl' (3.9s)
+Clip 0130: 'Vamos a pensarlo. Esa idea. No. Y me llamaron para' (6.3s)
+Clip 0131: 'Pero no. Tipo ahora. Sino cuando. Al poco tiempo q' (4.5s)
+Clip 0132: 'No sé. Hubo como un cambio ahí. Como. Hubo alguien' (8.7s)
+Clip 0133: 'El tema dinero. No era poco el dinero. Pero tampoc' (5.9s)
+Clip 0134: 'Laburando para otra persona. O sea. Y depender del' (4.0s)
+Clip 0135: 'No. No. No. No. No. No. No.  Y me parece que valgo' (3.6s)
+Clip 0136: 'Disculpa. Cada vez que voy a un programa invitado.' (4.8s)
+Clip 0137: 'Mi amor. No. No. No. Eso se. Eso se paga. Y se pag' (3.6s)
+Clip 0138: 'Mi vida. Sí. Absolutamente. Y si no. No hay proble' (4.9s)
+Clip 0139: 'Otra cosa que. Por ejemplo. Ir a Olga. Tener buena' (3.6s)
+Clip 0140: 'Sirvo. Rindo. Me divierto un rato. La paso bien yo' (4.2s)
+Clip 0141: 'Siento que la pasan bien. Tipo. Los conductores de' (3.8s)
+Clip 0142: 'Porque fui a casi todos. El chat se divierte. La g' (3.6s)
+Clip 0143: 'Yo promociono lo que tengo que promocionar. Me ent' (3.8s)
+Clip 0144: 'Cada tanto. Que se yo. Nos divertimos todos. No me' (4.1s)
+Clip 0145: 'Es un intercambio. Que se yo. Libre. Y chao. Que. ' (4.8s)
+Clip 0146: 'Involucrado en un proyecto. Porque no son solament' (4.1s)
+Clip 0147: 'Tienes que ponerle pasión. Tienes que ponerle líbi' (4.7s)
+Clip 0148: 'Por ejemplo. El programa. Del ICI. Diario. Yo no s' (4.3s)
+Clip 0149: 'Escribir la obra que escribí. Por ejemplo. Que me ' (4.4s)
+Clip 0150: 'Después la tuve que ensayar. Quizás si. Podría hab' (4.2s)
+Clip 0151: 'Sino por una cuestión. De la energía. Como tu cabe' (3.7s)
+Clip 0152: 'Nada. Todo se da por algo. Quizás en algún momento' (4.7s)
+Clip 0153: 'Me la hace. Tanto Luzu. Volga. Resumido. Blender. ' (4.8s)
+Clip 0154: 'Si la hago. Si no. Y no. Que se yo. No sé. Pablo.' (4.1s)
+Clip 0155: '¿Qué pasó con Jime? Tengo un video para miembros. ' (3.7s)
+Clip 0156: 'Exactamente lo que pasó. Jime es mi editora de tod' (3.9s)
+Clip 0157: 'First and foremost. Y después. Es mi editora. Fue ' (4.1s)
+Clip 0158: 'Durante muchos años. Eso está en video para miembr' (4.3s)
+Clip 0159: 'Y. Nada de eso. Bueno. También. ¿Qué sé yo? Diez a' (5.2s)
+Clip 0160: 'Bueno. La verdad. Que quiero probar a hacer otras ' (3.8s)
+Clip 0161: 'O sea. Obvio. Uno. Como amigos. Como. Uy sí. Lo id' (4.2s)
+Clip 0162: 'Porque. Literal. Nos comunicábamos con los memes. ' (4.2s)
+Clip 0163: 'Somos adultos. O sea. Quiere probar otras cosas. N' (3.9s)
+Clip 0164: 'Y bueno. Sí. Ve hija. Sé libre. ¿Qué se sintió tra' (4.0s)
+Clip 0165: '¿Qué pasó con tu hamster? Sí. Mi hamster murió. Mi' (4.6s)
+Clip 0166: 'Es como lo más longevo. El mío vivió un año y dos ' (3.9s)
+Clip 0167: 'Literal. O sea. Estaba bien. Y de repente. De un d' (7.4s)
+Clip 0168: 'Bueno. Quizás está cansado. Viste. No sé qué. Porq' (4.3s)
+Clip 0169: 'Dormía abajo como de una piedra. Y bueno. Nada. Le' (4.0s)
+Clip 0170: 'Y al día siguiente. Bueno. No había comido tampoco' (8.3s)
+Clip 0171: 'Que no era una piedra. Era como. O sea. Era como. ' (4.2s)
+Clip 0172: '¿Entendés? Y la piedra. Y eso. Yo estaba. Quizás e' (6.1s)
+Clip 0173: 'Venía Inti en ese momento. Y le dije. Tipo. Fíjate' (5.4s)
+Clip 0174: 'No. Estaba. Estaba recontra muerto. Y no sé. La ve' (4.1s)
+Clip 0175: 'Como una muerte súbita. Ni idea. Bueno. Somos. Un ' (4.1s)
+Clip 0176: 'Bicho. Pero le mandamos un beso a Simón. Que el pa' (5.9s)
+Clip 0177: 'De la industria. Supongo que será de. Sí. De YouTu' (5.3s)
+Clip 0178: 'No. Yo creo que no. No. Creo que las peleas que tu' (4.6s)
+Clip 0179: 'Si hay gente que me cae muy mal. Muy mal. Y no lo ' (4.0s)
+Clip 0180: 'Si no porque para qué. Para generar un quilombo al' (4.5s)
+Clip 0181: 'Yo tengo una intuición. Yo cuando vuelo. Viste. Al' (4.3s)
+Clip 0182: 'Viste. Y están todos. No. Pero. Y yo digo. Yo esto' (5.1s)
+Clip 0183: 'Viste. Y después. El tiempo. Pero. Bueno. Pero tam' (5.5s)
+Clip 0184: 'Pero bueno. Si hay gente que no. Que no. Que no. ¿' (5.1s)
+Clip 0185: 'Ay. Onda. En un pueblito. En las sierras. O seguir' (4.2s)
+Clip 0186: 'Me gustaría en Bariloche. En una cabaña. En medio ' (3.6s)
+Clip 0187: 'Y ahí. Bueno. Y ahí me quedaré. No. Bueno. Quizás ' (5.0s)
+Clip 0188: 'Cuando. O sea. Que sea tipo como. Como más a los 5' (5.8s)
+Clip 0189: '80. Me veo como que me vuelvo a Capital Federal. Y' (4.2s)
+Clip 0190: 'Al lado de un sanatorio. Donde a cualquier cosa. M' (4.6s)
+Clip 0191: 'Pero. Viste. Para llegar. Viste. A la ambulancia. ' (5.8s)
+Clip 0192: 'La verdad que estoy diciendo. No llorar. Durante l' (4.3s)
+Clip 0193: 'Ay. No puedo hablar. Tipo. No lo podía terminar de' (4.8s)
+Clip 0194: 'Y aparte. Que al mismo tiempo. Lo iba descubriendo' (4.1s)
+Clip 0195: 'A medida que lo iba haciendo. Ensayando. Y reescri' (4.2s)
+Clip 0196: 'Pero también. Lo más sanador. Siento que me ajustó' (4.1s)
+Clip 0197: 'No sé qué. O sea. Todavía. Como que no lo tengo cl' (5.1s)
+Clip 0198: 'Después de tanto tiempo. ¿Cansado? No. La verdad q' (4.3s)
+Clip 0199: 'Muy contento. Era algo que yo tenía. Pospuesto. De' (5.3s)
+Clip 0200: 'Y vino una pandemia. De golpe. Y ahí empecé a hace' (4.6s)
+Clip 0201: 'Las obras que eran por internet. Y lo empecé a hac' (4.3s)
+Clip 0202: 'Después de teatro. Y que se hacen entrevistas acá.' (3.6s)
+Clip 0203: 'A otra provincia. ¿Viste? Así que. Es algo que ven' (3.9s)
+Clip 0204: 'Y nada. Feliz. ¿Recordás BNT como algo bello? Te q' (4.7s)
+Clip 0205: 'Sí lo recuerdo como algo bello. Bueno. También me ' (4.1s)
+Clip 0206: 'Mucho por BNT. Me preguntaron mucho por. La tía Se' (3.7s)
+Clip 0207: 'Si me seguía hablando con. La otra persona. A ver.' (5.7s)
+Clip 0208: 'Lo mayor posible. Y lo mejor posible. Siento que. ' (3.7s)
+Clip 0209: 'Y por el cariño que tuve. Y que tengo. En el fondo' (3.4s)
+Clip 0210: 'Respetar la voluntad. De una persona. Que no. Que ' (4.0s)
+Clip 0211: 'Y siento que. Si yo hablo. O digo cualquier cosa. ' (4.0s)
+Clip 0212: 'Entonces también. Eso es a mí. Un poco también. Lo' (3.6s)
+Clip 0213: 'Pero también entiendo. Que es algo muy querido. Po' (3.7s)
+Clip 0214: 'O sea. A mí. Yo lo veo. O sea. Cuando se viraliza ' (4.1s)
+Clip 0215: 'Y a veces me da ternura. Me río. Viste. Como que m' (4.6s)
+Clip 0216: 'Y entiendo que sí. Encima. Es algo que. Con lo que' (4.6s)
+Clip 0217: 'Es algo que no van a soltar. Fácilmente. Y yo eso ' (4.0s)
+Clip 0218: 'Pero bueno. Tampoco. Tampoco puedo dar. Más de lo ' (4.7s)
+Clip 0219: 'En su momento. Cuando sentí que era el momento. Pa' (3.9s)
+Clip 0220: 'Y todo. Y como bueno. Ya. Es un capítulo que. Lo p' (4.3s)
+Clip 0221: 'Entiendo que duela chicos. Pero. Les juro que. O s' (4.4s)
+Clip 0222: 'Ustedes van a poder. Les juro que van a poder. Que' (3.9s)
+Clip 0223: 'En la personalidad de la gente. Te molesta muchísi' (4.1s)
+Clip 0224: 'O sea. Que se yo. Bueno. No. Hay algo que me nerva' (4.9s)
+Clip 0225: 'Yo sé lo que es. La condescendencia. La condescend' (3.3s)
+Clip 0226: 'Ah. Esa gente que. No sé. La me culo. La me bota. ' (4.9s)
+Clip 0227: 'Viste. Como. Que sabes que. Ni siquiera sabes. Si ' (4.5s)
+Clip 0228: 'Tipo que yo. Pero. O sea. Como que te da la razón.' (4.5s)
+Clip 0229: 'No sé si me explico. Creo que me explico perfecto.' (3.6s)
+Clip 0230: 'Tipo. Y es como. ¿Qué estás haciendo? Please stop.' (5.0s)
+Clip 0231: 'No. La condescendencia. Me hincha las pelotas. Por' (4.0s)
+Clip 0232: 'Es medio como. Subestimar al otro también. Un poco' (4.8s)
+Clip 0233: 'Saca de acá. Bajate. Hablame. Somos dos adultos. H' (5.1s)
+Clip 0234: 'Uy. De muchas cosas. Pero eso lo dejo para terapia' (4.0s)
+Clip 0235: 'Ah. Si tuvieras que elegir. Volverías a trabajar e' (3.5s)
+Clip 0236: 'Bueno. Igual también me llamaron. Ahora que ya que' (4.0s)
+Clip 0237: 'No en Gran Hermano. En el programa con Fede. Tambi' (4.1s)
+Clip 0238: 'Pero en esa dije que no yo. Pero también porque es' (3.5s)
+Clip 0239: 'Pero le mando un beso a Griego. Por tenerme en cue' (3.9s)
+Clip 0240: '¿Crees que nos va a robar el trabajo? No. Creo que' (4.7s)
+Clip 0241: 'Siempre vas a necesitar un humano. Tipo. Controlan' (4.5s)
+Clip 0242: 'O demasiado mala. El otro día vi una película. Que' (4.8s)
+Clip 0243: 'Dije. Esto puede pasar tranquilamente. ¿Qué tan di' (3.8s)
+Clip 0244: 'No es tan difícil. No sé de subir muchas historias' (7.4s)
+Clip 0245: '¿Viste? O que yo. O estoy con amigos que también s' (3.8s)
+Clip 0246: 'No. No creo que sea difícil. También igual me pasa' (3.6s)
+Clip 0247: '¿Entendés? Tipo que la gente me persigue con una c' (3.6s)
+Clip 0248: 'O sea. Soy un influencer. Tipo. Vivo en mi casa. M' (3.7s)
+Clip 0249: 'Sí. Obvio. O sea. Eso es lo máximo. Igual si una v' (5.1s)
+Clip 0250: 'Esto no sé si es verdad. O me lo hicieron para jod' (4.1s)
+Clip 0251: 'Tenía una grabación mía. Y de otra persona. Hablan' (4.4s)
+Clip 0252: 'En tal lugar. Y yo. Recordaba estar sentado con es' (5.3s)
+Clip 0253: 'En ese mismo lugar. Yo la grabación nunca la escuc' (4.7s)
+Clip 0254: 'Nunca la pasaron para mí. Porque. Si la tienen. No' (4.2s)
+Clip 0255: 'Mía y no interesa. En ese programa. Pero. Pero eso' (4.5s)
+Clip 0256: 'Pero no. Y por suerte. No salió. ¿Qué se siente. H' (4.0s)
+Clip 0257: 'Que los niños crecieron. Si supongo que. Se refier' (3.5s)
+Clip 0258: 'Quizás en la calle. O a la salida del teatro. Todo' (3.7s)
+Clip 0259: '22. 25 años. Y me veían desde los 12. 15. Y nada. ' (4.2s)
+Clip 0260: 'Son como. Personas adultas. O sea. En ese momento ' (4.3s)
+Clip 0261: 'Tipo. O sea. Me conocieron como. Bueno. Siempre me' (5.0s)
+Clip 0262: 'Y en control. Terapéutico. Pero bueno. O sea. No e' (5.2s)
+Clip 0263: 'Fui equilibrando con los años. Y siempre insistí m' (3.6s)
+Clip 0264: 'Que muchos. De ellos. Van a terapia. O sea. Y me a' (4.5s)
+Clip 0265: 'Tipo. Siento que. Que pude. Mejorar algunas cosas ' (3.9s)
+Clip 0266: 'Que antes no podía. Y digo. Que bueno. Obviamente.' (4.2s)
+Clip 0267: 'Al profesional de la salud. Con el que estén traba' (3.5s)
+Clip 0268: 'Y a mi psiquiatra también. Pero eso. Eso me. Me da' (3.7s)
+Clip 0269: 'Ay no sé. Mucha. Mucha gente. Tipo también. Que es' (3.7s)
+Clip 0270: 'Cuando a mí me agarró. ¿Se acuerdan? Cuando a mí m' (3.8s)
+Clip 0271: 'Como con las abejas. O como con ciertas cosas. Com' (4.1s)
+Clip 0272: 'Y en ese momento. Fue el psicoanálisis. Me había c' (4.4s)
+Clip 0273: 'También me preguntaron. Por qué dejé de hablar de ' (3.8s)
+Clip 0274: 'Y siento que por más que yo aclaraba. Que no era p' (3.6s)
+Clip 0275: 'Yo sentía que con eso estaba bien. Me parece que e' (3.5s)
+Clip 0276: 'Primero. Un montón de cosas. Que volví a ver. Y ti' (4.1s)
+Clip 0277: 'No es así. Y otra cosa. También. O sea. Como que p' (4.4s)
+Clip 0278: 'Delicado. Que prefiero dejárselo. A la gente. Supo' (13.7s)
+Clip 0279: 'Viste que es como. Bueno. Te vienes. A mí me vino ' (3.5s)
+Clip 0280: 'Lo que necesitaba sacar. Y salió. Pero sí. Tengo m' (3.9s)
+Clip 0281: 'Y lo vengo postergando. Pero yo no creo que se pos' (3.9s)
+Clip 0282: 'Una comedia. Así sea una miniserie. Un algo. Como ' (3.8s)
+Clip 0283: 'Me dio muchas ganas de guionar. De vuelta. Así que' (5.3s)
+Clip 0284: '¿Trabajarías de nuevo en algún programa de streami' (4.6s)
+Clip 0285: 'O si me pagan un muy buen dinero. Ese es el tema. ' (4.4s)
+Clip 0286: 'O sea. De no. De no quizás necesitarlo. Ni dependo' (4.9s)
+Clip 0287: 'Y eso lo agradezco. Y se los agradezco a ustedes. ' (4.6s)
+Clip 0288: 'Criticar a cualquiera. Viste. Me da igual. Viste. ' (6.1s)
+Clip 0289: 'Porque vino uno de arriba. Que me dijo. No digo qu' (4.6s)
+Clip 0290: 'Trabajar para una empresa. Como mi amor. Chicos. P' (8.4s)
+Clip 0291: 'O sea. Sobre todo con la persona que más confianza' (3.7s)
+Clip 0292: 'Hablando con su mejor amiga. Con la que más confia' (4.4s)
+Clip 0293: 'Mi chat con Julio. Con Caro. No. No. No. No. No. M' (4.6s)
+Clip 0294: 'No vuelvo. Volverías a tener un proyecto en dupla.' (4.0s)
+Clip 0295: 'Y pone más de lo mismo. Sí. O sea. Sí. Sí. Sí. Sí.' (3.9s)
+Clip 0296: ' Sí.  Sí. Sí. Sí. Sí. No sé cómo explicarlo.' (6.8s)
+Clip 0297: 'Bueno. Igual puede ser. Puede ser. Te digo la verd' (3.9s)
+Clip 0298: 'Tipo. Hoy en día te digo. Puede ser. No lo sé. ¿Po' (3.6s)
+Clip 0299: 'Bueno. Si los que vieron la obra. Creo que lo enti' (3.9s)
+Clip 0300: 'Creo que tiene que ver con que luché mucho para te' (4.5s)
+Clip 0301: '¿No? Y como no depender de nadie. Y estar solo. Y ' (3.9s)
+Clip 0302: 'Y. ¿Entendés? O sea. Y sí. Y obviamente quizás. Ti' (4.9s)
+Clip 0303: 'Y hoy quizás entiendo que no es necesario. No es n' (3.9s)
+Clip 0304: 'O perder tu tranquilidad. Por estar en pareja. Hoy' (4.1s)
+Clip 0305: 'Entonces podría decir que estoy como más abierto. ' (4.0s)
+Clip 0306: '¿Cómo se tomó tu mamá que ibas a ser criado por lo' (3.8s)
+Clip 0307: 'Obviamente. Porque criado por lobos. Me iba a bard' (5.3s)
+Clip 0308: 'Bueno. Alguna cosa. Obvio. Viste. Esto no fue así.' (4.6s)
+Clip 0309: 'Está bien. Bueno. Más vos tenés un recuerdo. Yo te' (4.2s)
+Clip 0310: 'Obviamente. Pero me dijo que estaba muy orgullosa.' (3.8s)
+Clip 0311: 'Que viví. Así que. Y se emocionó muchísimo. Por su' (5.1s)
+Clip 0312: 'Mi mamá. Es una de las protagonistas. Hoy actualme' (4.4s)
+Clip 0313: '¿Cómo te llevas con Mika Suárez? Bueno. Me pregunt' (3.6s)
+Clip 0314: 'Digamos que. Somos dos personas adultas. Más 30.' (3.9s)
+Clip 0315: 'Que compartimos muchos lugares en común.' (3.5s)
+Clip 0316: 'Muchas personas en común. Estamos a dos grados de ' (5.2s)
+Clip 0317: 'Fueron muy. Adolescentes. Por decirlo de una maner' (5.4s)
+Clip 0318: 'Y después. Creo que eso fue escalando. ¿Me entendé' (4.6s)
+Clip 0319: 'Más maduros. Y como lo vemos con más perspectiva. ' (4.7s)
+Clip 0320: 'Se dio mucho sobre todo. Por el streaming de Marti' (3.7s)
+Clip 0321: 'Y no sé qué. Como que podemos compartir un mismo e' (3.7s)
+Clip 0322: '¿Entendés? Eso no significa que somos mejores amig' (3.4s)
+Clip 0323: 'Yo sé. Que a la gente le está costando mucho. Solt' (4.3s)
+Clip 0324: 'Eso fue una época. Fue divertida. La pasamos. Nunc' (4.2s)
+Clip 0325: '¿Viste? Tipo está el revival de. El diablo viste l' (3.6s)
+Clip 0326: 'El revival del diablo viste la moda. El revival de' (4.2s)
+Clip 0327: 'Y la Lindsay Lohan. El revival de. La gente está c' (3.4s)
+Clip 0328: 'Scream. Y es todo mega exitoso. Millones de dólare' (4.6s)
+Clip 0329: 'Para el pasado. Porque. Algo de repente pasa ciert' (3.9s)
+Clip 0330: 'O sea. Esto es un loop. Esto es un loop. Como lo p' (4.7s)
+Clip 0331: 'Como lo tiene Marilyn Mason. ¿Estuviste con Fede? ' (4.1s)
+Clip 0332: 'Sí. Varias veces. Pero. Creo que la más recordada ' (5.6s)
+Clip 0333: 'Un programa que estaba Diana Hernández. Estuve con' (3.9s)
+Clip 0334: 'Todos divinos. Bueno. El Buda. Ana Kiara. Todo div' (4.4s)
+Clip 0335: 'Y es un proyecto que yo recuerdo con mucho cariño.' (4.0s)
+Clip 0336: 'Y lo amo a Fede. Que también no fue el cumpleaños.' (4.1s)
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: "-f mp4" selects the best pre-merged mp4 format which is often not what's intended.
+         Pre-merged mp4 formats are not available from all sites, or may only be available in lower quality.
+         To prioritize the best h264 video and aac audio in an mp4 container, use "-t mp4" instead.
+         If you know what you are doing and want a pre-merged mp4 format, use "-f b[ext=mp4]" instead to suppress this warning
+[youtube] Extracting URL: https://www.youtube.com/watch?v=tZoSfWiOffk
+[youtube] tZoSfWiOffk: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] tZoSfWiOffk: Downloading android vr player API JSON
+[info] tZoSfWiOffk: Downloading 1 format(s): 18
+[download] Destination: data/videos/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas Mazza.mp4
+[download]   0.0% of   29.89MiB at  Unknown B/s ETA Unknown[download]   0.0% of   29.89MiB at  Unknown B/s ETA Unknown[download]   0.0% of   29.89MiB at    5.77MiB/s ETA 00:05  [download]   0.0% of   29.89MiB at    1.41MiB/s ETA 00:21[download]   0.1% of   29.89MiB at    2.22MiB/s ETA 00:13[download]   0.2% of   29.89MiB at    2.96MiB/s ETA 00:10[download]   0.4% of   29.89MiB at    3.96MiB/s ETA 00:07[download]   0.8% of   29.89MiB at    5.87MiB/s ETA 00:05[download]   1.7% of   29.89MiB at    1.30MiB/s ETA 00:22[download]   3.3% of   29.89MiB at    2.41MiB/s ETA 00:11[download]   6.7% of   29.89MiB at    4.49MiB/s ETA 00:06[download]  13.4% of   29.89MiB at    7.54MiB/s ETA 00:03[download]  26.8% of   29.89MiB at    7.87MiB/s ETA 00:02[download]  32.7% of   29.89MiB at    9.57MiB/s ETA 00:02[download]  32.7% of   29.89MiB at  Unknown B/s ETA Unknown[download]  32.7% of   29.89MiB at  Unknown B/s ETA Unknown[download]  32.7% of   29.89MiB at    3.41MiB/s ETA 00:05  [download]  32.8% of   29.89MiB at    6.09MiB/s ETA 00:03[download]  32.8% of   29.89MiB at    2.28MiB/s ETA 00:08[download]  32.9% of   29.89MiB at    2.45MiB/s ETA 00:08[download]  33.1% of   29.89MiB at    3.83MiB/s ETA 00:05[download]  33.5% of   29.89MiB at    5.51MiB/s ETA 00:03[download]  34.4% of   29.89MiB at    5.64MiB/s ETA 00:03[download]  36.1% of   29.89MiB at   10.01MiB/s ETA 00:01[download]  39.4% of   29.89MiB at   17.58MiB/s ETA 00:01[download]  46.1% of   29.89MiB at   14.22MiB/s ETA 00:01[download]  59.5% of   29.89MiB at   16.39MiB/s ETA 00:00[download]  64.6% of   29.89MiB at   19.39MiB/s ETA 00:00[download]  64.6% of   29.89MiB at  Unknown B/s ETA Unknown[download]  64.7% of   29.89MiB at  Unknown B/s ETA Unknown[download]  64.7% of   29.89MiB at  Unknown B/s ETA Unknown[download]  64.7% of   29.89MiB at    1.45MiB/s ETA 00:07  [download]  64.7% of   29.89MiB at    2.18MiB/s ETA 00:04[download]  64.9% of   29.89MiB at    2.78MiB/s ETA 00:03[download]  65.1% of   29.89MiB at    3.75MiB/s ETA 00:02[download]  65.5% of   29.89MiB at    5.60MiB/s ETA 00:01[download]  66.3% of   29.89MiB at    8.93MiB/s ETA 00:01[download]  68.0% of   29.89MiB at   14.97MiB/s ETA 00:00[download]  71.3% of   29.89MiB at    9.72MiB/s ETA 00:00[download]  78.0% of   29.89MiB at   15.89MiB/s ETA 00:00[download]  91.4% of   29.89MiB at   12.49MiB/s ETA 00:00[download]  98.0% of   29.89MiB at   15.45MiB/s ETA 00:00[download]  98.0% of   29.89MiB at  Unknown B/s ETA Unknown[download]  98.0% of   29.89MiB at  Unknown B/s ETA Unknown[download]  98.0% of   29.89MiB at  Unknown B/s ETA Unknown[download]  98.0% of   29.89MiB at    1.41MiB/s ETA 00:00  [download]  98.1% of   29.89MiB at    2.32MiB/s ETA 00:00[download]  98.2% of   29.89MiB at    2.72MiB/s ETA 00:00[download]  98.4% of   29.89MiB at    3.81MiB/s ETA 00:00[download]  98.8% of   29.89MiB at    5.59MiB/s ETA 00:00[download]  99.7% of   29.89MiB at    9.00MiB/s ETA 00:00[download] 100.0% of   29.89MiB at   10.15MiB/s ETA 00:00[download] 100% of   29.89MiB in 00:00:02 at 10.58MiB/s  
+Clip 0337: 'Así que. Bueno. Nada. Y volvemos. Debería estar co' (4.3s)
+Clip 0338: 'Bueno chicos. Yo. Aparte. Ahora. Me voy a tomar un' (4.8s)
+Clip 0339: 'Así que. Les pido que aguanten un cachito. Voy a t' (4.6s)
+Clip 0340: 'Algún video de miembros. Que quieran que publique.' (4.7s)
+Clip 0341: 'El divorcio millonario. O algún otro. Que vea que ' (3.6s)
+Clip 0342: 'Ustedes fíjense. Si ven alguno de miembros. Que qu' (3.5s)
+Clip 0343: 'Cultura Pop. Creo que no. Que no voy a publicar en' (5.1s)
+Clip 0344: 'Pero bueno. Comenten. Y después ya. Volvemos con l' (4.6s)
+Clip 0345: 'Y cuando llego. Me voy para el sur. Así que acuérd' (4.0s)
+Clip 0346: 'Trelew. Después Buenos Aires. Tengo Montevideo. Ch' (4.8s)
+Clip 0347: 'Bariloche. Bariloche. I'm coming. I'm coming. Saqu' (5.7s)
+Clip 0348: 'Espero haber respondido sus preguntas. Y si no. Bu' (3.8s)
+Clip 0349: 'Es hasta acá. Ustedes. Acá hay un ida y vuelta. La' (3.8s)
+Clip 0350: 'Pero yo pongo un freno. Yo digo. Bueno. Te abro la' (4.3s)
+Clip 0351: 'O sea. ¿Me explico? Te invito al living. No te me ' (5.6s)
+Clip 0352: 'Nada más. No. No. No te desubiques. No te pases de' (4.8s)
+Clip 0353: 'Si bien te recibimos muy bien. Take it easy. Take ' (3.5s)
+Clip 0354: 'Pero bueno. Espero que les haya gustado. Espero ha' (4.1s)
+Clip 0355: 'Una. Es como una cerecita. De un postre. Tiene com' (3.4s)
+Clip 0356: 'Un detalle. Gracias por seguir acompañándome. Nos ' (3.9s)
+Clip 0357: 'Les mando un beso enorme. Y estén atentos. Y búsqu' (4.7s)
+Clip 0358: 'Me encontrarán. No. Pero búsquenme. Porque viste q' (4.7s)
+Clip 0359: 'Te castiga. Cuando no subís seguido. Y quizás. No ' (3.9s)
+Clip 0360: 'Pero. Ustedes búsquenme. Y eventualmente apareceré' (4.8s)
+Clip 0361: 'O sea. Expones a una niña. Y mucha gente enferma. ' (4.3s)
+Clip 0362: 'Con una nena de tres años. Si no piensa como vos. ' (4.0s)
+Clip 0363: 'Qué sé yo. Es. Es. Creo que. Paula Chávez la quiso' (4.1s)
+Clip 0364: 'La quiso censurar. No sé qué. No. La quiso cuidar.' (3.6s)
+Clip 0365: 'Ya está. Tipo. Pasemos a otra cosa. No pasa nada. ' (3.6s)
+
+Total clips: 365
+Guardados en: data/clips/RESPONDO TODO 🌶/
+================================================================================
+Bajando video...
+Video guardado: data/videos/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas Mazza.mp4
+Carpeta: La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas
+Transcribiendo con Whisper...
+  0%|          | 0/76728 [00:00<?, ?frames/s]  4%|▍         | 2888/76728 [00:04<01:43, 710.23frames/s]  8%|▊         | 5888/76728 [00:11<02:20, 503.19frames/s] 12%|█▏        | 8888/76728 [00:17<02:14, 505.62frames/s] 15%|█▌        | 11888/76728 [00:23<02:13, 484.36frames/s] 19%|█▉        | 14886/76728 [00:31<02:20, 440.21frames/s] 23%|██▎       | 17886/76728 [00:38<02:13, 439.43frames/s] 27%|██▋       | 20884/76728 [00:45<02:09, 431.79frames/s] 31%|███       | 23882/76728 [00:52<02:02, 431.36frames/s] 35%|███▌      | 26882/76728 [01:00<01:59, 417.19frames/s] 39%|███▉      | 29882/76728 [01:06<01:48, 432.07frames/s] 43%|████▎     | 32882/76728 [01:13<01:41, 433.23frames/s] 47%|████▋     | 35882/76728 [01:19<01:31, 445.59frames/s] 51%|█████     | 38770/76728 [01:26<01:25, 442.49frames/s] 54%|█████▍    | 41770/76728 [01:32<01:15, 463.99frames/s] 58%|█████▊    | 44682/76728 [01:40<01:14, 430.90frames/s] 62%|██████▏   | 47512/76728 [01:48<01:11, 407.06frames/s] 65%|██████▌   | 50202/76728 [01:55<01:08, 385.28frames/s] 69%|██████▉   | 52810/76728 [02:03<01:04, 368.40frames/s] 72%|███████▏  | 55372/76728 [02:11<01:00, 354.94frames/s] 76%|███████▌  | 58372/76728 [02:19<00:49, 370.33frames/s] 80%|███████▉  | 61372/76728 [02:26<00:41, 373.73frames/s] 84%|████████▍ | 64372/76728 [02:34<00:32, 376.20frames/s] 87%|████████▋ | 67076/76728 [02:42<00:26, 366.26frames/s] 91%|█████████▏| 70076/76728 [02:50<00:17, 370.37frames/s] 95%|█████████▍| 72526/76728 [02:58<00:11, 352.56frames/s] 98%|█████████▊| 75328/76728 [03:06<00:03, 354.08frames/s]100%|██████████| 76728/76728 [03:11<00:00, 334.34frames/s]100%|██████████| 76728/76728 [03:11<00:00, 400.57frames/s]
+JSON guardado: data/corpus/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas/transcripcion.json
+Corpus guardado: data/corpus/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas/corpus.txt
+  (aviso: la transcripcion no tiene word-timestamps; corte por segmentos, menos preciso)
+Clip 0001: 'Preparense, agárrense de la silla, prepárense tu t' (7.8s)
+Clip 0002: 'La primera vez que fui a un telo, amigos, fue en a' (5.2s)
+Clip 0003: 'Es que es brutal la historia, es brutal, es muy bu' (7.3s)
+Clip 0004: 'Con mis amigos habíamos arreglado de ir a una joda' (3.9s)
+Clip 0005: 'Yo antes de ir a la joda, yo estaba hablando con u' (7.6s)
+Clip 0006: 'Entonces, como que yo la quería ver y la mina iba ' (4.9s)
+Clip 0007: 'Pero qué pasa, mis amigos querían ir a la joda mía' (6.0s)
+Clip 0008: 'Pero bueno, al final fuimos a la joda. ¿Qué pasa? ' (5.6s)
+Clip 0009: 'Había un montón de gente, un montón de escabios, l' (7.6s)
+Clip 0010: 'Pero qué pasa, mi amigo Gonza, Gono, viene y me di' (7.1s)
+Clip 0011: 'Me acabo de comer a la novia del dueño. ¡No! Le di' (5.5s)
+Clip 0012: 'A la novia del dueño te comiste. Amigo, nos estaba' (9.2s)
+Clip 0013: 'Y nosotros éramos 4. ¿Qué tenés una idea? No sabía' (4.6s)
+Clip 0014: 'No sabíamos qué hacer. Entonces, nada, salimos. Na' (5.9s)
+Clip 0015: 'Ah, pero sos un pelotudo, ¿no? Eh, amigo, boludo, ' (4.8s)
+Clip 0016: 'Entonces salimos despacito y nos fuimos hacia el a' (3.2s)
+Clip 0017: '¿Qué pasó? Eran las 6 de la mañana. Habíamos estad' (4.0s)
+Clip 0018: 'Yo en la joda no me comía nadie porque yo estaba f' (3.5s)
+Clip 0019: 'Quería ir a la plaza con la mina. Yo estaba con la' (5.0s)
+Clip 0020: 'Íbamos a ir a la plaza. Entonces le digo a mis ami' (5.0s)
+Clip 0021: 'Y nos miraron. Así eran las 6 de la mañana y en añ' (4.2s)
+Clip 0022: 'Entonces fuimos a la plaza. ¿Qué decís yo? En la p' (3.8s)
+Clip 0023: 'Estaba lleno de gente, ¿viste? Vieron que las plaz' (3.5s)
+Clip 0024: 'Entonces yo la busqué, la busqué, la busqué. No la' (4.5s)
+Clip 0025: 'Eran las 7 y media de la mañana y ya se empezaban ' (3.7s)
+Clip 0026: 'Se tiraban botellas, piñas, empezó a caer la polic' (3.3s)
+Clip 0027: 'Y yo le digo a mis amigos. Amigos, vayámonos de ac' (3.6s)
+Clip 0028: 'Nos van a matar porque se estaban desconociendo ab' (5.6s)
+Clip 0029: 'Literalmente. Apenas nos venían a nosotros nos iba' (4.5s)
+Clip 0030: 'Todavía estamos a tiempo. Nos estábamos yendo. Nos' (4.3s)
+Clip 0031: 'Caminando. Empiezan a tirar botellas atrás nuestro' (5.3s)
+Clip 0032: 'Pero amigo, Gonza empieza a correr. Y le digo, no ' (5.6s)
+Clip 0033: 'Si vos corres. Todos los negros van a ver que está' (4.8s)
+Clip 0034: 'Y nos van a matar. Y le digo, Gonza no corras, no ' (4.8s)
+Clip 0035: 'Y le digo, no, nos van a matar. Nos van a matar. Y' (3.9s)
+Clip 0036: 'Yo empecé a caminar despacio. Con mi otro amigo y ' (3.6s)
+Clip 0037: 'Y Gonza empieza a correr hacia el auto. De una man' (4.7s)
+Clip 0038: 'Cuestión. Que nosotros, bueno, llegamos al auto. G' (5.6s)
+Clip 0039: 'Porque yo estaba medio en pedo. Pero pasó algo pic' (5.1s)
+Clip 0040: 'Estábamos yendo hacia el auto. Estábamos yendo hac' (5.7s)
+Clip 0041: 'Con el amigo que estaba, no Gonza. Gonza estaba ce' (5.5s)
+Clip 0042: 'Y uno tenía una remera de perritos. Tenía una reme' (3.8s)
+Clip 0043: 'Y no sé qué le dice mi amigo. Que tenés una remera' (3.9s)
+Clip 0044: 'Como diciendo que estaba piola. Pero como que esta' (3.4s)
+Clip 0045: 'Como que se lo dijo con un tono de descanse. Amigo' (5.3s)
+Clip 0046: 'Eh, ¿qué te pasa, loco? ¿Es que me empezás a barde' (3.6s)
+Clip 0047: 'Yo digo, no puede ser, loco. Esta noche está miada' (3.5s)
+Clip 0048: 'Todo el mundo nos quiere cagar a pias hoy. Entonce' (6.2s)
+Clip 0049: 'Yo lo tuve que separar. Tuvo 15 minutos. Me acuerd' (3.9s)
+Clip 0050: 'Porque yo estaba recontra remil en pedo. ¡Sabri Co' (4.5s)
+Clip 0051: 'Muchas gracias por ese hostazo, amigo. Por mandarl' (4.7s)
+Clip 0052: 'Muchísimas gracias, de verdad. De todo corazón. Ju' (3.4s)
+Clip 0053: 'La anécdota cuando fui a Valtelo por primera vez, ' (3.3s)
+Clip 0054: 'Que casi nos cagaron trompadas muchas veces. Che, ' (4.7s)
+Clip 0055: 'De verdad, muchas gracias. Ah, sí, bueno. Lo separ' (4.0s)
+Clip 0056: 'Entonces, estábamos los cuatro en el auto. Estaban' (6.3s)
+Clip 0057: 'Y me mira mi amigo y me dice, ¿qué hacemos? Bueno,' (4.8s)
+Clip 0058: 'Vamos al McDonald's. El McDonald's está lleno de g' (5.0s)
+Clip 0059: 'Yo... Quería verme con la mina. Yo estaba hablando' (5.3s)
+Clip 0060: 'Y no sabía cómo encarar para ir a ver a la mina. E' (5.7s)
+Clip 0061: 'Gonza y otro más estaban por ir. Llaman un Uber, s' (5.2s)
+Clip 0062: 'Me quedo solo con mi amigo. Lo que voy a decir no ' (3.9s)
+Clip 0063: 'Pero yo... Yo lo hice así. Estoy medio arrepentido' (3.7s)
+Clip 0064: 'Yo le digo a mi amigo. Che, loco. Tengo dos minas ' (6.3s)
+Clip 0065: 'Nos quieren ver. Vayamos ya. Nos están esperando e' (6.5s)
+Clip 0066: 'Papas, papas, papas, papas. Volando. Se come las p' (3.6s)
+Clip 0067: 'Me dice, vamos, vamos, vamos. Nos subimos al auto.' (4.5s)
+Clip 0068: '¿Qué pasa? Cuando la mina sale. Mi amigo me mira a' (5.5s)
+Clip 0069: 'Y me dice, che. ¿Y la amiga? Claro. No había amiga' (5.0s)
+Clip 0070: 'Yo le mentí a mi amigo muy mal.' (3.3s)
+Clip 0071: 'Para... Para que vaya a pasar a buscar a la mina. ' (5.3s)
+Clip 0072: 'Y bueno, él lo... Está muy mal lo que dice. Pero b' (3.4s)
+Clip 0073: 'A mí me pasó así. Entonces, mi amigo me mira. Mi a' (5.4s)
+Clip 0074: 'Le dice a la mina. Che. ¿Y tu amiga? Y como que la' (5.2s)
+Clip 0075: 'Como, ¿qué amiga? ¿Entendés? Tipo, yo iba... Yo vi' (4.0s)
+Clip 0076: 'Y qué sé yo. Bueno, cuestión. Que... Que como que.' (4.1s)
+Clip 0077: 'Mi amigo se dio cuenta de la situación. Y me dice.' (4.9s)
+Clip 0078: 'Y le digo. Sí. Fuimos al telo más cercano que hay ' (3.7s)
+Clip 0079: '¡Ehhh! ¡Muchas gracias por su sub! ¡Muchas gracias' (6.5s)
+Clip 0080: 'Baby Shark. Baby Shark. Me suscribiste, amigo.' (3.8s)
+Clip 0081: 'Iván, Ark y Axelino. Muchas gracias por su follow.' (4.2s)
+Clip 0082: 'La mina entra al telo. Y yo le digo a mi amigo. Po' (4.7s)
+Clip 0083: 'Yo reviso mis bolsillos. Y no tenía un mango. Me a' (6.5s)
+Clip 0084: 'Y le digo. ¿Le prestás plata? Así le digo. ¿Me pre' (6.0s)
+Clip 0085: 'Literal. ¿Se le iba a doler? Obvio. Y me dice que ' (4.2s)
+Clip 0086: 'Bueno. Voy a intentar con la tarjeta. Entró el tel' (4.2s)
+Clip 0087: 'No asentaba la tarjeta. Era... Era todo con efecti' (3.3s)
+Clip 0088: 'Y digo. La concha de mi madre. Tengo una mina expl' (4.9s)
+Clip 0089: 'Tampoco tenía forros. Entonces. ¿Qué hago, amigos?' (4.5s)
+Clip 0090: 'Amigo. Lléame a mi casa. Claro. Mi amigo. Muy buen' (6.0s)
+Clip 0091: 'Mi amigo me dice. No. Mi amigo piensa. Bueno. Se l' (3.6s)
+Clip 0092: 'Bueno. No tiene plata para el telo. Ni forro. Se l' (3.8s)
+Clip 0093: 'Cuestión. Que fuimos a mi casa. Era re lejos mi ca' (3.7s)
+Clip 0094: 'Para que se den una idea. Y eran las... Para que s' (4.2s)
+Clip 0095: 'De año nuevo. Llegamos a mi casa. Y le digo. Mi am' (6.9s)
+Clip 0096: 'Le digo. Que. No. Que. Que. Quedaste acá. Que voy ' (4.9s)
+Clip 0097: 'Le digo. Entonces. Yo entro. Entro a mi casa. Agar' (4.8s)
+Clip 0098: 'Agarro forros. Entro al auto. Y le digo. Volvamos.' (3.9s)
+Clip 0099: 'Soy una basura. Pero. Era el mejor amigo del mundo' (5.0s)
+Clip 0100: 'Y se lo re agradezco. Boludo. Tipo. Mi amigo me ll' (3.7s)
+Clip 0101: '¿Te ves? Mi amigo me llevó a la mina. Después me l' (3.9s)
+Clip 0102: 'Y después al telo. O sea. Un genio. Cuestión. Que.' (5.0s)
+Clip 0103: 'Mi amigo. Como buen amigo que es. Me dijo. Que se ' (5.4s)
+Clip 0104: 'Cagaste. Me dice. El mejor consejo del mundo. Tipo' (5.3s)
+Clip 0105: 'Eh. Muchas gracias por tu consejo. Ahora como que ' (4.0s)
+Clip 0106: '¿Entendés? Uf. Me dijo ese consejo. Y dije. La con' (4.3s)
+Clip 0107: 'Pero bueno. Yo estaba re escabio encima. Cuestión.' (3.9s)
+Clip 0108: 'El telo salía. Creo que una luca. Salía.  Yo cuand' (4.8s)
+Clip 0109: 'Dije. No lo puedo creer. Nunca vi en un telo. Dije' (4.0s)
+Clip 0110: 'Donde estoy. Tengo. Un. Una mina. Re contra remiel' (4.9s)
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: "-f mp4" selects the best pre-merged mp4 format which is often not what's intended.
+         Pre-merged mp4 formats are not available from all sites, or may only be available in lower quality.
+         To prioritize the best h264 video and aac audio in an mp4 container, use "-t mp4" instead.
+         If you know what you are doing and want a pre-merged mp4 format, use "-f b[ext=mp4]" instead to suppress this warning
+[youtube] Extracting URL: https://www.youtube.com/watch?v=Dp3FkqrX3a4
+[youtube] Dp3FkqrX3a4: Downloading webpage
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+[youtube] Dp3FkqrX3a4: Downloading android vr player API JSON
+[info] Dp3FkqrX3a4: Downloading 1 format(s): 18
+[download] Destination: data/videos/BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE/BULLRICH DESAFÍA a KARINA MILEI con el 3% ｜ ESTA SEMANA EN SPRINGFIELD con Pedro ROSEMBLAT.mp4
+[download]   0.0% of   73.02MiB at  Unknown B/s ETA Unknown[download]   0.0% of   73.02MiB at  Unknown B/s ETA Unknown[download]   0.0% of   73.02MiB at    5.25MiB/s ETA 00:13  [download]   0.0% of   73.02MiB at    8.99MiB/s ETA 00:08[download]   0.0% of   73.02MiB at    2.72MiB/s ETA 00:26[download]   0.1% of   73.02MiB at    2.89MiB/s ETA 00:25[download]   0.2% of   73.02MiB at    3.96MiB/s ETA 00:18[download]   0.3% of   73.02MiB at    5.73MiB/s ETA 00:12[download]   0.7% of   73.02MiB at    9.13MiB/s ETA 00:07[download]   1.4% of   73.02MiB at   15.28MiB/s ETA 00:04[download]   2.7% of   73.02MiB at    7.91MiB/s ETA 00:08[download]   5.5% of   73.02MiB at    3.76MiB/s ETA 00:18[download]   8.9% of   73.02MiB at    5.39MiB/s ETA 00:12[download]  13.2% of   73.02MiB at    6.25MiB/s ETA 00:10[download]  13.2% of   73.02MiB at  359.59KiB/s ETA 03:01[download]  13.2% of   73.02MiB at  921.56KiB/s ETA 01:10[download]  13.2% of   73.02MiB at    1.90MiB/s ETA 00:33[download]  13.3% of   73.02MiB at    3.70MiB/s ETA 00:17[download]  13.3% of   73.02MiB at    1.49MiB/s ETA 00:42[download]  13.3% of   73.02MiB at    2.09MiB/s ETA 00:30[download]  13.4% of   73.02MiB at    2.87MiB/s ETA 00:22[download]  13.6% of   73.02MiB at    4.50MiB/s ETA 00:14[download]  13.9% of   73.02MiB at    7.32MiB/s ETA 00:08[download]  14.6% of   73.02MiB at   12.33MiB/s ETA 00:05[download]  16.0% of   73.02MiB at   21.59MiB/s ETA 00:02[download]  18.7% of   73.02MiB at   19.65MiB/s ETA 00:03[download]  24.2% of   73.02MiB at   19.85MiB/s ETA 00:02[download]  26.6% of   73.02MiB at   18.96MiB/s ETA 00:02[download]  26.6% of   73.02MiB at  Unknown B/s ETA Unknown[download]  26.6% of   73.02MiB at    2.77MiB/s ETA 00:19  [download]  26.6% of   73.02MiB at    5.00MiB/s ETA 00:10[download]  26.6% of   73.02MiB at    8.63MiB/s ETA 00:06[download]  26.7% of   73.02MiB at    2.55MiB/s ETA 00:21[download]  26.7% of   73.02MiB at    2.66MiB/s ETA 00:20[download]  26.8% of   73.02MiB at    3.65MiB/s ETA 00:14[download]  27.0% of   73.02MiB at    5.57MiB/s ETA 00:09[download]  27.3% of   73.02MiB at    8.99MiB/s ETA 00:05[download]  28.0% of   73.02MiB at   15.03MiB/s ETA 00:03[download]  29.4% of   73.02MiB at   25.41MiB/s ETA 00:02[download]  32.1% of   73.02MiB at   14.83MiB/s ETA 00:03[download]  37.6% of   73.02MiB at    5.76MiB/s ETA 00:07[download]  39.9% of   73.02MiB at    6.82MiB/s ETA 00:06[download]  39.9% of   73.02MiB at  Unknown B/s ETA Unknown[download]  39.9% of   73.02MiB at  Unknown B/s ETA Unknown[download]  39.9% of   73.02MiB at  675.94KiB/s ETA 01:06  [download]  39.9% of   73.02MiB at    1.36MiB/s ETA 00:32[download]  40.0% of   73.02MiB at    2.31MiB/s ETA 00:19[download]  40.0% of   73.02MiB at    2.63MiB/s ETA 00:16[download]  40.1% of   73.02MiB at    3.66MiB/s ETA 00:11[download]  40.3% of   73.02MiB at    5.49MiB/s ETA 00:07[download]  40.6% of   73.02MiB at    8.83MiB/s ETA 00:04[download]  41.3% of   73.02MiB at   14.62MiB/s ETA 00:02[download]  42.7% of   73.02MiB at   25.06MiB/s ETA 00:01[download]  45.4% of   73.02MiB at   19.05MiB/s ETA 00:02[download]  50.9% of   73.02MiB at   19.89MiB/s ETA 00:01[download]  53.1% of   73.02MiB at   20.91MiB/s ETA 00:01[download]  53.1% of   73.02MiB at  Unknown B/s ETA Unknown[download]  53.1% of   73.02MiB at    2.12MiB/s ETA 00:16  [download]  53.1% of   73.02MiB at    4.04MiB/s ETA 00:08[download]  53.1% of   73.02MiB at    7.21MiB/s ETA 00:04[download]  53.2% of   73.02MiB at    2.57MiB/s ETA 00:13[download]  53.2% of   73.02MiB at    2.74MiB/s ETA 00:12[download]  53.3% of   73.02MiB at    3.74MiB/s ETA 00:09[download]  53.5% of   73.02MiB at    5.55MiB/s ETA 00:06[download]  53.8% of   73.02MiB at    7.67MiB/s ETA 00:04[download]  54.5% of   73.02MiB at   14.71MiB/s ETA 00:02[download]  55.9% of   73.02MiB at   24.81MiB/s ETA 00:01[download]  58.6% of   73.02MiB at   12.84MiB/s ETA 00:02[download]  64.1% of   73.02MiB at   15.92MiB/s ETA 00:01[download]  66.4% of   73.02MiB at   16.60MiB/s ETA 00:01[download]  66.4% of   73.02MiB at  568.72KiB/s ETA 00:44[download]  66.4% of   73.02MiB at    1.31MiB/s ETA 00:18[download]  66.4% of   73.02MiB at    2.47MiB/s ETA 00:09[download]  66.4% of   73.02MiB at    4.69MiB/s ETA 00:05[download]  66.4% of   73.02MiB at    2.62MiB/s ETA 00:09[download]  66.5% of   73.02MiB at    2.96MiB/s ETA 00:08[download]  66.5% of   73.02MiB at    4.08MiB/s ETA 00:05[download]  66.7% of   73.02MiB at    5.97MiB/s ETA 00:04[download]  67.1% of   73.02MiB at    9.49MiB/s ETA 00:02[download]  67.7% of   73.02MiB at   15.82MiB/s ETA 00:01[download]  69.1% of   73.02MiB at   21.86MiB/s ETA 00:01[download]  71.8% of   73.02MiB at   20.41MiB/s ETA 00:01[download]  77.3% of   73.02MiB at   20.24MiB/s ETA 00:00[download]  79.4% of   73.02MiB at   21.05MiB/s ETA 00:00[download]  79.4% of   73.02MiB at  Unknown B/s ETA Unknown[download]  79.4% of   73.02MiB at  Unknown B/s ETA Unknown[download]  79.4% of   73.02MiB at  659.36KiB/s ETA 00:23  [download]  79.4% of   73.02MiB at    1.33MiB/s ETA 00:11[download]  79.5% of   73.02MiB at    2.23MiB/s ETA 00:06[download]  79.5% of   73.02MiB at    2.52MiB/s ETA 00:05[download]  79.6% of   73.02MiB at    3.49MiB/s ETA 00:04[download]  79.8% of   73.02MiB at    5.26MiB/s ETA 00:02[download]  80.1% of   73.02MiB at    8.51MiB/s ETA 00:01[download]  80.8% of   73.02MiB at   14.18MiB/s ETA 00:00[download]  82.2% of   73.02MiB at   15.04MiB/s ETA 00:00[download]  84.9% of   73.02MiB at   17.21MiB/s ETA 00:00[download]  90.4% of   73.02MiB at   17.51MiB/s ETA 00:00[download]  92.8% of   73.02MiB at   18.76MiB/s ETA 00:00[download]  92.8% of   73.02MiB at  Unknown B/s ETA Unknown[download]  92.9% of   73.02MiB at    2.40MiB/s ETA 00:02  [download]  92.9% of   73.02MiB at    4.35MiB/s ETA 00:01[download]  92.9% of   73.02MiB at    7.59MiB/s ETA 00:00[download]  92.9% of   73.02MiB at    2.66MiB/s ETA 00:01[download]  92.9% of   73.02MiB at    2.85MiB/s ETA 00:01[download]  93.0% of   73.02MiB at    3.95MiB/s ETA 00:01[download]  93.2% of   73.02MiB at  975.93KiB/s ETA 00:05[download]  93.5% of   73.02MiB at    1.78MiB/s ETA 00:02[download]  94.2% of   73.02MiB at    3.20MiB/s ETA 00:01[download]  95.6% of   73.02MiB at    5.27MiB/s ETA 00:00[download]  98.3% of   73.02MiB at    9.59MiB/s ETA 00:00[download] 100.0% of   73.02MiB at    6.39MiB/s ETA 00:00[download] 100% of   73.02MiB in 00:00:07 at 9.50MiB/s   
+Clip 0111: 'Donde estoy. Yo no me lo podía creer. Yo miraba al' (3.6s)
+Clip 0112: 'Por si era un sueño. Me pellizcaba. Entramos al as' (4.6s)
+Clip 0113: 'El ascensor. No se si. No se si entraron. Alguna v' (5.1s)
+Clip 0114: 'Todo el lugar está medio apagado. Con luces tenues' (3.8s)
+Clip 0115: 'Pero son rojas. Entonces. Subimos. Pupupupupu. Era' (5.5s)
+Clip 0116: 'Si era bastante cheto. Veo la habitación. Y digo. ' (3.8s)
+Clip 0117: 'Digo. Esta es mi habitación. Digo. Yo no podía cre' (4.9s)
+Clip 0118: 'Pipip. Abro la puerta. No amigo. Había. Una. Una b' (5.6s)
+Clip 0119: 'Una ducha. Una cama. Chocolate. En la. En la almoh' (5.5s)
+Clip 0120: 'Un led. Digo. No la puta. Que me recontarremil par' (4.1s)
+Clip 0121: 'Donde estoy. Cuestionamos. Peso que va. Peso que v' (4.3s)
+Clip 0122: 'Bueno. No fue el mejor polvo de mi vida. No fue el' (4.6s)
+Clip 0123: 'Amigos. Yo no lo podía creer. Fue la primera vez q' (5.2s)
+Clip 0124: 'Yo me sentía que estaba en. En. En Disneyland. Ent' (4.3s)
+Clip 0125: 'No se como se llama. Disney plus. Como menos. Si e' (6.3s)
+Clip 0126: 'Yo no lo podía creer. Y desde ese día. Tipo. Donde' (4.6s)
+Clip 0127: 'Cravi. O sea. Yo estuve en el telo. Desde las doce' (4.8s)
+Clip 0128: 'En año nuevo. Tipo. No dormí nada. Tipo. Le di bom' (4.1s)
+Clip 0129: 'Aprecié. Todo. Todo. Toda la plata que puse. Y cua' (4.7s)
+Clip 0130: 'Me enamoré del telo. Con toda la vida que conocía.' (3.5s)
+Clip 0131: 'Obviamente. Cuando la vida quería. ¿No? Pero. Buah' (8.4s)
+Clip 0132: 'Para que traigan champán. Cualquier pelotudez que ' (6.6s)
+Clip 0133: 'Más del telo. Que de la mina. Sigue la anécdota. S' (3.7s)
+Clip 0134: 'Tipo. Ahí termino. La vez que fui. Porque ya es un' (3.7s)
+Clip 0135: 'Una semana que viene. Tipo. Ponerle que el cinco. ' (4.7s)
+Clip 0136: 'Del pibe. Que me había hecho. De Uber. Mi amigo de' (4.9s)
+Clip 0137: 'Para que se den una idea. Era el cumpleaños de él.' (5.7s)
+Clip 0138: 'Y yo le digo a la mina. Yo la invito a la mina. Yo' (4.0s)
+Clip 0139: 'Porque yo no daba más de calentura. Me la quería c' (4.3s)
+Clip 0140: 'La mina quería coger el del baño. Quería coger el ' (4.2s)
+Clip 0141: 'Pero bueno. Eso ya. Ya estoy espoleando. Estoy esp' (3.7s)
+Clip 0142: 'En la previa. Tremenda previa. Fuimos al boliche. ' (5.2s)
+Clip 0143: 'Y nada. Yo poné. Yo me estaba comiendo la mina est' (6.1s)
+Clip 0144: 'Le digo. Yo no daba más. Me pago un Uber. Desde Co' (5.3s)
+Clip 0145: '¿Entendés? Y ahí fui a un telo. No. No daba más. D' (4.6s)
+Clip 0146: 'Me digo. Lo mejor del mundo. Vayan al telo. Es lo ' (4.3s)
+Clip 0147: 'Me digo. Ir al telo. Es la recomendación de oro. V' (3.4s)
+Clip 0148: 'Si quieren quedar bien con la mina. No la lleven. ' (3.8s)
+Clip 0149: 'A su. A su búnker. Que está lleno de muñequitos.' (4.3s)
+Clip 0150: 'O esas cosas. No. Lleven a un buen telo. Hagan una' (5.2s)
+Clip 0151: 'Y meten a tomar algo. Y hagan que la pasen bien lo' (5.0s)
+Clip 0152: '¿Para qué un telo es vivir solo? Es que a veces. V' (4.8s)
+Clip 0153: 'El telo. El telo es el telo. ¿Entendés? August. El' (4.1s)
+Clip 0154: 'Que vivo solo. Pero el telo es lo mejor del mundo.' (3.6s)
+Clip 0155: '¿Qué dices? Yo acá laburo. Para que se den una ide' (3.9s)
+Clip 0156: 'Yo prefiero el telo. Mientras es eso. Así que nada' (3.8s)
+Clip 0157: 'Y después de que fui al telo por primera vez. Segu' (3.6s)
+Clip 0158: 'Quedé engolosinado mal. Así que. Nada. Espero que ' (3.8s)
+
+Total clips: 158
+Guardados en: data/clips/La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas/
+================================================================================
+Bajando video...
+Video guardado: data/videos/BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE/BULLRICH DESAFÍA a KARINA MILEI con el 3% ｜ ESTA SEMANA EN SPRINGFIELD con Pedro ROSEMBLAT.mp4
+Carpeta: BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE
+Transcribiendo con Whisper...
+  0%|          | 0/119817 [00:00<?, ?frames/s]  2%|▏         | 2920/119817 [00:04<03:10, 614.26frames/s]  5%|▍         | 5920/119817 [00:09<03:05, 613.44frames/s]  7%|▋         | 8900/119817 [00:15<03:23, 544.01frames/s] 10%|▉         | 11900/119817 [00:21<03:17, 545.21frames/s] 12%|█▏        | 14900/119817 [00:26<03:12, 544.99frames/s] 15%|█▍        | 17900/119817 [00:33<03:23, 501.25frames/s] 17%|█▋        | 20900/119817 [00:38<03:03, 539.31frames/s] 20%|█▉        | 23900/119817 [00:43<02:56, 542.99frames/s] 22%|██▏       | 26878/119817 [00:49<02:55, 530.07frames/s] 25%|██▍       | 29878/119817 [00:56<02:58, 504.19frames/s] 27%|██▋       | 32878/119817 [00:57<02:10, 666.26frames/s] 30%|██▉       | 35878/119817 [00:58<01:38, 856.28frames/s] 32%|███▏      | 38878/119817 [01:00<01:15, 1066.08frames/s] 35%|███▍      | 41878/119817 [01:01<01:00, 1285.74frames/s] 37%|███▋      | 44878/119817 [01:02<00:49, 1500.23frames/s] 40%|███▉      | 47878/119817 [01:03<00:42, 1695.34frames/s] 42%|████▏     | 50878/119817 [01:10<01:15, 912.91frames/s]  42%|████▏     | 50878/119817 [01:25<01:15, 912.91frames/s] 45%|████▍     | 53878/119817 [01:44<04:36, 238.10frames/s] 47%|████▋     | 56878/119817 [01:49<03:32, 295.73frames/s] 50%|████▉     | 59878/119817 [01:54<02:55, 341.50frames/s] 50%|████▉     | 59878/119817 [02:05<02:55, 341.50frames/s] 52%|█████▏    | 62540/119817 [02:31<05:40, 168.40frames/s] 55%|█████▍    | 65444/119817 [02:36<04:12, 215.75frames/s] 57%|█████▋    | 68436/119817 [02:41<03:09, 271.28frames/s] 60%|█████▉    | 71400/119817 [02:46<02:32, 318.23frames/s] 62%|██████▏   | 74400/119817 [02:51<02:03, 367.96frames/s] 65%|██████▍   | 77398/119817 [02:56<01:40, 420.36frames/s] 67%|██████▋   | 80398/119817 [03:01<01:24, 465.61frames/s] 70%|██████▉   | 83398/119817 [03:09<01:23, 436.65frames/s] 72%|███████▏  | 86330/119817 [03:12<01:04, 516.08frames/s] 74%|███████▍  | 89228/119817 [03:18<00:59, 515.60frames/s] 77%|███████▋  | 92228/119817 [03:23<00:52, 524.61frames/s] 79%|███████▉  | 95228/119817 [03:29<00:46, 525.29frames/s] 82%|████████▏ | 98228/119817 [03:36<00:44, 482.67frames/s] 84%|████████▍ | 101228/119817 [03:41<00:35, 518.71frames/s] 87%|████████▋ | 104106/119817 [03:48<00:32, 479.46frames/s] 89%|████████▉ | 107106/119817 [03:53<00:24, 512.96frames/s] 92%|█████████▏| 110106/119817 [03:57<00:17, 566.53frames/s] 94%|█████████▍| 113106/119817 [04:00<00:10, 650.12frames/s] 97%|█████████▋| 116106/119817 [04:05<00:05, 654.43frames/s] 99%|█████████▉| 119106/119817 [04:09<00:01, 645.18frames/s]100%|██████████| 119817/119817 [04:11<00:00, 627.21frames/s]100%|██████████| 119817/119817 [04:11<00:00, 476.58frames/s]
+JSON guardado: data/corpus/BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE/transcripcion.json
+Corpus guardado: data/corpus/BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE/corpus.txt
+  (aviso: la transcripcion no tiene word-timestamps; corte por segmentos, menos preciso)
+Clip 0001: 'En la gran masa del pueblo, combatiendo al pan' (5.3s)
+Clip 0002: '¡Palompa! ¡Palompa vende! ¿A quién lo boludo? Segú' (4.4s)
+Clip 0003: 'Al pan pan, al vino vino, sobre las cartas a la me' (4.7s)
+Clip 0004: 'Papá Noel no se va a morir ¿Cómo te va? ¿Cómo te v' (11.8s)
+Clip 0005: 'Y sí, hijo ¡Váyanse todos a la p... Y muy buenas n' (7.3s)
+Clip 0006: 'Según la hora en que me escuches 80.000 personas v' (12.5s)
+Clip 0007: '¿Qué tal, eh? ¿Qué sentís, Nico Bonda? No sé, si e' (6.4s)
+Clip 0008: 'Porque está Lía, porque estuvo bueno el guión ¿Qué' (4.7s)
+Clip 0009: '¿Ayer sabes? Bienvenido nuevamente ¿Qué tal? ¿Cómo' (5.4s)
+Clip 0010: 'Nunca miro los números, así que 80.000 es mucho en' (4.1s)
+Clip 0011: 'Y es mucha gente Sí, es un montón de gente, la ver' (5.2s)
+Clip 0012: 'Que la verdad fueron los que regaron la semillita' (3.2s)
+Clip 0013: '¡Hola! Los que regaron la semillita e hicieron de ' (3.8s)
+Clip 0014: 'Esto arrancó como esta semana en Springfield, amig' (3.8s)
+Clip 0015: 'Este imperio que llega hasta Connecticut Hasta Kie' (3.2s)
+Clip 0016: 'Hasta Brasil Y hasta Brasilia' (3.4s)
+Clip 0017: 'Que tiene extensión en todo el territorio del plan' (5.1s)
+Clip 0018: 'Esta semana en Springfield Las cosas que habremos ' (5.5s)
+Clip 0019: 'Y bueno, en esta nueva versión que estamos tomando' (4.4s)
+Clip 0020: 'Voy a arrancar formalmente este resumen de Noticia' (3.8s)
+Clip 0021: 'Hay personas preocupadas porque el Mundial tapa la' (5.0s)
+Clip 0022: 'Así que, luego del partido de Argentina Patricia B' (5.1s)
+Clip 0023: 'Recordando que el Mundial tapa la realidad Y Karin' (6.1s)
+Clip 0024: 'El 3% Para que no nos mariemos' (5.4s)
+Clip 0025: 'Para que no nos mariemos Casi le pongo like Sí, sí' (3.8s)
+Clip 0026: 'Hay un binacho, ¿no? ¿Cómo, Nicolás?' (5.1s)
+Clip 0027: 'Mirá, mirá Haceme zoom a las camperas del fondo' (3.5s)
+Clip 0028: '¿Qué camperas? ¿Qué estás viendo? ¿Qué estás viend' (5.2s)
+Clip 0029: 'Es raro lo que hace ¿Dónde hay un binacho?' (3.4s)
+Clip 0030: 'No hay un binacho, Nicolás Dejá, Nicolás, dejá' (3.9s)
+Clip 0031: 'Aparte es lo mejor que tiene Si se tomó un binacho' (7.0s)
+Clip 0032: 'Hay que cerrar los placares antes de sacarse una s' (6.3s)
+Clip 0033: 'Ordinario Ordinario Por favor, no me hagas hablar ' (5.5s)
+Clip 0034: 'Le pedimos a la senadora que tenga muchísimo cuida' (4.2s)
+Clip 0035: 'No sé si va a Alemania  No es cierto Porque es así' (4.2s)
+Clip 0036: 'La goleada argentina nos dejó a todos realmente mu' (3.4s)
+Clip 0037: 'Y Fátima Flores no es la excepción La exnovia del ' (3.9s)
+Clip 0038: 'La artista argentina Tuvo la suerte de estar en la' (3.6s)
+Clip 0039: 'Y subió un video realmente muy expresivo' (3.4s)
+Clip 0040: 'La verdad que la única forma' (3.2s)
+Clip 0041: 'De que nos reemplace la IA Es que los humanos Se s' (4.1s)
+Clip 0042: 'Un filtro mal y nos quedamos sin las cataratas Pro' (7.0s)
+Clip 0043: 'Tratemos de diferenciarnos de las IA Gente fuera I' (4.7s)
+Clip 0044: 'El único bajón del debut de Argentina Fue que el p' (4.4s)
+Clip 0045: 'Y al otro día había que laburar Salvo En la provin' (5.4s)
+Clip 0046: 'Mundial 2026 El gobierno de La Rioja decretó' (3.9s)
+Clip 0047: 'Asueto administrativo Tras la victoria de la selec' (3.8s)
+Clip 0048: 'Aplausos No están tan politizados' (4.1s)
+Clip 0049: 'Capo Ricardo Quintana Capo Bien, algunos dirán Igu' (4.5s)
+Clip 0050: 'Nosotros hacemos asueto preventivo No si gana la s' (4.5s)
+Clip 0051: 'El lunes no venimos No, o sea, no venimos a la tar' (3.8s)
+Clip 0052: 'A la mañana sí Hay demasiada presión, hay tubo' (3.2s)
+Clip 0053: 'No hay puente, no hay industria Algunos dirán que ' (4.8s)
+Clip 0054: 'Otros por el despliegue táctico De Lionel Escalón' (3.7s)
+Clip 0055: 'Y pero lo cierto es que todo fue gracias A la aren' (4.5s)
+Clip 0056: '¡Vamos, patrón! ¡Pesa, beso! ¡Ven a moler en ti!' (6.2s)
+Clip 0057: '¡Pesa, beso! ¡Ven a moler en ti! ¡Ven a moler en t' (3.8s)
+Clip 0058: 'Ojo con la segunda estrofa que ¡Pesa, beso! ¡La co' (6.7s)
+Clip 0059: 'Va perdiendo las consonantes en el camino ¡Ven a m' (5.4s)
+Clip 0060: '¡Ven a moler en ti!  ¡Ven a moler en ti! ¡Ven a mo' (43.8s)
+Clip 0061: '¡Ven a moler en ti! ¡Ven a moler en ti! ¡Ven a mol' (37.8s)
+Clip 0062: '¡Ven a moler en ti!' (12.0s)
+Clip 0063: '¡Ven a moler en ti!' (3.3s)
+Clip 0064: '¡Ven a moler en ti! ¡Ven a moler en ti!' (3.5s)
+Clip 0065: '¡Ven a moler en ti! ¡Ven a moler en ti! ¡Ven a mol' (5.7s)
+Clip 0066: '¡Ven a moler en ti! ¡Ven a moler en ti! ¡Ven a mol' (4.8s)
+Clip 0067: '¿Sabes cuánto dicen a vos? Está siempre en esa. La' (7.8s)
+Clip 0068: '¿Sabes cuánto dicen a vos? Rock Nacional. 20 años ' (4.7s)
+Clip 0069: 'Les voy a... 20 años sin papo. No, no, no.' (5.3s)
+Clip 0070: '¿Cómo volver de esto? Vení, vení. Vení, vení. Vení' (7.6s)
+Clip 0071: '¿Qué dijo? Vení, vení. Es la primera vez que se pu' (5.4s)
+Clip 0072: 'Con cara, con cara. La cara con la que me miró y m' (3.5s)
+Clip 0073: 'Poné la cara, gordo. Dale, dale, dale. Está todo c' (4.4s)
+Clip 0074: 'Podés no dar la cara. Podés quedarte de espalda. S' (4.7s)
+Clip 0075: '¿Cómo? Heladera. ¿Por qué? Porque tenés la carne a' (4.1s)
+Clip 0076: 'No. No.  No. No. No. No. Dios mío.' (9.0s)
+Clip 0077: 'No.   No.                  Después me censuras a m' (6.8s)
+Clip 0078: 'Sí, obvio, obvio. Sí, sí. Y lo bien que hago. Les ' (4.5s)
+Clip 0079: 'Solamente pusimos el video de Macri para poder lle' (3.8s)
+Clip 0080: 'orgánica a la manteca de Juliana Aguada.' (3.5s)
+Clip 0081: '¿Cómo me gusta el pan con manteca? Tan humilde' (5.3s)
+Clip 0082: '¿Cómo me gusta el pan con manteca? Esa tostada est' (4.9s)
+Clip 0083: 'La tostada de marco rojo Haceles un alpizarrón del' (3.4s)
+Clip 0084: 'Uy, qué bien, Nico Cómo estás enganchando cosas Pe' (4.4s)
+Clip 0085: 'La felicidad es algo Es algo para todos los que' (4.8s)
+Clip 0086: 'Compras Después dice Sí, quiero ver qué compra, en' (3.2s)
+Clip 0087: 'Te amo Juliana ¿Vos te imaginás que Juliana Guada ' (7.5s)
+Clip 0088: 'Por favor, déjenme salir de este taller Estoy hace' (4.4s)
+Clip 0089: 'Hoy es mi cumpleaños Extraño a mi familia El últim' (4.3s)
+Clip 0090: 'Tengo nueve años, ayuda Ni hablar de esa manteca e' (5.4s)
+Clip 0091: '¿Qué es eso? Esa manteca Está media quemada la tos' (4.6s)
+Clip 0092: 'Esa manteca no es silolay' (4.4s)
+Clip 0093: 'Esa es para que te responda uno Es muy de recién s' (6.0s)
+Clip 0094: 'Qué linda tostada ¿Cómo me gusta el pan con mantec' (4.9s)
+Clip 0095: 'Qué apasionante historia Y la hechicera es así ¿Có' (5.6s)
+Clip 0096: 'Bueno, sigamos Uno que pasó de mendigo a rey' (4.5s)
+Clip 0097: 'Del mundial Pasado a este Fue Manuel Adorni Ese as' (5.1s)
+Clip 0098: 'En el siguiente tuit del turco García Adorni, el m' (5.1s)
+Clip 0099: 'La verdad que es un tuitazo No, no, el turco está' (3.8s)
+Clip 0100: 'Te mandamos un abrazo grande Sobre el jefe de gabi' (4.6s)
+Clip 0101: 'Dijo lo siguiente Situación de Manuel Adorni' (5.5s)
+Clip 0102: 'Probablemente El escándalo no se deba ya A una cue' (4.8s)
+Clip 0103: 'Solamente No solamente a una cuestión de corrupció' (4.9s)
+Clip 0104: 'Que es de lo que después vamos a hablar y analizar' (5.1s)
+Clip 0105: 'A la indigencia Diríamos cognitiva' (4.4s)
+Clip 0106: 'De Adorni Para defender su situación' (5.0s)
+Clip 0107: 'Para explicar sus cuentas Para razonar' (3.7s)
+Clip 0108: 'Tratándose de un jefe de gabinete Ese tipo de défi' (5.0s)
+Clip 0109: 'Ese tipo de deficiencia Llama muchísimo la atenció' (3.4s)
+Clip 0110: 'A la gente que está en la ciudad Y por momentos pa' (4.9s)
+Clip 0111: 'Intelectualmente Haya llegado al lugar Donde lo ll' (4.6s)
+Clip 0112: 'A ver, cómo decirlo Alguien tan pelotudo' (4.5s)
+Clip 0113: 'Como Adorni Pero lo peor' (3.3s)
+Clip 0114: 'De la estafa de esta semana No tiene que ver con A' (4.0s)
+Clip 0115: 'Tiene que ver con las figuritas Del mundial' (3.2s)
+Clip 0116: 'Estafaron a Pampita Compró figuritas del mundial Y' (4.1s)
+Clip 0117: 'Cajas de puré de tomate ¿Cómo? Le puede pasar a cu' (4.7s)
+Clip 0118: '¿Cómo? Ese mejor título del mundo ¿Cómo eran dos c' (3.3s)
+Clip 0119: 'A cualquiera no le puede pasar a cualquiera No, es' (4.1s)
+Clip 0120: '¿Cómo compras? ¿Qué vas al kiosco? Yo no compro fi' (3.5s)
+Clip 0121: 'Sí, están en el kiosco En todos lados Hay filas de' (4.1s)
+Clip 0122: 'Es Pampita, chicos ¿Qué quiere decir? Es Pampita, ' (6.1s)
+Clip 0123: 'Vino vos Es Pampita, chicos Es Pampita, chicos Es ' (6.2s)
+Clip 0124: 'Barrida Nos vamos a meter con otras selecciones' (13.7s)
+Clip 0125: 'A la nuestra le decimos La Escaloneta Y a Cabo Ver' (5.0s)
+Clip 0126: 'La LinkedIneta ¿Por qué? Porque Cabo Verde recurri' (5.1s)
+Clip 0127: 'Para jugar el mundial No juntaban once' (4.1s)
+Clip 0128: 'Y pusieron avisos en LinkedIn Lo cual nos hace pen' (4.2s)
+Clip 0129: 'Si alguno de nosotros Nos íbamos a vivir a Cabo Ve' (3.4s)
+Clip 0130: 'Podíamos llegar a jugar en la selección ¿Vos decís' (4.3s)
+Clip 0131: 'Sí ¿Sabés qué jugador hubiese sido yo? Si nacía en' (6.6s)
+Clip 0132: 'Yo creo que cuatro suplentes de Cabo Verde No hoy,' (5.0s)
+Clip 0133: 'Me iba a vivir a Cabo Verde Sí Y me dedicaba a ent' (3.2s)
+Clip 0134: 'De nueve De ninguna manera Pero si están llamando ' (5.4s)
+Clip 0135: 'Amigo, el arquero es electricista No, el arquero j' (4.1s)
+Clip 0136: 'Gente, no me fue a vivir a Cabo Verde Hay toda una' (4.0s)
+Clip 0137: 'Que cuando los equipos africanos se empatan Dicen,' (4.6s)
+Clip 0138: 'Y juegan en la Premier League No sabían ni dónde q' (4.5s)
+Clip 0139: 'Cabo Verde Vos vos te tenés que levantar Te tenés ' (7.2s)
+Clip 0140: 'Sí, yo lo vi Te agarraste la garcha Completamente ' (3.6s)
+Clip 0141: 'Por favor, el primer rival de España' (4.1s)
+Clip 0142: 'En la Copa del Mundo Es el segundo país más pequeñ' (3.7s)
+Clip 0143: 'En jugar una fase final La nota cuenta que por la ' (5.0s)
+Clip 0144: 'De población recurrieron a buscar futbolistas De r' (3.9s)
+Clip 0145: 'Utilizando LinkedIn Así fue que casi llegan a Ayrt' (3.6s)
+Clip 0146: 'Casi juega Ayrton Costa el Mundial El que también ' (3.9s)
+Clip 0147: 'El CB es el DT de Túnez Luego de perder' (5.6s)
+Clip 0148: 'Muy raro En el primer partido Bueno, cinco goles P' (3.5s)
+Clip 0149: '¿Cómo vas a echar al técnico de la primera fecha? ' (3.3s)
+Clip 0150: 'Argentina que estuvo a punto ¿Cómo? Con Sampaoli S' (3.6s)
+Clip 0151: 'No Yo creo que no debe ser la primera vez Que echa' (3.7s)
+Clip 0152: 'No, no No es la primera vez Y contrataron al que e' (3.5s)
+Clip 0153: 'De Arabia Saudita Sabri Lamouchi Fue destituido de' (4.4s)
+Clip 0154: 'Tras caer 5 a 1 ante Suecia ¿Ese es el que dijo qu' (3.4s)
+Clip 0155: 'Sí, el que contrataron Ah, claro, el que contratar' (6.4s)
+Clip 0156: 'Algunos jugadores incluso podrían hacerse pasar po' (4.5s)
+Clip 0157: 'Tomando mate llega el capo este Increíble Qué lind' (4.4s)
+Clip 0158: 'Tomando mate me mata Impresionante Me parece que I' (7.6s)
+Clip 0159: 'Podemos decirlo eso ¿Fantino? ¿Fantino? ¿Fantino? ' (4.8s)
+Clip 0160: 'No, con el Mundial que organizó Espectacular el Mu' (4.1s)
+Clip 0161: '¿Marcos? ¿Que haya más equipos? Sí, yo compré Todo' (5.0s)
+Clip 0162: 'Está siendo un gran, gran Mundial Buenos partidos ' (3.7s)
+Clip 0163: '¿No, Flor Flesa? ¿No coincidís? Sí, buen Mundial P' (4.3s)
+Clip 0164: 'Son buenos partidos porque no defienden Bueno, por' (4.6s)
+Clip 0165: 'Para destacar el mejor dato de toda la historia de' (3.3s)
+Clip 0166: 'El japonés Kubo Es el primer jugador con nombre de' (4.6s)
+Clip 0167: 'Que disputa tres Mundiales Superó a Redondo y Cuad' (3.6s)
+Clip 0168: 'Ambos con solo dos participaciones Quiero aclarar ' (4.4s)
+Clip 0169: 'Porque Redondo jugó un solo Mundial No, y Kubo no ' (5.1s)
+Clip 0170: 'Está muy bien Twitter Brasil' (5.0s)
+Clip 0171: 'No conozco Sí, porque ahora Twitter tiene una func' (3.7s)
+Clip 0172: 'Que traduce automáticamente los tweets Entonces te' (4.4s)
+Clip 0173: 'Y están jodiendo mucho con que Ancelotti Odia a He' (3.9s)
+Clip 0174: 'Y están muy, muy, muy, muy, muy graciosos' (3.6s)
+Clip 0175: 'Bueno, no jugó ni un minuto contra Marcos No jugó ' (4.5s)
+Clip 0176: '¡Parrida! El mejor argentino a morir' (4.6s)
+Clip 0177: 'El mejor argentino a morir' (4.5s)
+Clip 0178: 'El premio de hoy es colectivo' (3.2s)
+Clip 0179: 'En la previa del Día del Padre Se lo llevan estos ' (3.9s)
+Clip 0180: 'Sus hijas En el taller de peinado Increíble' (7.5s)
+Clip 0181: 'Espectacular Espectacular Excelente Estaban aprend' (14.7s)
+Clip 0182: 'No, Nico, estaban laburando Pusieron una peluquerí' (4.3s)
+Clip 0183: 'Taller de peinado No, yo Quiero aplaudir a estos p' (6.6s)
+Clip 0184: 'Ahora cuando termine el video Pensé que ibas a dec' (9.0s)
+Clip 0185: 'Me da una ternura impresionante Aplaudimos, Pedro ' (4.2s)
+Clip 0186: 'Aplaudimos Fue mientras jugaba Argentina esto ¿En ' (12.0s)
+Clip 0187: 'No, por favor Cualquier cosa, dice Nico Cualquier ' (3.9s)
+Clip 0188: 'Amigos, así termina una nueva edición De esta sema' (4.4s)
+Clip 0189: 'Esperamos que la hayan disfrutado tanto como nosot' (5.1s)
+Clip 0190: 'Pueden asociarse a Gelatina Entrando a gelatina.co' (5.4s)
+Clip 0191: 'O escaneando el QR Que está exactamente aquí' (5.1s)
+Clip 0192: 'Los queremos mucho Nos vemos la próxima semana' (3.2s)
+
+Total clips: 192
+Guardados en: data/clips/BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE/
+>>> ETAPA 2: preproc visual MediaPipe (--jobs 8)  22:29:39Z
+Procesando 902 clips pendientes con 8 worker(s)...
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Exception in initializer:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 233, in _process_worker
+    initializer(*initargs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 215, in _init_worker
+    _W_LANDMARKER = crear_landmarker()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 93, in crear_landmarker
+    return mp_vision.FaceLandmarker.create_from_options(opts)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/vision/face_landmarker.py", line 3149, in create_from_options
+    lib = mediapipe_c_bindings_lib.load_shared_library(_CTYPES_SIGNATURES)
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 83, in load_shared_library
+    raw_lib = load_raw_library()
+  File "/home/fedegutman/venv-visual/lib/python3.10/site-packages/mediapipe/tasks/python/core/mediapipe_c_bindings.py", line 54, in load_raw_library
+    _shared_lib = ctypes.CDLL(absolute_lib_path)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 374, in __init__
+    self._handle = _dlopen(self._name, mode)
+OSError: libGLESv2.so.2: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 375, in <module>
+    main()
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 371, in main
+    procesar_paralelo(titulos, jobs)
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 338, in procesar_paralelo
+    futuros = [ex.submit(_procesar_clip_tarea, t) for t in pendientes]
+  File "/home/fedegutman/labios-argentos/visual_preprocessing/src/preprocesar.py", line 338, in <listcomp>
+    futuros = [ex.submit(_procesar_clip_tarea, t) for t in pendientes]
+  File "/usr/lib/python3.10/concurrent/futures/process.py", line 720, in submit
+    raise BrokenProcessPool(self._broken)
+concurrent.futures.process.BrokenProcessPool: A child process terminated abruptly, the process pool is not usable anymore
+>>> ETAPA 3: deteccion de clips malos (keep/review/drop)  22:29:40Z
+ERROR: no existe '/home/fedegutman/labios-argentos/data/processed/lip_rois'. Corré primero el preprocesamiento visual.
+>>> RESUMEN  22:29:40Z
+
+FUENTE                                                crudos     npz   pass%
+BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE       192       0    0.0%
+La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas        158       0    0.0%
+MI PRIMER AMOR - Storytime                               187       0    0.0%
+RESPONDO TODO 🌶                                          365       0    0.0%
+TOTAL                                                    902       0    0.0%
+
+keep/review/drop (solo fuentes nuevas): {} total 0
+===== PILOTO DONE 2026-06-27T22:29:40Z =====

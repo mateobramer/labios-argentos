@@ -1,0 +1,85 @@
+===== RERUN-CPU START 2026-06-28T00:52:32Z =====
+>>> install libGLESv2/EGL
+libGLESv2 en ldconfig: 1
+>>> ETAPA 2: preproc visual MediaPipe (CPU, --jobs 6)  00:52:40Z
+Procesando 902 clips pendientes con 6 worker(s)...
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1782607962.408073    1407 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1782607962.408134    1406 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+W0000 00:00:1782607962.408115    1410 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1782607962.408163    1411 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1782607962.408200    1409 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1782607962.408207    1408 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+INFO: INFO: INFO: Created TensorFlow Lite XNNPACK delegate for CPU.Created TensorFlow Lite XNNPACK delegate for CPU.Created TensorFlow Lite XNNPACK delegate for CPU.
+
+
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1782607962.448783    1420 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.449024    1422 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.449252    1460 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.449252    1461 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.449622    1424 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.449637    1441 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.477577    1418 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.477656    1422 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.481186    1460 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.482711    1424 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.482819    1441 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1782607962.483206    1461 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+  50/902  (5 ok, 45 descartados)
+  100/902  (27 ok, 73 descartados)
+  150/902  (67 ok, 83 descartados)
+  200/902  (105 ok, 95 descartados)
+  250/902  (110 ok, 140 descartados)
+  300/902  (117 ok, 183 descartados)
+  350/902  (131 ok, 219 descartados)
+  400/902  (176 ok, 224 descartados)
+  450/902  (219 ok, 231 descartados)
+  500/902  (268 ok, 232 descartados)
+  550/902  (308 ok, 242 descartados)
+  600/902  (356 ok, 244 descartados)
+  650/902  (403 ok, 247 descartados)
+  700/902  (453 ok, 247 descartados)
+  750/902  (502 ok, 248 descartados)
+  800/902  (551 ok, 249 descartados)
+  850/902  (601 ok, 249 descartados)
+  900/902  (648 ok, 252 descartados)
+
+Listo. 902 clips (649 ok, 253 descartados).
+Manifest: /home/fedegutman/labios-argentos/data/metadata/lip_preprocessing_manifest.csv
+>>> ETAPA 3: deteccion de clips malos (keep/review/drop)  00:59:06Z
+
+=== BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE ===
+
+=== La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas ===
+
+=== MI PRIMER AMOR - Storytime ===
+
+=== RESPONDO TODO 🌶 ===
+
+Manifest de auditoria: /home/fedegutman/labios-argentos/data/metadata/auditoria_clips_manifest.csv
+
+=== resumen ===
+total: 6617 {'keep': 6599, 'review': 12, 'drop': 6}
+razones: {'boca_inactiva': 14, 'congelado': 3, 'negro': 4}
+
+(Para armar el dataset curado: agregá --materializar)
+>>> RESUMEN  00:59:20Z
+
+FUENTE                                                crudos     npz   pass%
+BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE       192     102   53.1%
+La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas        158      29   18.4%
+MI PRIMER AMOR - Storytime                               187     164   87.7%
+RESPONDO TODO 🌶                                          365     354   97.0%
+TOTAL                                                    902     649   72.0%
+
+keep/review/drop (solo fuentes nuevas): {'keep': 649} total 649
+>>> subir resultados a GCS (red de seguridad)  00:59:20Z
+===== RERUN-CPU DONE 2026-06-28T00:59:26Z =====

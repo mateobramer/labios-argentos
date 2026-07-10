@@ -1,0 +1,138 @@
+[01:48:40Z] === SETUP START ===
+[01:48:43Z] apt OK (ffmpeg=/usr/bin/ffmpeg libGLESv2=1)
+[01:48:58Z] === SETUP DONE (proc+visual OK, cuda OK) ===
+[01:48:58Z] === PIPELINE START: 39 fuentes | modelo large-v2 ===
+[01:48:58Z] [1/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=DWmOGQp2chg
+[01:49:38Z] [DONE 1/39] Lucho con La Gente #237 - Matador de Pasión y El F | clips=102 music_drop=0 -> 102 | npz=0
+[01:49:38Z] [2/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=muYsLjMAIxk
+[01:50:46Z] [DONE 2/39] Lucho con La Gente #234 - Trío con Suegro y El Lap | clips=195 music_drop=2 -> 193 | npz=0
+[01:50:46Z] [3/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=FqgU3psMyKQ
+[01:52:27Z] [DONE 3/39] RESPONDO TODO 🌶 | clips=162 music_drop=1 -> 161 | npz=158
+[01:52:27Z] [4/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=VpCoTQ9073o
+[01:54:49Z] [DONE 4/39] GASPI, DAMIAN KUC, LA REINI, BOTTERO, EL MUNDIAL Y | clips=410 music_drop=4 -> 406 | npz=361
+[01:54:49Z] [5/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=5-o3JGf1taU
+[01:56:48Z] [DONE 5/39] TODOS ODIAMOS A MILEI, PAULA CHAVEZ ESTA PODRIDA, | clips=218 music_drop=3 -> 215 | npz=184
+[01:56:48Z] [6/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=FhPgg2-hIDU
+[02:22:22Z] [DONE 6/39] ESTOY EN UN BROTE PERDON | clips=225 music_drop=5 -> 220 | npz=208
+[02:22:22Z] [7/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=GhdO9yCVxb8
+[02:24:54Z] [DONE 7/39] MICA SUAREZ, KEVSHO, LULI GONZALEZ, JAMES CHARLES, | clips=383 music_drop=5 -> 378 | npz=331
+[02:24:54Z] [8/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=rcwnQQGKAGA
+[02:27:26Z] [DONE 8/39] MI PRIMER NOVIO TENIA 21 Y YO 12  ANECDOTA | clips=69 music_drop=1 -> 68 | npz=0
+[02:27:26Z] [9/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=nZHGzdXgbCI
+[02:31:15Z] [DONE 9/39] ME DEJARON EN LA FRIENDZONE EL DÍA DEL AMIGO | clips=142 music_drop=1 -> 141 | npz=123
+[02:31:15Z] [10/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=Yqe3Z8zVS_A
+[02:35:42Z] [DONE 10/39] EL DIA QUE CASI MATO A MI TIO (Anécdota real) | clips=47 music_drop=1 -> 46 | npz=23
+[02:35:42Z] [11/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=sJ3XShU8Ihg
+[02:38:00Z] [DONE 11/39] ME ROBAN Y CASI ME MATAN #StoryTime  LUCAS CASTEL | clips=44 music_drop=1 -> 43 | npz=40
+[02:38:00Z] [12/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=ppKd6O25aWM
+[02:42:14Z] [DONE 12/39] ¿POR QUÉ MI NOVIA ME DEJÓ  LUCAS CASTEL | clips=89 music_drop=1 -> 88 | npz=58
+[02:42:14Z] [13/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=tZoSfWiOffk
+[02:57:28Z] [DONE 13/39] La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas | clips=99 music_drop=5 -> 94 | npz=46
+[02:57:28Z] [14/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=IveINHvLLLI
+[03:00:44Z] [DONE 14/39] PRIMERA VEZ que me ROBARON  ANÉCDOTA | clips=59 music_drop=7 -> 52 | npz=48
+[03:00:44Z] [15/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=D34eKxJjRlw
+[03:12:07Z] [WARN 15/39] preproc fallo en Me MINTIÓ la PERSONA que MÁS QUERÍA... (ver preproc.log)
+[03:12:07Z] [DONE 15/39] Me MINTIÓ la PERSONA que MÁS QUERÍA... | clips=67 music_drop=4 -> 63 | npz=0
+[03:12:07Z] [16/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=kB-X6im-pmw
+[03:31:28Z] [DONE 16/39] me DETONE a una COMPAÑERA de la FACULTAD en el BAÑ | clips=239 music_drop=6 -> 233 | npz=115
+[03:31:28Z] [17/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=XVXJtTNZ3Yw
+[03:43:08Z] [DONE 17/39] Storytime Cuando perdí dos amigos por polleras   J | clips=95 music_drop=1 -> 94 | npz=48
+[03:43:08Z] [18/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=6iCLA80TjP4
+[03:52:13Z] [DONE 18/39] Tengo 30 Esto LE DIRIA A MI YO DE 20 | clips=98 music_drop=0 -> 98 | npz=56
+[03:52:13Z] [19/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=m0qw04O0XIY
+[03:59:53Z] [DONE 19/39] POR ESTO ME FUI DE LAS REDES. | clips=69 music_drop=2 -> 67 | npz=45
+[03:59:53Z] [20/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=W3dfKewSpkc
+[04:04:39Z] [DONE 20/39] POR QUE EMPECE EN YOUTUBE  Lucas Spadafora | clips=64 music_drop=4 -> 60 | npz=49
+[04:04:39Z] [21/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=aQlIHv_K0zk
+[04:04:47Z] [ERROR 21/39] fallo descarga/transcripcion: https://www.youtube.com/watch?v=aQlIHv_K0zk
+    subprocess.run(cmd, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/fedegutman/venv-proc/bin/python', '-m', 'yt_dlp', '--no-part', '-o', 'data/videos/35 COSAS SOBRE MI  Lucas Spadafora/%(title)s.%(ext)s', '-f', 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/b', '--merge-output-format', 'mp4', 'https://www.youtube.com/watch?v=aQlIHv_K0zk']' returned non-zero exit status 1.
+[04:04:47Z] [22/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=7p0QYwmiuTQ
+[04:08:45Z] [DONE 22/39] LO MALO DE EE.UU  Lucas Spadafora | clips=43 music_drop=1 -> 42 | npz=2
+[04:08:45Z] [23/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=Dp3FkqrX3a4
+[04:23:49Z] [DONE 23/39] BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE | clips=219 music_drop=3 -> 216 | npz=97
+[04:23:49Z] [24/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=56ielOo5ens
+[04:37:33Z] [DONE 24/39] MAGNETTO se BURLA de ADORNI  ESTA SEMANA EN SPRING | clips=178 music_drop=2 -> 176 | npz=107
+[04:37:33Z] [25/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=29FEJ7trYfI
+[04:58:30Z] [DONE 25/39] MILITANDO el AJUSTE  ESTA SEMANA EN SPRINGFIELD co | clips=241 music_drop=5 -> 236 | npz=223
+[04:58:30Z] [26/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=EEZp2cH-prw
+[05:17:24Z] [DONE 26/39] MI PRIMER AMOR - Storytime | clips=172 music_drop=0 -> 172 | npz=153
+[05:17:24Z] [27/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=t2w9JZtwDrE
+[05:36:52Z] [DONE 27/39] Me estafaron | clips=93 music_drop=0 -> 93 | npz=87
+[05:36:52Z] [28/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=pHIwfEbBt2A
+[05:59:11Z] [DONE 28/39] me pusieron 1 tampon | clips=97 music_drop=2 -> 95 | npz=73
+[05:59:11Z] [29/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=SlqbgCiX_Ko
+[06:12:04Z] [DONE 29/39] Salté del balcon - storytime | clips=63 music_drop=0 -> 63 | npz=60
+[06:12:04Z] [30/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=FuhJNAxGULU
+[06:32:57Z] [DONE 30/39] TODO el COLEGIO me HACÍA BULLYING... #StoryTime  C | clips=186 music_drop=1 -> 185 | npz=180
+[06:32:57Z] [31/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=23MRqkcWStQ
+[06:37:38Z] [DONE 31/39] MI EXPERIENCIA PARANORMAL O - Preguntas y Respuest | clips=62 music_drop=0 -> 62 | npz=54
+[06:37:38Z] [32/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=EzzhPvYBlug
+[06:49:42Z] [DONE 32/39] STORYTIME #3  Me armo unos MATES y ¿cuento mi PRIM | clips=139 music_drop=1 -> 138 | npz=76
+[06:49:42Z] [33/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=lVHNGa5Y2Ac
+[07:00:25Z] [DONE 33/39] grwm para los premios idolo | clips=135 music_drop=0 -> 135 | npz=38
+[07:00:25Z] [34/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=RRiq_aleHJ4
+[07:10:42Z] [DONE 34/39] mi primera tapa de revista gente ) | clips=94 music_drop=0 -> 94 | npz=48
+[07:10:42Z] [35/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=Funne9QNclY
+[07:24:26Z] [DONE 35/39] Me dejaron PELADA ahí abajo - Storytime | clips=175 music_drop=2 -> 173 | npz=153
+[07:24:26Z] [36/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=ZhPgRWjBWvk
+[07:24:29Z] [ERROR 36/39] fallo descarga/transcripcion: https://www.youtube.com/watch?v=ZhPgRWjBWvk
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/fedegutman/venv-proc/bin/python', '-m', 'yt_dlp', '--print', 'title', 'https://www.youtube.com/watch?v=ZhPgRWjBWvk']' returned non-zero exit status 1.
+[07:24:29Z] [37/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=scQ7nPWsA8g
+[07:24:33Z] [ERROR 37/39] fallo descarga/transcripcion: https://www.youtube.com/watch?v=scQ7nPWsA8g
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/fedegutman/venv-proc/bin/python', '-m', 'yt_dlp', '--print', 'title', 'https://www.youtube.com/watch?v=scQ7nPWsA8g']' returned non-zero exit status 1.
+[07:24:33Z] [38/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=zyr7wpiIt18
+[07:24:36Z] [ERROR 38/39] fallo descarga/transcripcion: https://www.youtube.com/watch?v=zyr7wpiIt18
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/fedegutman/venv-proc/bin/python', '-m', 'yt_dlp', '--print', 'title', 'https://www.youtube.com/watch?v=zyr7wpiIt18']' returned non-zero exit status 1.
+[07:24:36Z] [39/39] >>> descargando+transcribiendo https://www.youtube.com/watch?v=wB4JpMNFqb4
+[07:24:40Z] [ERROR 39/39] fallo descarga/transcripcion: https://www.youtube.com/watch?v=wB4JpMNFqb4
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/fedegutman/venv-proc/bin/python', '-m', 'yt_dlp', '--print', 'title', 'https://www.youtube.com/watch?v=wB4JpMNFqb4']' returned non-zero exit status 1.
+[07:24:40Z] === DETECCION final keep/review/drop ===
+[07:26:07Z] === RESUMEN ===
+FUENTE                                                 clips     npz  pass%
+BULLRICH DESAFÍA a KARINA MILEI con el 3%  ESTA SE       216      97  44.9%
+EL DIA QUE CASI MATO A MI TIO (Anécdota real)             46      23  50.0%
+ESTOY EN UN BROTE PERDON                                 220     208  94.5%
+GASPI, DAMIAN KUC, LA REINI, BOTTERO, EL MUNDIAL Y       406     361  88.9%
+LO MALO DE EE.UU  Lucas Spadafora                         42       2   4.8%
+La PRIMERA VEZ que fui a un TEL0 - ANECDOTA Tomas         94      46  48.9%
+MAGNETTO se BURLA de ADORNI  ESTA SEMANA EN SPRING       176     107  60.8%
+ME DEJARON EN LA FRIENDZONE EL DÍA DEL AMIGO             141     123  87.2%
+ME ROBAN Y CASI ME MATAN #StoryTime  LUCAS CASTEL         43      40  93.0%
+MI EXPERIENCIA PARANORMAL O - Preguntas y Respuest        62      54  87.1%
+MI PRIMER AMOR - Storytime                               172     153  89.0%
+MICA SUAREZ, KEVSHO, LULI GONZALEZ, JAMES CHARLES,       378     331  87.6%
+MILITANDO el AJUSTE  ESTA SEMANA EN SPRINGFIELD co       236     223  94.5%
+Me dejaron PELADA ahí abajo - Storytime                  173     153  88.4%
+Me estafaron                                              93      87  93.5%
+POR ESTO ME FUI DE LAS REDES.                             67      45  67.2%
+POR QUE EMPECE EN YOUTUBE  Lucas Spadafora                60      49  81.7%
+PRIMERA VEZ que me ROBARON  ANÉCDOTA                      52      48  92.3%
+RESPONDO TODO 🌶                                          161     158  98.1%
+STORYTIME #3  Me armo unos MATES y ¿cuento mi PRIM       138      76  55.1%
+Salté del balcon - storytime                              63      60  95.2%
+Storytime Cuando perdí dos amigos por polleras   J        94      48  51.1%
+TODO el COLEGIO me HACÍA BULLYING... #StoryTime  C       185     180  97.3%
+TODOS ODIAMOS A MILEI, PAULA CHAVEZ ESTA PODRIDA,        215     184  85.6%
+Tengo 30 Esto LE DIRIA A MI YO DE 20                      98      56  57.1%
+grwm para los premios idolo                              135      38  28.1%
+me DETONE a una COMPAÑERA de la FACULTAD en el BAÑ       233     115  49.4%
+me pusieron 1 tampon                                      95      73  76.8%
+mi primera tapa de revista gente )                        94      48  51.1%
+¿POR QUÉ MI NOVIA ME DEJÓ  LUCAS CASTEL                   88      58  65.9%
+TOTAL                                                   4276    3244  75.9%
+[07:26:07Z] === PIPELINE_DONE (VM sigue viva para bajar resultados; tope max-run-duration) ===

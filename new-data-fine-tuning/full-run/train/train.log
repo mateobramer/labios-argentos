@@ -1,0 +1,12 @@
+[11:58:35Z] ===== TRAIN ORCHESTRATOR START =====
+[11:58:36Z] PHASE_SETUP_DONE (ckpt=/home/fedegutman/zenodo/extracted/Factors_of_Influence_on_End-to-End_Continuous_Spanish_Lipreading/VSR/vsr-liprtve-si.pth)
+[11:58:36Z] PHASE_DATA: 9212 npz ya presentes (old+new) -> salteo rsync GCS
+[11:58:36Z] PHASE_DATA_DONE (npz totales=9212)
+[11:58:36Z] PHASE_SPLITS: armar_splits
+[11:58:36Z] PHASE_SPLITS_DONE (train=8067 val=466 test=658)  [v1/v2 eran train=4818 val=466 test=658]
+[11:58:36Z] SMOKE: fine_tune --smoke (config v1)
+[11:58:45Z] SMOKE_OK
+[11:58:45Z] FT03 START (config v1: full FT, sin congelar, sin augment)
+[14:24:22Z] FT03_DONE (best=210270955)
+[14:24:22Z] FT04 START (config v2: --freeze frontend --augment)
+[14:24:24Z] FATAL: ft04 entrenamiento fallo

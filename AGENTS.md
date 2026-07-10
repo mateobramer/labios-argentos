@@ -1,93 +1,84 @@
 # AGENTS.md
 
-Guía para trabajar en este repositorio.
+Guía para trabajar en este repositorio (humanos y agentes).
 
 ## Qué es este repo
 
-`labios-argentos` es la **herramienta de recolección y preprocesamiento de datos** para
-un proyecto de investigación de **lectura de labios / reconocimiento visual del habla
-(VSR) en español rioplatense**. Su único propósito es construir un dataset propio a
-partir de videos de YouTube: descarga el video, lo transcribe, arma un corpus de texto
-y lo corta en clips cortos de video alineados con su transcripción.
+`labios-argentos` es el **sistema completo** de un proyecto de investigación de
+**lectura de labios / VSR en español rioplatense** (Ingeniería en IA, Universidad de
+San Andrés): pipeline de datos desde YouTube, fine-tuning de dos familias de modelos
+(50M de Gimeno y ViSpeR 288M), evaluación WER/CER, corrector LLM por n-best rescoring,
+calibración al hablante con LoRA, y una demo web cerca de tiempo real.
 
-Forma parte del proyecto académico documentado en `../survey-nlp` (paper en
-`survey-nlp/paper/main.tex`): *"Lectura de labios en tiempo real para español
-rioplatense: destilación causal de Auto-AVSR con corrección mediante un LLM"*
-(Ingeniería en IA, Universidad de San Andrés). El paper propone afinar Auto-AVSR al
-español usando LIP-RTVE **más un conjunto propio recolectado de YouTube en
-rioplatense** — ese conjunto propio es lo que produce este repo.
+Empezar por el [`README.md`](README.md) (visión de producto y resultados) y
+[`docs/ESTRUCTURA.md`](docs/ESTRUCTURA.md) (mapa del repo y flujo de datos).
 
-## Estructura del proyecto
+## Dónde está la verdad
 
-Antes de agregar módulos, notebooks, scripts nuevos o carpetas de experimentos, leer
-`ESTRUCTURA_PROYECTO.md`.
+- **Resultados**: [`experiments/README.md`](experiments/README.md) tiene la tabla
+  maestra y el índice de los 10 docs de experimentos. [`docs/RESULTS.md`](docs/RESULTS.md)
+  es el ledger vivo. **Antes de re-medir algo, fijate si ya está medido.**
+- **Decisiones de diseño de la demo**: [`docs/SPEC.md`](docs/SPEC.md) — cada parámetro
+  (beam, MPS, VAD, qwen) está justificado con su experimento.
+- **Splits congelados**: `vsr_models/splits/` (test-658 y val fijos desde ft03). Una
+  comparación solo vale si usa exactamente estos splits y la misma normalización de
+  texto: minúsculas, sin acentos (**ñ preservada**), sin puntuación.
 
-Regla corta: cada bloque del sistema debe vivir en su propia carpeta, con lógica
-reutilizable en `src/` y notebooks de experimentos dentro del módulo correspondiente. No
-dejar scripts, datos o resultados nuevos desparramados en la raíz.
+## Entornos y máquinas
 
-## Pipeline
+| Env conda | Para qué |
+|---|---|
+| `ptt` | demo web / captura (OpenCV + MediaPipe) — es el que lanza `demo/demo_web.py` |
+| `visper` | inferencia ViSpeR (PyTorch + ESPnet); requiere el repo en `~/Desktop/visper` |
+| `mvsr` | espnet1 vendoreado (mpc001) — corre el 50M/ft05 local vía remap |
+| `vsr-factors` | solo en VMs de GCP: entrenamiento del 50M (repo de Gimeno) |
 
-Todo vive en un único script: `descargar_procesar.py`. Se ejecuta con:
+Los entrenamientos corren en **VMs L4 spot de GCP** (proyecto
+`visual-speech-recognition-nlp`, imagen `labios-img-visper`, bucket
+`gs://labios-argentos-vsr-dataset`) con startup scripts que suben resultados al bucket y
+**se autodestruyen**.
 
+## Reglas duras
+
+- **Costos GCP**: toda VM se lanza spot, con auto-destrucción, y se verifica que murió
+  (VM **y disco**). No dejar nada corriendo sin monitor.
+- **Privacidad**: las grabaciones personales (`~/vsr_personal/`, `~/vsr_contrib/`) y los
+  modelos calibrados (`modelos/personal/`) **no se versionan nunca**.
+- **No versionar pesados/regenerables**: `.npz`, `.pth`, videos crudos, venvs, clones de
+  repos externos (ya está en `.gitignore` — revisarlo antes de commits grandes).
+- **YouTube**: no usar cookies del browser ni rotación de IPs; el scraping masivo quedó
+  descartado (ver [`experiments/07`](experiments/07_datos_y_scraping.md)). Fuentes
+  nuevas: de a una, con los gates de calidad.
+- **Git**: el usuario nombra los commits y autoriza los push. Sin `Co-Authored-By`.
+- El working copy usa **sparse-checkout** (los ~29k archivos del dataset no están todos
+  materializados); si un path trackeado "no existe", revisar `git sparse-checkout list`.
+
+## Estructura y convenciones
+
+- Cada bloque del sistema vive en su propia carpeta, con lógica reutilizable en `src/`
+  y su `README.md`. No dejar scripts, datos ni resultados sueltos en la raíz.
+- Código y comentarios en **español**, nombres de funciones en español
+  (`bajar_video`, `cortar_clips`). Estilo procedural directo, sin frameworks.
+- Los directorios bajo `data/` y `dataset/` son **datos generados**: no editarlos a mano.
+- La invariante sagrada del dataset es la **alineación video↔texto**: si tocás
+  `cortar_clips` o el preproc, el `.txt` debe seguir correspondiendo exacto al clip.
+- Experimentos nuevos: documentarlos en `experiments/` (un doc por categoría, actualizar
+  la tabla maestra del README de experiments).
+
+## Comandos frecuentes
+
+```bash
+# Demo web (UI en http://localhost:8551; --qwen para el corrector, --ckpt para modelo personal)
+~/miniconda3/envs/ptt/bin/python demo/demo_web.py
+
+# Pipeline de datos para una fuente nueva (ver claude-videos/README.md)
+python descargar_procesar.py "URL_YOUTUBE"
+python -m visual_preprocessing.src.preprocesar "<titulo>"
+python -m data_cleaning.src.detectar_clips_malos "<titulo>" [--materializar]
+
+# Calibración al hablante (después de grabar en la UI /calibrar)
+bash demo/calibracion/calibrar_entrenar.sh <nombre>
+
+# Scoring del self-test
+~/miniconda3/envs/visper/bin/python demo/score_selftest.py --model visper
 ```
-python descargar_procesar.py URL_YOUTUBE
-```
-
-Pasos (funciones en orden):
-
-1. `bajar_video(url)` — usa **yt-dlp** para obtener el título y descargar el `.mp4`.
-   Crea `data/videos/<titulo>/`.
-2. `transcribir(video_path, carpeta)` — transcribe con **Whisper** (modelo `turbo`,
-   `language="es"`). Cachea el resultado en
-   `data/corpus/<titulo>/transcripcion.json`; si ya existe, lo reutiliza.
-3. `guardar_corpus(resultado, carpeta)` — vuelca el texto limpio (segmentos de ≥3
-   palabras) a `data/corpus/<titulo>/corpus.txt`, una línea por segmento.
-4. `cortar_clips(video_path, resultado, carpeta)` — agrupa segmentos en bloques de
-   ~3–10 s y usa **ffmpeg** para cortar clips. Por cada clip genera
-   `data/clips/<titulo>/clip_NNNN.mp4` + `clip_NNNN.txt` (transcripción limpia del clip).
-
-`limpiar(texto)`: minúsculas, quita puntuación, translitera acentos con `unidecode`
-pero **preserva la ñ** (truco del placeholder `ENIE`).
-
-## Estructura de salida
-
-- `data/videos/<titulo>/` — el `.mp4` original (y a veces `.info.json` de yt-dlp).
-- `data/corpus/<titulo>/` — `transcripcion.json` (salida cruda de Whisper) + `corpus.txt`.
-- `data/clips/<titulo>/` — pares `clip_NNNN.mp4` / `clip_NNNN.txt` (clips crudos alineados).
-- `data/processed/lip_rois/<titulo>/` — ROIs labiales 96x96 (salida de `visual_preprocessing`).
-- `dataset/<titulo>/` — **dataset final curado** (solo clips `keep` del detector de `data_cleaning`).
-- `data/metadata/` — `fuentes.csv` + manifests (`lip_preprocessing_manifest.csv`, `auditoria_clips_manifest.csv`).
-
-Estado: ~32 fuentes con clips crudos alineados (~9300 pares en `data/clips/`, versionados
-en git via sparse-checkout); de esas, 9 fuentes ya pasaron el preproc visual (1704 ROIs)
-y la curacion (1683 `keep`). Estos directorios son **datos generados**, no código; no los
-edites a mano.
-
-## Dependencias
-
-Hay `requirements.txt` para las dependencias de Python. Incluye:
-
-- Python: `openai-whisper`, `unidecode`, `yt-dlp`, `imageio-ffmpeg`
-
-`ffmpeg` puede estar disponible globalmente en el PATH o venir del paquete
-`imageio-ffmpeg`. En Windows, el script también intenta sumar una ruta típica de
-winget si existe.
-
-Por defecto se usa Whisper `turbo`. Se puede cambiar con la variable de entorno
-`WHISPER_MODEL` (por ejemplo, `WHISPER_MODEL=small`).
-
-## Convenciones
-
-- Código y comentarios en **español**; nombres de funciones en español
-  (`bajar_video`, `cortar_clips`).
-- Script procedural simple, sin tests ni framework. Mantener ese estilo directo.
-- Los títulos de YouTube se sanitizan a ≤50 chars para usarlos como nombre de carpeta
-  (`nombre_carpeta`), así que el mismo título mapea consistentemente entre
-  `data/videos/`, `data/corpus/` y `data/clips/`.
-
-## Contexto útil
-
-El objetivo final del dataset es entrenar/afinar un modelo de VSR causal y liviano, por
-lo que importa la **alineación video↔texto** de cada clip. Si tocás `cortar_clips`,
-cuidá que el `.txt` siga correspondiendo exactamente al segmento de video cortado.

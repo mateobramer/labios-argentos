@@ -1,6 +1,6 @@
 # evaluation
 
-Métricas, baselines y reportes de WER del proyecto (ver `ESTRUCTURA_PROYECTO.md`).
+Métricas, baselines y reportes de WER del proyecto (ver `docs/ESTRUCTURA.md`).
 
 ## Baseline zero-shot con el VSR español de Gimeno
 
