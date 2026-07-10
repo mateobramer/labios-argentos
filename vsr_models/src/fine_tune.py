@@ -39,6 +39,16 @@ DIR_MODULO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SPLITS_DIR = os.path.join(DIR_MODULO, "splits")
 
 
+def set_seed(seed):
+    """Fija el seed en random/numpy/torch para comparaciones head-to-head reproducibles
+    (ej: base LIP-RTVE vs multilingue con el MISMO orden de datos y dropout)."""
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+
 class RandomCrop:
     """(T,H,W) -> (T,size,size) con offset aleatorio. Data augmentation para train."""
     def __init__(self, size):
@@ -135,12 +145,16 @@ def build_arg_parser():
     ap.add_argument("--freeze", default="", help="modulos a congelar, coma-separados (ej: frontend o frontend,encoder)")
     ap.add_argument("--augment", action="store_true", help="data augmentation en train (random crop + flip)")
     ap.add_argument("--smoke", action="store_true", help="1 batch train+val y salir (test)")
+    ap.add_argument("--seed", type=int, default=1234,
+                    help="seed para reproducibilidad (comparacion head-to-head entre bases)")
     return ap
 
 
 def main():
     args = build_arg_parser().parse_args()
     os.makedirs(args.out, exist_ok=True)
+    set_seed(args.seed)
+    print(f"[seed] {args.seed}", flush=True)
 
     sys.path.insert(0, os.path.expanduser(args.gimeno_repo))
     from src.utils import data_processing, get_tokenizer_converter
@@ -214,7 +228,7 @@ def main():
             loss = out[0] if isinstance(out, (tuple, list)) else out["loss"]
             (loss / args.accum).backward()
             if (i + 1) % args.accum == 0:
-                torch.nn.utils.clip_grad_norm_(asr_model.parameters(), 5.0)
+                torch.nn.utils.clip_grad_norm_(params, 5.0)
                 opt.step()
                 opt.zero_grad()
             if i % 100 == 0:
