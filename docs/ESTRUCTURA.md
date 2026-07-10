@@ -43,8 +43,12 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `new-data-fine-tuning/` | 5 (hist.) | corrida completa de la ronda 2 → ft03–ft07; docs de esa fase |
 | `evaluation/` | 6 | evaluación contra test-658, parches al repo de Gimeno |
 | `demo/` | 7 | demo web + push-to-talk + streaming, `infer_server.py`, calibración |
+| `data_discovery/` | 1b | búsqueda/score de fuentes nuevas (portado de `feature/full-clean-release`) |
+| `data_release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
+| `data_cleaning_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
+| `data_inventory/` | 4b | inventario del bucket del release |
 | `experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
-| `docs/` | — | SPEC, este doc, RESULTS (ledger), `archivo/` (docs históricos) |
+| `docs/` | — | SPEC, este doc, RESULTS (**ledger canónico**), PROJECT_SCOPE, RESEARCH_TP, ENGINEERING_TP, DATA_AND_ARTIFACTS, NEXT_STEPS, `archivo/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
 
 ## Qué se versiona y qué no
 
