@@ -77,8 +77,8 @@ python -m preprocessing.src.preprocesar "<titulo>"
 python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>" [--materializar]
 
 # Calibración al hablante (después de grabar en la UI /calibrar)
-bash demo/calibracion/calibrar_entrenar.sh <nombre>
+bash personalization/calibracion/calibrar_entrenar.sh <nombre>
 
 # Scoring del self-test
-~/miniconda3/envs/visper/bin/python demo/score_selftest.py --model visper
+~/miniconda3/envs/visper/bin/python personalization/score_selftest.py --model visper
 ```

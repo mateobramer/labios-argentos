@@ -28,7 +28,7 @@ browser ◀── MJPEG /video · SSE /events ──▶ demo_web.py (env ptt)   
 - **`demo/infer_server.py`** (env `visper`): proceso hijo con el modelo cargado en
   memoria; recibe paths `.npz` por stdin y devuelve texto por stdout.
 - **Ollama** (opcional): `qwen3:4b-instruct-2507-q4_K_M` para el n-best rescoring.
-- **`demo/calibracion/`**: splits + orquestador de entrenamiento LoRA en GCP.
+- **`personalization/calibracion/`**: splits + orquestador de entrenamiento LoRA en GCP.
 
 ## 3. Interfaces
 

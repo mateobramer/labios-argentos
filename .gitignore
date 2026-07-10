@@ -81,5 +81,5 @@ vsr/mpc001/runs/
 vsr/curriculum/logs/
 data/_visper_tmp/
 
-# Modelos personales de calibracion (privados, se generan con demo/calibracion/)
+# Modelos personales de calibracion (privados, se generan con personalization/calibracion/)
 modelos/personal/

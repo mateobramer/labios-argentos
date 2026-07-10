@@ -53,7 +53,7 @@ suite de tests automatizados del VAD/norm()/protocolo.
 ## Calibración al hablante (estado real)
 
 Funciona end-to-end y está validada con **un** hablante ([exp. 10](../experiments/10_adaptacion_hablante.md)):
-UI `/calibrar` graba ~40 frases push-to-talk → `demo/calibracion/calibrar_entrenar.sh`
+UI `/calibrar` graba ~40 frases push-to-talk → `personalization/calibracion/calibrar_entrenar.sh`
 entrena un **LoRA** (r16/α32) en una VM L4 spot (~10 min, ~$0.05, se autodestruye) →
 el modelo personal baja el WER personal 29.2→24.5 **sin olvidar** el test general
 (45.22→44.54). El full-FT con la receta del 50M **colapsa** el 288M (98.7 WER) — por

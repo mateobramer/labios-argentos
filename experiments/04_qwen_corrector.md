@@ -5,7 +5,7 @@
 
 **Setup:** corrector = `qwen3:4b-instruct-2507-q4_K_M` (Ollama local, `think=false`, temp 0). Ojo: la
 variante base "thinking" NO sirve (razona en el output y rompe todo). También disponible `qwen3.5:9b`.
-Scripts: `vsr/mpc001/scripts/fase0_llm_correct.py`, y en scratchpad `qwen_lab.py`, `nbest_ft05.py`,
+Scripts: `llm_corrector/fase0_llm_correct.py`, y en scratchpad `qwen_lab.py`, `nbest_ft05.py`,
 `visper_full_test.py`. Métrica: misma `norm()` + WER/CER, IC bootstrap.
 
 ---

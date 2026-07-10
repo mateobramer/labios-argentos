@@ -19,10 +19,10 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 4 · CURACIÓN       cleaning/visual_quality/                 detector de clips malos (cara, calidad)
         │            dataset/<t>/  (solo los `keep`)  +  data/metadata/*.csv (manifests)
         ▼
-5 · ENTRENAMIENTO  vsr/ (50M Gimeno) · demo/calibracion/ (LoRA personal ViSpeR)
+5 · ENTRENAMIENTO  vsr/ (50M Gimeno) · personalization/calibracion/ (LoRA personal ViSpeR)
         │            corre en VMs L4 spot de GCP; pesos a modelos/ (no versionados)
         ▼
-6 · EVALUACIÓN     vsr/evaluation/ + demo/score_selftest.py
+6 · EVALUACIÓN     vsr/evaluation/ + personalization/score_selftest.py
         │            WER/CER sobre splits congelados (vsr/splits/) — ledger en docs/RESULTS.md
         ▼
 7 · DEMO           demo/demo_web.py               cámara → VAD visual → ViSpeR → [qwen] → subtítulos

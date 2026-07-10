@@ -89,7 +89,7 @@ experimentos: [`experiments/README.md`](experiments/README.md). Ledger vivo:
 ## Calibración al hablante
 
 Desde la propia UI (`/calibrar`): la persona graba ~40 frases push-to-talk en el
-browser, y `bash demo/calibracion/calibrar_entrenar.sh <nombre>` entrena un LoRA en una
+browser, y `bash personalization/calibracion/calibrar_entrenar.sh <nombre>` entrena un LoRA en una
 VM L4 spot de GCP (~10 min, ~$0.05, se autodestruye) y descarga el modelo personal.
 Validado en [`experiments/10`](experiments/10_adaptacion_hablante.md): −4.7 WER personal
 sin olvidar el test general. La misma página tiene el modo "Ayudanos a entrenar" para

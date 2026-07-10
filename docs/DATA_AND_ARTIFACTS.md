@@ -68,7 +68,7 @@ Paths y knobs de la demo (defaults = comportamiento actual; ver `.env.example`):
 | `VSR_CKPT` | (vacío = pesos base) | state_dict alternativo (modelo personal) |
 | `VSR_BEAM` / `VSR_QWEN` / `VSR_QMODEL` / `VSR_MPS` | 3 / off / qwen3:4b-instruct… / auto | knobs de inferencia ([SPEC §3](SPEC.md)) |
 
-Los scripts de GCP (`demo/calibracion/*.sh`, `vsr/historical/ronda2/scripts/*.sh`) son
+Los scripts de GCP (`personalization/calibracion/*.sh`, `vsr/historical/ronda2/scripts/*.sh`) son
 templates de startup de VM con sus propios paths internos de VM — no usan estas variables.
 
 ## Cómo montar un entorno desde cero (resumen)

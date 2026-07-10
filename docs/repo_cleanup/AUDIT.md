@@ -56,7 +56,7 @@ Patrón consistente en `demo/*.py`:
   y checkpoint `modelos/ft05_espnet1.pth` con path absoluto.
 - Los knobs de runtime YA usan env vars (`VSR_QWEN`, `VSR_BEAM`, `VSR_QMODEL`) —
   el patrón para paths es extenderlo, no inventar otro sistema.
-- Scripts de GCP (`vsr/historical/ronda2/scripts/*.sh`, `demo/calibracion/*.sh`)
+- Scripts de GCP (`vsr/historical/ronda2/scripts/*.sh`, `personalization/calibracion/*.sh`)
   tienen paths de VM y bucket: son templates de startup, se documentan pero no se tocan.
 
 ## 4. Referencias a buckets (3 buckets distintos)

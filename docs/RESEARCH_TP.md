@@ -49,9 +49,9 @@ mayor parte del hallazgo.
 
 ## Cómo reproducir (hasta donde permiten los artefactos)
 
-- Scripts: `vsr/mpc001/scripts/fase0_llm_correct.py` (corrección 1-best);
+- Scripts: `llm_corrector/fase0_llm_correct.py` (corrección 1-best);
   el rescoring vive integrado en `demo/infer_server.py` (`VSR_QWEN=1`, prompt en
-  `SYS_RESC`) y `demo/score_selftest.py` evalúa sobre el self-test.
+  `SYS_RESC`) y `personalization/score_selftest.py` evalúa sobre el self-test.
 - Requiere: env `visper` + pesos ViSpeR (ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)),
   Ollama con `qwen3:4b-instruct-2507-q4_K_M`, y los clips del self-test (locales, no
   versionados por privacidad) o `test-658` (splits congelados en `vsr/splits/`).

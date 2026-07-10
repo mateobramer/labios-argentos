@@ -47,9 +47,9 @@ Esto habilitó correr ft05 local (n-best incluido) sin GPU ni el env pesado de G
   medidor de labios con umbral, captions grandes, panel de transcript con duración+latencia por segmento,
   copiar/limpiar. Solo stdlib (sin deps nuevas); renderiza ñ/acentos (cv2 no podía). El server de
   inferencia manda una línea `CONFIG {json}` antes del `READY` (los clientes viejos la ignoran).
-- **Calibración al hablante integrada** (`/calibrar` + `demo/calibracion/`): la persona graba ~40 frases
+- **Calibración al hablante integrada** (`/calibrar` + `personalization/calibracion/`): la persona graba ~40 frases
   (push-to-talk en el browser, guarda npz+txt en `~/vsr_personal/<nombre>/`), después
-  `bash demo/calibracion/calibrar_entrenar.sh <nombre>` entrena el LoRA en una L4 spot (~10 min, ~$0.05,
+  `bash personalization/calibracion/calibrar_entrenar.sh <nombre>` entrena el LoRA en una L4 spot (~10 min, ~$0.05,
   auto-destruye) y baja `modelos/personal/<nombre>.pth` → `demo_web.py --ckpt ...` (server: `VSR_CKPT`).
   Método validado en [10](10_adaptacion_hablante.md). La misma página tiene el modo **"Ayudanos a
   entrenar"**: texto libre (decís algo + escribís qué dijiste) → dona pares clip+texto a `~/vsr_contrib/`.

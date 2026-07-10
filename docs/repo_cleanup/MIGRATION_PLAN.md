@@ -80,7 +80,7 @@ Patrón: extender el mecanismo ya existente (`VSR_*` env vars) a los paths, con
 | `demo/demo_web.py`, `demo_ptt.py`, `demo_stream.py`, `build_testset.py` | `REPO` | `LABIOS_REPO` env → default: raíz del repo derivada de `__file__` (equivale al valor actual cuando el repo está en `~/Desktop/labios-argentos`, y corrige el caso de clones en otra ubicación) |
 | ídem | `VISPER_PY` | `VISPER_PY` env → default actual sin cambios |
 | `demo/infer_server.py` | `REPO` | `VISPER_DIR` env → default `~/Desktop/visper` sin cambios |
-| `demo/score_selftest.py` | paths de repos/ckpt | env overrides análogos, defaults sin cambios |
+| `personalization/score_selftest.py` | paths de repos/ckpt | env overrides análogos, defaults sin cambios |
 | `.env.example` | — | documenta todas las variables (paths + `VSR_QWEN/BEAM/QMODEL`) |
 
 Sin cambios en: parámetros de VAD/beam/corrector/calibración, scripts `.sh` de GCP

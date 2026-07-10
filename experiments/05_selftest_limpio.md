@@ -4,8 +4,8 @@
 Pregunta: ¿parte del WER alto es el test set, o es el modelo? → grabar al usuario **de frente, de cerca,
 buena luz**, leyendo frases conocidas (condición ideal), y medir.
 
-**Herramientas:** `demo/build_testset.py` (env `ptt`, MediaPipe crop, muestra frase → ESPACIO grabar/cortar
-→ npz + manifest) y `demo/score_selftest.py --model {ft05,visper}`. Datos en `~/vsr_selftest/`.
+**Herramientas:** `personalization/build_testset.py` (env `ptt`, MediaPipe crop, muestra frase → ESPACIO grabar/cortar
+→ npz + manifest) y `personalization/score_selftest.py --model {ft05,visper}`. Datos en `~/vsr_selftest/`.
 El usuario es hablante NUEVO (no visto en train) → sigue siendo speaker-independent (comparación justa).
 
 ## Ronda 1 — 12 frases

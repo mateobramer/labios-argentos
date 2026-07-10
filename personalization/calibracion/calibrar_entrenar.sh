@@ -4,7 +4,7 @@
 #   2. sube ROIs+CSVs al bucket
 #   3. levanta una L4 spot (retry multi-zona) que entrena LoRA (~5 min) y se autodestruye
 #   4. espera y baja el modelo a modelos/personal/<persona>.pth
-# Costo tipico: ~$0.05. Uso:  bash demo/calibracion/calibrar_entrenar.sh <persona>
+# Costo tipico: ~$0.05. Uso:  bash personalization/calibracion/calibrar_entrenar.sh <persona>
 set -euo pipefail
 P=${1:?uso: calibrar_entrenar.sh <persona>}
 P=$(echo "$P" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9_-')

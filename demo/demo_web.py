@@ -43,7 +43,7 @@ STOP = threading.Event()
 SRV = {"proc": None, "lock": threading.Lock()}
 
 # ---- modo calibracion (grabar frases para adaptar el modelo a una persona) ----
-from build_testset import PROMPTS as CAL_PROMPTS          # mismas 100 frases del self-test
+from personalization.build_testset import PROMPTS as CAL_PROMPTS  # mismas 100 frases del self-test (REPO ya esta en sys.path)
 CAL_N = 40                                                 # frases sugeridas (30 ya captura ~80%)
 CAL = {"activo": False, "persona": "", "dir": None, "rec_t0": None, "hechas": 0, "msg": ""}
 CAL_LOCK = threading.Lock()

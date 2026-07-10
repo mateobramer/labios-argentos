@@ -92,7 +92,7 @@ Chaplin github.com/amanvirparhar/chaplin · PyTorch real-time AV-ASR blog.
 **Setup:** corrector = `qwen3:4b-instruct-2507-q4_K_M` (Ollama local, no-razonador, Q4_K_M).
 System-prompt = corrector de español rioplatense (voseo), conservador (no agrega info).
 Se corre sobre las hipótesis ya generadas (`test.inf`, ref#hyp) y se re-mide con la misma `norm()`.
-Script: `vsr/mpc001/scripts/fase0_llm_correct.py`. Se estratifica por CER-por-clip del baseline
+Script: `llm_corrector/fase0_llm_correct.py`. Se estratifica por CER-por-clip del baseline
 para testear la hipótesis: *CER bajo → el LLM mejora; CER alto → el LLM alucina y empeora*.
 
 **Resultado (2026-07-05, corrector `qwen3:4b-instruct-2507-q4_K_M`, 658 clips, ~1.27 s/clip CPU/Mac):**
