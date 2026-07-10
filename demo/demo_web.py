@@ -395,6 +395,31 @@ class H(BaseHTTPRequestHandler):
         elif self.path == "/clear":
             S["segmentos"] = []
             self.send_response(204); self.end_headers()
+        elif self.path == "/feedback":                 # correccion humana de una prediccion
+            # Guarda pares prediccion→correccion en JSONL LOCAL (data/feedback/, gitignored).
+            # No sale de la maquina: es materia prima para fine-tune personal / rescorer.
+            b = self._body()
+            try:
+                idx = int(b.get("idx", -1))
+                seg = S["segmentos"][idx]
+            except (ValueError, IndexError):
+                self._json(400, {"ok": False, "msg": "segmento invalido"}); return
+            corregido = str(b.get("texto", "")).strip()
+            if not corregido:
+                self._json(400, {"ok": False, "msg": "texto vacio"}); return
+            fila = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                    "texto_predicho": seg.get("texto", ""),
+                    "texto_corregido": corregido,
+                    "config": dict(S.get("config", {})),      # modelo/beam/qwen del CONFIG del server
+                    "clip": {"idx": idx, "strip": seg.get("strip", -1),
+                             "dur_s": seg.get("dur"), "infer_s": seg.get("infer")},
+                    "consentimiento": "accion_explicita_local",  # la persona apreto guardar; solo local
+                    "modo": "privado"}                            # sin envio externo (no hay codigo que suba esto)
+            fdir = os.path.join(REPO, "data", "feedback"); os.makedirs(fdir, exist_ok=True)
+            with open(os.path.join(fdir, "feedback.jsonl"), "a", encoding="utf-8") as fh:
+                fh.write(json.dumps(fila, ensure_ascii=False) + "\n")
+            seg["corregido"] = corregido               # la UI muestra que ya se corrigio
+            self._json(200, {"ok": True})
         elif self.path == "/cal/entrar":
             b = self._body()
             persona = re.sub(r"[^a-z0-9_-]", "", str(b.get("persona", "")).lower().strip()) or "persona"
