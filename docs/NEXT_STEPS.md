@@ -27,11 +27,10 @@ Hoy: ~1.1 s/segmento (encoder MPS 0.17 s + beam CPU ~0.9 s). El beam es el 80 % 
 
 ## 3. Feedback editable y recolección de correcciones
 
-**Gap declarado** ([ENGINEERING_TP](ENGINEERING_TP.md)): hoy existe la donación de
-pares clip+texto en `/calibrar`, pero NO la corrección de predicciones en uso real.
+**Captura mínima hecha (2026-07)**: botón ✏️ por segmento → `POST /feedback` → JSONL
+local privado (`data/feedback/`). Lo que falta:
 
-- UI: botón "corregir" sobre cada segmento del guion → guarda `(npz, hipótesis,
-  corrección)` local, mismo formato que la calibración.
+- Guardar también el `.npz` del segmento junto a la corrección (hoy: solo textos+ids).
 - Eso genera pares `predicción → texto real` para: (a) fine-tune personal continuo,
   (b) entrenar un rescorer supervisado (§5).
 - Requiere política de privacidad idéntica a calibración (todo local, opt-in).
@@ -57,13 +56,12 @@ pares clip+texto en `/calibrar`, pero NO la corrección de predicciones en uso r
 
 ## 7. Deuda de datos
 
-- **Decisión abierta (equipo): política repo-vs-bucket.** Main versiona clips (~2.9 GB
-  en el tree, clone pesado); `feature/full-clean-release` propone todo al bucket con
-  repo liviano. Trade-offs: reproducibilidad sin GCP y diff-abilidad (repo) vs clone
-  rápido y single-source-of-truth (bucket). Si se adopta el bucket: requiere plan de
-  migración + probablemente reescritura de historia (fuera de scope de esta limpieza).
-- Decidir el destino de la PR #25: ya se portó su material único liviano; lo que queda
-  ahí es la eliminación masiva + manifests grandes. Cerrarla documentando o adaptarla.
+- **Política repo-vs-bucket: RESUELTA y aplicada en esta rama** (git liviano + bucket
+  para pesados; ver [DATA_AND_ARTIFACTS](DATA_AND_ARTIFACTS.md)). Lo que queda: si el
+  equipo quiere achicar el CLONE COMPLETO (~9 GB por la historia), decidir una
+  reescritura de historia con `git filter-repo` — irreversible, requiere coordinar.
+- PR #25: **cerrada como superseded** (2026-07-10); su material vive en esta rama y
+  sus tags de preservación son `dataset-clean-v1` y `archive/full-clean-release`.
 - Integrar el release `dataset-clean-v1` al flujo de entrenamiento (hoy los splits
   congelados siguen sobre el dataset original).
 

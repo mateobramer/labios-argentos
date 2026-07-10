@@ -63,9 +63,11 @@ eso LoRA. Gap: generalización a más hablantes no validada (n=1).
 
 - ✅ **Existe**: modo "Ayudanos a entrenar" en `/calibrar` — dona pares clip+texto
   leyendo frases sugeridas (quedan locales, no se versionan).
-- ❌ **No existe**: edición/corrección humana de las **predicciones** de la demo para
-  generar pares `predicción → texto real` (aprendizaje del error en uso real). Es el
-  próximo paso natural de datos; diseño sugerido en [NEXT_STEPS](NEXT_STEPS.md) §3.
+- ✅ **Existe (2026-07, mínimo)**: corrección humana de predicciones — botón ✏️ por
+  segmento en el guion → `POST /feedback` → JSONL local en `data/feedback/` (gitignored)
+  con predicción, corrección, timestamp, config del modelo e id de clip. Sin envío
+  externo por diseño. Pendiente: usar esos pares para fine-tune/rescorer
+  ([NEXT_STEPS](NEXT_STEPS.md) §3).
 
 ## Próximos pasos concretos para bajar latencia
 

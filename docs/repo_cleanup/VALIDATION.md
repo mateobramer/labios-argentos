@@ -1,52 +1,47 @@
-# VALIDATION — pruebas corridas en `chore/repo-cleanup-safe-v2`
+# VALIDATION — pruebas corridas en `chore/repo-cleanup-safe-v2` (pasada 2)
 
-Máquina: MacBook (Darwin 25.5), **sin** los envs `ptt`/`visper`/`mvsr` ni cámara/pesos.
-Env disponible: `~/miniforge3/envs/labios` (Python 3.12.13: pandas, numpy, yt_dlp,
-whisper; sin cv2/mediapipe/torch/pytest). pytest se instaló **aislado en un dir
-temporal** vía `pip --target` (no se modificó el env del usuario).
+Máquina: MacBook M5 (Darwin 25.5). Envs usados: **`ptt` creado en esta pasada**
+(`~/miniforge3/envs/ptt`: py3.11, cv2 5.0.0, mediapipe 0.10.35, torch, pandas, pyyaml,
+matplotlib, pytest — reproducible con `envs/ptt.yml`) y `labios` preexistente (torch,
+whisper; no se modificó). No hay en esta máquina: clon ViSpeR + pesos, gsutil/gcloud,
+Ollama, permiso de cámara para procesos background.
 
-## Corridas y resultados
+## Corridas y resultados (pasada 2)
 
 | # | Comando | Resultado |
 |---|---|---|
-| 1 | `git diff --check main...HEAD` | solo whitespace heredado en 6 archivos **porteados byte-idénticos** (preservado a propósito); los archivos nuevos/modificados: limpios |
-| 2 | `python3 -m compileall .` (excl. .git/data/dataset) | **OK, exit 0** — todos los `.py` compilan (incl. los 6 de demo modificados y los ~30 porteados) |
-| 3 | `pytest data_pipeline/discovery/tests` | **8 passed** (0.29 s) |
-| 4 | `pytest cleaning/transcript_segmentation/tests` | **34 passed** (0.07 s) |
-| 5 | `pytest cleaning/visual_quality/tests` | 4 errores de colección por `ModuleNotFoundError: cv2` — **idéntico en main** (verificado con checkout a main y re-corrida): pre-existente, NO regresión de esta branch |
-| 6 | `data_pipeline/descargar_procesar.py --help` | OK: imprime usage |
-| 7 | `python -m data_pipeline.discovery.src.score_candidates --help` | OK: imprime usage (como módulo, convención del repo) |
-| 8 | `data_pipeline/release/scripts/build_release_manifests.py --help` | falla **con mensaje claro e intencional**: `RuntimeError: No se encontro gsutil en PATH` (sin gsutil acá; es el comportamiento documentado "fallar claro sin credenciales") |
-| 9 | `cleaning/gpt_clean_v1/src/validate_patches.py` | espera path posicional (sin --help); comportamiento original de la rama, sin cambios |
-| 10 | parseo CSV de todo lo porteado | **23/23 OK** (csv.reader completo) |
-| 11 | parseo JSON/JSONL de todo lo porteado | **147/148 OK**; `data_pipeline/release/reports/vm_run_status.json` tiene BOM UTF-8 (artefacto histórico de VM; parsea con `utf-8-sig`; preservado byte-idéntico) |
-| 12 | chequeo de links internos de los 15 `.md` nuevos/tocados | **0 rotos** (los 7 hacia `NEXT_STEPS.md` se resolvieron al crearlo en este mismo commit; re-verificado después) |
-| 13 | archivos agregados ≥1 MB vs main | **ninguno** |
-| 14 | scan de secretos/credenciales en lo porteado | **sin hallazgos** (los matches de "SECRETOS" son títulos de videos de Telefe) |
-| 15 | `git status` al final | limpio (verificado antes del push) |
+| 1 | `pytest cleaning data_pipeline/discovery/tests` (env ptt) | **110 passed, 1 failed** — la falla (`test_builder_no_modifica_splits_canonicos`) es **preexistente: falla idéntico en main** (verificado con checkout a main + re-corrida, 1 failed/68 passed allí). Las 5 regresiones que introdujo la reorg se detectaron con esta suite y se corrigieron (gitignore batch_vsr, resolver de VM, strings `-m`) |
+| 2 | `python3 -m compileall .` | OK exit 0 (todo el árbol) |
+| 3 | **Smoke preprocessing end-to-end REAL** sobre `data/samples/`: `procesar_clip()` | **OK: 137 ROIs 96×96, 99 % detección de cara** — valida muestra + mediapipe + cadena de imports post-reorg |
+| 4 | `demo/demo_web.py --help` (env ptt) | OK: usage completo |
+| 5 | Arranque demo (`--no-open --port 8599`) con `VISPER_PY` override | **llegó hasta la cámara** ("OpenCV: not authorized to capture video… requesting") — el override de env var funciona; bloqueado por permiso de cámara de macOS para procesos background + inferencia real |
+| 6 | `infer_server.py` con `VISPER_DIR` inexistente | falla clara y esperada: `ModuleNotFoundError: datamodule` (falta el clon ViSpeR; sin mocks) |
+| 7 | `descargar_procesar.py --help` · `-m data_pipeline.discovery.src.score_candidates --help` | OK ambos |
+| 8 | Recuperación del tag: `git show dataset-clean-v1:data_release/final_release_manifest.csv` | **OK — devuelve el CSV** (comando del manifest de recuperación verificado en vivo) |
+| 9 | Ancestry de las 8 ramas antes de borrar (`git merge-base --is-ancestor`) | 5 ancestor de main, 2 ancestor del tag, full-clean-release congelada en `archive/full-clean-release` |
+| 10 | `git check-ignore` de la muestra | `data/samples/*.mp4` NO ignorada (whitelist funciona) |
+| 11 | Links internos de todos los `.md` tocados | 0 rotos (re-chequeado tras cada fase) |
+| 12 | Archivos agregados ≥1 MB vs main | ninguno |
+| 13 | Scan de secretos en todo lo agregado/movido | sin hallazgos |
+| 14 | `git status` final | limpio antes del push |
+| 15 | `git diff --check main...HEAD` | solo whitespace heredado en archivos porteados byte-idénticos (a propósito) |
 
-## Pruebas NO ejecutables acá (con reproducción)
+## No ejecutables en esta máquina (bloqueados, con reproducción exacta)
 
-| Prueba | Comando intentado | Error | Dependencia faltante | Impacto | Cómo reproducirla |
-|---|---|---|---|---|---|
-| Arranque de la demo web | `python demo/demo_web.py --help` | `ModuleNotFoundError: cv2` | env conda `ptt` (OpenCV+MediaPipe) | no se pudo verificar el arranque hasta el punto de cámara | en la máquina de desarrollo: `~/miniconda3/envs/ptt/bin/python demo/demo_web.py` |
-| Carga del infer_server | `python demo/infer_server.py` | falta torch/ViSpeR | env `visper` + `~/Desktop/visper` + pesos 1.1 GB | no se verificó CONFIG/READY en vivo | `~/miniconda3/envs/visper/bin/python demo/infer_server.py` (imprime CONFIG y READY sin cámara) |
-| Fallback sin Ollama | (requiere lo anterior) | — | ídem | — | con el server arriba y Ollama apagado: `VSR_QWEN=1` debe caer a 1-best sin morir ([SPEC §6](../SPEC.md)) |
-| Tests de cleaning/visual_quality | `pytest cleaning/visual_quality/tests` | `cv2` | ídem `ptt` | 4 módulos de test sin correr (igual que en main) | correr con el env `ptt` |
-| score_selftest | — | requiere pesos + clips personales | pesos, datos privados | — | máquina de desarrollo |
+| Prueba | Bloqueada por | Cómo reproducirla (máquina con ViSpeR) |
+|---|---|---|
+| infer_server hasta `CONFIG`/`READY` | falta clon ViSpeR (`~/Desktop/visper`, incluye `visper_zeroshot.py` propio) + `visper_vsr_base.pth` 1.1 GB (bucket `gs://labios-argentos-vsr-dataset` o release TII) + env `visper` (spec: `envs/visper.yml`) | `~/miniconda3/envs/visper/bin/python demo/infer_server.py` → debe imprimir CONFIG y READY |
+| Fallback sin Ollama | requiere lo anterior | con server arriba y Ollama apagado, `VSR_QWEN=1`: cae a 1-best sin morir (SPEC §6) |
+| Con/sin corrector (WER en vivo) | ídem + Ollama + cámara | `bash run.sh` vs `bash run.sh --qwen` |
+| Cámara en vivo | permiso de macOS a procesos background | correr `bash run.sh` desde Terminal con permiso de cámara |
+| Scripts de release contra bucket | sin gsutil/credenciales acá | falla intencional clara: "No se encontro gsutil en PATH" (verificado) |
 
-**Riesgo residual de los cambios de demo/**: los 6 archivos modificados solo cambian
-la *fuente* de 4 constantes de path (env var con default idéntico); compilan y el
-default de `REPO` (derivado de `__file__`) es el mismo valor cuando el repo está en
-`~/Desktop/labios-argentos`. La verificación en vivo queda pendiente en la máquina
-de desarrollo (comando arriba).
-
-## Cómo re-verificar todo rápido
+## Cómo re-verificar rápido
 
 ```bash
-git fetch origin && git checkout chore/repo-cleanup-safe-v2
-git diff main...HEAD --stat | tail -3          # alcance del diff
-python3 -m compileall -q . -x "(\.git|data/|dataset/)" && echo OK
-python3 -m pytest data_pipeline/discovery/tests cleaning/transcript_segmentation/tests -q
-~/miniconda3/envs/ptt/bin/python demo/demo_web.py    # smoke real (máquina dev)
+git fetch && git checkout chore/repo-cleanup-safe-v2
+bash setup.sh                                     # crea envs ptt/visper si faltan
+~/miniforge3/envs/ptt/bin/python -m pytest cleaning data_pipeline/discovery/tests -q
+python3 -m compileall -q . && echo OK
+bash run.sh                                       # demo real (con cámara y ViSpeR)
 ```

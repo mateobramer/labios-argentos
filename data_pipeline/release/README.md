@@ -10,9 +10,9 @@
 > **no están en esta rama** para no inflar el working tree. Recuperarlos:
 > `git show dataset-clean-v1:data_release/<nombre>.csv > <nombre>.csv`
 > (el tag `dataset-clean-v1` los preserva) o regenerarlos con los scripts de acá.
-> Ver [`docs/DATA_AND_ARTIFACTS.md`](../docs/DATA_AND_ARTIFACTS.md).
+> Ver [`docs/DATA_AND_ARTIFACTS.md`](../../docs/DATA_AND_ARTIFACTS.md).
 > Ojo: esa rama también propone una política de datos (todo al bucket) que main no
-> adoptó — es decisión abierta, ver [`docs/NEXT_STEPS.md`](../docs/NEXT_STEPS.md).
+> adoptó — es decisión abierta, ver [`docs/NEXT_STEPS.md`](../../docs/NEXT_STEPS.md).
 
 Artefactos livianos para construir el bucket limpio `labios-argentos-vsr-clean-v1`.
 

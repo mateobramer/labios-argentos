@@ -1,8 +1,8 @@
 # vsr/curriculum/ — procesamiento ViSpeR-es para currículum de pre-entrenamiento
 
-**Estado: pausado** (gate go/kill de [`docs/PLAN_CURRICULUM.md`](../docs/PLAN_CURRICULUM.md);
+**Estado: pausado** (gate go/kill de [`docs/PLAN_CURRICULUM.md`](../../docs/PLAN_CURRICULUM.md);
 el costo/beneficio quedó desfavorable cuando ViSpeR zero-shot superó al teacher ft05 —
-ver [`docs/PROJECT_SCOPE.md`](../docs/PROJECT_SCOPE.md)).
+ver [`docs/PROJECT_SCOPE.md`](../../docs/PROJECT_SCOPE.md)).
 
 Scripts de la fase 1 del plan: convertir los datos oficiales de ViSpeR-es
 (JSON + video-ids de YouTube) a clips/ROIs con el mismo warp mean-face de ft05.

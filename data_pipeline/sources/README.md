@@ -33,5 +33,5 @@ python -m cleaning.visual_quality.src.detectar_clips_malos "<titulo>" --material
 ```
 
 Al final se completa la fila en `data/metadata/fuentes.csv`. Ver el flujo completo en
-[`docs/ESTRUCTURA.md`](../docs/ESTRUCTURA.md). No editar a mano los datos generados
+[`docs/ESTRUCTURA.md`](../../docs/ESTRUCTURA.md). No editar a mano los datos generados
 bajo `data/`.

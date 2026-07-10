@@ -52,13 +52,13 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 
 ## Qué se versiona y qué no
 
-**Sí**: código, clips alineados (`data/clips/`, mp4+txt — son el dataset), corpus/
-transcripciones (cache), manifests y splits, documentación y experimentos.
+**Sí**: código, docs, configs, splits congelados, corpus de transcripciones, manifests
+chicos y la muestra de smoke (`data/samples/`, 8 clips).
 
-**No** (`.gitignore`): videos crudos (`data/videos/`, regenerables con yt-dlp), ROIs
-`.npz` y pesos `.pth` (regenerables/pesados; los pesos viven en el bucket
-`gs://labios-argentos-vsr-dataset`), clones de repos externos, venvs, grabaciones
-personales y modelos calibrados (privacidad).
+**No** (política 2026-07, ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)): clips
+masivos, videos crudos, ROIs `.npz`, pesos `.pth`, manifests gigantes — viven en los
+buckets y quedan recuperables desde `main`/tag (`data/README.md`); clones de repos
+externos, venvs, grabaciones personales y modelos calibrados (privacidad).
 
 **Sparse-checkout**: el repo trackea ~29k archivos (dataset incluido); el working copy
 solo materializa las carpetas en `git sparse-checkout list`. Si un path trackeado no
