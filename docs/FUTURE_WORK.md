@@ -1,9 +1,7 @@
-# NEXT_STEPS — próximos pasos por área
+# Future Work — próximos pasos por área
 
-Actualizado 2026-07-10 (branch `chore/repo-cleanup-safe-v2`). Complementa
-[`docs/NEXT_STEPS.md`](NEXT_STEPS.md) (checklist de la rúbrica); acá va la mirada por área con
-dependencias explícitas. Estado de cada ítem: nada de esto está empezado salvo
-indicación contraria.
+Trabajo futuro por área, con dependencias explícitas. Estado de cada ítem: nada de esto
+está empezado salvo indicación contraria.
 
 ## 1. Robustez del producto
 

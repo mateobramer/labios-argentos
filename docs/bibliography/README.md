@@ -1,4 +1,4 @@
-# docs/bibliografia/ — bibliografía de referencia
+# docs/bibliography/ — bibliografía de referencia
 
 Papers de referencia del proyecto. Los benchmarks y sistemas del estado del arte que
 usamos como contexto están resumidos con números en

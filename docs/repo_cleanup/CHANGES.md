@@ -110,6 +110,6 @@ PR #25: **cerrada como superseded** con explicación. Branches conservadas: `mai
 
 ## Riesgos pendientes / decisión humana
 
-Ver [VALIDATION](VALIDATION.md) §no-ejecutables y [NEXT_STEPS](../NEXT_STEPS.md) §8:
+Ver [VALIDATION](VALIDATION.md) §no-ejecutables y [FUTURE_WORK](../FUTURE_WORK.md) §8:
 smoke completo de inferencia requiere la máquina con ViSpeR+pesos; reescritura de
 historia para achicar el clone; 1 test preexistente en rojo (idéntico en main).

@@ -95,7 +95,7 @@ Variables de entorno: `VSR_BEAM` (default 3; 5 si `VSR_QWEN=1`), `VSR_QWEN`,
 - **>1 cara en cámara**: recuadro "leyendo a esta persona" + aviso en la UI; el crop no
   salta de hablante.
 
-Pendientes conocidos (ver [trabajo futuro](NEXT_STEPS.md)): reinicio automático si muere el
+Pendientes conocidos (ver [trabajo futuro](FUTURE_WORK.md)): reinicio automático si muere el
 infer_server, mensajes guiados para cámara sin permiso, tests automatizados.
 
 ## 7. Privacidad y costos

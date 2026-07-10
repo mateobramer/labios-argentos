@@ -214,7 +214,7 @@ empírica**: no sabemos a priori si el LLM ayuda o perjudica en este régimen. H
 - Pasar **contexto** (el caption previo ya commiteado) para coherencia.
 - Aplicar solo a **utterances ya commiteadas** (no cada 320 ms), en un **thread aparte** que no
   bloquea el flujo especulativo.
-- **qwen3:4b local** vía Ollama por latencia (una API tipo Claude daría techo de calidad, pero
+- **qwen3:4b local** vía Ollama por latencia (una API comercial hosted daría techo de calidad, pero
   agrega latencia de red; el local es la apuesta de latencia segura).
 
 ---

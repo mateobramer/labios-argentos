@@ -71,7 +71,7 @@ frontal / cara chica que RetinaFace de ViSpeR sí agarró) + resto con ratio 0.1
 
 Pasos:
 1. **Descargar 30 videos ViSpeR-es + 30 MuAViC-es** (muestra aleatoria de los IDs ya extraídos, en
-   `scratchpad/{visper_ids,muavic_ids}/`) con yt-dlp, local en la Mac (gratis).
+   `directorio temporal/{visper_ids,muavic_ids}/`) con yt-dlp, local en la Mac (gratis).
 2. **Correr `video_process.py`** sobre los crudos → npz 96×96 gris 25fps. Verificar:
    - salen limpios (dimensiones, fps, alineación mean-face correcta — inspección visual de 5-6 crops);
    - los segmentos/transcripciones alinean con el audio;

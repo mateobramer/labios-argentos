@@ -12,7 +12,7 @@
 > (el tag `dataset-clean-v1` los preserva) o regenerarlos con los scripts de acá.
 > Ver [`docs/DATA_AND_ARTIFACTS.md`](../../docs/DATA_AND_ARTIFACTS.md).
 > Ojo: esa rama también propone una política de datos (todo al bucket) que main no
-> adoptó — es decisión abierta, ver [`docs/NEXT_STEPS.md`](../../docs/NEXT_STEPS.md).
+> adoptó — es decisión abierta, ver [`docs/FUTURE_WORK.md`](../../docs/FUTURE_WORK.md).
 
 Artefactos livianos para construir el bucket limpio `labios-argentos-vsr-clean-v1`.
 

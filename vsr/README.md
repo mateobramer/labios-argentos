@@ -18,7 +18,7 @@ loop propio** (optimizer + backprop + checkpointing + early stopping). Se mantie
 checkpoint y el vocabulario char intactos → cero cirugía de pesos.
 
 Por qué y no Auto-AVSR / recipe ESPnet: Auto-AVSR usa SentencePiece (otro vocabulario) →
-forzaría re-mapear pesos. Reusar Gimeno es más compatible con los compañeros (ya levantan
+forzaría re-mapear pesos. Reusar Gimeno es más compatible con el resto del proyecto (ya levanta
 el env `vsr-factors` + checkpoint con `vsr/evaluation/setup_modelo_gimeno.sh`, cero setup
 nuevo) y menos riesgoso.
 

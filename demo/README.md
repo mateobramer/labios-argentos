@@ -1,8 +1,8 @@
 # demo/ — sistema integrado de lectura de labios en vivo
 
-El entregable de ingeniería: cámara → VAD visual → crop de boca → ViSpeR → [qwen] →
-subtítulos. Doc técnico: [`docs/SPEC.md`](../docs/SPEC.md); guía del TP:
-[`docs/ENGINEERING_TP.md`](../docs/ENGINEERING_TP.md).
+Componente de ingeniería del sistema: cámara → VAD visual → crop de boca → ViSpeR → [qwen] →
+subtítulos. Doc técnico: [`docs/SPEC.md`](../docs/SPEC.md); guía:
+[`docs/SYSTEM_ENGINEERING.md`](../docs/SYSTEM_ENGINEERING.md).
 
 | Archivo | Qué es | Env |
 |---|---|---|

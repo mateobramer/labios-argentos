@@ -1,4 +1,4 @@
-# RESEARCH_TP — LLMs × VSR: qué ayuda, qué perjudica, y bajo qué condiciones
+# Research — LLMs × VSR: qué ayuda, qué perjudica, y bajo qué condiciones
 
 **Pregunta de investigación:** ¿qué estrategias de uso de LLMs ayudan o perjudican al
 reconocimiento visual del habla (VSR) en español rioplatense, y bajo qué condiciones?
@@ -68,7 +68,7 @@ mayor parte del hallazgo.
   comerciales (decisión de privacidad/costo, ver [SPEC §7](SPEC.md)).
 - El umbral CER ≈ 20 es una interpolación de 3 puntos, no un barrido fino.
 
-## Extensiones naturales (ver [NEXT_STEPS](NEXT_STEPS.md))
+## Extensiones naturales (ver [FUTURE_WORK](FUTURE_WORK.md))
 
 Rescorer entrenado (cerrar brecha al oracle), barrido fino del umbral de CER,
 replicación multi-hablante del n-best, comparación qwen local vs API con

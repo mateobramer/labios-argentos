@@ -1,7 +1,8 @@
-# PROJECT_SCOPE — evolución y alcance actual del proyecto
+# Project Evolution — evolución y alcance del proyecto
 
-Proyecto académico de Ingeniería en IA (UdeSA): lectura de labios (VSR) en español
-rioplatense. Este doc explica **cómo cambió el alcance** y qué se entrega hoy.
+Reconocimiento visual del habla (VSR) en español rioplatense. Este doc explica **cómo
+evolucionó el proyecto**: del pipeline original al alcance actual, con las decisiones que
+cambiaron y su evidencia.
 
 ## Pipeline original (2026, primera mitad)
 
@@ -23,31 +24,31 @@ en [`ESTRUCTURA.md`](ESTRUCTURA.md) durante la reorganización de 2026-07 (PR #2
    curado, de a una fuente, con gates de calidad.
 3. **El corrector LLM 1-best siempre empeora; el n-best rescoring sí ayuda** (−3.04 WER
    significativo a n=100, [exp. 04](experiments/04_qwen_corrector.md)) → el "corrector"
-   del sistema es rescoring, y esa investigación se volvió un entregable en sí misma.
+   del sistema es rescoring, y esa investigación se volvió una línea de trabajo en sí misma.
 4. **"Tiempo real" = ventanas por pausas, no streaming causal.** El modelo es
    offline/bidireccional; la demo corta segmentos con VAD visual y logra ~1.1 s por
    segmento ([SPEC](SPEC.md) §4). El streaming causal cuadro a cuadro quedó fuera de scope.
 5. **El pre-entrenamiento con currículum ViSpeR-es quedó pausado**
    ([PLAN_CURRICULUM](PLAN_CURRICULUM.md)): costo/beneficio desfavorable frente al punto 1.
 
-## Alcance actual: dos entregables
+## Alcance actual: dos líneas de trabajo
 
-### TP de Research
+### Research track
 
 **Pregunta:** ¿qué estrategias de uso de LLMs ayudan o perjudican al reconocimiento
 visual del habla en español rioplatense, y bajo qué condiciones?
 
-Guía completa de la evidencia: [`RESEARCH_TP.md`](RESEARCH_TP.md). Cubre corrección
+Guía completa de la evidencia: [`RESEARCH.md`](RESEARCH.md). Cubre corrección
 1-best, prompts, few-shot, n-best rescoring, oracle, análisis por CER del modelo base,
 resultados negativos incluidos, y limitaciones estadísticas.
 
-### TP de Ingeniería
+### Engineering track
 
-**Entregable:** sistema local de lectura de labios cerca de tiempo real, demostrable en
+**Sistema** local de lectura de labios cerca de tiempo real, demostrable en
 vivo: cámara → detección/seguimiento facial → crop → segmentación por pausas visuales →
 VSR → rescoring opcional → subtítulos en UI web, con calibración por hablante.
 
-Guía completa: [`ENGINEERING_TP.md`](ENGINEERING_TP.md). Arquitectura, latencias
+Guía completa: [`SYSTEM_ENGINEERING.md`](SYSTEM_ENGINEERING.md). Arquitectura, latencias
 medidas, optimizaciones probadas y descartadas, robustez, y gaps honestos.
 
 ## Qué quedó descartado
@@ -61,7 +62,7 @@ medidas, optimizaciones probadas y descartadas, robustez, y gaps honestos.
 
 ## Qué sigue abierto
 
-Ver [`NEXT_STEPS.md`](NEXT_STEPS.md). Los grandes: política de datos repo-vs-bucket
+Ver [`FUTURE_WORK.md`](FUTURE_WORK.md). Los grandes: política de datos repo-vs-bucket
 (la rama `feature/full-clean-release` propone migrar todo al bucket; main aún versiona
 los clips), validación con más hablantes, captura de correcciones humanas editables,
 y reducción de latencia del beam search.

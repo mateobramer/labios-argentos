@@ -48,7 +48,7 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
 | `data_pipeline/inventory/` | 4b | inventario del bucket del release |
 | `experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
-| `docs/` | — | SPEC, este doc, RESULTS (**ledger canónico**), PROJECT_SCOPE, RESEARCH_TP, ENGINEERING_TP, DATA_AND_ARTIFACTS, NEXT_STEPS, `archivo/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
+| `docs/` | — | SPEC, este doc, RESULTS (**ledger canónico**), PROJECT_EVOLUTION, RESEARCH, SYSTEM_ENGINEERING, DATA_AND_ARTIFACTS, FUTURE_WORK, `archivo/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
 
 ## Qué se versiona y qué no
 

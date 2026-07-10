@@ -1,7 +1,7 @@
 # llm_corrector/ — corrección y rescoring con LLM
 
 Componente de investigación LLM×VSR. La pregunta, el mapa completo de evidencia y las
-limitaciones están en [`docs/RESEARCH_TP.md`](../docs/RESEARCH_TP.md); los números, en
+limitaciones están en [`docs/RESEARCH.md`](../docs/RESEARCH.md); los números, en
 [`../docs/experiments/04`](../docs/experiments/04_qwen_corrector.md) y el ledger.
 
 ## Dónde vive cada estrategia (implementación canónica)

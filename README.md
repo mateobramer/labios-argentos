@@ -109,7 +109,7 @@ Una carpeta por componente del sistema (reorganización 2026-07):
 | `personalization/` | Calibración al hablante: grabación, splits personales, LoRA en GCP, evaluación |
 | `demo/` | Solo la app integrada: demo web, infer_server, UI, feedback editable |
 | `experiments/` | Índice de evidencia: 10 docs con todos los números (empezar por su README) |
-| `docs/` | [`SPEC.md`](docs/SPEC.md) · [`ESTRUCTURA.md`](docs/ESTRUCTURA.md) · [`RESULTS.md`](docs/RESULTS.md) (**ledger canónico**) · [`PROJECT_SCOPE.md`](docs/PROJECT_SCOPE.md) · [`RESEARCH_TP.md`](docs/RESEARCH_TP.md) · [`ENGINEERING_TP.md`](docs/ENGINEERING_TP.md) · [`DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md) · [`NEXT_STEPS.md`](docs/NEXT_STEPS.md) |
+| `docs/` | [`SPEC.md`](docs/SPEC.md) · [`ESTRUCTURA.md`](docs/ESTRUCTURA.md) · [`RESULTS.md`](docs/RESULTS.md) (**ledger canónico**) · [`PROJECT_EVOLUTION.md`](docs/PROJECT_EVOLUTION.md) · [`RESEARCH.md`](docs/RESEARCH.md) · [`SYSTEM_ENGINEERING.md`](docs/SYSTEM_ENGINEERING.md) · [`DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md) · [`FUTURE_WORK.md`](docs/FUTURE_WORK.md) |
 | `data/` | Solo lo liviano: corpus de transcripciones, manifests chicos y muestra de smoke (`samples/`). Los datos masivos viven en bucket/tag — [`data/README.md`](data/README.md) |
 
 Setup rápido: `bash setup.sh` (crea los envs `ptt`/`visper`) y `bash run.sh` (demo).

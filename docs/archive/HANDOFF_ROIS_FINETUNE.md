@@ -1,6 +1,6 @@
 # HANDOFF — Extracción de ROIs + Fine-tune del modelo de Gimeno (ft09)
 
-> **Para:** el compañero que continúa el TP + su Claude Code.
+> **Para:** quien continúe este trabajo.
 > **Objetivo en una línea:** sacar los ROIs de los clips nuevos, y con **todos** los datos
 > (viejos + nuevos) **repetir exactamente el fine-tune que veníamos haciendo** (ft05), respetando
 > los splits congelados, evaluar sobre el mismo test y comparar.
@@ -366,7 +366,7 @@ python vsr_main.py --database Rioplatense --scenario zero-shot \
 
 ---
 
-## 9. Checklist para el Claude del compañero
+## 9. Checklist para retomar
 
 **Prerequisito duro (bloquea el train, NO la extracción de ROIs):** las **transcripciones corregidas
 de Martín** tienen que estar subidas antes de armar `train.csv`. La extracción de ROIs (Parte 1) es
@@ -390,7 +390,7 @@ independiente del texto y se puede arrancar ya.
 ## Apéndice A — Preprocesamiento upstream completo (por si hay que reprocesar o sumar fuentes)
 
 > **¿Cuándo necesitás esto?** En el flujo normal **NO** — Martín ya produjo los `clips_with_audio`
-> (segmentados) y las transcripciones, así que tu compañero arranca directo en la **Parte 1 (ROIs)**.
+> (segmentados) y las transcripciones, así que se arranca directo en la **Parte 1 (ROIs)**.
 > Esta sección documenta el pipeline **anterior a los ROIs** por si hace falta **regenerar clips desde
 > cero, sumar fuentes nuevas, o re-transcribir**. Todos los scripts están en este repo (`labios-argentos`)
 > y corren desde la raíz.

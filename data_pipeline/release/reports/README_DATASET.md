@@ -81,7 +81,7 @@ Conteos despues de aplicar los outputs GPT manuales disponibles:
 
 ## 6. Estado de ROI
 
-ROI recovery fue dado de baja para esta entrega. El ROI valido actual de
+ROI recovery fue dado de baja para este release. El ROI valido actual de
 `new_discovery` era 2.248 antes de cualquier cambio posterior, y se conserva ese estado:
 muchos clips `new_discovery` tienen audio/transcripcion pero no ROI valido.
 

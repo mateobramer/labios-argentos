@@ -1,6 +1,6 @@
-# ENGINEERING_TP — el sistema de lectura de labios cerca de tiempo real
+# System Engineering — el sistema de lectura de labios cerca de tiempo real
 
-Guía del entregable de ingeniería. El doc técnico primario es [`SPEC.md`](SPEC.md)
+Guía del componente de ingeniería del sistema. El doc técnico primario es [`SPEC.md`](SPEC.md)
 (componentes, interfaces, latencias, decisiones justificadas); acá se organiza la
 historia completa para la evaluación, con los gaps honestos.
 
@@ -46,7 +46,7 @@ Implementado ([SPEC §6](SPEC.md)): fallback silencioso a 1-best si Ollama está
 o falla; warmup tolerante de cámara y MPS; validación de tomas en calibración
 (≥20 frames, ≥60 % detección); sticky-lock con aviso en UI cuando hay >1 cara.
 
-**Pendiente conocido** ([TO-DO](NEXT_STEPS.md) §4): reinicio automático si muere el
+**Pendiente conocido** ([TO-DO](FUTURE_WORK.md) §4): reinicio automático si muere el
 `infer_server` (hoy: error por línea), mensajes guiados para cámara sin permiso,
 suite de tests automatizados del VAD/norm()/protocolo.
 
@@ -67,11 +67,11 @@ eso LoRA. Gap: generalización a más hablantes no validada (n=1).
   segmento en el guion → `POST /feedback` → JSONL local en `data/feedback/` (gitignored)
   con predicción, corrección, timestamp, config del modelo e id de clip. Sin envío
   externo por diseño. Pendiente: usar esos pares para fine-tune/rescorer
-  ([NEXT_STEPS](NEXT_STEPS.md) §3).
+  ([FUTURE_WORK](FUTURE_WORK.md) §3).
 
 ## Próximos pasos concretos para bajar latencia
 
-(Detalle en [NEXT_STEPS](NEXT_STEPS.md) §2.) Los candidatos con mejor relación
+(Detalle en [FUTURE_WORK](FUTURE_WORK.md) §2.) Los candidatos con mejor relación
 esfuerzo/beneficio, en orden: (1) el beam search CPU es el 80 % del tiempo — probar
 batch del beam o decoder alternativo; (2) pipeline overlap: inferir el segmento N
 mientras se captura el N+1; (3) recorte del tope de 4 s por segmento cuando la pausa

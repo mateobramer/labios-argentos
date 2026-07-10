@@ -40,8 +40,8 @@ local **funciona** (1 video Paulina = 86 clips). PERO:
 - Con las cookies del usuario (`~/yt_cookies.txt`) + throttle respetuoso, **YouTube invalidó la sesión a
   los ~30 min** → todo pasó a "Sign in to confirm you're not a bot". Re-exportar cookies moriría igual.
   Seguir insistiendo **arriesga la cuenta de Google**.
-- **Rotación de IPs / proxies = evasión de detección → NO se hace.** La barrera de seguridad de Claude
-  Code además bloquea `--cookies-from-browser` (usar siempre `--cookies <archivo>` exportado por el usuario).
+- **Rotación de IPs / proxies = evasión de detección → NO se hace** (política del proyecto).
+  Tampoco `--cookies-from-browser`: usar siempre `--cookies <archivo>` exportado explícitamente.
 - **Yield por fuente varía mucho:** cocina/lifestyle ~5% (planos de comida), comediantes/standup/streamers
   de charla mucho mayor → priorizar talking-head.
 - Costo del intento: **US$0** (nada llegó a GCP; scrape local muerto sin subir nada).
