@@ -49,6 +49,9 @@ vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/
 vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/
 vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/
 vsr/evaluation/outputs/batch_vsr/raw/
+vsr/evaluation/outputs/batch_vsr/preprocessing_variant_smoke/**/*.npz
+vsr/evaluation/outputs/batch_vsr/rois_lower_face_resized96/**/*.npz
+vsr/evaluation/outputs/batch_vsr/preprocessing_variant_preview/**/*.png
 vsr/runs/batch_vsr/
 
 # Video local usado por el analisis de limpieza; los artefactos finales si se versionan.

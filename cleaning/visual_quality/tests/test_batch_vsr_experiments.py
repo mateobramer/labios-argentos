@@ -269,7 +269,7 @@ class TestBatchVsrExperiments(unittest.TestCase):
             base = Path(tmp)
             splits = base / "splits.csv"
             self._write_csv(splits, [self._split_row("train", "fuente_a", "clip_0001", "hola mundo")])
-            with patch("cleaning/visual_quality.src.transcript_second_pass_asr.detectar_backend", return_value=None):
+            with patch("cleaning.visual_quality.src.transcript_second_pass_asr.detectar_backend", return_value=None):
                 summary = run_second_pass_asr(splits_path=splits, output_path=base / "asr2.csv")
 
             rows = self._read_csv(base / "asr2.csv")
@@ -448,9 +448,9 @@ class TestBatchVsrExperiments(unittest.TestCase):
     def test_notebook_helper_resuelve_paths_absolutos_de_vm(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
-            self._write_csv(base / "evaluation" / "splits" / "train.csv", [self._split_row("train", "fuente_a", "clip_0001", "hola")])
-            self._write_csv(base / "evaluation" / "splits" / "val.csv", [self._split_row("val", "fuente_a", "clip_0002", "hola")])
-            self._write_csv(base / "evaluation" / "splits" / "test.csv", [self._split_row("test", "fuente_a", "clip_0003", "hola")])
+            self._write_csv(base / "vsr" / "evaluation" / "splits" / "train.csv", [self._split_row("train", "fuente_a", "clip_0001", "hola")])
+            self._write_csv(base / "vsr" / "evaluation" / "splits" / "val.csv", [self._split_row("val", "fuente_a", "clip_0002", "hola")])
+            self._write_csv(base / "vsr" / "evaluation" / "splits" / "test.csv", [self._split_row("test", "fuente_a", "clip_0003", "hola")])
             configs = [
                 {
                     "experiment": "E0_baseline_original",
@@ -460,7 +460,7 @@ class TestBatchVsrExperiments(unittest.TestCase):
                 }
             ]
 
-            self.assertEqual(resolver_repo_path(configs[0]["train_split"], base), base / "evaluation" / "splits" / "train.csv")
+            self.assertEqual(resolver_repo_path(configs[0]["train_split"], base), base / "vsr" / "evaluation" / "splits" / "train.csv")
             sizes = tamanos_experimentos(pd.DataFrame(configs), repo_root=base)
 
             self.assertEqual(sizes.iloc[0]["train"], 1)

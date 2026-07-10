@@ -176,7 +176,7 @@ class TestVisualQualityAudit(unittest.TestCase):
             cmd = [
                 sys.executable,
                 "-m",
-                "cleaning/visual_quality.src.visual_quality_audit",
+                "cleaning.visual_quality.src.visual_quality_audit",
                 "--split",
                 str(split_path),
                 "--output",
@@ -232,7 +232,7 @@ class TestVisualQualityAudit(unittest.TestCase):
             cmd = [
                 sys.executable,
                 "-m",
-                "cleaning/visual_quality.src.visual_quality_audit",
+                "cleaning.visual_quality.src.visual_quality_audit",
                 "--split",
                 str(split_path),
                 "--require-roi",

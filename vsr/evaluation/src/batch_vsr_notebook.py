@@ -8,30 +8,32 @@ from pathlib import Path
 import pandas as pd
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-OUTPUT_BASE = REPO_ROOT / "evaluation" / "outputs" / "batch_vsr"
+REPO_ROOT = Path(__file__).resolve().parents[3]   # vsr/evaluation/src/ → raiz del repo
+OUTPUT_BASE = REPO_ROOT / "vsr" / "evaluation" / "outputs" / "batch_vsr"
+# Los paths de las VMs son HISTORICOS (usan los nombres pre-reorganizacion 2026-07);
+# cada ancla vieja se mapea a su ubicacion nueva en el checkout local.
 REPO_ANCHORS = (
-    "vsr/evaluation/",
-    "data/",
-    "cleaning/visual_quality/",
-    "preprocessing/",
-    "vsr/",
+    ("evaluation/", "vsr/evaluation/"),
+    ("data/", "data/"),
+    ("data_cleaning/", "cleaning/visual_quality/"),
+    ("visual_preprocessing/", "preprocessing/"),
+    ("vsr_models/", "vsr/"),
 )
 
 
 def resolver_repo_path(path_value: str | Path, repo_root: Path = REPO_ROOT) -> Path:
-    """Mapea paths absolutos de VM al checkout local cuando es posible."""
+    """Mapea paths absolutos de VM (layout viejo) al checkout local (layout nuevo)."""
     raw = str(path_value)
     path = Path(raw)
     if path.exists():
         return path
     normalized = raw.replace("\\", "/")
-    for anchor in REPO_ANCHORS:
+    for anchor, local in REPO_ANCHORS:
         if normalized.startswith(anchor):
-            return repo_root / normalized
+            return repo_root / local / normalized[len(anchor):]
         marker = f"/{anchor}"
         if marker in normalized:
-            return repo_root / anchor / normalized.split(marker, 1)[1]
+            return repo_root / local / normalized.split(marker, 1)[1]
     return path
 
 
