@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=FhPgg2-hIDU",
+    "title": "ESTOY EN UN BROTE PERDON",
+    "channel": "PabloAgustin",
+    "duration": 1936,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=jm4P9h7pub4",
+    "title": "Homer el Mero Mero - Resurrección (Video Oficial)",
+    "channel": "MDBCrew",
+    "duration": 169,
+    "method": "ytsearch_title",
+    "score": 20.29
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=SIdKGqtub3A",
+    "title": "Arde Bogotá - La Salvación (Video Oficial)",
+    "channel": "Arde Bogotá",
+    "duration": 280,
+    "method": "ytsearch_title",
+    "score": 22.58
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=zdiLkIvdS0c",
+    "title": "Anuel AA - Brother (Video Oficial) | LLNM2",
+    "channel": "Anuel AA",
+    "duration": 208,
+    "method": "ytsearch_title",
+    "score": 40.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=DFlDEbmfUD4",
+    "title": "Tu Peor Error",
+    "channel": "Darell",
+    "duration": 261,
+    "method": "ytsearch_title",
+    "score": 37.84
+  }
+]

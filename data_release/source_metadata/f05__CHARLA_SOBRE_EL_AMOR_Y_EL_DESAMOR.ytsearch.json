@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=_GTu8K8a_Jw",
+    "title": "CHARLA SOBRE EL AMOR Y EL DESAMOR",
+    "channel": "Coscu",
+    "duration": 989,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=9EqhcA6Z4WE",
+    "title": "CHARLA SOBRE EL AMOR Y LA ESTABILIDAD EMOCIONAL",
+    "channel": "Momo",
+    "duration": 816,
+    "method": "ytsearch_title",
+    "score": 75.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=u4duNKPm9cM",
+    "title": "¿Por qué nos equivocamos tanto en el amor? | Walter Riso, doctor en Psicología y escritor",
+    "channel": "AprendemosJuntos",
+    "duration": 3420,
+    "method": "ytsearch_title",
+    "score": 34.19
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=wYN8NftMqxE",
+    "title": "El amor no alcanza: Episodio 5 - Gabriel Rolón en La Fórmula",
+    "channel": "La Fórmula Podcast por Mili Hadad",
+    "duration": 1966,
+    "method": "ytsearch_title",
+    "score": 35.56
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=es0Yp86iFBg",
+    "title": "\"El problema no es desamor, sino el miedo a la soledad\" | Silvia Olmedo, psicóloga",
+    "channel": "AprendemosJuntos",
+    "duration": 2113,
+    "method": "ytsearch_title",
+    "score": 27.52
+  }
+]

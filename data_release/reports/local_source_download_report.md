@@ -1,0 +1,24 @@
+# Local source download report
+
+dataset: argentina_new_discovery
+rows_attempted: 19
+
+- h3HtBhArO1Q: downloaded_uploaded_partial_ytdlp_error cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/h3HtBhArO1Q/h3HtBhArO1Q.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/h3HtBhArO1Q/h3HtBhArO1Q.f251.webm
+- OrwtPwftIi4: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/OrwtPwftIi4/OrwtPwftIi4.f397.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/OrwtPwftIi4/OrwtPwftIi4.f251.webm
+- qEKPgqURvo0: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/qEKPgqURvo0/qEKPgqURvo0.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/qEKPgqURvo0/qEKPgqURvo0.f251.webm
+- jgp8WZvtkWU: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/jgp8WZvtkWU/jgp8WZvtkWU.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/jgp8WZvtkWU/jgp8WZvtkWU.f251.webm
+- YYIVFA000BI: blocked_download_failed cookies=false video= audio=
+- WMk6afYRfKM: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/WMk6afYRfKM/WMk6afYRfKM.f136.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/WMk6afYRfKM/WMk6afYRfKM.f251.webm
+- j4x2GC1Ztro: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/j4x2GC1Ztro/j4x2GC1Ztro.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/j4x2GC1Ztro/j4x2GC1Ztro.f251.webm
+- eqw0QM4A0oA: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/eqw0QM4A0oA/eqw0QM4A0oA.f136.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/eqw0QM4A0oA/eqw0QM4A0oA.f251.webm
+- Z-t-GNlxpYc: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/Z-t-GNlxpYc/Z-t-GNlxpYc.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/Z-t-GNlxpYc/Z-t-GNlxpYc.f251.webm
+- JixCyhEGE0A: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/JixCyhEGE0A/JixCyhEGE0A.f136.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/JixCyhEGE0A/JixCyhEGE0A.f251.webm
+- EhYznjqlcKY: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/EhYznjqlcKY/EhYznjqlcKY.f135.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/EhYznjqlcKY/EhYznjqlcKY.f251.webm
+- IGYG0Kn0wxo: blocked_download_failed cookies=false video= audio=
+- PRQEkiIWps0: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/PRQEkiIWps0/PRQEkiIWps0.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/PRQEkiIWps0/PRQEkiIWps0.f251.webm
+- EuSM3LscaWI: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/EuSM3LscaWI/EuSM3LscaWI.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/EuSM3LscaWI/EuSM3LscaWI.f251.webm
+- q94HfK07DjI: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/q94HfK07DjI/q94HfK07DjI.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/q94HfK07DjI/q94HfK07DjI.f251.webm
+- R3f0x1IJvhI: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/R3f0x1IJvhI/R3f0x1IJvhI.f398.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/R3f0x1IJvhI/R3f0x1IJvhI.f251.webm
+- yJxDKBgw5NU: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/yJxDKBgw5NU/yJxDKBgw5NU.f136.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/yJxDKBgw5NU/yJxDKBgw5NU.f251.webm
+- vDNy6EN7bIY: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/vDNy6EN7bIY/vDNy6EN7bIY.f247.webm audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/vDNy6EN7bIY/vDNy6EN7bIY.f247.webm
+- sjnH4bTak9s: downloaded_uploaded cookies=false video=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_videos/sjnH4bTak9s/sjnH4bTak9s.f136.mp4 audio=gs://labios-argentos-vsr-clean-v1/argentina/new_discovery/source_audio/sjnH4bTak9s/sjnH4bTak9s.f251.webm

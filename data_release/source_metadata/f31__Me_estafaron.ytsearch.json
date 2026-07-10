@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=GylXIMyYTtI",
+    "title": "Esta vez si me estafaron",
+    "channel": "Jose Miguel Ross",
+    "duration": 243,
+    "method": "ytsearch_title",
+    "score": 66.67
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=WYv2a34k0G4",
+    "title": "Casi me estafan cambiando figuritas ☠️",
+    "channel": "Drigo",
+    "duration": 750,
+    "method": "ytsearch_title",
+    "score": 42.55
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=UsZKsJUmT2o",
+    "title": "ME ROBARON EN BRASIL Y GRABÉ A LOS LADRONES | Copacabana 🇧🇷",
+    "channel": "Araya Vlogs",
+    "duration": 1022,
+    "method": "ytsearch_title",
+    "score": 21.21
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=2XNR3sYLmjU",
+    "title": "ME ESTAFARON!!! RECUPERE EL AUTO???? QUÉDATE QUE TE CUENTO",
+    "channel": "Barcatini",
+    "duration": 2147,
+    "method": "ytsearch_title",
+    "score": 38.1
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=dgTc1iUzJM0",
+    "title": "ME VENDIERON UN iPHONE ROBADO POR FACEBOOK (Historia) | VlogsPaper",
+    "channel": "VlogsPaper",
+    "duration": 2114,
+    "method": "ytsearch_title",
+    "score": 18.92
+  }
+]
