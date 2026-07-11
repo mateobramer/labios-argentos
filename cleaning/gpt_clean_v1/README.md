@@ -1,12 +1,9 @@
 # Limpieza clean_v1
 
-> **Nota (limpieza 2026-07):** directorio portado desde `feature/full-clean-release`
-> (PR #25). `patch_log.csv` (5.2 MB) no se porteó; recuperarlo con
-> `git show dataset-clean-v1:data_cleaning_clean_v1/patch_log.csv`.
-> `rejected_patches.jsonl` (evidencia de correcciones rechazadas) sí está.
-
 Artefactos livianos para preparar la limpieza conservadora de transcripciones del
-bucket `labios-argentos-vsr-clean-v1`.
+bucket `labios-argentos-vsr-clean-v1`. `patch_log.csv` (5.2 MB) no está versionado;
+recuperarlo con `git show dataset-clean-v1:data_cleaning_clean_v1/patch_log.csv`.
+`rejected_patches.jsonl` (evidencia de correcciones rechazadas) sí está.
 
 Este directorio no contiene videos, audios, ROIs, credenciales ni cookies. Los
 outputs versionables son manifests, prompts, patch logs y reportes chicos.

@@ -17,7 +17,7 @@ REPO = Path(__file__).resolve().parents[2]
 ROOT = REPO / "cleaning/gpt_clean_v1"
 RELEASE = REPO / "data_pipeline/release"
 OUT = ROOT / "video_jobs"
-PROMPT_TEMPLATE = ROOT / "prompts" / "transcript_clean_v1_prompt.md"
+PROMPT_TEMPLATE = ROOT / "transcript_clean_v1_prompt.md"
 
 FINAL_RELEASE = RELEASE / "final_release_manifest.csv"
 CLEAN_GPT = RELEASE / "clean_gpt_manifest.csv"

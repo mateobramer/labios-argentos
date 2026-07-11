@@ -4,13 +4,13 @@ Modulo para cierre y segmentacion de oraciones sobre texto parcial producido por
 VSR. Toma clips de texto acumulados, decide si hay una oracion completa para
 commitear y deja listo el texto para el corrector LM.
 
-La etapa inicial es deliberadamente conservadora:
-
-- no requiere GPU;
-- no requiere Ollama;
-- no requiere API externa;
-- no agrega dependencias nuevas;
-- ante fallas, espera (`wait`) o conserva texto crudo.
+El modulo llego a un baseline heuristico conservador y se quedo ahi: no requiere
+GPU, Ollama ni API externa, no agrega dependencias nuevas y ante fallas espera
+(`wait`) o conserva el texto crudo. Sobre esa base se dejaron scaffoldeados un
+cierre entrenado (clasificadores lineales) y un cierre via LLM (Ollama/Qwen) —
+documentados y ejecutables en este modulo — pero no se avanzo mas alla porque no
+mostraron aporte suficiente sobre la heuristica para justificar integrarlos al
+pipeline principal.
 
 ## Flujo
 
@@ -314,11 +314,11 @@ externos:
 python -m unittest discover -s cleaning/transcript_segmentation/tests
 ```
 
-## Etapas siguientes
+## Estado
 
-1. Probar y medir el provider Ollama/Qwen con salida JSON estricta.
-2. Revisar/ampliar el ground truth de `CHARLA SOBRE EL AMOR Y EL DESAMOR`.
-3. Evaluar cierre causal sobre esa fuente y comparar heuristica vs LLM local/API.
-4. Evaluar offline contra `vsr/evaluation/outputs/*/test.inf`.
-5. Integrar el corrector de producción detrás de `CorrectionProvider`.
-6. Convertir feedback validado en dataset revisable para evaluacion o fine-tuning.
+Baseline heuristico validado con el simulador, la evaluacion offline y la
+evaluacion causal por secuencia sobre la fuente anotada (`CHARLA SOBRE EL AMOR
+Y EL DESAMOR`). Los caminos mas ambiciosos —cierre via LLM, clasificadores
+entrenados, datos sinteticos y el corrector de produccion detras de
+`CorrectionProvider`— quedaron scaffoldeados pero sin integrar: no mostraron
+aporte suficiente para justificar el salto de complejidad.

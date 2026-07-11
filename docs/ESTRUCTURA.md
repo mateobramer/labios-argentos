@@ -1,9 +1,7 @@
 # Estructura del repo y flujo de datos
 
-Mapa de qué vive dónde y cómo fluye un dato desde YouTube hasta la demo. Reemplaza a los
-viejos `FLUJO.md`, `ESTRUCTURA_PROYECTO.md` y `PIPELINE_PROYECTO.md` (borrados en la
-reorganización de 2026-07; el plan original Auto-AVSR quedó obsoleto — hoy el mejor
-modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual).
+Mapa de qué vive dónde y cómo fluye un dato desde YouTube hasta la demo. El modelo
+de VSR es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual.
 
 ## Flujo de datos end-to-end
 
@@ -43,19 +41,19 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `vsr/historical/ronda2/` | 5 (hist.) | corrida completa de la ronda 2 → ft03–ft07; docs de esa fase |
 | `vsr/evaluation/` | 6 | evaluación contra test-658, parches al repo de Gimeno |
 | `demo/` | 7 | demo web + push-to-talk + streaming, `infer_server.py`, calibración |
-| `data_pipeline/discovery/` | 1b | búsqueda/score de fuentes nuevas (portado de `feature/full-clean-release`) |
+| `data_pipeline/discovery/` | 1b | búsqueda/score de fuentes nuevas |
 | `data_pipeline/release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
-| `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
+| `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release |
 | `data_pipeline/inventory/` | 4b | inventario del bucket del release |
 | `docs/experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
-| `docs/` | — | ARCHITECTURE, SPEC, SETUP, este doc (ESTRUCTURA), RESULTS (**ledger canónico**), METHODOLOGY, LIMITATIONS, PROJECT_EVOLUTION, RESEARCH, SYSTEM_ENGINEERING, DATA_AND_ARTIFACTS, FUTURE_WORK, `experiments/`, `bibliography/`, `archive/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
+| `docs/` | — | ARCHITECTURE, SPEC, SETUP, este doc (ESTRUCTURA), RESULTS (**ledger canónico**), METHODOLOGY, LIMITATIONS, PROJECT_EVOLUTION, RESEARCH, SYSTEM_ENGINEERING, DATA_AND_ARTIFACTS, FUTURE_WORK, `experiments/`, `bibliography/`, `archive/` (históricos) |
 
 ## Qué se versiona y qué no
 
 **Sí**: código, docs, configs, splits congelados, corpus de transcripciones, manifests
 chicos y la muestra de smoke (`data/samples/`, 8 clips).
 
-**No** (política 2026-07, ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)): clips
+**No** (ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)): clips
 masivos, videos crudos, ROIs `.npz`, pesos `.pth`, manifests gigantes — viven en los
 buckets y quedan recuperables desde el commit pre-limpieza `a11f0827666b11c975df4d8c5b0d6014894e8ee8`/tag (`data/README.md`); clones de repos
 externos, venvs, grabaciones personales y modelos calibrados (privacidad).
