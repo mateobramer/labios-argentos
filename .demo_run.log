@@ -14,3 +14,69 @@ W0000 00:00:1783790208.667656  194610 inference_feedback_manager.cc:121] Feedbac
 W0000 00:00:1783790208.673947  194613 inference_feedback_manager.cc:121] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
 [web] UI en http://localhost:8551  (Ctrl-C para salir; quedate callado ~2s al principio: calibra el VAD)
 [web] camara ok.
+E0000 00:00:1783790328.808257  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790388.813811  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790448.817734  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790508.822368  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790568.830954  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790628.835399  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790688.837781  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790748.842530  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790808.849763  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790868.855167  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790928.859790  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783790988.864445  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791048.869104  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791108.873791  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:32:48.803653-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791229.041683  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791289.046376  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791349.051043  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791409.055765  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791469.057654  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791529.060882  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791589.060840  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180
+E0000 00:00:1783791649.065577  194606 portable_clearcut_uploader.cc:90] Failed to send to clearcut: FAILED_PRECONDITION: Not valid for uploading until: 2026-07-11T14:47:49.037031-03:00
+=== Source Location Trace: ===
+wireless/android/play/playlog/cplusplus/portable_clearcut_uploader.cc:180

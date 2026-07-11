@@ -102,3 +102,4 @@ data/feedback/
 .gpu_guardian.sh
 .gpu_guardian.log
 .demo_run.log
+.subir_pesos.*

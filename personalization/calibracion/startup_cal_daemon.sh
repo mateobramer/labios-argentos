@@ -43,6 +43,7 @@ while :; do
     st(){ echo "$*" | gcloud storage cp - $CF/STATUS 2>/dev/null || true; }
     gcloud storage rm "$GO" 2>/dev/null || true
     log "pedido recibido"
+    gcloud storage cp $BUCKET/config/fine_tune_visper.py . 2>/dev/null || true   # version fresca
     mkdir -p /root/data/cal_$P
     gcloud storage cp "$CF/rois/*.npz" /root/data/cal_$P/ || { st "CAL_FATAL sin_rois"; continue; }
     gcloud storage cp "$CF/cal_train.csv" "$CF/cal_val.csv" /root/data/
