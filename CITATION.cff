@@ -7,8 +7,6 @@ abstract: >-
   por n-best, adaptación por hablante con LoRA, y una demo local de inferencia
   cercana a tiempo real.
 type: software
-# NOTA: verificar nombres de pila y orden de autoría antes de publicar
-# (derivados de las identidades de git; la afiliación es Universidad de San Andrés).
 authors:
   - family-names: Bianchi
     given-names: Martín
@@ -18,6 +16,12 @@ authors:
     affiliation: "Universidad de San Andrés"
   - family-names: Szterensus
     given-names: Joaquín
+    affiliation: "Universidad de San Andrés"
+  - family-names: Bunge
+    given-names: Santiago
+    affiliation: "Universidad de San Andrés"
+  - family-names: Bramer
+    given-names: Mateo
     affiliation: "Universidad de San Andrés"
 version: "0.1.0"
 date-released: "2026-07-10"

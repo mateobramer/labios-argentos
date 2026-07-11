@@ -23,19 +23,22 @@ subtitula en vivo.
 
 ## 2. Motivación
 
-El estado del arte en VSR está casi todo en inglés y no hay corpus audiovisual rioplatense
-público. Este proyecto construye uno y lo usa para adaptar y evaluar modelos. Casos de uso:
-**accesibilidad** (personas sin fonación), **entornos ruidosos** donde un micrófono no
-sirve, y subtitulado en vivo sin audio.
+El estado del arte en VSR está casi todo en inglés y no identificamos un corpus audiovisual
+público específicamente orientado al español rioplatense. Este proyecto construye uno y lo
+usa para adaptar y evaluar modelos. Casos de uso: **accesibilidad** (personas sin fonación),
+**entornos ruidosos** donde un micrófono no sirve, y subtitulado en vivo sin audio.
 
 ## 3. Hallazgos principales
 
 - **La escala de pre-entrenamiento domina.** ViSpeR (288M, 794 h en español) zero-shot le
   gana por ~20 WER al mejor fine-tune propio (50M, ~19 h de datos).
-- **La corrección LLM 1-best siempre empeora.** El **n-best rescoring** sí ayuda, pero solo
-  cuando el CER base es bajo: −3.04 WER con IC95 pareado que excluye 0 (n=100).
-- **La personalización con LoRA funciona** (−4.7 WER personal sin olvidar el test general),
-  mientras que el full-fine-tuning colapsa el modelo de 288M.
+- **La corrección LLM sobre 1-best empeoró el WER en todas las condiciones evaluadas.** El
+  **n-best rescoring** produjo una mejora significativa en el régimen de CER bajo evaluado:
+  −3.04 WER con IC95 pareado que excluye 0 (n=100).
+- **La personalización con LoRA mostró una mejora de 4.7 puntos de WER en el hablante
+  evaluado**, sin degradación del test general; la mejora personal todavía no fue
+  estadísticamente significativa con la muestra actual. El full-fine-tuning degradó
+  severamente el modelo de 288M.
 
 Todos los números y su significancia: [`docs/RESULTS.md`](docs/RESULTS.md) (ledger
 canónico). Cómo se miden: [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
@@ -115,15 +118,7 @@ fuera de Git** (buckets del proyecto + tag `dataset-clean-v1`). Qué está inclu
 y cómo recuperarlo: [`data/README.md`](data/README.md) y
 [`docs/DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md).
 
-## 10. Limitaciones
-
-Sistema **visual-only**, **offline/bidireccional** (inferencia por segmentos, **no**
-streaming causal real). WER ~26–30 en condiciones ideales, ~45 en YouTube variado. El
-fine-tuning propio no supera al zero-shot de ViSpeR (limitado por datos). La corrección LLM
-1-best empeora; el n-best rescoring solo ayuda con CER base bajo. Personalización validada
-con un hablante. Lista completa: [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md).
-
-## 11. Reproducibilidad
+## 10. Reproducibilidad
 
 Entornos reproducibles en [`envs/`](envs/) (`ptt.yml`, `visper.yml`); `setup.sh` los crea y
 `run.sh` levanta la demo. La inferencia es 100 % local ($0, sin datos a terceros). Los
@@ -131,18 +126,12 @@ entrenamientos corrieron en VMs L4 spot de GCP (~$1–3 por fine-tune, ~$0.05 po
 personal). Protocolo de evaluación (splits congelados, normalización, bootstrap):
 [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
 
-## 12. Citation
+## 11. Citation
 
 Si usás este trabajo, citá según [`CITATION.cff`](CITATION.cff).
 
-## 13. Licencia
+## 12. Autores
 
-Pendiente de definición: el proyecto combina componentes con restricciones propias
-(ViSpeR, datasets de terceros, contenido de YouTube). Ver
-[`docs/LICENSING.md`](docs/LICENSING.md) antes de reutilizar.
-
-## 14. Autores
-
-Desarrollado por Martín Bianchi, Federico Gutman y Joaquín Szterensus
-(Universidad de San Andrés). Detalles y forma de citar: [`CITATION.cff`](CITATION.cff).
-Cómo contribuir: [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Desarrollado por Martín Bianchi, Federico Gutman, Joaquín Szterensus, Santiago Bunge y
+Mateo Bramer (Universidad de San Andrés). Detalles y forma de citar:
+[`CITATION.cff`](CITATION.cff).

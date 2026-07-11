@@ -53,7 +53,7 @@ medidas, optimizaciones probadas y descartadas, robustez, y gaps honestos.
 
 ## Qué quedó descartado
 
-- Scraping masivo / rotación de IPs (decisión dura, ver CONTRIBUTING.md).
+- Scraping masivo / rotación de IPs (decisión documentada en [exp. 07](experiments/07_datos_y_scraping.md)).
 - Full fine-tuning de ViSpeR (overfitea: 61.5 vs 45.2 zero-shot, [exp. 03](experiments/03_visper_finetunes.md)).
 - Full-FT para calibración personal (colapsa el 288M, [exp. 10](experiments/10_adaptacion_hablante.md)).
 - Corrección LLM 1-best en todas sus variantes de prompt ([exp. 04](experiments/04_qwen_corrector.md)).

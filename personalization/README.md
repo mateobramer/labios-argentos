@@ -25,4 +25,4 @@ La demo **invoca** este componente; la ciencia y los scripts viven acá.
 
 Grabaciones (`~/vsr_personal/`, `~/vsr_contrib/`) y modelos calibrados
 (`modelos/personal/`) **no se versionan nunca**. Para entrenar suben al bucket privado
-del proyecto y el modelo vuelve a la máquina local. Ver [CONTRIBUTING](../CONTRIBUTING.md).
+del proyecto y el modelo vuelve a la máquina local. Ver [política de datos y artefactos](../docs/DATA_AND_ARTIFACTS.md).

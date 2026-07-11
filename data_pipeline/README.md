@@ -18,4 +18,4 @@ python -m data_pipeline.discovery.src.score_candidates --help
 ```
 
 **Regla dura de scraping**: sin cookies del browser ni rotación de IPs; fuentes de a
-una con gates de calidad ([CONTRIBUTING](../CONTRIBUTING.md), [exp. 07](../docs/experiments/07_datos_y_scraping.md)).
+una con gates de calidad ([política de datos](../docs/DATA_AND_ARTIFACTS.md), [exp. 07](../docs/experiments/07_datos_y_scraping.md)).
