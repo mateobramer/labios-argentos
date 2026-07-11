@@ -320,9 +320,13 @@ def cal_preparar(idx, t0, t1, texto):
     return True, "toma lista para revisar", (pendiente, jpg.tobytes() if ok else None)
 
 def estado_entrenamiento():
+    with CAL_LOCK:
+        persona = CAL["persona"]
+    disponible = bool(persona) and os.path.isfile(os.path.join(MODELOS_PERSONAL, persona + ".pth"))
     with TRAIN_LOCK:
         activo = TRAIN["proc"] is not None and TRAIN["proc"].poll() is None
-        return {"activo": activo, "fase": TRAIN["fase"], "salida": TRAIN["salida"][-16:], "error": TRAIN["error"]}
+        return {"activo": activo, "fase": TRAIN["fase"], "salida": TRAIN["salida"][-16:], "error": TRAIN["error"],
+                "modelo_disponible": disponible, "modelo_activo": S["config"].get("modelo", "base")}
 
 def ruta_bash(ruta):
     """Convierte una ruta absoluta de Windows al formato que entiende Git Bash."""
