@@ -2,8 +2,8 @@
 # Git: código, docs, configs, splits, manifests chicos, muestras mínimas, reportes.
 # Bucket: videos, clips masivos, ROIs, checkpoints, manifests gigantes.
 # Local/privado: grabaciones personales y modelos calibrados.
-# Los datos pesados históricos siguen recuperables desde main y el tag dataset-clean-v1
-# (ver data/README.md).
+# Los datos pesados históricos siguen recuperables desde el commit pre-limpieza a11f0827666b11c975df4d8c5b0d6014894e8ee8
+# y el tag dataset-clean-v1 (ver data/README.md).
 
 # Media pesada: no se versiona por accidente. La muestra de smoke vive en data/samples/
 # (whitelisted abajo) y los datos masivos en los buckets.
@@ -60,7 +60,7 @@ cleaning/visual_quality/outputs/visual_quality_audit/previews/
 data/metadata/visual_quality_*_full_roi.csv
 
 # Manifests de análisis de calidad >5 MB: retirados del repo (recuperables desde
-# main/tag; ver data/README.md). No re-agregarlos sin decisión explícita.
+# el commit pre-limpieza a11f0827666b11c975df4d8c5b0d6014894e8ee8/tag; ver data/README.md). No re-agregarlos sin decisión explícita.
 data/metadata/visual_quality_policy_*.csv
 data/metadata/visual_quality_*_full_roi_sanity.csv
 

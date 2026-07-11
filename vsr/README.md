@@ -1,64 +1,70 @@
 # vsr
 
-Fine-tuning del modelo de **lectura de labios (VSR)** al español rioplatense, y **contrato
-de datos/splits** para el resto del equipo (ver `docs/ESTRUCTURA.md`).
+Módulo de entrenamiento, evaluación y contratos de datos para reconocimiento visual del
+habla en español rioplatense. La evidencia numérica canónica vive en
+[`docs/RESULTS.md`](../docs/RESULTS.md) y los experimentos en
+[`docs/experiments/`](../docs/experiments/).
 
-## Punto de partida
+## Estado actual
 
-Heredamos **solo el modelo** de Gimeno
-([`david-gimeno/evaluating-end2end-spanish-lipreading`](https://github.com/david-gimeno/evaluating-end2end-spanish-lipreading)):
-el checkpoint `vsr-liprtve-si.pth` (Conv3D-ResNet18 → Conformer → CTC/attention, **ESPnet,
-tokenizer a nivel carácter**). Ese repo es **solo de evaluación** — el fine-tuning lo
-montamos nosotros. Baseline zero-shot a batir: **WER 79.26 / CER 47.20** (`vsr/evaluation/`).
+| Modelo / corrida | Datos | %WER `test-658` | Estado |
+|---|---|---:|---|
+| ft05 (Gimeno/LIP-RTVE) | ~19 h rioplatenses | 65.05 | mejor fine-tune propio de esa familia |
+| ViSpeR zero-shot | 794 h de pre-entrenamiento español/multilingüe | **45.22** | base general recomendada |
+| ViSpeR full-FT argentino | +~19 h argentinas | 61.51 | degradó por sobreajuste |
+| ViSpeR LoRA+augment argentino | +~19 h argentinas | 45.97 | empate técnico con zero-shot |
 
-## Enfoque (decidido)
+La adaptación **personal** por hablante vive en [`personalization/`](../personalization/):
+LoRA mostró −4.67 WER personal en n=30, todavía sin significancia estadística, y no
+degradó el test general. No confundir esa calibración personal con el LoRA global argentino.
 
-**Reusar el modelo + dataloader de Gimeno (ya andan, del zero-shot) y agregarle un training
-loop propio** (optimizer + backprop + checkpointing + early stopping). Se mantiene el
-checkpoint y el vocabulario char intactos → cero cirugía de pesos.
+## Contrato de datos
 
-Por qué y no Auto-AVSR / recipe ESPnet: Auto-AVSR usa SentencePiece (otro vocabulario) →
-forzaría re-mapear pesos. Reusar Gimeno es más compatible con el resto del proyecto (ya levanta
-el env `vsr-factors` + checkpoint con `vsr/evaluation/setup_modelo_gimeno.sh`, cero setup
-nuevo) y menos riesgoso.
-
-## Contrato de datos (framework-agnóstico)
-
-`vsr/splits/` define los splits **speaker-independent** (ninguna fuente cae en dos
-splits). Los genera `src/armar_splits.py` desde la curaduría:
+`vsr/splits/` contiene los splits speaker-independent congelados. Cada fila apunta a un
+ROI `.npz` `(T, 96, 96)` uint8 gris a 25 fps y a su transcripción normalizada.
 
 ```text
-splits/splits.csv            # todo junto
-splits/{train,val,test}.csv  # por split
+vsr/splits/splits.csv
+vsr/splits/{train,val,test}.csv
 # columnas: split, spk, titulo, clip, n_frames, texto, npz
 ```
 
-Cada fila apunta a un ROI en `data/processed/lip_rois/<titulo>/<clip>.npz` —un array
-`(T, 96, 96)` uint8 gris a 25 fps— + su transcripción limpia (`lower + unidecode + ñ`).
-**Cualquier arquitectura** (o capa agéntica) consume esto sin atarse a ESPnet:
+El test canónico es `test-658`: 658 clips de dos hablantes held-out. No modificar los
+splits históricos para comparar una corrida nueva; crear un escenario o split separado.
 
-```python
-import csv, numpy as np
-for r in csv.DictReader(open("vsr/splits/train.csv")):
-    rois = np.load(r["npz"])["rois"]   # (T, 96, 96) uint8
-    texto = r["texto"]
-    ...
+## Estructura
+
+| Path | Contenido |
+|---|---|
+| `src/` | armado de splits y fine-tuning de la familia Gimeno |
+| `splits/` | train/val/test congelados y splits personales versionables |
+| `evaluation/` | exportación, inferencia y métricas WER/CER |
+| `historical/ronda2/` | scripts y evidencia de ft03–ft07 |
+| `curriculum/` | preparación experimental de ViSpeR-es |
+| `mpc001/` | notas/scripts del modelo multilingüe externo; el clon no se versiona |
+
+## Comandos frecuentes
+
+```bash
+# Re-armar splits solo cuando el experimento lo requiera explícitamente
+python -m vsr.src.armar_splits
+
+# Evaluación y utilidades
+python -m compileall -q vsr
+
+# Demo con la base ViSpeR
+bash run.sh
 ```
 
-| Split | Clips | Hablantes |
-|---|---|---|
-| train | 4826 | 26 |
-| val | 466 | 3 |
-| test | 658 | 2 (= fuentes del zero-shot, para comparar) |
+Los entrenamientos grandes corren en VMs L4 y los pesos no se versionan. Ubicaciones,
+recuperación y buckets: [`docs/DATA_AND_ARTIFACTS.md`](../docs/DATA_AND_ARTIFACTS.md).
+La demo usa ViSpeR desde un clon externo indicado por `VISPER_DIR`; instalación:
+[`docs/SETUP.md`](../docs/SETUP.md).
 
-Para re-armar los splits (cambiar qué fuentes van a val/test), editar las listas en
-`src/armar_splits.py` y correr `python -m vsr.src.armar_splits`.
+## Decisiones vigentes
 
-## Estado y próximos pasos
-
-- [x] Splits speaker-independent (`splits/`).
-- [ ] Verificar la API de loss del modelo ESPnet en el env `vsr-factors` (de-risk, en la VM).
-- [ ] Training loop + fine-tune desde `vsr-liprtve-si.pth` (VM con GPU L4).
-- [ ] Evaluar fine-tuned vs zero-shot (79.26 WER) sobre el mismo test.
-
-Los `.npz` (4.2 GB) son locales/gitignored; para entrenar hay que subirlos a la VM.
+- ViSpeR zero-shot es la base general por defecto.
+- Full fine-tuning global con el dataset argentino actual no se recomienda: degradó el modelo.
+- LoRA global evitó la degradación, pero no mejoró significativamente el WER general.
+- LoRA personal es una línea distinta y prometedora; requiere más hablantes/test para cerrar significancia.
+- La corrección LLM 1-best no se usa; el corrector opcional es n-best rescoring.

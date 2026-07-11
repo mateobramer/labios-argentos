@@ -99,4 +99,4 @@ python data_pipeline/release/scripts/reconstruct_existing_clips.py --source f21_
 
 ## Ingest plan
 
-See `C:/Users/bianc/NLP Natural Language Processing/labios-argentos/data_pipeline/discovery/outputs/ingest_plan_v1.md`.
+See [`ingest_plan_v1.md`](../discovery/outputs/ingest_plan_v1.md).

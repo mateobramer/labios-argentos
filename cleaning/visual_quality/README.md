@@ -18,7 +18,7 @@ son buenos datos antes de pasarlos al preprocesamiento visual o al entrenamiento
 
 - deteccion de rostro, landmarks o recorte de labios: eso va en `preprocessing/`;
 - entrenamiento de modelos VSR: eso va en `vsr/` si se agrega al repo;
-- logica de LLM/correccion en tiempo real: eso va en `realtime/` si se agrega al repo.
+- cierre oracional: va en `cleaning/transcript_segmentation/`; rescoring en vivo: `demo/infer_server.py`.
 
 ## Detector de clips malos (`src/detectar_clips_malos.py`)
 
@@ -176,7 +176,7 @@ Primero traer los ROIs del bucket (fuera del script; la auditoria no descarga da
 
 ```bash
 gcloud auth login
-gcloud config set project labios-argentos-vsr
+gcloud config set project visual-speech-recognition-nlp
 gcloud storage rsync -r gs://labios-argentos-vsr-data/lip_rois ./data/processed/lip_rois
 ```
 

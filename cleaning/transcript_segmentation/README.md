@@ -215,7 +215,7 @@ Entrenar y seleccionar el mejor:
 ```bash
 python -m cleaning.transcript_segmentation.src.entrenar_cierre \
   --input cleaning/transcript_segmentation/ground_truth \
-  --input C:/Users/bianc/Downloads/synthetic_sentence_boundary_es_ar_v3_curated.zip \
+  --input synthetic_sentence_boundary_es_ar_v3_curated.zip \
   --output-dir cleaning/transcript_segmentation/outputs/cierre_training
 ```
 
@@ -301,7 +301,7 @@ Los notebooks son livianos, estan ejecutados con outputs guardados y estan pensa
 para que alguien que entra al repo entienda que se hizo sin correr GPU ni servicios
 externos:
 
-- `notebooks/01_cleaning/transcript_segmentation_flujo_y_ground_truth.ipynb`: unifica el contrato de cierre,
+- `notebooks/01_flujo_y_ground_truth.ipynb`: unifica el contrato de cierre,
   simulador, feedback/logs y evaluacion causal con ground truth real.
 - `notebooks/02_modelos_livianos_cierre.ipynb`: dataset actual, entrenamiento local de
   modelos livianos y comparacion final de metricas.
@@ -320,5 +320,5 @@ python -m unittest discover -s cleaning/transcript_segmentation/tests
 2. Revisar/ampliar el ground truth de `CHARLA SOBRE EL AMOR Y EL DESAMOR`.
 3. Evaluar cierre causal sobre esa fuente y comparar heuristica vs LLM local/API.
 4. Evaluar offline contra `vsr/evaluation/outputs/*/test.inf`.
-5. Integrar el corrector real de Mateo detras de `CorrectionProvider`.
+5. Integrar el corrector de producción detrás de `CorrectionProvider`.
 6. Convertir feedback validado en dataset revisable para evaluacion o fine-tuning.

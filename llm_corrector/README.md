@@ -8,8 +8,8 @@ limitaciones están en [`docs/RESEARCH.md`](../docs/RESEARCH.md); los números, 
 
 | Estrategia | Implementación canónica | Estado |
 |---|---|---|
-| Corrección 1-best + prompts (conservative/minimal/fluent) + few-shot | [`fase0_llm_correct.py`](fase0_llm_correct.py) (acá) | ❌ negativa — nunca ayudó (exp. 04 §A-D) |
-| **n-best rescoring top-5** (la que SÍ funciona) | [`demo/infer_server.py`](../demo/infer_server.py) — prompt `SYS_RESC`, activable con `VSR_QWEN=1` | ✅ −3.04 WER significativo a CER bajo (exp. 04 §F2) |
+| Corrección 1-best + prompts (conservative/minimal/fluent) + few-shot | [`fase0_llm_correct.py`](fase0_llm_correct.py) (acá) | ❌ empeoró en todas las condiciones evaluadas (exp. 04 §A-D/F) |
+| **n-best rescoring top-5** | [`demo/infer_server.py`](../demo/infer_server.py) — prompt `SYS_RESC`, activable con `VSR_QWEN=1` | ✅ −3.04 WER significativo en el régimen de CER bajo evaluado (exp. 04 §F2) |
 | Oracle n-best (techo) | scoring en [`personalization/score_selftest.py`](../personalization/score_selftest.py) + exp. 04 §E/F | referencia |
 | Evaluación sobre self-test | [`personalization/score_selftest.py`](../personalization/score_selftest.py) | activa |
 
@@ -27,6 +27,7 @@ razona en el output). Config: `VSR_QWEN`, `VSR_QMODEL`, `VSR_BEAM` (ver
 
 ## Resultados negativos (se preservan a propósito)
 
-La corrección 1-best empeora a TODO CER probado (42/27/11); "fluent" alucina; few-shot
-es ruido; el LLM corrompe hasta texto perfecto (piso de daño 2 % WER). Es la mitad del
-hallazgo del TP de Research — no borrar. Detalle: [exp. 04](../docs/experiments/04_qwen_corrector.md).
+La corrección 1-best empeoró en los tres regímenes evaluados (CER 42/27/11); `fluent`
+fue la variante más agresiva, few-shot quedó en nivel de ruido y el LLM también dañó texto
+perfecto en el test de control. Estos resultados negativos son parte de la evidencia y se
+preservan. Detalle: [exp. 04](../docs/experiments/04_qwen_corrector.md).

@@ -131,7 +131,7 @@ Si una fuente supera el cap, los videos siguientes quedan como backup/manual rev
 
 ## Bucket / datos existentes
 
-Estado revisado en esta rama con comandos read-only:
+Estado revisado durante la auditoría de 2026-07 con comandos read-only:
 
 ```bash
 gcloud storage ls gs://labios-argentos-vsr-data/

@@ -10,9 +10,9 @@ subtítulos. Doc técnico: [`docs/SPEC.md`](../docs/SPEC.md); guía:
 | `infer_server.py` | proceso hijo con ViSpeR cargado; protocolo stdin/stdout ([SPEC §3.1](../docs/SPEC.md)) | `visper` (lo spawnea la demo) |
 | `demo_ptt.py` | demo push-to-talk por teclado (ventana cv2) — precursor de la web | `ptt` |
 | `demo_stream.py` | demo streaming por VAD en ventana cv2 — precursor de la web | `ptt` |
-| `build_testset.py` | graba el self-test leyendo frases (append + resumible) | `ptt` |
-| `score_selftest.py` | evalúa WER/CER del self-test con ViSpeR o ft05 | `visper` / `mvsr` |
-| `calibracion/` | splits + orquestador del LoRA personal en GCP ([exp. 10](../docs/experiments/10_adaptacion_hablante.md)) | — |
+| `../personalization/build_testset.py` | graba el self-test leyendo frases (append + resumible) | `ptt` |
+| `../personalization/score_selftest.py` | evalúa WER/CER del self-test con ViSpeR o ft05 | `visper` / `mvsr` |
+| `../personalization/calibracion/` | splits + orquestador del LoRA personal en GCP ([exp. 10](../docs/experiments/10_adaptacion_hablante.md)) | — |
 | `web/` | HTML/JS de la UI | — |
 
 ```bash

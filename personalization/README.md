@@ -1,8 +1,9 @@
 # personalization/ — calibración y adaptación al hablante
 
 Componente de adaptación personal del modelo (LoRA sobre ViSpeR). Evidencia:
-[`../docs/experiments/10`](../docs/experiments/10_adaptacion_hablante.md) — −4.7 WER personal sin
-olvido del test general; el full-FT colapsa el 288M (por eso LoRA r16/α32).
+[`../docs/experiments/10`](../docs/experiments/10_adaptacion_hablante.md) — mejora de 4.67 puntos de
+WER personal en n=30 (el IC95 todavía cruza 0), sin degradación del test general; el full-FT
+degradó severamente el modelo de 288M (por eso LoRA r16/α32).
 
 | Archivo | Qué hace | Env |
 |---|---|---|

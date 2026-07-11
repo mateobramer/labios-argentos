@@ -46,7 +46,7 @@ preprocessing/
   README.md
   requirements.txt
   models/
-    face_landmarker.task        # modelo de MediaPipe (no se versiona; bajar con curl)
+    face_landmarker.task        # modelo de MediaPipe versionado; setup.sh lo baja si falta
   outputs/
     previews/
   src/
@@ -80,7 +80,8 @@ python -m preprocessing.src.preprocesar "LE DIJE QUE SOY ARGENTINO - Story Time 
 Salida:
 
 ```text
-data/processed/lip_rois/<titulo>/clip_NNNN.mp4
+data/processed/lip_rois/<titulo>/clip_NNNN.npz  # entrada canónica del modelo
+data/processed/lip_rois/<titulo>/clip_NNNN.mp4  # solo QA visual
 data/processed/lip_rois/<titulo>/clip_NNNN.txt
 data/metadata/lip_preprocessing_manifest.csv
 ```
@@ -101,11 +102,11 @@ cleaning/visual_quality/notebooks/01_revision_visual_mediapipe.ipynb
 
 Ese notebook importa funciones de `preprocessing/src/auditar_calidad_visual.py`.
 
-## Pendiente importante
+## Compatibilidad y pendiente abierta
 
 - **Alineacion a cara media: hecha** (warp afin estilo Auto-AVSR, ver "Como funciona").
-- Falta confirmar contra el loader de entrenamiento si Auto-AVSR espera el clip como
-  `.mp4` o como tensores `.npy`, y si los puntos estables de MediaPipe (ojos/nariz/boca)
-  dan una alineacion equivalente a la del detector original de 68 puntos (RetinaFace).
-  Si hace falta paridad exacta, se puede usar el `video_process.py` con el detector
-  RetinaFace de Auto-AVSR en lugar de MediaPipe.
+- La salida canónica para entrenamiento es `.npz` con forma `(T, 96, 96)`; el `.mp4`
+  existe solo para inspección visual. El contrato está documentado en [`vsr/README.md`](../vsr/README.md).
+- Queda como validación futura comparar sistemáticamente los cuatro puntos de MediaPipe
+  contra el detector original de 68 puntos/RetinaFace; no bloquea el pipeline actual,
+  que ya fue smoke-testeado end-to-end sobre `data/samples/`.

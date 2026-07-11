@@ -91,8 +91,8 @@ templates de startup de VM con sus propios paths internos de VM — no usan esta
 
 ## Cómo montar un entorno desde cero (resumen)
 
-1. Clonar con sparse-checkout (o aceptar los ~9 GB).
-2. Envs conda: `ptt` (OpenCV+MediaPipe) y `visper` (PyTorch+ESPnet) — [README](../README.md) §Requisitos.
+1. Clonar liviano: `git clone --filter=blob:none https://github.com/mateobramer/labios-argentos.git`.
+2. Crear los envs con `bash setup.sh`; detalles en [`SETUP.md`](SETUP.md).
 3. Clonar ViSpeR en `~/Desktop/visper` (o `VISPER_DIR`) y bajar `visper_vsr_base.pth`
    (1.1 GB; del repo ViSpeR/TII o del bucket del proyecto).
 4. Opcional: Ollama + `ollama pull qwen3:4b-instruct-2507-q4_K_M`.
