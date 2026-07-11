@@ -13,7 +13,7 @@ Corre en el env `ptt`:
 Teclas:  ESPACIO=grabar/cortar   r=regrabar la frase actual   n=saltar   q=salir
 Al final: los npz + manifest.csv (mergeado) quedan en --out, listos para scorear.
 """
-import os, sys, csv, time, argparse
+import os, sys, csv, time, argparse, runpy
 import cv2, numpy as np
 # Raiz del repo derivada de este archivo; LABIOS_REPO la pisa (ver .env.example).
 REPO = os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,6 +128,15 @@ PROMPTS += [
     "vamos a tomar algo despues del laburo",
     "hace mucho que no me tomo unas vacaciones",
 ]
+# Set externo curado para la demo: permite reemplazar la lista sin tocar el
+# capturador. En esta PC se usa el archivo que se entregó para la presentación.
+ARCHIVO_PROMPTS = os.path.expanduser(os.environ.get(
+    "VSR_PROMPTS_FILE", "~/Downloads/prompts_vsr_rioplatense_1100_limpio.py"))
+if os.path.isfile(ARCHIVO_PROMPTS):
+    prompts_externos = runpy.run_path(ARCHIVO_PROMPTS).get("PROMPTS")
+    if isinstance(prompts_externos, list) and prompts_externos:
+        PROMPTS = prompts_externos
+        print(f"[prompts] {len(PROMPTS)} frases cargadas desde {ARCHIVO_PROMPTS}")
 MIN_FRAMES = 12
 
 def wrap(txt, n=42):

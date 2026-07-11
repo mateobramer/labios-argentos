@@ -3,12 +3,12 @@
 # SIN eval de test-658 (LoRA ya validado sin olvido en docs/experiments/10) -> run corto y barato.
 # Sube el modelo mergeado y SE AUTODESTRUYE (VM + disco boot).
 set -uo pipefail
-BUCKET=gs://labios-argentos-vsr-dataset
+BUCKET=__BUCKET__
 HOMEUSER=$(ls /home | head -1)
 echo "[$(date -u +%FT%TZ)] CAL startup (user=$HOMEUSER)"
 sudo -u "$HOMEUSER" -i bash <<'USERBLOCK'
 set -uo pipefail
-BUCKET=gs://labios-argentos-vsr-dataset
+BUCKET=__BUCKET__
 P=__PERSONA__
 CF=$BUCKET/calibracion/$P
 log(){ echo "[$(date -u +%FT%TZ)] CAL($P): $*"; }
