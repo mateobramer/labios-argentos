@@ -23,8 +23,8 @@ fi
 echo "== 1/4 splits =="
 "${VSR_CAL_PY:-python3}" "$HERE/armar_splits_cal.py" "$P"
 
-echo "== 2/4 subida =="
-gcloud storage cp "$SRC"/clip_*.npz "$CF/rois/" | tail -1
+echo "== 2/4 subida (rsync: solo lo que no este ya arriba) =="
+gcloud storage rsync "$SRC" "$CF/rois/" --exclude=".*\.(txt|csv|json|tmp)$" | tail -1
 gcloud storage cp "$SRC/cal_train.csv" "$SRC/cal_val.csv" "$CF/"
 gcloud storage rm "$CF/STATUS" 2>/dev/null || true
 echo "== 3/4 GPU fija (labios-cal-gpu) =="
@@ -56,7 +56,13 @@ for i in $(seq 1 60); do
 done
 
 mkdir -p "$REPO/modelos/personal"
-gcloud storage cp "$CF/$P.pth" "$REPO/modelos/personal/$P.pth"
+if gcloud storage cp "$CF/${P}_delta.pth" "$REPO/modelos/personal/${P}_delta.pth" 2>/dev/null; then
+  "${VSR_CAL_PY:-python3}" "$HERE/aplicar_delta.py" \
+    "$REPO/modelos/personal/${P}_delta.pth" "$REPO/modelos/personal/$P.pth"
+  rm -f "$REPO/modelos/personal/${P}_delta.pth"
+else
+  gcloud storage cp "$CF/$P.pth" "$REPO/modelos/personal/$P.pth"   # fallback: completo
+fi
 echo ""
 echo "LISTO ✅  modelo personal: modelos/personal/$P.pth"
 echo "Para usarlo:  ~/miniconda3/envs/ptt/bin/python $REPO/demo/demo_web.py --ckpt modelos/personal/$P.pth"

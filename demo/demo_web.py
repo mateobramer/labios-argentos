@@ -57,6 +57,32 @@ CAL_LOCK = threading.Lock()
 TRAIN = {"proc": None, "fase": "idle", "salida": [], "error": ""}
 TRAIN_LOCK = threading.Lock()
 
+# ---- subida incremental: cada toma aceptada va al bucket en segundo plano, asi
+# al tocar Entrenar ya esta casi todo arriba (rsync sube solo lo que falte) ----
+CAL_BUCKET = os.environ.get("VSR_BUCKET", "gs://labios-argentos-vsr-clean-v1")
+GCLOUD = shutil.which("gcloud")
+SUBIDA = collections.deque()
+SUBIDA_EV = threading.Event()
+
+def hilo_subida_clips():
+    while True:
+        SUBIDA_EV.wait()
+        while SUBIDA:
+            ruta, persona = SUBIDA.popleft()
+            try:
+                subprocess.run([GCLOUD, "storage", "cp", ruta,
+                                f"{CAL_BUCKET}/calibracion/{persona}/rois/"],
+                               capture_output=True, timeout=600)
+            except Exception as e:
+                print(f"[web] subida en segundo plano fallo ({e}); rsync la cubre al entrenar", flush=True)
+        SUBIDA_EV.clear()
+
+def encolar_subida(carpeta, frase_id, persona):
+    if not GCLOUD:
+        return
+    SUBIDA.append((os.path.join(str(carpeta), f"clip_{frase_id:03d}.npz"), persona))
+    SUBIDA_EV.set()
+
 def apertura(lm):
     boca = abs(lm[14].y - lm[13].y)
     cara = abs(lm[152].y - lm[10].y) + 1e-6
@@ -581,6 +607,7 @@ class H(BaseHTTPRequestHandler):
             if not pendiente:
                 self._json(400, {"ok": False, "msg": "No hay una toma para guardar."}); return
             estado = SESIONES.aceptar(persona, pendiente)
+            encolar_subida(SESIONES.carpeta(persona), int(pendiente["frase_id"]), persona)
             self._json(200, {"ok": True, "msg": "Toma guardada.", **estado})
         elif self.path == "/cal/descartar":
             b = self._body()
@@ -624,7 +651,7 @@ def main():
     cfg["run"] = RUN_ID
     S["config"] = cfg
 
-    for fn in (hilo_camara, hilo_landmarks):
+    for fn in (hilo_camara, hilo_landmarks, hilo_subida_clips):
         threading.Thread(target=fn, daemon=True).start()
     threading.Thread(target=hilo_segmentador, args=(args,), daemon=True).start()
 

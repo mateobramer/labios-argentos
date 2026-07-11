@@ -99,3 +99,6 @@ modelos/personal/
 
 # Feedback local de la demo (correcciones humanas; privado, no se versiona)
 data/feedback/
+.gpu_guardian.sh
+.gpu_guardian.log
+.demo_run.log

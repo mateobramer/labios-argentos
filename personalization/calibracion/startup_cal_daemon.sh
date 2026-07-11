@@ -35,7 +35,22 @@ while :; do
     RC=$?
     gcloud storage cp ~/cal_train.log $CF/ 2>/dev/null || true
     if [ -f ~/cal_$P/best.pth ]; then
-      gcloud storage cp ~/cal_$P/best.pth $CF/${P}.pth
+      # subir SOLO el delta vs base: la bajada en la Mac pasa de 1.1 GB a decenas de MB
+      python - "$P" <<'PYDELTA'
+import sys, torch
+p = sys.argv[1]
+sd = lambda d: d.get("state_dict", d) if isinstance(d, dict) else d
+base = sd(torch.load("visper_vsr_base.pth", map_location="cpu"))
+best = sd(torch.load(f"/home/{__import__('getpass').getuser()}/cal_{p}/best.pth", map_location="cpu"))
+delta = {k: v for k, v in best.items() if k not in base or not torch.equal(base[k], v)}
+torch.save(delta, f"/home/{__import__('getpass').getuser()}/cal_{p}/delta.pth")
+print(f"[delta] {len(delta)}/{len(best)} tensores cambiaron")
+PYDELTA
+      if [ -f ~/cal_$P/delta.pth ]; then
+        gcloud storage cp ~/cal_$P/delta.pth $CF/${P}_delta.pth
+      else
+        gcloud storage cp ~/cal_$P/best.pth $CF/${P}.pth   # fallback: modelo completo
+      fi
       st "CAL_DONE rc=$RC $(date -u +%FT%TZ)"
       log "===== CAL_DONE ====="
     else
