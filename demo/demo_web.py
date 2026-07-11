@@ -480,6 +480,10 @@ class H(BaseHTTPRequestHandler):
             except Exception:
                 self.send_response(404); self.end_headers()
             return
+        if self.path == "/modelos":                    # modelos personales disponibles
+            disp = sorted(os.path.splitext(f)[0] for f in os.listdir(MODELOS_PERSONAL)
+                          if f.endswith(".pth")) if os.path.isdir(MODELOS_PERSONAL) else []
+            self._json(200, {"activo": S["config"].get("modelo", "base"), "disponibles": disp}); return
         if self.path == "/cal/estado":
             with CAL_LOCK:
                 estado = SESIONES.estado(CAL["persona"]) if CAL["persona"] else {"hechas": 0, "siguiente": 0, "nivel": {}}
@@ -539,6 +543,11 @@ class H(BaseHTTPRequestHandler):
                                  "msg": "" if ok else resp.removeprefix("::err").strip()})
             except Exception as e:
                 self._json(500, {"ok": False, "msg": str(e)})
+        elif self.path == "/modelo":                   # switch base <-> personal desde la demo
+            nombre = str(self._body().get("nombre", "")).strip()
+            ok, msg = activar_modelo(nombre, usar_base=(nombre == ""))
+            self._json(200 if ok else 400, {"ok": ok, "msg": msg,
+                                            "modelo": S["config"].get("modelo", "base")})
         elif self.path == "/recalibrar":               # rehacer la calibracion del umbral
             S["recalibrar"] = True
             self._json(200, {"ok": True})
