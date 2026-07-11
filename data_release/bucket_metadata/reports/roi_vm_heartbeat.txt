@@ -1,0 +1,2 @@
+2026-07-08T14:08:09Z
+stage=boot host=vsr-roi-recovery-gpu-normal-20260708-0950 min_detect_rate=0.70

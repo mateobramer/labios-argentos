@@ -1,0 +1,1 @@
+{"status":"running","stage":"roi","reason":"roi_recovery","updated_at":"2026-07-08T12:54:19Z","host":"vsr-roi-recovery-gpu-normal-20260708-0950","bucket":"gs://labios-argentos-vsr-clean-v1","min_detect_rate":"0.70","review_detect_rate":"0.60"}

@@ -81,13 +81,13 @@ Conteos despues de aplicar los outputs GPT manuales disponibles:
 
 ## 6. Estado de ROI
 
-ROI recovery fue dado de baja para este release. El ROI valido actual de
+ROI recovery fue dado de baja para esta entrega. El ROI valido actual de
 `new_discovery` era 2.248 antes de cualquier cambio posterior, y se conserva ese estado:
 muchos clips `new_discovery` tienen audio/transcripcion pero no ROI valido.
 
 `blocked_no_face` / `blocked_roi_no_face` no necesariamente significa que no haya cara
 en el video. Puede ser un problema de decode, preprocesamiento, threshold o MediaPipe.
-La recuperacion de ROI no se retomo para este release.
+La recuperacion de ROI queda delegada a otra persona.
 
 No relanzar VM a ciegas. Primero diagnosticar decode/AV1/reencode con una muestra:
 `ffprobe`, revisar codec, reencodear una muestra a H264 y recien despues reintentar ROI
@@ -99,28 +99,28 @@ No se uso GPT automatico, browser ni API para el full. Se preparo un handoff man
 ingirieron los outputs JSONL entregados en ZIP.
 
 Los outputs manuales fueron validados contra
-`cleaning/gpt_clean_v1/manual_gpt_handoff/job_index.csv`. Solo se aplicaron jobs con
+`data_cleaning_clean_v1/manual_gpt_handoff/job_index.csv`. Solo se aplicaron jobs con
 status `validated`. Los jobs faltantes, invalidos o incompletos quedan rechazados o
 pendientes en:
 
-- `cleaning/gpt_clean_v1/reports/manual_gpt_validation_report.csv`
-- `cleaning/gpt_clean_v1/reports/manual_gpt_apply_report.md`
-- `cleaning/gpt_clean_v1/rejected_patches.jsonl`
+- `data_cleaning_clean_v1/reports/manual_gpt_validation_report.csv`
+- `data_cleaning_clean_v1/reports/manual_gpt_apply_report.md`
+- `data_cleaning_clean_v1/rejected_patches.jsonl`
 
 ## 8. Como reproducir validacion
 
 Desde la raiz del repo:
 
 ```powershell
-python -m compileall cleaning/gpt_clean_v1 data_pipeline/release data_pipeline/discovery
-python -m unittest discover data_pipeline/discovery\tests
+python -m compileall data_cleaning_clean_v1 data_release data_discovery
+python -m unittest discover data_discovery\tests
 git diff --check
-python data_pipeline/release/scripts/validate_clean_bucket.py
+python data_release/scripts/validate_clean_bucket.py
 ```
 
 Si `validate_clean_bucket.py` tarda demasiado, usar una validacion equivalente que
 compare manifests locales contra los paths subidos y deje evidencia en
-`data_pipeline/release/reports/`.
+`data_release/reports/`.
 
 ## 9. Advertencias
 
@@ -132,18 +132,3 @@ compare manifests locales contra los paths subidos y deje evidencia en
 - No subir outputs GPT sin validar.
 - Cualquier cambio futuro en bucket/manifests debe actualizar `README_DATASET.md` y
   `OPEN_ITEMS_DATASET.md`.
-
-## 10. Metadata local sincronizada
-
-Un espejo liviano de `manifests/`, `reports/`, `argentina/new_discovery/metadata/`,
-`argentina/new_discovery/manifests/` y `argentina/combined/manifests/` vive en
-`data_release/bucket_metadata/` (git-tracked). No incluye video, audio, ROIs ni
-pesos: eso sigue solo en el bucket. Para actualizarlo:
-
-```bash
-python scripts/sync_bucket_metadata.py          # sincroniza
-python scripts/sync_bucket_metadata.py --dry-run  # solo lista, no descarga
-```
-
-En Windows: `scripts\sync_bucket_metadata.ps1` (wrapper que llama al mismo script
-Python). Para entrenar se usan los manifests, nunca se commitean videos/npz.

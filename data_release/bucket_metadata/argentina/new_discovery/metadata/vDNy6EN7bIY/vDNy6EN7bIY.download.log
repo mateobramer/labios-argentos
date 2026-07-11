@@ -1,0 +1,153 @@
+[youtube] Extracting URL: https://www.youtube.com/watch?v=vDNy6EN7bIY
+[youtube] vDNy6EN7bIY: Downloading webpage
+[youtube] vDNy6EN7bIY: Downloading android vr player API JSON
+[info] vDNy6EN7bIY: Downloading subtitles: es, es-orig
+[info] vDNy6EN7bIY: Downloading 1 format(s): 247+251
+[info] Writing video subtitles to: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.es.vtt
+[download] Destination: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.es.vtt
+
+[download]    1.00KiB at  Unknown B/s (00:00:00)
+[download]    3.00KiB at  Unknown B/s (00:00:00)
+[download]    7.00KiB at  Unknown B/s (00:00:00)
+[download]   15.00KiB at  Unknown B/s (00:00:00)
+[download]   31.00KiB at  Unknown B/s (00:00:00)
+[download]   63.00KiB at    3.81MiB/s (00:00:00)
+[download]  117.79KiB at    6.90MiB/s (00:00:00)
+[download] 100% of  117.79KiB in 00:00:00 at 790.83KiB/s
+[info] Writing video subtitles to: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.es-orig.vtt
+[download] Destination: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.es-orig.vtt
+
+[download]    1.00KiB at  Unknown B/s (00:00:00)
+[download]    3.00KiB at  Unknown B/s (00:00:00)
+[download]    7.00KiB at  Unknown B/s (00:00:00)
+[download]   15.00KiB at  Unknown B/s (00:00:00)
+[download]   31.00KiB at    1.75MiB/s (00:00:00)
+[download]   63.00KiB at    3.56MiB/s (00:00:00)
+[download]  117.79KiB at    2.85MiB/s (00:00:00)
+[download] 100% of  117.79KiB in 00:00:00 at 753.90KiB/s
+[info] Writing video metadata as JSON to: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.info.json
+[SubtitlesConvertor] Converting subtitles
+[SubtitlesConvertor] Subtitle file for vtt is already in the requested format
+[SubtitlesConvertor] Subtitle file for vtt is already in the requested format
+[download] Destination: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.f247.webm
+
+[download]   0.0% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]   0.1% of   56.81MiB at    1.89MiB/s ETA 00:29  
+[download]   0.1% of   56.81MiB at    3.37MiB/s ETA 00:16
+[download]   0.2% of   56.81MiB at    3.56MiB/s ETA 00:15
+[download]   0.4% of   56.81MiB at    2.93MiB/s ETA 00:19
+[download]   0.9% of   56.81MiB at    3.70MiB/s ETA 00:15
+[download]   1.8% of   56.81MiB at    4.25MiB/s ETA 00:13
+[download]   3.5% of   56.81MiB at    4.79MiB/s ETA 00:11
+[download]   7.0% of   56.81MiB at    5.22MiB/s ETA 00:10
+[download]  14.1% of   56.81MiB at    5.67MiB/s ETA 00:08
+[download]  16.8% of   56.81MiB at    5.67MiB/s ETA 00:08
+[download]  16.8% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  16.8% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  16.8% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  16.9% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  16.9% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  16.9% of   56.81MiB at    3.90MiB/s ETA 00:12  
+[download]  17.1% of   56.81MiB at    7.87MiB/s ETA 00:05
+[download]  17.3% of   56.81MiB at    7.84MiB/s ETA 00:05
+[download]  17.7% of   56.81MiB at    6.26MiB/s ETA 00:07
+[download]  18.6% of   56.81MiB at    6.09MiB/s ETA 00:07
+[download]  20.4% of   56.81MiB at    5.76MiB/s ETA 00:07
+[download]  23.9% of   56.81MiB at    5.72MiB/s ETA 00:07
+[download]  30.9% of   56.81MiB at    5.79MiB/s ETA 00:06
+[download]  34.4% of   56.81MiB at    5.79MiB/s ETA 00:06
+[download]  34.4% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  34.4% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  34.4% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  34.4% of   56.81MiB at    1.05MiB/s ETA 00:35  
+[download]  34.4% of   56.81MiB at    1.92MiB/s ETA 00:19
+[download]  34.5% of   56.81MiB at    3.67MiB/s ETA 00:10
+[download]  34.6% of   56.81MiB at    7.40MiB/s ETA 00:05
+[download]  34.8% of   56.81MiB at    5.11MiB/s ETA 00:07
+[download]  35.2% of   56.81MiB at    2.14MiB/s ETA 00:17
+[download]  36.1% of   56.81MiB at    3.06MiB/s ETA 00:11
+[download]  37.9% of   56.81MiB at    4.02MiB/s ETA 00:08
+[download]  41.4% of   56.81MiB at    2.18MiB/s ETA 00:15
+[download]  44.0% of   56.81MiB at    2.61MiB/s ETA 00:12
+[download]  49.3% of   56.81MiB at    3.15MiB/s ETA 00:09
+[download]  51.3% of   56.81MiB at    3.34MiB/s ETA 00:08
+[download]  51.3% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  51.3% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  51.3% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  51.3% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  51.3% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  51.4% of   56.81MiB at    4.28MiB/s ETA 00:06  
+[download]  51.5% of   56.81MiB at    8.63MiB/s ETA 00:03
+[download]  51.7% of   56.81MiB at    8.03MiB/s ETA 00:03
+[download]  52.2% of   56.81MiB at    5.92MiB/s ETA 00:04
+[download]  53.0% of   56.81MiB at    6.05MiB/s ETA 00:04
+[download]  54.8% of   56.81MiB at    5.90MiB/s ETA 00:04
+[download]  58.3% of   56.81MiB at    4.80MiB/s ETA 00:04
+[download]  65.4% of   56.81MiB at    4.98MiB/s ETA 00:03
+[download]  68.2% of   56.81MiB at    5.11MiB/s ETA 00:03
+[download]  68.2% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  68.2% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  68.2% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  68.2% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  68.3% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  68.3% of   56.81MiB at    3.95MiB/s ETA 00:04  
+[download]  68.4% of   56.81MiB at    7.96MiB/s ETA 00:02
+[download]  68.6% of   56.81MiB at    4.81MiB/s ETA 00:03
+[download]  69.1% of   56.81MiB at    5.22MiB/s ETA 00:03
+[download]  70.0% of   56.81MiB at    5.32MiB/s ETA 00:03
+[download]  71.7% of   56.81MiB at    5.46MiB/s ETA 00:02
+[download]  75.2% of   56.81MiB at    5.58MiB/s ETA 00:02
+[download]  82.3% of   56.81MiB at    5.21MiB/s ETA 00:01
+[download]  85.7% of   56.81MiB at    5.28MiB/s ETA 00:01
+[download]  85.7% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  85.7% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  85.7% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  85.8% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  85.8% of   56.81MiB at  Unknown B/s ETA Unknown
+[download]  85.8% of   56.81MiB at    4.11MiB/s ETA 00:01  
+[download]  85.9% of   56.81MiB at    4.02MiB/s ETA 00:01
+[download]  86.2% of   56.81MiB at    4.53MiB/s ETA 00:01
+[download]  86.6% of   56.81MiB at    5.05MiB/s ETA 00:01
+[download]  87.5% of   56.81MiB at    5.48MiB/s ETA 00:01
+[download]  89.2% of   56.81MiB at    2.40MiB/s ETA 00:02
+[download]  91.9% of   56.81MiB at    2.71MiB/s ETA 00:01
+[download]  97.3% of   56.81MiB at    3.36MiB/s ETA 00:00
+[download] 100.0% of   56.81MiB at    3.64MiB/s ETA 00:00
+[download] 100% of   56.81MiB in 00:00:12 at 4.40MiB/s   
+[download] Destination: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\vDNy6EN7bIY\vDNy6EN7bIY.f251.webm
+
+[download]   0.0% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]   0.0% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]   0.1% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]   0.1% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]   0.2% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]   0.5% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]   1.0% of   12.78MiB at    7.70MiB/s ETA 00:01  
+[download]   1.9% of   12.78MiB at    7.16MiB/s ETA 00:01
+[download]   3.9% of   12.78MiB at    5.88MiB/s ETA 00:02
+[download]   7.8% of   12.78MiB at    5.86MiB/s ETA 00:02
+[download]  15.6% of   12.78MiB at    5.69MiB/s ETA 00:01
+[download]  31.3% of   12.78MiB at    4.79MiB/s ETA 00:01
+[download]  62.6% of   12.78MiB at    5.16MiB/s ETA 00:00
+[download]  74.5% of   12.78MiB at    5.27MiB/s ETA 00:00
+[download]  74.6% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]  74.6% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]  74.6% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]  74.7% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]  74.8% of   12.78MiB at  Unknown B/s ETA Unknown
+[download]  75.0% of   12.78MiB at    3.88MiB/s ETA 00:00  
+[download]  75.5% of   12.78MiB at    7.83MiB/s ETA 00:00
+[download]  76.5% of   12.78MiB at    7.81MiB/s ETA 00:00
+[download]  78.5% of   12.78MiB at    6.26MiB/s ETA 00:00
+[download]  82.4% of   12.78MiB at    6.15MiB/s ETA 00:00
+[download]  90.2% of   12.78MiB at    5.76MiB/s ETA 00:00
+[download] 100.0% of   12.78MiB at    5.75MiB/s ETA 00:00
+[download] 100% of   12.78MiB in 00:00:02 at 4.85MiB/s   
+
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: You have requested merging of multiple formats but ffmpeg is not installed. The formats won't be merged

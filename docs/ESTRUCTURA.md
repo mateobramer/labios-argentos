@@ -45,13 +45,16 @@ de VSR es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `data_pipeline/release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
 | `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release |
 | `data_pipeline/inventory/` | 4b | inventario del bucket del release |
+| `data_release/bucket_metadata/` | 4b | espejo local liviano de manifests/reports/metadata de `gs://labios-argentos-vsr-clean-v1` (sin video/audio/ROIs); se actualiza con `scripts/sync_bucket_metadata.py` |
+| `scripts/` | — | utilitarios de repo que no pertenecen a un módulo (p. ej. sync de metadata del bucket) |
 | `docs/experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
 | `docs/` | — | ARCHITECTURE, SPEC, SETUP, este doc (ESTRUCTURA), RESULTS (**ledger canónico**), METHODOLOGY, LIMITATIONS, PROJECT_EVOLUTION, RESEARCH, SYSTEM_ENGINEERING, DATA_AND_ARTIFACTS, FUTURE_WORK, `experiments/`, `bibliography/`, `archive/` (históricos) |
 
 ## Qué se versiona y qué no
 
 **Sí**: código, docs, configs, splits congelados, corpus de transcripciones, manifests
-chicos y la muestra de smoke (`data/samples/`, 8 clips).
+chicos, la muestra de smoke (`data/samples/`, 8 clips) y el espejo liviano de metadata
+del bucket en `data_release/bucket_metadata/`.
 
 **No** (ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)): clips
 masivos, videos crudos, ROIs `.npz`, pesos `.pth`, manifests gigantes — viven en los

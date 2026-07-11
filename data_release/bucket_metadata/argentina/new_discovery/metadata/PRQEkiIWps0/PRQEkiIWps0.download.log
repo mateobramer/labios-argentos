@@ -1,0 +1,44 @@
+[youtube] Extracting URL: https://www.youtube.com/watch?v=PRQEkiIWps0
+[youtube] PRQEkiIWps0: Downloading webpage
+[youtube] PRQEkiIWps0: Downloading android vr player API JSON
+[info] PRQEkiIWps0: Downloading subtitles: es, es-orig
+[info] PRQEkiIWps0: Downloading 1 format(s): 398+251
+Deleting existing file C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.es.vtt
+[info] Writing video subtitles to: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.es.vtt
+[download] Destination: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.es.vtt
+
+[download]    1.00KiB at  498.67KiB/s (00:00:00)
+[download]    3.00KiB at  998.49KiB/s (00:00:00)
+[download]    7.00KiB at    2.28MiB/s (00:00:00)
+[download]   15.00KiB at    3.66MiB/s (00:00:00)
+[download]   31.00KiB at    4.04MiB/s (00:00:00)
+[download]   63.00KiB at    7.23MiB/s (00:00:00)
+[download]  127.00KiB at    7.17MiB/s (00:00:00)
+[download]  255.00KiB at    4.67MiB/s (00:00:00)
+[download]  353.12KiB at    5.24MiB/s (00:00:00)
+[download] 100% of  353.12KiB in 00:00:00 at 2.29MiB/s
+Deleting existing file C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.es-orig.vtt
+[info] Writing video subtitles to: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.es-orig.vtt
+[download] Destination: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.es-orig.vtt
+
+[download]    1.00KiB at  Unknown B/s (00:00:00)
+[download]    3.00KiB at  186.21KiB/s (00:00:00)
+[download]    7.00KiB at  386.20KiB/s (00:00:00)
+[download]   15.00KiB at  765.40KiB/s (00:00:00)
+[download]   31.00KiB at    1.54MiB/s (00:00:00)
+[download]   63.00KiB at    3.14MiB/s (00:00:00)
+[download]  127.00KiB at    3.57MiB/s (00:00:00)
+[download]  255.00KiB at    3.81MiB/s (00:00:00)
+[download]  353.12KiB at    4.07MiB/s (00:00:00)
+[download] 100% of  353.12KiB in 00:00:00 at 2.23MiB/s
+[info] Writing video metadata as JSON to: C:\Users\bianc\NLP Natural Language Processing\labios-argentos\data_release\local_sources\argentina_new_discovery\PRQEkiIWps0\PRQEkiIWps0.info.json
+[SubtitlesConvertor] Converting subtitles
+[SubtitlesConvertor] Subtitle file for vtt is already in the requested format
+[SubtitlesConvertor] Subtitle file for vtt is already in the requested format
+[download] Resuming download at byte 256004947
+
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: The extractor specified to use impersonation for this download, but no impersonate target is available. If you encounter errors, then see  https://github.com/yt-dlp/yt-dlp#impersonation  for information on installing the required dependencies
+WARNING: You have requested merging of multiple formats but ffmpeg is not installed. The formats won't be merged
+ERROR: unable to download video data: HTTP Error 416: Requested range not satisfiable
