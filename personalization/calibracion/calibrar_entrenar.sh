@@ -31,22 +31,38 @@ sed -e "s/__PERSONA__/$P/g" -e "s|__BUCKET__|$BUCKET|g" "$HERE/startup_cal_templ
   | gcloud storage cp - "$BUCKET/config/startup_cal_$P.sh"
 
 echo "== 3/4 VM L4 (spot, retry multi-zona) =="
-# Cuota tipica del proyecto: 1 GPU total. Si otra VM la ocupa, avisar claro en vez
-# de recorrer zonas como si fuera falta de capacidad de Google.
-CUOTA=$(gcloud compute project-info describe --format=json 2>/dev/null | python3 -c '
+# Cuota tipica del proyecto: 1 GPU total. Si otra VM la ocupa, avisar y ESPERAR a
+# que se libere, sin cortar este entrenamiento ni tocar la otra VM: en cuanto haya
+# GPU libre (apagaron la otra o subieron la cuota) sigue solo.
+consultar_cuota() {
+  gcloud compute project-info describe --format=json 2>/dev/null | python3 -c '
 import json,sys
 for q in json.load(sys.stdin).get("quotas", []):
     if q["metric"] == "GPUS_ALL_REGIONS":
-        print(int(q["usage"]), int(q["limit"])); break' 2>/dev/null || true)
-if [ -n "$CUOTA" ]; then
+        print(int(q["usage"]), int(q["limit"])); break' 2>/dev/null || true
+}
+AVISADO=0
+for INTENTO in $(seq 1 60); do
+  CUOTA=$(consultar_cuota)
+  [ -z "$CUOTA" ] && break            # sin dato de cuota no bloqueamos: se intenta igual
   set -- $CUOTA
-  if [ "$1" -ge "$2" ]; then
-    echo "CUOTA DE GPU AGOTADA: $1/$2 GPUs del proyecto en uso. VMs corriendo:"
-    gcloud compute instances list --filter="status=RUNNING"       --format="table(name,zone,machineType.basename())" 2>/dev/null
-    echo "Apagá o borrá la VM que usa la GPU (o pedí mas cuota) y volvé a intentar."
+  if [ "$1" -lt "$2" ]; then
+    [ "$AVISADO" = 1 ] && echo "  GPU liberada: sigo con la creacion de la VM."
+    break
+  fi
+  if [ "$AVISADO" = 0 ]; then
+    echo "AVISO: cuota de GPU agotada ($1/$2 en uso por otra VM del proyecto)."
+    gcloud compute instances list --filter="status=RUNNING" --format="table(name,zone,machineType.basename())" 2>/dev/null
+    echo "  No corto nada: espero hasta 60 min a que se libere (apaga esa VM o pedi mas cuota)."
+    AVISADO=1
+  fi
+  if [ "$INTENTO" -eq 60 ]; then
+    echo "Espere 60 min y la GPU nunca se libero. Proba de nuevo cuando este libre."
     exit 1
   fi
-fi
+  echo "  cuota ocupada ($1/$2); reintento en 60 s ($INTENTO/60)"
+  sleep 60
+done
 ERRLOG=$(mktemp)
 LANZADA=""
 for Z in us-central1-a us-central1-b us-central1-c us-east1-b us-east1-c us-west1-a; do
