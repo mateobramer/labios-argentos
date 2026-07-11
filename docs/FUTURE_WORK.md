@@ -57,7 +57,7 @@ local privado (`data/feedback/`). Lo que falta:
   para pesados; ver [DATA_AND_ARTIFACTS](DATA_AND_ARTIFACTS.md)). Lo que queda: si el
   equipo quiere achicar el CLONE COMPLETO (~9 GB por la historia), decidir una
   reescritura de historia con `git filter-repo` — irreversible, requiere coordinar.
-- PR #25: **cerrada como superseded** (2026-07-10); su material vive en esta rama y
+- PR #25: **cerrada como superseded** (2026-07-10); su material liviano vive en el árbol actual y
   sus tags de preservación son `dataset-clean-v1` y `archive/full-clean-release`.
 - Integrar el release `dataset-clean-v1` al flujo de entrenamiento (hoy los splits
   congelados siguen sobre el dataset original).

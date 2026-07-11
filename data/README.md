@@ -13,7 +13,7 @@ Los bytes históricos exactos siguen preservados en el commit pre-limpieza
 | `metadata/` | manifests chicos: `fuentes.csv`, `lip_preprocessing_manifest.csv`, `auditoria_clips_manifest.csv`, muestras vsr_eval | ~2.5 MB |
 | `samples/El mensaje de Coscu sobre EL AMOR/` | **muestra mínima para smoke tests**: 8 clips mp4+txt | 2.9 MB |
 
-## Qué se retiró de esta rama (manifest de recuperación)
+## Qué se retiró del árbol principal (manifest de recuperación)
 
 | Retirado | Contenido | Recuperación exacta |
 |---|---|---|

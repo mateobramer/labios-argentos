@@ -40,7 +40,7 @@ piezas livianas (reportes, scripts, manifests <1 MB) están portadas acá en
 `data_pipeline/release/`, `data_pipeline/discovery/`, `cleaning/gpt_clean_v1/`, `data_pipeline/inventory/`.
 
 - **Manifests grandes** (10 CSVs, ~82 MB — `final_release_manifest.csv`, etc.):
-  NO están en esta rama. Recuperarlos: `git show dataset-clean-v1:data_release/<nombre>.csv`
+  NO están en el árbol actual. Recuperarlos: `git show dataset-clean-v1:data_release/<nombre>.csv`
   (el tag los preserva) o desde el bucket clean-v1.
 - **Datos pesados del release**: solo en bucket (`HOW_TO_USE_BUCKET.md` portado en
   `data_pipeline/release/reports/`).
@@ -70,7 +70,7 @@ clips del bucket son la forma *release* (12.112 existing) y no un espejo 1:1 de
 
 **Nota de historia**: la historia de git conserva los blobs pesados (clonar TODO el
 repo sigue pesando ~9 GB). Reducirlo de verdad exige reescritura de historia
-(`git filter-repo`) — decisión de equipo, fuera del alcance de esta rama. Mientras
+(`git filter-repo`) — decisión de equipo, fuera del alcance de esta reorganización. Mientras
 tanto: `git clone --filter=blob:none` clona liviano y el árbol actual ya no materializa
 datos masivos en el working tree.
 
