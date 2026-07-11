@@ -31,6 +31,23 @@ sed -e "s/__PERSONA__/$P/g" -e "s|__BUCKET__|$BUCKET|g" "$HERE/startup_cal_templ
   | gcloud storage cp - "$BUCKET/config/startup_cal_$P.sh"
 
 echo "== 3/4 VM L4 (spot, retry multi-zona) =="
+# Cuota tipica del proyecto: 1 GPU total. Si otra VM la ocupa, avisar claro en vez
+# de recorrer zonas como si fuera falta de capacidad de Google.
+CUOTA=$(gcloud compute project-info describe --format=json 2>/dev/null | python3 -c '
+import json,sys
+for q in json.load(sys.stdin).get("quotas", []):
+    if q["metric"] == "GPUS_ALL_REGIONS":
+        print(int(q["usage"]), int(q["limit"])); break' 2>/dev/null || true)
+if [ -n "$CUOTA" ]; then
+  set -- $CUOTA
+  if [ "$1" -ge "$2" ]; then
+    echo "CUOTA DE GPU AGOTADA: $1/$2 GPUs del proyecto en uso. VMs corriendo:"
+    gcloud compute instances list --filter="status=RUNNING"       --format="table(name,zone,machineType.basename())" 2>/dev/null
+    echo "Apagá o borrá la VM que usa la GPU (o pedí mas cuota) y volvé a intentar."
+    exit 1
+  fi
+fi
+ERRLOG=$(mktemp)
 LANZADA=""
 for Z in us-central1-a us-central1-b us-central1-c us-east1-b us-east1-c us-west1-a; do
   echo "  intento spot @ $Z"
@@ -40,7 +57,7 @@ for Z in us-central1-a us-central1-b us-central1-c us-east1-b us-east1-c us-west
       --maintenance-policy=TERMINATE \
       --provisioning-model=SPOT --instance-termination-action=DELETE \
       --metadata=startup-script-url="$BUCKET/config/startup_cal_$P.sh" \
-      --scopes=storage-rw,compute-rw >/dev/null 2>&1; then
+      --scopes=storage-rw,compute-rw >/dev/null 2>>"$ERRLOG"; then
     LANZADA=$Z; break
   fi
 done
@@ -53,10 +70,10 @@ if [ -z "$LANZADA" ]; then
       --image=labios-img-visper --boot-disk-type=pd-balanced \
       --maintenance-policy=TERMINATE \
       --metadata=startup-script-url="$BUCKET/config/startup_cal_$P.sh" \
-      --scopes=storage-rw,compute-rw >/dev/null 2>&1; then LANZADA=$Z; break; fi
+      --scopes=storage-rw,compute-rw >/dev/null 2>>"$ERRLOG"; then LANZADA=$Z; break; fi
   done
 fi
-[ -z "$LANZADA" ] && { echo "SIN CAPACIDAD L4 (spot ni on-demand)"; exit 1; }
+[ -z "$LANZADA" ] && { echo "NO SE PUDO CREAR LA VM en ninguna zona. Ultimo error real de gcloud:"; grep -v '^$' "$ERRLOG" | tail -4; exit 1; }
 echo "  lanzada en $LANZADA"
 
 echo "== 4/4 esperando (~8-12 min; entrena y se autodestruye) =="
