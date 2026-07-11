@@ -162,6 +162,7 @@
     <div class="telemetria">
       <label for="vufill">labios</label>
       <div class="vu"><div class="fill" id="vufill"></div><div class="umbral" title="umbral de habla"></div></div>
+      <button class="badge" id="recal" title="quedate quieto 2 s: recalibra el umbral de labios">recalibrar</button>
     </div>
 
   </section>
@@ -260,6 +261,7 @@
     clearTimeout(d._t); d._t = setTimeout(() => { d.hidden = true; }, 6000);
   }
   $("clear").onclick = () => fetch("/clear",{method:"POST"});
+  $("recal").onclick = () => fetch("/recalibrar",{method:"POST"});
   window.corregir = async (i) => {   // correccion humana: queda SOLO local (data/feedback/)
     const seg = ultimo && ultimo.segmentos ? ultimo.segmentos[i] : null;
     const txt = prompt("¿Qué dijiste realmente? (se guarda solo en esta máquina)", seg ? seg.texto : "");

@@ -242,6 +242,10 @@ def hilo_segmentador(args):
             aper.append((t, o))
             while aper and aper[0][0] < t - max(MOV_WIN_S, 1.0):
                 aper.popleft()
+            if S.pop("recalibrar", False):           # pedido de la UI: rehacer calibracion
+                thr, base, t_ini = None, [], time.time()
+                hablando = False
+                S["thr"] = None; S["fase"] = "calibrando"
             if thr is None:                          # calibracion con silencio inicial
                 if o is not None: base.append(o)
                 if t - t_ini >= CALIB_S and len(base) >= 10:
@@ -530,6 +534,9 @@ class H(BaseHTTPRequestHandler):
                                  "msg": "" if ok else resp.removeprefix("::err").strip()})
             except Exception as e:
                 self._json(500, {"ok": False, "msg": str(e)})
+        elif self.path == "/recalibrar":               # rehacer la calibracion del umbral
+            S["recalibrar"] = True
+            self._json(200, {"ok": True})
         elif self.path == "/clear":
             S["segmentos"] = []
             self.send_response(204); self.end_headers()
