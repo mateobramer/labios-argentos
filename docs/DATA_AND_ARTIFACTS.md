@@ -7,7 +7,7 @@ obtener lo que falta, y qué hacer cuando un artefacto no está.
 
 | Artefacto | Qué es | Fuente de verdad | ¿Versionado en git? |
 |---|---|---|---|
-| **Clips alineados** | mp4 + txt por fuente | bucket clean-v1 (release) + `main`/tag (bytes históricos exactos) | ❌ en esta rama (retirados 2026-07; muestra de 8 clips en `data/samples/` — ver [`data/README.md`](../data/README.md)) |
+| **Clips alineados** | mp4 + txt por fuente | bucket clean-v1 (release) + commit pre-limpieza `a11f0827666b11c975df4d8c5b0d6014894e8ee8` + tag `dataset-clean-v1` (bytes históricos exactos) | ❌ en el árbol actual (retirados 2026-07; muestra de 8 clips en `data/samples/` — ver [`data/README.md`](../data/README.md)) |
 | **Corpus / transcripciones** | cache de Whisper por fuente (`data/corpus/`) | este repo | ✅ (texto) |
 | **Manifests chicos** | `data/metadata/` (<2 MB c/u) | este repo | ✅ |
 | **Manifests gigantes** | análisis de calidad (~54 MB) y release (~127 MB) | bucket + tag `dataset-clean-v1` | ❌ (retirados; recuperación en [`data/README.md`](../data/README.md)) |
@@ -45,32 +45,33 @@ piezas livianas (reportes, scripts, manifests <1 MB) están portadas acá en
 - **Datos pesados del release**: solo en bucket (`HOW_TO_USE_BUCKET.md` portado en
   `data_pipeline/release/reports/`).
 
-## Política de versionado (RESUELTA en esta rama, 2026-07)
+## Política de versionado (resuelta en 2026-07)
 
 **Git**: código, documentación, configs, splits congelados, manifests chicos,
 muestra mínima de smoke (`data/samples/`, 2.9 MB) y reportes.
 **Bucket**: videos, clips masivos, ROIs, checkpoints y manifests gigantes.
 **Solo local/privado**: grabaciones personales, modelos calibrados, feedback de la demo.
 
-Aplicación: en esta rama se retiraron del árbol `data/clips/` (~2.24 GB), `dataset/`
+En julio de 2026 se retiraron del árbol principal `data/clips/` (~2.24 GB), `dataset/`
 (~248 MB), `data/videos/` (~422 MB) y 6 CSVs de análisis (~54 MB). **Nada se borró de
-main, del tag ni de los buckets** — el manifest de recuperación con comandos exactos
-está en [`data/README.md`](../data/README.md) (verificado en vivo:
+la historia de Git, del tag ni de los buckets** — el manifest de recuperación con
+comandos exactos está en [`data/README.md`](../data/README.md) (verificado en vivo:
 `git show dataset-clean-v1:data_release/final_release_manifest.csv` responde).
 El `.gitignore` bloquea media/pesos nuevos y whitelistea `data/samples/`.
 
 Evidencia de respaldo usada (sin credenciales GCP en la máquina de la limpieza):
-(1) `main` y el tag `dataset-clean-v1` conservan los bytes exactos — verificado con
-`git ls-tree`; (2) conteos del bucket clean-v1 según el reporte de validación del
-propio equipo. **Advertencia honesta**: la equivalencia archivo-a-archivo repo↔bucket
-no se re-verificó con hashes desde esta máquina; los clips del bucket son la forma
-*release* (12.112 existing) y no un espejo 1:1 de `data/clips` (8.555 mp4) — para los
-bytes históricos exactos, la fuente es git (main / tag).
+(1) el commit pre-limpieza `a11f0827666b11c975df4d8c5b0d6014894e8ee8` y el tag `dataset-clean-v1` conservan los bytes
+exactos — verificado con `git ls-tree`; (2) conteos del bucket clean-v1 según el
+reporte de validación del propio equipo. **Advertencia honesta**: la equivalencia
+archivo-a-archivo repo↔bucket no se re-verificó con hashes desde esta máquina; los
+clips del bucket son la forma *release* (12.112 existing) y no un espejo 1:1 de
+`data/clips` (8.555 mp4) — para los bytes históricos exactos, la fuente es Git
+(commit pre-limpieza / tag).
 
 **Nota de historia**: la historia de git conserva los blobs pesados (clonar TODO el
 repo sigue pesando ~9 GB). Reducirlo de verdad exige reescritura de historia
 (`git filter-repo`) — decisión de equipo, fuera del alcance de esta rama. Mientras
-tanto: `git clone --filter=blob:none` clona liviano y esta rama ya no materializa
+tanto: `git clone --filter=blob:none` clona liviano y el árbol actual ya no materializa
 datos masivos en el working tree.
 
 ## Configuración y variables de entorno

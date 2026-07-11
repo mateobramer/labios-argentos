@@ -22,8 +22,9 @@ en [`ESTRUCTURA.md`](ESTRUCTURA.md) durante la reorganización de 2026-07 (PR #2
 2. **El scraping masivo de YouTube no es viable** (pared anti-bot; ver
    [exp. 07](experiments/07_datos_y_scraping.md)) → el crecimiento del dataset es
    curado, de a una fuente, con gates de calidad.
-3. **El corrector LLM 1-best siempre empeora; el n-best rescoring sí ayuda** (−3.04 WER
-   significativo a n=100, [exp. 04](experiments/04_qwen_corrector.md)) → el "corrector"
+3. **La corrección LLM 1-best empeoró en todas las condiciones evaluadas; el n-best
+   rescoring produjo una mejora significativa en el régimen de CER bajo evaluado**
+   (−3.04 WER a n=100, [exp. 04](experiments/04_qwen_corrector.md)) → el "corrector"
    del sistema es rescoring, y esa investigación se volvió una línea de trabajo en sí misma.
 4. **"Tiempo real" = ventanas por pausas, no streaming causal.** El modelo es
    offline/bidireccional; la demo corta segmentos con VAD visual y logra ~1.1 s por
@@ -55,17 +56,17 @@ medidas, optimizaciones probadas y descartadas, robustez, y gaps honestos.
 
 - Scraping masivo / rotación de IPs (decisión documentada en [exp. 07](experiments/07_datos_y_scraping.md)).
 - Full fine-tuning de ViSpeR (overfitea: 61.5 vs 45.2 zero-shot, [exp. 03](experiments/03_visper_finetunes.md)).
-- Full-FT para calibración personal (colapsa el 288M, [exp. 10](experiments/10_adaptacion_hablante.md)).
+- Full-FT para calibración personal (degradó severamente el 288M, [exp. 10](experiments/10_adaptacion_hablante.md)).
 - Corrección LLM 1-best en todas sus variantes de prompt ([exp. 04](experiments/04_qwen_corrector.md)).
 - int8 y CTC-greedy en M1 (Pareto-dominados, [exp. 09](experiments/09_velocidad_inferencia.md)).
 - Streaming causal real (limitación arquitectural del modelo base).
 
 ## Qué sigue abierto
 
-Ver [`FUTURE_WORK.md`](FUTURE_WORK.md). Los grandes: política de datos repo-vs-bucket
-(la rama `feature/full-clean-release` propone migrar todo al bucket; main aún versiona
-los clips), validación con más hablantes, captura de correcciones humanas editables,
-y reducción de latencia del beam search.
+Ver [`FUTURE_WORK.md`](FUTURE_WORK.md). Los grandes: validación con más hablantes,
+captura de correcciones humanas editables, reducción de latencia del beam search,
+integración del release limpio al flujo de entrenamiento y, si el equipo lo decide,
+reescritura de historia para reducir el tamaño del clone completo.
 
 ## Historia de los datos (resumen)
 
@@ -73,5 +74,5 @@ y reducción de latencia del beam search.
   versionado en `data/clips/` + `dataset/` (ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)).
 - **Release limpio v1** (tag `dataset-clean-v1`, julio 2026): re-construcción + ASR +
   limpieza GPT + discovery de fuentes nuevas, con manifests y reportes en
-  `data_pipeline/release/` (portados a esta rama) y datos pesados en bucket. Cerró en la rama
-  de PR #25; su integración a main es una decisión abierta.
+  `data_pipeline/release/` y datos pesados en bucket. La PR #25 quedó cerrada como
+  superseded; su material liviano fue incorporado al árbol actual.

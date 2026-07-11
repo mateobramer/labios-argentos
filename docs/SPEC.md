@@ -74,10 +74,10 @@ Variables de entorno: `VSR_BEAM` (default 3; 5 si `VSR_QWEN=1`), `VSR_QWEN`,
 |---|---|---|
 | beam = 3 (2.2× más rápido, mismo WER) | beam 40 (igual WER, 3×), beam 1-2 (peor) | [09](experiments/09_velocidad_inferencia.md) sweep completo con IC |
 | encoder en MPS, beam en CPU | todo en MPS (espnet rompe por device mismatch); int8 (Pareto-dominado en M1); CTC-greedy (+12 WER) | [09](experiments/09_velocidad_inferencia.md) |
-| corrector = **n-best rescoring** top-5 con qwen3:4b | corrección 1-best (siempre empeora); top-10, scores en el prompt, qwen 9b (no mejoran) | [04](experiments/04_qwen_corrector.md) — −3.04 WER significativo (IC95 pareado [+0.71, +5.53], n=100) |
+| corrector = **n-best rescoring** top-5 con qwen3:4b | corrección 1-best (empeoró en todas las condiciones evaluadas); top-10, scores en el prompt, qwen 9b (no mejoran) | [04](experiments/04_qwen_corrector.md) — −3.04 WER significativo (IC95 pareado [+0.71, +5.53], n=100) |
 | VAD **visual** por apertura de labios, auto-calibrado (2 s de silencio; umbral = max(sens×ruido, piso); pausa 0.45 s; tope 4 s) | VAD por audio (no hay audio); ventana fija (corta palabras) | [06](experiments/06_demo_y_remap.md) |
 | modelo base = ViSpeR 288M zero-shot | ft05 propio (65 vs 45 WER; y 2.3× más lento por su LM externo); full-FT de ViSpeR (overfitea) | [02](experiments/02_zeroshot.md), [03](experiments/03_visper_finetunes.md), [09](experiments/09_velocidad_inferencia.md) |
-| calibración = **LoRA** (r16/α32, lr 1e-4, augment) en L4 spot (~10 min, ~$0.05) | full-FT lr1e-5 (receta del 50M: **colapsa** el 288M); entrenar local sin GPU (horas) | [10](experiments/10_adaptacion_hablante.md) |
+| calibración = **LoRA** (r16/α32, lr 1e-4, augment) en L4 spot (~10 min, ~$0.05) | full-FT lr1e-5 (receta del 50M: **degradó severamente** el 288M); entrenar local sin GPU (horas) | [10](experiments/10_adaptacion_hablante.md) |
 | multi-cara: sticky-lock a la cara más grande, re-lock a 1.5 s | tomar siempre la primera detección (salta entre personas del público) | diseño para demo en vivo, [06](experiments/06_demo_y_remap.md) |
 
 ## 6. Robustez y manejo de errores

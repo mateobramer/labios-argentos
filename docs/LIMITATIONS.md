@@ -20,22 +20,24 @@ Este proyecto es un prototipo de investigación e ingeniería. Sus límites, sin
 
 ## Del corrector LLM
 
-- **La corrección 1-best siempre empeora** (a todo CER probado). Solo el **n-best
-  rescoring** ayuda, y **solo en el régimen de CER bajo** (~11, self-test): −3.04 WER
-  significativo. A CER alto el beam no contiene la respuesta correcta y no hay nada que
-  rescatar. Detalle: [`RESEARCH.md`](RESEARCH.md).
+- **La corrección 1-best empeoró en todas las condiciones evaluadas.** El **n-best
+  rescoring** produjo una mejora significativa en el régimen de CER bajo evaluado
+  (~11, self-test): −3.04 WER. En los ensayos de CER más alto el beam no ofreció
+  candidatos suficientes para recuperar el error. Detalle: [`RESEARCH.md`](RESEARCH.md).
 
 ## De la personalización
 
-- Validada en profundidad con **un solo hablante** (n=1): −4.7 WER personal sin olvido
-  del test general. La generalización a más hablantes es trabajo pendiente.
+- Validada en profundidad con **un solo hablante** (n=1): mejora de 4.7 puntos de WER
+  personal sin degradación del test general. La mejora personal todavía no fue
+  estadísticamente significativa con la muestra actual y la generalización a más
+  hablantes es trabajo pendiente.
 - La captura de correcciones humanas existe como mínimo local (JSONL); todavía no
   alimenta un re-entrenamiento automático.
 
 ## De la plataforma y los datos
 
 - El encoder acelerado requiere **Apple Silicon (MPS)**; en CPU el total sube a ~1.5 s/seg.
-- No existe un corpus audiovisual rioplatense público de referencia: el dataset es propio
+- No identificamos un corpus audiovisual público específicamente orientado al español rioplatense; el dataset es propio
   y su escala es la principal limitación de los modelos entrenados.
 - El repositorio versiona solo artefactos livianos y una muestra mínima; el dataset
   completo, los ROIs y los pesos viven fuera de Git ([`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)).

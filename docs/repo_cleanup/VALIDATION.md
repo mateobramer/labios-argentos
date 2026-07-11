@@ -55,7 +55,7 @@ bash run.sh                                       # demo real (con cámara y ViS
 | 1 | links markdown de todo el repo | **0 rotos** |
 | 2 | `python3 -m compileall .` | **OK exit 0** |
 | 3 | `pytest cleaning data_pipeline/discovery/tests` (env ptt) | **110 passed, 1 failed** — la falla (`test_builder_no_modifica_splits_canonicos`) es **preexistente e idéntica en main** |
-| 4 | `yaml.safe_load(CITATION.cff)` | OK, 3 autores, cff 1.2.0 |
+| 4 | `yaml.safe_load(CITATION.cff)` | OK, cff 1.2.0; la autoría final se amplió luego a 5 autores |
 | 5 | smoke preprocessing sobre `data/samples/` | OK: 137 ROIs 96×96, 99 % detección |
 | 6 | scan de términos internos (Claude/Fable/scratchpad/TP/rúbrica) en docs públicos | **0** (excluyendo `experiments/`+`archive/` históricos, que se reencuadraron pero preservan evidencia) |
 | 7 | scan de nombres de carpeta viejos en código/docs | 0 (fuera de los docs de recuperación, que deben mencionarlos) |

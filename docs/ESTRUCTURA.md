@@ -47,8 +47,8 @@ modelo es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `data_pipeline/release/` | 4b | manifests + reportes + scripts del release limpio v1 (tag `dataset-clean-v1`; los manifests ≥1 MB solo vía tag/bucket — ver su README) |
 | `cleaning/gpt_clean_v1/` | 4b | limpieza GPT de transcripciones del release (portado, ídem) |
 | `data_pipeline/inventory/` | 4b | inventario del bucket del release |
-| `experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
-| `docs/` | — | ARCHITECTURE, SPEC, SETUP, este doc (ESTRUCTURA), RESULTS (**ledger canónico**), METHODOLOGY, LIMITATIONS, PROJECT_EVOLUTION, RESEARCH, SYSTEM_ENGINEERING, DATA_AND_ARTIFACTS, FUTURE_WORK, LICENSING, experiments/, bibliography/, `archive/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
+| `docs/experiments/` | — | **registro de todos los experimentos** con números; empezar por su README |
+| `docs/` | — | ARCHITECTURE, SPEC, SETUP, este doc (ESTRUCTURA), RESULTS (**ledger canónico**), METHODOLOGY, LIMITATIONS, PROJECT_EVOLUTION, RESEARCH, SYSTEM_ENGINEERING, DATA_AND_ARTIFACTS, FUTURE_WORK, `experiments/`, `bibliography/`, `archive/` (históricos), `repo_cleanup/` (auditoría 2026-07) |
 
 ## Qué se versiona y qué no
 
@@ -57,12 +57,13 @@ chicos y la muestra de smoke (`data/samples/`, 8 clips).
 
 **No** (política 2026-07, ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)): clips
 masivos, videos crudos, ROIs `.npz`, pesos `.pth`, manifests gigantes — viven en los
-buckets y quedan recuperables desde `main`/tag (`data/README.md`); clones de repos
+buckets y quedan recuperables desde el commit pre-limpieza `a11f0827666b11c975df4d8c5b0d6014894e8ee8`/tag (`data/README.md`); clones de repos
 externos, venvs, grabaciones personales y modelos calibrados (privacidad).
 
-**Sparse-checkout**: el repo trackea ~29k archivos (dataset incluido); el working copy
-solo materializa las carpetas en `git sparse-checkout list`. Si un path trackeado no
-aparece en disco, agregá su carpeta con `git sparse-checkout add <dir>`.
+**Clone liviano**: el árbol actual ya no versiona el dataset masivo, pero la historia
+de Git conserva los blobs antiguos y un clone completo puede seguir pesando ~9 GB.
+Para una copia liviana usar `git clone --filter=blob:none`; los datos retirados se
+recuperan con las instrucciones de [`data/README.md`](../data/README.md).
 
 ## Convención para módulos nuevos
 
@@ -75,4 +76,4 @@ nombre_modulo/
 
 La raíz queda para entrypoints y docs generales. Datos generados grandes: revisar
 `.gitignore` y el tamaño del commit antes de agregar. Resultados de experimentos: van a
-`experiments/`, no sueltos en el módulo.
+`docs/experiments/`, no sueltos en el módulo.

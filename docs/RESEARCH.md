@@ -29,12 +29,12 @@ mayor parte del hallazgo.
 
 ## Los hallazgos centrales
 
-1. **La corrección 1-best nunca ayudó, a ningún CER probado (42, 27, 11).** El motivo
+1. **La corrección 1-best empeoró en todas las condiciones evaluadas (CER 42, 27 y 11).** El motivo
    está diagnosticado: los errores de lip-reading son sustituciones por palabras válidas
    (confusión de visemas), no typos. Un LLM ciego al video lee español fluido y
    sobre-corrige lo que estaba bien. El test de corrupción (#5) muestra que el corrector
    tiene un piso de daño incluso con entrada perfecta.
-2. **La condición para que el LLM ayude es que la respuesta correcta esté en el beam.**
+2. **La evidencia sugiere que el LLM solo puede ayudar cuando la respuesta correcta está en el beam.**
    A CER 42 el beam contiene variaciones del mismo error (oracle apenas 55) y el LLM no
    tiene de dónde elegir. A CER ~11 el beam sí contiene la palabra correcta en
    candidatas bajas, y el rescoring la recupera ("autocusado"→"auto usado").
@@ -43,7 +43,7 @@ mayor parte del hallazgo.
 4. **Significancia:** el efecto −3 WER se sostuvo de n=40 a n=100 y el IC95 pareado
    excluye 0. Con n=12 la corrección 1-best había dado un falso positivo (−1.7) que
    n=40 desmintió — lección metodológica sobre tamaños de muestra chicos.
-5. **El sweet spot está encontrado:** top-5, qwen3:4b-instruct, prompt plano, temp 0.
+5. **La mejor configuración entre las evaluadas fue:** top-5, qwen3:4b-instruct, prompt plano, temp 0.
    Escalar el LLM (9b) o el n (10) no mejora. La brecha al oracle (~5 WER) requeriría
    un rescorer entrenado.
 

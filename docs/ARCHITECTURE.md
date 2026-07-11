@@ -65,8 +65,8 @@ Interfaces (protocolo `CONFIG`/`READY` del infer_server, endpoints HTTP): [`SPEC
 | Modelo base ViSpeR 288M zero-shot | +20 WER vs el mejor fine-tune propio | [exp. 02](experiments/02_zeroshot.md) |
 | beam = 3 | 2.2× más rápido, mismo WER | [exp. 09](experiments/09_velocidad_inferencia.md) |
 | encoder en MPS, beam en CPU | frontend 3.4×; espnet rompe con el decoder en MPS | [exp. 09](experiments/09_velocidad_inferencia.md) |
-| Corrector = n-best rescoring (no 1-best) | 1-best empeora siempre; rescoring −3.04 WER (sig.) | [exp. 04](experiments/04_qwen_corrector.md) |
-| Personalización = LoRA (no full-FT) | full-FT colapsa el 288M | [exp. 10](experiments/10_adaptacion_hablante.md) |
+| Corrector = n-best rescoring (no 1-best) | 1-best empeoró en todas las condiciones evaluadas; rescoring −3.04 WER (sig.) | [exp. 04](experiments/04_qwen_corrector.md) |
+| Personalización = LoRA (no full-FT) | full-FT degradó severamente el 288M | [exp. 10](experiments/10_adaptacion_hablante.md) |
 | VAD visual por pausas | no hay audio; ventana fija corta palabras | [exp. 06](experiments/06_demo_y_remap.md) |
 
 Tabla completa en [`SPEC.md`](SPEC.md) §5. Limitaciones honestas: [`LIMITATIONS.md`](LIMITATIONS.md).

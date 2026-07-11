@@ -1,8 +1,8 @@
 # data/ — qué hay acá y cómo recuperar lo que se retiró
 
-En la reorganización 2026-07 (branch `chore/repo-cleanup-safe-v2`) los datos masivos
-se **retiraron del árbol de esta rama** (siguen intactos en `main`, en el tag
-`dataset-clean-v1` y en los buckets). Política completa:
+En la reorganización de 2026-07 los datos masivos se **retiraron del árbol principal**.
+Los bytes históricos exactos siguen preservados en el commit pre-limpieza
+`a11f0827666b11c975df4d8c5b0d6014894e8ee8`, en el tag `dataset-clean-v1` y en los buckets. Política completa:
 [`docs/DATA_AND_ARTIFACTS.md`](../docs/DATA_AND_ARTIFACTS.md).
 
 ## Qué queda versionado acá
@@ -17,10 +17,10 @@ se **retiraron del árbol de esta rama** (siguen intactos en `main`, en el tag
 
 | Retirado | Contenido | Recuperación exacta |
 |---|---|---|
-| `data/clips/` (17.078 archivos, ~2.24 GB) | clips alineados mp4+txt, rondas 1-2 | `git checkout main -- "data/clips"` (bytes exactos) o bucket |
-| `dataset/` (11.901 archivos, ~248 MB) | clips `keep` post-curación | `git checkout main -- dataset` |
-| `data/videos/` (9 archivos, ~422 MB) | videos fuente crudos | `git checkout main -- data/videos` o regenerar: `python data_pipeline/descargar_procesar.py <url>` |
-| `data/metadata/visual_quality_{policy_*,*_full_roi_sanity}.csv` (6 archivos, ~54 MB) | outputs del análisis de calidad visual | `git checkout main -- data/metadata` (trae también los chicos; los 6 grandes quedan ignorados por .gitignore, usar `git checkout main -- "data/metadata/<nombre>.csv"` puntual) |
+| `data/clips/` (17.078 archivos, ~2.24 GB) | clips alineados mp4+txt, rondas 1-2 | `git checkout a11f0827666b11c975df4d8c5b0d6014894e8ee8 -- "data/clips"` (bytes exactos) o bucket |
+| `dataset/` (11.901 archivos, ~248 MB) | clips `keep` post-curación | `git checkout a11f0827666b11c975df4d8c5b0d6014894e8ee8 -- dataset` |
+| `data/videos/` (9 archivos, ~422 MB) | videos fuente crudos | `git checkout a11f0827666b11c975df4d8c5b0d6014894e8ee8 -- data/videos` o regenerar: `python data_pipeline/descargar_procesar.py <url>` |
+| `data/metadata/visual_quality_{policy_*,*_full_roi_sanity}.csv` (6 archivos, ~54 MB) | outputs del análisis de calidad visual | `git checkout a11f0827666b11c975df4d8c5b0d6014894e8ee8 -- data/metadata` (trae también los chicos; los 6 grandes quedan ignorados por .gitignore, usar `git checkout a11f0827666b11c975df4d8c5b0d6014894e8ee8 -- "data/metadata/<nombre>.csv"` puntual) |
 
 También todo está congelado en el tag: `git show dataset-clean-v1:<path>`.
 

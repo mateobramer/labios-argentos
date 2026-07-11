@@ -85,7 +85,7 @@ Sobre `test-658` (658 clips, 2 hablantes held-out, speaker-independent) y el sel
 ## 7. Quickstart
 
 ```bash
-git clone <repo> && cd labios-argentos
+git clone --filter=blob:none https://github.com/mateobramer/labios-argentos.git && cd labios-argentos
 bash setup.sh              # crea los envs conda (ptt, visper) y verifica artefactos
 bash run.sh                # levanta la demo
 ```

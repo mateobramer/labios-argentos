@@ -11,7 +11,6 @@ está empezado salvo indicación contraria.
   stitching, máquina de estados del VAD (serie sintética), parseo de manifest,
   protocolo CONFIG/READY. (El repo ya tiene tests en `cleaning/visual_quality/`,
   `cleaning/transcript_segmentation/` y `data_pipeline/discovery/` — el hueco es la demo.)
-- `setup.sh` + `run.sh` + `environment.yml` por env (`ptt`, `visper`) — ver TO-DO §3.
 
 ## 2. Mejoras de latencia
 
@@ -44,7 +43,7 @@ local privado (`data/feedback/`). Lo que falta:
 - **Rescorer entrenado** para cerrar la brecha al oracle (26.5 → techo 21.7 a n=100):
   usar los pares de §3 o el self-test como supervisión. Es el ítem de mayor potencial.
 - Barrido fino del umbral de CER donde el rescoring empieza a ayudar (hoy: 3 puntos).
-- qwen local vs API comercial: costo/latencia/privacidad con números (TO-DO §5).
+- qwen local vs API comercial: costo/latencia/privacidad con números.
 
 ## 6. Mejoras del modelo visual
 
@@ -54,7 +53,7 @@ local privado (`data/feedback/`). Lo que falta:
 
 ## 7. Deuda de datos
 
-- **Política repo-vs-bucket: RESUELTA y aplicada en esta rama** (git liviano + bucket
+- **Política repo-vs-bucket: RESUELTA y aplicada en el árbol actual** (git liviano + bucket
   para pesados; ver [DATA_AND_ARTIFACTS](DATA_AND_ARTIFACTS.md)). Lo que queda: si el
   equipo quiere achicar el CLONE COMPLETO (~9 GB por la historia), decidir una
   reescritura de historia con `git filter-repo` — irreversible, requiere coordinar.
@@ -68,8 +67,7 @@ local privado (`data/feedback/`). Lo que falta:
 | Tarea | Requiere |
 |---|---|
 | Re-entrenar / fine-tunear con el release clean-v1 | GPU (VM L4) + bucket + decisión de splits |
-| Migración de datos repo→bucket (§7) | decisión del equipo + bucket |
-| Cierre de la PR #25 | decisión del equipo |
+| Reescritura de historia Git para achicar el clone (§7) | decisión del equipo + coordinación |
 | Rescorer entrenado (§5) | GPU chica o incluso CPU + datos de §3 |
 | Validación multi-hablante (§4) | personas + tiempo, sin GPU |
-| Screenshot/GIF de la demo para el README (TO-DO §1) | cámara + demo corriendo |
+| Screenshot/GIF de la demo para el README | cámara + demo corriendo |

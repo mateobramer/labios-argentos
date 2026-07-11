@@ -46,7 +46,7 @@ Implementado ([SPEC §6](SPEC.md)): fallback silencioso a 1-best si Ollama está
 o falla; warmup tolerante de cámara y MPS; validación de tomas en calibración
 (≥20 frames, ≥60 % detección); sticky-lock con aviso en UI cuando hay >1 cara.
 
-**Pendiente conocido** ([TO-DO](FUTURE_WORK.md) §4): reinicio automático si muere el
+**Pendiente conocido** ([FUTURE_WORK](FUTURE_WORK.md) §1): reinicio automático si muere el
 `infer_server` (hoy: error por línea), mensajes guiados para cámara sin permiso,
 suite de tests automatizados del VAD/norm()/protocolo.
 
@@ -56,7 +56,7 @@ Funciona end-to-end y está validada con **un** hablante ([exp. 10](experiments/
 UI `/calibrar` graba ~40 frases push-to-talk → `personalization/calibracion/calibrar_entrenar.sh`
 entrena un **LoRA** (r16/α32) en una VM L4 spot (~10 min, ~$0.05, se autodestruye) →
 el modelo personal baja el WER personal 29.2→24.5 **sin olvidar** el test general
-(45.22→44.54). El full-FT con la receta del 50M **colapsa** el 288M (98.7 WER) — por
+(45.22→44.54). El full-FT con la receta del 50M **degradó severamente** el 288M (98.7 WER) — por
 eso LoRA. Gap: generalización a más hablantes no validada (n=1).
 
 ## Captura de feedback humano (estado real)
