@@ -6,9 +6,12 @@
 #      100 MB de GitHub); bajar de huggingface.co/tiiuae/visper (verificado 2026-07-11,
 #      público sin login) o gs://labios-argentos-vsr-dataset.
 # Crear:  conda env create -f envs/visper.yml
-# NOTA: spec de referencia reconstruida de README y docs técnicas; validado 2026-07-11
-# que el env crea e importa torch/espnet/omegaconf sin error, pero NO end-to-end con
-# el modelo real (falta el código propio del punto 1 en esta máquina).
+# NOTA: validado end-to-end 2026-07-11 (demo_web.py cargó visper_vsr_base.pth real
+# sobre MPS y respondió). El espnet vendoreado en vsr/visper/espnet/ (con sus
+# __init__.py) tapa al espnet de pip — si falta algún __init__.py ahí, Python cae
+# al espnet de pip y ese pide `chainer` (dependencia vieja que no usamos).
+# setuptools<81 es necesario: versiones más nuevas sacaron pkg_resources, que
+# pide librosa (dependencia transitiva de pytorch_lightning vía torchmetrics).
 name: visper
 channels:
   - conda-forge
@@ -17,7 +20,11 @@ dependencies:
   - pip
   - pip:
       - torch
+      - torchvision
       - torchaudio
       - espnet
+      - pytorch_lightning
+      - six
+      - "setuptools<81"
       - numpy
       - requests        # llamadas al Ollama local para el n-best rescoring

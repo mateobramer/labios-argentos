@@ -40,3 +40,15 @@ curl -L -o ~/Desktop/visper/visper_vsr_base.pth \
   https://huggingface.co/tiiuae/visper/resolve/main/visper_vsr_base.pth
 conda env create -f envs/visper.yml   # si el env `visper` no existe
 ```
+
+Si `VISPER_PY` no está seteada, el default (`~/miniconda3/envs/visper/bin/python`)
+asume miniconda; con miniforge (o cualquier otra ruta) hay que pasarla explícita:
+`VISPER_PY=~/miniforge3/envs/visper/bin/python python demo/demo_web.py`.
+
+## Validado end-to-end (2026-07-11)
+
+`demo_web.py` cargó `visper_vsr_base.pth` real sobre MPS y respondió en
+`http://localhost:8551`. Los `__init__.py` de `espnet/` son necesarios: sin
+ellos, Python resuelve el `espnet` de pip (que pide `chainer`, no instalado)
+en vez de este subset vendoreado. Dependencias que faltaban en `envs/visper.yml`
+y ya están agregadas: `torchvision`, `pytorch_lightning`, `six`, `setuptools<81`.
