@@ -23,9 +23,13 @@ bash run.sh       # levanta la demo web (http://localhost:8551)
 
 ## Pesos y artefactos externos (no se versionan)
 
-- **`visper_vsr_base.pth`** (1.1 GB): pesos base de ViSpeR. Van dentro del clon del repo
-  ViSpeR en `~/Desktop/visper` (o `$VISPER_DIR`). Origen: release de ViSpeR (TII) o la
-  copia del proyecto en `gs://labios-argentos-vsr-dataset`.
+- **`visper_vsr_base.pth`** (1.15 GB): pesos base de ViSpeR. Van dentro de `~/Desktop/visper`
+  (o `$VISPER_DIR`), NO en git (supera el límite de 100 MB de GitHub). Origen verificado
+  2026-07-11: [`huggingface.co/tiiuae/visper`](https://huggingface.co/tiiuae/visper)
+  (público, sin login) o la copia del proyecto en `gs://labios-argentos-vsr-dataset`.
+- **Código propio de `$VISPER_DIR`** (`datamodule/`, `lightning_vsr.py`, `conf/`, `spm/`,
+  `visper_zeroshot.py`): SÍ se versiona, en [`vsr/visper/`](../vsr/visper/README.md)
+  (no son del repo público de mpc001 — ver ese README para el estado de qué falta).
 - **`face_landmarker.task`** (MediaPipe): viene versionado en `preprocessing/models/`;
   `setup.sh` lo baja si falta.
 - **Corrector LLM (opcional)**: [Ollama](https://ollama.com) +

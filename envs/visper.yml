@@ -1,12 +1,14 @@
 # Env de inferencia ViSpeR (PyTorch + ESPnet). ATENCIÓN: este env NO alcanza solo —
-# el infer_server además necesita:
-#   1. El clon del repo ViSpeR en ~/Desktop/visper (o $VISPER_DIR), que incluye
-#      los módulos datamodule/, lightning_vsr.py y el visper_zeroshot.py del equipo.
-#   2. Los pesos visper_vsr_base.pth (1.1 GB) dentro de ese clon — NO se versionan;
-#      copia en gs://labios-argentos-vsr-dataset o el release de ViSpeR/TII.
+# el infer_server además necesita, dentro de ~/Desktop/visper (o $VISPER_DIR):
+#   1. El código propio (datamodule/, lightning_vsr.py, conf/, spm/, visper_zeroshot.py),
+#      versionado en vsr/visper/ (copiar de ahí — ver vsr/visper/README.md para qué falta).
+#   2. Los pesos visper_vsr_base.pth (1.15 GB) — NO se versionan (supera el límite de
+#      100 MB de GitHub); bajar de huggingface.co/tiiuae/visper (verificado 2026-07-11,
+#      público sin login) o gs://labios-argentos-vsr-dataset.
 # Crear:  conda env create -f envs/visper.yml
-# NOTA: spec de referencia reconstruida de README y docs técnicas (el env original vive en
-# la máquina de desarrollo); no fue posible validarla end-to-end sin el clon+pesos.
+# NOTA: spec de referencia reconstruida de README y docs técnicas; validado 2026-07-11
+# que el env crea e importa torch/espnet/omegaconf sin error, pero NO end-to-end con
+# el modelo real (falta el código propio del punto 1 en esta máquina).
 name: visper
 channels:
   - conda-forge

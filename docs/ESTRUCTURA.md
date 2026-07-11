@@ -38,6 +38,7 @@ de VSR es ViSpeR y la aproximación a tiempo real es por ventanas con VAD visual
 | `vsr/` | 5 | `src/fine_tune.py` (50M), splits congelados, configs |
 | `vsr/curriculum/` | 5b | procesamiento de ViSpeR-es (JSON oficiales → npz) para currículum |
 | `vsr/mpc001/` | 5c | notas/scripts sobre la base multilingüe mpc001 (el clon externo no se versiona) |
+| `vsr/visper/` | 5c | código propio de la base ViSpeR/TII (288M, la que usa la demo) — el clon en `$VISPER_DIR` y los pesos `.pth` no se versionan, ver su README |
 | `vsr/historical/ronda2/` | 5 (hist.) | corrida completa de la ronda 2 → ft03–ft07; docs de esa fase |
 | `vsr/evaluation/` | 6 | evaluación contra test-658, parches al repo de Gimeno |
 | `demo/` | 7 | demo web + push-to-talk + streaming, `infer_server.py`, calibración |

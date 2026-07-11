@@ -14,7 +14,7 @@ obtener lo que falta, y qué hacer cuando un artefacto no está.
 | **Splits congelados** | `vsr/splits/` — test-658/val, fijos desde ft03 | este repo | ✅ **no tocar** |
 | **Videos crudos** | fuente completa de YouTube (`data/videos/`) | YouTube (regenerables con `data_pipeline/descargar_procesar.py`) | ❌ gitignored |
 | **ROIs `.npz`** | crops de boca 96×96 | regenerables con `preprocessing/` | ❌ gitignored |
-| **Pesos base ViSpeR** | `visper_vsr_base.pth` (1.1 GB) | repo ViSpeR/TII + copia en bucket | ❌ |
+| **Pesos base ViSpeR** | `visper_vsr_base.pth` (1.15 GB) | [`huggingface.co/tiiuae/visper`](https://huggingface.co/tiiuae/visper) (verificado 2026-07-11, público sin login) + copia en bucket | ❌ (supera el límite de 100 MB de GitHub; no entra ni con `git add` normal) |
 | **Pesos fine-tuneados** | ft03–ft07, LoRAs | `gs://labios-argentos-vsr-dataset` | ❌ **irreemplazables** |
 | **Modelos personales** | LoRA por hablante (`modelos/personal/`) | máquina local de cada persona | ❌ privacidad |
 | **Grabaciones personales** | `~/vsr_personal/`, `~/vsr_contrib/` | máquina local | ❌ privacidad, **nunca** |
@@ -86,8 +86,10 @@ templates de startup de VM con sus propios paths internos de VM — no usan esta
 
 1. Clonar liviano: `git clone --filter=blob:none https://github.com/mateobramer/labios-argentos.git`.
 2. Crear los envs con `bash setup.sh`; detalles en [`SETUP.md`](SETUP.md).
-3. Clonar ViSpeR en `~/Desktop/visper` (o `VISPER_DIR`) y bajar `visper_vsr_base.pth`
-   (1.1 GB; del repo ViSpeR/TII o del bucket del proyecto).
+3. Crear `~/Desktop/visper` (o `VISPER_DIR`): copiar ahí el código propio versionado en
+   [`vsr/visper/`](../vsr/visper/README.md) (`datamodule/`, `lightning_vsr.py`, `conf/`,
+   `spm/`, `visper_zeroshot.py` — ver ese README para qué falta) y bajar
+   `visper_vsr_base.pth` (1.15 GB) de `huggingface.co/tiiuae/visper` o del bucket del proyecto.
 4. Opcional: Ollama + `ollama pull qwen3:4b-instruct-2507-q4_K_M`.
 5. `python demo/demo_web.py` — si falta un artefacto, el error dice cuál
    (sin mocks: la ausencia de datos reales no se disimula).
