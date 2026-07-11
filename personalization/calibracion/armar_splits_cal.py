@@ -15,7 +15,8 @@ def main():
     ap.add_argument("--src", default="", help="default: ~/vsr_personal/<persona>")
     ap.add_argument("--out", default="", help="default: mismo dir")
     args = ap.parse_args()
-    src = os.path.expanduser(args.src or f"~/vsr_personal/{args.persona}")
+    raiz = os.environ.get("VSR_PERSONAL_DIR", "~/vsr_personal")
+    src = os.path.expanduser(args.src or os.path.join(raiz, args.persona))
     out = os.path.expanduser(args.out or src)
 
     clips = sorted(glob.glob(os.path.join(src, "clip_*.npz")))

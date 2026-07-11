@@ -3,220 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calibración — Labios Argentos</title>
+<title>Personalizar · Labios Argentos</title>
 <style>
-  :root{
-    --negro:#0a0c0e; --tinta:#12161b; --tinta2:#0d1116; --linea:#212a33;
-    --celeste:#8ec3e6; --celeste-hond:#3d5c74; --oro:#f2c832;
-    --crudo:#d4dce2; --humo:#66737f; --ok:#74d99b; --alerta:#f2994a; --rojo:#e05555;
-    --display:"Avenir Next Condensed","Arial Narrow",-apple-system,sans-serif;
-    --body:"Avenir Next","Helvetica Neue",-apple-system,BlinkMacSystemFont,sans-serif;
-    --mono:ui-monospace,"SF Mono",Menlo,monospace;
-  }
-  *{box-sizing:border-box; margin:0; padding:0}
-  body{background:var(--negro); color:var(--crudo); min-height:100vh; font:15px/1.5 var(--body)}
-  .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
-  header{display:flex; align-items:baseline; justify-content:space-between; padding:20px 30px 16px; border-bottom:1px solid var(--linea)}
-  header h1{font-family:var(--display); font-weight:800; font-size:20px; letter-spacing:.22em; text-transform:uppercase; color:var(--celeste)}
-  header a{color:var(--humo); font-size:13px; text-decoration:none}
-  header a:hover{color:var(--celeste)}
-
-  main{max-width:1120px; margin:0 auto; padding:24px 30px; display:grid; grid-template-columns:minmax(0,1fr) 330px; gap:24px; align-items:start}
-  @media (max-width:920px){ main{grid-template-columns:1fr} }
-
-  .pantalla{position:relative; border-radius:10px; overflow:hidden; background:#000; border:1px solid var(--linea); line-height:0}
-  .pantalla img{width:100%; display:block}
-  .recdot{position:absolute; top:14px; left:14px; display:none; align-items:center; gap:8px;
-          font-family:var(--mono); font-size:12px; color:#fff; text-shadow:0 1px 4px #000; line-height:1}
-  .recdot::before{content:""; width:13px; height:13px; border-radius:50%; background:var(--rojo); animation:pulso 1s infinite}
-  @keyframes pulso{50%{opacity:.3}}
-
-  /* ---------- claqueta ---------- */
-  .claqueta{border:1px solid var(--linea); border-radius:10px; background:var(--tinta); margin-top:18px; overflow:hidden}
-  .cinta{
-    height:14px;
-    background:repeating-linear-gradient(-45deg, var(--tinta2) 0 16px, var(--linea) 16px 32px);
-    border-bottom:1px solid var(--linea);
-  }
-  .pizarra{padding:18px 22px}
-  .fila-toma{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
-  .toma{font-family:var(--display); font-weight:800; font-size:30px; letter-spacing:.1em; text-transform:uppercase; color:var(--crudo)}
-  .toma b{color:var(--oro)}
-  .escena{font-family:var(--mono); font-size:11.5px; color:var(--humo); letter-spacing:.06em}
-  .frase{font-size:24px; font-weight:600; line-height:1.4; margin:16px 0 4px; min-height:66px; text-wrap:balance}
-  .indicacion{font-size:12.5px; color:var(--humo); line-height:1.6}
-  .tabs{display:flex; gap:8px; padding:14px 22px 0}
-  .tab{padding:8px 14px; border:1px solid var(--linea); border-radius:8px; cursor:pointer;
-       font-family:var(--display); font-size:12.5px; font-weight:700; letter-spacing:.12em;
-       text-transform:uppercase; color:var(--humo); background:var(--tinta2)}
-  .tab.on{color:var(--celeste); border-color:var(--celeste-hond)}
-  input[type=text]{background:var(--tinta2); border:1px solid var(--linea); border-radius:8px; color:var(--crudo);
-        padding:12px 13px; font-size:14.5px; width:100%}
-  input[type=text]:focus{outline:none; border-color:var(--celeste-hond)}
-
-  .accion{display:flex; align-items:center; gap:18px; padding:16px 22px 20px; flex-wrap:wrap}
-  .btnrec{
-    width:86px; height:86px; border-radius:50%; border:2px solid #5a2a2a; background:#1c0f10;
-    color:#e8a0a0; font:700 12px/1.25 var(--display); letter-spacing:.1em; text-transform:uppercase;
-    cursor:pointer; flex:none; transition:transform .08s;
-  }
-  .btnrec.on{background:var(--rojo); border-color:var(--rojo); color:#fff; transform:scale(1.06)}
-  .btnrec:focus-visible{outline:2px solid var(--celeste); outline-offset:3px}
-  .btnsec{font:600 12.5px/1 var(--body); color:var(--crudo); background:var(--tinta2);
-          border:1px solid var(--linea); border-radius:7px; padding:9px 14px; cursor:pointer}
-  .btnsec:hover{border-color:var(--celeste-hond); color:var(--celeste)}
-  .msg{font-size:13px; color:var(--humo); flex:1; min-width:160px}
-  .msg.ok{color:var(--ok)} .msg.err{color:var(--alerta)}
-
-  aside .card{border:1px solid var(--linea); border-radius:10px; background:var(--tinta); padding:16px 18px; margin-bottom:16px}
-  aside h2{font-family:var(--display); font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--humo); margin-bottom:10px}
-  .prog{height:8px; background:var(--tinta2); border:1px solid var(--linea); border-radius:99px; overflow:hidden; margin-bottom:8px}
-  .prog .fill{height:100%; width:0%; background:linear-gradient(90deg, var(--celeste-hond), var(--ok)); transition:width .3s}
-  .ptext{font-family:var(--mono); font-size:13px}
-  .pnota{font-size:12px; color:var(--humo); margin-top:6px; line-height:1.55}
-  ol{padding-left:18px; font-size:13px; color:var(--humo); line-height:1.7}
-  .cmd{background:var(--tinta2); border:1px solid var(--linea); border-radius:8px; padding:10px 12px;
-       font-family:var(--mono); font-size:11.5px; color:var(--ok); word-break:break-all; margin:8px 0}
-  .setup-row{display:flex; gap:10px; margin-top:6px}
-  .setup-row .btnsec{flex:none}
-  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+:root{--bg:#0b1016;--panel:#131d28;--panel2:#172534;--line:#2a3a4b;--txt:#f1f5f8;--muted:#9babb9;--blue:#84cdf4;--blue2:#2f7aa5;--mint:#8fe2bb;--gold:#f5c65e;--red:#f07377;--body:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--display:"Avenir Next Condensed","Arial Narrow",sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--txt);font:15px/1.5 var(--body);background:radial-gradient(900px 500px at 11% -10%,#1d4158 0%,transparent 65%),radial-gradient(700px 500px at 95% 105%,#183829 0%,transparent 65%),var(--bg)}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,58px);border-bottom:1px solid #263442;background:#0b1016c9;backdrop-filter:blur(14px)}.brand{font:800 19px var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}.back{color:var(--muted);text-decoration:none;font-size:13px}.back:hover{color:var(--blue)}
+main{width:min(1370px,100%);margin:auto;padding:clamp(20px,3vw,38px);display:grid;grid-template-columns:minmax(370px,1.08fr) minmax(390px,.92fr) 260px;gap:20px;align-items:start}.card{border:1px solid var(--line);background:linear-gradient(145deg,#152331e8,#101821ef);border-radius:22px;box-shadow:0 18px 45px #02060955}.camera{position:relative;overflow:hidden;aspect-ratio:4/3;background:#071016}.camera img{width:100%;height:100%;display:block;object-fit:cover}.camera:after{content:"";position:absolute;inset:0;border:1px solid #ffffff15;border-radius:22px;pointer-events:none}.rec{display:none;position:absolute;z-index:1;top:14px;left:14px;padding:7px 11px;border-radius:999px;background:#270f14df;color:#ffd3d5;font:700 11px var(--body);letter-spacing:.08em;text-transform:uppercase}.rec.on{display:block}.rec:before{content:"";display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;background:var(--red);animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.35}}
+.studio{min-height:100%;padding:29px 28px;display:flex;flex-direction:column;position:relative;overflow:hidden}.studio:before{content:"";position:absolute;width:280px;height:280px;right:-130px;top:-120px;border-radius:50%;background:#2f7aa51c;pointer-events:none}.eyebrow{position:relative;color:var(--blue);font:700 11px var(--body);letter-spacing:.12em;text-transform:uppercase}.take-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px}.take{font:800 clamp(28px,3vw,39px)/1 var(--display);letter-spacing:.03em}.take b{color:var(--gold)}.badge{padding:6px 10px;border-radius:999px;background:#223345;color:#a8c9dd;font-size:11px;white-space:nowrap}.phrase{position:relative;margin:27px 0 12px;font:700 clamp(23px,2.3vw,34px)/1.22 var(--display);letter-spacing:.01em;text-wrap:balance}.hint{color:var(--muted);font-size:13px;max-width:44ch}.record-row{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}.record{width:86px;height:86px;border-radius:50%;border:2px solid #73343b;background:#251317;color:#ffd7d9;font:800 11px/1.2 var(--body);letter-spacing:.07em;text-transform:uppercase;transition:.16s transform,.16s background}.record:hover{transform:translateY(-2px);border-color:var(--red)}.record.on{background:var(--red);color:#fff;transform:scale(1.04)}.btn{padding:11px 14px;border-radius:11px;border:1px solid var(--line);background:#182431;color:var(--txt);font-weight:700;font-size:13px;transition:.16s}.btn:hover{border-color:#6396b5;background:#203244}.btn.primary{background:linear-gradient(135deg,#7bc4ef,#5b9fca);color:#07121a;border:0}.btn.good{background:linear-gradient(135deg,#a6e8c8,#75cda3);color:#092015;border:0}.btn.danger{color:#ffb9bd}.message{color:var(--muted);font-size:13px;flex:1;min-width:150px}.message.ok{color:var(--mint)}.message.err{color:#ffb567}
+.review{margin-top:19px;padding:15px;border-radius:15px;border:1px solid #3d6478;background:#0b151e}.review-title{font-size:11px;font-weight:800;letter-spacing:.11em;color:var(--blue);text-transform:uppercase}.review img{display:block;width:100%;height:58px;object-fit:contain;background:#05080a;border-radius:8px;margin:9px 0}.review-info{color:var(--muted);font-size:11px}.review-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}.review .btn{padding:9px 11px;font-size:12px}
+.side{display:grid;gap:14px}.side .card{padding:20px}.side h2{margin:0 0 13px;font:800 13px var(--display);letter-spacing:.1em;text-transform:uppercase;color:#c3d8e7}.progress{height:9px;border-radius:99px;background:#091118;border:1px solid #2b4051;overflow:hidden}.progress span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#4d9bc6,#8fe2bb);transition:width .3s}.count{font:800 15px var(--body);margin:10px 0 3px}.milestone,.traincopy,.privacy{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.train-state{display:flex;gap:7px;align-items:center;margin:13px 0;color:#b3c8d7;font-size:12px}.dot{width:8px;height:8px;border-radius:50%;background:#728392}.dot.busy{background:var(--gold);animation:pulse 1s infinite}.dot.ready{background:var(--mint)}.dot.error{background:var(--red)}.train-log{margin-top:12px;max-height:110px;overflow:auto;padding:10px;border-radius:9px;background:#091118;color:#b8c8d3;white-space:pre-wrap;font:11px/1.45 ui-monospace,monospace}.privacy{padding:3px 1px}.privacy b{color:#d6e4ed}
+.setup{width:min(560px,calc(100% - 36px));margin:12vh auto;padding:32px}.setup h1{margin:8px 0;font:800 clamp(30px,5vw,46px)/1.03 var(--display)}.setup p{color:var(--muted);margin:0}.setup-row{display:flex;gap:10px;margin-top:22px}.setup input{min-width:0;flex:1;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#0b1219;color:var(--txt);outline:none}.setup input:focus{border-color:var(--blue)}[hidden]{display:none!important}
+@media(max-width:1080px){main{grid-template-columns:1fr 1fr}.side{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}.side .card{min-height:100%}}@media(max-width:700px){header{height:62px}.brand{font-size:15px}main{display:block;padding:14px}.camera{aspect-ratio:16/10;margin-bottom:14px}.studio{min-height:auto;padding:24px;margin-bottom:14px}.side{display:grid;grid-template-columns:1fr;margin-top:14px}.phrase{margin:20px 0 10px}.record-row{margin-top:18px}.setup{margin:6vh auto;width:calc(100% - 28px)}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>
+/* Estación de grabación: ocupa el alto útil de la pantalla en desktop. */
+@media(min-width:701px){main{height:calc(100svh - 72px);padding:24px clamp(24px,3vw,46px);align-items:stretch}.camera,.studio{height:100%;min-height:0}.camera{aspect-ratio:auto}.side{height:100%;grid-template-rows:auto auto 1fr}.privacy{align-self:end}}
+.record{width:104px;height:104px;padding:10px;font-size:10px;line-height:1.25;letter-spacing:.045em;white-space:normal;flex:none}
+.record-row{gap:16px}.message{font-size:14px}.take{font-size:clamp(33px,3.4vw,48px)}.phrase{font-size:clamp(24px,2.1vw,32px);line-height:1.17}
+@media(min-width:701px){.review{position:absolute;z-index:3;left:22px;right:22px;bottom:20px;margin:0;padding:13px}.review img{height:42px;margin:7px 0}.review-actions{margin:8px 0}.review .btn{padding:8px 10px}.review-info{font-size:10px}}
 </style>
 </head>
 <body>
-<header>
-  <h1>Labios Argentos · Calibración</h1>
-  <a href="/">← volver a la demo</a>
-</header>
-
-<main>
-  <section>
-    <div class="pantalla">
-      <span class="recdot" id="recdot">REC</span>
-      <img src="/video" alt="cámara en vivo">
-    </div>
-
-    <div class="claqueta" id="setup">
-      <div class="cinta"></div>
-      <div class="pizarra">
-        <div class="fila-toma"><div class="toma">¿Quién sos?</div></div>
-        <div class="indicacion" style="margin:8px 0 12px">Tus tomas se guardan solo en esta computadora.</div>
-        <div class="setup-row">
-          <input type="text" id="persona" placeholder="tu nombre (ej: fede)" maxlength="24">
-          <button class="btnsec" id="empezar">empezar</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="claqueta" id="grabador" hidden>
-      <div class="cinta"></div>
-      <div class="tabs">
-        <div class="tab on" id="tab-cal">Calibrar mi modelo</div>
-        <div class="tab" id="tab-contrib">Ayudanos a entrenar</div>
-      </div>
-      <div class="pizarra">
-        <div class="fila-toma">
-          <div class="toma">Toma <b id="ntoma">1</b></div>
-          <div class="escena" id="escena">ESCENA · calibración personal</div>
-        </div>
-        <div id="modo-cal">
-          <div class="frase" id="frase">…</div>
-          <div class="indicacion">Leé natural, de frente, con buena luz. <b>Mantené apretado GRABAR</b> (o la
-          barra espaciadora) mientras leés; soltá al terminar. Si salió mal, regrabá sin culpa.</div>
-        </div>
-        <div id="modo-contrib" hidden>
-          <div class="frase" style="font-size:17px; font-weight:500; color:var(--humo)">
-            Decí <b style="color:var(--crudo)">cualquier frase corta</b> (5–10 palabras, como le hablás a un
-            amigo) y escribí exactamente lo que dijiste.
-          </div>
-          <input type="text" id="dijo" placeholder="escribí acá lo que dijiste">
-        </div>
-      </div>
-      <div class="accion">
-        <button class="btnrec" id="btnrec">grabar<br>(mantener)</button>
-        <button class="btnsec" id="saltar">saltar frase</button>
-        <div class="msg" id="msg">—</div>
-      </div>
-    </div>
+<header><div class="brand">Labios Argentos</div><a class="back" href="/">← volver a la demo</a></header>
+<section class="setup card" id="setup"><div class="eyebrow">Personalización en vivo</div><h1>Hagamos que el modelo te conozca.</h1><p>Leé frases cortas mirando a cámara. Podés repetir o descartar cada toma antes de guardarla.</p><div class="setup-row"><input id="persona" autocomplete="off" maxlength="24" placeholder="Tu nombre o alias"><button class="btn primary" id="empezar">Empezar</button></div></section>
+<main id="app" hidden>
+  <section class="camera card"><span class="rec" id="recdot">grabando</span><img src="/video" alt="Cámara en vivo"></section>
+  <section class="studio card"><div class="eyebrow">Tu frase de hoy</div><div class="take-row"><div class="take">Toma <b id="ntoma">1</b></div><div class="badge">mirá a cámara</div></div><div class="phrase" id="frase">…</div><p class="hint">Mantené apretado el botón —o Espacio— mientras leés. Soltá al terminar.</p><div class="record-row"><button class="record" id="btnrec">mantener<br>para grabar</button><button class="btn" id="saltar">otra frase</button><div class="message" id="msg">Tomate tu tiempo. Cuando estés listo, grabá.</div></div>
+    <div class="review" id="revision" hidden><div class="review-title">Revisar esta toma</div><div class="review-actions"><button class="btn good" id="aceptar">guardar toma</button><button class="btn" id="repetir">repetir</button><button class="btn danger" id="descartar">descartar y seguir</button></div><img id="preview" alt="Recortes de boca de la toma"><div class="review-info" id="datos-toma"></div></div>
   </section>
-
-  <aside>
-    <div class="card">
-      <h2>Tomas</h2>
-      <div class="prog"><div class="fill" id="pfill"></div></div>
-      <div class="ptext" id="ptext">0 / 40</div>
-      <div class="pnota" id="pnota">Con ~40 tomas alcanza para calibrar (mínimo útil ~20).</div>
-    </div>
-    <div class="card">
-      <h2>Después de grabar</h2>
-      <ol>
-        <li>En la terminal, entrená tu modelo (~10 min, GPU en la nube):</li>
-      </ol>
-      <div class="cmd" id="cmdtrain">bash personalization/calibracion/calibrar_entrenar.sh &lt;nombre&gt;</div>
-      <ol start="2">
-        <li>Levantá la demo con tu modelo:</li>
-      </ol>
-      <div class="cmd" id="cmddemo">python demo/demo_web.py --ckpt modelos/personal/&lt;nombre&gt;.pth</div>
-    </div>
-  </aside>
+  <aside class="side"><section class="card"><h2>Tu progreso</h2><div class="progress"><span id="pfill"></span></div><div class="count" id="ptext">0 tomas · meta: 20</div><p class="milestone" id="pnota">20 tomas permiten una primera prueba; 40 son recomendadas.</p></section><section class="card"><div class="eyebrow">Siguiente paso</div><h2 style="margin-top:5px">Entrenar tu modelo</h2><p class="traincopy">Cuando tengas suficientes tomas, preparamos la personalización desde acá.</p><div class="train-state"><span class="dot" id="dot"></span><span id="trainstate">Esperando tomas</span></div><button class="btn primary" id="entrenar" disabled>entrenar mi modelo</button><div class="train-log" id="trainlog" hidden></div></section><p class="privacy"><b>Privacidad.</b> Tus tomas quedan en esta computadora. Solo se suben los recortes de boca y sus frases si elegís entrenar.</p></aside>
 </main>
-
 <script>
-  const $=id=>document.getElementById(id);
-  let persona="", modo="cal", i=0, hechas=0, frases=[], grabando=false;
-  async function post(url, body){ const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body||{})}); return r.json(); }
-
-  $("empezar").onclick = async ()=>{
-    persona = $("persona").value.trim() || "persona";
-    const st = await post("/cal/entrar", {persona, modo: modo==="contrib"?"contrib":"calibrar"});
-    persona = st.persona; hechas = st.hechas||0;
-    const est = await (await fetch("/cal/estado")).json();
-    frases = est.frases; i = Math.min(hechas, frases.length-1);
-    $("setup").hidden = true; $("grabador").hidden = false;
-    $("cmdtrain").textContent = `bash personalization/calibracion/calibrar_entrenar.sh ${persona}`;
-    $("cmddemo").textContent  = `python demo/demo_web.py --ckpt modelos/personal/${persona}.pth`;
-    pinta();
-  };
-  window.addEventListener("beforeunload", ()=>navigator.sendBeacon&&navigator.sendBeacon("/cal/salir","{}"));
-
-  function pinta(){
-    $("frase").textContent = frases[i] || "(no quedan frases — ¡gracias!)";
-    $("ntoma").textContent = (modo==="cal" ? i+1 : hechas+1);
-    $("pfill").style.width = Math.min(hechas/40*100,100)+"%";
-    $("ptext").textContent = hechas + " / 40" + (hechas>=40 ? "  ✓ listo para entrenar" : "");
-  }
-  function setmodo(m){
-    modo=m;
-    $("tab-cal").classList.toggle("on",m==="cal");
-    $("tab-contrib").classList.toggle("on",m==="contrib");
-    $("modo-cal").hidden = m!=="cal";
-    $("modo-contrib").hidden = m!=="contrib";
-    $("saltar").style.display = m==="cal" ? "" : "none";
-    $("escena").textContent = m==="cal" ? "ESCENA · calibración personal" : "ESCENA · donación al dataset";
-    $("pnota").textContent = m==="cal" ? "Con ~40 tomas alcanza para calibrar (mínimo útil ~20)."
-                                       : "Cada frase que dones suma al dataset rioplatense. ¡Gracias!";
-    if(persona) post("/cal/entrar",{persona, modo: m==="contrib"?"contrib":"calibrar"}).then(st=>{hechas=st.hechas||0; pinta();});
-  }
-  $("tab-cal").onclick=()=>setmodo("cal");
-  $("tab-contrib").onclick=()=>setmodo("contrib");
-  $("saltar").onclick=()=>{ i=Math.min(i+1,frases.length-1); pinta(); };
-
-  async function recStart(){
-    if(grabando) return; grabando=true;
-    $("btnrec").classList.add("on"); $("recdot").style.display="flex";
-    await post("/cal/rec");
-  }
-  async function recStop(){
-    if(!grabando) return; grabando=false;
-    $("btnrec").classList.remove("on"); $("recdot").style.display="none";
-    const body = modo==="contrib" ? {texto: $("dijo").value} : {i};
-    const r = await post("/cal/corte", body);
-    $("msg").textContent = r.msg; $("msg").className = "msg " + (r.ok?"ok":"err");
-    if(r.ok){ hechas = r.hechas ?? (hechas+1); if(modo==="cal") i=Math.min(i+1,frases.length-1); if(modo==="contrib") $("dijo").value=""; pinta(); }
-  }
-  $("btnrec").onmousedown=recStart; $("btnrec").onmouseup=recStop; $("btnrec").onmouseleave=()=>{if(grabando)recStop();};
-  $("btnrec").ontouchstart=e=>{e.preventDefault();recStart();}; $("btnrec").ontouchend=e=>{e.preventDefault();recStop();};
-  document.addEventListener("keydown",e=>{ if(e.code==="Space" && !e.repeat && document.activeElement.tagName!=="INPUT"){ e.preventDefault(); recStart(); }});
-  document.addEventListener("keyup",e=>{ if(e.code==="Space" && document.activeElement.tagName!=="INPUT"){ e.preventDefault(); recStop(); }});
+const $=id=>document.getElementById(id);let persona="",frases=[],indice=0,hechas=0,grabando=false,revisando=false;
+async function post(url,body={}){const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});return r.json()}
+function mensaje(texto,tipo=""){$("msg").textContent=texto;$("msg").className="message "+tipo}
+function pintar(estado={}){hechas=estado.hechas??hechas;indice=estado.siguiente??indice;$("frase").textContent=frases[indice]||"No quedan frases nuevas por ahora.";$("ntoma").textContent=(indice??0)+1;$("pfill").style.width=Math.min(hechas/60*100,100)+"%";const meta=hechas<40?40:hechas<60?60:"sin límite";$("ptext").textContent=`${hechas} tomas · meta: ${meta}`;$("pnota").textContent=hechas<20?"Con 20 tomas se habilita el entrenamiento. La primera meta sugerida es 40.":hechas<40?"Ya podés entrenar. Seguí hasta 40 para un primer modelo personal.":hechas<60?"Excelente: vamos por 60 tomas para un perfil más robusto.":"Meta abierta: cada toma nueva sigue mejorando tu perfil.";$("entrenar").disabled=hechas<20}
+$("empezar").onclick=async()=>{const r=await post("/cal/entrar",{persona:$("persona").value});if(!r.ok)return mensaje(r.msg,"err");persona=r.persona;const est=await(await fetch("/cal/estado")).json();frases=est.frases;$("setup").hidden=true;$("app").hidden=false;pintar(est);mensaje(`Hola, ${persona}. Leé la frase cuando estés listo.`)};
+async function iniciar(){if(grabando||revisando)return;const r=await post("/cal/rec");if(!r.ok)return mensaje(r.msg,"err");grabando=true;$("btnrec").classList.add("on");$("recdot").classList.add("on");mensaje("Grabando… soltá al terminar.")}
+async function terminar(){if(!grabando)return;grabando=false;$("btnrec").classList.remove("on");$("recdot").classList.remove("on");mensaje("Preparando la toma…");const r=await post("/cal/corte",{i:indice});if(!r.ok)return mensaje(r.msg,"err");revisando=true;$("revision").hidden=false;$("btnrec").disabled=true;$("saltar").disabled=true;$("preview").src="/cal/preview?t="+Date.now();$("datos-toma").textContent=`${r.duracion_s.toFixed(1)} s · ${Math.round(r.ratio_deteccion*100)}% de cara detectada · ${r.n_frames} cuadros`;mensaje("Todo listo. Elegí qué querés hacer con esta toma.","ok")}
+function cerrarRevision(){revisando=false;$("revision").hidden=true;$("btnrec").disabled=false;$("saltar").disabled=false}
+$("btnrec").onmousedown=iniciar;$("btnrec").onmouseup=terminar;$("btnrec").onmouseleave=()=>{if(grabando)terminar()};$("btnrec").ontouchstart=e=>{e.preventDefault();iniciar()};$("btnrec").ontouchend=e=>{e.preventDefault();terminar()};document.addEventListener("keydown",e=>{if(e.code==="Space"&&!e.repeat&&document.activeElement.tagName!=="INPUT"){e.preventDefault();iniciar()}});document.addEventListener("keyup",e=>{if(e.code==="Space"&&document.activeElement.tagName!=="INPUT"){e.preventDefault();terminar()}});
+$("aceptar").onclick=async()=>{const r=await post("/cal/aceptar");if(!r.ok)return mensaje(r.msg,"err");cerrarRevision();pintar(r);mensaje("Toma guardada. Seguimos con la próxima.","ok")};$("repetir").onclick=async()=>{const r=await post("/cal/descartar",{seguir:false});cerrarRevision();pintar(r);mensaje("Listo: repetimos la misma frase.")};$("descartar").onclick=async()=>{const r=await post("/cal/descartar",{seguir:true});cerrarRevision();pintar(r);mensaje("La descartamos y seguimos con una frase nueva.")};$("saltar").onclick=async()=>{const r=await post("/cal/descartar",{seguir:true});pintar(r);mensaje("La dejamos para después.")};
+async function refrescarEntrenamiento(){if(!persona)return;const e=await(await fetch("/cal/entrenamiento")).json();const nombres={idle:"Esperando tomas",preparando:"Preparando datos",subiendo:"Subiendo datos privados",buscando_gpu:"Buscando una GPU",entrenando:"Entrenando · suele tardar 8–12 min",listo:"Modelo listo",error:"Algo salió mal"};$("trainstate").textContent=nombres[e.fase]||e.fase;$("dot").className="dot "+(e.fase==="error"?"error":e.fase==="listo"?"ready":e.activo?"busy":"");$("trainlog").hidden=!(e.salida||[]).length;$("trainlog").textContent=(e.salida||[]).join("\n")+(e.error?"\n"+e.error:"");$("entrenar").disabled=hechas<20||e.activo}
+$("entrenar").onclick=async()=>{if(!confirm("Va a usar una GPU en la nube durante unos minutos (costo estimado: US$0,05). ¿Empezar?"))return;const r=await post("/cal/entrenar");mensaje(r.msg,r.ok?"ok":"err");refrescarEntrenamiento()};setInterval(refrescarEntrenamiento,2000);window.addEventListener("beforeunload",()=>navigator.sendBeacon&&navigator.sendBeacon("/cal/salir","{}"));
 </script>
-</body>
-</html>
+</body></html>

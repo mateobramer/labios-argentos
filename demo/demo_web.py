@@ -14,7 +14,7 @@ Solo stdlib (http.server) — sin dependencias nuevas. Corre en el env `ptt`:
                                                [--pause 0.45] [--sens 3.0] [--qwen]
 Ctrl-C para salir.
 """
-import os, re, sys, time, json, threading, subprocess, tempfile, argparse, collections, statistics, webbrowser
+import os, re, sys, time, json, threading, subprocess, tempfile, argparse, collections, statistics, webbrowser, shutil
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import cv2, numpy as np
 
@@ -29,12 +29,14 @@ from preprocessing.src.video_process import VideoProcess
 VISPER_PY = os.path.expanduser(os.environ.get("VISPER_PY", "~/miniconda3/envs/visper/bin/python"))
 INFER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "infer_server.py")
 HTML = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web", "index.html")
+HTML_MODELO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web", "modelo.html")
+MODELOS_PERSONAL = os.path.join(REPO, "modelos", "personal")
 MIN_SEG_S, PREROLL_S, MOV_WIN_S, CALIB_S = 0.7, 0.25, 0.35, 2.0
 
 # ---- estado compartido (los handlers http lo leen) ----
 S = {"fase": "calibrando", "mov": 0.0, "thr": None, "busy": False,
      "segmentos": [], "config": {}, "ultimo_forzado": False,
-     "n_caras": 0, "lock_bbox": None}
+     "n_caras": 0, "lock_bbox": None, "camara": "iniciando"}
 JPEG = {"data": None}
 STRIPS = []          # tiras "lo que ve el modelo": jpg de 7 bocas 96x96 por segmento
 BUF = collections.deque()
@@ -44,17 +46,15 @@ SRV = {"proc": None, "lock": threading.Lock()}
 
 # ---- modo calibracion (grabar frases para adaptar el modelo a una persona) ----
 from personalization.build_testset import PROMPTS as CAL_PROMPTS  # mismas 100 frases del self-test (REPO ya esta en sys.path)
-CAL_N = 40                                                 # frases sugeridas (30 ya captura ~80%)
-CAL = {"activo": False, "persona": "", "dir": None, "rec_t0": None, "hechas": 0, "msg": ""}
+from personalization.sesiones import Sesiones, nombre_persona, NIVELES
+CAL_N = 40
+PERSONAL_ROOT = os.environ.get("VSR_PERSONAL_DIR", "~/vsr_personal")
+SESIONES = Sesiones(PERSONAL_ROOT, CAL_PROMPTS)
+CAL = {"activo": False, "persona": "", "dir": None, "rec_t0": None,
+       "pendiente": None, "preview": None, "msg": ""}
 CAL_LOCK = threading.Lock()
-
-def cal_dir(persona):
-    d = os.path.expanduser(f"~/vsr_personal/{persona}")
-    os.makedirs(d, exist_ok=True); return d
-
-def cal_contar(d):
-    import glob as _g
-    return len(_g.glob(os.path.join(d, "clip_*.npz")))
+TRAIN = {"proc": None, "fase": "idle", "salida": [], "error": ""}
+TRAIN_LOCK = threading.Lock()
 
 def apertura(lm):
     boca = abs(lm[14].y - lm[13].y)
@@ -243,13 +243,21 @@ def hilo_segmentador(args):
                 BUF.popleft()
 
 def hilo_camara():
-    cap = cv2.VideoCapture(0)
+    # En Windows DirectShow evita que Media Foundation abra una sesion vacia o
+    # quede bloqueada despues de cerrar una instancia anterior de la demo.
+    backend = cv2.CAP_DSHOW if os.name == "nt" else cv2.CAP_ANY
+    cap = cv2.VideoCapture(0, backend)
     if not cap.isOpened():
-        print("[web] ERROR: no abre la camara"); STOP.set(); return
+        S["camara"] = "No pude abrir la cámara. Cerrá otras apps que la estén usando y reiniciá la demo."
+        print("[web] ERROR: no abre la camara"); return
     for _ in range(40):                              # warmup macOS
         ok, _f = cap.read()
         if ok: break
         time.sleep(0.2)
+    if not ok:
+        S["camara"] = "La cámara abrió pero no entrega imagen. Cerrá otras apps que la estén usando y reiniciá la demo."
+        cap.release(); print("[web] ERROR: la camara no entrego cuadros"); return
+    S["camara"] = "ok"
     print("[web] camara ok.", flush=True)
     last_jpg = 0.0
     fails = 0
@@ -257,7 +265,9 @@ def hilo_camara():
         ok, frame = cap.read()
         if not ok:
             fails += 1
-            if fails > 80: print("[web] camara no responde"); break
+            if fails > 80:
+                S["camara"] = "La cámara dejó de entregar imagen. Cerrá otras apps que la estén usando y reiniciá la demo."
+                print("[web] camara no responde"); break
             time.sleep(0.03); continue
         fails = 0
         now = time.time()
@@ -280,8 +290,8 @@ def hilo_camara():
 
 CAL_VPROC = VideoProcess()
 
-def cal_guardar(idx, t0, t1, texto):
-    """Corta [t0,t1] del buffer, croppea con los landmarks ya computados y guarda npz+txt."""
+def cal_preparar(idx, t0, t1, texto):
+    """Corta una toma y la deja en memoria hasta que la persona la apruebe."""
     fin = time.time() + 2.5                       # esperar a que el hilo de landmarks alcance t1
     while time.time() < fin:
         with LOCK:
@@ -290,22 +300,98 @@ def cal_guardar(idx, t0, t1, texto):
         time.sleep(0.05)
     with LOCK:
         seg = [e for e in BUF if t0 <= e["t"] <= t1 and e["pts"] is not False]
-    if len(seg) < 20:
-        return False, f"muy corto ({len(seg)} frames) — mantené apretado mientras leés"
+    # No rechazamos tomas por cantidad de frames: la revisión humana decide si
+    # sirve. Con menos de dos no hay intervalo temporal para procesar el clip.
+    if len(seg) < 2:
+        return False, "no llegué a capturar imagen; probá de nuevo", None
     dur = seg[-1]["t"] - seg[0]["t"]; fps = (len(seg)-1)/max(dur, 1e-3)
     pts = [e["pts"] for e in seg]
     if sum(1 for p in pts if p is not None)/len(pts) < 0.6:
-        return False, "cara no detectada de forma estable — poné la cara de frente"
+        return False, "cara no detectada de forma estable — poné la cara de frente", None
     rgb = [np.ascontiguousarray(cv2.cvtColor(e["frame"], cv2.COLOR_BGR2RGB)) for e in seg]
     seq = CAL_VPROC(rgb, pts)
     if seq is None or len(seq) == 0:
-        return False, "no pude recortar la boca — probá de nuevo"
+        return False, "no pude recortar la boca — probá de nuevo", None
     arr = np.asarray(remuestrear_a_25fps([seq[i] for i in range(len(seq))], fps), dtype=np.uint8)
-    base = os.path.join(CAL["dir"], f"clip_{idx:02d}")
-    np.savez_compressed(base + ".npz", rois=arr)
-    with open(base + ".txt", "w", encoding="utf-8") as f:
-        f.write(texto)
-    return True, f"guardada ({arr.shape[0]} frames @25fps)"
+    tira = np.concatenate([arr[k] for k in np.linspace(0, len(arr)-1, 7).astype(int)], axis=1)
+    ok, jpg = cv2.imencode(".jpg", tira, [cv2.IMWRITE_JPEG_QUALITY, 84])
+    pendiente = {"frase_id": idx, "texto": texto, "rois": arr, "frames": int(len(arr)),
+                 "duracion": round(dur, 2), "ratio": round(sum(p is not None for p in pts)/len(pts), 3)}
+    return True, "toma lista para revisar", (pendiente, jpg.tobytes() if ok else None)
+
+def estado_entrenamiento():
+    with TRAIN_LOCK:
+        activo = TRAIN["proc"] is not None and TRAIN["proc"].poll() is None
+        return {"activo": activo, "fase": TRAIN["fase"], "salida": TRAIN["salida"][-16:], "error": TRAIN["error"]}
+
+def ruta_bash(ruta):
+    """Convierte una ruta absoluta de Windows al formato que entiende Git Bash."""
+    absoluta = os.path.abspath(os.path.expanduser(ruta))
+    unidad, resto = os.path.splitdrive(absoluta)
+    if unidad:
+        return f"/{unidad[0].lower()}{resto.replace(os.sep, '/') }"
+    return absoluta.replace(os.sep, "/")
+
+def hilo_entrenamiento(persona):
+    script = os.path.join(REPO, "personalization", "calibracion", "calibrar_entrenar.sh")
+    try:
+        git_bash = r"C:\Program Files\Git\bin\bash.exe"
+        bash = git_bash if os.path.isfile(git_bash) else (os.environ.get("BASH") or shutil.which("bash") or "bash")
+        env = dict(os.environ, VSR_PERSONAL_DIR=ruta_bash(PERSONAL_ROOT),
+                   VSR_CAL_PY=ruta_bash(sys.executable))
+        proc = subprocess.Popen([bash, ruta_bash(script), persona], cwd=REPO, env=env,
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                text=True, encoding="utf-8", errors="replace")
+        with TRAIN_LOCK: TRAIN.update(proc=proc, fase="preparando")
+        for linea in proc.stdout:
+            linea = linea.rstrip()
+            with TRAIN_LOCK:
+                TRAIN["salida"].append(linea)
+                bajo = linea.lower()
+                if "== 2/4" in linea: TRAIN["fase"] = "subiendo"
+                elif "== 3/4" in linea: TRAIN["fase"] = "buscando_gpu"
+                elif "== 4/4" in linea: TRAIN["fase"] = "entrenando"
+                elif "listo" in bajo: TRAIN["fase"] = "listo"
+        if proc.wait() != 0:
+            with TRAIN_LOCK:
+                salida = "\n".join(TRAIN["salida"])
+                if "storage.objects.create" in salida:
+                    error = ("No hay permiso para subir las tomas al bucket privado. "
+                             "Hace falta roles/storage.objectAdmin sobre labios-argentos-vsr-dataset "
+                             "para la cuenta activa.")
+                else:
+                    error = "El entrenamiento no pudo completarse. Revisá el detalle de abajo."
+                TRAIN.update(fase="error", error=error)
+        elif TRAIN["fase"] != "listo":
+            with TRAIN_LOCK: TRAIN["fase"] = "listo"
+    except Exception as e:
+        with TRAIN_LOCK: TRAIN.update(fase="error", error=str(e))
+
+def iniciar_entrenamiento(persona):
+    if SESIONES.estado(persona)["hechas"] < 20:
+        return False, "Necesitás al menos 20 tomas guardadas."
+    with TRAIN_LOCK:
+        if TRAIN["proc"] is not None and TRAIN["proc"].poll() is None:
+            return False, "Ya hay un entrenamiento en curso."
+        TRAIN.update(fase="preparando", salida=[], error="")
+    threading.Thread(target=hilo_entrenamiento, args=(persona,), daemon=True).start()
+    return True, "Preparando el entrenamiento."
+
+def activar_modelo(persona, usar_base=False):
+    """Recarga inferencia sin perder las tomas de la sesión."""
+    ckpt = os.path.join(MODELOS_PERSONAL, persona + ".pth")
+    if not usar_base and not os.path.isfile(ckpt):
+        return False, "Todavía no hay un modelo personal terminado."
+    try:
+        with SRV["lock"]:
+            if usar_base: os.environ.pop("VSR_CKPT", None)
+            else: os.environ["VSR_CKPT"] = ckpt
+            if SRV.get("proc"): SRV["proc"].terminate()
+            SRV["proc"], cfg = lanzar_servidor(bool(S["config"].get("qwen")))
+            S["config"] = cfg
+        return True, "Modelo base activo." if usar_base else "Tu modelo personal está activo."
+    except Exception as e:
+        return False, str(e)
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -327,6 +413,19 @@ class H(BaseHTTPRequestHandler):
             self.send_header("Content-Length", str(len(body)))
             self.end_headers(); self.wfile.write(body)
             return
+        if self.path == "/modelo":
+            body = open(HTML_MODELO, "rb").read(); self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8"); self.send_header("Content-Length", str(len(body)))
+            self.end_headers(); self.wfile.write(body); return
+        if self.path == "/cal/preview":
+            with CAL_LOCK: d = CAL.get("preview")
+            if not d:
+                self.send_response(404); self.end_headers(); return
+            self.send_response(200); self.send_header("Content-Type", "image/jpeg")
+            self.send_header("Content-Length", str(len(d))); self.send_header("Cache-Control", "no-store")
+            self.end_headers(); self.wfile.write(d); return
+        if self.path == "/cal/entrenamiento":
+            self._json(200, estado_entrenamiento()); return
         if self.path.startswith("/strip/"):
             try:
                 d = STRIPS[int(self.path.rsplit("/", 1)[1])]
@@ -340,10 +439,12 @@ class H(BaseHTTPRequestHandler):
             return
         if self.path == "/cal/estado":
             with CAL_LOCK:
-                hechas = cal_contar(CAL["dir"]) if CAL["dir"] else 0
-                self._json(200, {"activo": CAL["activo"], "persona": CAL["persona"],
-                                 "hechas": hechas, "sugeridas": CAL_N, "total": len(CAL_PROMPTS),
+                estado = SESIONES.estado(CAL["persona"]) if CAL["persona"] else {"hechas": 0, "siguiente": 0, "nivel": {}}
+                modelo = os.path.join(MODELOS_PERSONAL, CAL["persona"] + ".pth") if CAL["persona"] else ""
+                self._json(200, {"activo": CAL["activo"], "persona": CAL["persona"], **estado,
+                                 "sugeridas": CAL_N, "total": len(CAL_PROMPTS), "niveles": NIVELES,
                                  "frases": CAL_PROMPTS, "grabando": CAL["rec_t0"] is not None,
+                                 "pendiente": CAL["pendiente"] is not None, "modelo_disponible": os.path.isfile(modelo),
                                  "msg": CAL["msg"]})
             return
         if self.path == "/":
@@ -422,40 +523,75 @@ class H(BaseHTTPRequestHandler):
             self._json(200, {"ok": True})
         elif self.path == "/cal/entrar":
             b = self._body()
-            persona = re.sub(r"[^a-z0-9_-]", "", str(b.get("persona", "")).lower().strip()) or "persona"
-            modo = "contrib" if b.get("modo") == "contrib" else "calibrar"
-            raiz = "~/vsr_contrib" if modo == "contrib" else "~/vsr_personal"
-            d = os.path.expanduser(f"{raiz}/{persona}"); os.makedirs(d, exist_ok=True)
+            persona = nombre_persona(b.get("persona"))
+            estado = SESIONES.estado(persona)
             with CAL_LOCK:
-                CAL.update(activo=True, persona=persona, dir=d, modo=modo,
-                           rec_t0=None, msg=f"listo, {persona}")
-            self._json(200, {"ok": True, "persona": persona, "modo": modo,
-                             "hechas": cal_contar(d)})
+                CAL.update(activo=True, persona=persona, dir=estado["carpeta"], rec_t0=None,
+                           pendiente=None, preview=None, msg=f"Listo, {persona}.")
+            self._json(200, {"ok": True, **estado})
         elif self.path == "/cal/salir":
             with CAL_LOCK:
                 CAL.update(activo=False, rec_t0=None, msg="")
             self._json(200, {"ok": True})
         elif self.path == "/cal/rec":
             with CAL_LOCK:
+                if not CAL["activo"]:
+                    self._json(400, {"ok": False, "msg": "Primero ingresá tu nombre."}); return
+                if CAL["pendiente"] is not None:
+                    self._json(400, {"ok": False, "msg": "Primero elegí qué hacer con la toma anterior."}); return
                 CAL["rec_t0"] = time.time(); CAL["msg"] = "grabando..."
             self._json(200, {"ok": True})
         elif self.path == "/cal/corte":
             b = self._body()
             with CAL_LOCK:
                 t0 = CAL["rec_t0"]; CAL["rec_t0"] = None
-                modo = CAL.get("modo", "calibrar")
+                persona = CAL["persona"]
             if t0 is None:
                 self._json(400, {"ok": False, "msg": "no estaba grabando"}); return
-            if modo == "contrib":
-                idx = cal_contar(CAL["dir"])                     # siguiente libre
-                texto = norm_texto(str(b.get("texto", "")))
-                if not texto:
-                    self._json(200, {"ok": False, "msg": "escribí lo que dijiste antes de cortar"}); return
+            estado = SESIONES.estado(persona, int(b.get("i", 0)))
+            idx = estado["siguiente"] if estado["siguiente"] is not None else int(b.get("i", 0))
+            if idx < 0 or idx >= len(CAL_PROMPTS):
+                self._json(400, {"ok": False, "msg": "No quedan frases disponibles."}); return
+            ok, msg, resultado = cal_preparar(idx, t0, time.time(), CAL_PROMPTS[idx])
+            with CAL_LOCK:
+                CAL["msg"] = msg
+                if ok:
+                    CAL["pendiente"], CAL["preview"] = resultado
+            if not ok:
+                SESIONES.evento(persona, "fallida", idx, motivo=msg)
+                self._json(200, {"ok": False, "msg": msg}); return
+            pendiente, _preview = resultado
+            self._json(200, {"ok": True, "msg": msg, "duracion_s": pendiente["duracion"],
+                             "ratio_deteccion": pendiente["ratio"], "n_frames": pendiente["frames"]})
+        elif self.path == "/cal/aceptar":
+            with CAL_LOCK:
+                persona, pendiente = CAL["persona"], CAL["pendiente"]
+                CAL["pendiente"] = None; CAL["preview"] = None
+            if not pendiente:
+                self._json(400, {"ok": False, "msg": "No hay una toma para guardar."}); return
+            estado = SESIONES.aceptar(persona, pendiente)
+            self._json(200, {"ok": True, "msg": "Toma guardada.", **estado})
+        elif self.path == "/cal/descartar":
+            b = self._body()
+            with CAL_LOCK:
+                persona, pendiente = CAL["persona"], CAL["pendiente"]
+                CAL["pendiente"] = None; CAL["preview"] = None
+            frase_id = (pendiente or {}).get("frase_id", SESIONES.estado(persona).get("siguiente", 0))
+            if b.get("seguir"):
+                estado = SESIONES.omitir(persona, frase_id)
             else:
-                idx = int(b.get("i", 0)); texto = CAL_PROMPTS[idx]
-            ok, msg = cal_guardar(idx, t0, time.time(), texto)
-            with CAL_LOCK: CAL["msg"] = msg
-            self._json(200, {"ok": ok, "msg": msg, "hechas": cal_contar(CAL["dir"])})
+                SESIONES.evento(persona, "reintento", frase_id)
+                estado = SESIONES.estado(persona, frase_id)
+            self._json(200, {"ok": True, "msg": "Toma descartada.", **estado})
+        elif self.path == "/cal/entrenar":
+            with CAL_LOCK: persona = CAL["persona"]
+            ok, msg = iniciar_entrenamiento(persona)
+            self._json(200 if ok else 400, {"ok": ok, "msg": msg})
+        elif self.path == "/cal/activar":
+            with CAL_LOCK: persona = CAL["persona"]
+            ok, msg = activar_modelo(persona); self._json(200 if ok else 400, {"ok": ok, "msg": msg})
+        elif self.path == "/cal/base":
+            ok, msg = activar_modelo("", usar_base=True); self._json(200 if ok else 400, {"ok": ok, "msg": msg})
         else:
             self.send_response(404); self.end_headers()
 
