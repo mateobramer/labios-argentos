@@ -489,8 +489,11 @@ class H(BaseHTTPRequestHandler):
                 with SRV["lock"]:
                     SRV["proc"].stdin.write(f"::qwen {int(on)}\n"); SRV["proc"].stdin.flush()
                     resp = SRV["proc"].stdout.readline().strip()
-                S["config"]["qwen"] = on
-                self._json(200, {"ok": resp.startswith("::ok"), "qwen": on})
+                ok = resp.startswith("::ok")
+                # si el server rechaza el ON (Ollama caido) tambien deja qwen apagado de su lado
+                S["config"]["qwen"] = on if ok else False
+                self._json(200, {"ok": ok, "qwen": S["config"]["qwen"],
+                                 "msg": "" if ok else resp.removeprefix("::err").strip()})
             except Exception as e:
                 self._json(500, {"ok": False, "msg": str(e)})
         elif self.path == "/clear":

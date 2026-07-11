@@ -72,6 +72,7 @@ __pycache__/
 .ai/
 
 # Entornos virtuales (libs pesadas, no versionar)
+.env
 .venv/
 .venv-visual/
 .venv-cleaning/

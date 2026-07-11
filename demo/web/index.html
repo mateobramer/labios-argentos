@@ -256,7 +256,8 @@
     const r = await fetch("/qwen",{method:"POST",headers:{"Content-Type":"application/json"},
                                    body:JSON.stringify({on:!qwenOn})});
     const j = await r.json();
-    if (j.ok){ qwenOn = j.qwen; pintaQwen(); }
+    if (typeof j.qwen === "boolean"){ qwenOn = j.qwen; pintaQwen(); }
+    if (!j.ok && j.msg){ alert("No se pudo prender el corrector: " + j.msg); }
   };
   $("clear").onclick = () => fetch("/clear",{method:"POST"});
   window.corregir = async (i) => {   // correccion humana: queda SOLO local (data/feedback/)

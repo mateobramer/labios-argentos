@@ -4,6 +4,9 @@
 set -u
 cd "$(dirname "$0")"
 
+# Config por máquina (gitignoreada): exporta lo definido en .env si existe. Ver .env.example.
+if [ -f .env ]; then set -a; . ./.env; set +a; fi
+
 find_env_python() {
   local env_name="$1"
   local explicit_path="${2:-}"

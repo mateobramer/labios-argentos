@@ -71,6 +71,17 @@ def qwen_rescore(cands):
         print(f"[infer] qwen fallo ({e}), uso 1-best", file=sys.stderr, flush=True)
         return cands[0]
 
+def ollama_disponible():
+    """Chequea que Ollama responda y tenga el modelo, para no prometer correccion que no corre."""
+    try:
+        with urllib.request.urlopen(OLLAMA + "/api/tags", timeout=3) as r:
+            tags = json.loads(r.read().decode()).get("models", [])
+    except Exception:
+        return False, f"Ollama no responde en {OLLAMA}"
+    if not any(m.get("name", "").startswith(QMODEL) for m in tags):
+        return False, f"falta el modelo en Ollama: ollama pull {QMODEL}"
+    return True, ""
+
 def main():
     print(f"[infer] cargando ViSpeR... (qwen={'ON' if USE_QWEN else 'off'})", file=sys.stderr, flush=True)
     mm = ModelModule(build_cfg())
@@ -94,7 +105,12 @@ def main():
         mm.model.encoder.to(enc_dev)
     vt = VideoTransform(subset="test")
     from espnet.asr.asr_utils import add_results_to_json as _arj
-    print(f"[infer] listo (encoder={enc_dev}, beam={BEAM} en {dev}, qwen={'ON' if USE_QWEN else 'off'}). Esperando npz...",
+    if RT["qwen"]:
+        oll_ok, motivo = ollama_disponible()
+        if not oll_ok:
+            RT["qwen"] = False
+            print(f"[infer] VSR_QWEN=1 pero {motivo}; arranco con qwen OFF", file=sys.stderr, flush=True)
+    print(f"[infer] listo (encoder={enc_dev}, beam={BEAM} en {dev}, qwen={'ON' if RT['qwen'] else 'off'}). Esperando npz...",
           file=sys.stderr, flush=True)
     # linea CONFIG antes de READY: los clientes que solo esperan READY la ignoran
     print("CONFIG " + json.dumps({"encoder": enc_dev, "beam": BEAM, "qwen": RT["qwen"],
@@ -107,7 +123,14 @@ def main():
             continue
         if npzp.startswith("::"):                 # linea de control (responde SIEMPRE 1 linea)
             if npzp.startswith("::qwen"):
-                RT["qwen"] = npzp.split()[-1] in ("1", "on", "true")
+                pedido = npzp.split()[-1] in ("1", "on", "true")
+                if pedido:
+                    oll_ok, motivo = ollama_disponible()
+                    if not oll_ok:
+                        RT["qwen"] = False
+                        print(f"::err {motivo}", flush=True)
+                        continue
+                RT["qwen"] = pedido
             print(f"::ok qwen={int(RT['qwen'])}", flush=True)
             continue
         try:
