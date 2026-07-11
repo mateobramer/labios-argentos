@@ -128,10 +128,12 @@ PROMPTS += [
     "vamos a tomar algo despues del laburo",
     "hace mucho que no me tomo unas vacaciones",
 ]
-# Set externo curado para la demo: permite reemplazar la lista sin tocar el
-# capturador. En esta PC se usa el archivo que se entregó para la presentación.
+# Set curado de 1100 frases (18-24 palabras, validado sin repeticiones), versionado
+# junto a este archivo; VSR_PROMPTS_FILE permite pisarlo sin tocar el capturador.
 ARCHIVO_PROMPTS = os.path.expanduser(os.environ.get(
-    "VSR_PROMPTS_FILE", "~/Downloads/prompts_vsr_rioplatense_1100_limpio.py"))
+    "VSR_PROMPTS_FILE",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                 "prompts_vsr_rioplatense_1100_limpio.py")))
 if os.path.isfile(ARCHIVO_PROMPTS):
     prompts_externos = runpy.run_path(ARCHIVO_PROMPTS).get("PROMPTS")
     if isinstance(prompts_externos, list) and prompts_externos:

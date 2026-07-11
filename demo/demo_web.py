@@ -45,7 +45,7 @@ STOP = threading.Event()
 SRV = {"proc": None, "lock": threading.Lock()}
 
 # ---- modo calibracion (grabar frases para adaptar el modelo a una persona) ----
-from personalization.build_testset import PROMPTS as CAL_PROMPTS  # mismas 100 frases del self-test (REPO ya esta en sys.path)
+from personalization.build_testset import PROMPTS as CAL_PROMPTS  # set curado de 1100 frases versionado en personalization/ (REPO ya esta en sys.path)
 from personalization.sesiones import Sesiones, nombre_persona, NIVELES
 CAL_N = 40
 PERSONAL_ROOT = os.environ.get("VSR_PERSONAL_DIR", "~/vsr_personal")

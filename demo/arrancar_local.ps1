@@ -20,7 +20,6 @@ $env:LABIOS_REPO = $repo
 $env:VISPER_PY = $python
 $env:VISPER_DIR = $visper
 $env:VSR_PERSONAL_DIR = $capturas
-$env:VSR_PROMPTS_FILE = Join-Path $env:USERPROFILE 'Downloads\prompts_vsr_rioplatense_1100_limpio.py'
 $env:PYTHONUTF8 = '1'
 
 & $python (Join-Path $repo 'demo\demo_web.py') --port $Port
