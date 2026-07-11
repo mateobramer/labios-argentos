@@ -436,7 +436,9 @@ class H(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-Type", "image/jpeg")
                 self.send_header("Content-Length", str(len(d)))
-                self.send_header("Cache-Control", "max-age=3600")
+                # no-store: los ids de strip se reinician con el server; con cache el
+                # navegador muestra bocas de una sesion anterior (de otra persona).
+                self.send_header("Cache-Control", "no-store")
                 self.end_headers(); self.wfile.write(d)
             except Exception:
                 self.send_response(404); self.end_headers()

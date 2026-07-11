@@ -7,6 +7,17 @@ cd "$(dirname "$0")"
 # Config por máquina (gitignoreada): exporta lo definido en .env si existe. Ver .env.example.
 if [ -f .env ]; then set -a; . ./.env; set +a; fi
 
+# Corrector LLM: si Ollama está instalado pero apagado, levantarlo (la UI avisa si falta).
+if ! curl -s --max-time 1 http://127.0.0.1:11434/api/version >/dev/null 2>&1; then
+  OLLAMA_BIN="$(command -v ollama || true)"
+  [ -z "$OLLAMA_BIN" ] && [ -x "$HOME/.local/ollama/ollama" ] && OLLAMA_BIN="$HOME/.local/ollama/ollama"
+  if [ -n "$OLLAMA_BIN" ]; then
+    echo "[run] levantando Ollama para el corrector..."
+    mkdir -p "$HOME/.ollama"
+    nohup "$OLLAMA_BIN" serve >> "$HOME/.ollama/serve.log" 2>&1 &
+  fi
+fi
+
 find_env_python() {
   local env_name="$1"
   local explicit_path="${2:-}"
