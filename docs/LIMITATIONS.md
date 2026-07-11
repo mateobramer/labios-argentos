@@ -40,6 +40,8 @@ Este proyecto es un prototipo de investigación e ingeniería. Sus límites, sin
 - No identificamos un corpus audiovisual público específicamente orientado al español rioplatense; el dataset es propio
   y su escala es la principal limitación de los modelos entrenados.
 - El repositorio versiona solo artefactos livianos y una muestra mínima; el dataset
-  completo, los ROIs y los pesos viven fuera de Git ([`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)).
+  completo y los ROIs están fuera del árbol actual, preservados en buckets/historia/tag,
+  y los pesos viven en buckets o releases externos
+  ([`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)).
 
 Próximos pasos para cada límite: [`FUTURE_WORK.md`](FUTURE_WORK.md).

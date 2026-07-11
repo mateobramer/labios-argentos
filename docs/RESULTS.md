@@ -77,7 +77,7 @@ Auto-AVSR LRS3 (19.1%) + MediaPipe + corrección **Qwen3-4B (Ollama)**. NO es st
 push-to-talk (grabar-soltar, inferencia offline sobre el clip entero). Es el blueprint de nuestro demo.
 
 **Lecturas clave:**
-- **Nadie tiene VSR visual-only en streaming** (el único streaming real es audio-visual).
+- **En la revisión realizada no identificamos VSR visual-only causal en streaming**; el sistema streaming citado es audio-visual.
 - **Datos y acento dominan:** LRS3 19.1% (EN) → CMU-MOSEAS 44.5% (ES) → rioplatense 71.5% zero-shot.
 - LRS3 sube de 19.1% a 36.3% al bajar de 3448h a 818h. **Nosotros tenemos ~14–19h.**
 - Nuestro análogo real es **LIP-RTVE speaker-independent (59.5% WER)**: ft05 (65) está a ~5 pts,
@@ -194,8 +194,10 @@ test-658** → le gana a NUESTRO MEJOR modelo (ft05 = 65.05, fine-tuneado) por ~
 zero-shot (71.5) por ~26 pts. El encoder de 794h de español transfiere muchísimo mejor al rioplatense que
 partir de LIP-RTVE (13h) o CMU-MOSEAS (16h). Mantiene su tokenizer SPM 21k (language token `<es>`).
 Esto reorientó la estrategia: en vez del currículum-desde-cero (ft08, train stage1 sobre 50h), **partimos
-de ViSpeR y lo fine-tuneamos sobre argentino**. Harness: `~/Desktop/visper/visper_zeroshot.py`
-(env conda `visper`, CPU ~5.9s/clip). Modelo `visper_vsr_base.pth`. Licencia CC BY-NC (uso research OK).
+de ViSpeR y lo fine-tuneamos sobre argentino**. El harness original vive en el clon externo de ViSpeR del equipo y no se versiona en este repo.
+La receta de evaluación y los artefactos necesarios están documentados en
+[exp. 02](experiments/02_zeroshot.md) y [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md).
+Licencia CC BY-NC (uso de investigación).
 
 ### Fine-tune de ViSpeR sobre argentino (2026-07-06) — EMPEORA (overfit)
 
@@ -204,7 +206,9 @@ en L4. **Resultado: WER 61.51 / CER 38.59 sobre test-658 — PEOR que el zero-sh
 subió monótono desde época 1 (39.05 → 39.71 → 40.06 → 41.16), overfit clásico; el early-stopping guardó
 época 1 (el menos sobreajustado) e igual quedó 16 pts de WER por encima del zero-shot. **Con ~19h no
 alcanza para adaptar un modelo de 794h sin degradarlo** (catastrophic forgetting / sobreajuste al set chico).
-Modelo en `modelos/ft_visper_ar_best.pth`. Scripts: `~/Desktop/visper/fine_tune_visper.py` + `dws_startup_visper.sh`.
+El checkpoint se conserva en el bucket del proyecto; la receta y los parámetros están en
+[exp. 03](experiments/03_visper_finetunes.md). Los scripts originales corrieron en el
+entorno externo de ViSpeR y no se versionan en este repositorio.
 
 ---
 
@@ -255,7 +259,7 @@ Modelo en `modelos/ft_visper_ar_best.pth`. Scripts: `~/Desktop/visper/fine_tune_
 - **2026-07-06 (madrugada)** — **ViSpeR zero-shot = 45.22 WER (mejor de todo el proyecto, −20 vs ft05).**
   Fine-tune de ViSpeR sobre 19h argentino EMPEORÓ (61.51, overfit). Corrector qwen sobre ViSpeR zs EMPEORÓ
   (+1.42, hipótesis CER refutada def.). Resumen final en §7. Teardown completo (0 VMs/discos). Imagen
-  `labios-img-visper` preservada. Modelos en `modelos/` (ft_visper_ar_best.pth) + `~/Desktop/visper/visper_vsr_base.pth`.
+  `labios-img-visper` preservada; checkpoints y pesos documentados en [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md).
 
 - **2026-07-09/10** — Cerrados los experimentos de velocidad, n-best y adaptación personal: encoder MPS
   0.17 s, e2e beam3 ~1.09 s; n-best qwen −3.04 WER significativo en self-test n=100; LoRA personal

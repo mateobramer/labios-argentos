@@ -113,9 +113,10 @@ numeran en la documentación para contar el flujo; en disco conservan nombres im
 ## 9. Datos y modelos
 
 El repositorio versiona **solo artefactos livianos**: transcripciones, manifests chicos y
-una muestra mínima para smoke tests. El **dataset completo, los ROIs y los pesos viven
-fuera de Git** (buckets del proyecto + tag `dataset-clean-v1`). Qué está incluido, qué no,
-y cómo recuperarlo: [`data/README.md`](data/README.md) y
+una muestra mínima para smoke tests. El **dataset completo y los ROIs no están en el árbol
+actual**: se preservan en buckets y, para los bytes históricos, en la historia/tag
+`dataset-clean-v1`. Los pesos viven en buckets o releases externos. Qué está incluido, qué
+no y cómo recuperarlo: [`data/README.md`](data/README.md) y
 [`docs/DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md).
 
 ## 10. Reproducibilidad

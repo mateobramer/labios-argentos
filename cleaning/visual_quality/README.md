@@ -17,7 +17,7 @@ son buenos datos antes de pasarlos al preprocesamiento visual o al entrenamiento
 ## Que no va aca
 
 - deteccion de rostro, landmarks o recorte de labios: eso va en `preprocessing/`;
-- entrenamiento de modelos VSR: eso va en `vsr/` si se agrega al repo;
+- entrenamiento de modelos VSR: eso va en `vsr/`;
 - cierre oracional: va en `cleaning/transcript_segmentation/`; rescoring en vivo: `demo/infer_server.py`.
 
 ## Detector de clips malos (`src/detectar_clips_malos.py`)
