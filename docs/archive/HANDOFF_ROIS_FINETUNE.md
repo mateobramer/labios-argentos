@@ -1,6 +1,10 @@
 # HANDOFF — Extracción de ROIs + Fine-tune del modelo de Gimeno (ft09)
 
-> **Para:** quien continúe este trabajo.
+> **Archivado, no ejecutado:** este plan (ft09) quedó documentado pero no se corrió. El
+> hallazgo de ViSpeR zero-shot ([exp. 02](../experiments/02_zeroshot.md), 45.22 WER vs
+> los ~65-70 WER esperados acá) hizo que escalar la línea del 50M de Gimeno dejara de ser
+> prioritario. Se conserva como procedimiento reproducible, no como trabajo pendiente.
+
 > **Objetivo en una línea:** sacar los ROIs de los clips nuevos, y con **todos** los datos
 > (viejos + nuevos) **repetir exactamente el fine-tune que veníamos haciendo** (ft05), respetando
 > los splits congelados, evaluar sobre el mismo test y comparar.
@@ -353,13 +357,13 @@ python vsr_main.py --database Rioplatense --scenario zero-shot \
 
 ---
 
-## 8. Expectativa honesta (para no frustrarse)
+## 8. Expectativa esperada
 
 - Sumar los datos nuevos (2.248 seguros; más si sube el yield) sobre los 8067 → **mejora modesta
   esperada: ~1-3 WER sobre ft05b (70.30)**, o sea banda **~67-69 WER**. El texto nuevo es de canales
   informales y puede ser ruidoso.
 - Esto **NO** compite con el hallazgo del proyecto (ViSpeR zero-shot = **45.22 WER**, sin fine-tune).
-  El valor de este ft09 es: (a) **baseline limpio y reproducible** para el paper (curva de datos
+  El valor de este ft09 es: (a) **baseline limpio y reproducible** (curva de datos
   8067 → 8067+nuevos sobre el mismo test), y (b) cerrar bien el experimento del base propio.
 - Si el yield de ROIs es alto (muchos clips nuevos), la mejora puede ser mayor — por eso importa el
   pilot y no cortar el yield antes de tiempo.

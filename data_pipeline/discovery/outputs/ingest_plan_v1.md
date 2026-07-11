@@ -1,6 +1,9 @@
 # Ingest plan v1
 
-No ejecutar ingest full sin aprobacion explicita. Este plan ordena candidatos para una primera ingesta controlada.
+> Plan de priorización de candidatos para el escalado del release; no se ejecutó como
+> ingest full. Se conserva como el ranking de discovery en su momento.
+
+Este plan ordena candidatos para una primera ingesta controlada.
 
 ## Orden recomendado
 ### 1. Santiago Cafiero, mano a mano en TN: "Es una decisión sanitaria, no política"

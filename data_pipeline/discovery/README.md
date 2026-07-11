@@ -131,7 +131,7 @@ Si una fuente supera el cap, los videos siguientes quedan como backup/manual rev
 
 ## Bucket / datos existentes
 
-Estado revisado durante la auditoría de 2026-07 con comandos read-only:
+Inventario read-only del bucket (comandos de referencia):
 
 ```bash
 gcloud storage ls gs://labios-argentos-vsr-data/
@@ -141,27 +141,17 @@ gsutil du -s gs://labios-argentos-vsr-data/lip_rois gs://labios-argentos-vsr-dat
 Hallazgos:
 
 - Raiz del bucket: `adaptacion/`, `corrector/`, `lip_rois/`, `lip_rois_full/`, `models/`.
-- `lip_rois/`: ~4.4 GB.
-- `models/`: ~2.1 GB.
+- `lip_rois/`: ~4.4 GB. `models/`: ~2.1 GB.
 - `adaptacion/`: checkpoints, logs, scripts y ROIs de adaptacion.
 - `corrector/`: pares train/val/test y modelo del corrector.
-- `lip_rois_full/`: lista carpetas de ROIs por fuente; el listado corto mostro fuentes ya
-  procesadas, pero `gcloud` corto por Unicode de consola Windows al imprimir un emoji.
-- No se encontro en la raiz del bucket un set claro de raw videos/clips/audio nuevos para
-  discovery.
+- `lip_rois_full/`: carpetas de ROIs por fuente ya procesadas.
+- No hay en la raiz del bucket un set claro de raw videos/clips/audio nuevos para discovery.
 
 Conclusion:
 
 - ROIs solos no alcanzan para transcript discovery/cleaning porque no incluyen audio,
-  contexto ni metadata original completa.
-- Para nuevos datos hacen falta videos/clips/audio + metadata + transcripts.
-- Si el bucket tiene clips/audio en una subcarpeta no listada, se puede incorporar en una
-  ronda posterior; con la evidencia actual, discovery nuevo debe reconstruirse desde
-  URLs/videos originales.
+  contexto ni metadata original completa; para nuevos datos hacen falta
+  videos/clips/audio + metadata + transcripts.
+- Con la evidencia disponible, un discovery nuevo se reconstruye desde URLs/videos
+  originales, no desde el bucket.
 - No subir raw videos nuevos al bucket sin aprobacion explicita.
-
-Comando de verificacion sugerido cuando haya credenciales GCP:
-
-```bash
-gcloud storage ls -r gs://labios-argentos-vsr-data/**
-```

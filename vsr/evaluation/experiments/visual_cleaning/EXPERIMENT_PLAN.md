@@ -1,5 +1,10 @@
 # Experimentos: dataset original vs cleaning visual
 
+> Plan de comparación WER/CER para la política de limpieza visual candidata
+> (`policy_moderate_v2`); no se ejecutó (ver
+> [`cleaning/visual_quality/VISUAL_QUALITY_STAGE_REPORT.md`](../../../../cleaning/visual_quality/VISUAL_QUALITY_STAGE_REPORT.md)).
+> El pipeline de entrenamiento sigue usando el manifest original (`keep`/`review`/`drop`).
+
 ## Hipotesis
 
 Excluir solo los clips `bad_candidate` del entrenamiento puede mejorar WER/CER si esos

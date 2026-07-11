@@ -1,8 +1,7 @@
 # RESULTS — ledger de resultados VSR rioplatense
 
-Documento **vivo**: acá se registran todos los números del proyecto (WER/CER, datos de train,
-repos/bases, latencias, crudo vs corregido, etc.). Se va actualizando con cada experimento.
-Última actualización: **2026-07-10**.
+Ledger con todos los números del proyecto: WER/CER, datos de train, repos/bases, latencias,
+crudo vs corregido.
 
 ## Cómo leer esta tabla
 
@@ -55,7 +54,7 @@ repos/bases, latencias, crudo vs corregido, etc.). Se va actualizando con cada e
 
 ## 2. Benchmarks externos (referencia — OTROS test sets, NO comparables directo)
 
-Contexto del estado del arte. **Ojo: cada número es sobre su propio test set**, no sobre `test-658`.
+Contexto del estado del arte. **Nota: cada número es sobre su propio test set**, no sobre `test-658`.
 Sirven para ubicar nuestros números, no para comparar 1:1. Todos offline/bidireccionales salvo aclaración.
 
 | Sistema | Repo | Dataset (naturaleza) | Métrica | Datos train | Params |
@@ -131,7 +130,7 @@ conservar ortografía) podría cambiar el signo, pero el techo lo pone el CER.
 |---|---|---|---|---|---|---|
 | **ViSpeR zero-shot** (CER 27) | 45.22 | 46.64 | **+1.42** ❌ | 26.98 | 28.32 | **+1.35** ❌ |
 
-Estratos por CER-por-clip: **0–20: +2.26** (¡el que MÁS empeora!) · 20–40: +1.11 · 40–60: +0.64 · 60+: 0.00.
+Estratos por CER-por-clip: **0–20: +2.26** (el que más empeora) · 20–40: +1.11 · 40–60: +0.64 · 60+: 0.00.
 
 **Conclusión del 1-best en las condiciones evaluadas:** al bajar el CER global de 42 a 27, el
 corrector qwen naive volvió a empeorar y sobre-corrigió texto válido. El resultado se repitió también en
@@ -187,7 +186,7 @@ age-restrict/geo/formato). Muestra MuAViC sesgada al inicio del archivo. Aun as�
 argentino nativo se cubrió con el pipeline propio. La evidencia de disponibilidad y scraping está en
 [`experiments/07_datos_y_scraping.md`](experiments/07_datos_y_scraping.md).
 
-## 6. ViSpeR — hallazgo clave (2026-07-05 noche)
+## 6. ViSpeR — hallazgo clave
 
 **ViSpeR zero-shot (modelo multilingüe 794h, sin fine-tune argentino) = WER 45.22 / CER 26.98 sobre
 test-658** → le gana a NUESTRO MEJOR modelo (ft05 = 65.05, fine-tuneado) por ~20 pts de WER, y a mpc001
@@ -248,19 +247,19 @@ entorno externo de ViSpeR y no se versionan en este repositorio.
 5. **Configuración recomendada para la demo:** ViSpeR zero-shot, encoder MPS y beam corto; LoRA personal y
    n-best qwen quedan como opciones según hablante, latencia y régimen de error.
 
-## Changelog
+## Cronología
 
-- **2026-07-05** — Doc creado. Cargados: modelos propios ft03–ft07 + zero-shot + A/B ft05b/ft07;
-  benchmarks externos; **Fase 0 completa** (corrección LLM = resultado negativo en ambos modelos);
-  **data AV española disponible** (ViSpeR 794h / MuAViC 178h el hallazgo grande). Fase 1 (latencia) pendiente.
-- **2026-07-05 (noche)** — **Currículum Fase 1a: 50.03h de ViSpeR-es procesadas** (936 videos, 36.631 clips,
-  28GB) vía landmarks ViSpeR → npz 96×96 compatibles con ft05. En bucket `curriculum_visper/lip_rois/`.
-  Próximo: run DWS `ft08` (LIP-RTVE → stage español ViSpeR → fine-tune argentino → eval test-658) vs ft05=65.05.
-- **2026-07-06 (madrugada)** — **ViSpeR zero-shot = 45.22 WER (mejor de todo el proyecto, −20 vs ft05).**
-  Fine-tune de ViSpeR sobre 19h argentino EMPEORÓ (61.51, overfit). Corrector qwen sobre ViSpeR zs EMPEORÓ
-  (+1.42, hipótesis CER refutada def.). Resumen final en §7. Teardown completo (0 VMs/discos). Imagen
-  `labios-img-visper` preservada; checkpoints y pesos documentados en [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md).
-
+- **2026-07-05** — Modelos propios ft03–ft07, zero-shot y A/B ft05b/ft07 cargados, junto con
+  benchmarks externos. Fase 0 (corrección LLM) cerrada con resultado negativo en ambos modelos.
+  Relevado el panorama de data AV española disponible (ViSpeR 794h / MuAViC 178h). Currículum:
+  50.03h de ViSpeR-es procesadas (936 videos, 36.631 clips) como validación de Fase 1a; la línea
+  quedó pausada frente al hallazgo de ViSpeR zero-shot (ver [`PROJECT_EVOLUTION.md`](PROJECT_EVOLUTION.md)
+  y [`PLAN_CURRICULUM.md`](PLAN_CURRICULUM.md)).
+- **2026-07-06** — ViSpeR zero-shot = 45.22 WER, el mejor resultado del proyecto (−20 vs ft05).
+  El fine-tune de ViSpeR sobre las ~19h argentinas empeoró (61.51, overfit). El corrector qwen
+  sobre ViSpeR zero-shot también empeoró (+1.42), descartando la hipótesis de corrección a CER
+  bajo en este régimen. Resumen final en §7. Checkpoints y pesos documentados en
+  [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md).
 - **2026-07-09/10** — Cerrados los experimentos de velocidad, n-best y adaptación personal: encoder MPS
   0.17 s, e2e beam3 ~1.09 s; n-best qwen −3.04 WER significativo en self-test n=100; LoRA personal
   −4.67 WER en n=30 (todavía no significativo) sin degradación general; full-FT personal 98.69 WER.

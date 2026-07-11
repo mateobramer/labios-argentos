@@ -1,6 +1,10 @@
 # OPEN ITEMS DATASET
 
-Regla de trabajo: si alguien intenta arreglar algo, debe actualizar este archivo con que
+> Snapshot congelado del tracker de la fase de escalado del release; no se retomó
+> después de esa fase. Los items documentan limitaciones conocidas del release actual
+> (`data_pipeline/release/`), no tareas en curso.
+
+Regla de trabajo (vigente durante esa fase): si alguien intenta arreglar algo, debe actualizar este archivo con que
 intento, fecha, resultado, si logro mejora o no, y paths/evidencia. No dejar cambios
 incognito. Si se intenta algo y no funciona, marcar `attempted_no_gain` o `blocked`, no
 dejar `pending` silencioso.

@@ -1,6 +1,10 @@
 # VM readiness batch VSR
 
-Fecha local: 2026-07-05.
+> Gate de verificación en VM con una muestra chica (n=60) para E0–E4 (variantes de
+> limpieza de transcripción y preprocesamiento). No se escaló a una corrida completa
+> ni se reconcilió con el índice oficial de experimentos
+> ([`docs/experiments/`](../../../../docs/experiments/README.md)); se conserva como
+> evidencia exploratoria.
 
 ## Experimentos
 

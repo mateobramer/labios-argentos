@@ -37,6 +37,9 @@ local privado (`data/feedback/`). Lo que falta:
 - Grabar 1-2 personas más (~30 clips c/u) con `build_testset.py` (ya es append+resumible)
   → medir generalización del pipeline de calibración (hoy n=1, [exp. 10](experiments/10_adaptacion_hablante.md)).
 - Replicar el resultado del n-best rescoring (−3.04 WER) en al menos un segundo hablante.
+- Cablear el adapter LoRA personal a la demo (`VSR_CKPT`) y probarlo en vivo.
+- Curva de WER vs. número de clips de entrenamiento personal (¿30 alcanzan, como en el 50M?).
+- Loop activo de calibración en 2 pasos: frases dirigidas a los errores propios de cada persona.
 
 ## 5. Mejoras científicas del corrector / n-best
 
@@ -57,10 +60,9 @@ local privado (`data/feedback/`). Lo que falta:
   para pesados; ver [DATA_AND_ARTIFACTS](DATA_AND_ARTIFACTS.md)). Lo que queda: si el
   equipo quiere achicar el CLONE COMPLETO (~9 GB por la historia), decidir una
   reescritura de historia con `git filter-repo` — irreversible, requiere coordinar.
-- PR #25: **cerrada como superseded** (2026-07-10); su material liviano vive en el árbol actual y
-  sus tags de preservación son `dataset-clean-v1` y `archive/full-clean-release`.
 - Integrar el release `dataset-clean-v1` al flujo de entrenamiento (hoy los splits
-  congelados siguen sobre el dataset original).
+  congelados siguen sobre el dataset original); se preserva en los tags
+  `dataset-clean-v1` y `archive/full-clean-release`.
 
 ## 8. Tareas que requieren GPU, bucket o decisión humana
 

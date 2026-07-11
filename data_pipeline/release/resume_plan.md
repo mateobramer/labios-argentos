@@ -1,5 +1,9 @@
 # Resume plan
 
+> Snapshot del plan de continuación hacia 12k clips large/turbo durante la fase de
+> escalado del release; no se ejecutó más allá de lo documentado en
+> [`README.md`](README.md).
+
 target_large_turbo_clips: 12000
 completed_large_turbo_or_clean_gpt: 2272
 remaining_to_12k_large_turbo: 9728

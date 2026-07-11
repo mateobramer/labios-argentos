@@ -1,6 +1,6 @@
 # Plan de entrenamiento — ft03 / ft04 (ablación de datos)
 
-## Estado actual (compact)
+## Estado de partida
 - **Fase A COMPLETA** (2026-06-29): 3244 npz nuevos curados de 30 fuentes (informal rioplatense),
   102 clips de música filtrados. 5 fuentes caídas por bot-block de YouTube (recuperables).
 - Datos nuevos en: **snapshot `labios-full-20260629-0429`** (40 GB: repo + venvs + npz nuevos + manifests).
@@ -8,7 +8,7 @@
 - Checkpoints v1/v2 + sus train.log/eval en `gs://.../models/{ft01_v1,ft02_v2}/`.
 - Presupuesto: ~$36 restante de $47.44 (gastado ~$11).
 
-## El experimento (ablación de datos, validado con el usuario)
+## El experimento (ablación de datos)
 Misma arquitectura, mismos hiperparámetros, **mismo test** que v1/v2; lo único que cambia es
 que el **train** suma las 3244 clips nuevas. Condiciones acordadas:
 1. **Datos nuevos → SOLO train.** val y test quedan **idénticos** a v1/v2 (no mover nada a val).
@@ -23,7 +23,7 @@ que el **train** suma las 3244 clips nuevas. Condiciones acordadas:
 - Test chico (658) → solo mejoras grandes serán concluyentes (IC ~±2.2; usar helper `sig`).
 - Config fija mide "efecto de los datos", no el mejor modelo posible (no se re-tunea).
 
-## Ejecución autónoma (mientras el usuario trabaja)
+## Ejecución automatizada
 Auto-grab de GPU (L4→T4, us-central1 a/b/c, reintento hasta conseguir) → al caer, crea VM
 **desde el snapshot** (trae repo+venvs+npz nuevos) y corre `train_orchestrator.sh`:
 

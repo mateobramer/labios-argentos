@@ -79,8 +79,10 @@ Decision operativa:
 
 - no usar `keep-only` del sanity como filtro final, porque descarta demasiado;
 - conservar `usable + questionable`;
-- tratar `bad_candidate` como candidato prudente a exclusion, todavia pendiente de
-  validacion con WER/CER.
+- tratar `bad_candidate` como candidato prudente a exclusion; la validacion con
+  WER/CER que promoveria esta politica a filtro de produccion no se corrio (ver
+  Validacion). El pipeline de entrenamiento sigue usando el manifest original
+  (`keep`/`review`/`drop`).
 
 ## Validacion
 
@@ -94,10 +96,12 @@ Validacion local completada:
 - puente `test.inf` -> WER/CER listo;
 - tests unitarios verdes.
 
-Todavia no hay WER/CER final por grupo, porque falta correr inferencia en VM con el
-scenario exportado.
+No se corrió el WER/CER final por grupo: requiere inferencia en VM con el checkpoint
+v1 de Gimeno sobre el scenario exportado, y no se priorizó frente al resto del proyecto.
+`policy_moderate_v2` queda como herramienta de diagnóstico documentada, no como filtro
+adoptado.
 
-## Como evaluar en VM
+## Cómo se reproduciría la comparación en VM
 
 El flujo completo esta documentado en:
 
@@ -165,13 +169,9 @@ Queda fuera de esta etapa:
 - entrenamiento de variantes;
 - nuevas heuristicas visuales.
 
-La etapa visual queda cerrada salvo la ejecucion VM para obtener WER/CER por grupo.
-
-## Proximo paso unico
-
-1. Correr inferencia VSR sobre `visual-quality-sample`.
-2. Parsear `test.inf` con `visual_quality_vsr_results.py`.
-3. Comparar WER/CER por `policy_moderate` y `training_usability`.
-4. Si `bad_candidate` tiene WER/CER claramente peor, probar entrenamiento baseline vs
-   filtered.
-5. Si no hay diferencia clara, dejar la auditoria como diagnostico y no como filtro.
+La etapa visual queda cerrada. La comparación WER/CER por grupo que promovería
+`policy_moderate_v2` a filtro de producción no se ejecutó (ver Validación); de
+retomarse, el método sería: (1) correr inferencia VSR sobre `visual-quality-sample`,
+(2) parsear `test.inf` con `visual_quality_vsr_results.py`, (3) comparar WER/CER por
+`policy_moderate` y `training_usability`, y solo si `bad_candidate` muestra WER/CER
+claramente peor, evaluar entrenar baseline vs filtered.

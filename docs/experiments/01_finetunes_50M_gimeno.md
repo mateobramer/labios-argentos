@@ -37,6 +37,9 @@ Notas:
 4. Fine-tunear (65) supera al zero-shot multilingüe chico (71.5) → adaptar al acento paga… pero todo el
    linaje queda ~20 WER por encima del zero-shot de ViSpeR (45).
 
-## Pendiente / próximo (ft09)
-Fine-tune del 50M con datos ampliados (existente 8067 + clips nuevos de Martín) — ver
-`docs/HANDOFF_ROIS_FINETUNE.md`. Esperado ~ft05 (65-70), es baseline reproducible para el paper.
+## Nota de cierre
+
+ft09 (fine-tune del 50M con datos ampliados: existente 8067 + clips nuevos) quedó
+planificado en [`docs/archive/HANDOFF_ROIS_FINETUNE.md`](../archive/HANDOFF_ROIS_FINETUNE.md)
+pero no se ejecutó: el hallazgo de ViSpeR zero-shot (ver [exp. 02](02_zeroshot.md)) hizo que
+escalar la línea del 50M dejara de ser prioritario frente a partir de una base más grande.

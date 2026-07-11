@@ -5,7 +5,7 @@ Preparacion visual de los clips para VSR.
 Este modulo vive despues de `data_pipeline/descargar_procesar.py`: toma los clips alineados en
 `data/clips/` y genera recortes labiales listos para revisar o entrenar.
 
-## Que va aca
+## Contenido
 
 - deteccion de rostro;
 - landmarks faciales;
@@ -102,7 +102,7 @@ cleaning/visual_quality/notebooks/01_revision_visual_mediapipe.ipynb
 
 Ese notebook importa funciones de `preprocessing/src/auditar_calidad_visual.py`.
 
-## Compatibilidad y pendiente abierta
+## Compatibilidad
 
 - **Alineacion a cara media: hecha** (warp afin estilo Auto-AVSR, ver "Como funciona").
 - La salida canónica para entrenamiento es `.npz` con forma `(T, 96, 96)`; el `.mp4`

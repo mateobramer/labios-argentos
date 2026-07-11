@@ -1,6 +1,7 @@
-# ROI handoff for next owner
+# ROI recovery — diagnóstico de cierre
 
-Fecha: 2026-07-08
+> La recuperación de ROI se detuvo en este punto y no se retomó. Se conserva como
+> diagnóstico de la causa probable (decode/AV1), no como una tarea pendiente.
 
 ## Resumen
 

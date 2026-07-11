@@ -1,7 +1,6 @@
 # Full clean release report
 
 bucket: gs://labios-argentos-vsr-clean-v1/
-branch: feature/full-clean-release
 
 ## Argentina existing
 - total clips manifest: 9191

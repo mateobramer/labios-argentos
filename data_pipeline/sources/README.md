@@ -4,7 +4,7 @@ Listas curadas de videos de YouTube que entraron al dataset VSR rioplatense. Est
 *gate 0* (selección) del pipeline de datos: se elige y verifica **antes** de gastar
 descarga/transcripción/GPU. Las dos rondas ya fueron procesadas.
 
-## Qué hay acá
+## Contenido
 
 - `candidatos.csv` — **ronda 1** (39 videos, ~10.7 h, 15 hablantes). Verificados con
   `yt-dlp`. Con estos se entrenaron ft03/ft04.

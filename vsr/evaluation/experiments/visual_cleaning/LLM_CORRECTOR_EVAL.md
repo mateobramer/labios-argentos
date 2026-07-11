@@ -47,8 +47,9 @@ experiment,source_id,clip,split,reference,raw_hypothesis,corrected_hypothesis,ra
 - Si el corrector mejora metricas pero aumenta alucinaciones, no se reporta como mejora
   final sin inspeccion manual.
 
-## Estado actual
+## Estado
 
-No se encontro un flujo general de corrector LLM listo para enchufar a estos resultados.
-Queda como etapa futura inmediata: crear un runner que lea el CSV VSR, llame al corrector
-configurado y escriba el schema anterior.
+Esta línea exploratoria (evaluar el corrector LLM sobre esta muestra específica de
+visual_cleaning) no llegó a tener un runner que leyera el CSV VSR y aplicara el corrector.
+La evaluación real del corrector LLM se hizo por otra vía: ver
+[`docs/experiments/04_qwen_corrector.md`](../../../../docs/experiments/04_qwen_corrector.md).

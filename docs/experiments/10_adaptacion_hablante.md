@@ -1,6 +1,6 @@
 # 10 — Adaptación al hablante de ViSpeR (¿escala el hallazgo de la rama de calibración?)
 
-**Contexto:** la rama `calibracion/adaptacion-hablante` (compañero) mostró que adaptar el **50M** (ft06)
+**Contexto:** un experimento previo del equipo mostró que adaptar el **50M** (ft06)
 con ~96 frases de una persona baja su WER personal 66→55 (**−11**, n=15) vía fine-tune continuado
 (lr 1e-5). Pregunta: ¿escala eso a **ViSpeR (288M)**, que ya está ~25 pts mejor? ¿Y se compone con el
 n-best rescoring de qwen? (2026-07-09/10)
@@ -57,9 +57,6 @@ significativo a n=30**. qwen sobre LoRA: **±0.00** [−3.56, +3.50].
 `adapt_lora_best.pth` (mejor personal Y mejor general). Para cerrarlo científicamente: grabar más clips
 de test (o un segundo hablante adaptado) para llevar el −4.7 a significancia.
 
-## Próximos
-
-- [ ] Cablear el adapter a la demo (`VSR_CKPT`) y probarlo en vivo.
-- [ ] Más test personal (o 2º hablante) → significancia del −4.7.
-- [ ] Curva de nº de clips de train (¿30 alcanzan, como en el 50M?).
-- [ ] Loop activo de 2 pasos del compañero (frases dirigidas a los errores de la persona).
+Trabajo futuro relacionado (cablear el adapter a la demo, ampliar el test personal a
+significancia, curva de tamaño de train, loop activo de 2 pasos) queda registrado en
+[`FUTURE_WORK.md`](../FUTURE_WORK.md).

@@ -141,9 +141,9 @@ No contiene aun:
 | `curriculum_visper/` | posible pretraining, con licencia pendiente | parcial | insuficiente |
 | `data_pipeline/discovery/outputs` | no directamente | no directamente | si, para proxima ingesta |
 
-## Panorama pendiente
+## Fuera de alcance de este inventario
 
-- Inventariar en profundidad `gs://labios-argentos-vsr-data/` solo si se decide usarlo como fuente separada.
-- Confirmar licencia/procedencia de `curriculum_visper/`.
-- Crear un manifest unificado que remapee splits a paths `gs://...`.
-- Asociar por clip URL/canal/timestamps cuando exista metadata externa al bucket.
+- Inventario en profundidad de `gs://labios-argentos-vsr-data/` como fuente separada.
+- Confirmación de licencia/procedencia de `curriculum_visper/`.
+- Manifest unificado que remapee splits a paths `gs://...`.
+- Asociación por clip URL/canal/timestamps con metadata externa al bucket.

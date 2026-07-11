@@ -5,7 +5,7 @@ Auditoria y limpieza del dataset crudo.
 Este modulo sirve para revisar si los pares `clip_NNNN.mp4` / `clip_NNNN.txt`
 son buenos datos antes de pasarlos al preprocesamiento visual o al entrenamiento.
 
-## Que va aca
+## Contenido
 
 - inventarios de clips, textos y fuentes;
 - chequeos de pares faltantes entre `.mp4` y `.txt`;
@@ -14,7 +14,7 @@ son buenos datos antes de pasarlos al preprocesamiento visual o al entrenamiento
 - manifests de calidad con estados como `keep`, `review` y `drop`;
 - scripts o notebooks de limpieza cuando tengan codigo real y resultados reproducibles.
 
-## Que no va aca
+## Fuera de alcance
 
 - deteccion de rostro, landmarks o recorte de labios: eso va en `preprocessing/`;
 - entrenamiento de modelos VSR: eso va en `vsr/`;
@@ -199,8 +199,8 @@ comparar contra la calibracion sanity.
 
 La auditoria sanity ROI corrige el scope conceptual, pero **no es automaticamente un
 filtro final**. En la corrida actual no hay `drop`: `keep-only` descarta demasiado
-(`keep_pct` cercano a 56%) y `keep+review` conserva todo. Por eso el paso siguiente es
-generar politicas candidatas desde el manifest sanity, sin tocar splits ni copiar datos:
+(`keep_pct` cercano a 56%) y `keep+review` conserva todo. El script genera politicas
+candidatas desde el manifest sanity, sin tocar splits ni copiar datos:
 
 ```bash
 python -m cleaning.visual_quality.src.visual_quality_policy_analysis \
@@ -250,8 +250,10 @@ source_id,clip,wer,cer
 
 El experimento VM de entrenamiento recien se justifica si una politica candidata muestra
 correlacion con WER/CER o si la inspeccion visual confirma que los excluidos son
-claramente malos. En particular, hace falta inferencia del modelo v1 sobre una muestra
-estratificada que incluya `policy_moderate_v2=keep` y `policy_moderate_v2=exclude`.
+claramente malos. Esa comparacion requiere inferencia del modelo v1 sobre una muestra
+estratificada que incluya `policy_moderate_v2=keep` y `policy_moderate_v2=exclude`;
+no se corrio (ver `VISUAL_QUALITY_STAGE_REPORT.md`), asi que `policy_moderate_v2`
+queda como herramienta de diagnostico, no como filtro adoptado en produccion.
 
 ### Muestra estratificada para evaluacion VSR
 
@@ -283,8 +285,9 @@ La salida esperada de una inferencia futura para cruzar WER/CER por clip es:
 source_id,clip,split,reference,hypothesis,wer,cer
 ```
 
-No hay todavia un CLI directo que tome `visual_quality_vsr_eval_sample.csv` y ejecute el
-modelo v1. El flujo existente de Gimeno evalua un `scenario` exportado al layout de
+No existe un CLI directo que tome `visual_quality_vsr_eval_sample.csv` y ejecute el
+modelo v1; el puente disponible pasa por el flujo de Gimeno, que evalua un `scenario`
+exportado al layout de
 `vsr/evaluation/src/exportar_para_gimeno.py` y luego corre, en la VM/env `vsr-factors`:
 
 ```bash
@@ -341,7 +344,7 @@ Luego correr la auditoria con `--require-roi --min-roi-coverage 0.8` y el analis
 politicas v2. El notebook 04 carga el manifest sanity y
 `visual_quality_policy_analysis_v2.csv`; el 05 profundiza el diagnostico.
 
-Plan de comparacion en VM:
+Metodo de comparacion en VM (no ejecutado, ver `VISUAL_QUALITY_STAGE_REPORT.md`):
 
 ```text
 primero: inferencia modelo v1 por clip sobre muestra estratificada keep/exclude de policy_moderate_v2

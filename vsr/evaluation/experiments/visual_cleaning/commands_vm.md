@@ -95,9 +95,7 @@ Verificar que los CSV finales tengan el test original completo antes de comparar
 ## 6. Parseo de resultados
 
 El repositorio ya tiene parseos especificos para salidas `.inf` en la etapa visual
-(`cleaning/visual_quality/src/visual_quality_vsr_results.py`). Para esta comparacion falta un
-parser general comprometido que convierta `.inf` + manifest full-test al schema estandar
-de `results_schema.md`.
-
-Gap pendiente: crear o extender ese parser antes de cerrar resultados finales, usando
-`source_id`, `clip` y `reference` del manifest de test original.
+(`cleaning/visual_quality/src/visual_quality_vsr_results.py`). Para esta comparacion
+especifica (dataset original vs cleaning visual, ver `EXPERIMENT_PLAN.md`) no se llego a
+escribir un parser general que convirtiera `.inf` + manifest full-test al schema estandar
+de `results_schema.md`; el resultado final de esta linea exploratoria no se cerro.

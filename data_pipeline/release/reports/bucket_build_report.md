@@ -40,7 +40,7 @@ datos existentes queda `blocked_no_audio_in_roi_mp4`.
 
 `data_pipeline/release/reports/bucket_validation_report.md` confirma:
 
-- IAM `roles/storage.objectViewer` para `fgutman@udesa.edu.ar`.
+- IAM `roles/storage.objectViewer` verificado para la cuenta del equipo.
 - 5 `.mp4` descargados/abiertos: video presente, audio ausente.
 - 5 `.npz` descargados/abiertos: key `rois`, dtype `uint8`, shape `T x 96 x 96`.
 - 5 `.txt` `clean_v1` leidos.

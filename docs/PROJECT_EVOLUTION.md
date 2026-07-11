@@ -9,8 +9,8 @@ cambiaron y su evidencia.
 El plan inicial era un pipeline único estilo Auto-AVSR: construir un corpus audiovisual
 rioplatense desde YouTube, preprocesarlo (ROI de boca 96×96), y fine-tunear un modelo
 propio (50M de Gimeno, base LIP-RTVE) hasta tener el mejor VSR posible en el acento.
-Los docs de esa etapa (FLUJO, ESTRUCTURA_PROYECTO, PIPELINE_PROYECTO) fueron fusionados
-en [`ESTRUCTURA.md`](ESTRUCTURA.md) durante la reorganización de 2026-07 (PR #27).
+Los docs de esa etapa (FLUJO, ESTRUCTURA_PROYECTO, PIPELINE_PROYECTO) están hoy
+consolidados en [`ESTRUCTURA.md`](ESTRUCTURA.md).
 
 ## Qué cambió y por qué (con evidencia)
 
@@ -73,7 +73,6 @@ reescritura de historia para reducir el tamaño del clone completo.
 - **Ronda 1** (~14 h) y **ronda 2** (~19 h): dataset propio de YouTube rioplatense.
   Históricamente estuvo versionado en `data/clips/` + `dataset/`; hoy se preserva en el commit
   pre-limpieza `a11f0827666b11c975df4d8c5b0d6014894e8ee8`, el tag `dataset-clean-v1` y los buckets (ver [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md)).
-- **Release limpio v1** (tag `dataset-clean-v1`, julio 2026): re-construcción + ASR +
-  limpieza GPT + discovery de fuentes nuevas, con manifests y reportes en
-  `data_pipeline/release/` y datos pesados en bucket. La PR #25 quedó cerrada como
-  superseded; su material liviano fue incorporado al árbol actual.
+- **Release limpio v1** (tag `dataset-clean-v1`): re-construcción + ASR + limpieza GPT
+  + discovery de fuentes nuevas, con manifests y reportes en `data_pipeline/release/`
+  y datos pesados en bucket.

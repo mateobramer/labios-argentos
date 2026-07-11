@@ -36,7 +36,8 @@ cocinar pidamos una pizza").
 2. **ft05 NO mejora ni en limpio** (~68 WER): su techo es el modelo (pre-entreno chico), no el test.
    → confirma que para mejorar ft05 hace falta escala de datos, no limpiar el test ni post-procesar.
 3. A **CER ~11** (ViSpeR limpio) el corrector LLM por fin ayuda **vía n-best rescoring** — es el régimen
-   donde la hipótesis del CER se cumple. Falta más n (~100) para significancia.
+   donde la hipótesis del CER se cumple. Con n=40 el IC todavía no cerraba significancia — resuelto
+   en la Ronda 3 (abajo), ampliando a n=100.
 
 ## Ronda 3 — 100 frases (60 nuevas, para significancia)
 
@@ -55,4 +56,6 @@ Con n=100 e IC bootstrap **pareado**, la pregunta que arrastrábamos por fin cie
 → **El n-best rescoring baja el WER de verdad** (no ruido). Detalle en [04](04_qwen_corrector.md) §F2.
 El IC del WER a n=100 (~±4.4) es ~1.5× más ajustado que a n=40 (~±6.6), como predice √n.
 
-**Pendiente:** sumar hablantes (familiares) para generalización; pulir n-best (top-10 / qwen3.5:9b).
+La generalización a más hablantes queda como trabajo futuro (ver
+[`FUTURE_WORK.md`](../FUTURE_WORK.md) §4); el barrido de n-best (top-10 / qwen3.5:9b) se
+cerró en [09](09_velocidad_inferencia.md) §G.

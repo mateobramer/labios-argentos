@@ -1,8 +1,15 @@
 # Plan de tiempo real y panorama de benchmarks
 
+> **Seguimiento:** de las 4 fases de este plan, la Fase 0 (corrección LLM offline) se
+> ejecutó y quedó documentada en [`docs/experiments/04_qwen_corrector.md`](../../../docs/experiments/04_qwen_corrector.md);
+> la Fase 1 (benchmark de inferencia) en [`docs/experiments/09_velocidad_inferencia.md`](../../../docs/experiments/09_velocidad_inferencia.md);
+> la Fase 2 (demo en vivo) es la `demo/` actual. La Fase 3 (student causal) no se hizo — el
+> modelo de producción terminó siendo ViSpeR, no esta línea (ver
+> [`PROJECT_EVOLUTION.md`](../../../docs/PROJECT_EVOLUTION.md)).
+
 Continuación de [`01_hallazgos_repo.md`](01_hallazgos_repo.md) (estudio del repo mpc001 y del
 zero-shot ES sobre rioplatense). Este doc documenta el **pivote del proyecto hacia tiempo real
-(streaming)** y ubica nuestros números dentro del panorama de benchmarks de VSR. Fecha: 2026-07-05.
+(streaming)** y ubica nuestros números dentro del panorama de benchmarks de VSR.
 
 ---
 
@@ -223,13 +230,13 @@ empírica**: no sabemos a priori si el LLM ayuda o perjudica en este régimen. H
 
 Ordenado por ROI. La recomendación es arrancar por la Fase 0.
 
-### Fase 0 — Corrección LLM offline (en curso, gratis, sin GPU)
+### Fase 0 — Corrección LLM offline (gratis, sin GPU)
 
 Experimento offline: correr el corrector LLM sobre los archivos `test.inf` que **ya tenemos** de los
 658 clips (pares ref/hyp de `ft05b`/`ft07` ya descargados) → medir `WER_llm`. No necesita cámara ni
 GPU. Doble valor: (1) resuelve el requisito del componente agéntico, y (2) **zanja empíricamente lo
 del CER** — decide si con CER 42% el LLM ayuda o perjudica, antes de invertir en bajar CER.
-**Estado: en curso, se eligió qwen3:4b local vía Ollama.**
+**Resultado: se eligió qwen3:4b local vía Ollama** (ver [04](../../../docs/experiments/04_qwen_corrector.md)).
 
 ### Fase 1 — Harness de benchmark de inferencia
 

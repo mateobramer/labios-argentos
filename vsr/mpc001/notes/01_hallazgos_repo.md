@@ -20,7 +20,7 @@ sucesor de "End-to-End AVSR with Conformers" (2021). Licencia: solo comparación
 - El 44.5 es in-domain sobre CMU-MOSEAS. Sobre nuestro test rioplatense va a ser zero-shot
   cross-domain → esperar bastante peor (acento + habla espontánea de YouTube + condiciones).
 
-## Arquitectura — respuesta honesta para el profe
+## Arquitectura
 Es la **misma familia** que estamos usando, NO una arquitectura distinta:
 - frontend Conv3D + ResNet18 → encoder **Conformer** → decoder híbrido **CTC/Attention**.
 - El repo de Gimeno (`evaluating-end2end-spanish-lipreading`) es una adaptación de ESTE codebase
@@ -53,12 +53,13 @@ re-descargar videos ni re-preprocesar → zero-shot barato y válido.
   decode beam=30 penalty=0 ctc_weight=0.1 lm_weight=0.4.
 - Deps: Python 3.8, torch/torchvision/torchaudio, ffmpeg, RetinaFace o MediaPipe. Basado en ESPnet.
 
-## Plan de ataque (sin GPU primero)
+## Plan ejecutado (sin GPU primero)
 1. [hecho] Estudio: arquitectura / benchmarks / preproc → este doc.
-2. [sin GPU] Setup: clonar repo en vsr/mpc001/, env de requirements.txt, bajar modelo ES + LM.
-3. [CPU o GPU barata] Zero-shot: test-658 npz → VideoTransform → model.infer (beam+LM) → WER/CER.
-   Agrega una fila a la tabla de 6 modelos. beam=30+RNNLM ×658 es lento en CPU pero factible.
-4. [GPU → DWS] Fine-tune del ES sobre nuestros ~12k clips, eval en test 658. Comparar vs ft05/ft06.
+2. [hecho] Setup: clonar repo en vsr/mpc001/, env de requirements.txt, bajar modelo ES + LM.
+3. [hecho] Zero-shot: test-658 npz → VideoTransform → model.infer (beam+LM) → WER/CER
+   (resultado en [`docs/experiments/02_zeroshot.md`](../../../docs/experiments/02_zeroshot.md)).
+4. Fine-tune del ES sobre nuestros ~12k clips no se hizo: el hallazgo de ViSpeR zero-shot
+   (muy por encima de esta familia) hizo que escalar esta línea dejara de ser prioritario.
 
 ---
 

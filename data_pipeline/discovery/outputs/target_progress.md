@@ -29,5 +29,5 @@ target_decision: TARGET_CLIPS_NOT_REACHED_USABLE_MINUTES_REACHED
 - Urbana Play 104.3 FM: 677.0 clips, 56.41 min, decision=ok
 - Futurock FM: 598.0 clips, 49.83 min, decision=ok
 
-## Recomendacion concreta
-Ingestar primero la shortlist accepted y seguir buscando fuentes nuevas antes de usar backups maybe_review.
+## Nota de scope
+La shortlist accepted no llegó a ingestarse completa; los backups `maybe_review` no se usaron.

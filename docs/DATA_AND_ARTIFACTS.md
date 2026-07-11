@@ -25,7 +25,7 @@ obtener lo que falta, y qué hacer cuando un artefacto no está.
 | Bucket | Rol | Contiene |
 |---|---|---|
 | `gs://labios-argentos-vsr-dataset` | **fuente canónica de entrenamiento** | pesos ft03–ft07 y LoRAs (**irreemplazables**), dataset empaquetado para VMs |
-| `gs://labios-argentos-vsr-data` | **workspace histórico** de la fase full-clean-release | intermedios de trabajo (regenerables desde fuentes + scripts) |
+| `gs://labios-argentos-vsr-data` | **workspace intermedio** de la reconstrucción del release limpio | intermedios de trabajo (regenerables desde fuentes + scripts) |
 | `gs://labios-argentos-vsr-clean-v1` | **release limpio v1** (congelado, tag `dataset-clean-v1`) | clips mp4 (12.112 existing + 13.193 new_discovery), ROIs npz, transcripts, `manifests/`, `reports/` — conteos validados en [`bucket_validation_report.md`](../data_pipeline/release/reports/bucket_validation_report.md) |
 
 No renombrar ni migrar sin decisión explícita. Acceso: cuenta del proyecto GCP

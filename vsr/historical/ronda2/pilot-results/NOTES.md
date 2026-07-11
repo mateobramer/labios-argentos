@@ -33,16 +33,16 @@
 - VM corrió ~41 min (21:49→22:30Z) → **~$0.58**. Detenida desde 22:30Z (solo disco ~$0.3/día).
 - El re-run del preproc estimado: ~15–25 min → ~$0.3–0.5.
 
-### UPDATE 23:13Z — re-run bloqueado por capacidad (VM sigue apagada, $0 extra)
-- Intenté reanudar la VM para aplicar el fix: **`ZONE_RESOURCE_POOL_EXHAUSTED`** — no hay
-  L4 on-demand en us-central1-a ahora. El disco es zonal → la VM solo arranca en esa zona.
-- El job autónomo se colgó ~22 min reintentando SSH contra una VM que nunca prendió, y el
-  harness lo mató antes del stop. **Nunca prendió → no gastó nada.** VM TERMINATED.
+### Re-run bloqueado por capacidad (VM sigue apagada, $0 extra)
+- Reanudar la VM para aplicar el fix dio **`ZONE_RESOURCE_POOL_EXHAUSTED`** — no había
+  L4 on-demand en us-central1-a en ese momento. El disco es zonal → la VM solo arranca en esa zona.
+- El proceso automatizado se colgó ~22 min reintentando SSH contra una VM que nunca prendió,
+  y se cortó antes del stop. **Nunca prendió → no gastó nada.** VM TERMINATED.
 - **Insight clave:** el preproc (MediaPipe) corre en **CPU**; la L4 solo hace falta para
   Whisper (ya hecho) y el training (después). Entonces el re-run del preproc se puede hacer
   en una **VM CPU barata (sin stockout)**, no hace falta esperar capacidad de L4.
 
-### Caminos para retomar (cuando estés / des OK)
+### Caminos para retomar
 1. **VM CPU desde snapshot del disco** (recomendado): snapshot del disco de `labios-vsr-gpu`
    → crear VM CPU (ej. e2-standard-8, ~$0.27/h, con `--max-run-duration` + auto-delete por
    seguridad de costo) en cualquier zona → `apt install libgles2 libegl1` → correr preproc

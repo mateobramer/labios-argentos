@@ -14,7 +14,7 @@ Este pack permite destrabar fuentes sin tocar columnas automaticas.
 - `manual_download_path` debe apuntar a un archivo local descargado fuera del repo o en un directorio ignorado.
 - No guardar cookies, tokens ni credenciales en este directorio.
 
-## Como reanudar despues de completar el CSV
+## Flujo de uso, una vez completado el CSV
 
 1. Descargar fuentes localmente con:
 
@@ -30,7 +30,7 @@ python data_pipeline/release/scripts/download_sources_local.py --existing --limi
 
 3. Crear VM GPU solo cuando haya fuentes en GCS listas para segmentar/ASR.
 
-## Top existing a revisar
+## Top existing por prioridad de revisión
 
 - f07__DAVOO_XENEIZE_OPINA_DE_BOCA_0_UNIVERSIDAD_CATOLICA clips=937 reason=blocked_alignment_failed=23|baseline_existing_only=128|low_alignment_score_present
 - f13__JULI_POGGIO_EN_FERN_CON_GREGO clips=556 reason=blocked_alignment_failed=5|baseline_existing_only=551|low_alignment_score_present|source_reconstruction_failed

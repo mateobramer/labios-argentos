@@ -67,11 +67,11 @@ favorable para que el aporte se note.
 - **Presupuesto GCP edu acotado (~$50):** costo estimado modesto (pocas GPU-horas), pero a tener en cuenta.
 - **No editar a mano** lo generado bajo `data/` ni `dataset/`. Pesos → GCS, no al repo.
 
-## Estado
+## Estado (cierre)
 
 - [x] Gate 0: selección verificada (`data_pipeline/sources/candidatos.csv`, 39 videos / ~10.7h)
-- [ ] Procesamiento de datos (etapas 1–4)
-- [ ] Re-armar splits
-- [ ] ft03 (entrenamiento)
-- [ ] ft04 (entrenamiento)
-- [ ] Evaluación sobre test 658 + RESULTADOS
+- [x] Procesamiento de datos (etapas 1–4)
+- [x] Re-armar splits
+- [x] ft03 (entrenamiento)
+- [x] ft04 (entrenamiento)
+- [x] Evaluación sobre test 658 + RESULTADOS — ver [`ESTADO_ACTUAL.md`](ESTADO_ACTUAL.md)

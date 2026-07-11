@@ -8,7 +8,7 @@ y el ledger [`docs/RESULTS.md`](../../../docs/RESULTS.md); acá queda la evidenc
 | Path | Qué es |
 |---|---|
 | `PLAN.md` / `PLAN_ENTRENAMIENTO.md` | planes de la campaña (datos + entrenamiento) |
-| `ESTADO_ACTUAL.md` | handoff de estado al 2026-06-29 (snapshot histórico, no refleja el presente) |
+| `ESTADO_ACTUAL.md` | cierre de la campaña ft03/ft04 al 2026-06-30 (registro histórico) |
 | `full-run/` | manifests de auditoría, logs y `RESULTADO.md` de la corrida completa |
 | `pilot-results/` | ídem del piloto previo |
 | `scripts/` | orquestación de VMs (autograb de GPU spot), filtro de música, análisis WER por longitud |

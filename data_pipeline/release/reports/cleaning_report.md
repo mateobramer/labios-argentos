@@ -18,8 +18,9 @@ argentina_new_accepted_videos_queued: 20
 No GPT patch was applied in this run, and every row is marked
 `unchanged_no_llm_baseline` with low confidence plus review reason.
 
-## Next scaling step
+## Scaling path (not pursued further)
 
-Reconstruct audio-bearing clips from mapped URLs/raw sources, run large/turbo,
-then feed the generated context packs to the JSONL prompt and validate patches
-before replacing clean_v1 text.
+Scaling this baseline would mean reconstructing audio-bearing clips from mapped
+URLs/raw sources, running large/turbo, then feeding the generated context packs to
+the JSONL prompt and validating patches before replacing clean_v1 text. This wasn't
+pursued beyond the conservative baseline documented above.

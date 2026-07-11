@@ -1,8 +1,9 @@
 # ROI recovery plan
 
-Fecha: 2026-07-08
+> Plan documentado durante la fase de escalado del release; no se ejecutó. Se conserva
+> como diagnóstico de por qué 10.945 clips quedaron sin ROI válido.
 
-## Estado actual
+## Estado en el momento del diagnóstico
 
 - Manifest ROI: `data_pipeline/release/new_discovery_roi_manifest.csv`
 - Filas ROI new_discovery: 13193

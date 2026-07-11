@@ -11,7 +11,7 @@ clip_0001 -> buffer acumulado -> wait
 clip_0002 -> buffer acumulado -> commit
 ```
 
-## Formato que necesito de un LLM fuerte
+## Formato esperado (para anotación con un LLM fuerte)
 
 Para cada fuente o video, usar JSON valido:
 

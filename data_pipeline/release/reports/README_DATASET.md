@@ -87,7 +87,7 @@ muchos clips `new_discovery` tienen audio/transcripcion pero no ROI valido.
 
 `blocked_no_face` / `blocked_roi_no_face` no necesariamente significa que no haya cara
 en el video. Puede ser un problema de decode, preprocesamiento, threshold o MediaPipe.
-La recuperacion de ROI queda delegada a otra persona.
+La recuperacion de ROI no se retomo para este release.
 
 No relanzar VM a ciegas. Primero diagnosticar decode/AV1/reencode con una muestra:
 `ffprobe`, revisar codec, reencodear una muestra a H264 y recien despues reintentar ROI

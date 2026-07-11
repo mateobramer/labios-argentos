@@ -1,5 +1,11 @@
 # PLAN — currículum de datos (español general → argentino)
 
+> **Estado: pausado.** La Fase 0 dio verde y la Fase 1a llegó a procesar datos, pero la
+> línea se pausó frente al hallazgo de ViSpeR zero-shot (ver
+> [`PROJECT_EVOLUTION.md`](PROJECT_EVOLUTION.md) punto 5): el costo/beneficio de escalar
+> este currículum quedó por debajo de partir directamente de una base pre-entrenada más
+> grande. Este documento queda como registro del plan y de lo ya validado.
+
 Objetivo: usar la data AV española disponible (~700–900h: ViSpeR + MuAViC, ver `RESULTS.md` §5) como
 etapa de pre-entrenamiento antes del fine-tune argentino, para mejorar el **teacher** (ft05, WER 65.05).
 Filosofía: **validar barato antes de comprometer GPU/disco**. Cada fase tiene un gate go/kill explícito.
@@ -139,7 +145,8 @@ Se dimensiona con precisión recién con las mediciones de Fase 0.
 - [x] **Fase 0 — validación subset: VERDE** (yield 100% vía landmarks ViSpeR; crops OK; ~480MB/h)
 - [x] **Fase 1a — datos procesados: 50.03h ViSpeR-es** (936 videos, 36.631 clips/npz, 28GB, solo 4 fallos
   de descarga; local en `data/processed/lip_rois/visper_*` + bucket `curriculum_visper/lip_rois/`).
-  Procesado 2026-07-05 en ~5h con `vsr/curriculum/procesar_visper.py` (throttling de YouTube manejado con
-  timeout duro + sleep + backups espaciados; worker nohup-desacoplado para sobrevivir kills del harness).
-- [ ] **Fase 1b — run DWS entrenamiento ft08 (próximo paso, gate go/kill vs ft05=65.05)**
-- [ ] Fase 2 — run completo
+  Procesado en ~5h con `vsr/curriculum/procesar_visper.py` (throttling de YouTube manejado con
+  timeout duro + sleep + backups espaciados; worker desacoplado para sobrevivir a reinicios
+  del proceso).
+- [ ] Fase 1b — run DWS entrenamiento ft08 (gate go/kill vs ft05=65.05) — **pausado**, ver nota de estado arriba.
+- [ ] Fase 2 — run completo — **pausado**, condicionado a retomar la Fase 1b.

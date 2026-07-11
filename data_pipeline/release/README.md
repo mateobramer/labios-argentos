@@ -1,8 +1,7 @@
 # Data release clean bucket v1
 
-> **Nota de contexto (reorganización 2026-07):** este directorio fue portado desde
-> `feature/full-clean-release` (PR #25). Los manifests grandes no forman parte del árbol
-> actual para mantener liviano el working tree. Se recuperan con
+> **Nota:** los manifests grandes no forman parte del árbol actual, para mantener
+> liviano el working tree. Se recuperan con
 > `git show dataset-clean-v1:data_release/<nombre>.csv > <nombre>.csv`
 > o desde el bucket clean-v1. La política vigente deja código, reportes y manifests chicos
 > en Git, y datos/manifests pesados en bucket. Ver

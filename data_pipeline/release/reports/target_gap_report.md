@@ -1,7 +1,10 @@
 # Target gap report
 
+> Snapshot del esfuerzo de escalado del release hacia un objetivo de ~20k clips; no se
+> continuó más allá de lo documentado en [`../README.md`](../README.md). El "processing
+> order" al final describe el plan de continuación tal como estaba, sin ejecutar.
+
 bucket: gs://labios-argentos-vsr-clean-v1/
-branch: feature/full-clean-release
 target_definition: existing official + new_discovery accepted estimates, not 12k total
 
 ## Summary

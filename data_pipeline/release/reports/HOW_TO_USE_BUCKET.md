@@ -33,8 +33,8 @@ El texto recomendado esta en `selected_training_text`. Si
 - ROI: `manifests/new_discovery_roi_manifest.csv`
 - Reporte ROI: `reports/new_discovery_roi_report.md`
 
-## Pendiente principal
+## Limitación conocida
 
-Quedan 10.945 clips sin ROI valido y 500 clips con jobs GPT manuales faltantes. No
-relanzar ROI/VM a ciegas: primero diagnosticar decode/AV1 y probar reencode H264 en
-muestra.
+Quedan 10.945 clips sin ROI valido y 500 clips con jobs GPT manuales faltantes; la causa
+mas probable es un problema de decode/AV1 no diagnosticado (candidato: reencode H264 en
+muestra), no falta de cara. No se relanzó ROI/VM sobre esto.
