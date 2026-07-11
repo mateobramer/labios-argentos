@@ -249,7 +249,12 @@ def hilo_segmentador(args):
             if thr is None:                          # calibracion con silencio inicial
                 if o is not None: base.append(o)
                 if t - t_ini >= CALIB_S and len(base) >= 10:
-                    thr = max(args.sens * statistics.pstdev(base[-40:]), 0.004)
+                    # MAD en vez de desvio estandar: si otra cara o un movimiento de fondo
+                    # mete picos durante la calibracion, no infla el umbral (mediana robusta)
+                    ventana = base[-40:]
+                    med = statistics.median(ventana)
+                    mad = statistics.median([abs(x - med) for x in ventana]) * 1.4826
+                    thr = max(args.sens * mad, 0.004)
                     S["thr"] = thr; S["fase"] = "escuchando"
                 continue
             mov = movimiento(t); S["mov"] = round(mov, 5)
