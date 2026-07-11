@@ -40,9 +40,11 @@ while :; do
           fi
           if gcloud compute instances create "$VM" --project="$PROJ" --zone="$ZN" \
               --machine-type=g2-standard-8 --accelerator=type=nvidia-l4,count=1 \
-              --image=labios-img-visper --boot-disk-type=pd-balanced \
+              --image-family=pytorch-2-9-cu129-ubuntu-2204-nvidia-580 \
+              --image-project=deeplearning-platform-release \
+              --boot-disk-type=pd-balanced --boot-disk-size=150GB \
               --maintenance-policy=TERMINATE $EXTRA \
-              --metadata=startup-script-url="$BUCKET/config/startup_cal_daemon.sh" \
+              --metadata=install-nvidia-driver=True,startup-script-url="$BUCKET/config/startup_cal_daemon.sh" \
               --scopes=storage-rw,compute-rw >/dev/null 2>&1; then
             break 2
           fi
