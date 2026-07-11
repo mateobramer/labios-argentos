@@ -62,6 +62,12 @@ bash run.sh                # UI web en http://localhost:8551
 bash run.sh --qwen         # con corrector LLM (también hay toggle en la UI)
 ```
 
+En Windows, con los recursos locales ya preparados en `%USERPROFILE%\vsr-demo\`:
+
+```powershell
+.\demo\arrancar_local.ps1
+```
+
 Al abrir: 2 s de silencio calibran el detector de labios; después se habla normal y el
 sistema corta solo por pausas y va subtitulando. La UI muestra la entrada literal del
 modelo (la tira de recortes de boca 96×96), el guion acumulado, y permite **corregir cada
