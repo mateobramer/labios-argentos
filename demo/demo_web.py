@@ -146,7 +146,14 @@ def hilo_landmarks():
     lmk = pp.mp_vision.FaceLandmarker.create_from_options(opts)
     while not STOP.is_set():
         with LOCK:
-            pend = [e for e in BUF if e["pts"] is False][:4]
+            ahora = time.time()
+            # si el detector se atrasa (p.ej. 2 caras = doble costo), los frames viejos se
+            # descartan: procesar lo MAS NUEVO mantiene vivo el medidor de labios y el
+            # backlog no se arrastra cuando la otra cara se va del cuadro
+            for e in BUF:
+                if e["pts"] is False and ahora - e["t"] > 1.2:
+                    e["pts"] = None; e["open"] = None
+            pend = [e for e in BUF if e["pts"] is False][-4:]
         if not pend:
             time.sleep(0.01); continue
         for e in pend:
