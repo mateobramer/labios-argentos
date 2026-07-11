@@ -4,12 +4,16 @@ Componente de investigación LLM×VSR. La pregunta, el mapa completo de evidenci
 limitaciones están en [`docs/RESEARCH.md`](../docs/RESEARCH.md); los números, en
 [`../docs/experiments/04`](../docs/experiments/04_qwen_corrector.md) y el ledger.
 
+El experimento definitivo del umbral —**grilla estandarizada de 13 celdas** (código, datos
+crudos por clip, tabla máquina y figura)— vive en [`grid_cer_llm/`](grid_cer_llm/); los
+resultados están escritos en [exp. 04 §G](../docs/experiments/04_qwen_corrector.md).
+
 ## Dónde vive cada estrategia (implementación canónica)
 
 | Estrategia | Implementación canónica | Estado |
 |---|---|---|
 | Corrección 1-best + prompts (conservative/minimal/fluent) + few-shot | [`fase0_llm_correct.py`](fase0_llm_correct.py) (acá) | ❌ empeoró en todas las condiciones evaluadas (exp. 04 §A-D/F) |
-| **n-best rescoring top-5** | [`demo/infer_server.py`](../demo/infer_server.py) — prompt `SYS_RESC`, activable con `VSR_QWEN=1` | ✅ −3.04 WER significativo en el régimen de CER bajo evaluado (exp. 04 §F2) |
+| **n-best rescoring top-5** | prod: [`demo/infer_server.py`](../demo/infer_server.py) (prompt `SYS_RESC`, `VSR_QWEN=1`); research: [`grid_cer_llm/`](grid_cer_llm/) | ✅ ayuda en CER bajo + material limpio (pool −2.81 WER, IC [+0.86,+4.77]); nulo en YouTube — exp. 04 §F2/§G |
 | Oracle n-best (techo) | scoring en [`personalization/score_selftest.py`](../personalization/score_selftest.py) + exp. 04 §E/F | referencia |
 | Evaluación sobre self-test | [`personalization/score_selftest.py`](../personalization/score_selftest.py) | activa |
 

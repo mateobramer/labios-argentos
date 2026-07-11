@@ -1,0 +1,973 @@
+{
+ "prompts": {
+  "rescoring_nbest": "Te doy VARIAS transcripciones candidatas de la MISMA frase (lectura de labios, rioplatense). Se complementan: la palabra correcta suele estar en alguna. Combinalas para la frase mas probable, sin inventar. Responde SOLO la frase, una linea.",
+  "correccion_1best": "Sos un corrector de transcripciones de lectura de labios (lip reading) en espanol rioplatense (Argentina). Recibis una transcripcion CRUDA y con errores producida por un modelo de lip reading (sin acentos ni puntuacion). Devolve la version mas probable de lo que la persona quiso decir, corrigiendo ortografia, concordancia y formas rioplatenses (voseo: tenes, queres, vos, che).\nREGLAS ESTRICTAS:\n1. NO agregues informacion ni palabras que no esten sugeridas por el texto.\n2. Mante el mismo contenido y un largo parecido; no inventes frases nuevas.\n3. Si una parte es incomprensible, dejala lo mas parecida posible al original en vez de inventar.\n4. Responde SOLO con el texto corregido, en una sola linea, sin comillas ni explicaciones.",
+  "modelo": "qwen3:4b-instruct-2507-q4_K_M",
+  "temperatura": 0.0,
+  "think": false
+ },
+ "ejemplos": {
+  "ft05/Rioplatense": [
+   {
+    "ref": "arreglas tu casita cosas que en la ciudad no se nota tanto en la ciudad nadie sabe si arreglaste tu casa",
+    "cands": [
+     "arrancaturas de cosas que las ayudas no se notan tanto las o sea es avisitar las estudias",
+     "arrancaturas de cosas que la ciudad no se nota tanto la ciudad le das a veces dar las estudias",
+     "arrancaturas de cosas que la ciudad no se nota tanto la ciudad le das a visitar las estudias",
+     "arrancaturas de cosas que la ciudad no se no tantando la ciudad le das a veces dar las estudias",
+     "arrancaturas de cosas que la ciudad no se no tantando la ciudad le das a visitar las estudias"
+    ],
+    "corr_1best": "arrancaduras de cosas que las ayudas no se notan tanto las o sea es avisitar las estudias",
+    "resc_nbest": "arrancaturas de cosas que la ciudad no se nota tanto la ciudad le das a visitar las estudias"
+   },
+   {
+    "ref": "no se como va a ser el tema del viento pero bueno vamos a ver",
+    "cands": [
+     "o sea como va a mas en el siento pero bueno vamos a hablar",
+     "no es como va a mas en el siento pero bueno vamos a hablar",
+     "no tiene como va mas en el siento pero bueno vamos a hablar",
+     "no es como va mas el tema del siento pero bueno vamos a hablar",
+     "no es como va a mas el tema del siento pero bueno vamos a hablar"
+    ],
+    "corr_1best": "o sea como va a mas en el siento pero bueno vamos a hablar",
+    "resc_nbest": "no es como va a mas el tema del siento pero bueno vamos a hablar"
+   },
+   {
+    "ref": "yo que se en el pueblo si porque se nota y porque ven los camiones que entran y se entera todo el barrio",
+    "cands": [
+     "yo estaba en el poblo tipo que ya no te porque vengo a cambio de que trascendiendo",
+     "yo estaba en el poblo tipo que ya no te porque veo cambio de que transitas todo el",
+     "yo estaba en el pueblo tipo que ya no te porque vengo a cambio de que trascendiendo",
+     "yo estaba en el pueblo tipo que ya no te porque veo cambio de que transitas todo el",
+     "yo estaba en el pueblo tipo que ya no te porque veo cambio de que trascendiendo el"
+    ],
+    "corr_1best": "yo estaba en el pueblo tipo que ya no te porque vengo a cambio de que trascendiendo",
+    "resc_nbest": "yo estaba en el pueblo tipo que ya no te porque veo cambio de que transita todo el"
+   },
+   {
+    "ref": "viste por el medio de la nada viste el caminito rural que van a hacer footing",
+    "cands": [
+     "vas a poner medico la nada viste en el caminato de lugar se manece un futbol",
+     "vas a poner medico la nada viste en el caminito de lugar se manece un futbol",
+     "viste por el medio la nada viste en el caminato de lugar se manece un futbol",
+     "viste por el medio la nada viste en el caminito de lugar se manece un futbol",
+     "me tipo el medio de la nada viste en el caminato de lugar se manece un futbol"
+    ],
+    "corr_1best": "vos pones medico la nada viste en el camino de lugar se maneja un futbol",
+    "resc_nbest": "vesti por el medio la nada viste en el caminito de lugar se manece un futbol"
+   },
+   {
+    "ref": "como para pensar que era brujo pero tio tire como tres años con esa eh",
+    "cands": [
+     "todo para pensar en el mundo pero no tenia muchas años que ya no",
+     "todo para pensar en el mundo pero tengo tenia muchas años diciendo",
+     "todo para pensar en el mundo pero tengo tenia muchas años de eso",
+     "todo para pensar en el mundo pero tengo tenia muchas años dice años",
+     "todo para pensar en el mundo pero tengo tenia muchas años que ya no"
+    ],
+    "corr_1best": "todo para pensar en el mundo pero no tenia muchas años ya no",
+    "resc_nbest": "todo para pensar en el mundo pero tengo tenia muchas años que ya no"
+   },
+   {
+    "ref": "y si viene alguien con ropa de marca o cambio el auto o lo que sea",
+    "cands": [
+     "y siempre el corrope del marcado camion auto con lo que sea",
+     "y se mire al corrope del marcado camion auto con lo que sea",
+     "y siempre el corrope del marcado camion auto con lo que ya",
+     "y se mire al corrope del marcado camion auto con lo que ya",
+     "y siempre el corropa del marcado camion auto con lo que sea"
+    ],
+    "corr_1best": "y siempre el corredor del marcado camion auto con lo que sea",
+    "resc_nbest": "y siempre el corropa del marcado camion auto con lo que sea"
+   }
+  ],
+  "ft05/Selftest": [
+   {
+    "ref": "el verano pasado viajamos por toda la patagonia",
+    "cands": [
+     "el viano pasado viajemos por toda la pataconia",
+     "el viano pasado viajamos por toda la pataconia",
+     "el viano pasado viajemos por toda la patagonia",
+     "el viano pasado viajamos por toda la patagonia",
+     "el verano pasado viajemos por toda la pataconia"
+    ],
+    "corr_1best": "el viernes pasado viajamos por toda la patria",
+    "resc_nbest": "el verano pasado viajamos por toda la patagonia"
+   },
+   {
+    "ref": "vamos caminando que esta a dos cuadras nomas",
+    "cands": [
+     "vamos caminando que estaja dos cuidar algo mas",
+     "vamos caminando que esta dos cuidadanos mas",
+     "vamos caminando que esta a dos cuidadanos mas",
+     "vamos caminando que te haga dos cuidar algo mas",
+     "vamos caminando que esta ganado cuidar algo mas"
+    ],
+    "corr_1best": "vamos caminando que este dos cuidar algo mas",
+    "resc_nbest": "vamos caminando que esta a dos cuidadanos mas"
+   },
+   {
+    "ref": "me olvide de regar las plantas toda la semana",
+    "cands": [
+     "pero viste de regalar las plantas todas las españa",
+     "pero viste de regalar las plantas toda la semana",
+     "pero viste de regalar las plantas todas las empanas",
+     "pero olvide de regalar las plantas todas las españa",
+     "pero viste de regalar las plantas todas las embaradas"
+    ],
+    "corr_1best": "pero viste de regalar las plantas por toda españa",
+    "resc_nbest": "pero viste de regalar las plantas toda la semana"
+   },
+   {
+    "ref": "me parece que va a llover toda la tarde",
+    "cands": [
+     "me parece que habia sobre sola tarde",
+     "me parece que vaya a ver sola tarde",
+     "me parece que haber sobre sola tarde",
+     "me parece que habra sobre sola tarde",
+     "me parece que habia sobre toda la tarde"
+    ],
+    "corr_1best": "me parece que habia solo tarde",
+    "resc_nbest": "me parece que habia sobre toda la tarde"
+   },
+   {
+    "ref": "me tome el tren equivocado y termine lejisimo",
+    "cands": [
+     "me toma el estar equivocado que termina elegisimo",
+     "me toma el estar equivocadores termina elegisimo",
+     "me toma el estar equivocador y termina elegisimo",
+     "me toma el estar equivocado y termina elegisimo",
+     "me toma el estar equivocado que termina el equisimo"
+    ],
+    "corr_1best": "me toma el estar equivocado que termina elegisimo",
+    "resc_nbest": "me toma el estar equivocado y termina elegisimo"
+   },
+   {
+    "ref": "no me alcanza la plata hasta fin de mes",
+    "cands": [
+     "no para hacer la masa tan fin de mas",
+     "no para hacer la mata tan fin de mas",
+     "no para decir la masa tan fin de mas",
+     "no para hacer la pata tan fin de mas",
+     "no para hacer la masteta fin de mas"
+    ],
+    "corr_1best": "no para hacer la masa tan fina como",
+    "resc_nbest": "no para hacer la masa tan fin de mas"
+   }
+  ],
+  "ft05/amigo": [
+   {
+    "ref": "apaga la tele que nadie la esta mirando",
+    "cands": [
+     "me encanta que nadie le haya entendido",
+     "me encanta que nadie la gente mirando",
+     "me encanta que nadie nadie esta mirando",
+     "me encanta que nadie la que esta mirando",
+     "me encanta nadie nadie nadie esta mirando"
+    ],
+    "corr_1best": "me encanta que nadie le haya entendido vos",
+    "resc_nbest": "me encanta que nadie la gente mirando"
+   },
+   {
+    "ref": "me olvide de regar las plantas toda la semana",
+    "cands": [
+     "prohibida de regalar las plantas todas las empanadas",
+     "pero bien de regalar las plantas todas las empanadas",
+     "pero viste de regalar las plantas todas las empanadas",
+     "pero hubiese de regalar las plantas todas las empanadas",
+     "pero hubiese de regalar las plantas de toda la semana"
+    ],
+    "corr_1best": "prohibido regalar las plantas todas las empanadas",
+    "resc_nbest": "pero hubiese de regalar las plantas de toda la semana"
+   },
+   {
+    "ref": "el domingo juega boca y no me lo pierdo",
+    "cands": [
+     "que le domingo nunca a buscar numero pierdo",
+     "el que domingo nunca a buscar numero pierdo",
+     "que le domingo nunca a buscar numero pierdus",
+     "el que domingo nunca a buscar numero pierdus",
+     "en el que domingo nunca a buscar numero pierdo"
+    ],
+    "corr_1best": "que el domingo nunca a buscar numero pierdo",
+    "resc_nbest": "que el domingo nunca a buscar numero pierdo"
+   },
+   {
+    "ref": "mi primo vive a tres cuadras de la estacion",
+    "cands": [
+     "mi primo vive hasta en su cuadra de la estacion",
+     "mi primo vive a tener su cuadra de la estacion",
+     "mi primo vive a tener su cuadra tiene ante todo",
+     "mi primo vive a tener su cuadra tiene ante todos",
+     "mi primo vive a tener su cuadra de la estatura"
+    ],
+    "corr_1best": "mi primo vive hasta en su cuadra de la estacion",
+    "resc_nbest": "mi primo vive a tener su cuadra de la estacion"
+   },
+   {
+    "ref": "me toco la fila mas lenta del banco como siempre",
+    "cands": [
+     "me entonces la vida es machista del masculto muy simple",
+     "me entonces la vida machista del mas cultura muy simple",
+     "me entonces la vida es machista del mas curso muy simple",
+     "me entonces la vida machista del mas cultural muy simple",
+     "me entonces la vida es machista del masculto muy siempre"
+    ],
+    "corr_1best": "me entiendo la vida es machista del masculino muy simple",
+    "resc_nbest": "me entonces la vida es machista del masculino muy simple"
+   },
+   {
+    "ref": "guarda las sobras en la heladera para manana",
+    "cands": [
+     "guarda la superacion la que nadie para marrana",
+     "jugar de la superacion la que nadie para marrana",
+     "guarda la superacion en la que nadie para marrana",
+     "no guarda la superacion la que nadie para marrana",
+     "un guarda la superacion la que nadie para marrana"
+    ],
+    "corr_1best": "guarda la superacion la que nadie para marrana",
+    "resc_nbest": "guarda la superacion en la que nadie para marrana"
+   }
+  ],
+  "ft05/fede": [
+   {
+    "ref": "me quede sin bateria justo cuando te iba a llamar",
+    "cands": [
+     "me quedas en materia justo cuando estaba llamar",
+     "me quedas en materia justo cuando te va a llamar",
+     "me quedas en materia justo cuando te iba a llamar",
+     "me queda sin materia justo cuando estaba llamar",
+     "me quedes en materia justo cuando estaba llamar"
+    ],
+    "corr_1best": "te quedas en materia justo cuando estabas llamar",
+    "resc_nbest": "me quedas en materia justo cuando te iba a llamar"
+   },
+   {
+    "ref": "mi vecino escucha musica fuerte hasta la madrugada",
+    "cands": [
+     "mi vision escuchamos la fuerza de la madrugada",
+     "mi vision escucha musicas fuertes a la madrugada",
+     "mi vision escucha musica fuerte de la madrugada",
+     "mi vecino escucha musicas fuertes a la madrugada",
+     "mi vision escuchamos las fuerzas de la madrugada"
+    ],
+    "corr_1best": "mi vision escuchamos la fuerza de la madrugada",
+    "resc_nbest": "mi vision escucha musica fuerte de la madrugada"
+   },
+   {
+    "ref": "mi hermana se recibio de abogada la semana pasada",
+    "cands": [
+     "mi hermana sigue siendo abogada la semana pasada",
+     "mi hermana se nacio de abogada la semana pasada",
+     "mi hermana se nacio de boca de la semana pasada",
+     "mi hermana se recibio de boca de la semana pasada",
+     "mi hermana se recibio de abogada la semana pasada"
+    ],
+    "corr_1best": "mi hermana sigue siendo abogada la semana pasada",
+    "resc_nbest": "mi hermana se recibio de abogada la semana pasada"
+   },
+   {
+    "ref": "el aire acondicionado no anda desde el verano",
+    "cands": [
+     "que le ha conocido a nadie del barajo",
+     "que le han conocido a nadie del barajo",
+     "que le han conocido hasta desde el verano",
+     "que la reconocia no hasta desde el verano",
+     "que la reconocieron hasta desde el verano"
+    ],
+    "corr_1best": "que le ha visto a nadie del barrio",
+    "resc_nbest": "que le han conocido hasta desde el verano"
+   },
+   {
+    "ref": "pasame la receta de las milanesas de tu vieja",
+    "cands": [
+     "empiezan a recitar de las placas de su vida",
+     "empezamos a recitar de las placas de su vida",
+     "empezamos la receta de las placas de su vida",
+     "empezamos la receta de las placas de subirla",
+     "empieza en la receta de las placas de su vida"
+    ],
+    "corr_1best": "empiezan a recitar las placas de su vida",
+    "resc_nbest": "empezamos a recitar de las placas de su vida"
+   },
+   {
+    "ref": "mi perro se escapo pero volvio solo a la casa",
+    "cands": [
+     "mi perro se escapo pero vos toda la casa",
+     "mi perro se escapo pero vos solo en la casa",
+     "pero se escaparon pero vos solo en la casa",
+     "mi perro se escapo pero vos solo de la casa",
+     "mi perro se escapo pero vosotros de la casa"
+    ],
+    "corr_1best": "mi perro se escapo pero vos toda la casa",
+    "resc_nbest": "mi perro se escapo pero vos solo en la casa"
+   }
+  ],
+  "ft07/Rioplatense": [
+   {
+    "ref": "el respeto de todo el mundo y ya no podes conseguir marido porque ya sos la come viejos",
+    "cands": [
+     "te respeto con muchos anumeros en el marico vos se hizo raro me viejo",
+     "te repito todo el mundo ya numero sin marico vos se hizo raro me viejo",
+     "se repito todo el mundo ya numero sin marico vos se hizo raro me viejo",
+     "te respeto todo el mundo ya numero sin marico vos se hizo raro me viejo",
+     "y te respeto con muchos anumeros en el marico vos se hizo raro me viejo"
+    ],
+    "corr_1best": "te respeto con muchos numeros en el marico vos te hiciste raro me viejo",
+    "resc_nbest": "te respeto todo el mundo ya numero sin marico vos se hizo raro me viejo"
+   },
+   {
+    "ref": "despues terminas cogiendo a tu vieja yo que se pues no te queda otra ella la experta en pueblos viviendo toda la vida en cava y encerrada en su mansion en el campo",
+    "cands": [
+     "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle a su maestro energia",
+     "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle a su maestro en el",
+     "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle en su maestro energia",
+     "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle en su maestro en el",
+     "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle a su maestro en el que"
+    ],
+    "corr_1best": "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle a su maestro energia",
+    "resc_nbest": "como te manejo que cuando voy a cagar eso que se que me llegue a otra ella la semana que puede volver a toda la verdad que la va a decirle en su maestro en el que"
+   },
+   {
+    "ref": "porque todos saben lo que hiciste si vos no te ocupas de tu hija en una ciudad",
+    "cands": [
+     "como que todos saben lo que distintas bueno les toques copas de tuve alguna ciudad",
+     "como que todos saben lo que distintas bueno les toque compra de tu vida en una ciudad",
+     "como que todos saben lo que distintas bueno le toca comprar de tu vida en una ciudad",
+     "como que todos saben lo que distintas bueno les toca comprar de tu vida en una ciudad",
+     "como que todos saben lo que distintas bueno les toques copas de tu vida en una ciudad"
+    ],
+    "corr_1best": "como que todos saben lo que distinto bueno les toques copas de tuve alguna ciudad",
+    "resc_nbest": "como que todos saben lo que distintas bueno les toca comprar de tu vida en una ciudad"
+   },
+   {
+    "ref": "un tiempo y bueno es un pueblo asi que siempre se sabe lo que pasa yo ante esa situacion",
+    "cands": [
+     "un tiempo y bueno hace que se pasaba lo que pasa yo antes de situacion",
+     "un tiempo y bueno hace que se me sabe lo que pasa yo antes de situacion",
+     "un tiempo y bueno es un nuevo asi que se me sabe lo que pasa yo antes de situacion",
+     "un tiempo y bueno es un nuevo asi que se pasaba lo que pasa yo antes de situacion",
+     "un tiempo y bueno su nuevo asi que se me sabe lo que pasa yo antes de situacion"
+    ],
+    "corr_1best": "un tiempo y bueno hace que se pasaba lo que pasa yo antes de situacion",
+    "resc_nbest": "un tiempo y bueno es un nuevo asi que se me sabe lo que pasa yo antes de situacion"
+   },
+   {
+    "ref": "como para pensar que era brujo pero tio tire como tres años con esa eh",
+    "cands": [
+     "como para mensajera mucho porque no tenemos tres años rechazo",
+     "como para mensajera mucho porque no tenemos tres años rechazos",
+     "como para mensajera mucho porque no teniamos tres años rechazo",
+     "como para mensajera mucho porque no teniamos tres años rechazos",
+     "bueno para mensajera mucho porque no tenemos tres años rechazo"
+    ],
+    "corr_1best": "como para mensajera mucho porque no tenes tres años rechazo",
+    "resc_nbest": "como para mensajera mucho porque no teniamos tres años rechazos"
+   },
+   {
+    "ref": "y si viene alguien con ropa de marca o cambio el auto o lo que sea",
+    "cands": [
+     "y tambien el corroma de marcado camino el agusto con lo que ya",
+     "y siempre el corroma de marcado camino el agusto con lo que ya",
+     "y siempre el rico roma de marcado camino el agusto con lo que ya",
+     "y tambien el gion roma de marcado camino el agusto con lo que ya",
+     "y tambien el rico roma de marcado camino el agusto con lo que ya"
+    ],
+    "corr_1best": "y tambien el corrompo de marcado camino el agusto con lo que ya",
+    "resc_nbest": "y siempre el rico roma de marcado camino el agusto con lo que ya"
+   }
+  ],
+  "ft07/Selftest": [
+   {
+    "ref": "vamos a comer un asado el domingo en casa de mi vieja",
+    "cands": [
+     "vamos a lo mejorazado domingo gracias de mi vieja",
+     "vamos a lo mejorazados domingo gracias de mi vieja",
+     "vamos a los medulazados domingos gracias de mi vieja",
+     "vamos a comer un asado domingo gracias de mi vieja",
+     "vamos a romar un asado domingo gracias de mi vieja"
+    ],
+    "corr_1best": "vamos a lo mejorado domingo gracias de mi vieja",
+    "resc_nbest": "vamos a comer un asado domingo gracias de mi vieja"
+   },
+   {
+    "ref": "vamos a lo de la abuela a almorzar el domingo",
+    "cands": [
+     "vamos algo de la buena ha demostrado mio",
+     "vamos algo de la buena ha demostrado amigo",
+     "vamos algo de la vuela ha demostrado mio",
+     "vamos algo de la abuela ha demostrado mio",
+     "vamos a lo de la buena ha demostrado mio"
+    ],
+    "corr_1best": "vamos algo de la buena ha demostrado mio",
+    "resc_nbest": "vamos a lo de la abuela ha demostrado mio"
+   },
+   {
+    "ref": "hace mucho que no veo a mis amigos del colegio",
+    "cands": [
+     "hace mucho que lo veo en mis amigos del colegio no",
+     "hace mucho que no veo en mis amigos del colegio no",
+     "hace mucho que lo veo en mis amigos del colegio",
+     "hace mucho que lo veo a mis amigos del colegio no",
+     "hace mucho que no vos mis amigos del colegio no"
+    ],
+    "corr_1best": "hace mucho que lo veo en mis amigos del colegio no",
+    "resc_nbest": "hace mucho que no veo a mis amigos del colegio no"
+   },
+   {
+    "ref": "armamos un grupo para el trabajo practico",
+    "cands": [
+     "el mamos un grupo para el trabajo practico",
+     "el vamos un grupo para el trabajo practico",
+     "almamos un grupo para el trabajo practico",
+     "armamos un grupo para el trabajo practico",
+     "al mamos un grupo para el trabajo practico"
+    ],
+    "corr_1best": "tenes un grupo para el trabajo practico",
+    "resc_nbest": "armamos un grupo para el trabajo practico"
+   },
+   {
+    "ref": "me tome el tren equivocado y termine lejisimo",
+    "cands": [
+     "visto mas que la trae equivocadores termina legisimo",
+     "visto mas que la trae equivocadores termina elegisimo",
+     "visto para que la trae equivocadores termina legisimo",
+     "visto para que la trae equivocadores termina elegisimo",
+     "visto para el estar equivocado de terminar elegisimo"
+    ],
+    "corr_1best": "viste mas que la traen equivocadores termina legisimo",
+    "resc_nbest": "visto para que la trae equivocadores termina elegisimo"
+   },
+   {
+    "ref": "no me alcanza la plata hasta fin de mes",
+    "cands": [
+     "no merece la mata tan fin de mas",
+     "no merece la pata tan fin de mas",
+     "no merece la plata tan fin de mas",
+     "no marcarse la mata tan fin de mas",
+     "no para hacer la mata tan fin de mas"
+    ],
+    "corr_1best": "no merece la plata tan fin de mas",
+    "resc_nbest": "no merece la plata tan fin de mas"
+   }
+  ],
+  "ft07/amigo": [
+   {
+    "ref": "el profe nos dio una semana mas para entregar",
+    "cands": [
+     "poder contra una semana mas para inteligencia",
+     "el poder contra una semana mas para inteligencia",
+     "el poder control una semana mas para inteligencia",
+     "el poder control una semana mas para entregarlo",
+     "el poder control una semana mas para entregarlos"
+    ],
+    "corr_1best": "poder contra una semana mas para inteligencia vos",
+    "resc_nbest": "el poder control una semana mas para entregarlo"
+   },
+   {
+    "ref": "tengo el brazo dormido de dormir de costado",
+    "cands": [
+     "tengo sobre todo miedo de dormir de contado",
+     "tengo sobre todo miedo de dormir de costado",
+     "tengo sobre todo pido de dormir de contado",
+     "tengo sobre todo pido de dormir de costado",
+     "descubre todo el video de dormir de contado"
+    ],
+    "corr_1best": "tengo sobre todo miedo de dormir de contado",
+    "resc_nbest": "tengo sobre todo miedo de dormir de costado"
+   },
+   {
+    "ref": "hay una oferta de fideos en el super del barrio",
+    "cands": [
+     "hay una oferta definida en el sumer del barco",
+     "hay una oferta definida en el sumer del barrio",
+     "hay una oferta definitiva en el sumer del barrio",
+     "hay una oferta definida en el sumer del barrio no",
+     "hay una oferta definitiva en el sumer de la verdad"
+    ],
+    "corr_1best": "hay una oferta definida en el sumer del barco",
+    "resc_nbest": "hay una oferta definitiva en el sumer del barrio"
+   },
+   {
+    "ref": "vamos a la plaza a patear un rato la pelota",
+    "cands": [
+     "vamos a gran esperanza a comprender una natural pelota",
+     "vamos a gran esperanza de aprender una ratura pelota",
+     "vamos a gran experiencia de emprender un rato pelota",
+     "vamos a gran esperanza de aprender un rato de pelota",
+     "vamos a gran esperanza de comprender una natural pelota"
+    ],
+    "corr_1best": "vamos a gran esperanza para comprender una natural pelota",
+    "resc_nbest": "vamos a gran esperanza de aprender un rato de pelota"
+   },
+   {
+    "ref": "me toco la fila mas lenta del banco como siempre",
+    "cands": [
+     "viendo con la vida paciencia sin mas consumo siempre",
+     "me entro con la vida paciencia sin mas consumo siempre",
+     "me entro con la vida paciencia sin embargo supo siempre",
+     "me entro con la vida paciencia sin embargo es muy simple",
+     "me entro con la vida paciencia sin embargo es un simple"
+    ],
+    "corr_1best": "viendo con la vida paciencia sin mas consumo siempre",
+    "resc_nbest": "me entro con la vida paciencia sin embargo es muy simple"
+   },
+   {
+    "ref": "guarda las sobras en la heladera para manana",
+    "cands": [
+     "guardar las superaciones las ganadoras para parar",
+     "guardar las superaciones las que nadie para parar",
+     "guardar las superaciones de la guerra para para nada",
+     "guardar las superaciones las ganadoras para paradas",
+     "o guardar las superaciones las que nadie para parar"
+    ],
+    "corr_1best": "guardar las superaciones las ganadoras para volver",
+    "resc_nbest": "guardar las superaciones las que nadie para parar"
+   }
+  ],
+  "visper-fp32/658": [
+   {
+    "ref": "y despues tenia como un mes dos meses de vacaciones en mi casa antes de eso",
+    "cands": [
+     "antes de eso",
+     "y despues tenia como un mes dos meses de vacaciones en mi casa antes de eso",
+     "y despues tenia como mes dos meses de vacaciones en mi casa antes de eso",
+     "y despues tenia como dos meses de vacaciones en mi casa antes de eso",
+     "antes de esos"
+    ],
+    "corr_1best": "antes de eso",
+    "resc_nbest": "y despues tenia como dos meses de vacaciones en mi casa antes de eso"
+   },
+   {
+    "ref": "pero al parecer aun estaba en el closet hasta ese momento la gente empezaba a decir",
+    "cands": [
+     "la gente empezaba a decir",
+     "y la gente empezaba a decir",
+     "que la gente empezaba a decir",
+     "pero al parecer aun estaba el closet hasta ese momento la gente empezaba a decir",
+     "pero al parecer aun estaba el closet hasta ese momento y la gente empezaba a decir"
+    ],
+    "corr_1best": "la gente empezaba a decir",
+    "resc_nbest": "pero al parecer aun estaba el closet hasta ese momento y la gente empezaba a decir"
+   },
+   {
+    "ref": "y mañana nos vemos nos vemos en otro live",
+    "cands": [
+     "y mañana no vraiment no vraiment si notre life",
+     "y mañana no vemos si nuestro live",
+     "y mañana no vemos no vemos si nuestro live",
+     "y mañana nos vemos nos vemos en otro live",
+     "y mañana no vemos no vemos si nuestro life"
+    ],
+    "corr_1best": "y mañana no no si nuestra vida",
+    "resc_nbest": "y mañana nos vemos nos vemos en otro live"
+   },
+   {
+    "ref": "y al tener eso como que la interaccion la onda y todo no va a ser lo mismo",
+    "cands": [
+     "la interaccion la cosa y todo no va a ser lo mismo",
+     "y hay que tener eso como que la interaccion la cosa y todo no va a ser lo mismo",
+     "y ahi tienen eso como que la interaccion la cosa y todo no va a ser lo mismo",
+     "y ahi tienen eso la interaccion la cosa y todo no va a ser lo mismo",
+     "y ahi tienen eso como que la interaccion la otra y todo no va a ser lo mismo"
+    ],
+    "corr_1best": "la interaccion la cosa y todo no va a ser lo mismo",
+    "resc_nbest": "y ahi tienen eso como que la interaccion la otra y todo no va a ser lo mismo"
+   },
+   {
+    "ref": "como para pensar que era brujo pero tio tire como tres años con esa eh",
+    "cands": [
+     "no para pensar que era futuro pero no tenia como tres años con esta idea",
+     "no para pensar que era futuro pero no tenia como 10 años con esta idea",
+     "para pensar que era futuro pero no tenia como tres años con esta idea",
+     "para pensar que era futuro pero no tenia como 10 años con esta idea",
+     "no para pensar en el futuro no tiene como 10 años con esta idea"
+    ],
+    "corr_1best": "no para pensar que era futuro pero no tenia como tres años con esta idea",
+    "resc_nbest": "para pensar que era futuro pero no tenia como 10 años con esta idea"
+   },
+   {
+    "ref": "y si viene alguien con ropa de marca o cambio el auto o lo que sea",
+    "cands": [
+     "y se viene alguien con ropa de marca o cambio el auto o lo que sea",
+     "vale y se viene alguien con ropa de marca o cambio el auto o lo que sea",
+     "y se viene alguien con ropa de mercado cambio el auto o lo que sea",
+     "vale y se viene alguien con ropa de mercado cambio el auto o lo que sea",
+     "y si viene alguien con ropa de marca o cambio el auto o lo que sea"
+    ],
+    "corr_1best": "y se viene alguien con ropa de marca o cambia el auto o lo que sea",
+    "resc_nbest": "y se viene alguien con ropa de marca o cambio el auto o lo que sea"
+   }
+  ],
+  "visper-fp32/amigo": [
+   {
+    "ref": "encontre veinte pesos en el bolsillo de la campera",
+    "cands": [
+     "en contra 20 pesos en el bolsillo de la campana a",
+     "en contra 20 pesos en el bolsillo de la campana",
+     "encontre 20 pesos en el bolsillo de la campana a",
+     "en contra 20 pesos en el bolsillo de la campera",
+     "encontre 20 pesos en el bolsillo de la campana"
+    ],
+    "corr_1best": "en contra 20 pesos en el bolsillo de la campana a vos",
+    "resc_nbest": "encontre 20 pesos en el bolsillo de la campana"
+   },
+   {
+    "ref": "se corto el internet en plena reunion de trabajo",
+    "cands": [
+     "si el costo de internet es plena reunion de trabajo",
+     "y el costo de internet es plena reunion de trabajo",
+     "si el control internet es plena reunion de trabajo",
+     "se encontro el internet en plena reunion de trabajo",
+     "se encontro internet en plena reunion de trabajo"
+    ],
+    "corr_1best": "si el costo de internet es penua reunion de trabajo",
+    "resc_nbest": "se encontro internet en plena reunion de trabajo"
+   },
+   {
+    "ref": "se me hizo tarde y perdi el turno del medico",
+    "cands": [
+     "se me hizo tarde y perdia tu rol del medico",
+     "que me hizo tardar y perder el duro del medico",
+     "que me hizo tarde y perder el duro del medico",
+     "que me hizo tardar y perder el culo del medico",
+     "se me hizo tarde y perder el duro del medico"
+    ],
+    "corr_1best": "se me hizo tarde y perdia tu rol del medico",
+    "resc_nbest": "se me hizo tarde y perdi el duro del medico"
+   },
+   {
+    "ref": "dejamos la bici atada en la puerta del club",
+    "cands": [
+     "dejamos la bicicleta en la puerta del room",
+     "dejamos la bicicleta en la puerta del club",
+     "dejamos la visita dada en la puerta del club",
+     "dejamos la bicicleta en la puerta del loom",
+     "tengamos la bicicleta en la puerta del room"
+    ],
+    "corr_1best": "dejamos la bicicleta en la puerta del room",
+    "resc_nbest": "dejamos la bicicleta en la puerta del club"
+   },
+   {
+    "ref": "me toco la fila mas lenta del banco como siempre",
+    "cands": [
+     "meto con la vida mas linda del macro rumbo siempre",
+     "me toco la vida mas linda del macro rumbo siempre",
+     "meto con la via mas lenta del macro rumbo siempre",
+     "meto con la via mas linda del macro rumbo siempre",
+     "metodo con la vida mas linda del macro rumbo siempre"
+    ],
+    "corr_1best": "metelo con la vida mas linda del macro rumbo siempre",
+    "resc_nbest": "meto con la via mas linda del macro rumbo siempre"
+   },
+   {
+    "ref": "guarda las sobras en la heladera para manana",
+    "cands": [
+     "guarda las obras en la heladera para parar",
+     "guarda las obras en la heladera para banana",
+     "guarda las obras en la guinadora para banana",
+     "guarda las obras en la inadera para parar",
+     "guarda las obras en la inadera para banana"
+    ],
+    "corr_1best": "guarda las obras en la heladera para parar",
+    "resc_nbest": "guarda las obras en la heladera para banana"
+   }
+  ],
+  "visper-fp32/fede": [
+   {
+    "ref": "mi vecino escucha musica fuerte hasta la madrugada",
+    "cands": [
+     "mi vecino escuchamos la fuente tan madrugada",
+     "mi vecino escuchamos la puerta tan madrugada",
+     "mi vestido escuchamos era fuerte hasta la madrugada",
+     "mi vestido escucha musica fuerte hasta la madrugada",
+     "mi vecino escucha musica fuerte hasta la madrugada"
+    ],
+    "corr_1best": "mi vecino escuchamos la fuente tan madrugada",
+    "resc_nbest": "mi vecino escucha musica fuerte hasta la madrugada"
+   },
+   {
+    "ref": "el aire acondicionado no anda desde el verano",
+    "cands": [
+     "el aire acondicionado con andante del verano",
+     "el aire acondicionado no anda desde el verano",
+     "el aire acondicionado no antes del verano",
+     "que el aire acondicionado no anda desde el verano",
+     "el aire acondicionado con antes del verano"
+    ],
+    "corr_1best": "el aire acondicionado con andante del verano",
+    "resc_nbest": "el aire acondicionado no anda desde el verano"
+   },
+   {
+    "ref": "vamos a comer un asado el domingo en casa de mi vieja",
+    "cands": [
+     "vamos a comer un hasta dos domingos en casa de mi vieja",
+     "vamos a comer un asado el domingo en casa de mi vieja",
+     "vamos a comer un gastado el domingo en casa de mi vieja",
+     "vamos a comer un estado el domingo en casa de mi vieja",
+     "vamos a comer un asado domingo en casa de mi vieja"
+    ],
+    "corr_1best": "vamos a comer un hasta dos domingos en casa de mi vieja",
+    "resc_nbest": "vamos a comer un asado el domingo en casa de mi vieja"
+   },
+   {
+    "ref": "no tengo ganas de cocinar pidamos una pizza",
+    "cands": [
+     "no te nos ganas de cocinar veamos una pizza",
+     "no tengo ganas de cocinar veamos una pizza",
+     "no te nos ganas de cocinar veamos una pista",
+     "no te nos ganas de cocinar veamos una pieza",
+     "no tengo ganas de cocinar veamos una pista"
+    ],
+    "corr_1best": "no te nos ganas de cocinar veamos una pizza",
+    "resc_nbest": "no tengo ganas de cocinar veamos una pizza"
+   },
+   {
+    "ref": "pasame la receta de las milanesas de tu vieja",
+    "cands": [
+     "pasamos la receta de la milanesa de tu vieja",
+     "pasamos la receta de las milanesas de tu vieja",
+     "pasamos la receta de las milanesas de tu pierna",
+     "pasamos la receta de la milanesa de tu pierna",
+     "pasamos la receta de las milanesas de tu viernes"
+    ],
+    "corr_1best": "pasamos la receta de la milanesa de tu vieja che",
+    "resc_nbest": "pasamos la receta de las milanesas de tu pierna"
+   },
+   {
+    "ref": "mi perro se escapo pero volvio solo a la casa",
+    "cands": [
+     "mi perro se escapo pero volvio solo a la casa",
+     "mi perro se escapo pero volvio solo a la casa",
+     "mi perro se escapo pero vio solo la casa",
+     "mi perro se escapo pero movio solo la casa",
+     "mi perro se encapo pero volvio solo a la casa"
+    ],
+    "corr_1best": "mi perro se escapo pero volvio solo a la casa",
+    "resc_nbest": "mi perro se escapo pero volvio solo a la casa"
+   }
+  ],
+  "visper-int8/658": [
+   {
+    "ref": "y despues tenia como un mes dos meses de vacaciones en mi casa antes de eso",
+    "cands": [
+     "antes de eso",
+     "antes de esos",
+     "y despues tenia como mes dos meses de vacaciones en mi casa antes de eso",
+     "antes de esto",
+     "y despues tenia como un mes dos meses de vacaciones en mi casa antes de eso"
+    ],
+    "corr_1best": "antes de eso",
+    "resc_nbest": "y despues tenia como un mes dos meses de vacaciones en mi casa antes de eso"
+   },
+   {
+    "ref": "pero al parecer aun estaba en el closet hasta ese momento la gente empezaba a decir",
+    "cands": [
+     "la gente empezaba a decir",
+     "y la gente empezaba a decir",
+     "que la gente empezaba a decir",
+     "pero al parecer aun estaba el closet hasta ese momento la gente empezaba a decir",
+     "pero al parecer aun estaba el closet hasta ese momento y la gente empezaba a decir"
+    ],
+    "corr_1best": "la gente empezaba a decir",
+    "resc_nbest": "pero al parecer aun estaba el closet hasta ese momento y la gente empezaba a decir"
+   },
+   {
+    "ref": "tipo tenes una bala una bala que es una orgia no podes hacer mas que una porque son siempre la misma gente",
+    "cands": [
+     "tipo tenes una bala una bala que es unico que no puede ser mas que un apple que se lo sepa a la imagen",
+     "tipo tienes una bala una bala que es unico que no puede ser mas que un apple que se lo sepa a la imagen",
+     "tipo tenes una bala una bala que es unico que no puede ser mas que una porque se lo sepa la misma gente",
+     "tipo tenes una bala una bala que es unico que no puede ser madre que una porque se lo sepa la misma gente",
+     "tipo tienes una bala una bala que es unico que no puede ser mas que una porque se lo sepa la misma gente"
+    ],
+    "corr_1best": "tenes una bala una bala que es unico que no puede ser mas que un apple que se lo sepa a la imagen",
+    "resc_nbest": "tipo tenes una bala una bala que es unico que no puede ser mas que una porque se lo sepa la misma gente"
+   },
+   {
+    "ref": "arreglas tu casita cosas que en la ciudad no se nota tanto en la ciudad nadie sabe si arreglaste tu casa",
+    "cands": [
+     "arranque tu casa o sea que la ciudad no se nota tanto la ciudad nada sabes arranque tu casa",
+     "arranque tu casa o sea que la ciudad no se nota tanto la ciudad nadie sabe si es arranque tu casa",
+     "arranque tu casa o sea que la ciudad no se nota tanto la ciudad nada sabes arranquete tu casa",
+     "arranque tu casa o sea que la ciudad no se nota tanto la ciudad nadie sabe si arranque tu casa",
+     "arranque tu casa o sea que en la ciudad no se nota tanto en la ciudad nada sabes arranque tu casa"
+    ],
+    "corr_1best": "arranque tu casa o sea que la ciudad no se nota tanto la ciudad nada sabes arranque tu casa",
+    "resc_nbest": "arranque tu casa o sea que en la ciudad no se nota tanto en la ciudad nadie sabe si es arranque tu casa"
+   },
+   {
+    "ref": "como para pensar que era brujo pero tio tire como tres años con esa eh",
+    "cands": [
+     "no para pensar que era futuro pero no tenia como 10 años con esta idea",
+     "no para pensar que era futuro pero no tenia como tres años con esta idea",
+     "para pensar que era futuro pero no tenia como tres años con esta idea",
+     "para pensar que era futuro pero no tenia como 10 años con esta idea",
+     "no para pensar que la foto no tiene como 10 años con estas"
+    ],
+    "corr_1best": "no para pensar que era futuro pero no tenia como 10 años con esta idea",
+    "resc_nbest": "para pensar que era futuro pero no tenia como tres años con esta idea"
+   },
+   {
+    "ref": "y si viene alguien con ropa de marca o cambio el auto o lo que sea",
+    "cands": [
+     "y se viene alguien con ropa de marca o cambio el auto o lo que sea",
+     "y se viene alguien con ropa de mercado cambio el auto o lo que sea",
+     "y se viene el rico ropa de marca o cambio el auto o lo que sea",
+     "vale y se viene alguien con ropa de marca o cambio el auto o lo que sea",
+     "y se viene el rico ropa de mercado cambio el auto o lo que sea"
+    ],
+    "corr_1best": "y se viene alguien con ropa de marca o cambia el auto o lo que sea",
+    "resc_nbest": "y se viene alguien con ropa de marca o cambio el auto o lo que sea"
+   }
+  ],
+  "visper-int8/amigo": [
+   {
+    "ref": "se me hizo tarde y perdi el turno del medico",
+    "cands": [
+     "se me hizo tarde y perdia tu rol del medico",
+     "que me hizo tardar y perder el culo del medico",
+     "se me hizo tarde y perdi el turno del medico rojo",
+     "se me hizo tarde y perdi el duro del medico",
+     "se me hizo tarde y perdia tu rol del medico rojo"
+    ],
+    "corr_1best": "se me hizo tarde y perdia tu rol del medico",
+    "resc_nbest": "se me hizo tarde y perdi el turno del medico rojo"
+   },
+   {
+    "ref": "el kiosco de la esquina cierra a la medianoche",
+    "cands": [
+     "hijos de las niñas cierra a la medianoche",
+     "hijos de la esquina cierra a la medianoche",
+     "y control de la escena cierra a la medianoche",
+     "hijos de las niñas cierran a la medianoche",
+     "en hijos de las niñas cierra a la medianoche"
+    ],
+    "corr_1best": "hijos de las niñas cerra a la medianoche",
+    "resc_nbest": "hijos de la esquina cierra a la medianoche"
+   },
+   {
+    "ref": "encontre veinte pesos en el bolsillo de la campera",
+    "cands": [
+     "en contra 20 pesos en el bolsillo de la campana",
+     "en contra 20 pesos en el bolsillo de la campera",
+     "en contra 20 pesos en el bolsillo de la campana a",
+     "encontre 20 pesos en el bolsillo de la campana",
+     "encontre 20 pesos en el bolsillo de la campana a"
+    ],
+    "corr_1best": "en contra 20 pesos en el bolsillo de la campana",
+    "resc_nbest": "encontre 20 pesos en el bolsillo de la campana"
+   },
+   {
+    "ref": "quedo cafe en el termo si queres un poco",
+    "cands": [
+     "quedo caverna del mundo si quereis un poco",
+     "quedo caverna del mundo si queres un poco",
+     "quedo caverna en el mundo si queres un poco",
+     "quedo caverna en el mundo si quereis un poco",
+     "quedo cabe en el terremoto si quereis un poco"
+    ],
+    "corr_1best": "quede en el mundo si queres un poco",
+    "resc_nbest": "quedo cabe en el mundo si quereis un poco"
+   },
+   {
+    "ref": "me toco la fila mas lenta del banco como siempre",
+    "cands": [
+     "meto con la vida mas linda del macro rumbo siempre",
+     "me toco la vida mas linda del macro rumbo siempre",
+     "meto con la via mas lenta del macro rumbo siempre",
+     "metodo con la vida mas linda del macro rumbo siempre",
+     "meto con la via mas linda del macro rumbo siempre"
+    ],
+    "corr_1best": "metelo con la vida mas linda del macro rumbo siempre",
+    "resc_nbest": "meto con la vida mas linda del macro rumbo siempre"
+   },
+   {
+    "ref": "guarda las sobras en la heladera para manana",
+    "cands": [
+     "guarda las obras en la heladera para parar",
+     "guarda las obras en la heladera para banana",
+     "guarda las obras en la inadera para parar",
+     "guarda las obras en la inadera para banana",
+     "guarda las obras en la guinadora para banana"
+    ],
+    "corr_1best": "guarda las obras en la heladera para parar",
+    "resc_nbest": "guarda las obras en la heladera para banana"
+   }
+  ],
+  "visper-int8/fede": [
+   {
+    "ref": "el aire acondicionado no anda desde el verano",
+    "cands": [
+     "el aire acondicionado con andante del verano",
+     "el aire acondicionado no antes del verano",
+     "el aire acondicionado no anda desde el verano",
+     "que el aire acondicionado no anda desde el verano",
+     "que le han acordado antes del verano"
+    ],
+    "corr_1best": "el aire acondicionado con andante del verano",
+    "resc_nbest": "el aire acondicionado no anda desde el verano"
+   },
+   {
+    "ref": "vamos a comer un asado el domingo en casa de mi vieja",
+    "cands": [
+     "vamos a comer un hasta dos domingos en casa de mi vieja",
+     "vamos a comer un asado domingo en casa de mi vieja",
+     "vamos a comer un asado el domingo en casa de mi vieja",
+     "vamos a comer un estado el domingo en casa de mi vieja",
+     "vamos a comer un gastado domingo en casa de mi vieja"
+    ],
+    "corr_1best": "vamos a comer un hasta dos domingos en casa de mi vieja",
+    "resc_nbest": "vamos a comer un asado el domingo en casa de mi vieja"
+   },
+   {
+    "ref": "hoy me levante temprano y me fui a laburar en bici",
+    "cands": [
+     "hoy me levante temprano y me fui a la unar en bici",
+     "hoy me levante temprano y me fui a laburar en bici",
+     "hoy me levanta temprano y me fui a laburar en bici",
+     "hoy me levanta temprano y me fui a la unar en bici",
+     "hoy me levante temprano y me fui a laburar en mesa"
+    ],
+    "corr_1best": "hoy me levante temprano y me fui a la universidad en bici",
+    "resc_nbest": "hoy me levante temprano y me fui a laburar en bici"
+   },
+   {
+    "ref": "quedamos en juntarnos el viernes a la noche",
+    "cands": [
+     "quedamos a juntarnos a becas a la noche",
+     "quedamos a juntarnos a ver hacia la noche",
+     "quedamos a juntarnos el viernes a la noche",
+     "quedamos a juntarnos a vengarse a la noche",
+     "quedamos a juntarnos a viernes a la noche"
+    ],
+    "corr_1best": "quedamos a juntarnos a beber a la noche",
+    "resc_nbest": "quedamos a juntarnos el viernes a la noche"
+   },
+   {
+    "ref": "pasame la receta de las milanesas de tu vieja",
+    "cands": [
+     "pasamos la receta de la milanesa de tu vieja",
+     "pasamos la receta de las milanesas de tu vieja",
+     "pasamos la receta de las milanesas de tu pierna",
+     "pasamos la receta de la milanesa de su vieja",
+     "pasamos la receta de la milanesa de tu pierna"
+    ],
+    "corr_1best": "pasamos la receta de la milanesa de tu vieja che",
+    "resc_nbest": "pasamos la receta de las milanesas de tu pierna"
+   },
+   {
+    "ref": "mi perro se escapo pero volvio solo a la casa",
+    "cands": [
+     "mi perro se escapo pero volvio solo a la casa",
+     "mi perro se escapo pero volvio solo a la casa",
+     "mi perro se escapo pero vio solo la casa",
+     "mi perro se escapo pero movio solo la casa",
+     "mi perro se escapo pero vivio solo en la casa"
+    ],
+    "corr_1best": "mi perro se escapo pero volvio solo a la casa",
+    "resc_nbest": "mi perro se escapo pero volvio solo a la casa"
+   }
+  ]
+ }
+}

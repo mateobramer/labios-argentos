@@ -6,7 +6,9 @@
 **Setup:** corrector = `qwen3:4b-instruct-2507-q4_K_M` (Ollama local, `think=false`, temp 0). Ojo: la
 variante base "thinking" NO sirve (razona en el output y rompe todo). También disponible `qwen3.5:9b`.
 Scripts: `llm_corrector/fase0_llm_correct.py`, y en scratchpad `qwen_lab.py`, `nbest_ft05.py`,
-`visper_full_test.py`. Métrica: misma `norm()` + WER/CER, IC bootstrap.
+`visper_full_test.py`. Métrica: misma `norm()` + WER/CER, IC bootstrap. El experimento definitivo
+(grilla de 13 celdas, resultado que cierra la pregunta) está en **§G**; su código y datos crudos en
+[`llm_corrector/grid_cer_llm/`](../../llm_corrector/grid_cer_llm/).
 
 ---
 
@@ -95,6 +97,73 @@ recupera la degradación de int8. Ver [09](09_velocidad_inferencia.md) §G.)
 
 ---
 
+## G. ⭐⭐⭐ Grilla estandarizada del umbral CER/LLM (2026-07-10)
+
+Los §A–F2 exploraron el efecto de a poco (12→40→100 clips, celdas sueltas). §G lo cierra con **un
+solo protocolo** sobre una grilla de **13 celdas** que barre el CER de punta a punta y separa el eje
+de **dominio**, con estadística pareada. Scripts, datos crudos y figura:
+[`llm_corrector/grid_cer_llm/`](../../llm_corrector/grid_cer_llm/) (datos en `data/`,
+tabla máquina en `data/grid_puntos.json`).
+
+**Diseño.** Eje CER = 4 sistemas (ft07/ft05 de 50M; ViSpeR 288M en int8 y fp32) → CER base 14.6–41.3.
+Dos dominios: `test-658` (YouTube rioplatense, 2 hablantes held-out, refs de Whisper) y `selftest-150`
+(frases leídas a cámara: 100 de Fede + 50 de un 2º hablante con frases nuevas, refs exactas). Mismo LLM
+en todo (qwen3:4b-instruct q4_K_M, Ollama, temp 0, sin thinking): **corrección 1-best** y **n-best
+rescoring** (top-5), con techo **oracle-5**. **IC95 con bootstrap pareado** (5000 remuestreos) del delta
+por clip; la curva del umbral se traza *dentro* de cada test set (mismas frases, distinto modelo → el
+confound de frases queda controlado).
+
+| celda | n | CER₀ | WER₀ | corr-1best | resc | oracle-5 | Δresc (IC95) | Δcorr |
+|---|---|---|---|---|---|---|---|---|
+| ft07 × 658 | 658 | 41.32 | 69.04 | 69.86 | 68.83 | 64.96 | +0.21 [−0.22,+0.65] ≈ | −0.82 ❌sig |
+| ft05 × 658 | 658 | 37.86 | 64.62 | 65.67 | 64.49 | 60.41 | +0.13 [−0.37,+0.63] ≈ | −1.05 ❌sig |
+| ft07 × selftest | 150 | 31.89 | 62.90 | 63.76 | 61.18 | 56.43 | **+1.71 [+0.24,+3.23] ✅** | −0.86 ≈ |
+| ft05 × selftest | 150 | 31.78 | 61.03 | 61.73 | 60.09 | 54.95 | +0.94 [−0.54,+2.46] ≈ | −0.70 ≈ |
+| ViSpeR fp32 × 658 | 658 | 26.98 | 45.22 | 46.64 | 44.89 | 38.94 | +0.33 [−0.29,+0.96] ≈ | −1.42 ❌sig |
+| ViSpeR int8 × 658 | 658 | 26.74 | 45.12 | 46.51 | 44.59 | 38.98 | +0.53 [−0.12,+1.18] ≈ | −1.39 ❌sig |
+| ViSpeR int8 × amigo | 50 | 18.87 | 35.43 | 36.36 | 32.40 | 24.01 | +3.03 [−0.24,+6.12] ≈ | −0.93 ≈ |
+| ViSpeR fp32 × amigo | 50 | 18.14 | 34.73 | 36.60 | 32.40 | 24.71 | +2.33 [−1.16,+5.56] ≈ | −1.86 ❌sig |
+| ViSpeR int8 × fede | 100 | 14.75 | 29.98 | 35.48 | 28.34 | 22.01 | +1.64 [−0.57,+3.86] ≈ | −5.50 ❌sig |
+| ViSpeR fp32 × fede | 100 | 14.55 | 29.51 | 35.13 | 26.46 | 21.66 | **+3.04 [+0.81,+5.65] ✅** | −5.62 ❌sig |
+| *(control con-LM)* ft05 × fede | 100 | 30.76 | 55.74 | 59.84 | 57.26 | 48.13 | −1.52 [−4.29,+1.18] ≈ | −4.10 ❌sig |
+| *(control con-LM)* ft05 × amigo | 50 | 37.38 | 63.40 | 64.34 | 65.03 | 57.58 | −1.63 [−5.32,+1.43] ≈ | −0.93 ≈ |
+| *(control con-LM)* ft07 × amigo | 50 | 39.44 | 62.00 | 65.73 | 65.03 | 57.34 | **−3.03 [−5.54,−0.68] ❌sig** | −3.73 ❌sig |
+
+(Δresc/Δcorr = mejora en WER; `+` = baja el WER = ayuda; `✅` significativo favorable, `❌sig`
+significativo dañino, `≈` no significativo.)
+
+![umbral CER/LLM](../../llm_corrector/grid_cer_llm/umbral_cer_llm.png)
+
+**Hallazgos.**
+
+1. **La corrección 1-best no ayuda NUNCA: 0/13 celdas** (8 dañinas con significancia), en CER 14–41,
+   ambos dominios, ambos decoders. Confirma §A–D con muestra grande y el mecanismo del §C (el
+   corrector daña incluso el texto correcto, +2.04 WER).
+2. **En YouTube el rescoring es nulo a TODO CER (27–41), con precisión** (IC ±0.5 a n=658): ausencia de
+   efecto, no falta de potencia.
+3. **En material limpio el rescoring funciona y crece al bajar el CER**: +1.71 ✅ a CER 32, ~+2.5 a
+   CER 18, +3.04 ✅ a CER 14.6. → **El umbral es condicional al dominio.** "CER bajo" es proxy de lo que
+   importa: que la palabra correcta esté en el beam (en limpio pasa; en YouTube casi no, por ruido
+   visual + refs de Whisper imperfectas).
+4. **Replicación clave**: el efecto en limpio replica en un 2º hablante independiente con frases nuevas
+   (−2.33 a n=50, misma dirección); **pool de 150 es significativo: −2.81 WER, IC95 [+0.86, +4.77]**.
+   (Refina el −3.04 de §F2, que era solo el hablante 1.)
+5. **Con LM externo en el beam el rescoring deja de servir e incluso daña** (−3.03 ❌ en una celda).
+   No es falta de diversidad (las candidatas con-LM son *más* diversas: 0.25–0.30 vs 0.17–0.22).
+   Hipótesis en pie: el LM ya volvió fluidas las candidatas erradas → el rescorer pierde su señal.
+   Abierta.
+6. **int8 ≈ fp32 en toda la grilla** — cuantizar no cambia la historia del LLM.
+7. **Brecha al oracle**: el rescoring captura ~40 % del techo en la mejor celda (3.04 de 7.85).
+   Cerrarla requeriría un rescorer entrenado (pulidos top-10/scores/9b no ayudaron — §F2/[09](09_velocidad_inferencia.md) §G).
+
+**Limitaciones honestas.** El dominio limpio tiene 2 hablantes (150 clips): el efecto individual del 2º
+no alcanza significancia solo (n=50), sí el pool y sí la dirección. Refs del test-658 por Whisper (techo
+contaminado en YouTube). Las celdas con-LM usan otro decoder (espnet1 + LM CMU-MOSEAS) — control, no
+comparación 1:1. Un solo LLM y un prompt por técnica (variantes ya exploradas en §B). Estratificar por el
+CER del 1-best induce regresión a la media: leer los estratos como descriptivo.
+
+---
+
 ## Conclusión general (hipótesis del CER)
 
 - **La corrección 1-best NO ayuda a NINGÚN CER** probado (42, 27, 11) — sobre-corrige (over-correction).
@@ -106,6 +175,10 @@ recupera la degradación de int8. Ver [09](09_velocidad_inferencia.md) §G.)
 - ✅ **Significativo a n=100** (§F2): delta −3.04, IC95 pareado [+0.71, +5.53] excluye 0. (A n=40 era prometedor
   pero no concluyente; los 100 clips lo confirmaron.)
 - Ojo: con 12 clips la corrección 1-best había dado −1.7 (falso positivo por ruido); el set de 40 lo corrigió.
+- **La grilla estandarizada (§G, 13 celdas) cierra la pregunta:** el umbral no es solo de CER, es **condicional
+  al dominio**. En limpio el rescoring crece al bajar el CER (+1.71 a CER 32 → +3.04 a CER 14.6, ambos ✅) y
+  replica en un 2º hablante (pool n=150 = **−2.81 WER, IC95 [+0.86, +4.77]**, refina el −3.04 de §F2). En
+  YouTube es nulo con precisión a todo CER (27–41). La corrección 1-best sigue en 0/13 celdas.
 
 **Pulido probado (n=100, ver [09](09_velocidad_inferencia.md) §G):** top-10 no suma (26.35≈26.46), scores en
 el prompt no ayudan (26.81), y **qwen3.5:9b es PEOR y 3.4× más lento** (27.52, pierde significancia). → La
