@@ -487,10 +487,12 @@ class H(BaseHTTPRequestHandler):
             except Exception:
                 self.send_response(404); self.end_headers()
             return
-        if self.path == "/modelos":                    # modelos personales disponibles
-            disp = sorted(os.path.splitext(f)[0] for f in os.listdir(MODELOS_PERSONAL)
-                          if f.endswith(".pth")) if os.path.isdir(MODELOS_PERSONAL) else []
-            self._json(200, {"activo": S["config"].get("modelo", "base"), "disponibles": disp}); return
+        if self.path == "/modelos":                    # estado del modelo del usuario logueado
+            with CAL_LOCK:
+                persona = CAL.get("persona", "")
+            tiene = bool(persona) and os.path.isfile(os.path.join(MODELOS_PERSONAL, persona + ".pth"))
+            self._json(200, {"activo": S["config"].get("modelo", "base"),
+                             "persona": persona, "tiene_modelo": tiene}); return
         if self.path == "/cal/estado":
             with CAL_LOCK:
                 estado = SESIONES.estado(CAL["persona"]) if CAL["persona"] else {"hechas": 0, "siguiente": 0, "nivel": {}}

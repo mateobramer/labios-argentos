@@ -181,7 +181,8 @@
 
 <footer>
   <div class="maq">
-    <button class="badge" id="b-modelo" title="cambiar entre el modelo base (zero-shot) y los personales (~30 s)">modelo <b>—</b></button>
+    <span class="badge" id="b-modelo">modelo <b>—</b></span>
+    <button class="badge" id="b-mimodelo" hidden></button>
     <span class="badge" id="b-enc">encoder <b>—</b></span>
     <span class="badge" id="b-beam">beam <b>—</b></span>
     <button class="badge" id="b-qwen" title="corrector LLM (elige entre las 5 candidatas del beam): −3 WER, +1.2 s">corrector <b>—</b></button>
@@ -263,22 +264,33 @@
   $("clear").onclick = () => fetch("/clear",{method:"POST"});
   $("recal").onclick = () => fetch("/recalibrar",{method:"POST"});
   window.cambiandoModelo = false;
-  $("b-modelo").onclick = async () => {
+  let miPersona = "";
+  async function pintaMiModelo(){
     if (window.cambiandoModelo) return;
     const m = await (await fetch("/modelos")).json();
-    const opciones = [""].concat(m.disponibles||[]);          // "" = base (zero-shot)
-    if (opciones.length < 2) return aviso("No hay modelos personales todavía: entrenálo desde Personalizar.");
-    const actual = m.activo === "base" ? "" : m.activo;
-    const prox = opciones[(opciones.indexOf(actual)+1) % opciones.length];
+    miPersona = m.persona || "";
+    // visible solo si hay usuario logueado CON modelo finetuneado
+    $("b-mimodelo").hidden = !m.tiene_modelo;
+    if (m.tiene_modelo)
+      $("b-mimodelo").textContent = (m.activo === miPersona)
+        ? "volver al zero-shot" : "usar mi modelo (" + miPersona + ")";
+  }
+  $("b-mimodelo").onclick = async () => {
+    if (window.cambiandoModelo || !miPersona) return;
+    const m = await (await fetch("/modelos")).json();
+    const destino = (m.activo === miPersona) ? "" : miPersona;   // "" = zero-shot
     window.cambiandoModelo = true;
-    $("b-modelo").innerHTML = "modelo <b>cargando…</b>";
+    $("b-mimodelo").disabled = true;
+    $("b-mimodelo").textContent = "cargando… (~30 s)";
     const r = await fetch("/modelo",{method:"POST",headers:{"Content-Type":"application/json"},
-                                     body:JSON.stringify({nombre:prox})});
+                                     body:JSON.stringify({nombre:destino})});
     const j = await r.json();
     window.cambiandoModelo = false;
+    $("b-mimodelo").disabled = false;
     if (!j.ok) aviso("No pude cambiar el modelo: " + j.msg);
-    $("b-modelo").innerHTML = "modelo <b>"+(j.modelo||"base")+"</b>";
+    pintaMiModelo();
   };
+  setInterval(pintaMiModelo, 4000); pintaMiModelo();
   window.corregir = async (i) => {   // correccion humana: queda SOLO local (data/feedback/)
     const seg = ultimo && ultimo.segmentos ? ultimo.segmentos[i] : null;
     const txt = prompt("¿Qué dijiste realmente? (se guarda solo en esta máquina)", seg ? seg.texto : "");
