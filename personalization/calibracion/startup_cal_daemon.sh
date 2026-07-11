@@ -21,6 +21,9 @@ if [ ! -d visper ]; then
   gcloud storage cp $BUCKET/config/visper_code.tgz . && tar xzf visper_code.tgz && rm -f visper_code.tgz
 fi
 python3 -m pip install -q peft pytorch-lightning sentencepiece 2>&1 | tail -1
+# lightning arrastra torchaudio nuevo (ABI incompatible con el torch de la imagen): pinear al del torch
+TV=$(python3 -c 'import torch; print(torch.__version__.split("+")[0])')
+python3 -m pip install -q "torchaudio==$TV" --index-url https://download.pytorch.org/whl/cu129 2>&1 | tail -1
 while [ ! -f visper/visper_vsr_base.pth ]; do
   if gcloud storage cp $BUCKET/config/visper_vsr_base.pth visper/ 2>/dev/null; then break; fi
   dst "ESPERANDO visper_vsr_base.pth en $BUCKET/config/ (subir con: gcloud storage cp ~/visper/visper_vsr_base.pth $BUCKET/config/)"
