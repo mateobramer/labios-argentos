@@ -28,7 +28,10 @@ while :; do
       gcloud compute instances start "$VM" --zone="$ZONA" --project="$PROJ" >/dev/null 2>&1 || true ;;
     "")
       for MODO in SPOT STANDARD; do
-        for ZN in us-central1-a us-central1-b us-central1-c us-east1-b us-east1-c us-west1-a; do
+        for ZN in us-central1-a us-central1-b us-central1-c us-east1-b us-east1-c us-east1-d \
+                  us-east4-a us-east4-b us-east4-c us-west1-a us-west1-b us-west4-a us-west4-c \
+                  europe-west1-b europe-west1-c europe-west4-a europe-west4-b europe-west4-c \
+                  asia-southeast1-a asia-southeast1-b asia-northeast1-a; do
           echo "  intento $MODO @ $ZN"
           if [ "$MODO" = SPOT ]; then
             EXTRA="--provisioning-model=SPOT --instance-termination-action=STOP"
@@ -46,5 +49,5 @@ while :; do
         done
       done ;;
   esac
-  sleep 60
+  sleep 10
 done
