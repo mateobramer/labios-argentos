@@ -164,12 +164,6 @@
       <div class="vu"><div class="fill" id="vufill"></div><div class="umbral" title="umbral de habla"></div></div>
     </div>
 
-    <div class="vision">
-      <h2>Lo que ve el modelo</h2>
-      <div class="marco"><img id="tira" alt="" hidden></div>
-      <div class="nota">La boca recortada a 96×96 en escala de grises, 25 cuadros por segundo — la única
-      entrada del modelo. Sin audio: todo lo que aparece en los subtítulos sale de acá.</div>
-    </div>
   </section>
 
   <aside>
@@ -180,7 +174,7 @@
         <button id="clear" title="borrar el guion">limpiar</button>
       </div>
     </div>
-    <div id="guion"><div class="vacio-guion">Cada frase que leas en tus labios<br>aparece acá, con la tira de boca<br>que la produjo.</div></div>
+    <div id="guion"><div class="vacio-guion">Cada frase que leas en tus labios<br>aparece acá.</div></div>
   </aside>
 </main>
 
@@ -228,10 +222,9 @@
       const last = s.segmentos[s.segmentos.length-1];
       if (last){
         cap.textContent = last.texto; cap.classList.remove("vacio");
-        if (last.strip >= 0){ $("tira").src = "/strip/"+last.strip+"?r="+(s.config.run||0); $("tira").hidden = false; }
       }
       $("guion").innerHTML = s.segmentos.map((g,i)=>({g,i})).reverse().map(({g,i}) =>
-        `<div class="seg">${g.strip>=0?`<img src="/strip/${g.strip}?r=${(s.config&&s.config.run)||0}" alt="">`:""}
+        `<div class="seg">
          <div class="txt">${g.corregido ? g.corregido : g.texto}</div>
          <div class="meta">${g.dur.toFixed(1)} s de habla · leída en ${g.infer.toFixed(1)} s
            ${g.corregido ? " · ✔ corregida" : ` · <a href="#" onclick="corregir(${i});return false" title="Corregir lo que el modelo leyó (queda solo en esta máquina)">✏️ corregir</a>`}</div></div>`).join("");
@@ -241,7 +234,6 @@
     }
     if (!s.segmentos.length && nseg !== 0){
       nseg = 0; cap.textContent = "Guion limpio. Seguí hablando."; cap.classList.add("vacio");
-      $("tira").hidden = true;
       $("guion").innerHTML = '<div class="vacio-guion">Cada frase que leas en tus labios<br>aparece acá.</div>';
       $("f-stats").textContent = "0 frases";
     }
