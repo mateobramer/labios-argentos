@@ -1,22 +1,24 @@
 # vsr/visper/ — base ViSpeR/TII (código propio versionado)
 
-Código propio del equipo para correr **ViSpeR** (288M, TII), el modelo base que usa
-la demo (`demo/demo_web.py`, `demo/infer_server.py`) vía `$VISPER_DIR`
-(default `~/Desktop/visper`). El clon en `$VISPER_DIR` **no se versiona** (`.gitignore`);
-acá vive solo el código propio para no perderlo entre máquinas.
+Código para correr **ViSpeR** (288M, TII), el modelo base que usa la demo
+(`demo/demo_web.py`, `demo/infer_server.py`) vía `$VISPER_DIR`
+(default `~/Desktop/visper`). Repo upstream: [`YasserdahouML/visper`](https://github.com/YasserdahouML/visper)
+(ver `UPSTREAM_README.md`, el README original de ese repo).
+
+El clon en `$VISPER_DIR` **no se versiona** — acá vive una copia del código para no
+perderlo entre máquinas (se perdió una vez porque nunca estuvo en git; recuperado
+2026-07-11 desde otra máquina).
 
 | Path | Qué es |
 |---|---|
-| `visper_zeroshot.py` | zero-shot de ViSpeR sobre test-658 (`build_cfg()` — misma config que usa `infer_server.py`) |
-
-## Qué falta para que `$VISPER_DIR` funcione (no versionado, ver abajo)
-
-`infer_server.py` y `visper_zeroshot.py` importan `datamodule/`, `lightning_vsr.py`
-y leen `conf/model/visual_backbone/resnet_conformer.yaml` + `spm/unigram/unigram.model`
-desde la raíz de `$VISPER_DIR`. Son módulos **propios del equipo** (no son del repo
-público de mpc001 — se comprobó que ni `mpc001/Visual_Speech_Recognition_for_Multiple_Languages`
-ni `mpc001/auto_avsr` tienen esos nombres/estructura exactos). Pendiente traerlos de
-la máquina que los tiene.
+| `datamodule/` | `transforms.py`, `data_module.py`, `av_dataset.py`, `samplers.py` — carga y transforma clips |
+| `lightning_vsr.py` | `ModelModule` — wrapper PyTorch Lightning del modelo |
+| `espnet/` | subset vendoreado de ESPnet que usa `lightning_vsr.py` |
+| `conf/` | configs Hydra (`model/visual_backbone/resnet_conformer.yaml`, etc.) |
+| `spm/unigram/` | tokenizer sentencepiece (`unigram.model`, `unigram_units.txt`, `unigram.vocab`) |
+| `data_prepare/` | `crop_videos.py` + `20words_mean_face.npy` — preprocesamiento upstream (no es el que usa este proyecto, ver `preprocessing/`) |
+| `visper_zeroshot.py` | script propio: zero-shot de ViSpeR sobre test-658 (`build_cfg()` — misma config que usa `infer_server.py`) |
+| `infer.py`, `utils.py`, `cosine.py`, `WER/` | scripts/utils del repo upstream (evaluación, LR scheduler) |
 
 ## Pesos (no versionados — 1.15 GB, supera el límite de 100 MB de GitHub)
 
@@ -27,4 +29,14 @@ la máquina que los tiene.
 ```bash
 curl -L -o ~/Desktop/visper/visper_vsr_base.pth \
   https://huggingface.co/tiiuae/visper/resolve/main/visper_vsr_base.pth
+```
+
+## Cómo reconstruir `$VISPER_DIR` en una máquina nueva
+
+```bash
+mkdir -p ~/Desktop/visper
+cp -r vsr/visper/* vsr/visper/.gitignore ~/Desktop/visper/   # este código
+curl -L -o ~/Desktop/visper/visper_vsr_base.pth \
+  https://huggingface.co/tiiuae/visper/resolve/main/visper_vsr_base.pth
+conda env create -f envs/visper.yml   # si el env `visper` no existe
 ```
