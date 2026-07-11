@@ -53,6 +53,11 @@ PERSONAL_ROOT = os.environ.get("VSR_PERSONAL_DIR", "~/vsr_personal")
 SESIONES = Sesiones(PERSONAL_ROOT, CAL_PROMPTS)
 CAL = {"activo": False, "persona": "", "dir": None, "rec_t0": None,
        "pendiente": None, "preview": None, "msg": ""}
+_PERSONA_F = os.path.join(os.path.expanduser(PERSONAL_ROOT), ".ultima_persona")
+try:                       # el login sobrevive reinicios del server
+    CAL["persona"] = open(_PERSONA_F, encoding="utf-8").read().strip()
+except OSError:
+    pass
 CAL_LOCK = threading.Lock()
 TRAIN = {"proc": None, "fase": "idle", "salida": [], "error": ""}
 TRAIN_LOCK = threading.Lock()
@@ -592,6 +597,11 @@ class H(BaseHTTPRequestHandler):
             b = self._body()
             persona = nombre_persona(b.get("persona"))
             estado = SESIONES.estado(persona)
+            try:
+                os.makedirs(os.path.dirname(_PERSONA_F), exist_ok=True)
+                open(_PERSONA_F, "w", encoding="utf-8").write(persona)
+            except OSError:
+                pass
             with CAL_LOCK:
                 CAL.update(activo=True, persona=persona, dir=estado["carpeta"], rec_t0=None,
                            pendiente=None, preview=None, msg=f"Listo, {persona}.")

@@ -183,6 +183,7 @@
   <div class="maq">
     <span class="badge" id="b-modelo">modelo <b>—</b></span>
     <button class="badge" id="b-mimodelo" hidden></button>
+    <a class="badge" id="b-quien" href="/calibrar" title="ir a Personalizar: entrenar tu modelo o cambiar de usuario">👤 —</a>
     <span class="badge" id="b-enc">encoder <b>—</b></span>
     <span class="badge" id="b-beam">beam <b>—</b></span>
     <button class="badge" id="b-qwen" title="corrector LLM (elige entre las 5 candidatas del beam): −3 WER, +1.2 s">corrector <b>—</b></button>
@@ -269,6 +270,7 @@
     if (window.cambiandoModelo) return;
     const m = await (await fetch("/modelos")).json();
     miPersona = m.persona || "";
+    $("b-quien").textContent = miPersona ? ("👤 " + miPersona + " · cambiar") : "👤 entrar / registrarse";
     // visible solo si hay usuario logueado CON modelo finetuneado
     $("b-mimodelo").hidden = !m.tiene_modelo;
     if (m.tiene_modelo)
