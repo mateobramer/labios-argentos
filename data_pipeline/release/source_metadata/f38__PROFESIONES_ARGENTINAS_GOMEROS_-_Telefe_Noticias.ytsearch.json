@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=IeG6Tkv1f7g",
+    "title": "PROFESIONES ARGENTINAS: GOMEROS - Telefe Noticias",
+    "channel": "Telefe Noticias",
+    "duration": 566,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=empsmSU7wIE",
+    "title": "PROFESIONES ARGENTINAS: ALBAÑILES - Telefe Noticias",
+    "channel": "Telefe Noticias",
+    "duration": 724,
+    "method": "ytsearch_title",
+    "score": 87.23
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=gmH3Mpjc-ak",
+    "title": "Flor de La V habla de Gianola- AM",
+    "channel": "Telefe",
+    "duration": 158,
+    "method": "ytsearch_title",
+    "score": 12.82
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=xJ_Gmz6g2-Y",
+    "title": "Canal 9 Bahía Blanca -  LOS GALGOS SON PARA DISFRUTAR",
+    "channel": "El Nueve TV",
+    "duration": 188,
+    "method": "ytsearch_title",
+    "score": 22.92
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=kjKp735QDZc",
+    "title": "Reimplantan la mano a un nene de 11 años",
+    "channel": "Telenueve",
+    "duration": 291,
+    "method": "ytsearch_title",
+    "score": 20.93
+  }
+]

@@ -151,7 +151,7 @@
       <ol>
         <li>En la terminal, entrená tu modelo (~10 min, GPU en la nube):</li>
       </ol>
-      <div class="cmd" id="cmdtrain">bash demo/calibracion/calibrar_entrenar.sh &lt;nombre&gt;</div>
+      <div class="cmd" id="cmdtrain">bash personalization/calibracion/calibrar_entrenar.sh &lt;nombre&gt;</div>
       <ol start="2">
         <li>Levantá la demo con tu modelo:</li>
       </ol>
@@ -172,7 +172,7 @@
     const est = await (await fetch("/cal/estado")).json();
     frases = est.frases; i = Math.min(hechas, frases.length-1);
     $("setup").hidden = true; $("grabador").hidden = false;
-    $("cmdtrain").textContent = `bash demo/calibracion/calibrar_entrenar.sh ${persona}`;
+    $("cmdtrain").textContent = `bash personalization/calibracion/calibrar_entrenar.sh ${persona}`;
     $("cmddemo").textContent  = `python demo/demo_web.py --ckpt modelos/personal/${persona}.pth`;
     pinta();
   };

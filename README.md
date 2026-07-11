@@ -1,134 +1,138 @@
 # labios-argentos
 
-**Lectura de labios (VSR) en español rioplatense, cerca de tiempo real.**
+**Reconocimiento visual del habla (VSR) en español rioplatense: evaluación de modelos VSR,
+rescoring con LLM, adaptación por hablante y una demo local cercana a tiempo real.**
 
-Un sistema completo que mira una boca por webcam —sin audio— y va generando subtítulos:
-dataset propio de YouTube rioplatense, fine-tunes de dos familias de modelos, un
-corrector LLM local por n-best rescoring, calibración al hablante en ~10 minutos, y una
-demo web que corre entera en una laptop M1.
+Un sistema que mira una boca por webcam —sin audio— y genera subtítulos: dataset propio de
+YouTube rioplatense, evaluación de dos familias de modelos, un corrector LLM local por
+n-best rescoring, calibración al hablante en ~10 minutos, y una demo web que corre entera
+en una laptop.
 
-Proyecto académico de Ingeniería en IA (Universidad de San Andrés).
+<!-- Demo en video/GIF: pendiente de grabar (ver docs/FUTURE_WORK.md). -->
+
+`VSR` · `español rioplatense` · `ViSpeR` · `LLM n-best rescoring` · `LoRA por hablante` · `demo local`
 
 ---
 
-## ¿Para qué sirve?
+## 1. Qué es
 
-El estado del arte en VSR está casi todo en inglés. En español no existe ningún corpus
-audiovisual rioplatense público — este proyecto construye el primero y lo usa para
-adaptar y evaluar modelos de lectura de labios. Casos de uso: **accesibilidad** (personas
-sin fonación), **entornos ruidosos** donde un micrófono no sirve, y subtitulado en vivo
-sin audio.
+Reconocimiento visual del habla (lip reading) para español rioplatense: construir el
+dataset, evaluar qué modelos funcionan en el acento, estudiar cuándo un LLM ayuda a
+corregir la salida, adaptar el modelo a un hablante, e integrar todo en una demo local que
+subtitula en vivo.
 
-## Demo
+## 2. Motivación
+
+El estado del arte en VSR está casi todo en inglés y no identificamos un corpus audiovisual
+público específicamente orientado al español rioplatense. Este proyecto construye uno y lo
+usa para adaptar y evaluar modelos. Casos de uso: **accesibilidad** (personas sin fonación),
+**entornos ruidosos** donde un micrófono no sirve, y subtitulado en vivo sin audio.
+
+## 3. Hallazgos principales
+
+- **La escala de pre-entrenamiento domina.** ViSpeR (288M, 794 h en español) zero-shot le
+  gana por ~20 WER al mejor fine-tune propio (50M, ~19 h de datos).
+- **La corrección LLM sobre 1-best empeoró el WER en todas las condiciones evaluadas.** El
+  **n-best rescoring** produjo una mejora significativa en el régimen de CER bajo evaluado:
+  −3.04 WER con IC95 pareado que excluye 0 (n=100).
+- **La personalización con LoRA mostró una mejora de 4.7 puntos de WER en el hablante
+  evaluado**, sin degradación del test general; la mejora personal todavía no fue
+  estadísticamente significativa con la muestra actual. El full-fine-tuning degradó
+  severamente el modelo de 288M.
+
+Todos los números y su significancia: [`docs/RESULTS.md`](docs/RESULTS.md) (ledger
+canónico). Cómo se miden: [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
+
+## 4. Arquitectura
+
+```
+cámara → MediaPipe FaceLandmarker → VAD visual (corta por pausas) →
+crop de boca 96×96 → ViSpeR 288M (encoder MPS + beam CPU) →
+[opcional] qwen3:4b n-best rescoring → subtítulos en UI web
+```
+
+Latencia total **~1.1 s por segmento (~2.3 s con el corrector)** en una MacBook M1. Cada
+decisión de configuración sale de un experimento medido. Detalle:
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) y [`docs/SPEC.md`](docs/SPEC.md).
+
+## 5. Demo
 
 ```bash
-~/miniconda3/envs/ptt/bin/python demo/demo_web.py            # UI web en http://localhost:8551
-~/miniconda3/envs/ptt/bin/python demo/demo_web.py --qwen     # con corrector LLM (también hay toggle en la UI)
-~/miniconda3/envs/ptt/bin/python demo/demo_web.py --ckpt modelos/personal/<nombre>.pth   # modelo calibrado
+bash run.sh                # UI web en http://localhost:8551
+bash run.sh --qwen         # con corrector LLM (también hay toggle en la UI)
 ```
 
-Al abrir: 2 segundos de silencio calibran el detector de labios, y después se habla
-normal — el sistema corta solo por pausas y va subtitulando. La UI muestra además la
-entrada literal del modelo (la tira de recortes de boca 96×96) y el guion acumulado.
+Al abrir: 2 s de silencio calibran el detector de labios; después se habla normal y el
+sistema corta solo por pausas y va subtitulando. La UI muestra la entrada literal del
+modelo (la tira de recortes de boca 96×96), el guion acumulado, y permite **corregir cada
+predicción** (queda local). Instalación y requisitos: [`docs/SETUP.md`](docs/SETUP.md).
 
-**Requisitos:** macOS con webcam (encoder acelerado por MPS en Apple Silicon; en CPU
-también corre, más lento), envs conda `ptt` (OpenCV + MediaPipe) y `visper` (PyTorch +
-ESPnet), el repo ViSpeR en `~/Desktop/visper` con sus pesos `visper_vsr_base.pth`
-(1.1 GB, no se versionan), y opcionalmente [Ollama](https://ollama.com) con
-`qwen3:4b-instruct-2507-q4_K_M` para el corrector.
+## 6. Resultados
 
-## Arquitectura
-
-```
-cámara (30 fps) ─────────────────────────────▶ MJPEG a la UI
-   │
-   ▼
-MediaPipe FaceLandmarker (hasta 3 caras; sticky-lock a la más cercana)
-   │  apertura de labios
-   ▼
-VAD visual (auto-calibrado; corta por pausa 0.45 s / tope 4 s)
-   │  segmento de habla
-   ▼
-crop de boca 96×96 (warp mean-face) → .npz
-   │
-   ▼
-infer_server (env visper — ViSpeR 288M, conformer)
-   ├─ encoder ──── MPS   (~0.17 s)
-   └─ beam search ─ CPU  (beam 3, ~0.9 s)
-   │
-   ▼
-[opcional] qwen3:4b n-best rescoring (Ollama local, +1.2 s, −3.0 WER)
-   │
-   ▼
-UI web (SSE): subtítulo sobre el video + tira de boca + guion acumulado
-```
-
-**Latencia total: ~1.1 s por segmento (~2.3 s con el corrector)** en una MacBook M1.
-Cada decisión de esta configuración (beam 3, encoder en MPS, top-5 con el 4b, VAD por
-pausas) sale de un experimento medido — el detalle está en [`docs/SPEC.md`](docs/SPEC.md).
-
-## Resultados
-
-Sobre `test-658` (658 clips de YouTube, 2 hablantes held-out, speaker-independent) y
-sobre el self-test (100 clips propios grabados en condiciones controladas):
+Sobre `test-658` (658 clips, 2 hablantes held-out, speaker-independent) y el self-test
+(100 clips propios en condiciones controladas):
 
 | Modelo | %WER test-658 | %WER self-test |
 |---|---|---|
-| ft05 — mejor fine-tune propio (50M, LIP-RTVE + dataset AR ~19 h) | 65.05 | ~68 |
-| **ViSpeR zero-shot** (288M, 794 h de pre-entrenamiento en español) | **45.22** | 29.51 |
-| ViSpeR + qwen n-best rescoring | — | **26.46** (−3.04, significativo) |
-| ViSpeR + LoRA personal (60 clips del hablante) | 44.54 | 24.51 en test personal |
+| Mejor fine-tune propio (50M, LIP-RTVE + ~19 h AR) | 65.05 | ~68 |
+| **ViSpeR zero-shot** (288M, 794 h español) | **45.22** | 29.51 |
+| ViSpeR + n-best rescoring (qwen) | — | **26.46** (−3.04, significativo) |
+| ViSpeR + LoRA personal (60 clips del hablante) | 44.54 | 24.51 (test personal) |
 
-Las dos conclusiones grandes: **la escala de pre-entrenamiento domina** (794 h zero-shot
-le gana por ~20 WER a nuestro mejor fine-tune con 19 h), y **la corrección LLM solo
-funciona como n-best rescoring** (la corrección 1-best siempre empeora; el rescoring da
-−3.04 WER con IC95 pareado que excluye 0). Tabla maestra completa e índice de los 10
-experimentos: [`experiments/README.md`](experiments/README.md). Ledger vivo:
+Índice de experimentos: [`docs/experiments/`](docs/experiments/). Ledger:
 [`docs/RESULTS.md`](docs/RESULTS.md).
 
-## Calibración al hablante
+## 7. Quickstart
 
-Desde la propia UI (`/calibrar`): la persona graba ~40 frases push-to-talk en el
-browser, y `bash demo/calibracion/calibrar_entrenar.sh <nombre>` entrena un LoRA en una
-VM L4 spot de GCP (~10 min, ~$0.05, se autodestruye) y descarga el modelo personal.
-Validado en [`experiments/10`](experiments/10_adaptacion_hablante.md): −4.7 WER personal
-sin olvidar el test general. La misma página tiene el modo "Ayudanos a entrenar" para
-donar pares clip+texto al dataset (quedan locales, no se versionan).
+```bash
+git clone --filter=blob:none https://github.com/mateobramer/labios-argentos.git && cd labios-argentos
+bash setup.sh              # crea los envs conda (ptt, visper) y verifica artefactos
+bash run.sh                # levanta la demo
+```
 
-## Estructura del repo
+Requiere macOS con webcam; el encoder se acelera en Apple Silicon (MPS) y también corre en
+CPU (más lento). Pesos de ViSpeR y detalles: [`docs/SETUP.md`](docs/SETUP.md).
 
-| Carpeta | Qué es |
-|---|---|
-| `demo/` | Demo web + push-to-talk + streaming, servidor de inferencia, calibración |
-| `experiments/` | Registro completo de experimentos con resultados (empezar por su README) |
-| `docs/` | [`SPEC.md`](docs/SPEC.md) (especificación), [`ESTRUCTURA.md`](docs/ESTRUCTURA.md) (mapa y flujo de datos), [`RESULTS.md`](docs/RESULTS.md) (ledger) |
-| `descargar_procesar.py` | Etapa 1 del pipeline de datos: YouTube → clips alineados con texto |
-| `visual_preprocessing/` | Etapa 2: clips → ROIs de boca 96×96 (`.npz`) |
-| `data_cleaning/` | Etapa 3: detección y descarte de clips malos |
-| `claude-videos/` | Selección curada de fuentes (gate 0 del dataset) |
-| `vsr_models/` | Fine-tuning del modelo 50M (Gimeno) + splits congelados |
-| `evaluation/` | Evaluación WER/CER contra test-658 |
-| `curriculum/` | Procesamiento de datos ViSpeR-es para currículum de pre-entrenamiento |
-| `multilingual-vsr/` | Notas y scripts sobre la base multilingüe (el clon del repo externo no se versiona) |
-| `new-data-fine-tuning/` | Corrida histórica de la ronda 2 de datos (ft03–ft07) |
-| `data/` | Dataset generado (clips + corpus versionados; videos crudos y `.npz` no) |
+## 8. Estructura del repo
 
-El flujo de datos completo y las convenciones para agregar código están en
-[`docs/ESTRUCTURA.md`](docs/ESTRUCTURA.md). La guía para agentes/colaboradores, en
-[`AGENTS.md`](AGENTS.md).
+El pipeline, en orden:
 
-## Costos
+| # | Carpeta | Componente |
+|---|---|---|
+| 1 | `data_pipeline/` | fuentes, descarga+corte, discovery, release, inventario |
+| 2 | `cleaning/` | control de calidad: limpieza visual, GPT de transcripciones, segmentación |
+| 3 | `preprocessing/` | landmarks → warp mean-face → ROI de boca 96×96 |
+| 4 | `vsr/` | modelos VSR, fine-tuning, splits congelados, evaluación WER/CER |
+| 5 | `llm_corrector/` | n-best rescoring con LLM (y los resultados negativos) |
+| 6 | `personalization/` | calibración por hablante (grabación, LoRA, evaluación) |
+| 7 | `demo/` | app integrada en vivo + feedback editable |
 
-La inferencia es 100 % local ($0, sin datos a terceros). Los entrenamientos corrieron en
-VMs L4 spot de GCP (g2-standard-8, ~$0.28/h spot): cada fine-tune del 50M costó del orden
-de $1–3, y una calibración personal ~$0.05. Todo el proyecto se hizo dentro de créditos
-educativos/promocionales.
+Además: `data/` (artefactos livianos + muestra), `docs/`, `envs/`. Los directorios se
+numeran en la documentación para contar el flujo; en disco conservan nombres importables.
 
-## Limitaciones (honestas)
+## 9. Datos y modelos
 
-- El modelo es **offline/bidireccional**: la demo aproxima tiempo real cortando por
-  pausas de labios, no es streaming causal cuadro a cuadro.
-- WER ~26–30 en condiciones ideales (buena luz, boca frontal, habla clara); ~45 en
-  YouTube variado. La lectura de labios pura sigue siendo un problema difícil.
-- Validado en profundidad con un solo hablante para la calibración personal.
-- El encoder acelerado requiere Apple Silicon (MPS); en otras plataformas corre en CPU.
+El repositorio versiona **solo artefactos livianos**: transcripciones, manifests chicos y
+una muestra mínima para smoke tests. El **dataset completo y los ROIs no están en el árbol
+actual**: se preservan en buckets y, para los bytes históricos, en la historia/tag
+`dataset-clean-v1`. Los pesos viven en buckets o releases externos. Qué está incluido, qué
+no y cómo recuperarlo: [`data/README.md`](data/README.md) y
+[`docs/DATA_AND_ARTIFACTS.md`](docs/DATA_AND_ARTIFACTS.md).
+
+## 10. Reproducibilidad
+
+Entornos reproducibles en [`envs/`](envs/) (`ptt.yml`, `visper.yml`); `setup.sh` los crea y
+`run.sh` levanta la demo. La inferencia es 100 % local ($0, sin datos a terceros). Los
+entrenamientos corrieron en VMs L4 spot de GCP (~$1–3 por fine-tune, ~$0.05 por calibración
+personal). Protocolo de evaluación (splits congelados, normalización, bootstrap):
+[`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
+
+## 11. Citation
+
+Si usás este trabajo, citá según [`CITATION.cff`](CITATION.cff).
+
+## 12. Autores
+
+Desarrollado por Martín Bianchi, Federico Gutman, Joaquín Szterensus, Santiago Bunge y
+Mateo Bramer (Universidad de San Andrés). Detalles y forma de citar:
+[`CITATION.cff`](CITATION.cff).

@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this software or its findings, please cite it as below."
+title: "labios-argentos: Visual Speech Recognition for Rioplatense Spanish"
+abstract: >-
+  Sistema de reconocimiento visual del habla (VSR) para español rioplatense:
+  construcción de dataset, evaluación de modelos VSR, rescoring con LLM local
+  por n-best, adaptación por hablante con LoRA, y una demo local de inferencia
+  cercana a tiempo real.
+type: software
+authors:
+  - family-names: Bianchi
+    given-names: Martín
+    affiliation: "Universidad de San Andrés"
+  - family-names: Gutman
+    given-names: Federico
+    affiliation: "Universidad de San Andrés"
+  - family-names: Szterensus
+    given-names: Joaquín
+    affiliation: "Universidad de San Andrés"
+  - family-names: Bunge
+    given-names: Santiago
+    affiliation: "Universidad de San Andrés"
+  - family-names: Bramer
+    given-names: Mateo
+    affiliation: "Universidad de San Andrés"
+version: "0.1.0"
+date-released: "2026-07-10"
+url: "https://github.com/mateobramer/labios-argentos"
+repository-code: "https://github.com/mateobramer/labios-argentos"
+keywords:
+  - "visual speech recognition"
+  - "lip reading"
+  - "rioplatense spanish"
+  - "LLM n-best rescoring"
+  - "speaker adaptation"
+  - "LoRA"

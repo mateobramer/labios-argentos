@@ -18,13 +18,15 @@ import os, re, sys, time, json, threading, subprocess, tempfile, argparse, colle
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import cv2, numpy as np
 
-REPO = os.path.expanduser("~/Desktop/labios-argentos")
+# Raiz del repo: por default se deriva de la ubicacion de este archivo (funciona
+# desde cualquier clone); LABIOS_REPO la pisa si hace falta. Ver .env.example.
+REPO = os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
-from visual_preprocessing.src.preprocesar import (
+from preprocessing.src.preprocesar import (
     crear_landmarker, detectar_landmarks, cuatro_puntos, remuestrear_a_25fps)
-from visual_preprocessing.src.video_process import VideoProcess
+from preprocessing.src.video_process import VideoProcess
 
-VISPER_PY = os.path.expanduser("~/miniconda3/envs/visper/bin/python")
+VISPER_PY = os.path.expanduser(os.environ.get("VISPER_PY", "~/miniconda3/envs/visper/bin/python"))
 INFER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "infer_server.py")
 HTML = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web", "index.html")
 MIN_SEG_S, PREROLL_S, MOV_WIN_S, CALIB_S = 0.7, 0.25, 0.35, 2.0
@@ -41,7 +43,7 @@ STOP = threading.Event()
 SRV = {"proc": None, "lock": threading.Lock()}
 
 # ---- modo calibracion (grabar frases para adaptar el modelo a una persona) ----
-from build_testset import PROMPTS as CAL_PROMPTS          # mismas 100 frases del self-test
+from personalization.build_testset import PROMPTS as CAL_PROMPTS  # mismas 100 frases del self-test (REPO ya esta en sys.path)
 CAL_N = 40                                                 # frases sugeridas (30 ya captura ~80%)
 CAL = {"activo": False, "persona": "", "dir": None, "rec_t0": None, "hechas": 0, "msg": ""}
 CAL_LOCK = threading.Lock()
@@ -72,7 +74,7 @@ def lanzar_servidor(use_qwen):
     if use_qwen:
         env["VSR_QWEN"] = "1"
     # beam 5 siempre: permite prender/apagar qwen en runtime con las 5 candidatas completas
-    # (beam5 vs beam3 = mismo WER, +0.15s; ver experiments/09)
+    # (beam5 vs beam3 = mismo WER, +0.15s; ver docs/experiments/09)
     env.setdefault("VSR_BEAM", "5")
     print("[web] cargando ViSpeR (primera vez ~20-40s, NO cortes)...", flush=True)
     p = subprocess.Popen([VISPER_PY, INFER], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -111,7 +113,7 @@ def elegir_cara(caras):
     return f
 
 def hilo_landmarks():
-    from visual_preprocessing.src import preprocesar as pp
+    from preprocessing.src import preprocesar as pp
     base = pp.mp_tasks.BaseOptions(model_asset_path=pp.MODELO)
     opts = pp.mp_vision.FaceLandmarkerOptions(base_options=base, num_faces=3)
     lmk = pp.mp_vision.FaceLandmarker.create_from_options(opts)
@@ -393,6 +395,31 @@ class H(BaseHTTPRequestHandler):
         elif self.path == "/clear":
             S["segmentos"] = []
             self.send_response(204); self.end_headers()
+        elif self.path == "/feedback":                 # correccion humana de una prediccion
+            # Guarda pares prediccion→correccion en JSONL LOCAL (data/feedback/, gitignored).
+            # No sale de la maquina: es materia prima para fine-tune personal / rescorer.
+            b = self._body()
+            try:
+                idx = int(b.get("idx", -1))
+                seg = S["segmentos"][idx]
+            except (ValueError, IndexError):
+                self._json(400, {"ok": False, "msg": "segmento invalido"}); return
+            corregido = str(b.get("texto", "")).strip()
+            if not corregido:
+                self._json(400, {"ok": False, "msg": "texto vacio"}); return
+            fila = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                    "texto_predicho": seg.get("texto", ""),
+                    "texto_corregido": corregido,
+                    "config": dict(S.get("config", {})),      # modelo/beam/qwen del CONFIG del server
+                    "clip": {"idx": idx, "strip": seg.get("strip", -1),
+                             "dur_s": seg.get("dur"), "infer_s": seg.get("infer")},
+                    "consentimiento": "accion_explicita_local",  # la persona apreto guardar; solo local
+                    "modo": "privado"}                            # sin envio externo (no hay codigo que suba esto)
+            fdir = os.path.join(REPO, "data", "feedback"); os.makedirs(fdir, exist_ok=True)
+            with open(os.path.join(fdir, "feedback.jsonl"), "a", encoding="utf-8") as fh:
+                fh.write(json.dumps(fila, ensure_ascii=False) + "\n")
+            seg["corregido"] = corregido               # la UI muestra que ya se corrigio
+            self._json(200, {"ok": True})
         elif self.path == "/cal/entrar":
             b = self._body()
             persona = re.sub(r"[^a-z0-9_-]", "", str(b.get("persona", "")).lower().strip()) or "persona"

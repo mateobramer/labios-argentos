@@ -28,7 +28,7 @@ browser ◀── MJPEG /video · SSE /events ──▶ demo_web.py (env ptt)   
 - **`demo/infer_server.py`** (env `visper`): proceso hijo con el modelo cargado en
   memoria; recibe paths `.npz` por stdin y devuelve texto por stdout.
 - **Ollama** (opcional): `qwen3:4b-instruct-2507-q4_K_M` para el n-best rescoring.
-- **`demo/calibracion/`**: splits + orquestador de entrenamiento LoRA en GCP.
+- **`personalization/calibracion/`**: splits + orquestador de entrenamiento LoRA en GCP.
 
 ## 3. Interfaces
 
@@ -61,24 +61,24 @@ Variables de entorno: `VSR_BEAM` (default 3; 5 si `VSR_QWEN=1`), `VSR_QWEN`,
 
 | Etapa | Latencia | Dónde se midió |
 |---|---|---|
-| VAD visual: cierre de segmento tras la pausa | 0.45 s (parámetro) | [06](../experiments/06_demo_y_remap.md) |
-| Encoder conformer (288M) en **MPS** | **0.17 s** (0.58 s en CPU) | [09](../experiments/09_velocidad_inferencia.md) |
-| Beam search (beam 3, CPU) | ~0.9 s | [09](../experiments/09_velocidad_inferencia.md) |
-| **Total por segmento (sin LLM)** | **~1.1 s** | [09](../experiments/09_velocidad_inferencia.md) |
-| qwen n-best rescoring (Ollama caliente) | +1.24 s (frío: 3.7 s) | [09](../experiments/09_velocidad_inferencia.md) |
-| **Total con corrector** | **~2.3 s** | [09](../experiments/09_velocidad_inferencia.md) |
+| VAD visual: cierre de segmento tras la pausa | 0.45 s (parámetro) | [06](experiments/06_demo_y_remap.md) |
+| Encoder conformer (288M) en **MPS** | **0.17 s** (0.58 s en CPU) | [09](experiments/09_velocidad_inferencia.md) |
+| Beam search (beam 3, CPU) | ~0.9 s | [09](experiments/09_velocidad_inferencia.md) |
+| **Total por segmento (sin LLM)** | **~1.1 s** | [09](experiments/09_velocidad_inferencia.md) |
+| qwen n-best rescoring (Ollama caliente) | +1.24 s (frío: 3.7 s) | [09](experiments/09_velocidad_inferencia.md) |
+| **Total con corrector** | **~2.3 s** | [09](experiments/09_velocidad_inferencia.md) |
 
 ## 5. Decisiones de diseño y su justificación experimental
 
 | Decisión | Alternativas descartadas | Evidencia |
 |---|---|---|
-| beam = 3 (2.2× más rápido, mismo WER) | beam 40 (igual WER, 3×), beam 1-2 (peor) | [09](../experiments/09_velocidad_inferencia.md) sweep completo con IC |
-| encoder en MPS, beam en CPU | todo en MPS (espnet rompe por device mismatch); int8 (Pareto-dominado en M1); CTC-greedy (+12 WER) | [09](../experiments/09_velocidad_inferencia.md) |
-| corrector = **n-best rescoring** top-5 con qwen3:4b | corrección 1-best (siempre empeora); top-10, scores en el prompt, qwen 9b (no mejoran) | [04](../experiments/04_qwen_corrector.md) — −3.04 WER significativo (IC95 pareado [+0.71, +5.53], n=100) |
-| VAD **visual** por apertura de labios, auto-calibrado (2 s de silencio; umbral = max(sens×ruido, piso); pausa 0.45 s; tope 4 s) | VAD por audio (no hay audio); ventana fija (corta palabras) | [06](../experiments/06_demo_y_remap.md) |
-| modelo base = ViSpeR 288M zero-shot | ft05 propio (65 vs 45 WER; y 2.3× más lento por su LM externo); full-FT de ViSpeR (overfitea) | [02](../experiments/02_zeroshot.md), [03](../experiments/03_visper_finetunes.md), [09](../experiments/09_velocidad_inferencia.md) |
-| calibración = **LoRA** (r16/α32, lr 1e-4, augment) en L4 spot (~10 min, ~$0.05) | full-FT lr1e-5 (receta del 50M: **colapsa** el 288M); entrenar local sin GPU (horas) | [10](../experiments/10_adaptacion_hablante.md) |
-| multi-cara: sticky-lock a la cara más grande, re-lock a 1.5 s | tomar siempre la primera detección (salta entre personas del público) | diseño para demo en vivo, [06](../experiments/06_demo_y_remap.md) |
+| beam = 3 (2.2× más rápido, mismo WER) | beam 40 (igual WER, 3×), beam 1-2 (peor) | [09](experiments/09_velocidad_inferencia.md) sweep completo con IC |
+| encoder en MPS, beam en CPU | todo en MPS (espnet rompe por device mismatch); int8 (Pareto-dominado en M1); CTC-greedy (+12 WER) | [09](experiments/09_velocidad_inferencia.md) |
+| corrector = **n-best rescoring** top-5 con qwen3:4b | corrección 1-best (empeoró en todas las condiciones evaluadas); top-10, scores en el prompt, qwen 9b (no mejoran) | [04](experiments/04_qwen_corrector.md) — −3.04 WER significativo (IC95 pareado [+0.71, +5.53], n=100) |
+| VAD **visual** por apertura de labios, auto-calibrado (2 s de silencio; umbral = max(sens×ruido, piso); pausa 0.45 s; tope 4 s) | VAD por audio (no hay audio); ventana fija (corta palabras) | [06](experiments/06_demo_y_remap.md) |
+| modelo base = ViSpeR 288M zero-shot | ft05 propio (65 vs 45 WER; y 2.3× más lento por su LM externo); full-FT de ViSpeR (overfitea) | [02](experiments/02_zeroshot.md), [03](experiments/03_visper_finetunes.md), [09](experiments/09_velocidad_inferencia.md) |
+| calibración = **LoRA** (r16/α32, lr 1e-4, augment) en L4 spot (~10 min, ~$0.05) | full-FT lr1e-5 (receta del 50M: **degradó severamente** el 288M); entrenar local sin GPU (horas) | [10](experiments/10_adaptacion_hablante.md) |
+| multi-cara: sticky-lock a la cara más grande, re-lock a 1.5 s | tomar siempre la primera detección (salta entre personas del público) | diseño para demo en vivo, [06](experiments/06_demo_y_remap.md) |
 
 ## 6. Robustez y manejo de errores
 
@@ -95,7 +95,7 @@ Variables de entorno: `VSR_BEAM` (default 3; 5 si `VSR_QWEN=1`), `VSR_QWEN`,
 - **>1 cara en cámara**: recuadro "leyendo a esta persona" + aviso en la UI; el crop no
   salta de hablante.
 
-Pendientes conocidos (ver [TO-DO.md](../TO-DO.md)): reinicio automático si muere el
+Pendientes conocidos (ver [trabajo futuro](FUTURE_WORK.md)): reinicio automático si muere el
 infer_server, mensajes guiados para cámara sin permiso, tests automatizados.
 
 ## 7. Privacidad y costos
@@ -109,7 +109,7 @@ una VM spot que se autodestruye.
 ## 8. Limitaciones
 
 - No es streaming causal: es inferencia por ventanas (offline) con cortes por pausa.
-- WER esperable: ~26–30 en condiciones ideales, ~45 en YouTube variado ([05](../experiments/05_selftest_limpio.md)).
+- WER esperable: ~26–30 en condiciones ideales, ~45 en YouTube variado ([05](experiments/05_selftest_limpio.md)).
 - Calibración validada en profundidad con un hablante (n=1); la generalización a más
   hablantes es trabajo pendiente.
 - MPS requiere Apple Silicon; en CPU pura el total sube a ~1.5 s/segmento.

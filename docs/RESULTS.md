@@ -2,7 +2,7 @@
 
 Documento **vivo**: acá se registran todos los números del proyecto (WER/CER, datos de train,
 repos/bases, latencias, crudo vs corregido, etc.). Se va actualizando con cada experimento.
-Última actualización: **2026-07-05**.
+Última actualización: **2026-07-10**.
 
 ## Cómo leer esta tabla
 
@@ -12,9 +12,9 @@ repos/bases, latencias, crudo vs corregido, etc.). Se va actualizando con cada e
 - **Métrica:** %WER y %CER con **IC 95%** por bootstrap (2000 iters). IC que no se solapan =
   diferencia estadísticamente significativa.
 - **Normalización:** minúsculas, sin acentos (la ñ se preserva), sin puntuación. Misma `norm()`
-  en todas las evaluaciones (`multilingual-vsr/scripts/zeroshot.py`).
-- **Familia de arquitectura (todos los modelos propios):** Conv3D + ResNet18 → Conformer (12 capas)
-  → decoder híbrido CTC/Attention. **Offline / bidireccional.** ~102M params (incl. LM).
+  en todas las evaluaciones (`vsr/mpc001/scripts/zeroshot.py`).
+- **Arquitecturas:** todos usan frontend visual Conv3D + ResNet18 y encoder/decoder
+  offline-bidireccional; los modelos Gimeno/mpc001 rondan 50–102M parámetros y ViSpeR 288M.
 
 ---
 
@@ -33,7 +33,7 @@ repos/bases, latencias, crudo vs corregido, etc.). Se va actualizando con cada e
 | **ft05b** | LIP-RTVE | Gimeno | 8067 | same-data | v1 full-FT | 70.30 ± 1.30 | 42.08 ± 0.95 |
 | **ft07** | CMU-MOSEAS ES remapeado | mpc001→Gimeno | 8067 | same-data | v1 full-FT | 69.15 ± 1.28 | 41.66 ± 0.91 |
 
-⭐ **ft05 = mejor modelo propio a la fecha** (modelo de producción de referencia).
+⭐ **ft05 = mejor fine-tune propio de la familia Gimeno**; se conserva como baseline histórico.
 
 **Notas sobre los grupos de experimentos:**
 - **ft03/ft04 (ronda-1)** y **ft05/ft06 (ronda-2)**: misma receta, distinta cantidad de datos.
@@ -48,7 +48,8 @@ repos/bases, latencias, crudo vs corregido, etc.). Se va actualizando con cada e
 2. **v1 (full-FT) ≥ v2 (freeze+aug)**, pero la diferencia NO es significativa (IC solapan).
 3. **Base multilingüe ≈ base LIP-RTVE** con datos idénticos: ft07 apenas mejor que ft05b
    (−1.16 WER, −0.42 CER) pero IC solapan → empate técnico. **Los datos importan mucho más que la base.**
-4. Fine-tunear (ft05 65.05) supera claramente al multilingüe zero-shot (71.50) → adaptar al acento paga.
+4. En la familia mpc001/Gimeno evaluada, fine-tunear (ft05 65.05) supera al zero-shot 71.50;
+   este resultado no se generaliza a ViSpeR, cuyo zero-shot fue mejor que sus adaptaciones globales.
 
 ---
 
@@ -76,7 +77,7 @@ Auto-AVSR LRS3 (19.1%) + MediaPipe + corrección **Qwen3-4B (Ollama)**. NO es st
 push-to-talk (grabar-soltar, inferencia offline sobre el clip entero). Es el blueprint de nuestro demo.
 
 **Lecturas clave:**
-- **Nadie tiene VSR visual-only en streaming** (el único streaming real es audio-visual).
+- **En la revisión realizada no identificamos VSR visual-only causal en streaming**; el sistema streaming citado es audio-visual.
 - **Datos y acento dominan:** LRS3 19.1% (EN) → CMU-MOSEAS 44.5% (ES) → rioplatense 71.5% zero-shot.
 - LRS3 sube de 19.1% a 36.3% al bajar de 3448h a 818h. **Nosotros tenemos ~14–19h.**
 - Nuestro análogo real es **LIP-RTVE speaker-independent (59.5% WER)**: ft05 (65) está a ~5 pts,
@@ -92,7 +93,7 @@ Chaplin github.com/amanvirparhar/chaplin · PyTorch real-time AV-ASR blog.
 **Setup:** corrector = `qwen3:4b-instruct-2507-q4_K_M` (Ollama local, no-razonador, Q4_K_M).
 System-prompt = corrector de español rioplatense (voseo), conservador (no agrega info).
 Se corre sobre las hipótesis ya generadas (`test.inf`, ref#hyp) y se re-mide con la misma `norm()`.
-Script: `multilingual-vsr/scripts/fase0_llm_correct.py`. Se estratifica por CER-por-clip del baseline
+Script: `llm_corrector/fase0_llm_correct.py`. Se estratifica por CER-por-clip del baseline
 para testear la hipótesis: *CER bajo → el LLM mejora; CER alto → el LLM alucina y empeora*.
 
 **Resultado (2026-07-05, corrector `qwen3:4b-instruct-2507-q4_K_M`, 658 clips, ~1.27 s/clip CPU/Mac):**
@@ -111,13 +112,11 @@ para testear la hipótesis: *CER bajo → el LLM mejora; CER alto → el LLM alu
 | 40–60 | 297 / +0.58 | 301 / +0.78 |
 | 60–200 | 73 / −0.10 | 67 / +0.54 |
 
-**Conclusión (resultado NEGATIVO, robusto en ambos modelos):** la corrección LLM post-hoc **naive
-NO ayuda — empeora levemente el WER y más el CER, en TODOS los estratos.** Ni siquiera el bucket más
-limpio (CER 0–20) mejora (a lo sumo empata). Razón: incluso el bucket "CER bajo" tiene WER ~34% → no
-son frases casi correctas que el LLM pula, sino texto ya roto; el modelo sobre-corrige (cambia palabras
-correctas por incorrectas) más de lo que arregla. **No tenemos clips con CER genuinamente bajo (~5%)**
-donde la hipótesis se podría confirmar. Mensaje central: **con CER ~42 no hay señal suficiente para que
-la corrección gane → bajar el CER es prioritario sobre agregar el LLM.**
+**Conclusión para ft05b/ft07:** la corrección LLM post-hoc **naive empeoró levemente el WER y
+más el CER en todos los estratos evaluados.** Ni siquiera el bucket CER 0–20 mejoró (a lo sumo empató).
+En estas corridas, el texto seguía demasiado roto y el modelo sobre-corrigió palabras correctas. Este
+resultado descarta el 1-best naive para este régimen; no establece una ley universal para cualquier
+modelo, dataset o nivel de error.
 
 **Limitaciones de este experimento (qué podría rescatar la idea):** (1) input ya normalizado — se le
 quitan acentos/puntuación/mayúsculas, las pistas que un corrector usa, y la métrica es ciega a los
@@ -134,26 +133,29 @@ conservar ortografía) podría cambiar el signo, pero el techo lo pone el CER.
 
 Estratos por CER-por-clip: **0–20: +2.26** (¡el que MÁS empeora!) · 20–40: +1.11 · 40–60: +0.64 · 60+: 0.00.
 
-**CONCLUSIÓN DEFINITIVA (hipótesis del CER REFUTADA):** aun bajando el CER de 42 a 27, y aun en los clips
-MÁS limpios (CER 0–20, WER ~22), el corrector qwen naive **empeora** — y empeora MÁS donde el CER es bajo.
-El modelo sobre-corrige: cambia palabras ya correctas por formas genéricas. Con dos regímenes de CER el
-resultado es consistente → **la corrección LLM post-hoc naive NO ayuda al VSR**, independientemente del CER.
-Para que un LLM sirviera haría falta otro diseño (corrector fine-tuneado a la tarea, n-best rescoring) o un
-CER mucho menor (<10). Cierra el experimento del componente agéntico: el valor está en el modelo visual, no
-en un post-corrector genérico.
+**Conclusión del 1-best en las condiciones evaluadas:** al bajar el CER global de 42 a 27, el
+corrector qwen naive volvió a empeorar y sobre-corrigió texto válido. El resultado se repitió también en
+el self-test de CER ~11: la corrección libre de una sola hipótesis siguió siendo negativa. Los ensayos
+posteriores muestran que el diseño que sí puede aportar señal es **n-best rescoring**, porque el LLM elige
+entre candidatas del decoder en vez de reescribir libremente una única salida.
 
 ---
 
 ## 4. Latencia / eficiencia (Fase 1)
 
-RTF (real-time factor) y latencia por chunk, desglosado por etapa (frontend / encoder / decoder),
-barriendo decoding {beam+LM, CTC-greedy} × quantización {fp32, int8/fp16} × {CPU, GPU}.
+Resultados medidos sobre el self-test; el detalle completo, intervalos y barridos están en
+[`experiments/09_velocidad_inferencia.md`](experiments/09_velocidad_inferencia.md).
 
-> ⏳ **PENDIENTE** (Fase 1). Se completa cuando se corra el harness de benchmark de inferencia.
+| Configuración | Latencia por clip | RTF | %WER | Lectura |
+|---|---:|---:|---:|---|
+| ViSpeR CPU, beam 40 | 3.17 s | 1.00 | 23.60 | baseline de fábrica |
+| ViSpeR CPU, beam 3 | 1.43 s | 0.47 | 23.31 | 2.2× más rápido, mismo régimen de WER |
+| Encoder MPS + beam 3 CPU | 1.09 s | — | 23.31 | transcripciones idénticas al beam 3 CPU |
+| qwen n-best top-5 | +1.24 s | — | 20.22 en n=40 | costo adicional del rescoring caliente |
 
-| Config | Etapa | RTF | Latencia/chunk | %WER | Notas |
-|---|---|---|---|---|---|
-| _pend._ | | | | | |
+El pipeline recomendado usa encoder MPS y beam corto; el corrector es opcional porque agrega ~1.24 s.
+Los tiempos absolutos varían alrededor de ±10 % entre corridas, por lo que los ratios entre
+configuraciones son más confiables que una cifra aislada.
 
 ---
 
@@ -181,8 +183,9 @@ rinde en el fine-tune final + test. Data AV española **con video usable (píxel
 Caveat: `--simulate` verifica existencia+metadata, es **techo** (la descarga real puede fallar por
 age-restrict/geo/formato). Muestra MuAViC sesgada al inicio del archivo. Aun así: **la data está viva.**
 **Techo con texto listo ≈ 985h nominal → realista ~700–900h descargables hoy** (vs ~19h rioplatenses).
-**No existe corpus AV rioplatense/LatAm dedicado** → dialecto argentino nativo solo vía pipeline propio.
-Todo requiere bajar de YouTube + croppear + GPU. Detalle en memoria `datasets-spanish-av-video`.
+**No identificamos un corpus AV público específicamente orientado al rioplatense/LatAm** → el dialecto
+argentino nativo se cubrió con el pipeline propio. La evidencia de disponibilidad y scraping está en
+[`experiments/07_datos_y_scraping.md`](experiments/07_datos_y_scraping.md).
 
 ## 6. ViSpeR — hallazgo clave (2026-07-05 noche)
 
@@ -191,8 +194,10 @@ test-658** → le gana a NUESTRO MEJOR modelo (ft05 = 65.05, fine-tuneado) por ~
 zero-shot (71.5) por ~26 pts. El encoder de 794h de español transfiere muchísimo mejor al rioplatense que
 partir de LIP-RTVE (13h) o CMU-MOSEAS (16h). Mantiene su tokenizer SPM 21k (language token `<es>`).
 Esto reorientó la estrategia: en vez del currículum-desde-cero (ft08, train stage1 sobre 50h), **partimos
-de ViSpeR y lo fine-tuneamos sobre argentino**. Harness: `~/Desktop/visper/visper_zeroshot.py`
-(env conda `visper`, CPU ~5.9s/clip). Modelo `visper_vsr_base.pth`. Licencia CC BY-NC (uso research OK).
+de ViSpeR y lo fine-tuneamos sobre argentino**. El harness original vive en el clon externo de ViSpeR del equipo y no se versiona en este repo.
+La receta de evaluación y los artefactos necesarios están documentados en
+[exp. 02](experiments/02_zeroshot.md) y [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md).
+Licencia CC BY-NC (uso de investigación).
 
 ### Fine-tune de ViSpeR sobre argentino (2026-07-06) — EMPEORA (overfit)
 
@@ -201,7 +206,9 @@ en L4. **Resultado: WER 61.51 / CER 38.59 sobre test-658 — PEOR que el zero-sh
 subió monótono desde época 1 (39.05 → 39.71 → 40.06 → 41.16), overfit clásico; el early-stopping guardó
 época 1 (el menos sobreajustado) e igual quedó 16 pts de WER por encima del zero-shot. **Con ~19h no
 alcanza para adaptar un modelo de 794h sin degradarlo** (catastrophic forgetting / sobreajuste al set chico).
-Modelo en `modelos/ft_visper_ar_best.pth`. Scripts: `~/Desktop/visper/fine_tune_visper.py` + `dws_startup_visper.sh`.
+El checkpoint se conserva en el bucket del proyecto; la receta y los parámetros están en
+[exp. 03](experiments/03_visper_finetunes.md). Los scripts originales corrieron en el
+entorno externo de ViSpeR y no se versionan en este repositorio.
 
 ---
 
@@ -216,25 +223,30 @@ Modelo en `modelos/ft_visper_ar_best.pth`. Scripts: `~/Desktop/visper/fine_tune_
 | 5 | ViSpeR ft-argentino (794h → +19h AR, **full-FT**) | 61.51 | 38.59 | overfit, peor que zs |
 | 6 | **ViSpeR zero-shot (794h)** ⭐ | **45.22** | 26.98 | **el mejor / más simple** |
 | 7 | ViSpeR **LoRA+aug** AR (freeze+LoRA r16+augment) | 45.97 ≈ | **26.00** | empata zs (IC solapan) |
-| 8 | ViSpeR zero-shot + corrector qwen | 46.64 | 28.32 | el LLM empeora |
+| 8 | ViSpeR zero-shot + corrector qwen 1-best | 46.64 | 28.32 | empeoró en esta evaluación |
+
+### Resultados complementarios fuera de `test-658`
+
+| Evaluación | Base | Variante | Delta | Significancia |
+|---|---:|---:|---:|---|
+| self-test n=100, n-best qwen | 29.51 WER | **26.46 WER** | **−3.04** | IC95 pareado excluye 0 |
+| test personal n=30, LoRA hablante | 29.18 WER | **24.51 WER** | **−4.67** | IC95 todavía cruza 0 |
+| test-658, LoRA personal | 45.22 WER | **44.54 WER** | −0.68 | sin degradación general observada |
+| test-658, full-FT personal | 45.22 WER | **98.69 WER** | +53.47 | degradación severa |
 
 **Conclusiones del proyecto:**
-1. **El zero-shot de ViSpeR es el mejor punto de partida** (45.22 WER): −20 vs nuestro mejor fine-tune propio
-   (ft05 65.05), −26 vs mpc001. Domina la **escala del pre-entrenamiento visual español** (794h), no la
-   arquitectura (todas comparten Conv3D+ResNet18→Conformer→CTC/Att).
-2. **La forma de fine-tunear importa muchísimo, pero 19h no alcanzan para mejorar el zero-shot:**
-   - *full-FT* con ~19h → **61.51 (lo destroza, overfit).**
-   - *freeze+LoRA (0.8% params)+augment+early-stop* → **45.97 / CER 26.00: EMPATA el zero-shot** (IC solapan;
-     WER +0.75, CER −0.98, dentro del ruido). O sea: la regularización correcta **evita la degradación** del
-     full-FT, pero el dataset argentino chico **no agrega señal** por encima de lo que ya capturó el pre-entreno
-     de 794h. El CER baja un pelín (26.0 vs 27.0) — sugestivo pero no significativo.
-   - **Implicancia:** el dataset NO fue en vano — es el benchmark (test-658) que reveló todo, y mostró que
-     harían falta **muchas más horas argentinas** (o el mismo LoRA con +datos) para superar el zero-shot.
-3. **El corrector LLM post-hoc naive (qwen3:4b) NO ayuda** a ningún nivel de CER (42 ni 27): sobre-corrige y
-   empeora el WER, peor cuanto más limpio el clip. El valor está en el modelo visual.
-4. **Modelo de producción recomendado: ViSpeR zero-shot** (`visper_vsr_base.pth`, token `<es>`) — el LoRA+aug
-   empata y es más complejo, así que para producción conviene el zero-shot directo. Próximo paso para tiempo
-   real: **ingeniería de streaming** (sliding-window tipo Chaplin), no más entrenamiento. Licencia CC BY-NC (research).
+1. **ViSpeR zero-shot es el mejor punto de partida general evaluado** (45.22 WER): ~20 puntos mejor que
+   ft05 y ~26 mejor que mpc001 zero-shot sobre `test-658`.
+2. **En las corridas evaluadas, ~19 h argentinas no mejoraron el zero-shot global:** el full-FT degradó
+   el modelo y LoRA+augment quedó estadísticamente empatado con la base. El dataset sigue siendo valioso
+   como benchmark rioplatense y como base para escalar datos/adaptación.
+3. **La corrección LLM 1-best empeoró en todas las condiciones evaluadas.** El **n-best rescoring** sí
+   produjo una mejora significativa en el self-test de CER bajo, sin establecer un umbral universal.
+4. **La adaptación personal con LoRA mostró −4.67 WER en el hablante evaluado**, sin degradación del test
+   general; con n=30 la mejora personal todavía no fue estadísticamente significativa. El full-FT personal
+   degradó severamente el modelo de 288M.
+5. **Configuración recomendada para la demo:** ViSpeR zero-shot, encoder MPS y beam corto; LoRA personal y
+   n-best qwen quedan como opciones según hablante, latencia y régimen de error.
 
 ## Changelog
 
@@ -247,4 +259,8 @@ Modelo en `modelos/ft_visper_ar_best.pth`. Scripts: `~/Desktop/visper/fine_tune_
 - **2026-07-06 (madrugada)** — **ViSpeR zero-shot = 45.22 WER (mejor de todo el proyecto, −20 vs ft05).**
   Fine-tune de ViSpeR sobre 19h argentino EMPEORÓ (61.51, overfit). Corrector qwen sobre ViSpeR zs EMPEORÓ
   (+1.42, hipótesis CER refutada def.). Resumen final en §7. Teardown completo (0 VMs/discos). Imagen
-  `labios-img-visper` preservada. Modelos en `modelos/` (ft_visper_ar_best.pth) + `~/Desktop/visper/visper_vsr_base.pth`.
+  `labios-img-visper` preservada; checkpoints y pesos documentados en [`DATA_AND_ARTIFACTS.md`](DATA_AND_ARTIFACTS.md).
+
+- **2026-07-09/10** — Cerrados los experimentos de velocidad, n-best y adaptación personal: encoder MPS
+  0.17 s, e2e beam3 ~1.09 s; n-best qwen −3.04 WER significativo en self-test n=100; LoRA personal
+  −4.67 WER en n=30 (todavía no significativo) sin degradación general; full-FT personal 98.69 WER.

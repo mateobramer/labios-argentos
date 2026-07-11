@@ -1,0 +1,34 @@
+channel,source_type,accepted_videos,usable_minutes_estimate,accepted_clips_estimate,avg_total_score,avg_visual_score,avg_audio_score,decision,notes
+Alberto Fernández,interview,1,56.7,680.0,89.0,84.8,90.0,ok,
+Aprender de Grandes,podcast,1,25.5,306.0,87.65,80.06,93.39,ok,
+BLENDER,conversation,1,60.0,822.0,88.71,86.5,92.41,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Canal Encuentro,interview,0,0,0,89.5,79.81,100.0,backup_review,
+Cenital,interview,1,60.0,748.0,90.69,95.53,77.77,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Congo,interview,1,31.17,374.0,86.56,91.29,94.39,ok,
+Coscu,streamer,0,0,0,82.93,69.63,95.04,backup_review,
+Daniel Colombo,educational,1,60.0,1023.0,96.76,96.32,96.67,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Eduardo Mellado Soto,other,0,0,0,83.93,79.82,93.41,backup_review,
+El Método Rebord,educational,1,60.0,1228.0,90.47,88.09,89.39,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+En Perspectiva + VIDEO ,podcast,0,0,0,85.49,72.56,98.7,backup_review,
+FLACSO Argentina,educational,0,0,0,83.18,78.82,80.58,backup_review,
+Filo News,interview,0,0,0,82.39,74.85,84.55,backup_review,
+Futurock FM,interview,1,49.83,598.0,86.94,90.55,85.22,ok,
+Infobae,interview,1,24.55,295.0,88.39,91.01,77.61,ok,
+LA NACION,interview,1,49.64,596.0,89.22,86.63,87.69,ok,
+LUZU TV,educational,0,0,0,84.05,75.1,93.0,backup_review,
+Martin Cirio,interview,0,0,0,83.11,68.92,96.83,backup_review,
+Pablo H. Plá,interview,0,0,0,79.05,73.0,76.5,backup_review,
+Perfil,interview,1,56.86,682.0,88.02,88.42,80.67,ok,
+Sociedad Argentina De Aviacion,educational,0,0,0,84.35,81.35,80.25,backup_review,
+Spanish with Nico,podcast,1,13.02,156.0,92.65,96.1,90.0,ok,
+TEDx Talks,educational,0,0,0,79.07,67.03,86.53,backup_review,
+Tengo un Plan,podcast,1,60.0,1341.0,91.1,88.06,91.57,cap_applied_or_near_cap,limitar_a_mejores_videos_de_la_fuente
+Terapia Picante,streamer,1,27.57,331.0,88.92,84.63,90.0,ok,
+Todo Noticias,interview,2,58.41,701.0,95.38,95.15,94.0,ok,
+Universidad Torcuato Di Tella,educational,1,9.13,110.0,87.83,80.25,93.69,ok,
+Universidad de San Andrés,other,0,0,0,82.2,78.81,89.32,backup_review,
+Urbana Play 104.3 FM,interview,1,56.41,677.0,92.18,87.28,96.45,ok,
+Vorterix,interview,0,0,0,80.31,70.48,84.92,backup_review,
+archivodichiara,other,1,34.01,408.0,89.37,92.74,90.0,ok,
+elDiarioAR,monologue,0,0,0,84.91,71.46,98.58,backup_review,
+eltrece,interview,1,21.32,256.0,92.19,86.12,98.43,ok,

@@ -1,0 +1,42 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=Yqe3Z8zVS_A",
+    "title": "EL DIA QUE CASI MATO A MI TIO (Anécdota real)",
+    "channel": "Lucas Castel :D",
+    "duration": 494,
+    "method": "ytsearch_title",
+    "score": 100.0
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=YYbsoBtXEEc",
+    "title": "La vez que casi me mata un tío - Soy Una Pringada",
+    "channel": "Soy una pringada",
+    "duration": 909,
+    "method": "ytsearch_title",
+    "score": 57.78
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=zfT7pxf0Onk",
+    "title": "“No sabemos quiénes somos en medio de la tragedia”. Hernán Casciari",
+    "channel": "AprendemosJuntos",
+    "duration": 2520,
+    "method": "ytsearch_title",
+    "score": 28.04
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=aWAMmraprHE",
+    "title": "Daniel Aráoz contó una historia desopilante que desató las carcajadas de Juana Viale y los invitados",
+    "channel": "eltrece",
+    "duration": 344,
+    "method": "ytsearch_title",
+    "score": 32.17
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=aaczw-6MxTU",
+    "title": "C0R0NAV1RUS: \"Mi tio esta grave\" Sergio en el foco de la PANDEM1A.",
+    "channel": "Momo",
+    "duration": 1855,
+    "method": "ytsearch_title",
+    "score": 34.29
+  }
+]

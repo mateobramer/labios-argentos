@@ -12,7 +12,7 @@ si un segmento llega al tope de largo se corta forzado y se dedup-ea el borde).
 Al arrancar: quedate CALLADO ~2s (calibra el ruido de base del VAD).
 
 OJO: ViSpeR es offline/bidireccional -> esto sigue siendo una aproximacion
-(latencia ~ fin-de-frase + inferencia ~1.5s). Ver experiments/09 y realtime-vsr-plan.
+(latencia ~ fin-de-frase + inferencia ~1.5s). Ver docs/experiments/09 y realtime-vsr-plan.
 
 Corre en el env `ptt` (spawnea el server en el env `visper`):
   ~/miniconda3/envs/ptt/bin/python demo_stream.py [--max-seg 4.0] [--pause 0.45] [--sens 3.0] [--qwen]
@@ -22,13 +22,14 @@ Teclas:  c = limpiar transcript   q = salir
 import os, sys, time, threading, subprocess, tempfile, argparse, collections, statistics
 import cv2, numpy as np
 
-REPO = os.path.expanduser("~/Desktop/labios-argentos")
+# Raiz del repo derivada de este archivo; LABIOS_REPO la pisa (ver .env.example).
+REPO = os.environ.get("LABIOS_REPO") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
-from visual_preprocessing.src.preprocesar import (
+from preprocessing.src.preprocesar import (
     crear_landmarker, detectar_landmarks, cuatro_puntos, remuestrear_a_25fps)
-from visual_preprocessing.src.video_process import VideoProcess
+from preprocessing.src.video_process import VideoProcess
 
-VISPER_PY = os.path.expanduser("~/miniconda3/envs/visper/bin/python")
+VISPER_PY = os.path.expanduser(os.environ.get("VISPER_PY", "~/miniconda3/envs/visper/bin/python"))
 INFER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "infer_server.py")
 MIN_SEG_S = 0.7      # segmentos mas cortos que esto se descartan (no vale inferir)
 PREROLL_S = 0.25     # arranque del segmento un toque antes de detectar habla

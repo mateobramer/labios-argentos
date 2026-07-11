@@ -199,7 +199,7 @@
 <script>
   const $ = id => document.getElementById(id);
   const chip=$("chip"), chiptxt=$("chiptxt"), cap=$("caption"), ley=$("leyendo");
-  let nseg = 0, qwenOn = false;
+  let nseg = 0, qwenOn = false, ultimo = null;
 
   function estado(fase, busy, thr){
     let st="escuchando", txt="escuchando";
@@ -230,10 +230,11 @@
         cap.textContent = last.texto; cap.classList.remove("vacio");
         if (last.strip >= 0){ $("tira").src = "/strip/"+last.strip; $("tira").hidden = false; }
       }
-      $("guion").innerHTML = s.segmentos.slice().reverse().map(g =>
+      $("guion").innerHTML = s.segmentos.map((g,i)=>({g,i})).reverse().map(({g,i}) =>
         `<div class="seg">${g.strip>=0?`<img src="/strip/${g.strip}" alt="">`:""}
-         <div class="txt">${g.texto}</div>
-         <div class="meta">${g.dur.toFixed(1)} s de habla · leída en ${g.infer.toFixed(1)} s</div></div>`).join("");
+         <div class="txt">${g.corregido ? g.corregido : g.texto}</div>
+         <div class="meta">${g.dur.toFixed(1)} s de habla · leída en ${g.infer.toFixed(1)} s
+           ${g.corregido ? " · ✔ corregida" : ` · <a href="#" onclick="corregir(${i});return false" title="Corregir lo que el modelo leyó (queda solo en esta máquina)">✏️ corregir</a>`}</div></div>`).join("");
       nseg = s.segmentos.length;
       const tot = s.segmentos.reduce((a,g)=>a+g.infer,0);
       $("f-stats").textContent = nseg+" frases · lectura media "+(tot/Math.max(nseg,1)).toFixed(1)+" s";
@@ -258,6 +259,13 @@
     if (j.ok){ qwenOn = j.qwen; pintaQwen(); }
   };
   $("clear").onclick = () => fetch("/clear",{method:"POST"});
+  window.corregir = async (i) => {   // correccion humana: queda SOLO local (data/feedback/)
+    const seg = ultimo && ultimo.segmentos ? ultimo.segmentos[i] : null;
+    const txt = prompt("¿Qué dijiste realmente? (se guarda solo en esta máquina)", seg ? seg.texto : "");
+    if (txt === null || !txt.trim()) return;
+    await fetch("/feedback",{method:"POST",headers:{"Content-Type":"application/json"},
+                             body:JSON.stringify({idx:i, texto:txt.trim()})});
+  };
   $("copy").onclick = async () => {
     const t = [...document.querySelectorAll("#guion .txt")].map(e=>e.textContent).reverse().join(" ");
     try{ await navigator.clipboard.writeText(t); $("copy").textContent="copiado ✓";

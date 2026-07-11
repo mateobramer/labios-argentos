@@ -51,8 +51,8 @@ Objetivo: resolver los unknowns y medir rendimiento ANTES de escalar. **Subset ~
 vivo al 98% y auto-contenido → validamos con él primero).
 
 Progreso probe (2026-07-05): descarga real OK (~53MB/~15s por video); formato ViSpeR entendido
-(JSON con start/end/label/landmarks); pipeline `visual_preprocessing/preprocesar.py` ubicado (espera clips
-segmentados → produce npz 96×96). Adapter `curriculum/visper_a_clips.py` escrito y probado end-to-end:
+(JSON con start/end/label/landmarks); pipeline `preprocessing/preprocesar.py` ubicado (espera clips
+segmentados → produce npz 96×96). Adapter `vsr/curriculum/visper_a_clips.py` escrito y probado end-to-end:
 corta segmentos + escribe .txt + genera npz **formato correcto (T,96,96) uint8**.
 
 **HALLAZGO Fase 0 (5 videos, 28 clips):** con nuestro MediaPipe re-detectando sobre el video crudo,
@@ -61,7 +61,7 @@ frontal / cara chica que RetinaFace de ViSpeR sí agarró) + resto con ratio 0.1
 **Solución (Fase 0.b): usar los landmarks que ViSpeR ya provee** (5 puntos/frame → mapeados a los 4 de
 `VideoProcess`: ojoD, ojoI, nariz, media(bocaIzq,bocaDer)) para el warp mean-face directo, sin MediaPipe.
 
-**FASE 0.b RESUELTA (2026-07-05) — cropper `curriculum/visper_crop_landmarks.py`:**
+**FASE 0.b RESUELTA (2026-07-05) — cropper `vsr/curriculum/visper_crop_landmarks.py`:**
 - **Yield 100% (28/28 clips)** sobre los mismos 5 videos (vs 21% con MediaPipe).
 - **Crops verificados visualmente:** bocas centradas, gris 96×96, calidad comparable a data VSR estándar
   (formato npz (T,96,96) uint8 idéntico al de ft05).
@@ -71,7 +71,7 @@ frontal / cara chica que RetinaFace de ViSpeR sí agarró) + resto con ratio 0.1
 
 Pasos:
 1. **Descargar 30 videos ViSpeR-es + 30 MuAViC-es** (muestra aleatoria de los IDs ya extraídos, en
-   `scratchpad/{visper_ids,muavic_ids}/`) con yt-dlp, local en la Mac (gratis).
+   `directorio temporal/{visper_ids,muavic_ids}/`) con yt-dlp, local en la Mac (gratis).
 2. **Correr `video_process.py`** sobre los crudos → npz 96×96 gris 25fps. Verificar:
    - salen limpios (dimensiones, fps, alineación mean-face correcta — inspección visual de 5-6 crops);
    - los segmentos/transcripciones alinean con el audio;
@@ -139,7 +139,7 @@ Se dimensiona con precisión recién con las mediciones de Fase 0.
 - [x] **Fase 0 — validación subset: VERDE** (yield 100% vía landmarks ViSpeR; crops OK; ~480MB/h)
 - [x] **Fase 1a — datos procesados: 50.03h ViSpeR-es** (936 videos, 36.631 clips/npz, 28GB, solo 4 fallos
   de descarga; local en `data/processed/lip_rois/visper_*` + bucket `curriculum_visper/lip_rois/`).
-  Procesado 2026-07-05 en ~5h con `curriculum/procesar_visper.py` (throttling de YouTube manejado con
+  Procesado 2026-07-05 en ~5h con `vsr/curriculum/procesar_visper.py` (throttling de YouTube manejado con
   timeout duro + sleep + backups espaciados; worker nohup-desacoplado para sobrevivir kills del harness).
 - [ ] **Fase 1b — run DWS entrenamiento ft08 (próximo paso, gate go/kill vs ft05=65.05)**
 - [ ] Fase 2 — run completo

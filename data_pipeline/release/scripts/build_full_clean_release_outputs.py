@@ -1,0 +1,730 @@
+"""Construye manifests y reportes finales de full clean release.
+
+La limpieza GPT queda conservadora: solo se marca `completed_clean_gpt` si existe
+texto validado. En esta corrida no se inventan patches; los clips con ASR real
+quedan como `completed_large_turbo_no_gpt`.
+"""
+
+from __future__ import annotations
+
+import csv
+import json
+from collections import Counter, defaultdict
+from pathlib import Path
+from typing import Iterable
+
+
+ROOT = Path(__file__).resolve().parents[2]
+OUT_DIR = ROOT / "data_pipeline/release"
+REPORTS = OUT_DIR / "reports"
+
+ARG_EXISTING = OUT_DIR / "argentina_existing_manifest.csv"
+ARG_NEW = OUT_DIR / "argentina_new_manifest.csv"
+SPANISH = OUT_DIR / "spanish_general_manifest.csv"
+SOURCE_MAPPING = OUT_DIR / "source_mapping.csv"
+ALIGNMENT = OUT_DIR / "alignment_manifest.csv"
+RECON = OUT_DIR / "existing_reconstruction_manifest.csv"
+ASR = OUT_DIR / "asr_large_turbo_manifest.csv"
+DISAGREEMENT = OUT_DIR / "asr_disagreement_v2.csv"
+LOCAL_DOWNLOADS = OUT_DIR / "local_source_download_manifest.csv"
+NEW_CLIPS = OUT_DIR / "new_discovery_clip_manifest.csv"
+NEW_ASR = OUT_DIR / "new_discovery_asr_manifest.csv"
+NEW_ROI = OUT_DIR / "new_discovery_roi_manifest.csv"
+
+FINAL_RELEASE = OUT_DIR / "final_release_manifest.csv"
+FINAL_TRAIN = OUT_DIR / "final_train_manifest_clean_gpt_v1.csv"
+FINAL_EVAL = OUT_DIR / "final_eval_manifest_clean_gpt_v1.csv"
+CLEAN_GPT = OUT_DIR / "clean_gpt_manifest.csv"
+NEW_DISCOVERY = OUT_DIR / "new_discovery_ingest_manifest.csv"
+FAILURES = REPORTS / "failures.csv"
+FULL_REPORT = REPORTS / "full_clean_release_report.md"
+GPT_REPORT = REPORTS / "gpt_cleaning_report.md"
+COST_REPORT = REPORTS / "cost_runtime_report.md"
+SPANISH_REPORT = OUT_DIR / "spanish_general_asr_manifest.csv"
+REJECTED_GPT = ROOT / "cleaning/gpt_clean_v1" / "rejected_patches.jsonl"
+MANUAL_GPT_VALIDATION = ROOT / "cleaning/gpt_clean_v1" / "reports" / "manual_gpt_validation_report.csv"
+
+DEST_BUCKET = "gs://labios-argentos-vsr-clean-v1"
+
+FINAL_FIELDS = [
+    "dataset_group",
+    "source_id",
+    "clip_id",
+    "split",
+    "spk",
+    "titulo",
+    "source_url",
+    "source_video_id",
+    "start_time",
+    "end_time",
+    "mp4_visual_roi_path",
+    "npz_path",
+    "clip_with_audio_path",
+    "existing_text",
+    "large_text",
+    "turbo_text",
+    "clean_gpt_text",
+    "selected_training_text",
+    "text_source",
+    "clean_status",
+    "clean_confidence",
+    "patch_count",
+    "alignment_confidence",
+    "asr_status",
+    "gpt_status",
+    "usable_for_training",
+    "usable_for_eval",
+    "needs_review",
+    "failure_reason",
+    "notes",
+]
+
+CLEAN_FIELDS = [
+    "dataset_group",
+    "source_id",
+    "clip_id",
+    "existing_text",
+    "large_text",
+    "turbo_text",
+    "clean_text",
+    "status",
+    "confidence",
+    "patch_count",
+    "gpt_status",
+    "notes",
+]
+
+NEW_FIELDS = [
+    "url",
+    "video_id",
+    "title",
+    "channel",
+    "decision",
+    "total_score",
+    "usable_minutes_estimate",
+    "accepted_clips_estimate",
+    "recommended_use",
+    "ingest_status",
+    "failure_reason",
+    "source_video_gcs_path",
+    "source_audio_gcs_path",
+    "metadata_gcs_path",
+    "notes",
+]
+
+SPANISH_FIELDS = [
+    "dataset_group",
+    "clip_id",
+    "mp4_gcs_path",
+    "npz_gcs_path",
+    "txt_gcs_path",
+    "turbo_text_path",
+    "asr_status",
+    "provenance_status",
+    "license_status",
+    "notes",
+]
+
+FAILURE_FIELDS = ["stage", "dataset_group", "source_id", "clip_id", "path", "error_type", "error_message", "notes"]
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def read_jsonl(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    rows = []
+    with path.open(encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                rows.append(json.loads(line))
+    return rows
+
+
+def write_csv(path: Path, rows: Iterable[dict[str, object]], fields: list[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_name(f"{path.name}.tmp")
+    with tmp_path.open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in fields})
+    tmp_path.replace(path)
+
+
+def source_id_for(row: dict[str, str]) -> str:
+    import re
+
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", f"{row.get('spk')}__{row.get('titulo')}").strip("_")[:120]
+
+
+def load_asr() -> dict[tuple[str, str, str], dict[str, str]]:
+    out = {}
+    for row in read_csv(ASR):
+        if row.get("status") == "completed_asr" and row.get("model_role") in {"large", "turbo"}:
+            out[(row.get("source_id", ""), row.get("clip_id", ""), row.get("model_role", ""))] = row
+    return out
+
+
+def load_completed_gpt() -> dict[str, dict[str, str]]:
+    out = {}
+    for row in read_csv(CLEAN_GPT):
+        if row.get("clean_text", "").strip() and (
+            row.get("status") == "completed_clean_gpt" or row.get("gpt_status") == "completed_clean_gpt"
+        ):
+            out[row.get("clip_id", "")] = row
+    return out
+
+
+def load_rejected_gpt() -> dict[str, dict[str, str]]:
+    out = {}
+    for row in read_jsonl(REJECTED_GPT):
+        clip_id = row.get("clip_id", "")
+        record = row.get("record", {}) if isinstance(row.get("record"), dict) else {}
+        if clip_id:
+            out[clip_id] = {
+                "clip_id": clip_id,
+                "confidence": record.get("confidence", "low"),
+                "reason": record.get("reason", row.get("reason", "action_reject")),
+                "notes": record.get("notes", ""),
+            }
+    return out
+
+
+def build_existing_final() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    mapping = {row["source_id"]: row for row in read_csv(SOURCE_MAPPING)}
+    alignment = {row["clip_id"]: row for row in read_csv(ALIGNMENT)}
+    recon = {row["clip_id"]: row for row in read_csv(RECON) if row.get("status") == "completed_reconstructed_audio"}
+    asr = load_asr()
+    completed_gpt = load_completed_gpt()
+    rejected_gpt = load_rejected_gpt()
+    final_rows: list[dict[str, object]] = []
+    clean_rows: list[dict[str, object]] = []
+
+    for row in read_csv(ARG_EXISTING):
+        sid = source_id_for(row)
+        clip_id = row.get("clip_id", "")
+        align = alignment.get(clip_id, {})
+        source = mapping.get(sid, {})
+        rec = recon.get(clip_id, {})
+        large = asr.get((sid, clip_id, "large"), {})
+        turbo = asr.get((sid, clip_id, "turbo"), {})
+        existing_text = row.get("text_large_existing", "")
+        large_text = large.get("text", "")
+        turbo_text = turbo.get("text", "")
+        clean_gpt_text = ""
+        patch_count = 0
+        if large_text and turbo_text:
+            clean_status = "completed_large_turbo_no_gpt"
+            asr_status = "completed_large_turbo"
+            gpt_status = "not_attempted"
+            selected = large_text
+            text_source = "large"
+            needs_review = "false"
+            failure_reason = ""
+        elif align.get("status") == "blocked_alignment_failed":
+            clean_status = "blocked_alignment_failed"
+            asr_status = "blocked_alignment_failed"
+            gpt_status = "blocked_no_asr_context"
+            selected = existing_text
+            text_source = "existing_text"
+            needs_review = "true"
+            failure_reason = "blocked_alignment_failed"
+        elif align.get("status") == "blocked_source_not_found" or source.get("match_confidence") in {"none", "low"}:
+            clean_status = "blocked_source_not_found"
+            asr_status = "blocked_source_not_found"
+            gpt_status = "blocked_no_asr_context"
+            selected = existing_text
+            text_source = "existing_text"
+            needs_review = "true"
+            failure_reason = "blocked_source_not_found_or_low_confidence"
+        else:
+            clean_status = "baseline_existing_only"
+            asr_status = "pending_reconstruction_or_asr"
+            gpt_status = "blocked_no_asr_context"
+            selected = existing_text
+            text_source = "existing_text"
+            needs_review = "true"
+            failure_reason = "not_processed_before_spot_preemption"
+
+        gpt = completed_gpt.get(clip_id)
+        if gpt:
+            clean_gpt_text = gpt.get("clean_text", "").strip()
+            clean_status = "completed_clean_gpt"
+            gpt_status = "completed_clean_gpt"
+            selected = clean_gpt_text
+            text_source = "clean_gpt_v1"
+            clean_confidence = gpt.get("confidence", "medium") or "medium"
+            patch_count = int(gpt.get("patch_count") or 0)
+            needs_review = "false"
+            failure_reason = ""
+        else:
+            clean_confidence = "medium" if clean_status == "completed_large_turbo_no_gpt" else "low"
+            if clip_id in rejected_gpt:
+                gpt_status = "rejected_clean_gpt"
+        notes = "gpt_cleaning_applied" if clean_gpt_text else ("gpt_cleaning_not_applied_no_invented_patches" if large_text else "")
+        if not clean_gpt_text and clip_id in rejected_gpt:
+            notes = "gpt_cleaning_rejected"
+
+        final = {
+            "dataset_group": "argentina/existing",
+            "source_id": sid,
+            "clip_id": clip_id,
+            "split": row.get("split", ""),
+            "spk": row.get("spk", ""),
+            "titulo": row.get("titulo", ""),
+            "source_url": source.get("candidate_url", align.get("source_url", "")),
+            "source_video_id": source.get("candidate_video_id", align.get("source_video_id", "")),
+            "start_time": align.get("start_time", ""),
+            "end_time": align.get("end_time", ""),
+            "mp4_visual_roi_path": row.get("mp4_gcs_path", ""),
+            "npz_path": row.get("npz_gcs_path", ""),
+            "clip_with_audio_path": rec.get("clip_video_gcs_path", ""),
+            "existing_text": existing_text,
+            "large_text": large_text,
+            "turbo_text": turbo_text,
+            "clean_gpt_text": clean_gpt_text,
+            "selected_training_text": selected,
+            "text_source": text_source,
+            "clean_status": clean_status,
+            "clean_confidence": clean_confidence,
+            "patch_count": patch_count,
+            "alignment_confidence": align.get("alignment_confidence", ""),
+            "asr_status": asr_status,
+            "gpt_status": gpt_status,
+            "usable_for_training": str(bool(selected)).lower(),
+            "usable_for_eval": str(bool(selected) and row.get("split", "") in {"val", "test"}).lower(),
+            "needs_review": needs_review,
+            "failure_reason": failure_reason,
+            "notes": notes,
+        }
+        final_rows.append(final)
+        clean_rows.append(
+            {
+                "dataset_group": "argentina/existing",
+                "source_id": sid,
+                "clip_id": clip_id,
+                "existing_text": existing_text,
+                "large_text": large_text,
+                "turbo_text": turbo_text,
+                "clean_text": clean_gpt_text,
+                "status": "rejected_clean_gpt" if not clean_gpt_text and clip_id in rejected_gpt else clean_status,
+                "confidence": rejected_gpt.get(clip_id, {}).get("confidence", final["clean_confidence"]),
+                "patch_count": patch_count,
+                "gpt_status": gpt_status,
+                "notes": rejected_gpt.get(clip_id, {}).get("reason", final["notes"]),
+            }
+        )
+    return final_rows, clean_rows
+
+
+def load_new_asr() -> dict[tuple[str, str, str], dict[str, str]]:
+    out = {}
+    for row in read_csv(NEW_ASR):
+        if row.get("status") == "completed_asr" and row.get("model_role") in {"large", "turbo"}:
+            out[(row.get("video_id", ""), row.get("clip_id", ""), row.get("model_role", ""))] = row
+    return out
+
+
+def load_new_roi() -> dict[tuple[str, str], dict[str, str]]:
+    return {
+        (row.get("video_id", ""), row.get("clip_id", "")): row
+        for row in read_csv(NEW_ROI)
+        if row.get("status") == "completed_roi"
+    }
+
+
+def build_new_discovery_final() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    sources = {row.get("video_id", ""): row for row in read_csv(ARG_NEW)}
+    asr = load_new_asr()
+    rois = load_new_roi()
+    completed_gpt = load_completed_gpt()
+    rejected_gpt = load_rejected_gpt()
+    final_rows: list[dict[str, object]] = []
+    clean_rows: list[dict[str, object]] = []
+
+    for row in read_csv(NEW_CLIPS):
+        if row.get("status") != "completed_clip_with_audio":
+            continue
+        video_id = row.get("video_id", "")
+        clip_id = row.get("clip_id", "")
+        source = sources.get(video_id, {})
+        large = asr.get((video_id, clip_id, "large"), {})
+        turbo = asr.get((video_id, clip_id, "turbo"), {})
+        roi = rois.get((video_id, clip_id), {})
+        large_text = large.get("text", "")
+        turbo_text = turbo.get("text", "")
+        has_roi = bool(roi.get("roi_npz_gcs_path") or roi.get("roi_npz_path"))
+        clean_gpt_text = ""
+        patch_count = 0
+
+        if large_text and turbo_text:
+            clean_status = "completed_large_turbo_no_gpt"
+            asr_status = "completed_large_turbo"
+            selected = large_text
+            text_source = "large"
+            needs_review = "false"
+            failure_reason = "" if has_roi else "pending_new_discovery_roi_npz"
+            clean_confidence = "medium"
+            usable_for_training = str(has_roi).lower()
+        else:
+            clean_status = "needs_review"
+            selected = large_text or turbo_text
+            text_source = "large" if large_text else ("turbo" if turbo_text else "")
+            needs_review = "true"
+            clean_confidence = "low"
+            usable_for_training = "false"
+            missing = []
+            if not large_text:
+                missing.append("large_asr")
+            if not turbo_text:
+                missing.append("turbo_asr")
+            if not has_roi:
+                missing.append("roi_npz")
+            failure_reason = "pending_new_discovery_" + "_".join(missing)
+            asr_status = "completed_large_turbo" if large_text and turbo_text else "pending_new_discovery_asr"
+
+        gpt = completed_gpt.get(clip_id)
+        if gpt:
+            clean_gpt_text = gpt.get("clean_text", "").strip()
+            clean_status = "completed_clean_gpt"
+            selected = clean_gpt_text
+            text_source = "clean_gpt_v1"
+            needs_review = "false"
+            clean_confidence = gpt.get("confidence", "medium") or "medium"
+            patch_count = int(gpt.get("patch_count") or 0)
+            usable_for_training = str(has_roi).lower()
+            failure_reason = "" if has_roi else "pending_new_discovery_roi_npz"
+
+        gpt_status = "completed_clean_gpt" if clean_gpt_text else ("not_attempted" if selected else "blocked_no_asr_context")
+        if not clean_gpt_text and clip_id in rejected_gpt:
+            gpt_status = "rejected_clean_gpt"
+
+        final = {
+            "dataset_group": "argentina/new_discovery",
+            "source_id": f"nd__{video_id}",
+            "clip_id": clip_id,
+            "split": "train",
+            "spk": source.get("channel", ""),
+            "titulo": source.get("title", ""),
+            "source_url": source.get("url", ""),
+            "source_video_id": video_id,
+            "start_time": row.get("start_time", ""),
+            "end_time": row.get("end_time", ""),
+            "mp4_visual_roi_path": roi.get("roi_mp4_gcs_path", ""),
+            "npz_path": roi.get("roi_npz_gcs_path", ""),
+            "clip_with_audio_path": row.get("clip_video_gcs_path", ""),
+            "existing_text": "",
+            "large_text": large_text,
+            "turbo_text": turbo_text,
+            "clean_gpt_text": clean_gpt_text,
+            "selected_training_text": selected,
+            "text_source": text_source,
+            "clean_status": clean_status,
+            "clean_confidence": clean_confidence,
+            "patch_count": patch_count,
+            "alignment_confidence": "new_discovery",
+            "asr_status": asr_status,
+            "gpt_status": gpt_status,
+            "usable_for_training": usable_for_training,
+            "usable_for_eval": "false",
+            "needs_review": needs_review,
+            "failure_reason": failure_reason,
+            "notes": "gpt_cleaning_applied"
+            if clean_gpt_text
+            else ("gpt_cleaning_rejected" if clip_id in rejected_gpt else "new_discovery_no_gpt_cleaning_applied"),
+        }
+        final_rows.append(final)
+        clean_rows.append(
+            {
+                "dataset_group": "argentina/new_discovery",
+                "source_id": final["source_id"],
+                "clip_id": clip_id,
+                "existing_text": "",
+                "large_text": large_text,
+                "turbo_text": turbo_text,
+                "clean_text": clean_gpt_text,
+                "status": "rejected_clean_gpt" if not clean_gpt_text and clip_id in rejected_gpt else clean_status,
+                "confidence": rejected_gpt.get(clip_id, {}).get("confidence", clean_confidence),
+                "patch_count": patch_count,
+                "gpt_status": final["gpt_status"],
+                "notes": rejected_gpt.get(clip_id, {}).get("reason", final["notes"]),
+            }
+        )
+    return final_rows, clean_rows
+
+
+def build_new_discovery() -> list[dict[str, object]]:
+    rows = []
+    downloads = {row.get("url", ""): row for row in read_csv(LOCAL_DOWNLOADS) if row.get("status", "").startswith("downloaded_uploaded")}
+    clip_counts = Counter(row.get("video_id", "") for row in read_csv(NEW_CLIPS) if row.get("status") == "completed_clip_with_audio")
+    asr_rows = read_csv(NEW_ASR)
+    asr_completed = Counter(
+        (row.get("video_id", ""), row.get("model_role", ""))
+        for row in asr_rows
+        if row.get("status") == "completed_asr" and row.get("model_role") in {"large", "turbo"}
+    )
+    roi_completed = Counter(row.get("video_id", "") for row in read_csv(NEW_ROI) if row.get("status") == "completed_roi")
+    for row in read_csv(ARG_NEW):
+        downloaded = downloads.get(row.get("url", ""), {})
+        video_id = row.get("video_id", "")
+        clips_done = clip_counts[video_id]
+        large_done = asr_completed[(video_id, "large")]
+        turbo_done = asr_completed[(video_id, "turbo")]
+        roi_done = roi_completed[video_id]
+        if clips_done and large_done >= clips_done and turbo_done >= clips_done and roi_done >= clips_done:
+            ingest_status = "completed_large_turbo_roi_no_gpt"
+            failure_reason = ""
+            notes = f"clips_with_audio={clips_done}; large_asr={large_done}; turbo_asr={turbo_done}; roi_npz={roi_done}"
+        elif clips_done:
+            ingest_status = "clips_generated_pending_asr_roi"
+            failure_reason = ""
+            notes = f"clips_with_audio={clips_done}; large_asr={large_done}; turbo_asr={turbo_done}; roi_npz={roi_done}"
+        elif downloaded:
+            ingest_status = "source_downloaded_pending_clips_asr_roi"
+            failure_reason = ""
+            notes = "source video/audio downloaded locally and uploaded to GCS; clips/ASR/ROIs pending"
+        else:
+            ingest_status = "blocked_download_failed"
+            failure_reason = "youtube_requires_login_or_cookies_from_vm"
+            notes = "accepted source queued; VM yt-dlp metadata/download retry requires browser cookies or alternative source URL"
+        rows.append(
+            {
+                "url": row.get("url", ""),
+                "video_id": row.get("video_id", ""),
+                "title": row.get("title", ""),
+                "channel": row.get("channel", ""),
+                "decision": row.get("decision", ""),
+                "total_score": row.get("total_score", ""),
+                "usable_minutes_estimate": row.get("usable_minutes_estimate", ""),
+                "accepted_clips_estimate": row.get("accepted_clips_estimate", ""),
+                "recommended_use": row.get("recommended_use", ""),
+                "ingest_status": ingest_status,
+                "failure_reason": failure_reason,
+                "source_video_gcs_path": downloaded.get("gcs_video_path", ""),
+                "source_audio_gcs_path": downloaded.get("gcs_audio_path", ""),
+                "metadata_gcs_path": downloaded.get("gcs_info_path", ""),
+                "notes": notes,
+            }
+        )
+    return rows
+
+
+def build_spanish_manifest() -> list[dict[str, object]]:
+    rows = []
+    for row in read_csv(SPANISH):
+        rows.append(
+            {
+                "dataset_group": "spanish_general/existing",
+                "clip_id": row.get("clip_id", ""),
+                "mp4_gcs_path": row.get("mp4_gcs_path", ""),
+                "npz_gcs_path": row.get("npz_gcs_path", ""),
+                "txt_gcs_path": row.get("txt_gcs_path", ""),
+                "turbo_text_path": "",
+                "asr_status": "blocked_missing_provenance_for_asr",
+                "provenance_status": row.get("provenance_status", "not_documented_in_bucket"),
+                "license_status": row.get("license_status", "unknown_or_sensitive"),
+                "notes": "curriculum_visper has ROI/text assets but no reconstructable source URLs in current manifests",
+            }
+        )
+    return rows
+
+
+def append_failures(new_rows: list[dict[str, object]]) -> None:
+    rows = [
+        row
+        for row in read_csv(FAILURES)
+        if not (
+            row.get("stage") == "new_discovery_ingest"
+            and row.get("dataset_group") == "argentina/new_discovery"
+            and row.get("error_type") == "blocked_not_ingested_in_this_release"
+        )
+    ]
+    seen = {(r.get("stage"), r.get("dataset_group"), r.get("source_id"), r.get("clip_id"), r.get("error_type")) for r in rows}
+    for row in new_rows:
+        key = (row.get("stage"), row.get("dataset_group"), row.get("source_id"), row.get("clip_id"), row.get("error_type"))
+        if key not in seen:
+            rows.append(row)
+            seen.add(key)
+    write_csv(FAILURES, rows, FAILURE_FIELDS)
+
+
+def write_reports(final_rows: list[dict[str, object]], clean_rows: list[dict[str, object]], new_rows: list[dict[str, object]], spanish_rows: list[dict[str, object]]) -> None:
+    recon_rows = read_csv(RECON)
+    recon_completed = [r for r in recon_rows if r.get("status") == "completed_reconstructed_audio"]
+    asr_rows = [r for r in read_csv(ASR) if r.get("model_role") in {"large", "turbo"}]
+    disagreement_rows = read_csv(DISAGREEMENT)
+    new_final = [r for r in final_rows if r.get("dataset_group") == "argentina/new_discovery"]
+    existing_final = [r for r in final_rows if r.get("dataset_group") == "argentina/existing"]
+    existing_clean_counts = Counter(str(r["clean_status"]) for r in existing_final)
+    existing_asr_counts = Counter(str(r["asr_status"]) for r in existing_final)
+    existing_align_counts = Counter(str(r["alignment_confidence"]) for r in existing_final)
+    new_clean_counts = Counter(str(r["clean_status"]) for r in new_final)
+    new_asr_counts = Counter(str(r["asr_status"]) for r in new_final)
+    completed_clean_gpt = sum(1 for r in clean_rows if r["status"] == "completed_clean_gpt")
+    rejected_clean_gpt = sum(1 for r in clean_rows if r["status"] == "rejected_clean_gpt")
+    validation_rows = read_csv(MANUAL_GPT_VALIDATION)
+    validation_status_counts = Counter(row.get("status", "") for row in validation_rows)
+    validation_rejected = sum(int(row.get("rejected_count") or 0) for row in validation_rows)
+    validation_missing = sum(int(row.get("missing_count") or 0) for row in validation_rows)
+    validation_validated = sum(int(row.get("validated_count") or 0) for row in validation_rows)
+    text_cleaned_no_roi = sum(
+        1
+        for r in final_rows
+        if r.get("clean_status") == "completed_clean_gpt" and r.get("usable_for_training") != "true"
+    )
+    REPORTS.mkdir(parents=True, exist_ok=True)
+    FULL_REPORT.write_text(
+        "\n".join(
+            [
+                "# Full clean release report",
+                "",
+                f"bucket: {DEST_BUCKET}/",
+                "branch: feature/full-clean-release",
+                "",
+                "## Argentina existing",
+                f"- total clips manifest: {len(existing_final)}",
+                f"- sources: {len({r.get('source_id') for r in existing_final if r.get('source_id')})}",
+                f"- clean_status_counts: {dict(existing_clean_counts)}",
+                f"- asr_status_counts: {dict(existing_asr_counts)}",
+                f"- alignment_confidence_counts: {dict(existing_align_counts)}",
+                f"- reconstructed_audio_clips: {len(recon_completed)}",
+                f"- large_turbo_asr_rows: {len(asr_rows)}",
+                f"- disagreement_rows: {len(disagreement_rows)}",
+                "",
+                "## Argentina new discovery",
+                f"- accepted videos queued: {len(new_rows)}",
+                f"- final manifest rows: {len(new_final)}",
+                f"- clean_status_counts: {dict(new_clean_counts)}",
+                f"- asr_status_counts: {dict(new_asr_counts)}",
+                f"- clips_generated_pending_asr_roi: {sum(1 for r in new_rows if r.get('ingest_status') == 'clips_generated_pending_asr_roi')}",
+                f"- completed_large_turbo_roi_no_gpt: {sum(1 for r in new_rows if r.get('ingest_status') == 'completed_large_turbo_roi_no_gpt')}",
+                f"- source_downloaded_pending_clips_asr_roi: {sum(1 for r in new_rows if r.get('ingest_status') == 'source_downloaded_pending_clips_asr_roi')}",
+                f"- blocked_download_failed: {sum(1 for r in new_rows if r.get('ingest_status') == 'blocked_download_failed')}",
+                "- reason for remaining blocked: yt-dlp on the VM requires YouTube login/cookies for accepted URLs; local download flow is now available.",
+                "",
+                "## Spanish general",
+                f"- rows: {len(spanish_rows)}",
+                "- ASR: blocked_missing_provenance_for_asr",
+                "",
+                "## GPT cleaning",
+                f"- completed_clean_gpt: {completed_clean_gpt}",
+                f"- rejected_clean_gpt: {rejected_clean_gpt}",
+                f"- completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
+                f"- baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
+                f"- manual_validation_status_counts: {dict(validation_status_counts)}",
+                f"- manual_validation_validated_rows: {validation_validated}",
+                f"- manual_validation_rejected_rows: {validation_rejected}",
+                f"- manual_validation_missing_rows: {validation_missing}",
+                f"- text_cleaned_no_roi: {text_cleaned_no_roi}",
+                "- GPT patches are applied only from validated JSONL outputs.",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    GPT_REPORT.write_text(
+        "\n".join(
+            [
+                "# GPT cleaning report",
+                "",
+                f"completed_clean_gpt: {completed_clean_gpt}",
+                f"rejected_clean_gpt: {rejected_clean_gpt}",
+                f"completed_large_turbo_no_gpt: {sum(1 for r in clean_rows if r['status'] == 'completed_large_turbo_no_gpt')}",
+                f"baseline_existing_only: {sum(1 for r in clean_rows if r['status'] == 'baseline_existing_only')}",
+                f"needs_review_or_blocked: {sum(1 for r in clean_rows if r['status'] not in {'completed_large_turbo_no_gpt', 'completed_clean_gpt'})}",
+                f"manual_validation_status_counts: {dict(validation_status_counts)}",
+                f"manual_validation_validated_rows: {validation_validated}",
+                f"manual_validation_rejected_rows: {validation_rejected}",
+                f"manual_validation_missing_rows: {validation_missing}",
+                f"text_cleaned_no_roi: {text_cleaned_no_roi}",
+                "",
+                "La regla es no inventar limpieza sin salida JSONL validada.",
+                "Los clips con ASR large/turbo usan `large_text` como selected_training_text.",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    COST_REPORT.write_text(
+        "\n".join(
+            [
+                "# Cost/runtime report",
+                "",
+                "project: labios-argentos-499900",
+                "vm_runs:",
+                "- name: vsr-full-clean-20260707-0200; zone: us-central1-a; machine_type: g2-standard-8; gpu: nvidia-l4; provisioning_model: SPOT; status: used_then_spot_terminated_then_deleted",
+                "- name: vsr-full-clean-continue-20260707; zone: us-east1-d; machine_type: g2-standard-8; gpu: nvidia-l4; provisioning_model: STANDARD; status: used_for_resume_then_deleted",
+                "outputs_synced_to_gcs: true",
+                "cleanup_verification: data_pipeline/release/reports/bucket_validation_report.md shows no matching instances/disks/static IPs",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+
+def main() -> int:
+    final_rows, clean_rows = build_existing_final()
+    new_final_rows, new_clean_rows = build_new_discovery_final()
+    final_rows.extend(new_final_rows)
+    clean_rows.extend(new_clean_rows)
+    new_rows = build_new_discovery()
+    spanish_rows = build_spanish_manifest()
+    train_rows = [r for r in final_rows if r.get("split") == "train" and r.get("usable_for_training") == "true"]
+    eval_rows = [r for r in final_rows if r.get("split") in {"val", "test"} and r.get("usable_for_eval") == "true"]
+    write_csv(FINAL_RELEASE, final_rows, FINAL_FIELDS)
+    write_csv(FINAL_TRAIN, train_rows, FINAL_FIELDS)
+    write_csv(FINAL_EVAL, eval_rows, FINAL_FIELDS)
+    write_csv(CLEAN_GPT, clean_rows, CLEAN_FIELDS)
+    write_csv(NEW_DISCOVERY, new_rows, NEW_FIELDS)
+    write_csv(SPANISH_REPORT, spanish_rows, SPANISH_FIELDS)
+    append_failures(
+        [
+            {
+                "stage": "vm_processing",
+                "dataset_group": "argentina/existing",
+                "source_id": "f09__ESTOY_EN_UN_BROTE_PERDON",
+                "clip_id": "",
+                "path": "gce://vsr-full-clean-20260707-0200",
+                "error_type": "spot_vm_terminated",
+                "error_message": "VM Spot terminated during reconstruction batch before the next source checkpoint completed.",
+                "notes": "completed sources were synced to GCS; processing resumed on standard L4 VM",
+            },
+            {
+                "stage": "new_discovery_ingest",
+                "dataset_group": "argentina/new_discovery",
+                "source_id": "",
+                "clip_id": "",
+                "path": str(ARG_NEW),
+                "error_type": "blocked_download_failed",
+                "error_message": "yt-dlp on the VM required YouTube login/cookies for accepted new_discovery URLs.",
+                "notes": "accepted URLs remain queued in new_discovery_ingest_manifest.csv; no cookies were uploaded or logged",
+            },
+            {
+                "stage": "spanish_general_asr",
+                "dataset_group": "spanish_general/existing",
+                "source_id": "",
+                "clip_id": "",
+                "path": "gs://labios-argentos-vsr-dataset/curriculum_visper/",
+                "error_type": "blocked_missing_provenance_for_asr",
+                "error_message": "No reconstructable source URLs/provenance found in current manifests.",
+                "notes": "spanish_general kept separate; no GPT cleaning",
+            },
+        ]
+    )
+    write_reports(final_rows, clean_rows, new_rows, spanish_rows)
+    print(f"final_release_rows={len(final_rows)} -> {FINAL_RELEASE}")
+    print(f"train_rows={len(train_rows)} -> {FINAL_TRAIN}")
+    print(f"eval_rows={len(eval_rows)} -> {FINAL_EVAL}")
+    print(f"clean_rows={len(clean_rows)} -> {CLEAN_GPT}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
