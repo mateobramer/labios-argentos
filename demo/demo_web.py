@@ -32,6 +32,7 @@ HTML = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web", "index.ht
 HTML_MODELO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web", "modelo.html")
 MODELOS_PERSONAL = os.path.join(REPO, "modelos", "personal")
 MIN_SEG_S, PREROLL_S, MOV_WIN_S, CALIB_S = 0.7, 0.25, 0.35, 2.0
+RUN_ID = str(int(time.time()))   # cambia por arranque: bustea la cache de /strip en el navegador
 
 # ---- estado compartido (los handlers http lo leen) ----
 S = {"fase": "calibrando", "mov": 0.0, "thr": None, "busy": False,
@@ -392,6 +393,7 @@ def activar_modelo(persona, usar_base=False):
             else: os.environ["VSR_CKPT"] = ckpt
             if SRV.get("proc"): SRV["proc"].terminate()
             SRV["proc"], cfg = lanzar_servidor(bool(S["config"].get("qwen")))
+            cfg["max_seg"] = S["config"].get("max_seg"); cfg["run"] = RUN_ID
             S["config"] = cfg
         return True, "Modelo base activo." if usar_base else "Tu modelo personal está activo."
     except Exception as e:
@@ -619,6 +621,7 @@ def main():
         os.environ["VSR_CKPT"] = os.path.expanduser(args.ckpt)
     SRV["proc"], cfg = lanzar_servidor(args.qwen)
     cfg["max_seg"] = args.max_seg
+    cfg["run"] = RUN_ID
     S["config"] = cfg
 
     for fn in (hilo_camara, hilo_landmarks):

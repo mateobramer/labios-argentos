@@ -228,10 +228,10 @@
       const last = s.segmentos[s.segmentos.length-1];
       if (last){
         cap.textContent = last.texto; cap.classList.remove("vacio");
-        if (last.strip >= 0){ $("tira").src = "/strip/"+last.strip; $("tira").hidden = false; }
+        if (last.strip >= 0){ $("tira").src = "/strip/"+last.strip+"?r="+(s.config.run||0); $("tira").hidden = false; }
       }
       $("guion").innerHTML = s.segmentos.map((g,i)=>({g,i})).reverse().map(({g,i}) =>
-        `<div class="seg">${g.strip>=0?`<img src="/strip/${g.strip}" alt="">`:""}
+        `<div class="seg">${g.strip>=0?`<img src="/strip/${g.strip}?r=${(s.config&&s.config.run)||0}" alt="">`:""}
          <div class="txt">${g.corregido ? g.corregido : g.texto}</div>
          <div class="meta">${g.dur.toFixed(1)} s de habla · leída en ${g.infer.toFixed(1)} s
            ${g.corregido ? " · ✔ corregida" : ` · <a href="#" onclick="corregir(${i});return false" title="Corregir lo que el modelo leyó (queda solo en esta máquina)">✏️ corregir</a>`}</div></div>`).join("");
